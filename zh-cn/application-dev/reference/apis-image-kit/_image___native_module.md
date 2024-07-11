@@ -50,7 +50,7 @@
 | typedef void(\*[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | 定义native层图片的回调方法。 | 
 | typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | ImageSource结构体类型，用于执行ImageSource相关操作。 | 
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | 图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create). | 
-| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | 编码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。 | 
+| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | 解码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。 | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。 | 
 | typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | 初始化参数结构体。 | 
 | typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | 图像像素信息结构体。 | 
@@ -121,7 +121,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetRotate](#oh_decodingoptions_setrotate) ([OH_DecodingOptions](#oh_decodingoptions) \*options, float rotate) | 设置旋转角度。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredSize](#oh_decodingoptions_getdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | 获取期望输出大小。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredSize](#oh_decodingoptions_setdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | 设置期望输出大小。 | 
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 获取解码区域。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。 | 
@@ -145,6 +145,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | 设置图片高。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | 获取像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | 设置像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | 获取源像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | 设置源像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | 获取透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | 设置透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | 释放OH_Pixelmap_InitializationOptions指针。 | 
@@ -379,7 +381,9 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 **描述**
 
-编码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
 
 **起始版本：** 12
 
@@ -394,6 +398,8 @@ typedef struct OH_ImageNative OH_ImageNative
 
 为图像接口定义native层图像对象的别名。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageNative结构体介绍](../../media/image/image-structure-c.md#oh_imagenative结构体)。
+
 **起始版本：** 12
 
 
@@ -406,6 +412,8 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 **描述**
 
 ImagePacker结构体类型，用于执行ImagePacker相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImagePackerNative结构体介绍](../../media/image/image-structure-c.md#oh_imagepackernative结构体)。
 
 **起始版本：** 12
 
@@ -433,6 +441,8 @@ typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 
 用于定义OH_ImageReceiverNative数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverNative结构体介绍](../../media/image/image-structure-c.md#oh_imagereceivernative结构体)。
+
 **起始版本：** 12
 
 
@@ -446,6 +456,8 @@ typedef struct OH_ImageReceiverOptions OH_ImageReceiverOptions
 
 用于定义OH_ImageReceiverOptions数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverOptions结构体介绍](../../media/image/image-structure-c.md#oh_imagereceiveroptions结构体)。
+
 **起始版本：** 12
 
 
@@ -457,7 +469,9 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 
 **描述**
 
-图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
+图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSource_Info结构体介绍](../../media/image/image-structure-c.md#oh_imagesource_info结构体)。
 
 **起始版本：** 12
 
@@ -472,6 +486,8 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative
 
 ImageSource结构体类型，用于执行ImageSource相关操作。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSourceNative结构体介绍](../../media/image/image-structure-c.md#oh_imagesourcenative结构体)。
+
 **起始版本：** 12
 
 
@@ -484,6 +500,8 @@ typedef struct OH_PackingOptions OH_PackingOptions
 **描述**
 
 图像编码选项。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PackingOptions结构体介绍](../../media/image/image-structure-c.md#oh_packingoptions结构体)。
 
 **起始版本：** 12
 
@@ -498,6 +516,8 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 
 图像像素信息结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_ImageInfo结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo结构体)。
+
 **起始版本：** 12
 
 
@@ -511,6 +531,8 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 
 初始化参数结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_InitializationOptions结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions结构体)。
+
 **起始版本：** 12
 
 
@@ -523,6 +545,8 @@ typedef struct OH_PixelmapNative OH_PixelmapNative
 **描述**
 
 Pixelmap结构体类型，用于执行Pixelmap相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PixelmapNative结构体介绍](../../media/image/image-structure-c.md#oh_pixelmapnative结构体)。
 
 **起始版本：** 12
 
@@ -700,7 +724,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredRegion (OH_DecodingOptions * option
 
 **描述**
 
-设置解码区域。
+获取解码区域。
 
 **起始版本：** 12
 
@@ -2732,6 +2756,51 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth (OH_Pixelmap_Initializ
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_PixelmapInitializationOptions_SetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)
+```
+
+**描述**
+
+设置源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PixelmapInitializationOptions_GetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *ops, int32_t *srcpixelFormat)
+```
+
+**描述**
+
+获取源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ### OH_PixelmapNative_CreatePixelmap()
 
@@ -2742,6 +2811,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLen
 **描述**
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+
+接口调用完，入参data的数据可释放。
 
 **起始版本：** 12
 

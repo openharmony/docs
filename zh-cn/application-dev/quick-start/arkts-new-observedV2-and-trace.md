@@ -5,6 +5,8 @@
 >**说明：**
 >
 >\@ObservedV2与\@Trace装饰器从API version 12开始支持。
+>
+>当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -14,10 +16,10 @@
 - 被\@Trace装饰器装饰的属性property变化时，仅会通知property关联的组件进行刷新。
 - 在嵌套类中，嵌套类中的属性property被\@Trace装饰且嵌套类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
-- 在\@ObservedV2装饰的类中，只有被\@Trace装饰的属性才可以用在UI中，未被\@Trace装饰的属性不可以用在UI中。
+- 未被\@Trace装饰的属性用在UI中无法感知到变化，也无法触发UI刷新。
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
 
-## 状态管理V1版本的局限性
+## 状态管理V1版本对嵌套类对象属性变化直接观测的局限性
 
 现有状态管理V1版本无法实现对嵌套类对象属性变化的直接观测。
 
@@ -115,7 +117,7 @@ struct Index {
 }
 ```
 
-通过这种方式虽然能够实现对嵌套类中属性变化的观测，但是当嵌套层级较深时，代码将会变得十分复杂，易用性差。
+通过这种方式虽然能够实现对嵌套类中属性变化的观测，但是当嵌套层级较深时，代码将会变得十分复杂，易用性差。因此推出类装饰器\@ObservedV2与成员变量装饰器\@Trace，增强对嵌套类中属性变化的观测能力。
 
 ## 装饰器说明
 
@@ -222,7 +224,7 @@ struct Index {
 
 \@ObservedV2与\@Trace装饰器存在以下使用限制：
 
-- 非\@Trace装饰的成员属性不能用在UI上。
+- 非\@Trace装饰的成员属性用在UI上无法触发UI刷新。
 
 ```ts
 @ObservedV2
@@ -237,10 +239,10 @@ struct Index {
 
   build() {
     Column() {
-      // age被@Trace装饰，可以用在UI中
+      // age被@Trace装饰，用在UI中可以触发UI刷新
       Text(`${this.person.age}`)
-      // id未被@Trace装饰，不可以用在UI中
-      Text(`${this.person.id}`) // 错误用法
+      // id未被@Trace装饰，用在UI中不会触发UI刷新
+      Text(`${this.person.id}`) // 当id变化时不会刷新
     }
   }
 }
@@ -260,7 +262,7 @@ class User {
 ```ts
 @ComponentV2
 struct Comp {
-  @Trace message: string = "Hello World"; // 错误用法
+  @Trace message: string = "Hello World"; // 错误用法，编译时报错
 
   build() {
   }
@@ -335,6 +337,7 @@ struct Index {
 * 点击Button("change length")，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"isRender id: 1"的日志。
 * 自定义组件Page中的son是常规变量，因此点击Button("assign Son")并不会观测到变化。
 * 当点击Button("assign Son")后，再点击Button("change length")并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
+
 ```ts
 @ObservedV2
 class Pencil {
@@ -383,13 +386,15 @@ struct Page {
 
 
 ### 继承类场景
+
 \@Trace支持在类的继承场景中使用，无论是在基类还是继承类中，只有被\@Trace装饰的属性才具有被观测变化的能力。
 以下例子中，声明class GrandFather、Father、Uncle、Son、Cousin，继承关系如下图。
 
 ![arkts-old-state-management](figures/arkts-new-observed-and-track-extend-sample.png)
 
 
-* 创建类Son和类Cousin的实例，点击Button('change Son age')和Button('change Cousin age')可以触发UI的刷新。
+创建类Son和类Cousin的实例，点击Button('change Son age')和Button('change Cousin age')可以触发UI的刷新。
+
 ```ts
 @ObservedV2
 class GrandFather {
@@ -458,6 +463,7 @@ struct Index {
 ```
 
 ### \@Trace装饰基础类型的数组
+
 \@Trace装饰数组时，使用支持的API能够观测到变化。支持的API见[观察变化](#观察变化)。
 在下面的示例中\@ObservedV2装饰的Arr类中的属性numberArr是\@Trace装饰的数组，当使用数组API操作numberArr时，可以观测到对应的变化。注意使用数组长度进行判断以防越界访问。
 
@@ -559,10 +565,12 @@ struct Index {
   }
 }
 ```
+
 ### \@Trace装饰对象数组
 
 * \@Trace装饰对象数组personList以及Person类中的age属性，因此当personList、age改变时均可以观测到变化。
 * 点击Text组件更改age时，Text组件会刷新。
+
 ```ts
 let nextId: number = 0;
 
@@ -629,8 +637,10 @@ struct Index {
 ```
 
 ### \@Trace装饰Map类型
+
 * 被\@Trace装饰的Map类型属性可以观测到调用API带来的变化，包括 set、clear、delete。
 * 因为Info类被\@ObservedV2装饰且属性memberMap被\@Trace装饰，点击Button('init map')对memberMap赋值也可以观测到变化。
+
 ```ts
 @ObservedV2
 class Info {
@@ -681,6 +691,7 @@ struct MapSample {
 ```
 
 ### \@Trace装饰Set类型
+
 * 被\@Trace装饰的Set类型属性可以观测到调用API带来的变化，包括 add, clear, delete。
 * 因为Info类被\@ObservedV2装饰且属性memberSet被\@Trace装饰，点击Button('init set')对memberSet赋值也可以观察变化。
 
@@ -729,6 +740,7 @@ struct SetSample {
 
 
 ### \@Trace装饰Date类型
+
 * \@Trace装饰的Date类型属性可以观测调用API带来的变化，包括 setFullYear、setMonth、setDate、setHours、setMinutes、setSeconds、setMilliseconds、setTime、setUTCFullYear、setUTCMonth、setUTCDate、setUTCHours、setUTCMinutes、setUTCSeconds、setUTCMilliseconds。
 * 因为Info类被\@ObservedV2装饰且属性selectedDate被\@Trace装饰，点击Button('set selectedDate to 2023-07-08')对selectedDate赋值也可以观测到变化。
 

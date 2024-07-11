@@ -39,12 +39,12 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // Stage模型
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -78,10 +78,11 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // FA模型
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
@@ -166,8 +167,6 @@
 4. 调用get()方法获取指定键的值。示例代码如下所示：
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -193,8 +192,6 @@
 5. 调用delete()方法删除指定键值的数据。示例代码如下所示：
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {

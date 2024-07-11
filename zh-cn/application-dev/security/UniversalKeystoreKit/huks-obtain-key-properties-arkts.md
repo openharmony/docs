@@ -14,23 +14,24 @@ HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定�
 3. 返回值为[HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9)类型对象，获取的属性集在properties字段中。
 
 ```ts
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* option对象传空 */
 let emptyOptions: huks.HuksOptions = {
-    properties: []
+  properties: []
 };
 try {
-    /* 2. 获取密钥属性 */
-    huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: getKeyItemProperties failed` + error);
-        } else {
-            console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
-        }
-    });
+  /* 2. 获取密钥属性 */
+  huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+      console.error(`callback: getKeyItemProperties failed, ` + JSON.stringify(error));
+    } else {
+      console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
+    }
+  });
 } catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid` + error);
+  console.error(`callback: getKeyItemProperties input arg invalid, ` + JSON.stringify(error));
 }
 ```

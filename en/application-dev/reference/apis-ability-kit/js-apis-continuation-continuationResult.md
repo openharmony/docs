@@ -9,6 +9,8 @@ The ContinuationResult module describes the device information returned by the c
 
 Describes the device information returned by the continuation management entry after [on](js-apis-continuation-continuationManager.md#continuationmanagerondeviceselected9) is called.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 | Name| Type| Read Only| Mandatory| Description|

@@ -33,23 +33,8 @@ Defines the button on the reminder displayed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | No| Information about the ability that is displayed after the button is clicked.|
+| wantAgent<sup>10+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | No| Information about the ability that is displayed after the button is clicked.|
 | dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | No| The application database will be updated after a click on the button.|
-
-
-## WantAgent
-
-Defines the information about the redirected-to ability.
-
-> **NOTE**
->
-> Since API version 12, the **uri** parameter is open to all applications.
-
-**System capability**: SystemCapability.Notification.ReminderAgent
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| uri<sup>10+</sup> | string | No| URI of the target ability.|
 
 ## DataShareUpdate<sup>11+</sup>
 
@@ -72,6 +57,6 @@ Defines a reminder for a calendar event.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name                        | Type                   | Mandatory| Description                                              |
-| ---------------------------- | ----------------------- | ---- | -------------------------------------------------- |
-| rruleWantAgent<sup>12+</sup> | [WantAgent](#wantagent) | No  | Custom reminder, which specifies the ServiceExtensionAbility to start.|
+| Name                        | Type                                                    | Mandatory| Description                                              |
+| ---------------------------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | No  | Custom reminder, which specifies the ServiceExtensionAbility to start.|

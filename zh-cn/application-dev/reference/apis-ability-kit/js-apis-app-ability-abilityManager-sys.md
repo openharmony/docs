@@ -452,7 +452,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
-系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统接口**：该接口为系统接口。
 
@@ -500,7 +500,7 @@ try {
 
 acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
-系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
 **系统接口**：该接口为系统接口。
 
@@ -662,10 +662,10 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err: BusinessError) => {
-    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
-  }).then(() => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).then(() => {
     console.log(`notifySaveAsResult success`);
+  }).catch((err: BusinessError) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   });
 } catch (paramError) {
   let code: number = (paramError as BusinessError).code;

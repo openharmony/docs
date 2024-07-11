@@ -27,7 +27,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Example: Generate an RSA public key based on key parameters (using callback-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -89,7 +89,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Synchronously return the result ([generatePubKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkeysync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -170,8 +170,8 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 - Example: Generate an ECC key pair based on key parameters (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Print bigint information.
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -274,7 +274,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
     if (typeof bnValue === 'string') {
@@ -387,7 +387,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Example: Generate an SM2 key based on the elliptic curve name (using promise-based APIs)
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -415,7 +415,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');

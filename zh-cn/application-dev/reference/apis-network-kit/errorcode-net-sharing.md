@@ -80,8 +80,8 @@ Try to share an unavailable iface.
 
 1.通过指令查看共享的网卡是否被创建。
 
-    ```bash
-    > ifconfig -a
+    ```
+    ifconfig -a
     ```
 
 2.检查网卡名是否拼写错误。

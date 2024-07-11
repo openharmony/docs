@@ -13,6 +13,8 @@
 
 setCursor(value: PointerStyle): void
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 方法语句中可使用的全局接口，调用此接口可以更改当前的鼠标光标样式。
 
 **参数：**
@@ -26,6 +28,8 @@ setCursor(value: PointerStyle): void
 
 restoreDefault(): void
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 方法语句中可使用的全局接口，调用此接口可以将鼠标光标恢复成默认的箭头光标样式。
 
 
@@ -34,7 +38,7 @@ restoreDefault(): void
 
 ```ts
 // xxx.ets
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 @Entry
 @Component

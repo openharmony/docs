@@ -10,7 +10,7 @@ EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/a
 >
 > 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
 > 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
-> 3. 支持多实例场景，UIExtensionAbility的多实例介绍可参见[UIExtensionAbility](uiextensionability.md)。
+> 3. 当前提供的EmbeddedUIExtensionAbility支持多实例场景，并且继承了UIExtensionAbility的进程模型，UIExtensionAbility的多实例及进程配置相关介绍可参见[UIExtensionAbility](uiextensionability.md)。
 
 EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的EmbeddedUIExtensionAbility为提供方，称启动EmbeddedUIExtensionAbility的EmbeddedComponent组件为使用方。
 
@@ -37,74 +37,74 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 3. 打开EmbeddedUIExtAbility.ts文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
-   ```ts
-   import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-   import Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = '[ExampleEmbeddedAbility]'
-   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-     onCreate() {
-       console.log(TAG, `onCreate`);
-     }
-   
-     onForeground() {
-       console.log(TAG, `onForeground`);
-     }
-   
-     onBackground() {
-       console.log(TAG, `onBackground`);
-     }
-   
-     onDestroy() {
-       console.log(TAG, `onDestroy`);
-     }
-   
-     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-       let param: Record<string, UIExtensionContentSession> = {
-         'session': session
-       };
-       let storage: LocalStorage = new LocalStorage(param);
-       session.loadContent('pages/extension', storage);
-     }
-   
-     onSessionDestroy(session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionDestroy`);
-     }
-   }
-   ```
+      ```ts
+      import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
+      import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+      import Want from '@ohos.app.ability.Want';
+      
+      const TAG: string = '[ExampleEmbeddedAbility]'
+      export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+        onCreate() {
+          console.log(TAG, `onCreate`);
+        }
+      
+        onForeground() {
+          console.log(TAG, `onForeground`);
+        }
+      
+        onBackground() {
+          console.log(TAG, `onBackground`);
+        }
+      
+        onDestroy() {
+          console.log(TAG, `onDestroy`);
+        }
+      
+        onSessionCreate(want: Want, session: UIExtensionContentSession) {
+          console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+          let param: Record<string, UIExtensionContentSession> = {
+            'session': session
+          };
+          let storage: LocalStorage = new LocalStorage(param);
+          session.loadContent('pages/extension', storage);
+        }
+      
+        onSessionDestroy(session: UIExtensionContentSession) {
+          console.log(TAG, `onSessionDestroy`);
+        }
+      }
+      ```
 
 4. EmbeddedUIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets内容如下：
 
-   ```ts
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-   
-   let storage = LocalStorage.getShared()
-   
-   @Entry(storage)
-   @Component
-   struct Extension {
-     @State message: string = 'EmbeddedUIExtensionAbility Index';
-     private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-   
-     build() {
-       Column() {
-         Text(this.message)
-           .fontSize(20)
-           .fontWeight(FontWeight.Bold)
-         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
-           this.session?.terminateSelfWithResult({
-             resultCode: 1,
-             want: {
-               bundleName: "com.example.embeddeddemo",
-               abilityName: "ExampleEmbeddedAbility",
-             }});
-         })
-       }.width('100%').height('100%')
-     }
-   }
-   ```
+    ```ts
+    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    
+    let storage = LocalStorage.getShared()
+    
+    @Entry(storage)
+    @Component
+    struct Extension {
+      @State message: string = 'EmbeddedUIExtensionAbility Index';
+      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    
+      build() {
+        Column() {
+          Text(this.message)
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+          Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+            this.session?.terminateSelfWithResult({
+              resultCode: 1,
+              want: {
+                bundleName: "com.example.embeddeddemo",
+                abilityName: "ExampleEmbeddedAbility",
+              }});
+          })
+        }.width('100%').height('100%')
+      }
+    }
+    ```
 
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册EmbeddedUIExtensionAbility，type标签需要设置为“embeddedUI”，srcEntry标签表示当前EmbeddedUIExtensionAbility组件所对应的代码路径。
 
@@ -128,11 +128,15 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 ## 开发EmbeddedUIExtensionAbility使用方
 
-开发者可以在UIAbility的页面中通过EmbeddedComponent容器加载自己应用内的EmbeddedUIExtensionAbility。如在首页文件：pages/Index.ets中添加如下内容：
-
+开发者可以在UIAbility的页面中通过EmbeddedComponent容器加载自己应用内的EmbeddedUIExtensionAbility。此外，EmbeddedUIExtensionAbility在want.parameters中新增了两个字段ohos.extension.processMode.hostSpecified和ohos.extension.processMode.hostInstance。
+- ohos.extension.processMode.hostSpecified控制非首次启动的EmbeddedUIExtensionAbility是否运行在同UIExtensionAbility的进程中，参数是进程名称。例如，"ohos.extension.processMode.hostSpecified"： "com.ohos.inentexecutedemo:share"。  
+- ohos.extension.processMode.hostInstance控制启动的EmbeddedUIExtensionAbility是否按照独立进程启动，传入false时，按照UIExtensionAbility的进程模型启动，入参true的时候，不管被拉起的UIExtensionAbility配置的是什么进程模型，都会新增一个进程，例如，"ohos.extension.processMode.hostInstance": "true"。
+ 
+ohos.extension.processMode.hostSpecified和ohos.extension.processMode.hostInstance同时配置时，hostSpecified优先，会运行在指定的进程中。
+如在首页文件：pages/Index.ets中添加如下内容：
 ```ts
-import Want from '@ohos.app.ability.Want'
-import { BusinessError } from '@ohos.base'
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -141,6 +145,9 @@ struct Index {
   private want: Want = {
     bundleName: "com.example.embeddeddemo",
     abilityName: "EmbeddedUIExtAbility",
+    parameters: {
+      'ohos.extension.processMode.hostInstance': 'true'
+    }
   }
 
   build() {
@@ -150,10 +157,10 @@ struct Index {
         EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
           .width('100%')
           .height('90%')
-          .onTerminated((info: TerminationInfo)=>{
+          .onTerminated((info: TerminationInfo) => {
             this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
-          .onError((error: BusinessError)=>{
+          .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;
           })
       }
@@ -163,6 +170,3 @@ struct Index {
   }
 }
 ```
-
-
-

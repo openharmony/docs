@@ -98,3 +98,30 @@ try {
   console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## FingerprintAction<sup>12+</sup>
+
+Enumerates key event types.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name                | Value         | Description               |
+| ---------------------| ---------- | --------------------|
+| DOWN                 | 0x00000000 | Pressing down          |
+| UP                   | 0x00000001 | Lifting up          |
+| SLIDE                | 0x00000002 | Sliding          |
+| RETOUCH              | 0x00000003 | Retouching          |
+| CLICK                | 0x00000004 | Clicking          |
+
+
+## FingerprintEvent<sup>12+</sup>
+
+Defines the key event type and the offset position relative to the key.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name     | Type                                      |Read Only  | Optional |Description                   |
+| --------  | ------------------------                  |-------|------ |--------               |
+| action    | [FingerprintAction](#fingerprintaction12)   | Yes   |  No  |Key event type.          |
+| distanceX | number                                    | Yes   |  No  |Offset position on the X axis. A positive number indicates that the pointer moves rightward, and a negative number indicates that the cursor moves leftward.|
+| distanceY | number                                    | Yes   |  No  |Offset position on the Y axis. A positive number indicates that the pointer moves upward, and a negative number indicates that the cursor moves downward.|

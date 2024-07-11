@@ -24,7 +24,7 @@ Represents a URI used for observing the device online/offline status.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name| Type                       | Readable| Writable| Description                                                     |
+| Name| Type                       | Read-Only| Writable| Description                                                     |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
 | DEVICES_URI<sup>11+</sup>  | string | Yes  | No  | URI used for observing the device online/offline status.                   |
 
@@ -83,7 +83,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| callback | AsyncCallback&lt;Array&lt;[Want](../apis-ability-kit/js-apis-app-ability-want.md)&gt;&gt; | Yes| Callback invoked to return the want information obtained.|
+| callback | AsyncCallback&lt;Array&lt;[Want](../apis-ability-kit/js-apis-app-ability-want.md)&gt;&gt; | Yes| Callback used to return the want information obtained.|
 
 **Error codes**
 
@@ -230,7 +230,7 @@ Provides APIs for managing file or folder attribute information.
 
 ### Attributes
 
-| Name| Type  | Readable| Writable| Description    |
+| Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file or folder.|
 | relativePath<sup>10+</sup> | string | Yes| No| Relative path of the file or folder.|
@@ -400,7 +400,7 @@ Provides APIs for managing the device's root attribute information.
 
 ### Attributes
 
-| Name| Type  | Readable| Writable| Description    |
+| Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | deviceType | number | Yes| No|Type of the device.|
 | uri | string | Yes| No| Root directory URI of the device.|
@@ -628,7 +628,7 @@ a **RootIterator** object. You can use [next](#next-1) to return [RootInfo](#roo
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | Yes| Callback invoked to return a **RootIterator** object.|
+| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | Yes| Callback used to return a **RootIterator** object.|
 
 **Error codes**
 
@@ -732,7 +732,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the destination directory for the file to create.|
 | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file created.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the URI of the file created.|
 
 **Error codes**
 
@@ -831,7 +831,7 @@ Creates a folder. This API uses an asynchronous callback to return the result.
 | --- | --- | --- | -- |
 | parentUri | string | Yes| URI of the destination directory for the folder to create.|
 | displayName | string | Yes| Name of the folder to create.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the folder created.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the URI of the folder created.|
 
 **Error codes**
 
@@ -922,7 +922,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file to open.|
 | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the FD of the file opened.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the FD of the file opened.|
 
 **Error codes**
 
@@ -1012,7 +1012,7 @@ Deletes a file or folder. This API uses an asynchronous callback to return the r
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or folder to delete.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1104,7 +1104,7 @@ Moves a file or folder. This API uses an asynchronous callback to return the res
 | --- | --- | --- | -- |
 | sourceFile | string | Yes| URI of the file or folder to move.|
 | destFile | string | Yes| URI of the destination directory, to which the file or folder is moved.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file or folder in the destination directory.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the URI of the file or folder in the destination directory.|
 
 **Error codes**
 
@@ -1196,7 +1196,7 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or folder to rename.|
 | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the renamed file or folder.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the URI of the renamed file or folder.|
 
 **Error codes**
 
@@ -1244,7 +1244,7 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return whether the file or folder exists. The value **true** means the file or folder exists, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -1289,7 +1289,7 @@ Checks whether a file or folder exists. This API uses an asynchronous callback t
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | sourceFileUri | string | Yes| URI of the file or folder to check.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the file or folder exists. The value **true** means the file or folder exists, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -1377,7 +1377,7 @@ Obtains a **FileInfo** object based on a URI. This API uses an asynchronous call
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or folder.|
-| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback used to return the **FileInfo** object obtained.|
 
 **Example**
 
@@ -1458,7 +1458,7 @@ Obtains a **FileInfo** object based on a relative path. This API uses an asynchr
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | relativePath | string | Yes| Relative path of the file or folder.|
-| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback used to return the **FileInfo** object obtained.|
 
 **Example**
 
@@ -1540,7 +1540,7 @@ Queries the attribute information about a file or folder based on a URI. This AP
 | -------- | --------------------------- | ---- | ---------------------------------------------------- |
 | uri      | string | Yes  | File or folder URI obtained from [FileInfo](#fileinfo).|
 | metaJson | string | Yes  | Attribute [FILEKEY](#filekey10) to query.       |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the file attribute and the value obtained.                    |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the file attribute and the value obtained.                    |
 
 **Example**
 
@@ -1666,7 +1666,7 @@ Copies a file or folder. This API uses an asynchronous callback to return the re
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
 | destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
-| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback used to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 **Example**
 
@@ -1717,7 +1717,7 @@ Copies a file or folder. This API uses an asynchronous callback to return the re
 | sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
 | destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | force     | boolean                                          | Yes  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
-| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback used to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 **Example**
 
@@ -1857,8 +1857,8 @@ Registers a callback to listen for a URI. URIs and callbacks can be in many-to-m
 | Name              | Type                                             | Mandatory| Description                          |
 | -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
 | uri                  | string                                            | Yes  | URI of the file or folder to observe.               |
-| notifyForDescendants | boolean                                           | Yes  | Whether to observe changes of the files in the directory.|
-| callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | Yes  | Callback invoked to return the notification.                  |
+| notifyForDescendants | boolean                                           | Yes  | Whether to observe changes of the files in the folder. The value **true** means to observe changes of the files in the folder; the value **false** means the opposite.|
+| callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | Yes  | Callback used to return the notification.                  |
 
 **Example 1: Register a callback to listen for a URI.**
 
@@ -2255,7 +2255,7 @@ Currently, this API does not support move of files or folders across devices.
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sourceUri | string                                                       | Yes  | URI of the file or folder to move.                                   |
 | destUri   | string                                                       | Yes  | URI of the destination directory, to which the file or folder is moved.                                           |
-| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, no information is returned. If the operation fails, a **moveResult** array is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, no information is returned. If the operation fails, a **moveResult** array is returned.|
 
 **Example**
 
@@ -2312,7 +2312,7 @@ Currently, this API does not support move of files or folders across devices.
 | sourceUri | string                                                       | Yes  | URI of the file or folder to move.                                   |
 | destUri   | string                                                       | Yes  | URI of the destination directory, to which the file or folder is moved.                                           |
 | force     | boolean                                                      | Yes  | Whether to forcibly overwrite the file with the same name. The value **true** means to overwrite the file forcibly; the value **false** means the opposite. The default value is **false**.|
-| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, no information is returned. If the operation fails, a **moveResult** array is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, no information is returned. If the operation fails, a **moveResult** array is returned.|
 
 **Example**
 
@@ -2405,7 +2405,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Moves a file, and renames it if a file with the same name already exists in the destination directory. This API uses an asynchronous callback to return the URI of the file after move.
+Moves a file, and renames it if a file with the same name already exists in the destination directory. This API uses an asynchronous callback to return the result.
 
  
 
@@ -2424,7 +2424,7 @@ Currently, this API does not support move of files across devices.
 | sourceFile | string                      | Yes  | URI of the file to move.|
 | destFile   | string                      | Yes  | URI of the destination directory, to which the file is moved.    |
 | fileName   | string                      | Yes  | New name of the file.   |
-| callback   | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the file in the destination directory.  |
+| callback   | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the file in the destination directory.  |
 
 **Error codes**
 
@@ -2462,7 +2462,7 @@ Defines the information returned when the file copy operation fails. If the copy
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name     | Type  | Readable| Writable| Description               |
+| Name     | Type  | Read-Only| Writable| Description               |
 | --------- | ------ | ---- | ---- | ----------------- |
 | sourceUri | string | Yes  | No  | URI of the source file or folder.                                        |
 | destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a conflict, **destUri** is empty.|
@@ -2527,7 +2527,7 @@ Represents the notification message.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name| Type                       | Readable| Writable| Description                                                     |
+| Name| Type                       | Read-Only| Writable| Description                                                     |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
 | type | [NotifyType](#notifytype10) | Yes  | No  | Notification type.                                           |
 | uris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files. Currently, only one notification is supported. A collection of multiple notifications will be supported in later versions.|
@@ -2542,7 +2542,7 @@ Represents the information returned when the move operation fails. If the operat
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name     | Type  | Readable| Writable| Description                                                        |
+| Name     | Type  | Read-Only| Writable| Description                                                        |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | sourceUri | string | Yes  | No  | URI of the source file or folder.                                              |
 | destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.    |

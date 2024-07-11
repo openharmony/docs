@@ -168,6 +168,7 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | audio/mp4a-latm | 音频/mp4a-latm类型 |
 | video/hevc | 视频/hevc类型 | 
 | video/avc | 视频/avc类型 | 
+| audio/mpeg | 音频/mpeg类型 | 
 
 支持的输出文件格式如下：
 
@@ -175,3 +176,4 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | -------- | -------- |
 | mp4 | 视频的容器格式，MP4。 | 
 | m4a | 音频的容器格式，M4A。 | 
+| mp3 | 音频的容器格式，MP3。 | 

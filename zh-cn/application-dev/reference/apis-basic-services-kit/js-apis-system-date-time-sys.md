@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import systemDateTime from '@ohos.systemDateTime';
+import { systemDateTime } from '@kit.BasicServicesKit';
 ```
 
 ## TimeType<sup>10+</sup>
@@ -46,16 +46,16 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -101,16 +101,16 @@ setTime(time : number) : Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -153,16 +153,16 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                                                            |
-| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                                                              |
-| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 错误码ID | 错误信息                                                                                                                                         |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date();
 try {
@@ -211,16 +211,16 @@ setDate(date: Date): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                                                            |
-| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                                                              |
-| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 错误码ID | 错误信息                                                                                                                                         |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date(); 
 try {
@@ -258,16 +258,16 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
@@ -311,16 +311,16 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai').then(() => {

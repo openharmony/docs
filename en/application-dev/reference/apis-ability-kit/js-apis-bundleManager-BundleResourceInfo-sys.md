@@ -20,3 +20,4 @@ The **BundleResourceInfo** module provides resource information of an applicatio
 | icon              | string | Yes  | No  | Application icon, which is encoded using Base64. |
 | label                     | string | Yes  | No  | Application label.|
 | drawableDescriptor<sup>12+</sup>                     | [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) | Yes  | No  | **drawableDescriptor** object of the application icon.|
+| appIndex<sup>12+</sup>           | number | Yes  | No  | Index of an application clone.|

@@ -183,7 +183,7 @@ libnative_buffer.so
    GLuint textureId;
    glGenTextures(1, &textureId);
    // Create an OH_NativeImage instance, which will be associated with an OpenGL ES texture.
-   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
+   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_EXTERNAL_OES);
    ```
    
 3. Obtain the **OHNativeWindow** instance that functions as the producer.
@@ -299,4 +299,3 @@ libnative_buffer.so
    OH_NativeImage_Destroy(&image);
    ```
 
- <!--no_check--> 

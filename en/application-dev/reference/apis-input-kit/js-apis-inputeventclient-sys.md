@@ -22,6 +22,8 @@ Injects keys (including single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
@@ -314,6 +316,41 @@ try {
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
   console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputEventClient.permitInjection<sup>12+</sup>
+
+permitInjection(result: boolean): void
+
+Specifies whether to authorize event injection.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+**Parameters**
+
+| Name   | Type   | Mandatory  | Description       |
+| -------- | ------  | ----   | --------- |
+| result   | boolean | Yes    | Authorization result. The value **true** indicates that event injection is allowed, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+```ts
+import { inputEventClient } from '@kit.InputKit';
+
+try {
+  let result = true;
+  inputEventClient.permitInjection(result);
+}catch(error){
+  console.error("failed:" + JSON.stringify(error));
 }
 ```
 

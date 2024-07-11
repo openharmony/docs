@@ -14,11 +14,13 @@
     - [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md)
     - [Converting a Compressed or Uncompressed ECC Public Key](crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
     - [Converting Compressed or Uncompressed ECC Point Data](crypto-convert-compressed-or-uncompressed-ECC-point.md)
+    - [Converting a PEM String into an Asymmetric Key Pair](crypto-convert-string-data-to-asym-key-pair.md)
 - Encryption and Decryption
   - [Encryption and Decryption Overview](crypto-encryption-decryption-overview.md)
   - Encryption and Decryption Algorithm Specifications
     - [Symmetric Key Encryption and Decryption Algorithm Specifications](crypto-sym-encrypt-decrypt-spec.md)
     - [Asymmetric Key Encryption and Decryption Algorithm Specifications](crypto-asym-encrypt-decrypt-spec.md)
+    - [Encryption and Decryption by Segment](crypto-encrypt-decrypt-by-segment.md)
   - Encryption and Decryption Development
     - [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [Encryption and Decryption with an AES Symmetric Key (CBC Mode)](crypto-aes-sym-encrypt-decrypt-cbc.md)
@@ -27,6 +29,8 @@
     - [Encryption and Decryption with a 3DES Symmetric Key (ECB Mode)](crypto-3des-sym-encrypt-decrypt-ecb.md)
     - [Encryption and Decryption with an SM4 Symmetric Key (ECB Mode)](crypto-sm4-sym-encrypt-decrypt-ecb.md)
     - [Encryption and Decryption with an SM4 Symmetric Key (CBC Mode)](crypto-sm4-sym-encrypt-decrypt-cbc.md)
+    - [Encryption and Decryption with an SM4 Symmetric Key (GCM Mode)](crypto-sm4-sym-encrypt-decrypt-gcm.md)
+    - [Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode)](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
     - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1)](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
     - [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
     - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)

@@ -11,12 +11,13 @@
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  
   build() {
     Column() {
       Button('loadData')
@@ -25,7 +26,7 @@ struct WebComponent {
             this.webviewController.backward();
           }
         })
-      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController })
     }
   }
 }
@@ -45,13 +46,14 @@ struct WebComponent {
   
   ```ts
   // index.ets
-  import web_webview from '@ohos.web.webview';
-  import router from '@ohos.router';
+  import { webview } from '@kit.ArkWeb';
+  import { router } from '@kit.ArkUI';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // 资源文件route.html存放路径src/main/resources/rawfile
@@ -61,7 +63,7 @@ struct WebComponent {
               let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // 跳转其他界面
-                router.pushUrl({ url:url.substring(9) })
+                router.pushUrl({ url: url.substring(9) });
                 return true;
               }
             }
@@ -114,17 +116,17 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import call from '@ohos.telephony.call';
-  
+  import { webview } from '@kit.ArkWeb';
+  import { call } from '@kit.TelephonyKit';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src: $rawfile('call.html'), controller: this.webviewController})
+        Web({ src: $rawfile('call.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {
               let url: string = event.data.getRequestUrl();

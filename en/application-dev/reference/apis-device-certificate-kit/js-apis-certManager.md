@@ -163,6 +163,7 @@ Enumerates the error codes used in the certificate management APIs.
 | CM_ERROR_GENERIC  | 17500001      | An internal error occurs when the interface is called.|
 | CM_ERROR_NO_FOUND  | 17500002      | The certificate or credential does not exist.|
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | The certificate or credential is in invalid format.|
+| CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | The number of certificates or credentials has reached the limit.|
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | The application has not obtained user authorization.|
 
 ## certManager.installPrivateCertificate
@@ -188,10 +189,13 @@ Installs a private credential. This API uses an asynchronous callback to return 
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
+| 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 ```ts
@@ -244,10 +248,13 @@ Installs a private credential. This API uses a promise to return the result.
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
+| 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 
@@ -295,8 +302,10 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
@@ -349,8 +358,10 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
@@ -397,14 +408,16 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
 import certManager from '@ohos.security.certManager';
 
-let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
@@ -446,15 +459,17 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
 import certManager from '@ohos.security.certManager';
 import { BusinessError } from '@ohos.base';
 
-let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
     console.log("[Promise]uninstallPrivateCertificate success");
@@ -490,9 +505,11 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
-| 17500005<sup>12+</sup> | The application is not authorized by user. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
 **Example**
 ```ts
@@ -546,9 +563,11 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
-| 17500005<sup>12+</sup> | The application is not authorized by user. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
 **Example**
 ```ts
@@ -594,9 +613,11 @@ Updates the data for the signing or signature verification operation. This API u
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -649,9 +670,11 @@ Updates the data for the signing or signature verification operation. This API u
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -697,9 +720,11 @@ Finishes the signing operation. This API uses an asynchronous callback to return
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -749,9 +774,11 @@ Finishes the signature verification operation. This API uses an asynchronous cal
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -804,9 +831,11 @@ Finishes the signing or signature verification operation. This API uses a promis
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -866,9 +895,11 @@ Aborts the signing or signature verification operation. This API uses an asynchr
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -917,9 +948,11 @@ Aborts the signing or signature verification operation. This API uses a promise 
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
@@ -969,11 +1002,11 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
-| 17500005 | The application is not authorized by user. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005 | The application is not authorized by the user. |
 
 **Example**
 ```ts
@@ -1025,9 +1058,9 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
 
 **Example**
 ```ts
@@ -1047,5 +1080,106 @@ try {
   })
 } catch (err) {
   console.error("[Promise]isAuthorizedApp failed");
+}
+```
+
+## certManager.getAllUserTrustedCertificates<sup>12+</sup>
+
+getAllUserTrustedCertificates() : Promise\<CMResult>
+
+Obtains all the user root CA certificates. The API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Return value**
+
+| Type                                       | Description                |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the user root CA certificates (that is, **certList** in [CMResult](#cmresult)) obtained.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 17500001 | Internal error. |
+
+**Example**
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  certManager.getAllUserTrustedCertificates().then((cmResult) => {
+    if (cmResult.certList == undefined) {
+      console.log("[Promise]getAllUserTrustedCertificates result is undefined");
+    } else {
+      let list = cmResult.certList;
+      console.log("[Promise]getAllUserTrustedCertificates success");
+    }
+  }).catch((err: BusinessError) => {
+    console.error('[Promise]getAllUserTrustedCertificates failed');
+  })
+} catch (error) {
+  console.error("[Promise]getAllUserTrustedCertificates failed");
+}
+```
+
+## certManager.getUserTrustedCertificate<sup>12+</sup>
+
+getUserTrustedCertificate(certUri: string) : Promise\<CMResult>
+
+Obtains the detailed information about a user root CA certificate. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| certUri | string                   | Yes  | Unique identifier of the user root CA certificate.|
+
+**Return value**
+
+| Type                                       | Description                |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the detailed certificate information (that is, **certInfo** in [CMResult](#cmresult)) obtained.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+
+**Example**
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+let certUri: string = 'testUserCert'; /* Unique identifer of the user root CA certificate. The process of installing the user root CA certificate is omitted here. */
+try {
+  certManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+    if (cmResult.certInfo == undefined) {
+      console.log("[Promise]getUserTrustedCertificate result is undefined");
+    } else {
+      let cert = cmResult.certInfo;
+      console.log("[Promise]getUserTrustedCertificate success");
+    }
+  }).catch((err: BusinessError) => {
+    console.error('[Promise]getUserTrustedCertificate failed, code =', err.code);
+  })
+} catch (err) {
+  console.error("[Promise]getUserTrustedCertificate failed");
 }
 ```

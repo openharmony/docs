@@ -1,4 +1,4 @@
-# Ability Kit API参考
+# Ability Kit（程序框架服务）
 
 - ArkTS API
   - Stage模型能力的接口
@@ -12,6 +12,8 @@
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
+    - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](js-apis-app-ability-childProcessArgs.md)
+    - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](js-apis-app-ability-childProcessOptions.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
@@ -27,6 +29,7 @@
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](js-apis-app-ability-uiExtensionAbility.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
+    - [@ohos.app.ability.sendableContextManager](js-apis-app-ability-sendableContextManager.md)
     - [@ohos.app.appstartup.StartupConfig](js-apis-app-appstartup-startupConfig.md)
     - [@ohos.app.appstartup.StartupConfigEntry](js-apis-app-appstartup-startupConfigEntry.md)
     - [@ohos.app.appstartup.StartupListener](js-apis-app-appstartup-startupListener.md)
@@ -119,6 +122,7 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
@@ -230,8 +234,10 @@
 - C API
   - 模块
     - [Bundle](_bundle.md)
+    - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
     - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_child_process.h](native__child__process_8h.md)
   - 结构体
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - 错误码

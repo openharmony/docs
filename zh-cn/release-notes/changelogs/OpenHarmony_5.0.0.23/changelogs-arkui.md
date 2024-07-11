@@ -164,9 +164,20 @@ API version 12及以后：可拖拽组件长按浮起预览图默认为95%透明
 
 变更后：
 如果开发者存在以下场景，不按规范使用，编译会报错。
-1. @Track使用在@ObservedV2修饰的class内；
-2. 一个class同时被@Observed和@ObservedV2装饰；
-3. 装饰子类和父类的@Observed和@ObservedV2不一致。
+
+- 在@ObservedV2修饰的class内使用@Track。
+
+> **说明：**
+>
+> 因为新的@ObservedV2采用了和@Observed不同的实现逻辑，因此不能在@ObservedV2修饰的class内使用@Track。@Track可以和@Observed一起使用，@Trace可以和@ObservedV2一起使用。
+
+- 一个class同时被@Observed和@ObservedV2装饰。
+
+> **说明：**
+>
+> 将Observed和@ObservedV2混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此不能将Observed和@ObservedV2混合使用。
+
+- 装饰子类和父类的@Observed和@ObservedV2不一致。
 
 错误示例如下：
 

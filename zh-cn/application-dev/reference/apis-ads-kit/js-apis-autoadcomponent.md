@@ -22,7 +22,7 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 
 自动播放广告组件。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -50,11 +50,11 @@ export struct ShowCarouselAd {
     // 广告类型
     adType: 8,
     // 测试广告位ID
-    adId: "test1",
+    adId: "test1"
   };
   private adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
-    adContentClassification: 'A',
+    adContentClassification: 'A'
   };
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {

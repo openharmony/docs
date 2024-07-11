@@ -30,20 +30,20 @@
 
 一个UIAbility实例对应一个单独的任务，因此应用调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
 
-1. 桌面应用调用[missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 桌面应用调用[missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 利用missionManager进行任务管理（监听任务变化、获取任务信息、获取任务快照、清理任务、任务加锁/解锁等）。
 
-   ```ts
-   import missionManager from '@ohos.app.ability.missionManager';
-   import { BusinessError } from '@ohos.base';
-   import image from '@ohos.multimedia.image';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+  ```ts
+  import { missionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { image } from '@kit.ImageKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = 'TaskManager';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   ```
+  const TAG: string = 'TaskManager';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  ```
    ```ts
    private listenerId: number = 0;
    private missionId: number = 0;

@@ -1,5 +1,5 @@
 <!--Del-->
-# Ads Kit API参考
+# Ads Kit（广告服务）
 
 - ArkTS API
   - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)

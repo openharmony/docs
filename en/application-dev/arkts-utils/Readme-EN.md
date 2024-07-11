@@ -19,7 +19,10 @@
     - [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md)
     - [Precautions for Multithread Safe](multi-thread-safety.md)
     - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-concurrent.md)
-    - [\@Sendable Decorator: Declaring and Verifying the Sendable Class](arkts-sendable.md)
+    - [Sendable Development](arkts-sendable.md)
+    - [System Objects That Accessed Sendable](arkts-sendable-system-object-list.md)
+    - [Sharable Module Development](arkts-sendable-module.md)
+    - [Behavior Differences Between ArkTS Collections APIs and Native APIs](arkts-collections-vs-native-api-comparison.md)
 - Container
   - [Container Overview](container-overview.md)
   - [Linear Containers](linear-container.md)
@@ -29,4 +32,6 @@
   - [XML Generation](xml-generation.md)
   - [XML Parsing](xml-parsing.md)
   - [XML Conversion](xml-conversion.md)
-- [Source Obfuscation]((source-obfuscation.md))
+- [Code Obfuscation](source-obfuscation.md)
+- Memory Management
+  - [GC Introduction](gc-introduction.md)

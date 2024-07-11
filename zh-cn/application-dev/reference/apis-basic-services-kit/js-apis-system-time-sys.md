@@ -11,10 +11,10 @@
 ## 导入模块
 
 ```ts
-import systemTime from '@ohos.systemTime';
+import { systemTime } from '@kit.BasicServicesKit';
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -37,12 +37,12 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -60,7 +60,7 @@ try {
 }
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -88,12 +88,12 @@ setTime(time : number) : Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -109,7 +109,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -132,12 +132,12 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date();
 try {
@@ -154,7 +154,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -182,12 +182,12 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date(); 
 try {
@@ -202,7 +202,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -225,12 +225,12 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
@@ -246,7 +246,7 @@ try {
 }
 ```
 
-## systemTime.setTimezon
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
@@ -274,12 +274,12 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.setTimezone('Asia/Shanghai').then(() => {

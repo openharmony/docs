@@ -10,23 +10,24 @@ You can use the HUKS APIs to generate a key randomly and store the key in HUKS.
 ## Supported Algorithms
 
 The following table lists the supported key generation specifications.
-
+<!--Del-->
 The key management service specifications include mandatory specifications and optional specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
+<!--DelEnd-->
 
-| Algorithm| Supported Key Length (Bit)| API Level| Mandatory| 
+| Algorithm| Supported Key Length (Bit)| API Level| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
-| RSA | 512, 768, 1024| 8+ | No| 
-| RSA | 2048, 3072, 4096| 8+ | Yes| 
+| <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|
+| RSA | 2048, 3072, 4096| 8+ | Yes|
 | HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 8+ | Yes|
-| ECC | 224 | 8+ | No| 
-| ECC | 256, 384, 521| 8+ | Yes| 
-| ED25519 | 256 | 8+ | Yes| 
+| <!--DelRow-->ECC | 224 | 8+ | No|
+| ECC | 256, 384, 521| 8+ | Yes|
+| ED25519 | 256 | 8+ | Yes|
 | X25519 | 256 | 8+ | Yes|
-| DSA | An integer multiple of 8, ranging from 512 to 1024 (inclusive) | 8+ | No| 
+| <!--DelRow-->DSA | An integer multiple of 8, ranging from 512 to 1024 (inclusive) | 8+ | No|
 | DH | 2048 | 8+ | Yes|
-| DH | 3072, 4096| 8+ | No| 
-| SM2 | 256 | 9+ | Yes| 
-| SM4 | 128 | 9+ | Yes| 
+| <!--DelRow-->DH | 3072, 4096| 8+ | No|
+| SM2 | 256 | 9+ | Yes|
+| SM4 | 128 | 9+ | Yes|

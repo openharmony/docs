@@ -9,6 +9,11 @@
 >
 > 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## 导入模块
+
+```ts
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
+```
 
 ## CircleShape
 
@@ -21,6 +26,10 @@
 ### constructor
 
 constructor(options?: ShapeSize)
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -40,6 +49,10 @@ constructor(options?: ShapeSize)
 
 constructor(options?: ShapeSize)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
@@ -58,6 +71,8 @@ constructor(options?: ShapeSize)
 
 constructor(options?: PathShapeOptions)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [PathShapeOptions](#pathshapeoptions) | 否 | 路径参数。 |
@@ -67,6 +82,12 @@ constructor(options?: PathShapeOptions)
 ### commands
 
 commands(commands: string): PathShape
+
+设置路径的绘制指令。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -84,6 +105,10 @@ commands(commands: string): PathShape
 
 constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [RectShapeOptions](#rectshapeoptions) &nbsp;\|&nbsp; [RoundRectShapeOptions](#roundrectshapeoptions) | 否 | 矩形形状参数。 |
@@ -96,6 +121,10 @@ radiusWidth(rWidth: number | string): RectShape
 
 设置矩形形状圆角半径的宽度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。 |
@@ -106,6 +135,10 @@ radiusHeight(rHeight: number | string): RectShape
 
 设置矩形形状圆角半径的高度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 |
@@ -115,6 +148,10 @@ radiusHeight(rHeight: number | string): RectShape
 radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 设置矩形形状的圆角半径。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -129,10 +166,10 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 形状的宽度。 |
-| height | number &nbsp;\|&nbsp; string | 形状的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。 |
+| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 |
 
 ## PathShapeOptions
 
@@ -142,9 +179,9 @@ PathShape 的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| commands | string | 绘制路径的指令。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| commands | string | 否 | 绘制路径的指令。 |
 
 ## RectShapeOptions
 
@@ -156,9 +193,9 @@ RectShape 的构造函数参数。
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 矩形形状的圆角半径。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。 |
 
 ## RoundRectShapeOptions
 
@@ -170,10 +207,10 @@ RectShape 带有半径的构造函数参数。
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的宽度。 |
-| radiusHeight | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。 |
+| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。 |
 
 ## BaseShape
 
@@ -189,6 +226,10 @@ width(width: Length): T
 
 设置形状的宽度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | width | [Length](arkui-ts/ts-types.md#length) | 是 | 形状的宽度。 |
@@ -199,6 +240,10 @@ height(height: Length): T
 
 设置形状的高度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | height | [Length](arkui-ts/ts-types.md#length) | 是 | 形状的高度。 |
@@ -208,6 +253,10 @@ height(height: Length): T
 size(size: SizeOptions): T
 
 设置形状的大小。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -225,6 +274,10 @@ offset(offset: Position): T
 
 设置相对于组件布局位置的坐标偏移。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | offset | [Position](arkui-ts/ts-types.md#position) | 是 | 相对于组件布局位置的坐标偏移。 |
@@ -234,6 +287,10 @@ offset(offset: Position): T
 fill(color: ResourceColor): T
 
 设置形状的填充颜色。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -245,6 +302,10 @@ position(position: Position): T
 
 设置形状的位置。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | position | [Position](arkui-ts/ts-types.md#position) | 是 | 设置形状的位置。 |
@@ -252,7 +313,7 @@ position(position: Position): T
 ## **示例**
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 @Entry
 @Component

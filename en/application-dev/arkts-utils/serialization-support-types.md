@@ -1,6 +1,6 @@
 # Serialization Types Supported by TaskPool and Worker
 
-Both TaskPool and Worker are developed on the actor model. Due to the memory isolation feature of the actor model, cross-thread serialization is required for the execution of multithreaded tasks and the transmission of results. Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), [native binding objects](#native-binding-objects), and [sendable objects](#sendable-objects).
+Both TaskPool and Worker are developed on the actor model. Due to the memory isolation feature of the actor model, cross-thread serialization is required for the execution of multithreaded tasks and the transmission of results. Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), and [native binding objects](#native-binding-objects).
 
 
 ## Common Objects
@@ -53,8 +53,26 @@ If multiple operations are simultaneously performed to modify data stored in an 
 
 
 ```ts
-// Define a shared object, which uses atomic operations to ensure data synchronization.
-let sharedBuffer: SharedArrayBuffer = new SharedArrayBuffer(1024);
+import taskpool from '@ohos.taskpool';
+
+@Concurrent
+function transferAtomics(arg1: Int32Array) {
+  console.info("wait begin::");
+  // Use Atomics to perform operations.
+  let res = Atomics.wait(arg1, 0, 0, 3000);
+  return res;
+}
+
+// Define an object that can be shared.
+let sab: SharedArrayBuffer = new SharedArrayBuffer(20);
+let int32 = new Int32Array(sab);
+let task: taskpool.Task = new taskpool.Task(transferAtomics, int32);
+taskpool.execute(task).then((res) => {
+  console.info("this res is: " + res);
+});
+setTimeout(() => {
+  Atomics.notify(int32, 0, 1);
+}, 1000);
 ```
 
 
@@ -73,7 +91,7 @@ The **PixelMap** object can read or write image data and obtain image informatio
 
 ## Sendable Objects
 
-Sendable objects, decorated by the ArkTS decorator [@Sendable](../arkts-utils/arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer (not supported yet) and serialized transfer. Currently, the following types are sendable : boolean, number, string, Bigint, and [SendableClass] (../arkts-utils/arkts-sendable.md#basic-concepts).
+Sendable objects, decorated by the ArkTS decorator [@Sendable](../arkts-utils/arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer and serialized transfer. For details about the supported Sendable types, see [Sendable Data Types](../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 
 ```ts

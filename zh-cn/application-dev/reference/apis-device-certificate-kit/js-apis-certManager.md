@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CmKeyPurpose
@@ -57,11 +57,11 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 必填 | 说明                                                         |
-| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| purpose          | [CmKeyPurpose](#cmkeypurpose)                       | 是   | 表示密钥使用目的的枚举。 |
-| padding?        | [CmKeyPadding](#cmkeypadding)                       | 否   | 表示填充方式的枚举。 |
-| digest?        | [CmKeyDigest](#cmkeydigest)                       | 否   | 表示摘要算法的枚举。 |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
+| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| purpose          | [CmKeyPurpose](#cmkeypurpose)                       | 否  | 否  | 表示密钥使用目的的枚举。 |
+| padding        | [CmKeyPadding](#cmkeypadding)                       | 否   | 是  | 表示填充方式的枚举。 |
+| digest        | [CmKeyDigest](#cmkeydigest)                       | 否   | 是  | 表示摘要算法的枚举。 |
 
 
 ## CertInfo
@@ -70,18 +70,18 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | 是   | 是   | 表示证书的唯一标识符。 |
-| certAlias          | string   | 是   | 是   | 表示证书的别名。 |
-| state          | boolean     | 是   | 是   | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 是   | 是   | 表示证书的颁发者名称。 |
-| subjectName          | string   | 是   | 是   | 表示证书的使用者名称。 |
-| serial          | string     | 是   | 是   | 表示证书的序列号。 |
-| notBefore          | string         | 是   | 是   | 表示证书有效期起始日期。 |
-| notAfter          | string   | 是   | 是   | 表示证书有效期截止日期。 |
-| fingerprintSha256     | string     | 是   | 是   | 表示证书的指纹值。 |
-| cert          | Uint8Array         | 是   | 是   | 表示证书二进制数据。 |
+| uri          | string         | 否   | 否  | 表示证书的唯一标识符。 |
+| certAlias          | string   | 否  | 否  | 表示证书的别名。 |
+| state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
+| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称。 |
+| subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
+| serial          | string     | 否  | 否  | 表示证书的序列号。 |
+| notBefore          | string         | 否  | 否  | 表示证书有效期起始日期。 |
+| notAfter          | string   | 否  | 否  | 表示证书有效期截止日期。 |
+| fingerprintSha256     | string     | 否  | 否  | 表示证书的指纹值。 |
+| cert          | Uint8Array         | 否  | 否  | 表示证书二进制数据。 |
 
 ## CertAbstract
 
@@ -89,13 +89,13 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | 是   | 是   | 表示证书的唯一标识符。 |
-| certAlias          | string   | 是   | 是   | 表示证书的别名。 |
-| state          | boolean     | 是   | 是   | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 是   | 是   | 表示证书的颁发者名称。 |
-| subjectName          | string   | 是   | 是   | 表示证书的使用者名称。 |
+| uri          | string         | 否  | 否  | 表示证书的唯一标识符。 |
+| certAlias          | string   | 否  | 否  | 表示证书的别名。 |
+| state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
+| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称。 |
+| subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
 
 ## Credential
 
@@ -103,14 +103,14 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | 是   | 是   | 表示凭据的类型。 |
-| alias          | string   | 是   | 是   | 表示凭据的别名。 |
-| keyUri          | string     | 是   | 是   | 表示凭据的唯一标识符。 |
-| certNum          | number         | 是   | 是   | 表示凭据中包含的证书个数。 |
-| keyNum          | number   | 是   | 是   | 表示凭据中包含的密钥个数。 |
-| credentialData          | Uint8Array   | 是   | 是   | 表示凭据二进制数据。 |
+| type          | string         | 否  | 否  | 表示凭据的类型。 |
+| alias          | string   | 否  | 否  | 表示凭据的别名。 |
+| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符。 |
+| certNum          | number         | 否  | 否  | 表示凭据中包含的证书个数。 |
+| keyNum          | number   | 否  | 否  | 表示凭据中包含的密钥个数。 |
+| credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据。 |
 
 ## CredentialAbstract
 
@@ -118,11 +118,11 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | 是   | 是   | 表示凭据的类型。 |
-| alias          | string   | 是   | 是   | 表示凭据的别名。 |
-| keyUri          | string     | 是   | 是   | 表示凭据的唯一标识符。 |
+| type          | string         | 否 | 否  | 表示凭据的类型。 |
+| alias          | string   | 否  | 否  | 表示凭据的别名。 |
+| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符。 |
 
 ## CMResult
 
@@ -130,15 +130,15 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| certList?          | Array<[CertAbstract](#certabstract)> | 是   | 是   | 表示证书简要信息的列表。 |
-| certInfo?          | [CertInfo](#certinfo) | 是   | 是   | 表示证书详情。 |
-| credentialList?          | Array<[CredentialAbstract](#credentialabstract)> | 是   | 是   | 表示凭据简要信息的列表。 |
-| credential?         | [Credential](#credential) | 是   | 是   | 表示凭据详情。 |
-| appUidList?        | Array<string>     | 是   | 是   | 表示授权应用列表。 |
-| uri?         | string    | 是   | 是   | 表示证书或凭据的唯一标识符。 |
-| outData?         | Uint8Array    | 是   | 是   | 表示签名结果。 |
+| certList          | Array<[CertAbstract](#certabstract)> | 否  | 是   | 表示证书简要信息的列表。 |
+| certInfo          | [CertInfo](#certinfo) | 否  | 是   | 表示证书详情。 |
+| credentialList          | Array<[CredentialAbstract](#credentialabstract)> | 否  | 是   | 表示凭据简要信息的列表。 |
+| credential         | [Credential](#credential) | 否  | 是   | 表示凭据详情。 |
+| appUidList        | Array\<string>     | 否  | 是   | 表示授权应用列表。 |
+| uri         | string    | 否  | 是   | 表示证书或凭据的唯一标识符。 |
+| outData         | Uint8Array    | 否  | 是   | 表示签名结果。 |
 
 ## CMHandle
 
@@ -146,9 +146,9 @@ import certManager from '@ohos.security.certManager';
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | 是   | 是   | 表示签名、验签的初始化操作句柄。 |
+| handle         | Uint8Array        | 否  | 否   | 否签名、验签的初始化操作句柄。 |
 
 ## CMErrorCode
 
@@ -166,9 +166,9 @@ import certManager from '@ohos.security.certManager';
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>): void
 
 表示安装私有凭据，使用Callback回调异步返回结果。
 
@@ -183,7 +183,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件。 |
 | keystorePwd | string | 是   | 表示密钥库文件的密码，长度限制32字节以内。 |
 | certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，长度建议32字节以内。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。表示安装凭据的结果，返回值为[CMResult](#cmresult)中的uri。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当安装私有凭据成功时，err为null，data为[CMResult](#cmresult)对象中的uri属性；否则为错误对象。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
@@ -207,24 +207,24 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]installPrivateCertificate err: " + err.code);
+      console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
       let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-      console.log("[Callback]installPrivateCertificate success");
+      console.info('Succeeded in installing private certificate.');
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult>
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise\<CMResult>
 
-表示安装私有证书，使用Promise方式异步返回结果。
+表示安装私有凭据，使用Promise方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
@@ -240,9 +240,9 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | 回调函数。表示安装凭据的结果，返回值为[CMResult](#cmresult)中的uri。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示安装私有凭据的结果，返回值为[CMResult](#cmresult)对象中的uri属性。 |
 
 **错误码：**
 
@@ -259,8 +259,8 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 **示例**：
 
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
@@ -268,22 +268,22 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
     let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-    console.log("[Promise]installPrivateCertificate success");
+    console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]installPrivateCertificate failed');
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]installPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
+getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
-表示获取私有凭据详情，使用Callback回调异步返回结果。
+表示获取私有凭据的详细信息，使用Callback回调异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
@@ -294,7 +294,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keyUri | string                   | 是   | 表示待获取凭据的唯一标识符。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。表示获取私有凭据详情的结果，返回值为[CMResult](#cmresult)中的credential。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当获取私有凭据的详细信息成功时，err为null，data为[CMResult](#cmresult)对象中的credential属性；否则为错误对象。 |
 
 **错误码：**
 
@@ -309,30 +309,30 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.getPrivateCertificate(uri, (err, cmResult) => {
+  certificateManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
-      console.error("getPrivateCertificate error");
+      console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.credential == undefined) {
-        console.log("[Callback]getPrivateCertificate result is undefined");
+        console.info('The result of getting private certificate is undefined.');
       } else {
         let list = cmResult.credential;
-        console.log("[Callback]getPrivateCertificate success");
+        console.info('Succeeded in getting private certificate.');
       }
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string) : Promise\<CMResult>
+getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
 表示获取私有凭据详情，使用Promise方式异步返回结果。
 
@@ -348,9 +348,9 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取私有凭据详情的结果，返回值[CMResult](#cmresult)中的credential。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取私有凭据详细信息的结果，返回值为[CMResult](#cmresult)对象中的credential属性。 |
 
 **错误码：**
 
@@ -365,29 +365,29 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.getPrivateCertificate(uri).then((cmResult) => {
+  certificateManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
-      console.log("[Promise]getPrivateCertificate result is undefined");
+      console.info('The result of getting private certificate is undefined.');
     } else {
       let list = cmResult.credential;
-      console.log("[Promise]getPrivateCertificate success");
+      console.info('Succeeded in getting private certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getPrivateCertificate failed');
+    console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void
+uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): void
 
 表示卸载指定的私有凭据，使用Callback回调异步返回结果。
 
@@ -400,7 +400,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keyUri | string                   | 是   | 表示待卸载凭据的唯一标识符。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否执行成功，error为null表示成功，不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当卸载私有凭据成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -415,25 +415,25 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.uninstallPrivateCertificate(uri, (err, result) => {
+  certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
-      console.error("[Callback]uninstallPrivateCertificate error");
+      console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]uninstallPrivateCertificate success");
+      console.info('Succeeded in uninstalling private certificate.');
     }
   });
-} catch (err) {
-  console.error("[Callback]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string) : Promise\<void>
+uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
 表示卸载指定的私有凭据，使用Promise方式异步返回结果。
 
@@ -451,7 +451,7 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -466,24 +466,24 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
-    console.log("[Promise]uninstallPrivateCertificate success");
+  certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
+    console.info('Succeeded in uninstalling private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]uninstallPrivateCertificate failed, code =', err.code);
+    console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
-init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void
+init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void
 
 表示使用凭据进行签名、验签的初始化操作，使用Callback回调异步返回结果。
 
@@ -497,7 +497,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | authUri | string                   | 是   | 表示使用凭据的唯一标识符。 |
 | spec | [CMSignatureSpec](#cmsignaturespec) | 是   | 表示签名、验签的属性。 |
-| callback | AsyncCallback\<[CMHandle](#cmhandle)> | 是   | 回调函数。表示初始化操作返回的句柄。 |
+| callback | AsyncCallback\<[CMHandle](#cmhandle)> | 是   | 回调函数。当签名、验签的初始化操作成功时，err为null，data为获取到的CMHandle；否则为错误对象。 |
 
 **错误码：**
 
@@ -513,30 +513,30 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
 }
 try {
-  certManager.init(uri, req, (err, cmHandle) => {
+  certificateManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
-      console.error("[Callback]init err");
+      console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]init success");
+      console.info('Succeeded in initiating.');
     }
   })
-} catch (err) {
-  console.error("[Callback]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
-init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
+init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
 表示使用凭据进行签名、验签的初始化操作，使用Promise方式异步返回结果。
 
@@ -555,7 +555,7 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CMHandle](#cmhandle)> | 表示初始化操作返回的句柄。 |
+| Promise\<[CMHandle](#cmhandle)> | Promise对象。表示签名、验签的初始化操作结果，返回CMHandle对象。 |
 
 **错误码：**
 
@@ -571,31 +571,31 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_MD5
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_MD5
 }
 try {
-  certManager.init(uri, req).then((handle) => {
-    console.log('[Promise]init success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]init failed');
+  certificateManager.init(uri, req).then((handle) => {
+    console.info('Succeeded in initiating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): void
 
-表示签名、验签时对数据的更新操作，使用Callback回调异步返回结果。
+表示签名、验签的数据更新操作，使用Callback回调异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
@@ -607,7 +607,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
 | data | Uint8Array                   | 是   | 表示待签名、验签的数据。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否执行成功，error为null表示成功，不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当签名、验签的数据更新操作成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -621,7 +621,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -631,23 +631,23 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData, (err, result) => {
+  certificateManager.update(cmHandle, srcData, (err, result) => {
     if (err != null) {
-      console.error("[Callback]certManager update error");
+      console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager update success");
+      console.info('Succeeded in updating.');
     }
   });
-} catch (err) {
-  console.error("[Callback]update failed");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
-表示签名、验签时对数据的更新操作，使用Promise方式异步返回结果。
+表示签名、验签的数据更新操作，使用Promise方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
@@ -664,7 +664,7 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -678,8 +678,8 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -689,19 +689,19 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData).then((result) => {
-    console.log('[Promise]update success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]update failed');
+  certificateManager.update(cmHandle, srcData).then((result) => {
+    console.info('Succeeded in updating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager update error");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 表示完成签名的操作，Callback回调异步返回结果。
 
@@ -714,7 +714,7 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。表示签名的结果，返回值为[CMResult](#cmresult)中的outData。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当签名成功时，err为null，data为[CMResult](#cmresult)对象中的outData属性，表示签名数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -728,33 +728,33 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, (err, cmResult) => {
+  certificateManager.finish(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager sign failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.outData != undefined) {
         let signRes: Uint8Array = cmResult.outData;
-        console.log("[Callback]certManager sign success");
+        console.info('Succeeded in finishing.');
       } else {
-        console.error("[Callback]certManager sign failed");
+        console.info('The result of finishing is undefined.');
       }
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 表示完成验签的操作，使用Callback回调异步返回结果。
 
@@ -768,7 +768,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
 | signature | Uint8Array                   | 是   | 表示签名数据。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否执行成功，error为null表示成功，不为null表示失败。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null；否则为错误对象。 |
 
 **错误码：**
 
@@ -782,7 +782,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -792,21 +792,21 @@ let signRes: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, signRes, (err, cmResult) => {
+  certificateManager.finish(cmHandle, signRes, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager verify failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager verify success");
+      console.info('Succeeded in finishing.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
+finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
 表示完成签名、验签的操作，使用Promise方式异步返回结果。
 
@@ -825,7 +825,7 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](#cmresult)> | 表示签名、验证操作的结果。执行签名操作时，表示签名的结果，返回值为[CMResult](#cmresult)中的outData；执行验签操作时，无数据返回，无异常则认为验签成功。 |
+| Promise\<[CMResult](#cmresult)> | Promise对象。执行签名操作时，表示签名的结果，返回值为[CMResult](#cmresult)对象中的outData属性；执行验签操作时，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -839,8 +839,8 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -848,15 +848,15 @@ let cmHandle: Uint8Array = new Uint8Array([
 ]);
 try {
   /* 签名的finish操作 */
-  certManager.finish(cmHandle).then((cmResult) => {
+  certificateManager.finish(cmHandle).then((cmResult) => {
     if (cmResult.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
-      console.log("[Promise]finish sign success");
+      console.info('Succeeded in finishing signature.');
     } else {
-      console.error("[Promise]finish sign failed");
+      console.info('The result of signature is undefined.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish sign failed');
+    console.error(`Failed to finish signature. Code: ${err.code}, message: ${err.message}`);
   })
 
   /* 签名的结果 */
@@ -864,19 +864,19 @@ try {
     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
   ]);
   /* 验签的finish操作 */
-  certManager.finish(cmHandle, signRes).then((cmResult) => {
-    console.log("[Promise]finish verify success");
+  certificateManager.finish(cmHandle, signRes).then((cmResult) => {
+    console.info('Succeeded in finishing verification.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish verify failed');
+    console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
   })
 } catch(error) {
-  console.error("[Promise]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
-abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
+abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
 表示中止签名、验签的操作，使用Callback回调异步返回结果。
 
@@ -889,7 +889,7 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否执行成功，error为null表示成功，不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当中止签名、验签成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -903,28 +903,28 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.abort(cmHandle, (err, cmResult) => {
+  certificateManager.abort(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager abort failed");
+      console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager abort success");
+      console.info('Succeeded in aborting.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager abort error");
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
-abort(handle: Uint8Array) : Promise\<void>
+abort(handle: Uint8Array): Promise\<void>
 
 表示中止签名、验签的操作，使用Promise方式异步返回结果。
 
@@ -942,7 +942,7 @@ abort(handle: Uint8Array) : Promise\<void>
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -956,27 +956,27 @@ abort(handle: Uint8Array) : Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.abort(cmHandle).then((result) => {
-    console.log('[Promise]abort success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]abort failed');
+  certificateManager.abort(cmHandle).then((result) => {
+    console.info('Succeeded in aborting.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager abort error");
+} catch (error) {
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getPublicCertificate<sup>12+</sup>
+## certificateManager.getPublicCertificate<sup>12+</sup>
 
-getPublicCertificate(keyUri: string) : Promise\<CMResult>
+getPublicCertificate(keyUri: string): Promise\<CMResult>
 
 表示获取用户公共凭据的详细信息，使用Promise方式异步返回结果。
 
@@ -992,9 +992,9 @@ getPublicCertificate(keyUri: string) : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取私有凭据详情的结果，返回值[CMResult](#cmresult)中的credential。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取用户公共凭据详细信息的结果，返回值为[CMResult](#cmresult)对象中的credential属性。 |
 
 **错误码：**
 
@@ -1010,29 +1010,29 @@ getPublicCertificate(keyUri: string) : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 用户安装公共凭据返回的唯一标识符，此处省略 */
 try {
-  certManager.getPublicCertificate(uri).then((cmResult) => {
+  certificateManager.getPublicCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
-      console.log("[Promise]getPublicCertificate result is undefined");
+      console.info('The result of getting public certificate is undefined.');
     } else {
       let cred = cmResult.credential;
-      console.log("[Promise]getPublicCertificate success");
+      console.info('Succeeded in getting Public certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getPublicCertificate failed, code =', err.code);
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getPublicCertificate failed");
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.isAuthorizedApp<sup>12+</sup>
+## certificateManager.isAuthorizedApp<sup>12+</sup>
 
-isAuthorizedApp(keyUri: string) : Promise\<boolean>
+isAuthorizedApp(keyUri: string): Promise\<boolean>
 
 表示当前应用是否由指定的用户凭据授权，使用Promise方式异步返回结果。
 
@@ -1048,9 +1048,9 @@ isAuthorizedApp(keyUri: string) : Promise\<boolean>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<boolean> | 回调函数。表示查询应用是否被授权的结果，返回true表示已授权，返回false表示未授权。 |
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | Promise对象。表示查询应用是否被授权的结果，返回boolean对象。 |
 
 **错误码：**
 
@@ -1064,28 +1064,28 @@ isAuthorizedApp(keyUri: string) : Promise\<boolean>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 用户授权给应用使用的凭据的唯一标识符，此处省略 */
 try {
-  certManager.isAuthorizedApp(uri).then((res) => {
+  certificateManager.isAuthorizedApp(uri).then((res) => {
     if (res) {
-      console.log("[Promise]isAuthorizedApp return true");
+      console.info('The application is authorized by the user.');
     } else {
-      console.log("[Promise]isAuthorizedApp return false");
+      console.info('The application is not authorized by the user.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]isAuthorizedApp failed, code =', err.code);
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]isAuthorizedApp failed");
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getAllUserTrustedCertificates<sup>12+</sup>
+## certificateManager.getAllUserTrustedCertificates<sup>12+</sup>
 
-getAllUserTrustedCertificates() : Promise\<CMResult>
+getAllUserTrustedCertificates(): Promise\<CMResult>
 
 表示获取所有用户根CA证书列表，使用Promise方式异步返回结果。
 
@@ -1095,9 +1095,9 @@ getAllUserTrustedCertificates() : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取用户根CA证书列表的结果，返回值[CMResult](#cmresult)中的certList。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取用户根CA证书列表的结果，返回值[CMResult](#cmresult)对象中的certList属性。 |
 
 **错误码：**
 
@@ -1110,28 +1110,28 @@ getAllUserTrustedCertificates() : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllUserTrustedCertificates().then((cmResult) => {
+  certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
     if (cmResult.certList == undefined) {
-      console.log("[Promise]getAllUserTrustedCertificates result is undefined");
+      console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
-      console.log("[Promise]getAllUserTrustedCertificates success");
+      console.info('Succeeded in getting all user trusted certificates.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getAllUserTrustedCertificates failed');
+    console.error(`Failed to get all user trusted certificates. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error("[Promise]getAllUserTrustedCertificates failed");
+  console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getUserTrustedCertificate<sup>12+</sup>
+## certificateManager.getUserTrustedCertificate<sup>12+</sup>
 
-getUserTrustedCertificate(certUri: string) : Promise\<CMResult>
+getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 
 表示获取用户根CA证书的详细信息，使用Promise方式异步返回结果。
 
@@ -1147,9 +1147,9 @@ getUserTrustedCertificate(certUri: string) : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取用户根CA证书详情的结果，返回值[CMResult](#cmresult)中的certInfo。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取用户根CA证书详细信息的结果，返回值为[CMResult](#cmresult)对象中的certInfo属性。 |
 
 **错误码：**
 
@@ -1164,22 +1164,22 @@ getUserTrustedCertificate(certUri: string) : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let certUri: string = 'testUserCert'; /* 用户安装用户根CA证书返回的唯一标识符，此处省略 */
 try {
-  certManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+  certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
     if (cmResult.certInfo == undefined) {
-      console.log("[Promise]getUserTrustedCertificate result is undefined");
+      console.info('The result of getting user trusted certificate is undefined.');
     } else {
       let cert = cmResult.certInfo;
-      console.log("[Promise]getUserTrustedCertificate success");
+      console.info('Succeeded in getting user trusted certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getUserTrustedCertificate failed, code =', err.code);
+    console.error(`Failed to get user trusted certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getUserTrustedCertificate failed");
+} catch (error) {
+  console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```

@@ -933,10 +933,11 @@ window.getSnapshot(windowId: number): Promise<image.PixelMap>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities.     |
-| 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004  | This operation is not accessible.             |
 
 **示例：**
 ```ts
@@ -1647,7 +1648,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 }
 ```
 
-### setWakeUpScreen()<sup>9+</sup>
+### setWakeUpScreen<sup>9+</sup>
 
 setWakeUpScreen(wakeUp: boolean): void
 
@@ -3349,13 +3350,23 @@ promise.then(() => {
 });
 ```
 
+## SubWindowOptions<sup>11+</sup>
+
+子窗口创建参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型  | 只读 | 可选 | 说明         |
+| ---------- | ---- | ---- | ---- | ----------- |
+| isTopmost<sup>12+</sup>  | boolean | 否 | 是 | 子窗口是否启用置顶属性。true表示子窗口置顶，false表示子窗口不置顶。不设置，则默认为false。       |
+
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
 下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
-### disableWindowDecor()<sup>9+</sup>
+### disableWindowDecor<sup>9+</sup>
 
 disableWindowDecor(): void
 
@@ -3392,7 +3403,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setShowOnLockScreen()<sup>9+</sup>
+### setShowOnLockScreen<sup>9+</sup>
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 

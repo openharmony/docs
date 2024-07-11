@@ -9,7 +9,7 @@
 > 从API version 11开始对\@Prop/\@BuilderParam进行校验。
 >
 > 从API version 12开始对\@State/\@Provide/普通变量(无状态装饰器修饰的变量)进行校验。
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 
 ## 概述
@@ -19,6 +19,8 @@
 ## 限制条件
 
 \@Require装饰器仅用于装饰struct内的\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)。
+
+预览器限制场景请参考[PreviewChecker检测规则]( https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-previewer-previewchecker-0000001910869788-V5)。
 
 ## 使用场景
 
@@ -47,7 +49,7 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -57,7 +59,7 @@ struct Child {
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
   @Require @Prop message: string;
 
@@ -102,7 +104,7 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -112,7 +114,7 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
-  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
 
   build() {

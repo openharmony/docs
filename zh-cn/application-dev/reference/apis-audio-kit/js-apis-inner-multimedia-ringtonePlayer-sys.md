@@ -12,7 +12,7 @@ ringtonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSound
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## RingtoneOptions
@@ -45,7 +45,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
@@ -68,7 +68,7 @@ getTitle(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
   if (err) {
@@ -98,7 +98,7 @@ getTitle(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone title is obtained ${value}.`);
@@ -126,8 +126,8 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -160,8 +160,8 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -193,7 +193,7 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -235,7 +235,7 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -269,7 +269,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start((err: BusinessError) => {
   if (err) {
@@ -299,7 +299,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start().then(() => {
   console.info(`Promise returned to indicate a successful starting of ringtone.`);
@@ -327,7 +327,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop((err: BusinessError) => {
   if (err) {
@@ -357,7 +357,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop().then(() => {
   console.info(`Promise returned to indicate a successful stopping of ringtone.`);
@@ -385,7 +385,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release((err: BusinessError) => {
   if (err) {
@@ -415,7 +415,7 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of ringtone player.`);
@@ -453,7 +453,7 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量

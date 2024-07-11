@@ -1,0 +1,298 @@
+# GC Introduction
+
+Garbage Collection (GC) is the process of finding garbage in memory and releasing and reclaiming memory space. Two GC algorithms are mainly used: reference counting and tracing GC. ArkTS runtime implements efficient memory reclamation in different scenarios based on generational models and hybrid algorithms.
+
+In ArkTS, data types are classified into simple type and reference type. Data of the simple type is stored in stacks, and its space is automatically allocated and reclaimed by the operating system. Data of the reference type is stored in heaps, and its space must be manually reclaimed by the engine. GC is a management mechanism for automatically reclaiming heap space.
+
+## Heap Space Structure and Parameters
+
+### Heap Space Structure
+
+![image](./figures/gc-heap-space.png)
+
+- Semi Space: stores young generation, that is, newly created objects, which may be short-lived. The copying algorithm is used to reclaim memory.
+- Old Space: stores old generation, that is, long-surviving objects. Multiple algorithms are used to reclaim memory based on scenarios.
+- Huge Object Space: stores huge objects. A separate region is used to store a huge object.
+- Read Only Space: stores read-only data at runtime.
+- Non-Movable Space: stores unmovable objects.
+- Snapshot Space: stores heap snapshots.
+- Machine Code Space: stores machine codes.
+
+Each space is divided into one or more regions for refined management. A region is the unit applied for from the memory allocator.
+
+### Parameters
+
+> **NOTE**
+> 
+> Among all the parameters described in this section, if no description is provided for how to configure a parameter, then the parameter is automatically set by the system.
+
+For some of the parameters, three values or value ranges are provided, corresponding to the three value ranges of the total heap size: 64–128 MB/128–256 MB/ > 256 MB. If the remaining memory space is sufficient, the third value range (> 256 MB) is used by default.
+
+#### Parameters of Semi Space
+
+Two Semi Spaces are generated in the heap for the copying algorithm to use.
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | :--- |
+| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
+| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time.|
+| semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
+
+#### Parameters of Other Spaces
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | :--- |
+| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
+| defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
+| defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
+| defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | Default size of Machine Code Space.|
+
+#### Parameters of Old Space and Huge Object Space
+
+During initialization, the parameter is set to the size of the unallocated heap space left.
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | :--- |
+| oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
+
+#### Heap Size Parameters
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | :--- |
+| HeapSize | 448–1024 MB | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool.|
+| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space.|
+| NonmovableSpaceSize | 2 MB/6 MB/64 MB | Size of Non-Movable Space.|
+| SnapshotSpaceSize | 512 KB| Size of Snapshot Space.|
+| MachineCodeSpaceSize | 2 MB| Size of Machine Code Space.|
+
+#### Maximum Number of Worker Thread Heaps
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | --- |
+| heapSize  | 768 MB | Size of the heap space of the work type.|
+
+#### Size of the Interpreter Stack
+
+| Parameter| Value or Value Range| Description|
+| --- | --- | --- |
+| maxStackSize | 128 KB| Maximum frame size of the interpreter stack.|
+
+#### Concurrency Parameters
+
+| Parameter| Value| Description|
+| --- | ---: | --- |
+| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
+| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
+| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
+
+Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is a negative value, the number of threads in the initialized thread pool is the number of CPU cores divided by 2.
+
+#### Other Parameters
+
+| Parameter| Value| Description|
+| --- | --- | --- |
+| minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated.|
+| minGrowingStep | 4 M/8 M/16 M | Minimum increase step of **oldSpace**.|
+| longPauseTime | 40 ms| Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**.|
+
+### Other
+
+The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
+
+## GC Process
+
+
+![image](./figures/gc-process.png)
+
+### HPPGC
+
+#### Young GC
+
+- **When to trigger**: The young GC trigger threshold ranges from 2 MB to 16 MB, depending on the allocation speed and survival rate.
+- **Description**: Reclaims the young-generation objects newly allocated to Semi Space.
+- **Scenario**: Foreground
+- **Log keywords**: [ HPP YoungGC ]
+
+#### Old GC
+
+- **When to trigger**: The old GC trigger threshold ranges from 20 MB to 300 MB. In most cases, the threshold of the first old GC is about 20 MB, and the threshold for subsequent old GC operations is adjusted based on the survival rate and memory usage.
+- **Description**: Sorts and compresses the space of the young generation and some space of the old generation, and sweeps other spaces. The trigger frequency is much lower than that of the young GC. Due to full marking, a single old GC operation takes about 5 ms to 10 ms, longer than that of the young GC.
+- **Scenario**: Foreground
+- **Log keywords**: [ HPP OldGC ]
+
+#### Full GC
+
+- **When to trigger**: Full GC is not triggered based on the memory threshold. After the application is switched to the background, full GC is triggered if the size of the object that can be reclaimed is expected to be greater than 2 MB. You can also trigger full GC using the DumpHeapSnapshot and AllocationTracker tools or calling native interfaces and JS/TS interfaces.
+- **Description**: Performs full compression on the young generation and old generation. Full GC is mainly used in performance-insensitive scenarios to reclaim memory space to the maximum extent.
+- **Scenario**: Background
+- **Log keywords**: [CompressGC]
+
+Smart GC or idle GC is based on these three GC modes.
+
+### Trigger Policy
+
+#### GC Triggered by Space Thread
+
+- Functions: **AllocateYoungOrHugeObject**, **AllocateHugeObject**, and other allocation-related functions
+- Restriction parameters: corresponding space thresholds
+- Description: GC is triggered when the space applied for by an object reaches the corresponding threshold.
+- Log keywords: **GCReason::ALLOCATION_LIMIT**
+
+#### GC Triggered by Native Binding Size
+
+- Functions: **GlobalNativeSizeLargerThanLimit**
+- Restriction parameters: **globalSpaceNativeLimit**
+- Description: It affects the decision for performing full marking and concurrent marking.
+
+#### GC Triggered Upon Switching to Background
+
+- Functions: **ChangeGCParams**
+- Description: Full GC is triggered when the application switches to the background.
+- Log keywords: **app is inBackground**, **app is not inBackground**, and
+  **GCReason::SWITCH_BACKGROUND**
+
+### Execution Policy
+
+#### Concurrent Marking
+
+- Function: **TryTriggerConcurrentMarking**
+- Description: Attempts to trigger concurrent marking and hand over the object traversal task to the thread pool to reduce the time that the main thread is being suspended.
+- Log keywords: **fullMarkRequested, trigger full mark**, **Trigger the first full mark**, **Trigger full mark**, **Trigger the first semi mark**, and **Trigger semi mark**
+
+#### Threshold Adjustment Before and After GC of Semi Space
+
+- Function: **AdjustCapacity**
+- Description: Adjusts the GC trigger threshold of Semi Space after GC to optimize the space structure.
+- Log keywords: There is no direct log. The GC statistics logs show that the young space threshold before GC is dynamically adjusted.
+
+#### Threshold Adjustment After the First Old GC
+
+- Function: **AdjustOldSpaceLimit**
+- Description: Adjusts the old space threshold based on the minimum increase step and average survival rate.
+- Log keywords: **"AdjustOldSpaceLimit oldSpaceAllocLimit_: "<< oldSpaceAllocLimit <<" globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;**
+
+#### Old Space/Global Space Threshold and Increase Factor for the Second and Later Old GC Operations
+
+- Function: **RecomputeLimits**
+- Description: Recalculates and adjusts **newOldSpaceLimit**, **newGlobalSpaceLimit**, **globalSpaceNativeLimit**, and the increase factor based on the current GC statistics.
+- Log keywords: **"RecomputeLimits oldSpaceAllocLimit_: "<< newOldSpaceLimit_ <<" globalSpaceAllocLimit_: "<< globalSpaceAllocLimit_ <<" globalSpaceNativeLimit_: "<< globalSpaceNativeLimit_;**
+
+#### CSet for Partial GC
+
+- Function: **OldSpace::SelectCSet ()**
+- Description: Selects a region with a small number of living objects and a low reclamation cost for partial GC.
+- Log keywords: **Select CSet failure: number is too few**,
+  **"Max evacuation size is 6_MB. The CSet region number: " << selectedRegionNumber;**,
+  and **"Select CSet success: number is " << collectRegionSet_.size();**
+
+## Technical Features
+
+### Smart GC
+
+#### Description
+
+In performance-sensitive scenarios, the GC trigger threshold of the JS thread is temporarily adjusted to the maximum JS heap size (448 MB by default) to prevent frame loss caused by the GC trigger. (Smart GC does not take effect for the Worker thread and TaskPool thread.) However, if the performance-sensitive scenario lasts for a long period of time and the allocated objects reach the maximum heap size, GC is triggered. This GC takes a long time because too many objects are accumulated.
+
+#### Performance-Sensitive Scenarios
+
+- Application cold start
+- Application sliding
+- Page redirection upon click
+- Jumbo frame
+
+Application cold start is supported by default. In other scenarios, you can call the **dfxjsnapi** interface for configuration and there is no essential difference.
+
+Log keyword: **SmartGC**
+
+#### Interaction Process
+
+![image](./figures/gc-smart-feature.png)
+
+Mark performance-sensitive scenarios. When entering or exiting a performance-sensitive scenario, mark the scenario on the heap to avoid unnecessary GC and maintain high performance.
+
+### Idle GC
+
+The thread idle time in the system frame drawing process is used to efficiently utilize computing resources to complete GC by phase, reducing janky frames caused by subsequent long GC pauses triggered by accumulated memory usage.
+
+#### **Incremental Marking**
+
+It usually takes a long period of time (longer than one idle time period) to complete old GC. Therefore, the marking process is distributed in multiple idle time periods.
+
+![image](./figures/gc-incremental-mark-feature.png)
+
+Incremental marking is triggered during linear space expansion when the following conditions are met:
+
+- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
+- There is no idle task and concurrent marking is not triggered.
+- When incremental marking is complete, the difference between the heap size and the threshold is less than 256 KB.
+- The size of the allocated object is less than 100 KB during incremental marking.
+
+Incremental marking and full concurrent marking are mutually exclusive. Linear space mainly refers to Semi Space.
+
+#### **Idle Young GC**
+
+![image](./figures/gc-idle-feature.png)
+
+During linear space expansion, the system attempts to trigger idle GC and set an idle task when the following conditions are met:
+
+- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
+- There is no idle task and concurrent marking is not triggered.
+- The heap size is less than 256 KB or less than the young GC concurrent mark threshold.
+
+Idle young GC can coexist with concurrent marking to prevent the GC threshold from being reached before the idle time is received. Concurrent marking can be triggered before idle young GC starts.
+
+## GC Developer Debugging Interfaces
+
+> **NOTE**
+>
+> The following interfaces are used only for debugging. They are informal external SDK interfaces and should not be used in official application versions.
+
+### ArkTools.hintGC()
+
+- Call method: **ArkTools.hintGC()**
+- Type: JS interface
+- Description: Determines whether full GC is required. In the background scenario or if the expected survival rate is lower than the preset value, full GC is triggered. In performance-sensitive scenarios, full GC is not triggered.
+- Use scenario: The developer asks the system to perform GC.
+- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
+
+### ArkTools.forceFullGC()
+
+- Call method: **ArkTools.forceFullGC()**
+- Type: JS interface
+- Description: Triggers GC directly. Specifically, full GC is triggered for the local heap of the calling thread, and shared GC is triggered for the shared heap of the calling thread.
+- Use scenario: large home screen, developer debugging
+- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
+
+Example:
+
+```
+// Declare the interface first.
+declare class ArkTools {
+     static forceFullGC(): void;
+     static hintGC(): void;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+  Row() {
+    Column() {
+      Text(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+  
+      Button("Trigger Full GC").onClick((event: ClickEvent) => {
+          ArkTools.forceFullGC(); // Directly called in a method.
+      })
+     Button("Trigger Hint GC").onClick((event: ClickEvent) => {
+         ArkTools.hintGC(); // Directly called in a method.
+     })
+    }
+    .width('100%')
+  }
+  .height('100%')
+}
+}
+```

@@ -1,7 +1,6 @@
-# 元能力子系统-ChangeLog
+# ability子系统Changelog
 
-## Context.setWakeUpScreen接口废弃变更
-从API12开始，废弃此接口。
+## cl.ability.1 restartApp接口变更
 
 **访问级别**
 
@@ -9,27 +8,11 @@
 
 **变更原因**
 
-setWakeUpScreen接口存在安全风险，不再对三方应用开放。
+避免恶意应用在非获焦状态下重启自身，实现霸屏。
 
 **变更影响**
 
-该接口删除无法再使用，请应用进行更新使用，否则会影响原有功能。
-
-- 涉及接口
-
-```js
-  setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback<void>): void;
-  setWakeUpScreen(wakeUp: boolean): Promise<void>;
-```
-
-- 变更前：
-
-```js
-  setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback<void>): void;
-  setWakeUpScreen(wakeUp: boolean): Promise<void>;
-```
-
-- 变更后：删除接口，停止对外开放。
+该变更为不兼容性变更。开发者需要在应用处于获焦状态时使用该接口，否则会影响功能。
 
 **起始API Level**
 
@@ -41,4 +24,25 @@ setWakeUpScreen接口存在安全风险，不再对三方应用开放。
 
 **适配指导**
 
-该接口删除后无法再使用，请适配更新，系统应用建议使用window.setWakeUpScreen替代。
+开发者需要在应用处于获焦状态时调用restartApp接口。
+
+**示例：**
+
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+
+export default class MyAbility extends UIAbility {
+  onForeground() {
+    let applicationContext = this.context.getApplicationContext();
+    let want: Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'EntryAbility'
+    };
+    try {
+      applicationContext.restartApp(want);
+    } catch (error) {
+      console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
+    }
+  }
+}
+```

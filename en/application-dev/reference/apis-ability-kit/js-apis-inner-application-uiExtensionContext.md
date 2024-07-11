@@ -34,8 +34,11 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -53,8 +56,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -113,8 +115,11 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -130,8 +135,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -200,8 +204,11 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -219,8 +226,7 @@ Starts an ability. This API uses a promise to return the result.
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -285,8 +291,11 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -304,8 +313,7 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -369,8 +377,11 @@ Starts an ability with the start options specified and obtains the result when t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -386,8 +397,7 @@ Starts an ability with the start options specified and obtains the result when t
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -461,8 +471,11 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -480,8 +493,7 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -547,8 +559,11 @@ Connects this ability to a ServiceExtensionAbility.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -559,8 +574,6 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -627,12 +640,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -685,12 +699,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -946,12 +961,12 @@ Reports an event indicating that page loading is complete (**onSessionCreate()**
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -997,9 +1012,9 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 Starts an [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) in jump-out mode and returns the result. This API uses a promise to return the result.
 
 The following situations may be possible for a started EmbeddableUIAbility:
- - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility. The result is returned to the caller.
+ - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the EmbeddableUIAbility. The result is returned to the caller.
  - If an exception occurs, for example, the EmbeddableUIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an EmbeddableUIAbility and then call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an EmbeddableUIAbility and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the EmbeddableUIAbility, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 > **NOTE**
 >
@@ -1023,8 +1038,11 @@ The following situations may be possible for a started EmbeddableUIAbility:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -1033,7 +1051,6 @@ The following situations may be possible for a started EmbeddableUIAbility:
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1076,10 +1093,10 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 
 Starts a UIAbility through App Linking. This API uses a promise to return the result.
 
-A URI in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
+A URL in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
 - The **actions** field contains **ohos.want.action.viewData**.
 - The **entities** field contains **entity.system.browsable**.
-- The **uris** field contains elements whose **scheme** is **https** and **autoVerify** is **true**.
+- The **uris** field contains elements whose **scheme** is **https** and **domainVerify** is **true**.
 
 If you want to obtain the result after the started UIAbility is terminated, set the **callback** parameter. For details about how to use this parameter, see [startAbilityForResult](#uiextensioncontextstartabilityforresult).
 
@@ -1107,8 +1124,11 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1123,46 +1143,46 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
+import Want from '@ohos.app.ability.Want';
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 
-function log(info) {
-  console.error("MyUIExtension::" + info)
+function log(info: string) {
+  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
 }
 
 export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`)
-    globalThis.context = this.context;
+    log(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`)
+    log(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`)
+    log(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`)
+    log(`UIExtAbility onDestroy`);
   }
 
-  onSessionCreate(want, session) {
-    log(`UIExtAbility onSessionCreate`)
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionCreate`);
+    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    let record: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
-    session.loadContent("pages/UIExtensionIndex", storage);
+    };
+    let storage: LocalStorage = new LocalStorage(record);
+    session.loadContent('pages/UIExtensionIndex', storage);
 
-    let link: string = "https://www.example.com"
+    let link: string = 'https://www.example.com';
     let openLinkOptions: OpenLinkOptions = {
       appLinkingOnly: true
     };
@@ -1171,24 +1191,24 @@ export default class UIExtAbility extends UIExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log('openLink callback error.code:' + JSON.stringify(err));
-          log('openLink callback result:' + JSON.stringify(result.resultCode));
-          log('openLink callback result data:' + JSON.stringify(result.want));
+          log(`openLink callback error.code: ${JSON.stringify(err)}`);
+          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
+          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
         }
       ).then(() => {
-        log('open link success.');
+        log(`open link success.`);
       }).catch((err: BusinessError) => {
-        log('open link failed, errCode ' + JSON.stringify(err.code));
-      })
+        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+      });
     }
     catch (e) {
-      log('exception occured, errCode ' + JSON.stringify(e.code));
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
     }
 
   }
 
-  onSessionDestroy(session) {
-    log(`UIExtAbility onSessionDestroy`)
+  onSessionDestroy(session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionDestroy`);
   }
-};
+}
 ```

@@ -20,7 +20,7 @@ onApplicationForeground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -34,7 +34,7 @@ onApplicationBackground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -42,6 +42,7 @@ onApplicationBackground(): void
 
 ```ts
 import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
   onApplicationForeground() {
@@ -57,17 +58,25 @@ export default class MyAbility extends UIAbility {
     console.log('MyAbility onCreate');
     // 1.获取applicationContext
     let applicationContext = this.context.getApplicationContext();
-    // 2.通过applicationContext注册应用前后台状态监听
-    if (applicationContext != undefined) {
-      applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+    try {
+      // 2.通过applicationContext注册应用前后台状态监听
+      if (applicationContext != undefined) {
+        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+      }
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
     console.log('Resgiter applicationStateChangeCallback');
   }
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
-    // 1.通过applicationContext解除注册应用前后台状态监听
-    if (applicationContext != undefined) {
-      applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+    try {
+      // 1.通过applicationContext解除注册应用前后台状态监听
+      if (applicationContext != undefined) {
+        applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+      } 
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
   }
 }

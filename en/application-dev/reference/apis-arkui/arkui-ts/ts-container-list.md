@@ -36,7 +36,7 @@ This component supports the [\<ListItem>](ts-container-listitem.md) and [\<ListI
 
 List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller})
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -56,7 +56,7 @@ listDirection(value: Axis)
 
 Sets the direction in which the list items are arranged.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,7 +101,7 @@ scrollBar(value: BarState)
 
 Sets the scrollbar state.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -121,7 +121,7 @@ In single-column mode, the number of the list items to be cached before and afte
 
 In multi-column mode, the number of the list items to be cached is the value of **cachedCount** multiplied by the number of columns.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -139,7 +139,7 @@ Sets whether to enable edit mode. For details about how to implement deletion of
 
 This API is deprecated since API version 9. There is no substitute API.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,7 +155,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 Sets the effect used when the scroll boundary is reached.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -182,7 +182,7 @@ The following prerequisites must be met for the chained animations to take effec
 
  2. The multi-column mode is not enabled for the list.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -198,7 +198,7 @@ multiSelectable(value: boolean)
 
 Sets whether to enable multiselect.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -222,7 +222,7 @@ The rules are as follows:
 - Each list item group occupies one row in multi-column mode. Its child list items are arranged based on the **lanes** attribute of the list.
 - If the value is set to {minLength, maxLength}, the number of columns is calculated based on the cross-axis width of the list item group. If the cross-axis width of the list item group is different from that of the list, the number of columns in the list item group may be different from that in the list.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,7 +239,7 @@ alignListItem(value: ListItemAlign)
 
 Sets the alignment mode of list items along the cross axis when the cross-axis width of the list is greater than the cross-axis width of list items multiplied by the value of **lanes**.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -255,7 +255,7 @@ sticky(value: StickyStyle)
 
 Sets whether to pin the header to the top or the footer to the bottom in the [list item group](ts-container-listitemgroup.md), if set. To support both the pin-to-top and pin-to-bottom features, set **sticky** to **StickyStyle.Header \| StickyStyle.Footer**.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -419,7 +419,7 @@ This API is supported in ArkTS widgets.
 
 Enumerates the alignment modes of list items when scrolling ends.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 When list items are left-, right-, top-, or bottom-aligned, the items at the end must be completely displayed, without exposure of any blank area of the boundary; the items at the other end can be out of alignment.
 
@@ -475,7 +475,7 @@ This event is triggered once when the list is initialized and when the index of 
 
 Since API version 10, this event is also triggered when the child component in the center of the list display area changes.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -495,7 +495,7 @@ Triggered when the list reaches the start position.
 
 This event is triggered once when **initialIndex** is **0** during list initialization and once when the list scrolls to the start position. When the list edge scrolling effect is the spring effect, this event is triggered once when the list passes the start position and is triggered again when the list returns to the start position.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -507,7 +507,7 @@ Triggered when the list reaches the end position.
 
 When the list edge scrolling effect is the spring effect, this event is triggered once when the list passes the end position and is triggered again when the list returns to the end position.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -521,7 +521,7 @@ If **listDirection** is set to **Axis.Vertical**, the return value is the amount
 
 This event is triggered when the user starts dragging the list or the list starts inertial scrolling. It is not triggered when the component rebounds, the scrolling controller is used, or the scrollbar is dragged.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -544,7 +544,7 @@ onScrollStart(event: () => void)
 
 Triggered when the list starts scrolling initiated by the user's finger dragging the list or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -554,7 +554,7 @@ onScrollStop(event: () => void)
 
 Triggered when the list stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -666,7 +666,7 @@ Triggered when the list scrolls.
 
 This API is deprecated since API version 12. You are advised to use [onDidScroll](#ondidscroll12) instead.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -681,7 +681,7 @@ onWillScroll(handler: OnScrollCallback)
 
 Triggered when the list is about to scroll. The return value is the offset amount by which the list will scroll and the current scroll state. The returned offset is obtained by calculation, not the actual offset.
 
-**Widget capability**: Since API version 12, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -700,7 +700,7 @@ onDidScroll(handler: OnScrollCallback)
 
 Triggered when the list scrolls. The return value is the offset amount by which the list has scrolled and the current scroll state.
 
-**Widget capability**: Since API version 12, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -735,11 +735,11 @@ Called when the list scrolls.
 
 ## ScrollState
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    |  Value | Description                                      |
 | ------ | ------ | ---------------------------------------- |
-| Idle   |  0  | Idle. The list enters this state when an API in the controller is used to scroll the list or when the scrollbar is dragged.<br>**NOTE**<br> Since API version 10, the list enters this state when it is not scrolling,<br>but not when an API in the controller that does not apply an animation is called.|
+| Idle   |  0  | Idle. The list enters this state when an API in the controller is used to scroll the list or when the scrollbar is dragged.<br>**NOTE**<br> Since API version 10, the list enters this state when it is not scrolling, but not when an API in the controller that does not apply an animation is called.|
 | Scroll |  1  | Scrolling. The list enters this state when the user drags the list to scroll.<br>**NOTE**<br> Since API version 10, the list also enters this state when the user drags the scrollbar or the mouse wheel to scroll the list.|
 | Fling  |  2  | Inertial scrolling. The list enters this state when inertial scrolling occurs or when the list bounces back after being released from a fling.<br>**NOTE**<br> Since API version 10, the list enters this state when: Inertial scrolling occurs after a fling.<br>The list bounces back after being released from a fling.<br>Inertial scrolling occurs after quick dragging of the built-in scrollbar.<br>Scrolling occurs after an API in the controller that applies an animation is called.|
 

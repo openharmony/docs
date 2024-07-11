@@ -1,4 +1,4 @@
-# 组件导航 (Navigation)
+# 组件导航 (Navigation)(推荐)
 
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由容器组件，一般作为首页的根容器，包括单栏(Stack)、分栏(Split)和自适应(Auto)三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。在不同尺寸的设备上，Navigation组件能够自适应显示大小，自动切换分栏展示效果。
 
@@ -437,7 +437,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 - **onShown**：NavDestination组件布局显示之后执行，此时页面已完成布局。
 - **onWillHide**：NavDestination组件触发隐藏之前执行（应用切换到后台不会触发）。
 - **onHidden**：NavDestination组件触发隐藏后执行（非栈顶页面push进栈，栈顶页面pop出栈或应用切换到后台）。
-- **onWillAppear**：NavDestination组件即将销毁之前执行，如果有转场动画，会在动画前触发（栈顶页面pop出栈）。
+- **onWillDisappear**：NavDestination组件即将销毁之前执行，如果有转场动画，会在动画前触发（栈顶页面pop出栈）。
 - **onDisappear**：通用生命周期事件，NavDestination组件从组件树上卸载销毁时执行。
 - **aboutToDisappear**：自定义组件析构销毁之前执行，不允许在该方法中改变状态变量。
 
@@ -450,12 +450,12 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   自定义组件提供[queryNavDestinationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavdestinationinfo)方法，可以在NavDestination内部查询到当前所属页面的信息，返回值为[NavDestinationInfo](../reference/apis-arkui/js-apis-arkui-observer.md#navdestinationinfo)，若查询不到则返回undefined。
   
   ```ts
-   import observer from '@ohos.arkui.observer';
+   import { uiObserver } from '@kit.ArkUI';
   
    // NavDestination内的自定义组件
    @Component
    struct MyComponent {
-     navDesInfo: observer.NavDestinationInfo | undefined
+     navDesInfo: uiObserver.NavDestinationInfo | undefined
   
      aboutToAppear(): void {
        this.navDesInfo = this.queryNavDestinationInfo();
@@ -473,7 +473,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   通过[@ohos.arkui.observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
-  observer.on('navDestinationUpdate', (info) => {
+  uiObserver.on('navDestinationUpdate', (info) => {
        console.info('NavDestination state update', JSON.stringify(info));
    });
   ```
@@ -482,16 +482,15 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   
   ```ts
    // 在UIAbility中使用
-   import observer from '@ohos.arkui.observer';
-   import { UIContext } from '@ohos.arkui.UIContext';
+   import { UIContext, uiObserver } from '@kit.ArkUI';
   
    // callBackFunc 是开发者定义的监听回调函数
-   function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-   observer.on('navDestinationSwitch', this.context, callBackFunc);
+   function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
+   uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
   
    // 可以通过窗口的getUIContext()方法获取对应的UIContent
    uiContext: UIContext | null = null;
-   observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
+   uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
   ```
 
 ## 页面转场
@@ -682,16 +681,12 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 自定义路由表
 
-开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)示例。
+开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考<!--RP1-->[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)<!--RP1End--> 示例。
 
 **实现方案：**
 
 1. 定义页面跳转配置项。
-- 使用资源文件进行定义，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)在运行时对资源文件解析。
-- 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
-
+   - 使用资源文件进行定义，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)在运行时对资源文件解析。
+   - 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
 2. 加载目标跳转页面，通过[import](../quick-start/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
-
 3. 触发页面跳转，在Navigation的[.navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
-
-<!--RP1--><!--RP1End--> 

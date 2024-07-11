@@ -27,34 +27,48 @@ This topic walks you through how to implement parallel programming based on the 
 | ffrt_mutex_destroy(ffrt_mutex_t* mutex)   | Destroys a mutex.|
 | ffrt_queue_attr_init(ffrt_queue_attr_t* attr)    | Initializes a queue attribute.|
 | ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)    | Destroys a queue attribute.|
-| ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a queue attribute.|
-| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | Obtains the QoS of a queue attribute.|
+| ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | Sets the queue QoS.|
+| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | Obtains the queue QoS.|
 | ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)   | Creates a queue.|
 | ffrt_queue_destroy(ffrt_queue_t queue)   | Destroys a queue.|
 | ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)   | Submits a task to a queue.|
-| ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | Submits a task to a queue, and obtains a task handle.|
+| ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | Submits a task to a queue, and obtains the task handle.|
 | ffrt_queue_wait(ffrt_task_handle_t handle)    | Waits until a task in the queue is complete.|
 | ffrt_queue_cancel(ffrt_task_handle_t handle)     | Cancels a task in the queue.|
+| ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)    | Sets the maximum concurrency for a queue, which must be a concurrent queue.|
+| ffrt_queue_attr_get_max_concurrency(ffrt_queue_attr_t* attr)     | Obtains the maximum concurrency of a queue, which must be a concurrent queue.|
+| ffrt_get_main_queue()     | Obtains the main thread queue.|
+| ffrt_get_current_queue()     | Obtains the ArkTS Worker thread queue.|
 | ffrt_usleep(uint64_t usec)   | Suspends the calling thread for a given duration.|
 | ffrt_yield(void)     | Passes control to other tasks so that they can be executed.|
 | ffrt_task_attr_init(ffrt_task_attr_t* attr)     | Initializes a task attribute.|
 | ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)   | Sets a task name.|
 | ffrt_task_attr_get_name(const ffrt_task_attr_t* attr)   | Obtains a task name.|
 | ffrt_task_attr_destroy(ffrt_task_attr_t* attr)    | Destroys a task attribute.|
-| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a task attribute.|
-| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | Obtains the QoS of a task attribute.|
+| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | Sets the task QoS.|
+| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | Obtains the task QoS.|
 | ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | Sets the task delay time.|
 | ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | Obtains the task delay time.|
+| ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority)     | Sets the task priority in the queue.|
+| ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr)      | Obtains the task priority in the queue.|
+| ffrt_this_task_get_qos()      | Obtains the QoS of this task.|
 | ffrt_this_task_update_qos(ffrt_qos_t qos)    | Updates the QoS of this task.|
 | ffrt_this_task_get_id(void)    | Obtains the ID of this task.|
 | ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | Applies for memory for the function execution structure.|
 | ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)   | Submits a task.|
-| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | Submits a task, and obtains a task handle.|
+| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | Submits a task, and obtains the task handle.|
 | ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | Destroys a task handle.|
 | ffrt_skip(ffrt_task_handle_t handle)     | Skips a task.|
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | Waits until the dependent tasks are complete.|
-
-
+| ffrt_loop_create(ffrt_queue_t queue)    | Creates a loop.|
+| ffrt_loop_destory(ffrt_loop_t loop)    | Destroys a loop.|
+| ffrt_loop_run(ffrt_loop_t loop)    | Runs a loop.|
+| ffrt_loop_stop(ffrt_loop_t loop)    | Stops a loop.|
+| ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void* data, ffrt_poller_cb cb)    | Manages listening events on a loop.|
+| ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)    | Starts the timer on a loop.|
+| ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)   | Stops the timer on a loop.|
+| ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)   | Starts the timer.|
+| ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);   | Stops the timer.|
 
 ## API Introduction
 
@@ -120,7 +134,7 @@ Pointer to the CPU function. The struct executed by the pointer describes two fu
 
 N/A
 
-##### Use guide
+##### Description
 * You are advised to encapsulate **ffrt_submit_base** first. For details, see **Example** below.
 * As an underlying capability, **ffrt_submit_base** must meet the following requirements:
   * The **func** pointer can be allocated by calling **ffrt_alloc_auto_managed_function_storage_base**, and the two function pointers in the struct must be in the specified sequence (**exec** prior to **destroy**).
@@ -197,7 +211,7 @@ Virtual addresses of the data to be produced. These addresses may be used as **o
 
 N/A
 
-##### Use guide
+##### Description
 * **ffrt_wait_deps(deps)** is used to suspend code execution before the data specified by **deps** is produced.
 * **ffrt_wait()** is used to suspend code execution before all subtasks (excluding grandchild tasks and lower-level subtasks) submitted by the current context are complete.
 * This API can be called inside or outside an FFRT task.
@@ -381,7 +395,7 @@ Actual address of the dependent signature content.
 
 N/A
 
-##### Use guide
+##### Description
 
 **item** is the start address pointer of each signature. The pointer can point to the heap space or stack space, but the allocated space must be greater than or equal to len * sizeof(ffrt_dependence_t).
 
@@ -443,7 +457,7 @@ Handle of the target task attribute.
 
 `qos`
 
-* Enumerated type of QoS.
+* QoS.
 * **ffrt_qos_inherent** is a QoS type, indicating that the QoS of the task to be submitted by **ffrt_submit** inherits the QoS of the current task.
 
 `delay_us`
@@ -454,7 +468,7 @@ Delay for executing the task, in μs.
 
 N/A
 
-##### Use guide
+##### Description
 * The content passed by **attr** is fetched and stored when **ffrt_submit** is being executed. You can destroy the content on receiving the return value of **ffrt_submit**.
 * Conventions:
   * If **task_attr** is not used for QoS setting during task submission, the QoS of the task is **ffrt_qos_default**.
@@ -579,7 +593,7 @@ Pointer to the CPU function. The struct executed by the pointer describes two fu
 
 Take handle. The handle can be used to establish the dependency between tasks or implement synchronization in the wait statements.
 
-##### Use guide
+##### Description
 
 * **ffrt_task_handle_t** in the C code must be explicitly destroyed by calling **ffrt_task_handle_destroy**.
 * You need to set the **ffrt_task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
@@ -691,7 +705,7 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 hello world, x = 2
@@ -719,7 +733,7 @@ N/A
 
 ID of the task being executed.
 
-##### Use guide
+##### Description
 
 * If this API is called inside a task, the ID of this task is returned. If this API is called outside a task, **0** is returned.
 * You can determine whether the function runs on an FFRT or a non-FFRT worker thread based on the return value.
@@ -727,7 +741,26 @@ ID of the task being executed.
 
 ##### Example
 
-N/A
+```{.c}
+#include "timer.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+}
+
+```
 
 #### ffrt_this_task_update_qos
 
@@ -749,7 +782,7 @@ New QoS.
 
 Returns **0** if the operation is successful; returns a non-zero value otherwise.
 
-##### Use guide
+##### Description
 
 * The QoS update takes effect immediately.
 * If the new QoS is different from the current QoS, the task is blocked and then resumed based on the new QoS.
@@ -760,9 +793,35 @@ Returns **0** if the operation is successful; returns a non-zero value otherwise
 
 N/A
 
+#### ffrt_this_task_get_qos
+
+Obtains the QoS of the task being executed.
+
+##### Declaration
+
+```{.c}
+ffrt_qos_t ffrt_this_task_get_qos();
+```
+
+##### Parameters
+
+NA
+
+##### Return value
+
+QoS.
+
+##### Description
+
+N/A
+
+##### Example
+
+N/A
+
 ### Serial Queue
 
-FFRT provides **queue** to implement capabilities similar to **WorkQueue** in Android. It can deliver excellent performance if being used properly.
+Based on the FFRT coroutine scheduling model, the serial queue implements a message queue. Serial tasks are executed in FFRT Worker threads. You do not need to maintain a dedicated thread, making the scheduling overhead lightweight.
 
 #### ffrt_queue_attr_t
 
@@ -779,13 +838,12 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ##### Parameters
 
 `attr`
-
 Pointer to the uninitialized **ffrt_queue_attr_t** object.
 
 ##### Return value
 Returns **0** if the API is called successfully; returns **-1** otherwise.
 
-##### Use guide
+##### Description
 * An **ffrt_queue_attr_t** object must be created prior to an **ffrt_queue_t** object.
 * You need to set the **ffrt_queue_attr_t** object to null or destroy the object. For the same **ffrt_queue_attr_t** object, **ffrt_queue_attr_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_attr_t** is accessed after **ffrt_queue_attr_destroy** is called, undefined behavior may occur.
@@ -797,7 +855,7 @@ See the example provided in **ffrt_queue_t**.
 
 ##### Declaration
 ```{.c}
-typedef enum { ffrt_queue_serial, ffrt_queue_max } ffrt_queue_type_t;
+typedef enum { ffrt_queue_serial, ffrt_queue_concurrent, ffrt_queue_max } ffrt_queue_type_t;
 typedef void* ffrt_queue_t;
 
 ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
@@ -821,7 +879,7 @@ Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
 ##### Return value
 Returns the queue created if the API is called successfully; returns a null pointer otherwise.
 
-##### Use guide
+##### Description
 * Tasks submitted to the queue are executed in sequence. If a task is blocked, the execution sequence of the task cannot be ensured.
 * You need to set the **ffrt_queue_t** object to null or destroy the object. For the same **ffrt_queue_t** object, **ffrt_queue_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_t** is accessed after **ffrt_queue_destroy** is called, undefined behavior may occur.
@@ -878,6 +936,315 @@ int main(int narg, char** argv)
     ffrt_queue_destroy(queue_handle);
 }
 ```
+
+#### ffrt_get_main_queue
+
+Obtains the main thread queue.
+
+##### Declaration
+```{.c}
+ffrt_queue_t ffrt_get_main_queue();
+```
+
+##### Parameters
+
+NA
+
+##### Return value
+
+Main thread queue.
+
+##### Description
+
+The main thread queue is obtained for the FFRT thread to communicate with the main thread.
+
+##### Example
+```{.c}
+#include "queue.h"
+
+int main(int narg, char** argv)
+{
+    ffrt::queue *serialQueue = new ffrt::queue("ffrt_normal_queue", {});
+    ffrt_queue_t mainQueue = ffrt_get_main_queue();
+    ffrt_task_attr_t attr;
+    ffrt_task_attr_init(&attr);
+    ffrt_task_attr_set_qos(&attr, ffrt_qos_user_initiated);
+    int result = 0;
+    std::function<void()>&& basicFunc = [&result]() {
+        OnePlusForTest(static_cast<void*>(&result));
+        OnePlusForTest(static_cast<void*>(&result));
+        EXPECT_EQ(result, 2);
+        usleep(3000);
+    };
+    
+    ffrt::task_handle handle = serialQueue->submit_h(
+        [&] {
+            result = result + 1;
+            ffrt_queue_submit(mainQueue, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue),
+                            &attr);
+        },
+        ffrt::task_attr().qos(3).name("ffrt main_queue."));
+    
+    serialQueue->wait(handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+result=1
+```
+
+#### ffrt_get_current_queue
+
+Obtains the ArkTS Worker thread queue.
+
+##### Declaration
+```{.c}
+ffrt_queue_t ffrt_get_current_queue();
+```
+
+##### Parameters
+
+NA
+
+##### Return value
+
+ArkTS Worker thread queue.
+
+##### Description
+
+The ArkTS Worker thread queue is obtained for the FFRT thread to communicate with the ArkTS Worker thread.
+
+##### Example
+```{.c}
+#include "queue.h"
+
+int main(int narg, char** argv)
+{
+    ffrt::queue *serialQueue = new ffrt::queue("ffrt_normal_queue", {});
+    ffrt_queue_t currentQueue = ffrt_get_current_queue();
+    ffrt_task_attr_t attr;
+    ffrt_task_attr_init(&attr);
+    ffrt_task_attr_set_qos(&attr, ffrt_qos_user_initiated);
+    int result = 0;
+    std::function<void()>&& basicFunc = [&result]() {
+        OnePlusForTest(static_cast<void*>(&result));
+        OnePlusForTest(static_cast<void*>(&result));
+        EXPECT_EQ(result, 3);
+        usleep(3000);
+    };
+    
+    ffrt::task_handle handle = serialQueue->submit_h(
+        [&] {
+            result = result + 1;
+            ffrt_queue_submit(currentQueue, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue),
+                            &attr);
+        },
+        ffrt::task_attr().qos(3).name("ffrt current_queue."));
+    
+    serialQueue->wait(handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+result=1
+```
+
+
+### Concurrent Queue
+
+FFRT supports concurrent queues and allows you to set the concurrency and task priority of a concurrent queue.
+
+#### ffrt_queue_attr_set_max_concurrency
+
+Sets the maximum concurrency for a queue, which must be a concurrent queue.
+
+##### Declaration
+```{.c}
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
+```
+
+##### Parameters
+
+`attr`
+
+Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
+
+`max_concurrency`
+
+Maximum concurrency. If the parameter is set to a value less than or equal to 0, the concurrency 1 is used.
+
+##### Return value
+
+NA
+
+##### Description
+
+If the concurrency is set to a large value, for example, 100, the actual concurrency may fail to reach the set value due to hardware capability limitations.
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    uint64_t concurrency = 4;
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
+    concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
+    ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
+}
+```
+
+Expected output
+
+```
+concurrency=4
+```
+
+#### ffrt_queue_attr_get_max_concurrency
+
+Obtains the maximum concurrency of a queue, which must be a concurrent queue.
+
+##### Declaration
+```{.c}
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
+```
+
+##### Parameters
+
+`attr`
+
+Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
+
+##### Return value
+
+Maximum concurrency.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    uint64_t concurrency = 4;
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
+    concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
+    ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
+}
+```
+
+Expected output
+
+```
+concurrency=4
+```
+
+#### ffrt_task_attr_set_queue_priority
+<hr/>
+Sets the task priority in the queue.
+
+##### Declaration
+```{.c}
+/* Task priority */
+typedef enum {
+ffrt_queue_priority_immediate = 0,
+ffrt_queue_priority_high,
+ffrt_queue_priority_low,
+ffrt_queue_priority_idle,
+} ffrt_queue_priority_t;
+
+void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority);
+```
+
+##### Parameters
+
+`attr`
+
+Pointer to the task attribute. For details, see **ffrt_task_attr_t**.
+
+`priority`
+
+Task priority. Four priorities are supported. For details, see **ffrt_queue_priority_t**.
+
+##### Return value
+
+NA
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr);
+    uint64_t priority = 3;
+    ffrt_task_attr_set_queue_priority(&task_attr, priority);
+    priority = ffrt_task_attr_get_queue_priority(&task_attr);
+    ffrt_task_attr_destroy(&task_attr);
+    return 0;
+}
+```
+
+Expected output
+
+```
+priority=3
+```
+
+#### ffrt_task_attr_get_queue_priority
+
+Obtains the task priority in a queue.
+
+##### Declaration
+```{.c}
+ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr);
+```
+
+##### Parameters
+
+`attr`
+
+Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
+
+##### Return value
+
+Task priority.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr);
+    uint64_t priority = 3;
+    ffrt_task_attr_set_queue_priority(&task_attr, priority);
+    priority = ffrt_task_attr_get_queue_priority(&task_attr);
+    ffrt_task_attr_destroy(&task_attr);
+    return 0;
+}
+```
+
+Expected output
+
+```
+priority=3
+```
+
 ### Synchronization Primitive
 
 #### ffrt_mutex_t
@@ -919,7 +1286,7 @@ Pointer to the target mutex.
 
 Returns **ffrt_success** if the API is called successfully; returns an error code otherwise.
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **pthread_mutex_t** may cause unexpected kernel mode trap when it fails to lock a mutex. **ffrt_mutex_t** solves this problem and therefore provides better performance if used properly.
 * Currently, recursion and timing are not supported.
@@ -1023,7 +1390,7 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 sum=10
@@ -1081,7 +1448,7 @@ Pointer to the maximum duration during which the thread is blocked.
 
 Returns **ffrt_success** if the API is successfully called; returns **ffrt_error_timedout** if the maximum duration is reached before the mutex is locked.
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **pthread_cond_t** may cause unexpected kernel mode trap when the conditions are not met. **ffrt_cond_t** solves this problem and therefore provides better performance if being used properly.
 * **ffrt_cond_t** in the C code must be explicitly created and destroyed by calling **ffrt_cond_init** and **ffrt_cond_destroy**, respectively.
@@ -1211,15 +1578,13 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 a=1
 ```
 
 This example is for reference only and is not encouraged in practice.
-
-### Miscellaneous
 
 #### ffrt_usleep
 
@@ -1241,7 +1606,7 @@ Duration that the calling thread is suspended, in μs.
 
 N/A
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **sleep** may cause unexpected kernel mode trap. **ffrt_usleep** solves this problem and therefore provides better performance if used properly.
 
@@ -1329,7 +1694,7 @@ N/A
 
 N/A
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The exact behavior of this API depends on the implementation, especially the mechanism and system state of the FFRT scheduler in use.
 
@@ -1337,6 +1702,550 @@ N/A
 
 N/A
 
+### ffrt timer
+
+FFRT supports the capability of starting and stopping the timer.
+
+#### ffrt_timer_start
+
+Starts a timer.
+
+##### Declaration
+```{.c}
+typedef int ffrt_timer_t;
+typedef void (*ffrt_timer_cb)(void* data);
+
+ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+```
+
+##### Parameters
+
+`qos`
+
+QoS.
+
+`timeout`
+
+Timeout of the timer.
+
+`data`
+
+Pointer to the input parameter in the callback function invoked upon a timeout.
+
+`cb`
+
+Callback function invoked upon a timeout.
+
+`repeat`
+
+Whether to repeat the timer (not supported yet).
+
+##### Return value
+
+Handle to the timer.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+
+static void testfun(void *data)
+{
+    *(int *)data += 1;
+}
+
+void (*cb)(void *) = testfun;
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int *xf = &x;
+    void *data = xf;
+    uint64_t timeout = 200;
+    int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
+    usleep(300000);
+    ffrt_timer_stop(ffrt_qos_default, handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+data=1 in the callback function testfun
+```
+
+#### ffrt_timer_stop
+
+Stops the timer.
+
+##### Declaration
+```{.c}
+int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
+```
+
+##### Parameters
+
+`qos`
+
+QoS.
+
+`handle`
+
+Handle to the timer.
+
+##### Return value
+
+**0** if the call is successful; **-1** if the call fails.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+
+static void testfun(void *data)
+{
+    *(int *)data += 1;
+}
+
+void (*cb)(void *) = testfun;
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int *xf = &x;
+    void *data = xf;
+    uint64_t timeout = 200;
+    int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
+    usleep(300000);
+    ffrt_timer_stop(ffrt_qos_default, handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+data=1 in the callback function testfun
+```
+
+### ffrt looper
+
+FFRT provides the looper mechanism. The looper supports task submission, event listening, and timer. The looper runs in the user thread.
+
+#### ffrt_loop_create
+
+Creates a loop.
+
+##### Declaration
+```{.c}
+typedef void* ffrt_loop_t;
+
+ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue);
+```
+
+##### Parameters
+
+`queue`
+
+Queue, which must be a concurrent queue.
+
+##### Return value
+
+Loop object.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+A non-null loop object
+```
+
+#### ffrt_loop_destory
+
+Destroys a loop.
+
+##### Declaration
+```{.c}
+int ffrt_loop_destroy(ffrt_loop_t loop);
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+##### Return value
+
+**0** if the call is successful; **-1** if the call fails.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+**0** if the loop object is destroyed.
+```
+
+#### ffrt_loop_run
+
+Runs a loop.
+
+##### Declaration
+```{.c}
+int ffrt_loop_run(ffrt_loop_t loop);
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+##### Return value
+
+**0** if the call is successful; **-1** if the call fails.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+
+    ffrt_loop_stop(loop);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+**0** if the loop object is started normally.
+```
+
+#### ffrt_loop_stop
+
+Stops a loop.
+
+##### Declaration
+```{.c}
+void ffrt_loop_stop(ffrt_loop_t loop);
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+##### Return value
+
+N/A.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+
+    ffrt_loop_stop(loop);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+**0** if the loop object is stopped normally.
+```
+
+#### ffrt_loop_epoll_ctl
+
+Manages listening events on a loop.
+
+##### Declaration
+```{.c}
+int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb);
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+`op`
+
+Operation to be performed, such as **EPOLL_CTL_ADD** and **EPOLL_CLT_DEL**.
+
+`fd`
+
+File descriptor.
+
+`events`
+
+Events linked to the file descriptor.
+
+`data`
+
+Pointer to the input parameter in the callback function invoked upon event changes.
+
+`cb`
+
+Callback function invoked upon event changes.
+
+##### Return value
+
+**0** if the call is successful; **-1** if the call fails.
+
+##### Description
+N/A
+
+##### Example
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+
+static void testfun(void* data)
+{
+    *(int*)data += 1;
+}
+
+static void (*cb)(void*) = testfun;
+
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    int result1 = 0;
+    std::function<void()> &&basicFunc1 = [&result1]() {result += 10;};
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+    
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+    
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+    uint64_t timeout2 = 10;
+    uint64_t expected = 0xabacadae;
+    
+    int testFd = evetfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+    struct TestData testData {.fd = testFd, .expected = expected};
+    ffrt_timer_t timeHandle = ffrt_loop_timer_start(loop, timeout1, data, cb, false);
+    
+    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    ssize_t n = write(testFd, &expected, sizeof(uint64_t));
+    usleep(25000);
+    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_DEL, testFd, 0, nullptr, nullptr);
+
+    ffrt_loop_stop(loop);
+    pthread_join(thread, nullptr);
+    ffrt_loop_timer_stop(loop, timeHandle);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+Expected output
+
+```
+ffrt_loop_epoll_ctl if the operation is successful.
+```
+
+#### ffrt_loop_timer_start
+
+Starts the timer on a loop.
+
+##### Declaration
+```{.c}
+ffrt_timer_t ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+`timeout`
+
+Timeout of the timer.
+
+`data`
+
+Pointer to the input parameter of the callback function invoked upon event changes.
+
+`cb`
+
+Callback function invoked upon event changes.
+
+`repeat`
+
+Whether to repeat the timer (not supported yet).
+
+##### Return value
+
+Handle to the timer.
+
+##### Description
+N/A
+
+##### Example
+For details, see the **ffrt_loop_epoll_ctl** interface example.
+
+#### ffrt_loop_timer_stop
+<hr/>
+N/A
+
+##### Declaration
+```{.c}
+int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)
+```
+
+##### Parameters
+
+`loop`
+
+Loop object.
+
+`handle`
+
+Handle to the timer.
+
+##### Return value
+
+**0** if the call is successful; **-1** if the call fails.
+
+##### Description
+N/A
+
+##### Example
+For details, see the **ffrt_loop_epoll_ctl** interface example.
+
+## Long-Time Task Monitoring
+
+### Mechanism 
+* When the task execution reaches one second, stack printing is triggered. The stack printing interval is then changed to one minute. After 10 prints, the interval is changed to 10 minutes. After another 10 prints, the interval is changed to and fixed at 30 minutes.
+* The **GetBacktraceStringByTid** interface of the DFX is called for the stack printing. This interface sends stack capture signals to the blocked thread to trigger interrupts and capture the call stack return. 
+
+### Example 
+Search for the keyword **RecordSymbolAndBacktrace** in the corresponding process log. The following is an example of the corresponding log:
+
+```
+W C01719/ffrt: 60500:RecordSymbolAndBacktrace:159 Tid[16579] function occupies worker for more than [1]s.
+W C01719/ffrt: 60501:RecordSymbolAndBacktrace:164 Backtrace:
+W C01719/ffrt: #00 pc 00000000000075f0 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #01 pc 0000000000008758 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #02 pc 0000000000012b98 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #03 pc 000000000002aaa0 /system/lib64/platformsdk/libfilemgmt_libn.z.so
+W C01719/ffrt: #04 pc 0000000000054b2c /system/lib64/platformsdk/libace_napi.z.so
+W C01719/ffrt: #05 pc 00000000000133a8 /system/lib64/platformsdk/libuv.so
+W C01719/ffrt: #06 pc 00000000000461a0 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #07 pc 0000000000046d44 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #08 pc 0000000000046a6c /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
+```
+The log prints the task stack, Worker thread ID, and execution time of the long-time task. Find the corresponding component based on the stack to determine the blocking cause.
+
+
+### Precautions
+During long-time task monitoring, an interrupt signal is sent. If your code contains **sleep** or a blocked thread that will be woken up by the interrupt, you should receive the return value of the blocked thread and call the code again. 
+The following is an example:
+```
+unsigned int leftTime = sleep(10);
+while (leftTime != 0) {
+    leftTime = sleep(leftTime);
+}
+```
 
 ## How to Develop
 
@@ -1559,11 +2468,8 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 * The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
 * You can download the C++ APIs from the following website: [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
 
-
-
-
-
 ## Constraints
+
 
 After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
 

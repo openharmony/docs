@@ -24,7 +24,7 @@ Badge(value: BadgeParamWithNumber)
 
 Creates a badge.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -38,7 +38,7 @@ Badge(value: BadgeParamWithString)
 
 Creates a badge based on the given string.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -66,7 +66,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BadgePosition
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Value| Description|
 | -------- | -------- |-------- |
@@ -76,7 +76,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BadgeStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                     | Type                                                        | Mandatory| Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

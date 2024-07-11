@@ -14,7 +14,7 @@ pageTransition?(): void
 
 进入此页面或移动到其他页面时实现动画。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ PageTransitionEnter(value: PageTransitionOptions)
 
 设置当前页面的自定义入场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 设置当前页面的自定义退场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## PageTransitionOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                                                         | 必填 | 描述                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -75,15 +75,68 @@ PageTransitionExit(value: PageTransitionOptions)
 
 
 ## 事件
+### onEnter
 
-| 事件                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
-| onExit(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
+onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnterInterface
 
-## RouteType枚举说明
+逐帧回调，直到入场动画结束，progress从0变化到1。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                               | 必填 | 说明                                                |
+| ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
+| event  | (type: [RouteType](#routetype枚举说明), progress: number) => void | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+
+**示例：**
+
+```js
+  pageTransition() {
+    PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
+      // 转场动画时入场动画 type 为路由类型 ，progress为从0到1逐渐变大
+      .onEnter((type: RouteType, progress: number) => {
+        // 业务逻辑代码
+      })
+  }
+```
+
+### onExit
+
+onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitInterface
+
+逐帧回调，直到出场动画结束，progress从0变化到1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型                                                               | 必填 | 说明                                                |
+| ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
+| event  | (type: [RouteType](#routetype枚举说明), progress: number) => void | 是   | 出场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+
+**示例：**
+
+```js
+  pageTransition() {
+    PageTransitionExit({ duration: 1200, curve: Curve.Linear })
+      // 转场动画时出场动画 type 为路由类型 ，progress为从0到1逐渐变大
+      .onEnter((type: RouteType, progress: number) => {
+        // 业务逻辑代码
+      })
+  }
+```
+
+ ## RouteType枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
@@ -95,12 +148,12 @@ PageTransitionExit(value: PageTransitionOptions)
 
 | 名称                | 描述                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Top                 | 设置到入场时表示从上边滑入，出场时表示滑出到上边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Bottom              | 设置到入场时表示从下边滑入，出场时表示滑出到下边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| START<sup>12+</sup> | 设置LTR入场时表示从左边滑入，出场时表示滑出到左边。RTL入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| END<sup>12+</sup>   | 设置LTR入场时表示从右边滑入，出场时表示滑出到右边。RTL入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Top                 | 设置到入场时表示从上边滑入，出场时表示滑出到上边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Bottom              | 设置到入场时表示从下边滑入，出场时表示滑出到下边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| START<sup>12+</sup> | 设置LTR入场时表示从左边滑入，出场时表示滑出到左边。RTL入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| END<sup>12+</sup>   | 设置LTR入场时表示从右边滑入，出场时表示滑出到右边。RTL入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -110,7 +163,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ```ts
 // index.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -152,7 +205,7 @@ struct Index {
 
 ```ts
 // page1.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -276,7 +329,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -288,7 +340,9 @@ struct PageTransitionExample {
       .slide(SlideEffect.START) //Left
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -310,7 +364,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -350,7 +403,9 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -373,7 +428,6 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![pageTransition1](figures/pageRTL2.gif)

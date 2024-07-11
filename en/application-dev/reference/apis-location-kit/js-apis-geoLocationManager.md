@@ -1,6 +1,6 @@
 # @ohos.geoLocationManager (Geolocation Manager)
 
-The **geoLocationManager** module provides location services such as Global Navigation Satellite System (GNSS)-based positioning, network positioning, geofencing, as well as geocoding and reverse geocoding.
+The **geoLocationManager** module provides basic location services such as Global Navigation Satellite System (GNSS)-based positioning, network positioning (for example, base station positioning or WLAN/Bluetooth positioning), geofencing, as well as geocoding and reverse geocoding.
 
 > **NOTE**
 >
@@ -9,13 +9,13 @@ The **geoLocationManager** module provides location services such as Global Navi
 
 ## Applying for Permissions
 
-For details, see For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
+For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
 
 
 ## Modules to Import
 
 ```ts
-import geoLocationManager from '@ohos.geoLocationManager';
+import { geoLocationManager } from '@kit.LocationKit';
 ```
 
 
@@ -25,12 +25,13 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English. The default language is obtained from **Language and region** in **Settings**.|
-| latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
-| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended. The default value is **1**.|
+| locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English. The default language is obtained from **Language and region** in **Settings**.|
+| country<sup>12+</sup> | string | No| Yes| Country information. The country code complies with the ISO 3166-1 alpha-2 standard. **CN** indicates China. The default language is obtained from **Language and region** in **Settings**.|
+| latitude | number | No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.|
+| longitude | number | No| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
+| maxItems | number | No| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended. The default value is **1**.|
 
 
 ## GeoCodeRequest
@@ -39,15 +40,16 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English. The default language is obtained from **Language and region** in **Settings**.|
-| description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended. The default value is **1**.|
-| minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**.|
-| minLongitude | number | Yes| Yes| Minimum longitude. The value ranges from **-180** to **180**.|
-| maxLatitude | number | Yes| Yes| Maximum latitude. The value ranges from **-90** to **90**.|
-| maxLongitude | number | Yes| Yes| Maximum longitude. The value ranges from **-180** to **180**.|
+| locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English. The default language is obtained from **Language and region** in **Settings**.|
+| country<sup>12+</sup> | string | No| Yes| Country information. The country code complies with the ISO 3166-1 alpha-2 standard. **CN** indicates China. The default language is obtained from **Language and region** in **Settings**.|
+| description | string | No| No| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
+| maxItems | number | No| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended. The default value is **1**.|
+| minLatitude | number | No| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported. The following three parameters are mandatory is this parameter is specified.|
+| minLongitude | number | No| Yes| Minimum longitude. The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
+| maxLatitude | number | No| Yes| Maximum latitude. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.|
+| maxLongitude | number | No| Yes| Maximum longitude. The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
 
 
 ## GeoAddress
@@ -56,26 +58,26 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | Yes| No | Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
-| longitude | number | Yes| No | Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| locale | string | Yes| No | Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| placeName | string | Yes| No | Landmark of the location.|
-| countryCode | string | Yes| No | Country code.|
-| countryName | string | Yes| No| Country name.|
-| administrativeArea | string | Yes| No| Level-1 administrative region, which is generally is a province or state.|
-| subAdministrativeArea | string | Yes| No| Level-2 administrative region, which is generally is a city.|
-| locality | string | Yes| No| Locality information, which is usually a city.|
-| subLocality | string | Yes| No| Sub-locality information, which is usually a district or county.|
-| roadName | string | Yes| No| Road name.|
-| subRoadName | string | Yes| No| Auxiliary road information.|
-| premises | string | Yes| No| House information.|
-| postalCode | string | Yes| No| Postal code.|
-| phoneNumber | string | Yes| No| Phone number.|
-| addressUrl | string | Yes| No| Website URL.|
-| descriptions | Array&lt;string&gt; | Yes| No| Additional description. It contains **cityCode** (the array subscript is **0**) and **adminCode** (the array subscript is **1**), for example, **["025","320114001"]**.|
-| descriptionsSize | number | Yes| No| Total number of additional descriptions. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| latitude | number | No| Yes | Latitude information. A positive value indicates a north latitude, and a negative value indicates a south latitude. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.|
+| longitude | number | No| Yes | Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
+| locale | string | No| Yes | Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| placeName | string | No| Yes | Address information.|
+| countryCode | string | No| Yes | Country code.|
+| countryName | string | No| Yes| Country name.|
+| administrativeArea | string | No| Yes| Level-1 administrative region, which is generally is a province or state.|
+| subAdministrativeArea | string | No| Yes| Level-2 administrative region, which is generally is a city.|
+| locality | string | No| Yes| Locality information, which is usually a city.|
+| subLocality | string | No| Yes| Sub-locality information, which is usually a district or county.|
+| roadName | string | No| Yes| Road name.|
+| subRoadName | string | No| Yes| Auxiliary road information.|
+| premises | string | No| Yes| House information.|
+| postalCode | string | No| Yes| Postal code.|
+| phoneNumber | string | No| Yes| Phone number.|
+| addressUrl | string | No| Yes| Website URL.|
+| descriptions | Array&lt;string&gt; | No| Yes| Additional description. It contains **cityCode** (the array subscript is **0**) and **adminCode** (the array subscript is **1**), for example, **["025","320114001"]**.|
+| descriptionsSize | number | No| Yes| Total number of additional descriptions. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
 ## LocationRequest
@@ -86,12 +88,12 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
-| timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no restriction on the location reporting interval.|
-| distanceInterval | number | Yes| Yes| Distance interval at which location information is reported, in meters. The specified value must be greater than or equal to **0**. The default value is **0**. If this parameter is set to **0**, there is no restriction on the location reporting distance.|
+| priority | [LocationRequestPriority](#locationrequestpriority) | No| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | No| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
+| timeInterval | number | No| Yes| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no restriction on the location reporting interval.|
+| distanceInterval | number | No| Yes| Distance interval at which location information is reported, in meters. The specified value must be greater than or equal to **0**. The default value is **0**. If this parameter is set to **0**, there is no restriction on the location reporting distance.|
 | maxAccuracy | number | No| Yes|  Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 
 
@@ -103,12 +105,40 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
-| maxAccuracy | number | Yes| Yes|  Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
-| timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The specified value must be greater than or equal to **1000**.|
+| priority | [LocationRequestPriority](#locationrequestpriority) | No| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | No| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
+| maxAccuracy | number | No| Yes|  Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
+| timeoutMs | number | No| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The specified value must be greater than or equal to **1000**.|
+
+
+## ContinuousLocationRequest<sup>12+</sup>
+
+Defines a continuous location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Read Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no restriction on the location reporting interval.|
+| locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | No| No| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
+
+
+## SingleLocationRequest<sup>12+</sup>
+
+Defines a single location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Read Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| locatingPriority | [LocatingPriority](#locatingpriority12) | No| No| Priority of the location request. For details, see [LocatingPriority](#locatingpriority12).|
+| locatingTimeoutMs | number | No| No| Timeout duration, in milliseconds. The minimum value is **1000**. The specified value must be greater than or equal to **1000**.|
 
 
 ## SatelliteStatusInfo
@@ -117,16 +147,16 @@ Defines the satellite status information.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | Yes| No| Number of satellites. The specified value must be greater than or equal to **0**.|
-| satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The specified value must be greater than or equal to **0**.|
-| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| No| Carrier-to-noise density ratio, that is, **cn0**. The specified value must be greater than **0**.|
-| altitudes | Array&lt;number&gt; | Yes| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
-| azimuths | Array&lt;number&gt; | Yes| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
-| carrierFrequencies | Array&lt;number&gt; | Yes| No| Carrier frequency, in Hz. The specified value must be greater than or equal to **0**.|
-| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | Yes| No| Satellite constellation type.|
-| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | Yes| No| Additional satellite information.<br>Each bit has a different meaning. For details, see [SatelliteAdditionalInfo](#satelliteadditionalinfo12).|
+| satellitesNumber | number | No| No| Number of satellites. The specified value must be greater than or equal to **0**.|
+| satelliteIds | Array&lt;number&gt; | No| No| Array of satellite IDs. The specified value must be greater than or equal to **0**.|
+| carrierToNoiseDensitys | Array&lt;number&gt; | No| No| Carrier-to-noise density ratio, that is, **cn0**. The specified value must be greater than **0**.|
+| altitudes | Array&lt;number&gt; | No| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
+| azimuths | Array&lt;number&gt; | No| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
+| carrierFrequencies | Array&lt;number&gt; | No| No| Carrier frequency, in Hz. The specified value must be greater than or equal to **0**.|
+| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | No| No| Satellite constellation type.|
+| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | No| No| Additional satellite information.<br>Each bit has a different meaning. For details, see [SatelliteAdditionalInfo](#satelliteadditionalinfo12).|
 
 
 ## CachedGnssLocationsRequest
@@ -135,10 +165,10 @@ Defines a request for reporting cached GNSS locations.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The specified value must be greater than **0**.|
-| wakeUpCacheQueueFull | boolean | Yes| Yes | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
+| reportingPeriodSec | number | No| No| Interval for reporting the cached GNSS locations, in milliseconds. The specified value must be greater than **0**.|
+| wakeUpCacheQueueFull | boolean | No| No | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
 
 
 ## Geofence
@@ -147,13 +177,13 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | Yes| Yes|Latitude information. The value ranges from **-90** to **90**.|
-| longitude | number | Yes|Yes| Longitude information. The value ranges from **-180** to **180**.|
-| coordinateSystemType<sup>12+</sup> | [CoordinateSystemType](#coordinatesystemtype12) | Yes|Yes| Coordinate system of the circle center of a geofence.<br>The application needs to call [getGeofenceSupportedCoordTypes](#geolocationmanagergetgeofencesupportedcoordtypes12) to query the supported coordinate systems and then pass in the correct coordinates of the circle center.|
-| radius | number | Yes|Yes| Radius of a circular geofence, in meters. The specified value must be greater than **0**.|
-| expiration | number | Yes|Yes| Expiration period of a geofence, in milliseconds. The specified value must be greater than **0**.|
+| latitude | number | No| No|Latitude information. The value ranges from **-90** to **90**.|
+| longitude | number | No|No| Longitude information. The value ranges from **-180** to **180**.|
+| coordinateSystemType<sup>12+</sup> | [CoordinateSystemType](#coordinatesystemtype12) | No|Yes| Coordinate system of the circle center of a geofence.<br>The application needs to call [getGeofenceSupportedCoordTypes](#geolocationmanagergetgeofencesupportedcoordtypes12) to query the supported coordinate systems and then pass in the correct coordinates of the circle center.|
+| radius | number | No|No| Radius of a circular geofence, in meters. The specified value must be greater than **0**.|
+| expiration | number | No|No| Expiration period of a geofence, in milliseconds. The specified value must be greater than **0**.|
 
 
 ## GeofenceRequest
@@ -162,10 +192,10 @@ Defines a geofence request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes |  Location scenario.|
-| geofence |  [Geofence](#geofence)| Yes| Yes |  Geofence information.|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | No| No |  Location scenario.|
+| geofence |  [Geofence](#geofence)| No| No |  Geofence information.|
 
 
 ## LocationCommand
@@ -174,10 +204,10 @@ Defines a location command.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario)  | Yes| Yes | Location scenario.|
-| command | string | Yes| Yes | Extended command, in the string format.|
+| scenario | [LocationRequestScenario](#locationrequestscenario)  | No| No | Location scenario.|
+| command | string | No| No | Extended command, in the string format.|
 
 
 ## Location
@@ -186,18 +216,24 @@ Location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number| Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| longitude | number| Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| altitude | number | Yes| No| Location altitude, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| accuracy | number | Yes| No| Location accuracy, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| speed | number | Yes| No|Speed, in m/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| timeStamp | number | Yes| No| Location timestamp in the UTC format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| direction | number | Yes| No| Direction information. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| timeSinceBoot | number | Yes| No| Location timestamp since boot.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| additions | Array&lt;string&gt;| Yes| No| Additional description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| additionSize | number| Yes| No| Number of additional descriptions. The specified value must be greater than or equal to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.| 
+| latitude | number| No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| longitude | number| No| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| altitude | number | No| No| Location altitude, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| accuracy | number | No| No| Location accuracy, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| speed | number | No| No|Speed, in m/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timeStamp | number | No| No| Location timestamp in the UTC format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| direction | number | No| No| Direction information. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timeSinceBoot | number | No| No| Location timestamp since boot.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| additions | Array&lt;string&gt;| No| Yes| Additional description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| additionSize | number| No| Yes| Number of additional descriptions. The specified value must be greater than or equal to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| No| Yes| Additional description. The content and sequence are the same as those of **additions**. This field is reserved.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| altitudeAccuracy<sup>12+</sup> |number | No| No| Height accuracy, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| speedAccuracy<sup>12+</sup> | number| No| No| Speed accuracy, in meters per second.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| directionAccuracy<sup>12+</sup> | number| No| No| Direction accuracy. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| No| No| Uncertainty of the location timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | No| No| Source of the location result.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -206,10 +242,10 @@ Defines a geofence transition event.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| geofenceId | number| Yes| No| Geofence ID.|
-| transitionEvent | [GeofenceTransitionEvent](#geofencetransitionevent12) | Yes| No| Geofence transition event.|
+| geofenceId | number| No| No| Geofence ID.|
+| transitionEvent | [GeofenceTransitionEvent](#geofencetransitionevent12) | No| No| Geofence transition event.|
 
 
 ## GnssGeofenceRequest<sup>12+</sup>
@@ -218,12 +254,12 @@ Defines a GNSS geofence request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| geofence | [Geofence](#geofence) | Yes| No| Geofence information, including the coordinates and radius of the circle center.|
-| monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | Yes| No| List of geofence transition events.|
-| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | Yes| No| List of notifications for geofence transition events.|
-| geofenceTransitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | Yes| No| Callback used to receive geofence transition events.|
+| geofence | [Geofence](#geofence) | No| No| Geofence information, including the coordinates and radius of the circle center.|
+| monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | No| No| List of geofence transition events.|
+| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | No| Yes| List of notifications for geofence transition events.<br>The sequence of **monitorTransitionEvents** must correspond to that of **notifications**. For example, if **monitorTransitionEvents[0]** is **[GeofenceTransitionEvent](#geofencetransitionevent12).GEOFENCE_TRANSITION_EVENT_ENTER**, **notifications[0]** must be set to the notification that needs to be displayed when a user enters the geofence.|
+| geofenceTransitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | No| No| Callback used to receive geofence transition events.|
 
 
 ## CountryCode
@@ -232,10 +268,11 @@ Defines the country code information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| country | string | Yes| No| Country code.|
-| type |  [CountryCodeType](#countrycodetype) | Yes| No| Country code source.|
+| country | string | No| No| Country code.|
+| type |  [CountryCodeType](#countrycodetype) | No| No| Country code source.|
+
 
 ## LocationRequestPriority
 
@@ -248,8 +285,8 @@ Sets the priority of a location request.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x200 | Priority unspecified.<br>If this option is used, [LocationRequestPriority](#locationrequestpriority) is invalid.|
-| ACCURACY | 0x201 | Location accuracy.<br>This policy mainly uses the GNSS positioning technology. It uses the network positioning technology only if the GNSS location result is not obtained within the specified period of time. This policy can lead to significant hardware resource consumption and power consumption.|
-| LOW_POWER | 0x202 | Power efficiency.<br>This policy mainly uses the network positioning technology to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption if a high location accuracy is not required.|
+| ACCURACY | 0x201 | Location accuracy.<br>The location accuracy priority mainly uses the GNSS positioning technology. The system uses the network positioning technology as an alternative to provide the location service for your application until the GNSS can provide stable location results. During the continuous location process, the network positioning technology is used if the GNSS location result cannot be obtained within 30 seconds. This policy can lead to significant hardware resource consumption and power consumption.|
+| LOW_POWER | 0x202 | Power efficiency.<br>This policy uses only the network positioning technology to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption if a high location accuracy is not required.|
 | FIRST_FIX | 0x203 | Fast location preferred. Use this option if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning and network positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios. When all positioning technologies provide a location result, the system provides the most accurate location result for your application. It can lead to significant hardware resource consumption and power consumption.|
 
 
@@ -261,14 +298,19 @@ Defines the location scenario in a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
+> **NOTE**
+>
+> If a single location or continuous location is initiated in the NAVIGATION, TRAJECTORY_TRACKING, or CAR_HAILING scenario, the system uses the network positioning technology as an alternative to provide the location service for your application until the GNSS can provide stable location results. During the continuous location process, the network positioning technology is used if the GNSS location result cannot be obtained within 30 seconds.
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequestscenario) is invalid.|
 | NAVIGATION | 0x301 | Navigation.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>This option mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.|
 | TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications.<br>It mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.|
-| CAR_HAILING | 0x303 | Ride hailing.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>It mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.<br>Before the GNSS can provide stable location results, the system uses the network positioning technology (for example, base station positioning or WLAN/Bluetooth positioning) as an alternative to provide the location service when the user moves into a shielded environment, such as indoors or a garage, in the navigation, trajectory tracking, or car hailing scenario.|
+| CAR_HAILING | 0x303 | Ride hailing.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>It mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.|
 | DAILY_LIFE_SERVICE | 0x304 | Daily life services.<br>This option is applicable when your application only needs the approximate location in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>It mainly uses the network positioning technology and therefore the power consumption is relatively low.|
 | NO_POWER | 0x305 | Power efficiency. Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
+
 
 ## CountryCodeType
 
@@ -342,9 +384,91 @@ Enumerates the types of additional satellite information.
 | SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | Presence of carrier frequencies on the satellite.|
 
 
+## PowerConsumptionScenario<sup>12+</sup>
+
+Enumerates power consumption scenarios in a location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| HIGH_POWER_CONSUMPTION  | 0x601 | High power consumption.<br>The mode mainly uses the GNSS positioning technology. The system uses the network positioning technology as an alternative to provide the location service for your application until the GNSS can provide stable location results. During the continuous location process, the network positioning technology is used if the GNSS location result cannot be obtained within 30 seconds. This policy can lead to significant hardware resource consumption and power consumption.|
+| LOW_POWER_CONSUMPTION  | 0x602 | Low power consumption.<br>This mode is applicable when your application only needs the approximate location in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>It mainly uses the network positioning technology and therefore the power consumption is relatively low.|
+| NO_POWER_CONSUMPTION   | 0x603 | No power consumption.<br>Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application.  |
+
+
+## UserActivityScenario<sup>12+</sup>
+
+Enumerates user activity scenarios in a location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+> **NOTE**
+>
+> If a single location or continuous location is initiated in the NAVIGATION, SPORT, or TRANSPORT scenario, the system uses the network positioning technology as an alternative to provide the location service for your application until the GNSS can provide stable location results. During the continuous location process, the network positioning technology is used if the GNSS location result cannot be obtained within 30 seconds.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NAVIGATION  | 0x401 | Navigation scenario.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>It mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.|
+| SPORT  | 0x402 | Sport scenario.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications.<br>It mainly uses the GNSS positioning technology and therefore the power consumption is relatively high.|
+| TRANSPORT   | 0x403 | Travel scenario.<br>This option is applicable to user travel scenarios, such as taxi hailing and public transportation.<br>This option mainly uses the GNSS positioning technology and therefore the power consumption is relatively high. |
+| DAILY_LIFE_SERVICE   | 0x404 | Daily life service scenario.<br>This option is applicable when your application only needs the approximate location in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>It mainly uses the network positioning technology and therefore the power consumption is relatively low. |
+
+
+## LocatingPriority<sup>12+</sup>
+
+Enumerates priority types in a single location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| PRIORITY_ACCURACY  | 0x501 | Location accuracy.<br>This policy uses both the GNSS positioning and network positioning technologies and provides the most accurate location result within the specified period of time, which is the smaller one between SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs and 30 seconds.<br>This policy can lead to significant hardware resource consumption and power consumption. |
+| PRIORITY_LOCATING_SPEED  | 0x502 | Fast location preferred. Use this policy if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning and network positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios and provides the first obtained location result to your application. This policy can lead to significant hardware resource consumption and power consumption.|
+
+
+## LocationError<sup>12+</sup>
+
+Enumerates error codes in a continuous location request.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| LOCATING_FAILED_DEFAULT   | -1 |  Unknown type. This is the default value.|
+| LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | Failed to verify the **ohos.permission.APPROXIMATELY_LOCATION** or **ohos.permission.LOCATION** permission.|
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | Failed to verify the location permission when the application is running in the background. For details about how to apply for the location permission, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).|
+| LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | Location switch turned off.|
+| LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | Network access denied.|
+
+
+## LocationSourceType<sup>12+</sup>
+
+Defines the source of the location result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| GNSS   | 1 |  GNSS positioning technology.|
+| NETWORK    | 2 | Network positioning technology.|
+| INDOOR     | 3 | Indoor high-precision positioning technology.|
+| RTK     | 4 | Outdoor high-precision positioning technology.|
+
+
 ## geoLocationManager.on('locationChange')
 
-on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
+on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
 
 Subscribes to location change events with a location request initiated. This API uses an asynchronous callback to return the result.
 
@@ -359,7 +483,7 @@ Subscribes to location change events with a location request initiated. This API
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change.|
-  | request |  [LocationRequest](#locationrequest) | Yes| Location request.|
+  | request |  [LocationRequest](#locationrequest) &#124; [ContinuousLocationRequest](#continuouslocationrequest12) | Yes| Location request.<br>**ContinuousLocationRequest** is newly added in API version 12.|
   | callback | Callback&lt;[Location](#location)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -368,15 +492,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  // Method 1: Use LocationRequest as the input parameter.
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -384,9 +512,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
-  
+
+  // Method 2: Use ContinuousLocationRequest as the input parameter.
+  let request:geoLocationManager.ContinuousLocationRequest = {'interval': 1, 'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION};
+  let locationCallback = (location:geoLocationManager.Location):void => {
+      console.log('locationCallback: data: ' + JSON.stringify(location));
+  };
+  try {
+      geoLocationManager.on('locationChange', request, locationCallback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
   ```
 
 
@@ -394,7 +532,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
-Unsubscribes from location change events with the corresponding location request deleted.
+Unregisters the listener for location change events with the corresponding location request deleted.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -415,15 +553,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
     console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -432,7 +573,111 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('locationChange', requestInfo, locationChange);
       geoLocationManager.off('locationChange', locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  ```
+
+
+## geoLocationManager.on('locationError')<sup>12+</sup>
+
+on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
+
+Registers a listener for error codes generated during continuous location. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. To subscribe to error codes generated during continuous location, set the value to **locationError**.|
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationError')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geoLocationManager.Location):void => {
+      console.log('locationChanger: data: ' + JSON.stringify(location));
+  };
+  try {
+      geoLocationManager.on('locationChange', requestInfo, locationChange);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
+
+  let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
+    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+  };
+  try {
+    geoLocationManager.on('locationError', locationErrorChange);
+  } catch (err) {
+    console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  ```
+
+
+## geoLocationManager.off('locationError')<sup>12+</sup>
+
+off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
+
+Unregisters the listener for error codes generated during continuous location.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. To subscribe to error codes generated during continuous location, set the value to **locationError**.|
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationError')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
+    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+  };
+  try {
+    geoLocationManager.on('locationError', locationErrorChange);
+    geoLocationManager.off('locationError', locationErrorChange);
+  } catch (err) {
+    console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -458,20 +703,22 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationEnabledChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -497,13 +744,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationEnabledChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: state: ' + JSON.stringify(state));
   }
@@ -511,7 +760,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
       geoLocationManager.off('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -540,15 +789,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('cachedGnssLocationsChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
@@ -556,7 +808,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -584,15 +836,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('cachedGnssLocationsChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
@@ -601,7 +856,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -629,14 +884,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('satelliteStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -644,7 +902,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -672,15 +930,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('satelliteStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -688,7 +949,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
       geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -716,15 +977,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('nmeaMessage')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
@@ -732,7 +996,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb );
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -760,15 +1024,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('nmeaMessage')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
@@ -777,7 +1044,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('nmeaMessage', nmeaCb);
       geoLocationManager.off('nmeaMessage', nmeaCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -806,16 +1073,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('gnssFenceStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.app.ability.wantAgent';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { wantAgent } from '@kit.AbilityKit'
+
 
   let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
@@ -835,7 +1105,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+        console.error("errCode:" + JSON.stringify(err));
     }
   });
   ```
@@ -865,16 +1135,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('gnssFenceStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.app.ability.wantAgent';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { wantAgent } from '@kit.AbilityKit'
+
   
   let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
@@ -895,7 +1168,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+        console.error("errCode:" + JSON.stringify(err));
     }
   });
   ```
@@ -922,15 +1195,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('countryCodeChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
@@ -938,7 +1213,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -964,14 +1239,16 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('countryCodeChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
@@ -980,14 +1257,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
+getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
 Obtains the current position. This API uses an asynchronous callback to return the result.
 
@@ -1001,7 +1278,7 @@ Obtains the current position. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | Yes| Location request.|
+  | request | [CurrentLocationRequest](#currentlocationrequest) &#124;  [SingleLocationRequest](#singlelocationrequest12) | Yes| Location request.<br>**SingleLocationRequest** is newly added in API version 12.|
   | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1010,17 +1287,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  // Method 1: Use CurrentLocationRequest as the input parameter.
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
-  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
+  let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
@@ -1032,7 +1313,24 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.getCurrentLocation(requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  // Method 2: Use SingleLocationRequest as the input parameter.
+  let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
+  let locationCallback = (err:BusinessError, location:geoLocationManager.Location):void => {
+      if (err) {
+          console.error('locationChanger: err=' + JSON.stringify(err));
+      }
+      if (location) {
+          console.log('locationChanger: location=' + JSON.stringify(location));
+      }
+  };
+
+  try {
+      geoLocationManager.getCurrentLocation(request, locationCallback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1060,16 +1358,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
-  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
@@ -1081,13 +1382,13 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.getCurrentLocation(locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
+getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise&lt;Location&gt;
 
 Obtains the current position. This API uses a promise to return the result.
 
@@ -1101,7 +1402,7 @@ Obtains the current position. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
+  | request | [CurrentLocationRequest](#currentlocationrequest) &#124; [SingleLocationRequest](#singlelocationrequest12) | No| Location request.<br>**SingleLocationRequest** is newly added in API version 12.|
 
 **Return value**
 
@@ -1115,25 +1416,43 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+
+  // Method 1: Use CurrentLocationRequest as the input parameter.
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  // Method 2: Use SingleLocationRequest as the input parameter.
+  let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
+  try {
+      geoLocationManager.getCurrentLocation(request).then((result) => {
+          console.log('current location: ' + JSON.stringify(result));
+      })  
+      .catch((error:BusinessError) => {
+          console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1162,19 +1481,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLastLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
 |3301100 | The location switch is off.  |
 |3301200 |Failed to obtain the geographical location.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let location = geoLocationManager.getLastLocation();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1201,17 +1521,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1237,14 +1557,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
@@ -1256,7 +1577,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1287,24 +1608,26 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1330,14 +1653,16 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
@@ -1349,7 +1674,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1380,24 +1705,26 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1421,17 +1748,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isGeocoderAvailable} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1458,14 +1785,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCachedGnssLocationsSize} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
@@ -1476,7 +1806,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1503,23 +1833,25 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCachedGnssLocationsSize} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1546,15 +1878,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.flushCachedGnssLocations} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
@@ -1562,7 +1897,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1589,24 +1924,26 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.flushCachedGnssLocations} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations().then(() => {
           console.log('promise, flushCachedGnssLocations success');
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1632,13 +1969,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.sendCommand} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.  |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err) => {
@@ -1647,7 +1986,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1678,23 +2017,25 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.sendCommand} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then(() => {
           console.log('promise, sendCommand success');
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1719,14 +2060,16 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCountryCode} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
@@ -1737,7 +2080,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1762,24 +2105,25 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCountryCode} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode()
       .then((result) => {
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1815,15 +2159,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable. |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.addGnssGeofence} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.|
 |3301100  | The location switch is off.|
 |3301601   | The number of geofences exceeds the maximum.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  import { notificationManager } from '@kit.NotificationKit';
   // Create a geofence.
   let geofence: geoLocationManager.Geofence = {
     "latitude": 34.12, "longitude": 124.11, "radius": 10000.0, "expiration": 10000.0
@@ -1869,7 +2217,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
     // Specify the notification objects for geofence transition events. This parameter is optional.
     notifications: notificationRequestList,
     // Specify the callback used to receive geofence transition events.
-    geofenceTransitionCallback: (err : BusinessError.BusinessError, transition : geoLocationManager.GeofenceTransition) => {
+    geofenceTransitionCallback: (err : BusinessError, transition : geoLocationManager.GeofenceTransition) => {
       if (err) {
         console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
       }
@@ -1880,15 +2228,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   }
   try {
     // Add a geofence.
-    await geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
+    geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
       // Obtain the geofence ID after the geofence is successfully added.
       console.log("addGnssGeofence success, fence id: " + id);
       let fenceId = id;
-    }).catch((err: BusinessError.BusinessError) => {
-      console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError.BusinessError).code + 
-        ",errMessage:" + (err as BusinessError.BusinessError).message);
+    }).catch((err: BusinessError) => {
+      console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError).code + 
+        ",errMessage:" + (err as BusinessError).message);
     });
-  } catch(error: BusinessError.BusinessError) {
+  } catch(error) {
       console.error("addGnssGeofence failed, err:" + JSON.stringify(error));
   }
   ```
@@ -1924,23 +2272,26 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.removeGnssGeofence} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
 |3301602 | Failed to delete a geofence due to an incorrect ID. |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.
   let fenceId = 1;
   try {
-    await geoLocationManager.removeGnssGeofence(fenceId).then(() => {
+    geoLocationManager.removeGnssGeofence(fenceId).then(() => {
       console.log("removeGnssGeofence success fenceId:" + fenceId);
-    }).catch((error : BusinessError.BusinessError) => {
+    }).catch((error : BusinessError) => {
       console.error("removeGnssGeofence: error=" + JSON.stringify(error));
     });
-  } catch(error: BusinessError.BusinessError) {
+  } catch(error) {
     console.error("removeGnssGeofence: error=" + JSON.stringify(error));
   }
   ```
@@ -1966,17 +2317,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getGeofenceSupportedCoordTypes} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
     let supportedCoordTypes: Array<geoLocationManager.CoordinateSystemType> = geoLocationManager.getGeofenceSupportedCoordTypes();
     console.log("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
-  } catch(error : BusinessError.BusinessError) {
+  } catch(error) {
     console.error("getGeofenceSupportedCoordTypes: error=" + JSON.stringify(error));
   }
   ```

@@ -14,7 +14,7 @@
 
 在使用备份恢复接口之前，需要：
 
-1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)：`ohos.permission.BACKUP`
+1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
 
@@ -126,14 +126,14 @@ async function getLocalCapabilities(): Promise<void> {
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
@@ -150,6 +150,13 @@ async function getLocalCapabilities(): Promise<void> {
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
+      }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;

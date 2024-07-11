@@ -12,7 +12,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -25,7 +25,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -38,10 +38,10 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | AUTO    | 0    | 跟随系统模式。 |
 | DARK    | 1    | 深色模式。 |
-| LIGHT    | 1    | 浅色模式。 |
+| LIGHT    | 2    | 浅色模式。 |

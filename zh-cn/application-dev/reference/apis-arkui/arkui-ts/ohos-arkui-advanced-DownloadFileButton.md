@@ -29,7 +29,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 **装饰器类型：**@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,7 +44,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 下载文件按钮中显示的内容。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -57,7 +57,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 下载文件按钮中图标和文字的样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +77,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 下载文件按钮中图标的风格。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,7 +92,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 下载按钮中文字的内容。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,7 +113,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 下载文件按钮中图标和文字的排列方式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 

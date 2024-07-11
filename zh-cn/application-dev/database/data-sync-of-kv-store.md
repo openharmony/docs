@@ -100,7 +100,7 @@
 1. 导入模块。
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -116,9 +116,9 @@
      
    ```ts
    // Stage模型获取context
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -129,8 +129,8 @@
    }
     
     // FA模型获取context
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
@@ -258,9 +258,6 @@
 
      
    ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   // 如果未定义Schema则Value可以传其他符合要求的值。
-   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -292,12 +289,12 @@
    > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     
-   let devManager: deviceManager.DeviceManager;
+   let devManager: distributedDeviceManager.DeviceManager;
    try {
      // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds由deviceManager调用getAvailableDeviceListSync方法得到
      let deviceIds: string[] = [];
      if (devManager != null) {

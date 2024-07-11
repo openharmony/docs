@@ -12,7 +12,7 @@ debug(message: string, ...arguments: any[]): void
 
 Prints debugging information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,7 +41,7 @@ log(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ info(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode. This API is the alias of **console.log ()**.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,7 +99,7 @@ warn(message: string, ...arguments: any[]): void
 
 Prints warning information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ error(message: string, ...arguments: any[]): void
 
 Prints error information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

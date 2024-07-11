@@ -277,12 +277,43 @@ function getFullDirectoryUriExample01() {
   }
 }
 ```
+## 获取公共目录
+
+应用可以获得公共目录中的下载目录、桌面目录和文档目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
+
+> 使用相关接口，需确认设备具有以下系统能力：SystemCapability.FileManagement.File.Environment.FolderObtain。
+
+以下示例代码演示了文件管理器通过接口获取公共目录：
+
+```ts
+function getUserDirExample() {
+  if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
+    console.error('this api is not supported on this device');
+    return;
+  }
+  try {
+    // 获取公共下载目录
+    const downloadPath = environment.getUserDownloadDir();
+    console.info(`success to getUserDownloadDir: ${downloadPath}`);
+    // 获取公共文档目录
+    const documentsPath = environment.getUserDocumentDir();
+    console.info(`success to getUserDocumentDir: ${documentsPath}`);
+    // 获取公共桌面目录
+    const desktopPath = environment.getUserDesktopDir();
+    console.info(`success to getUserDesktopDir: ${desktopPath}`);
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`failed to get user dir, because: ${JSON.stringify(err)}`);
+  }
+}
+```
+
 <!--Del-->
-## 获取公共目录、外卡目录、内卡目录（仅对系统应用开放）
+## 获取外卡目录、内卡目录
 
 应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
 
-以下示例代码演示了文件管理器通过接口获取公共目录、外卡目录：
+以下示例代码演示了文件管理器通过接口获取外卡目录、内卡目录：
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -290,12 +321,6 @@ import environment from '@ohos.file.environment';
 
 function getDirectoryExample01() {
   try {
-    //获取公共下载目录
-    let downloadPath = environment.getUserDownloadDir();
-    //获取公共桌面目录
-    let desktopPath = environment.getUserDesktopDir();
-    //获取公共文档目录
-    let documentPath = environment.getUserDocumentDir();
     //获取外卡根目录
     let externalStoragePath = environment.getExternalStorageDir();
     //获取当前用户下应用沙箱路径的内卡目录

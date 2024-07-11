@@ -1,8 +1,7 @@
-# MDM Kit API参考
+# Mdm Kit（企业设备管理服务）
 
 - ArkTS API
-  - [企业设备管理概述 ](enterpriseDeviceManagement-overview.md)
-  - [@ohos.enterprise.accountManager（帐户管理）](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.accountManager（账户管理）](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager（应用管理）](js-apis-enterprise-applicationManager.md)
   - [@ohos.enterprise.bluetoothManager（蓝牙管理）](js-apis-enterprise-bluetoothManager.md)
@@ -20,7 +19,7 @@
   - [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](js-apis-EnterpriseAdminExtensionAbility.md)
   <!--Del-->
-  - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
+  - [@ohos.enterprise.accountManager（账户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
   - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](js-apis-enterprise-adminManager-sys.md)
   - [@ohos.enterprise.applicationManager（应用管理）(系统接口)](js-apis-enterprise-applicationManager-sys.md)
   - [@ohos.enterprise.bluetoothManager（蓝牙管理）(系统接口)](js-apis-enterprise-bluetoothManager-sys.md)

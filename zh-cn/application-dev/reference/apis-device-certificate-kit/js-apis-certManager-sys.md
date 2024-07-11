@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CMErrorCode
@@ -23,7 +23,7 @@ import certManager from '@ohos.security.certManager';
 | ---------- | ------ | --------- |
 | CM_ERROR_NOT_SYSTEM_APP   | 202      | 表示应用程序不是系统应用程序 <br> **系统接口：** 此接口为系统接口。 |
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
 getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
@@ -37,9 +37,9 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 **参数**：
 
-| 参数名   | 类型                                              | 必填 | 说明                       |
-| -------- | ------------------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | 是   | 回调函数。表示获取所有私有凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)中的credentialList。 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | 是   | 回调函数。当获取所有私有凭据列表成功时，err为null，data为[CMResult](#cmresult)对象中的credentialList属性；否则为错误对象。 |
 
 **错误码：**
 
@@ -54,29 +54,29 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 try {
-  certManager.getAllAppPrivateCertificates((err, cmResult) => {
+  certificateManager.getAllAppPrivateCertificates((err, cmResult) => {
     if (err != null) {
-      console.error("getAllAppPrivateCertificates error");
+      console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.credentialList == undefined) {
-        console.log("[Callback]getAllAppPrivateCertificates result is undefined");
+        console.info('The result of getting all app private certificates is undefined.');
       } else {
         let list = cmResult.credentialList;
-        console.log("[Callback]getAllAppPrivateCertificates success");
+        console.info('Succeeded in getting all app private certificates.');
       }
     }
   });
 } catch (error) {
-  console.error("[Callback]getAllAppPrivateCertificates failed");
+  console.error(`Failed to get all app private certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
-getAllAppPrivateCertificates() : Promise\<CMResult>
+getAllAppPrivateCertificates(): Promise\<CMResult>
 
 表示获取所有私有凭据列表，使用Promise方式异步返回结果。
 
@@ -88,9 +88,9 @@ getAllAppPrivateCertificates() : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | 表示获取所有私有凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)中的credentialList。 |
+| 类型                                                  | 说明                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有私有凭据列表的结果，返回值为[CMResult](#cmresult)对象中的credentialList属性。 |
 
 **错误码：**
 
@@ -104,28 +104,28 @@ getAllAppPrivateCertificates() : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllAppPrivateCertificates().then((cmResult) => {
+  certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
-      console.log("[Promise]getAllAppPrivateCertificates result is undefined");
+      console.info('The result of getting all app private certificates is undefined.');
     } else {
       let list = cmResult.credentialList;
-      console.log("[Promise]getAllAppPrivateCertificates success");
+      console.info('Succeeded in getting all app private certificates.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getAllAppPrivateCertificates failed');
+    console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error("[Promise]getAllAppPrivateCertificates failed");
+  console.error(`Failed to get all app private certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getAllSystemAppCertificates<sup>12+</sup>
+## certificateManager.getAllSystemAppCertificates<sup>12+</sup>
 
-getAllSystemAppCertificates() : Promise\<CMResult>
+getAllSystemAppCertificates(): Promise\<CMResult>
 
 表示获取所有系统凭据列表，使用Promise方式异步返回结果。
 
@@ -137,9 +137,9 @@ getAllSystemAppCertificates() : Promise\<CMResult>
 
 **返回值**：
 
-| 类型                                        | 说明                 |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | 表示获取所有系统凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)中的credentialList。 |
+| 类型                                                  | 说明                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有系统凭据列表的结果，返回值为[CMResult](#cmresult)对象中的credentialList属性。 |
 
 **错误码：**
 
@@ -153,21 +153,21 @@ getAllSystemAppCertificates() : Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllSystemAppCertificates().then((cmResult) => {
+  certificateManager.getAllSystemAppCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
-      console.log("[Promise]getAllSystemAppCertificates result is undefined");
+      console.info('The result of getting all system app certificates is undefined.');
     } else {
       let list = cmResult.credentialList;
-      console.log("[Promise]getAllSystemAppCertificates success");
+      console.info('Succeeded in getting all system app certificates.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getAllSystemAppCertificates failed');
+    console.error(`Failed to get all system app certificates. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error("[Promise]getAllSystemAppCertificates failed");
+  console.error(`Failed to get all system app certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```

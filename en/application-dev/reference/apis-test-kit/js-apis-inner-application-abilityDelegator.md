@@ -6,19 +6,19 @@ The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](../a
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> The APIs of this module can be used only in [automated test scripts](../../application-test/arkxtest-guidelines.md).
+> The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 
 ## Modules to Import
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## Usage
 
-An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
+An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **abilityDelegatorRegistry**.
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## AbilityDelegator
@@ -38,36 +38,37 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityMonitor** instance is added, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
+};
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
+  console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
-};
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -91,35 +92,35 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
+  console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+
 abilityDelegator.addAbilityMonitor(monitor).then(() => {
-    console.info('addAbilityMonitor promise');
+  console.info('addAbilityMonitor promise');
 });
 ```
 
@@ -141,29 +142,31 @@ Adds an **AbilityMonitor** instance. This API returns the result synchronously. 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
+  console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitorSync(monitor);
 ```
 
@@ -182,35 +185,36 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the **AbilityMonitor** instance is removed, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
     console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
@@ -236,36 +240,36 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 - Example
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor).then(() => {
-    console.info('removeAbilityMonitor promise');
+  console.info('removeAbilityMonitor promise');
 });
 ```
 
@@ -287,30 +291,30 @@ Removes an **AbilityMonitor** instance. This API returns the result synchronousl
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitorSync(monitor);
 ```
 
@@ -329,41 +333,41 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
-    if (error) {
-        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
-    }
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor, (error: BusinessError, data: UIAbility) => {
+  if (error) {
+    console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -382,43 +386,43 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
+| timeout  | number                                                       | Yes  | Maximum waiting time, in ms.                                |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
-    if (error && error.code !== 0) {
-        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
-    }
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error: BusinessError, data: UIAbility) => {
+  if (error && error.code !== 0) {
+    console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -439,42 +443,42 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
+| timeout | number                                                       | No  | Maximum waiting time, in ms.                                |
 
 **Return value**
 
 | Type                                                       | Description                      |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance obtained.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : UIAbility) => {
-    console.info('waitAbilityMonitor promise');
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor).then((data: UIAbility) => {
+  console.info('waitAbilityMonitor promise');
 });
 ```
 
@@ -497,11 +501,12 @@ Obtains the application context.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+
 let context = abilityDelegator.getAppContext();
 ```
 
@@ -530,19 +535,19 @@ Obtains the lifecycle state of an ability.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    let state = abilityDelegator.getAbilityState(ability);
-    console.info('getAbilityState ${state}');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  let state = abilityDelegator.getAbilityState(ability);
+  console.info('getAbilityState ${state}');
 });
 ```
 
@@ -550,7 +555,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
-Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
+Obtains the top ability of this application. This API uses an asynchronous callback to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -560,30 +565,31 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the top ability is obtained, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
 });
 ```
 
@@ -591,7 +597,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(): Promise\<UIAbility>
 
-Obtains the top ability of this application. This API uses a promise to return the result.
+Obtains the top ability of this application. This API uses a promise to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -605,25 +611,26 @@ Obtains the top ability of this application. This API uses a promise to return t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
-    console.info('getCurrentTopAbility promise');
-    ability = data;
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility().then((data: UIAbility) => {
+  console.info('getCurrentTopAbility promise');
+  ability = data;
 });
 ```
 
@@ -642,12 +649,15 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -664,24 +674,22 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
-
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let want: Want = {
-    bundleName: 'bundleName',
-    abilityName: 'abilityName'
+  bundleName: 'bundleName',
+  abilityName: 'abilityName'
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
-    console.info('startAbility callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.startAbility(want, (err: BusinessError, data: void) => {
+  console.info('startAbility callback');
 });
 ```
 
@@ -705,12 +713,15 @@ Starts an ability. This API uses a promise to return the result.
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -727,24 +738,21 @@ Starts an ability. This API uses a promise to return the result.
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
-
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let want: Want = {
-    bundleName: 'bundleName',
-    abilityName: 'abilityName'
+  bundleName: 'bundleName',
+  abilityName: 'abilityName'
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.startAbility(want).then((data: void) => {
-    console.info('startAbility promise');
+  console.info('startAbility promise');
 });
 ```
 
@@ -763,33 +771,34 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility               | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.                                      |
+| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Foreground**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : BusinessError) => {
-        console.info("doAbilityForeground callback");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityForeground(ability, (err: BusinessError) => {
+    console.info("doAbilityForeground callback");
+  });
 });
 ```
 
@@ -813,33 +822,34 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result.                                   |
+| Promise\<void> | Promise that returns no value.        |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityForeground(ability).then(() => {
-        console.info("doAbilityForeground promise");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityForeground(ability).then(() => {
+    console.info("doAbilityForeground promise");
+  });
 });
 ```
 
@@ -858,33 +868,34 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is undefined; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : BusinessError) => {
-        console.info("doAbilityBackground callback");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityBackground(ability, (err: BusinessError) => {
+    console.info("doAbilityBackground callback");
+  });
 });
 ```
 
@@ -912,30 +923,31 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityBackground(ability).then(() => {
-        console.info("doAbilityBackground promise");
-    });
-});
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityBackground(ability).then(() => {
+    console.info("doAbilityBackground promise");
+  });
+
 ```
 
 ### printSync<sup>9+</sup>
@@ -957,12 +969,12 @@ Prints log information to the unit test console.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.printSync(msg);
 ```
 
@@ -981,20 +993,20 @@ Prints log information to the unit test console. This API uses an asynchronous c
 | Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the log information is printed to the unit test console, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err : BusinessError) => {
-    console.info('print callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.print(msg, (err: BusinessError) => {
+  console.info('print callback');
 });
 ```
 
@@ -1018,19 +1030,19 @@ Prints log information to the unit test console. This API uses a promise to retu
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg).then(() => {
-    console.info('print promise');
+  console.info('print promise');
 });
 ```
 
@@ -1051,20 +1063,20 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | Yes  | Shell command string.   |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
-    console.info('executeShellCommand callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.executeShellCommand(cmd, (err: BusinessError, data: abilityDelegatorRegistry.ShellCmdResult) => {
+  console.info('executeShellCommand callback');
 });
 ```
 
@@ -1086,21 +1098,21 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | Yes  | Shell command string.              |
 | timeoutSecs | number                                                       | Yes  | Command timeout period, in seconds.|
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.           |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.  |
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
-    console.info('executeShellCommand callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.executeShellCommand(cmd, timeout, (err: BusinessError, data: abilityDelegatorRegistry.ShellCmdResult) => {
+  console.info('executeShellCommand callback');
 });
 ```
 
@@ -1132,15 +1144,15 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
-    console.info('executeShellCommand promise');
+  console.info('executeShellCommand promise');
 });
 ```
 
@@ -1160,28 +1172,29 @@ Finishes the test and prints log information to the unit test console. This API 
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
 | code     | number               | Yes  | Log code.            |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the test finishes and the log information is printed to the unit test console, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
-    console.info('finishTest callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.finishTest(msg, 0, (err: BusinessError) => {
+  console.info('finishTest callback');
 });
 ```
 
@@ -1206,27 +1219,28 @@ Finishes the test and prints log information to the unit test console. This API 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0).then(() => {
-    console.info('finishTest promise');
+  console.info('finishTest promise');
 });
 ```
 
@@ -1245,30 +1259,31 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is added, **err** is undefined. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError) => {
-    console.info('addAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError) => {
+  console.info('addAbilityStageMonitor callback');
 });
 ```
 
@@ -1292,29 +1307,30 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 }).then(() => {
-    console.info('addAbilityStageMonitor promise');
+  console.info('addAbilityStageMonitor promise');
 });
 ```
 
@@ -1336,23 +1352,24 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitorSync({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1371,30 +1388,31 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is removed, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError) => {
-    console.info('removeAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError) => {
+  console.info('removeAbilityStageMonitor callback');
 });
 ```
 
@@ -1418,29 +1436,30 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 }).then(() => {
-    console.info('removeAbilityStageMonitor promise');
+  console.info('removeAbilityStageMonitor promise');
 });
 ```
 
@@ -1462,23 +1481,25 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitorSync({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1497,31 +1518,32 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError, data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError, data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor callback');
 });
 ```
 
@@ -1546,30 +1568,31 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<AbilityStage> | Promise used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.|
+| Promise\<AbilityStage> | Promise used to return the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}).then((data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor promise');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}).then((data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor promise');
 });
 ```
 
@@ -1577,7 +1600,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1589,32 +1612,33 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | timeout | number | Yes  | Maximum waiting time, in milliseconds.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, timeout, (err : BusinessError, data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, timeout, (err: BusinessError, data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor callback');
 });
 ```
 
@@ -1636,22 +1660,24 @@ Sets a list of mock data.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message       |
 | -------- | --------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 let mockList: Record<string, string> = {
-    '@ohos.router': 'src/main/mock/ohos/router.mock',
-    'common.time': 'src/main/mock/common/time.mock',
+  '@ohos.router': 'src/main/mock/ohos/router.mock',
+  'common.time': 'src/main/mock/common/time.mock',
 };
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.setMockList(mockList);
 ```

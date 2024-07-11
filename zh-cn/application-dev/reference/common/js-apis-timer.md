@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 开发者在UI界面中使用定时器时，定时器的触发机制会受UI底层原理管控，如果UI界面退到后台，定时器会被冻结。
 
 ## setTimeout
 
@@ -27,7 +29,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 该定时器的ID，为整数。 |
+| number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
 **示例：**
 
@@ -43,6 +45,8 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 clearTimeout(timeoutID?: number): void
 
 可取消通过调用setTimeout()建立的定时器。
+
+定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,7 +87,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 该定时器的ID，为整数。 |
+| number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
 **示例：**
 
@@ -99,6 +103,8 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 clearInterval(intervalID?: number): void
 
 可取消通过setInterval()设置的重复定时任务。
+
+定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

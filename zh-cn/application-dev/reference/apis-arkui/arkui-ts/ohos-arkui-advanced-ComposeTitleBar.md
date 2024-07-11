@@ -12,8 +12,8 @@
 ## 导入模块
 
 ```
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-```
+import { ComposeTitleBar } from '@kit.ArkUI'
+``` 
 
 
 ## 子组件
@@ -30,7 +30,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -45,7 +45,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ## ComposeTitleBarMenuItem
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -59,8 +59,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ## 示例
 
 ```ts
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-import promptAction from '@ohos.promptAction'
+import { ComposeTitleBar, promptAction } from '@kit.ArkUI'
 
 interface menuItem {
   value: Resource;

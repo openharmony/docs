@@ -16,6 +16,10 @@
 
 ImageSpan(value: ResourceStr | PixelMap)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -33,8 +37,6 @@ alt(value:&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -49,7 +51,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 设置图片基于文本的对齐方式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -65,7 +67,7 @@ objectFit(value: ImageFit)
 
 设置图片的缩放类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +83,7 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 设置图片的背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -107,13 +109,13 @@ baselineOffset(value: LengthMetrics)
 
 ## ImageSpanAlignment
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                           |
 | -------- | ------------------------------ |
-| TOP      | 图片上边沿与文本上边沿对齐。   |
-| CENTER   | 图片中间与文本中间对齐。       |
-| BOTTOM   | 图片下边沿与文本下边沿对齐。   |
+| TOP      | 图片上边沿与行上边沿对齐。   |
+| CENTER   | 图片中间与行中间对齐。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。   |
 | BASELINE | 图片下边沿与文本BaseLine对齐。 |
 
 ## 事件

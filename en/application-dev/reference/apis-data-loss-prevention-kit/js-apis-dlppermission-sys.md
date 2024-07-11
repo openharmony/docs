@@ -10,7 +10,7 @@ Data loss prevention (DLP) is a system solution provided to prevent data disclos
 ## Modules to Import
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
 ```
 
 ## dlpPermission.getDLPGatheringPolicy
@@ -45,8 +45,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // Obtain the sandbox gathering policy.
@@ -72,7 +72,7 @@ Obtains the DLP sandbox gathering policy. This API uses an asynchronous callback
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -82,15 +82,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getDLPGatheringPolicy((err, res) => {
@@ -140,15 +140,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -189,15 +189,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -247,15 +247,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -297,15 +297,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -350,15 +350,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
@@ -395,15 +395,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.off('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
@@ -460,7 +460,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -468,13 +468,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -500,7 +500,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### addDLPLinkFile
@@ -530,7 +530,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -538,13 +538,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -611,13 +611,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -644,7 +644,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### stopFuseLink
@@ -673,7 +673,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -681,13 +681,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -755,13 +755,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -789,7 +789,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### resumeFuseLink
@@ -818,7 +818,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -826,13 +826,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -900,7 +900,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -908,13 +908,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -943,7 +943,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### replaceDLPLinkFile
@@ -973,7 +973,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -981,13 +981,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1056,7 +1056,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -1064,13 +1064,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1097,7 +1097,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### deleteDLPLinkFile
@@ -1127,7 +1127,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -1135,13 +1135,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1208,7 +1208,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1222,13 +1222,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1246,7 +1246,7 @@ try{
   console.error('error', err.code, err.message);
 }
 
-let destFile = fs.openSync("destUri");
+let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.recoverDLPFile(destFile.fd); // Recover the plain text from the DLP file.
@@ -1255,8 +1255,8 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
-fs.closeSync(destFile);
+fileIo.closeSync(file);
+fileIo.closeSync(destFile);
 ```
 
 ### recoverDLPFile
@@ -1286,7 +1286,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1300,13 +1300,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1324,7 +1324,7 @@ try{
   console.error('error', err.code, err.message);
 }
 
-let destFile = fs.openSync("destUri");
+let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // Recover the plaintext of a DLP file.
@@ -1378,13 +1378,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1409,7 +1409,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ### closeDLPFile
@@ -1442,6 +1442,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
@@ -1449,13 +1450,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1481,12 +1482,12 @@ try {
       } else {
         console.info('res', JSON.stringify(res));
       }
-      fs.closeSync(file);
+      fileIo.closeSync(file);
     });
   }); // Open a DLP file.
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  fs.closeSync(file);
+  fileIo.closeSync(file);
 }
 ```
 
@@ -1524,7 +1525,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1536,14 +1537,14 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dlpUri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt";
-let file = fs.openSync(uri);
-let dlp = fs.openSync(dlpUri);
+let file = fileIo.openSync(uri);
+let dlp = fileIo.openSync(dlpUri);
 try {
   let dlpProperty: dlpPermission.DLPProperty = {
     ownerAccount: 'zhangsan',
@@ -1560,8 +1561,8 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
-fs.closeSync(dlp);
+fileIo.closeSync(file);
+fileIo.closeSync(dlp);
 ```
 
 ## dlpPermission.generateDLPFile
@@ -1583,7 +1584,7 @@ Generates a DLP file, which is an encrypted file that can be accessed only by au
 | plaintextFd | number | Yes| FD of the plaintext file to be encrypted.|
 | ciphertextFd | number | Yes| FD of the encrypted file.|
 | property | [DLPProperty](#dlpproperty) | Yes| Authorized user information, which includes the authorized user list, owner account, and contact account information.|
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the DLPFile instance created.|
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance created.|
 
 **Error codes**
 
@@ -1593,7 +1594,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1605,14 +1606,14 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dlpUri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt";
-let file = fs.openSync(uri);
-let dlp = fs.openSync(dlpUri);
+let file = fileIo.openSync(uri);
+let dlp = fileIo.openSync(dlpUri);
 try {
   let dlpProperty: dlpPermission.DLPProperty = {
     ownerAccount: 'zhangsan',
@@ -1632,7 +1633,7 @@ try {
   });
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  fs.closeSync(file);
+  fileIo.closeSync(file);
 }
 ```
 
@@ -1669,7 +1670,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1685,13 +1686,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1716,7 +1717,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ## dlpPermission.openDLPFile<sup>11+</sup>
@@ -1747,7 +1748,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
@@ -1763,13 +1764,13 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
 let bundleName = 'com.ohos.note';
@@ -1797,7 +1798,7 @@ try {
   });
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  fs.closeSync(file);
+  fileIo.closeSync(file);
 }
 ```
 

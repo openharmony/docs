@@ -188,7 +188,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     hidumper -s 3302 -a -r
     ```
-    ![low_power_led_alter](figures/low_power_led_alter.jpg)
+    ![low_power_led_alter](figures/normal_power_led_alter.jpg)
 
     3. 修改电量数值
     ```
@@ -198,7 +198,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     hidumper -s 3302 -a -r
     ```
-    ![normal_power_led_alter](figures/normal_power_led_alter.jpg)
+    ![normal_power_led_alter](figures/low_power_led_alter.jpg)
 
     5. 修改电量数值
     ```

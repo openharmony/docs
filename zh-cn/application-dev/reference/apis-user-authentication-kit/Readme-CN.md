@@ -1,4 +1,4 @@
-# User Authentication Kit API参考
+# User Authentication Kit（用户认证服务）
 
 - ArkTS API
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)

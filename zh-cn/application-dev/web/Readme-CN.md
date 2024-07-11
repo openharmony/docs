@@ -2,32 +2,40 @@
 
 - [ArkWeb简介](web-component-overview.md)
 - [Web组件的生命周期](web-event-sequence.md)
-- [默认UserAgent定义](web-default-userAgent.md)
-- [使用Web组件加载页面](web-page-loading-with-web-components.md)
 - 设置基本属性和事件
+  - [默认UserAgent定义](web-default-userAgent.md)
+  - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
   - [设置深色模式](web-set-dark-mode.md)
-  - [上传文件](web-file-upload.md)
   - [在新窗口中打开页面](web-open-in-new-window.md)
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
-  - [Web组件嵌套滚动](web-nested-scrolling.md)
-- 应用侧与前端页面的相互调用
+- 在应用中使用前端页面JavaScript
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
   - [建立应用侧与前端页面数据通道](web-app-page-data-channel.md)
-- [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
-- [管理页面跳转及浏览记录导航](web-redirection-and-browsing-history-mgmt.md)
-- [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
-- [自定义页面请求响应](web-resource-interception-request-mgmt.md)
-- [使用Web组件打印前端页面](web-print.md)
-- [使用Web组件的下载能力](web-download.md)
-- [加速Web页面的访问](web-predictor.md)
-- [拦截Web组件发起的网络请求](web-scheme-handler.md)
-- [同层渲染绘制](web-same-layer.md)
-- [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
-- [webRTC拉起摄像头和麦克风](web-rtc.md)
-- [解决Web组件本地资源跨域问题](web-cross-origin.md)
-- [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
-- [应用接管网页中的媒体播放](app-takeovers-web-media.md)
-- [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
-- [使用crashpad收集Web组件崩溃信息](web-crashpad.md)
+  - [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
+- 管理网页交互
+  - [Web组件嵌套滚动](web-nested-scrolling.md)
+- 管理Web组件的网络安全与隐私
+  - [解决Web组件本地资源跨域问题](web-cross-origin.md)
+  - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
+  - [使用Web组件的广告过滤功能](web-adsblock.md)
+- 管理网页加载与浏览记录
+  - [使用Web组件加载页面](web-page-loading-with-web-components.md)
+  - [管理页面跳转及浏览记录导航](web-redirection-and-browsing-history-mgmt.md)
+  - [拦截Web组件发起的网络请求](web-scheme-handler.md)
+  - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
+  - [加速Web页面的访问](web-predictor.md)
+- 管理网页文件上传与下载
+  - [上传文件](web-file-upload.md)
+  - [使用Web组件的下载能力](web-download.md)
+- 使用网页多媒体
+  - [使用WebRTC进行Web视频会议](web-rtc.md)
+  - [托管网页中的媒体播放](app-takeovers-web-media.md)
+- 处理网页内容
+  - [使用Web组件打印前端页面](web-print.md)
+  - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
+- [同层渲染绘制Video和Button组件](web-same-layer.md)
+- Web调试维测
+  - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+  - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

@@ -17,11 +17,11 @@ import { AdComponent } from '@kit.AdsKit';
 
 ## AdComponent
 
-AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer:() => void): void
+AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer?:() => void): void
 
 展示非全屏广告。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -49,7 +49,7 @@ export struct ShowNonFullScreenAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {

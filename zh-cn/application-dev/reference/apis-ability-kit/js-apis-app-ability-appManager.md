@@ -16,17 +16,17 @@ import { appManager } from '@kit.AbilityKit';
 
 表示进程状态的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+| STATE_CREATE    | 0   |    进程处于创建状态。       |
+| STATE_FOREGROUND          | 2   |    进程处于前台状态。      |
+| STATE_ACTIVE  | 3   |     进程处于获焦状态。   |
+| STATE_BACKGROUND        | 4   |    进程处于后台不可见状态。           |
+| STATE_DESTROY        | 5   |    进程处于销毁状态。         |
 
 ## appManager.isRunningInStabilityTest
 
@@ -34,7 +34,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -74,7 +74,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,7 +112,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -149,7 +149,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -188,7 +188,7 @@ getAppMemorySize(): Promise\<number>
 
 获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -225,7 +225,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -268,7 +268,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -309,7 +309,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

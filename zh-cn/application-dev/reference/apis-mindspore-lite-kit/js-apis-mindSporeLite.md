@@ -37,7 +37,7 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 let model_file : string = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFile
@@ -64,7 +64,7 @@ context.target = ['cpu'];
 let model_file : string = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file, context, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFile
@@ -77,10 +77,10 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | string              | 是   | 模型的完整输入路径。 |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | string              | 是   | 模型的完整输入路径。                          |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -94,7 +94,7 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -123,7 +123,7 @@ getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uin
   let modelBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.log(modelInputs[0].name);
+    console.info(modelInputs[0].name);
   })
 })
 ```
@@ -165,7 +165,7 @@ globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8A
   context.target = ['cpu'];
   mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.log(modelInputs[0].name);
+    console.info(modelInputs[0].name);
   })
 })
 ```
@@ -179,10 +179,10 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | ArrayBuffer         | 是   | 包含模型的内存。     |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | ArrayBuffer         | 是   | 包含模型的内存。                              |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -210,7 +210,7 @@ globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8A
   let modelBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.log(modelInputs[0].name);
+    console.info(modelInputs[0].name);
   })
 })
 ```
@@ -237,7 +237,7 @@ let model_file = '/path/to/xxx.ms';
 let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -266,7 +266,7 @@ context.target = ['cpu'];
 let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -279,10 +279,10 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | number              | 是   | 模型的文件描述符。   |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | number              | 是   | 模型的文件描述符。                            |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -298,7 +298,7 @@ let model_file = '/path/to/xxx.ms';
 let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
 let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-console.log(modelInputs[0].name);
+console.info(modelInputs[0].name);
 ```
 
 ## mindSporeLite.loadTrainModelFromFile<sup>12+</sup>
@@ -311,11 +311,11 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | string                  | 是   | 模型的完整输入路径。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。       |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。 |
+| 参数名   | 类型                    | 必填 | 说明                                           |
+| -------- | ----------------------- | ---- | ---------------------------------------------- |
+| model    | string                  | 是   | 模型的完整输入路径。                           |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。   |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -343,11 +343,11 @@ loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Cont
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | ArrayBuffer             | 是   | 包含训练模型的内存。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。       |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。 |
+| 参数名   | 类型                    | 必填 | 说明                                          |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | ArrayBuffer             | 是   | 包含训练模型的内存。                          |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -376,11 +376,11 @@ loadTrainModelFromFd(model: number, trainCfg?: TrainCfg, context?: Context): Pro
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                   |
-| -------- | ----------------------- | ---- | ---------------------- |
-| model    | number                  | 是   | 训练模型的文件描述符。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。         |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。   |
+| 参数名   | 类型                    | 必填 | 说明                                          |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | number                  | 是   | 训练模型的文件描述符。                        |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -403,7 +403,7 @@ console.info(modelInputs[0].name);
 
 getAllNNRTDeviceDescriptions() : NNRTDeviceDescription[]
 
-获取NNRT中的所有设备描述。
+获取NNRt中的所有设备描述。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -411,7 +411,7 @@ getAllNNRTDeviceDescriptions() : NNRTDeviceDescription[]
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [NNRTDeviceDescription](#nnrtdevicedescription12)[] | NNRT设备描述信息数组。 |
+| [NNRTDeviceDescription](#nnrtdevicedescription12)[] | NNRt设备描述信息数组。 |
 
 **示例：** 
 
@@ -431,11 +431,11 @@ if (all_devices == null) {
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 
-| 名称   | 类型                      | 可读 | 可写 | 说明                                                         |
+| 名称   | 类型                      | 只读 | 可选 | 说明                                                         |
 | ------ | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| target | string[]                  | 是   | 是   | 配置目标后端。可选'cpu'，'nnrt'，默认'cpu'。                 |
-| cpu    | [CpuDevice](#cpudevice)   | 是   | 是   | CPU后端设备选项。只有当target包含'cpu'时，才能设置此属性。默认值为CpuDevice各属性默认值。 |
-| nnrt   | [NNRTDevice](#nnrtdevice) | 是   | 是   | NNRT后端设备选项。只有当target包含'nnrt'时，才能设置此属性，当前属性为空。 |
+| target | string[]                  | 否   | 是   | 配置目标后端。可选'cpu'，'nnrt'，默认'cpu'。                 |
+| cpu    | [CpuDevice](#cpudevice)   | 否   | 是   | CPU后端设备选项。只有当target包含'cpu'时，才能设置此属性。默认值为CpuDevice各属性默认值。 |
+| nnrt   | [NNRTDevice](#nnrtdevice) | 否   | 是   | NNRt后端设备选项。只有当target包含'nnrt'时，才能设置此属性。默认值为NNRTDevice各属性默认值。 |
 
 **示例：** 
 
@@ -452,12 +452,12 @@ CPU后端设备选项。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                   | 类型                                      | 可读 | 可写 | 说明                                                         |
+| 名称                   | 类型                                      | 只读 | 可选 | 说明                                                         |
 | ---------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| threadNum              | number                                    | 是   | 是   | 设置运行时的线程数，默认值：2。                              |
-| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | 是   | 是   | 设置运行时的CPU绑核策略模式，默认值为不绑核：mindSporeLite.ThreadAffinityMode.NO_AFFINITIES。 |
-| threadAffinityCoreList | number[]                                  | 是   | 是   | 设置运行时的CPU绑核列表，设置绑核策略模式后使能，当绑核策略模式为mindSporeLite.ThreadAffinityMode.NO_AFFINITIES时，绑核列表为空。列表中的数字代表核的序号。默认值：[]。 |
-| precisionMode          | string                                    | 是   | 是   | 设置是否使能**Float16推理模式**，设置为'preferred_fp16'代表使能半精度推理，其余设置情况均为不支持，默认设置'enforce_fp32'表示不使能半精度推理。 |
+| threadNum              | number                                    | 否   | 是   | 设置运行时的线程数，默认值：2。                              |
+| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | 否   | 是   | 设置运行时的CPU绑核策略模式，默认值为不绑核：mindSporeLite.ThreadAffinityMode.NO_AFFINITIES。 |
+| threadAffinityCoreList | number[]                                  | 否   | 是   | 设置运行时的CPU绑核列表，设置绑核策略模式后使能，当绑核策略模式为mindSporeLite.ThreadAffinityMode.NO_AFFINITIES时，绑核列表为空。列表中的数字代表核的序号。默认值：[]。 |
+| precisionMode          | string                                    | 否   | 是   | 设置是否使能**Float16推理模式**，设置为'preferred_fp16'代表使能半精度推理，其余设置情况均为不支持，默认设置'enforce_fp32'表示不使能半精度推理。 |
 
 **Float16推理模式**：  Float16又称半精度，它使用16比特表示一个数。Float16推理模式表示推理的时候用半精度进行推理。 
 
@@ -493,16 +493,16 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                          | 类型                                | 必填 | 说明                     |
-| ----------------------------- | ----------------------------------- | ---- | ------------------------ |
-| deviceID<sup>12+</sup>        | bigint                              | 是   | NNRT设备ID。             |
-| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否   | NNRT设备的工作性能模式。 |
-| priority<sup>12+</sup>        | [Priority](#priority12)               | 否   | NNRT推理任务优先级。     |
-| extensions<sup>12+</sup>      | [Extension](#extension12)             | 否   | NNRT设备的扩展配置。     |
+| 名称                          | 类型                                | 只读 | 可选 | 说明                     |
+| ----------------------------- | ----------------------------------- | ---- | ------------------------ | ------------------------ |
+| deviceID<sup>12+</sup>        | bigint                              | 否 | 是  | NNRt设备ID。默认值为0。     |
+| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否  | 是  | NNRt设备的工作性能模式。默认值为PERFORMANCE_NONE。 |
+| priority<sup>12+</sup>        | [Priority](#priority12)               | 否  | 是  | NNRt推理任务优先级。默认值为PRIORITY_MEDIUM。 |
+| extensions<sup>12+</sup>      | [Extension](#extension12)[]         | 否  | 是  | NNRt设备的扩展配置。默认为空。 |
 
 ## PerformanceMode<sup>12+</sup>
 
-NNRT设备的工作性能模式枚举。
+NNRt设备的工作性能模式枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -516,7 +516,7 @@ NNRT设备的工作性能模式枚举。
 
 ## Priority<sup>12+</sup>
 
-NNRT推理任务优先级枚举。
+NNRt推理任务优先级枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -529,32 +529,116 @@ NNRT推理任务优先级枚举。
 
 ## Extension<sup>12+</sup>
 
-定义NNRT设备的扩展信息。
+定义NNRt设备的扩展信息。
 
 ### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                | 类型        | 必填 | 说明             |
-| ------------------- | ----------- | ---- | ---------------- |
-| name<sup>12+</sup>  | string      | 是   | 扩展名称。       |
-| value<sup>12+</sup> | ArrayBuffer | 否   | 包含扩展的内存。 |
+| 名称                | 类型        | 只读 | 可选 | 说明             |
+| ------------------- | ----------- | ---- | ---- | ---------------- |
+| name<sup>12+</sup>  | string      | 否   | 否   | 扩展名称。       |
+| value<sup>12+</sup> | ArrayBuffer | 否   | 否   | 包含扩展的内存。 |
 
 ## NNRTDeviceDescription<sup>12+</sup>
 
-NNRT设备信息描述，包含设备ID，设备名称等信息。
+NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称       | 类型                              | 必填 | 说明                     |
-| ---------- | --------------------------------- | ---- | ------------------------ |
-| deviceID   | bigint                            | 是   | NNRT设备ID。             |
-| deviceType | [NNRTDeviceType](#nnrtdevicetype12) | 否   | NNRT设备的工作性能模式。 |
-| deviceName | string                            | 否   | NNRT设备名称。           |
+### deviceID
+
+deviceID() : bigint
+
+获取NNRt设备ID。
+
+**系统能力：**  SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型   | 说明         |
+| ------ | ------------ |
+| bigint | NNRt设备ID。 |
+
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceID().toString());
+}
+```
+
+### deviceType
+
+deviceType() : NNRTDeviceType
+
+获取NNRt设备类型。
+
+**系统能力：**  SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型                                | 说明           |
+| ----------------------------------- | -------------- |
+| [NNRTDeviceType](#nnrtdevicetype12) | NNRt设备类型。 |
+
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceType().toString());
+}
+```
+
+### deviceName
+
+deviceName() : string
+
+获取NNRt设备名称。
+
+**系统能力：**  SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| string | NNRt设备名称。 |
+
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceName().toString());
+}
+```
 
 ## NNRTDeviceType<sup>12+</sup>
 
-NNRT设备类型枚举。
+NNRt设备类型枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -573,10 +657,10 @@ NNRT设备类型枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                            | 类型                                      | 必填 | 说明                     |
-| ------------------------------- | ----------------------------------------- | ---- | ------------------------ |
-| lossName<sup>12+</sup>          | string[]                                  | 否   | 损失函数的名称列表。     |
-| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | 否   | 端侧训练的网络优化等级。 |
+| 名称                            | 类型                                      | 只读 | 可选 | 说明                                                         |
+| ------------------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| lossName<sup>12+</sup>          | string[]                                  | 否   | 是   | 损失函数的名称列表。默认值为["loss_fct", "_loss_fn", "SigmoidCrossEntropy"]。 |
+| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | 否   | 是   | 端侧训练的网络优化等级。默认值为O0。                         |
 
 **示例：** 
 
@@ -622,10 +706,10 @@ cfg.optimizationLevel = mindSporeLite.OptimizationLevel.O0;
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                       | 类型    | 必填 | 说明                 |
-| -------------------------- | ------- | ---- | -------------------- |
-| learningRate<sup>12+</sup> | number  | 否   | 训练模型的学习率。   |
-| trainMode<sup>12+</sup>    | boolean | 否   | 模型是否为训练模式。 |
+| 名称                       | 类型    | 只读 | 可选 | 说明                                                         |
+| -------------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| learningRate<sup>12+</sup> | number  | 否   | 是   | 训练模型的学习率。默认值从加载的模型中读取。                 |
+| trainMode<sup>12+</sup>    | boolean | 否   | 是   | 模型是否为训练模式。true表示训练模式，false表示非训练模式。如果是训练模型，trainMode默认是true；如果是推理模型，trainMode默认是false。 |
 
 ### getInputs
 
@@ -647,7 +731,7 @@ getInputs(): MSTensor[]
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-  console.log(modelInputs[0].name);
+  console.info(modelInputs[0].name);
 })
 ```
 ### predict
@@ -691,7 +775,7 @@ globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : 
   mindSporeLiteModel.predict(modelInputs, (result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
-      console.log(output[i].toString());
+      console.info(output[i].toString());
     }
   })
 })
@@ -740,7 +824,7 @@ globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : 
   mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
-      console.log(output[i].toString());
+      console.info(output[i].toString());
     }
   })
 })
@@ -782,7 +866,7 @@ mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSpore
 
 runStep(inputs: MSTensor[]): boolean
 
-单步训练模型并返回执行状态码。
+单步训练模型。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -794,9 +878,9 @@ runStep(inputs: MSTensor[]): boolean
 
 **返回值：**
 
-| 类型      | 说明          |
-| ------- | ----------- |
-| boolean | 返回是否逐步训练模型。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回单步训练模型是否成功的结果。true表示单步训练模型成功，false表示单步训练模型失败。 |
 
 **示例：** 
 
@@ -873,9 +957,9 @@ updateWeights(weights: MSTensor[]): boolean
 
 **返回值：**
 
-| 类型      | 说明            |
-| ------- | ------------- |
-| boolean | 返回是否更新权重操作成功。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回是否更新权重成功的结果。true表示更新权重成功，false表示更新权重失败。 |
 
 **示例：** 
 
@@ -904,7 +988,7 @@ for (let i = 0; i < weights.length; i++) {
         printStr += weights[i].dtype + ", ";
         printStr += weights[i].dataSize + ", ";
         printStr += weights[i].getData();
-        console.log("==========MSLITE weights===========",printStr);
+        console.info("==========MSLITE weights===========",printStr);
       }
 let ret = msliteModel.updateWeights(weights);
 ```
@@ -922,14 +1006,14 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 | 参数名                 | 类型   | 必填 | 说明                                                 |
 | ---------------------- | ------ | ---- | ---------------------------------------------------- |
 | virtualBatchMultiplier | number | 是   | 虚拟批次乘法器，当设置值小于1时，表示禁用虚拟batch。 |
-| lr                     | number | 是   | 学习率，默认为-1.0f。                                |
-| momentum               | number | 是   | 动量，默认为-1.0f。                                  |
+| lr                     | number | 是   | 学习率。                                             |
+| momentum               | number | 是   | 动量。                                               |
 
 **返回值：**
 
-| 类型      | 说明        |
-| ------- | --------- |
-| boolean | 返回是否操作成功。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回是否设置虚拟批次成功的结果。true表示设置虚拟批次成功，false表示设置虚拟批次失败。 |
 
 **示例：** 
 
@@ -953,18 +1037,18 @@ exportModel(modelFile: string, quantizationType?: QuantizationType, exportInfere
 
 **参数：**
 
-| 参数名              | 类型                                  | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| modelFile           | string                                | 是   | 导出模型的文件路径。                                         |
+| 参数名              | 类型                                    | 必填 | 说明                                                         |
+| ------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| modelFile           | string                                  | 是   | 导出模型的文件路径。                                         |
 | quantizationType    | [QuantizationType](#quantizationtype12) | 否   | 量化类型，默认为NO_QUANT。                                   |
-| exportInferenceOnly | boolean                               | 否   | 是否只导出推理模型。设置为false则导出训练和推理两个模型。默认为true。 |
-| outputTensorName    | string[]                              | 否   | 设置导出模型的输出张量的名称，默认为空则导出完整的模型。     |
+| exportInferenceOnly | boolean                                 | 否   | 是否只导出推理模型。true表示只导出推理模型，false表示导出训练和推理两个模型。默认为true。 |
+| outputTensorName    | string[]                                | 否   | 设置导出模型的输出张量的名称。默认为空字符串数组，表示全量导出。 |
 
 **返回值：**
 
-| 类型      | 说明        |
-| ------- | --------- |
-| boolean | 返回是否操作成功。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回是否导出训练模型成功的结果。true表示导出训练模型成功，false表示导出训练模型失败。 |
 
 **示例：** 
 
@@ -979,24 +1063,26 @@ msliteModel.exportModel(path +"/lenet_train_infer.ms", mindSporeLite.Quantizatio
 
 exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
 
-导出供micro推理使用的模型权重，仅用于端侧训练。
+导出供**micro推理**使用的模型权重，仅用于端侧训练。
+
+**micro推理**：MindSpore Lite针对MCUs（MicroControllerUnits）部署硬件后端，提供了一种超轻量Micro AI部署解决方案，离线阶段直接将模型生成轻量化代码，不再需要在线解析模型和图编译。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 **参数：**
 
-| 参数名                | 类型     | 必填 | 说明                                                     |
-| --------------------- | -------- | ---- | -------------------------------------------------------- |
-| weightFile            | string   | 是   | 权重文件路径。                                           |
-| isInference           | boolean  | 否   | 是否从推理模型中导出权重，目前只支持`true`，默认为true。 |
-| enableFp16            | boolean  | 否   | 是否以float16格式保存，默认为false。                     |
-| changeableWeightsName | string[] | 否   | 设置shape可变的权重名称，默认为空。                      |
+| 参数名                | 类型     | 必填 | 说明                                                         |
+| --------------------- | -------- | ---- | ------------------------------------------------------------ |
+| weightFile            | string   | 是   | 权重文件路径。                                               |
+| isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持`true`，默认为true。 |
+| enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
+| changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |
 
 **返回值：**
 
-| 类型      | 说明        |
-| ------- | --------- |
-| boolean | 返回是否操作成功。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回是否导出供micro推理使用的模型权重成功的结果。true表示导出供micro推理使用的模型权重成功，false表示导出供micro推理使用的模型权重失败。 |
 
 **示例：** 
 
@@ -1016,14 +1102,14 @@ msliteModel.exportWeightsCollaborateWithMicro("micro_weight.bin");
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
-| 名称       | 类型                  | 可读 | 可写 | 说明                                                 |
-| ---------- | --------------------- | ---- | ---- | ---------------------------------------------------- |
-| name       | string                | 是   | 是   | 张量的名称。默认为null                               |
-| shape      | number[]              | 是   | 是   | 张量的维度数组。默认为0。                            |
-| elementNum | number                | 是   | 是   | 张量的维度数组的长度。默认为0。                      |
-| dataSize   | number                | 是   | 是   | 张量的数据的长度。默认为0。                          |
-| dtype      | [DataType](#datatype) | 是   | 是   | 张量的数据类型。默认值为0，代表TYPE_UNKNOWN。        |
-| format     | [Format](#format)     | 是   | 是   | 张量的数据排布方式。默认值为-1，代表DEFAULT_FORMAT。 |
+| 名称       | 类型                  | 只读 | 可选 | 说明                   |
+| ---------- | --------------------- | ---- | ---- | ---------------------- |
+| name       | string                | 否   | 否   | 张量的名称。           |
+| shape      | number[]              | 否   | 否   | 张量的维度数组。       |
+| elementNum | number                | 否   | 否   | 张量的维度数组的长度。 |
+| dataSize   | number                | 否   | 否   | 张量的数据的长度。     |
+| dtype      | [DataType](#datatype) | 否   | 否   | 张量的数据类型。       |
+| format     | [Format](#format)     | 否   | 否   | 张量的数据排布方式。   |
 
 **示例：** 
 
@@ -1031,12 +1117,12 @@ msliteModel.exportWeightsCollaborateWithMicro("micro_weight.bin");
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.log(modelInputs[0].name);
-  console.log(modelInputs[0].shape.toString());
-  console.log(modelInputs[0].elementNum.toString());
-  console.log(modelInputs[0].dtype.toString());
-  console.log(modelInputs[0].format.toString());
-  console.log(modelInputs[0].dataSize.toString());
+  console.info(modelInputs[0].name);
+  console.info(modelInputs[0].shape.toString());
+  console.info(modelInputs[0].elementNum.toString());
+  console.info(modelInputs[0].dtype.toString());
+  console.info(modelInputs[0].format.toString());
+  console.info(modelInputs[0].dataSize.toString());
 })
 ```
 
@@ -1078,7 +1164,7 @@ globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : 
   mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
-      console.log(output[i].toString());
+      console.info(output[i].toString());
     }
   })
 })

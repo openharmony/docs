@@ -10,6 +10,8 @@ The ContinuationExtraParams module provides the filter parameters required by th
 
 Describes the extra parameters required by the device selection module in the continuation management entry.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 | Name| Type| Read Only| Mandatory| Description|

@@ -10,10 +10,10 @@ Check whether a key exists.
 
 2. Initialize the key property set to specify the properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.
 
-3. Use [isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists.
+3. Use [hasKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukshaskeyitem11) to check whether the key exists.
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 /* 1. Set the key alias. */
 let keyAlias = 'test_key';
 let isKeyExist: Boolean;
@@ -23,17 +23,17 @@ let huksOptions:huks.HuksOptions = {
 }
 try {
   /* 3. Check whether the key exists. */
-  huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
+  huks.hasKeyItem(keyAlias, huksOptions, (error, data) => {
     if (error) {
-      console.error(`callback: isKeyItemExist failed` + error);
+      console.error(`callback: hasKeyItem failed` + error);
     } else {
       if (data !== null && data.valueOf() !== null) {
         isKeyExist = data.valueOf();
-        console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+        console.info(`callback: hasKeyItem success, isKeyExist = ${isKeyExist}`);
       }
     }
   });
 } catch (error) {
-  console.error(`callback: isKeyItemExist input arg invalid` + error);
+  console.error(`callback: hasKeyItem input arg invalid` + error);
 }
 ```

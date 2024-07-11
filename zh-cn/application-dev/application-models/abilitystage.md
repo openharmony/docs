@@ -17,13 +17,13 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 3. 打开MyAbilityStage.ts文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
    
    ```ts
-   import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type Want from '@ohos.app.ability.Want';
+   import { AbilityStage, Want } from '@kit.AbilityKit';
    
    export default class MyAbilityStage extends AbilityStage {
      onCreate(): void {
        // 应用的HAP在首次加载的时，为该Module初始化操作
      }
+
      onAcceptWant(want: Want): string {
        // 仅specified模式下触发
        return 'MyAbilityStage';
@@ -58,9 +58,8 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 
   ```ts
-  import AbilityStage from '@ohos.app.ability.AbilityStage';
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  
+  import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
+
   export default class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // 根据系统可用内存的变化情况，释放不必要的内存

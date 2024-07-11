@@ -4,18 +4,18 @@ The **networkManager** module provides APIs for network management of enterprise
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - The APIs provided by this module are system APIs.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.networkManager](js-apis-enterprise-networkManager.md).
 
 ## Modules to Import
 
 ```ts
-import networkManager from '@ohos.enterprise.networkManager';
+import { networkManager } from '@kit.MDMKit';
 ```
 
 ## networkManager.getAllNetworkInterfaces
@@ -34,21 +34,24 @@ Obtains all activated network ports through the specified device administrator a
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of network ports obtained. If the operation fails, **err** is an error object.    |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of network ports obtained. If the operation fails, **err** is an error object.    |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -88,18 +91,21 @@ Obtains all activated network ports through the specified device administrator a
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -129,21 +135,24 @@ Obtains the device IP address based on the network port through the specified de
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | networkInterface    | string     | Yes   | Network port.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the IP address obtained. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the IP address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -184,18 +193,21 @@ Obtains the device IP address based on the network port through the specified de
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -225,21 +237,24 @@ Obtains the device MAC address based on the network port through the specified d
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | networkInterface    | string     | Yes   | Network port.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the MAC address obtained. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the MAC address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -280,18 +295,21 @@ Obtains the device MAC address based on the network port through the specified d
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -321,21 +339,24 @@ Checks whether a network port is disabled through the specified device administr
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | networkInterface    | string     | Yes   | Network port.                 |
-| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**, and **data** indicates whether the network port is disabled. The value **true** means the network port is disabled; and **false** means the opposite. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**, and **data** indicates whether the network port is disabled. The value **true** means the network port is disabled; and **false** means the opposite. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -376,18 +397,21 @@ Checks whether a network port is disabled through the specified device administr
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -418,21 +442,24 @@ Disables a network port through the specified device administrator application. 
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | networkInterface    | string     | Yes   | Network port.                 |
 | isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -474,18 +501,21 @@ Disables a network port through the specified device administrator application. 
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -515,22 +545,25 @@ Sets the global network proxy through the specified device administrator applica
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | Yes   | Global HTTP proxy to set.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import connection from '@ohos.net.connection';
+import { Want } from '@kit.AbilityKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -578,19 +611,22 @@ Sets the global network proxy through the specified device administrator applica
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import connection from '@ohos.net.connection';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -626,21 +662,24 @@ Obtains the global network proxy through the specified device administrator appl
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -680,18 +719,21 @@ Obtains the global network proxy through the specified device administrator appl
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -708,7 +750,7 @@ networkManager.getGlobalProxy(wantTemp).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-Adds a network packet filtering rule through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds a network packet filtering rule for devices through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -721,21 +763,24 @@ Adds a network packet filtering rule through the specified device administrator 
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | filterRule    | [AddFilterRule](#addfilterrule)     | Yes   | Network packet filtering rule to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -766,7 +811,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-Adds a network packet filtering rule through the specified device administrator application. This API uses a promise to return the result.
+Adds a network packet filtering rule for devices through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -788,18 +833,21 @@ Adds a network packet filtering rule through the specified device administrator 
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -841,21 +889,24 @@ Removes a network packet filtering rule through the specified device administrat
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | Yes   | Network packet filtering rule to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -906,18 +957,21 @@ Removes a network packet filtering rule through the specified device administrat
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -956,21 +1010,24 @@ Obtains network packet filtering rules through the specified device administrato
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1010,18 +1067,21 @@ Obtains network packet filtering rules through the specified device administrato
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1034,299 +1094,9 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 });
 ```
 
-## networkManager.addFirewallRule<sup>11+</sup>
-
-addFirewallRule(admin: Want, firewallRule: FirewallRule): void
-
-Adds a firewall rule for devices through the specified device administrator application.<br>
-After a rule with [Action](#action) set to **ALLOW** is added, a rule with **Action** set to **DENY** is added by default to discard or intercept all network data packets that do not meet the **ALLOW** rule.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                 | Mandatory  | Description        |
-|--------------|-------------------------------------| ---- |------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.   |
-| firewallRule | [FirewallRule](#firewallrule11)       | Yes   | Firewall rule to add.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let firewallRule: networkManager.FirewallRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
-  "destAddr": "10.1.1.1",
-  "srcPort": "8080",
-  "destPort": "8080",
-  "appUid": "9696",
-  "direction": networkManager.Direction.OUTPUT,
-  "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
-
-networkManager.addFirewallRule(wantTemp, firewallRule);
-```
-
-## networkManager.removeFirewallRule<sup>11+</sup>
-
-removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
-
-Removes a firewall rule for devices through the specified device administrator application.<br>
-If there is no rule with [Action](#action) being **ALLOW** after the rule is removed, the **DENY** rules that are added by default with [addFirewallRule](#networkmanageraddfirewallrule11) will be removed.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                 | Mandatory| Description                         |
-|--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
-| firewallRule | [FirewallRule](#firewallrule11)       | No | Firewall rule to remove. If the value is empty, all firewall rules will be removed.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-// Remove the specified firewall rule.
-let firewallRule: networkManager.FirewallRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
-  "destAddr": "10.1.1.1",
-  "srcPort": "8080",
-  "destPort": "8080",
-  "appUid": "9696",
-  "direction": networkManager.Direction.OUTPUT,
-  "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
-networkManager.removeFirewallRule(wantTemp, firewallRule);
-
-// Remove all firewall rules.
-networkManager.removeFirewallRule(wantTemp);
-```
-
-## networkManager.getFirewallRules<sup>11+</sup>
-
-getFirewallRules(admin: Want): Array\<FirewallRule>
-
-Obtains firewall rules through the specified device administrator application.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                 | Mandatory| Description                         |
-|--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
-
-**Return value**
-
-| Type                                   | Description                               |
-|---------------------------------------|-----------------------------------|
-| Array\<[FirewallRule](#firewallrule11)> | A list of firewall rules configured for the device is returned. If the operation fails, an exception will be thrown.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let firewallRule: Array<networkManager.FirewallRule>;
-firewallRule = networkManager.getFirewallRules(wantTemp);
-```
-
-## networkManager.addDomainFilterRule<sup>11+</sup>
-
-addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
-
-Adds a domain name filtering rule for the device through the specified device administrator application.<br>
-After a rule with [Action](#action) set to **ALLOW** is added, a rule with **Action** set to **DENY** is added by default to discard or intercept all packets for domain name resolution that do not meet the **ALLOW** rule.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                   | Mandatory  | Description        |
-|--------------|---------------------------------------| ---- |------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)   | Yes   | Device administrator application.   |
-| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | Yes   | Domain name filtering rule to add.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let domainFilterRule: networkManager.DomainFilterRule = {
-  "domainName": "www.example.com",
-  "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
-
-networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
-```
-
-## networkManager.removeDomainFilterRule<sup>11+</sup>
-
-removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
-
-Removes a domain name filtering rule through the specified device administrator application.<br>
-If there is no rule with [Action](#action) being **ALLOW** after the rule is removed, the **DENY** rules that are added by default with [addDomainFilterRule](#networkmanageradddomainfilterrule11) will be removed.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                   | Mandatory| Description                      |
-|--------------|---------------------------------------|----|--------------------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)   | Yes | Device administrator application.                 |
-| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | No | Domain name filtering rule to remove. If the value is empty, all domain name filtering rules will be removed.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-// Remove the specified domain name filtering rule.
-let domainFilterRule: networkManager.DomainFilterRule = {
-  "domainName": "www.example.com",
-  "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
-networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
-
-// Remove all domain name filtering rules.
-networkManager.removeDomainFilterRule(wantTemp);
-```
-
-## networkManager.getDomainFilterRules<sup>11+</sup>
-
-getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
-
-Obtains domain name filtering rules through the specified device administrator application.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-**Parameters**
-
-| Name         | Type                                 | Mandatory| Description                         |
-|--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
-
-**Return value**
-
-| Type                                           | Description                              |
-|-----------------------------------------------|----------------------------------|
-| Array\<[DomainFilterRule](#domainfilterrule11)> | A list of domain name filtering rules configured for the device is returned. If the operation fails, an exception will be thrown.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                      |
-| 9200002 | The administrator application does not have permission to manage the device.|
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let domainFilterRule: Array<networkManager.DomainFilterRule>;
-domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
-```
-
 ## AddFilterRule
 
-Defines the network packet filtering rule to add.
+Network packet filtering rule to add.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -1340,13 +1110,13 @@ Defines the network packet filtering rule to add.
 | destPort        | string    | No  | Port of the destination IP address.|
 | uid | string   | No  | UID of the application.|
 | method        | [AddMethod](#addmethod)    | Yes  | Method used to add the data packets.|
-| direction | [Direction](#direction)    | Yes  | Direction chains to which the rule applies.|
-| action        | [Action](#action)    | Yes  | Action to take, that is, receive or discard the data packets.|
-| protocol | [Protocol](#protocol)   | No  | Network protocol.|
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | Yes  | Direction chains to which the rule applies.|
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | Yes  | Action to take, that is, receive or discard data packets.|
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No  | Network protocol.|
 
 ## RemoveFilterRule
 
-Defines the network packet filtering rule to remove.
+Network packet filtering rule to remove.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -1358,9 +1128,9 @@ Defines the network packet filtering rule to remove.
 | srcPort | string   | No  | Port of the source IP address.|
 | destPort        | string    | No   | Port of the destination IP address.|
 | uid | string   | No   | UID of the application.|
-| direction | [Direction](#direction)    | Yes   | Direction chains to which the rule applies.|
-| action        | [Action](#action)    | No   | Action to take, that is, receive or discard the data packets.|
-| protocol | [Protocol](#protocol)   | No   | Network protocol.|
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | Yes   | Direction chains to which the rule applies.|
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | No   | Action to take, that is, receive or discard data packets.|
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No   | Network protocol.|
 
 ## AddMethod
 
@@ -1373,72 +1143,3 @@ Enumerates the methods used to add the network packets.
 | -------- | -------- | -------- |
 | APPEND | 0 | Append the packet.|
 | INSERT | 1 | Insert the packet.|
-
-## Direction
-
-Enumerates the direction chains to which the rule applies.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| INPUT | 0 | Input chain.|
-| OUTPUT | 1 | Output chain.|
-
-## Action
-
-Enumerates the actions that can be taken for the data packets.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| ALLOW | 0 | Receive the data packets.|
-| DENY | 1 | Discard the data packets.|
-
-## Protocol
-
-Enumerates the network protocols supported.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| ALL | 0 | All network protocols.|
-| TCP | 1 | TCP.|
-| UDP | 2 | UDP.|
-| ICMP | 3 | ICMP.|
-
-## FirewallRule<sup>11+</sup>
-
-Represents a firewall rule.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-| Name       | Type                     | Mandatory| Description                                                                                                                   |
-|-----------|-------------------------|----|-----------------------------------------------------------------------------------------------------------------------|
-| srcAddr   | string                  | No | Source IP address. Source IP address segment supported, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200**.                                                           |
-| destAddr  | string                  | No | Destination IP address. Destination IP address segment supported, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200**.                                                          |
-| srcPort   | string                  | No | Source port.                                                                                                                 |
-| destPort  | string                  | No | Destination port.                                                                                                                |
-| appUid    | string                  | No | UID of the application.                                                                                                               |
-| direction | [Direction](#direction) | No | Direction chains to which the rule applies.<br>This parameter is mandatory when you add a firewall rule. If it is not specified when you remove a firewall rule, all [direction](#direction) chains will be removed.<br>If this parameter is empty, **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must also be empty.     |
-| action    | [Action](#action)       | No | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when you add a firewall rule. If it is not specified when you remove a firewall rule, all chains that match the [Action](#action) rule will be removed.<br>If this parameter is empty, **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must also be empty.|
-| protocol  | [Protocol](#protocol)   | No | Network protocol. If this parameter is set to **ALL** or **ICMP**, **srcPort** and **destPort** cannot be set.                                                                            |
-
-## DomainFilterRule<sup>11+</sup>
-
-Represents a domain name filtering rule.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-| Name        | Type               | Mandatory| Description                                                                                               |
-|------------|-------------------|----|---------------------------------------------------------------------------------------------------|
-| domainName | string            | No | Domain name. This parameter is mandatory when you add a domain name filtering rule.                                                                                  |
-| appUid     | string            | No | UID of the application.                                                                                           |
-| action     | [Action](#action) | No | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when you add a domain name filtering rule. If it is not specified when you remove a domain name filtering rule, all chains that match the [Action](#action) rule will be removed.<br>If this parameter is empty, **domainName** and **appUid** must also be empty.|

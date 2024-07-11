@@ -137,7 +137,7 @@ Allows an application to obtain the phone numbers of the device.
 
 Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -3070,6 +3070,18 @@ Allows a system service or system application to access shared files.
 Allows a system application to access and write the ring tone public directory.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_SCAN_SERVICE
+
+Allows a system application to invoke the code dispatching capability provided by the scan-to-access service.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 

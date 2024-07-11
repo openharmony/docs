@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo';
+import { deviceInfo } from '@kit.BasicServicesKit';
 ```
 
 ## 属性
@@ -24,12 +24,12 @@ import deviceInfo from '@ohos.deviceInfo';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | manufacture | string | 是 | 否 | 设备厂家名称。 |
-| brand | string | 是 | 否 | 设备品牌名称。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| brand | string | 是 | 否 | 设备品牌名称。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | marketName | string | 是 | 否 | 外部产品系列。 |
 | productSeries | string | 是 | 否 | 产品系列。 |
-| productModel | string | 是 | 否 | 认证型号。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| productModel | string | 是 | 否 | 认证型号。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
@@ -40,7 +40,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | displayVersion | string | 是 | 否 | 产品版本。 |
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
 | osReleaseType | string | 是 | 否 | 系统的发布类型，取值为：<br/>-&nbsp;Canary：面向特定开发者发布的早期预览版本，不承诺API稳定性。<br/>-&nbsp;Beta：面向开发者公开发布的Beta版本，不承诺API稳定性。<br/>-&nbsp;Release：面向开发者公开发布的正式版本，承诺API稳定性。 |
-| osFullName | string | 是 | 否 | 系统版本。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| osFullName | string | 是 | 否 | 系统版本。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加。 |
 | seniorVersion | number | 是 | 否 | Senior版本号，随局部架构、重大特性增加。 |
 | featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本。 |
@@ -63,111 +63,108 @@ import deviceInfo from '@ohos.deviceInfo';
 **示例**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo';
+    import { deviceInfo } from '@kit.BasicServicesKit';
 
-    let deviceTypeInfo: string = deviceinfo.deviceType;
+    let deviceTypeInfo: string = deviceInfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);
 
-    let manufactureInfo: string = deviceinfo.manufacture;
+    let manufactureInfo: string = deviceInfo.manufacture;
     console.info('the value of the manufactureInfo is :' + manufactureInfo);
 
-    let brandInfo: string = deviceinfo.brand;
+    let brandInfo: string = deviceInfo.brand;
     console.info('the value of the device brand is :' + brandInfo);
 
-    let marketNameInfo: string = deviceinfo.marketName;
-    console.info('the value of the deviceinfo marketName is :' + marketNameInfo);
+    let marketNameInfo: string = deviceInfo.marketName;
+    console.info('the value of the deviceInfo marketName is :' + marketNameInfo);
 
-    let productSeriesInfo: string = deviceinfo.productSeries;
-    console.info('the value of the deviceinfo productSeries is :' + productSeriesInfo);
+    let productSeriesInfo: string = deviceInfo.productSeries;
+    console.info('the value of the deviceInfo productSeries is :' + productSeriesInfo);
 
-    let productModelInfo: string = deviceinfo.productModel;
-    console.info('the value of the deviceinfo productModel is :' + productModelInfo);
+    let productModelInfo: string = deviceInfo.productModel;
+    console.info('the value of the deviceInfo productModel is :' + productModelInfo);
 
-    let softwareModelInfo: string = deviceinfo.softwareModel;
-    console.info('the value of the deviceinfo softwareModel is :' + softwareModelInfo);
+    let softwareModelInfo: string = deviceInfo.softwareModel;
+    console.info('the value of the deviceInfo softwareModel is :' + softwareModelInfo);
 
-    let hardwareModelInfo: string = deviceinfo.hardwareModel;
-    console.info('the value of the deviceinfo hardwareModel is :' + hardwareModelInfo);
+    let hardwareModelInfo: string = deviceInfo.hardwareModel;
+    console.info('the value of the deviceInfo hardwareModel is :' + hardwareModelInfo);
 
-    let hardwareProfileInfo: string = deviceinfo.hardwareProfile;
-    console.info('the value of the deviceinfo hardwareProfile is :' + hardwareProfileInfo);
+    let serialInfo: string = deviceInfo.serial;
+    console.info('the value of the deviceInfo serial is :' + serialInfo);
 
-    let serialInfo: string = deviceinfo.serial;
-    console.info('the value of the deviceinfo serial is :' + serialInfo);
+    let bootloaderVersionInfo: string = deviceInfo.bootloaderVersion;
+    console.info('the value of the deviceInfo bootloaderVersion is :' + bootloaderVersionInfo);
 
-    let bootloaderVersionInfo: string = deviceinfo.bootloaderVersion;
-    console.info('the value of the deviceinfo bootloaderVersion is :' + bootloaderVersionInfo);
+    let abiListInfo: string = deviceInfo.abiList;
+    console.info('the value of the deviceInfo abiList is :' + abiListInfo);
 
-    let abiListInfo: string = deviceinfo.abiList;
-    console.info('the value of the deviceinfo abiList is :' + abiListInfo);
+    let securityPatchTagInfo: string = deviceInfo.securityPatchTag;
+    console.info('the value of the deviceInfo securityPatchTag is :' + securityPatchTagInfo);
 
-    let securityPatchTagInfo: string = deviceinfo.securityPatchTag;
-    console.info('the value of the deviceinfo securityPatchTag is :' + securityPatchTagInfo);
+    let displayVersionInfo: string = deviceInfo.displayVersion;
+    console.info('the value of the deviceInfo displayVersion is :' + displayVersionInfo);
 
-    let displayVersionInfo: string = deviceinfo.displayVersion;
-    console.info('the value of the deviceinfo displayVersion is :' + displayVersionInfo);
+    let incrementalVersionInfo: string = deviceInfo.incrementalVersion;
+    console.info('the value of the deviceInfo incrementalVersion is :' + incrementalVersionInfo);
 
-    let incrementalVersionInfo: string = deviceinfo.incrementalVersion;
-    console.info('the value of the deviceinfo incrementalVersion is :' + incrementalVersionInfo);
+    let osReleaseTypeInfo: string = deviceInfo.osReleaseType;
+    console.info('the value of the deviceInfo osReleaseType is :' + osReleaseTypeInfo);
 
-    let osReleaseTypeInfo: string = deviceinfo.osReleaseType;
-    console.info('the value of the deviceinfo osReleaseType is :' + osReleaseTypeInfo);
+    let osFullNameInfo: string = deviceInfo.osFullName;
+    console.info('the value of the deviceInfo osFullName is :' + osFullNameInfo);
 
-    let osFullNameInfo: string = deviceinfo.osFullName;
-    console.info('the value of the deviceinfo osFullName is :' + osFullNameInfo);
+    let majorVersionInfo: number = deviceInfo.majorVersion;
+    console.info('the value of the deviceInfo majorVersion is :' + majorVersionInfo);
 
-    let majorVersionInfo: number = deviceinfo.majorVersion;
-    console.info('the value of the deviceinfo majorVersion is :' + majorVersionInfo);
+    let seniorVersionInfo: number = deviceInfo.seniorVersion;
+    console.info('the value of the deviceInfo seniorVersion is :' + seniorVersionInfo);
 
-    let seniorVersionInfo: number = deviceinfo.seniorVersion;
-    console.info('the value of the deviceinfo seniorVersion is :' + seniorVersionInfo);
+    let featureVersionInfo: number = deviceInfo.featureVersion;
+    console.info('the value of the deviceInfo featureVersion is :' + featureVersionInfo);
 
-    let featureVersionInfo: number = deviceinfo.featureVersion;
-    console.info('the value of the deviceinfo featureVersion is :' + featureVersionInfo);
+    let buildVersionInfo: number = deviceInfo.buildVersion;
+    console.info('the value of the deviceInfo buildVersion is :' + buildVersionInfo);
 
-    let buildVersionInfo: number = deviceinfo.buildVersion;
-    console.info('the value of the deviceinfo buildVersion is :' + buildVersionInfo);
+    let sdkApiVersionInfo: number = deviceInfo.sdkApiVersion;
+    console.info('the value of the deviceInfo sdkApiVersion is :' + sdkApiVersionInfo);
 
-    let sdkApiVersionInfo: number = deviceinfo.sdkApiVersion;
-    console.info('the value of the deviceinfo sdkApiVersion is :' + sdkApiVersionInfo);
+    let firstApiVersionInfo: number = deviceInfo.firstApiVersion;
+    console.info('the value of the deviceInfo firstApiVersion is :' + firstApiVersionInfo);
 
-    let firstApiVersionInfo: number = deviceinfo.firstApiVersion;
-    console.info('the value of the deviceinfo firstApiVersion is :' + firstApiVersionInfo);
+    let versionIdInfo: string = deviceInfo.versionId;
+    console.info('the value of the deviceInfo versionId is :' + versionIdInfo);
 
-    let versionIdInfo: string = deviceinfo.versionId;
-    console.info('the value of the deviceinfo versionId is :' + versionIdInfo);
+    let buildTypeInfo: string = deviceInfo.buildType;
+    console.info('the value of the deviceInfo buildType is :' + buildTypeInfo);
 
-    let buildTypeInfo: string = deviceinfo.buildType;
-    console.info('the value of the deviceinfo buildType is :' + buildTypeInfo);
+    let buildUserInfo: string = deviceInfo.buildUser;
+    console.info('the value of the deviceInfo buildUser is :' + buildUserInfo);
 
-    let buildUserInfo: string = deviceinfo.buildUser;
-    console.info('the value of the deviceinfo buildUser is :' + buildUserInfo);
+    let buildHostInfo: string = deviceInfo.buildHost;
+    console.info('the value of the deviceInfo buildHost is :' + buildHostInfo);
 
-    let buildHostInfo: string = deviceinfo.buildHost;
-    console.info('the value of the deviceinfo buildHost is :' + buildHostInfo);
+    let buildTimeInfo: string = deviceInfo.buildTime;
+    console.info('the value of the deviceInfo buildTime is :' + buildTimeInfo);
 
-    let buildTimeInfo: string = deviceinfo.buildTime;
-    console.info('the value of the deviceinfo buildTime is :' + buildTimeInfo);
+    let buildRootHashInfo: string = deviceInfo.buildRootHash;
+    console.info('the value of the deviceInfo buildRootHash is :' + buildRootHashInfo);
 
-    let buildRootHashInfo: string = deviceinfo.buildRootHash;
-    console.info('the value of the deviceinfo buildRootHash is :' + buildRootHashInfo);
+    let udid: string = deviceInfo.udid;
+    console.info('the value of the deviceInfo udid is :' + udid);
 
-    let udid: string = deviceinfo.udid;
-    console.info('the value of the deviceinfo udid is :' + udid);
+    let distributionOSName: string = deviceInfo.distributionOSName
+    console.info('the value of the deviceInfo distributionOSName is :' + distributionOSName);
 
-    let distributionOSName: string = deviceinfo.distributionOSName
-    console.info('the value of the deviceinfo distributionOSName is :' + distributionOSName);
+    let distributionOSVersion: string = deviceInfo.distributionOSVersion
+    console.info('the value of the deviceInfo distributionOSVersion is :' + distributionOSVersion);
 
-    let distributionOSVersion: string = deviceinfo.distributionOSVersion
-    console.info('the value of the deviceinfo distributionOSVersion is :' + distributionOSVersion);
+    let distributionOSApiVersion: number = deviceInfo.distributionOSApiVersion
+    console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
-    let distributionOSApiVersion: number = deviceinfo.distributionOSApiVersion
-    console.info('the value of the deviceinfo distributionOSApiVersion is :' + distributionOSApiVersion);
+    let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
+    console.info('the value of the deviceInfo distributionOSReleaseType is :' + distributionOSReleaseType);
 
-    let distributionOSReleaseType: string = deviceinfo.distributionOSReleaseType
-    console.info('the value of the deviceinfo distributionOSReleaseType is :' + distributionOSReleaseType);
-
-    let odid: string = deviceinfo.ODID;
-    console.info('the value of the deviceinfo odid is :' + odid);
+    let odid: string = deviceInfo.ODID;
+    console.info('the value of the deviceInfo odid is :' + odid);
 
 ```

@@ -18,7 +18,7 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 ## 导入模块
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 ```
 
 ## StoreConfig
@@ -113,8 +113,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -211,9 +211,9 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -302,7 +302,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -373,8 +373,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -422,7 +422,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -483,7 +483,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -549,8 +549,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -599,7 +599,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | **错误码ID** | **错误信息**     |
 |-----------|--------------|
 | 202       | if permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.  |
 | 14800014  | Already closed.      |
 
@@ -660,7 +660,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 **示例：**
 
 ```ts
-import {BusinessError} from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
@@ -729,7 +729,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');

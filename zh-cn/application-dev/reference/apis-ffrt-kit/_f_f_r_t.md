@@ -1387,7 +1387,7 @@ FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t*  attr, ffrt_qos_t qos
 | 名称 | 描述 | 
 | -------- | -------- |
 | attr | 任务属性指针。 | 
-| pos | 任务pos类型。 | 
+| qos | 任务qos类型。 | 
 
 
 ### ffrt_task_attr_set_queue_priority()
@@ -1443,7 +1443,7 @@ FFRT_C_API uint64_t ffrt_this_task_get_id (void )
 
 **返回：**
 
-返回当前任务的i。
+返回当前任务的id。
 
 
 ### ffrt_this_task_get_qos()

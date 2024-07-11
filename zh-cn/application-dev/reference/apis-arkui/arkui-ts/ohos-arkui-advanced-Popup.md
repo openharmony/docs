@@ -9,7 +9,7 @@ Popup是用于显示特定样式气泡。
 ## 导入模块
 
 ```
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -21,6 +21,8 @@ import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOpt
 Popup(options: PopupOptions)
 
 **装饰器类型：**@Builder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +36,7 @@ Popup(options: PopupOptions)
 
 PopupOptions定义Popup的具体式样参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,12 +48,13 @@ PopupOptions定义Popup的具体式样参数。
 | showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。<br />默认值：true |
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Auto                                |
 
 ## PopupTextOptions
 
 PopupTextOptions设置文本样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +69,7 @@ PopupTextOptions设置文本样式。
 
 PopupButtonOptions定义按钮的相关属性和事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +84,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 PopupIconOptions定义icon（右上角图标）的属性。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,7 +100,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 ```ts
 // xxx.ets
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -113,6 +116,83 @@ struct PopupExample {
           width:32,
           height:32,
           fillColor:Color.White,
+          borderRadius: 16
+        } as PopupIconOptions,
+        // PopupTextOptions 类型设置文字内容
+        title: {
+          text: 'This is a popup with PopupOptions',
+          fontSize: 20,
+          fontColor: Color.Black,
+          fontWeight: FontWeight.Normal
+        } as PopupTextOptions,
+        //PopupTextOptions 类型设置文字内容
+        message: {
+          text: 'This is the message',
+          fontSize: 15,
+          fontColor: Color.Black
+        } as PopupTextOptions,
+        showClose: false,
+        onClose: () => {
+          console.info('close Button click')
+        },
+        // PopupButtonOptions 类型设置按钮内容
+        buttons: [{
+          text: 'confirm',
+          action: () => {
+            console.info('confirm button click')
+          },
+          fontSize: 15,
+          fontColor: Color.Black,
+        },
+          {
+            text: 'cancel',
+            action: () => {
+              console.info('cancel button click')
+            },
+            fontSize: 15,
+            fontColor: Color.Black
+          },] as [PopupButtonOptions?, PopupButtonOptions?]
+      })
+    }
+    .width(300)
+    .height(200)
+    .borderWidth(2)
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![](figures/popup_7.png)
+
+## 示例 2
+Popup布局镜像展示
+
+```ts
+// xxx.ets
+import {
+  Popup,
+  PopupOptions,
+  PopupTextOptions,
+  PopupButtonOptions,
+  PopupIconOptions
+}   from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PopupPage {
+  @State currentDirection: Direction = Direction.Auto
+
+  build() {
+    Column() {
+      // popup 自定义高级组件
+      Popup({
+        //PopupIconOptions 类型设置图标内容
+        direction: this.currentDirection,
+        icon: {
+          image: $r('app.media.icon'),
+          width: 32,
+          height: 32,
+          fillColor: Color.White,
           borderRadius: 16,
         } as PopupIconOptions,
         // PopupTextOptions 类型设置文字内容
@@ -129,7 +209,7 @@ struct PopupExample {
           fontSize: 15,
           fontColor: Color.Black,
         } as PopupTextOptions,
-        showClose: false,
+        showClose: true,
         onClose: () => {
           console.info('close Button click')
         },
@@ -152,13 +232,13 @@ struct PopupExample {
             fontColor: Color.Black,
           },] as [PopupButtonOptions?, PopupButtonOptions?],
       })
+
     }
-    .width(300)
-    .height(200)
-    .borderWidth(2)
     .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
   }
 }
 ```
 
-![](figures/popup_7.png)
+![](figures/popup_8.png)

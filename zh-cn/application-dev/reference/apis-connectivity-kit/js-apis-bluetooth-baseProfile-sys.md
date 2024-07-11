@@ -35,7 +35,7 @@ import { baseProfile } from '@kit.ConnectivityKit';
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -59,7 +59,7 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -85,7 +85,7 @@ try {
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -114,7 +114,7 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&l
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -142,7 +142,7 @@ try {
 
 getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -165,7 +165,7 @@ getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStr
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -191,7 +191,7 @@ try {
 
 getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -220,7 +220,7 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 |2900001 | Service stopped.                  
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |       |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |

@@ -1,9 +1,9 @@
 # 入门
-
+<!--Del-->
 - 快速入门
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
-
+<!--DelEnd-->
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -100,22 +100,25 @@
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
 
     - 状态管理（V2试用版）
-      - 状态管理（V2试用版）所属装饰器
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
-        - [\@Event装饰器：组件输出](arkts-new-event.md)
-        - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
-        - [!!语法：双向绑定](arkts-new-binding.md)
+      - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
+      - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
+      - [\@Local装饰器：组件内部状态](arkts-new-local.md)
+      - [\@Param装饰器：组件外部输入](arkts-new-param.md)
+      - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
+      - [\@Event装饰器：组件输出](arkts-new-event.md)
+      - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
+      - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
+      - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
+      - [!!语法：双向绑定](arkts-new-binding.md)
+      - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
+      - [AppStorageV2: 应用全局UI状态存储](arkts-new-appstoragev2.md)
+      - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
+      - [\@Type装饰器: 标记类属性的类型](arkts-new-type.md)
+      - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
       - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)

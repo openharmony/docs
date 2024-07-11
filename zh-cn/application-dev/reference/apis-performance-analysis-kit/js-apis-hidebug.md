@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hidebug.getNativeHeapSize
@@ -28,9 +28,11 @@ getNativeHeapSize(): bigint
 
 **示例：**
 
-  ```ts
-  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
+```
 
 ## hidebug.getNativeHeapAllocatedSize
 
@@ -48,9 +50,11 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```ts
-  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
+```
 
 ## hidebug.getNativeHeapFreeSize
 
@@ -67,9 +71,11 @@ getNativeHeapFreeSize(): bigint
 | bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
-  ```ts
-  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
+```
 
 ## hidebug.getPss
 
@@ -86,9 +92,11 @@ getPss(): bigint
 | bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let pss: bigint = hidebug.getPss();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let pss: bigint = hidebug.getPss();
+```
 
 ## hidebug.getVss<sup>11+<sup>
 
@@ -106,9 +114,11 @@ getVss(): bigint
 
 **示例：**
 
-  ```ts
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 let vss: bigint = hidebug.getVss();
-  ```
+```
 
 ## hidebug.getSharedDirty
 
@@ -126,9 +136,11 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```ts
-  let sharedDirty: bigint = hidebug.getSharedDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let sharedDirty: bigint = hidebug.getSharedDirty();
+```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
 
@@ -145,9 +157,11 @@ getPrivateDirty(): bigint
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let privateDirty: bigint = hidebug.getPrivateDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let privateDirty: bigint = hidebug.getPrivateDirty();
+```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
 
@@ -167,9 +181,11 @@ getCpuUsage(): number
 
 
 **示例：**
-  ```ts
-  let cpuUsage: number = hidebug.getCpuUsage();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let cpuUsage: number = hidebug.getCpuUsage();
+```
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
@@ -196,44 +212,37 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
-| 11400101 | the service id is invalid                                           |
+| 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs';
-import hidebug from '@ohos.hidebug';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class HidebugTest extends UIAbility {
-  public testfunc() {
-    let applicationContext: common.Context | null = null;
-    try {
-      applicationContext = this.context.getApplicationContext();
-    } catch (error) {
-      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-    }
-
-    let filesDir: string = applicationContext!.filesDir;
-    let path: string = filesDir + "/serviceInfo.txt";
-    console.info("output path: " + path);
-    let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    let serviceId: number = 10;
-    let args: Array<string> = new Array("allInfo");
-
-    try {
-      hidebug.getServiceDump(serviceId, file.fd, args);
-    } catch (error) {
-      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-    }
-    fs.closeSync(file);
-  }
+let applicationContext: common.Context | null = null;
+try {
+    let context = getContext() as common.UIAbilityContext;
+    applicationContext = context.getApplicationContext();
+} catch (error) {
+    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
-let t = new HidebugTest();
-t.testfunc();
+let filesDir: string = applicationContext!.filesDir;
+let path: string = filesDir + "/serviceInfo.txt";
+console.info("output path: " + path);
+let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+let serviceId: number = 10;
+let args: Array<string> = new Array("allInfo");
+
+try {
+    hidebug.getServiceDump(serviceId, file.fd, args);
+} catch (error) {
+    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
+fileIo.closeSync(file);
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -261,8 +270,8 @@ startJsCpuProfiling(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import { BusinessError } from '@ohos.base';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -284,8 +293,8 @@ stopJsCpuProfiling() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import { BusinessError } from '@ohos.base';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -321,8 +330,8 @@ dumpJsHeapData(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import { BusinessError } from '@ohos.base';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.dumpJsHeapData("heapData");
@@ -351,6 +360,8 @@ startProfiling(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -372,6 +383,8 @@ stopProfiling() : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -399,6 +412,8 @@ dumpHeapData(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.dumpHeapData("heap-20220216");
 ```
 
@@ -418,15 +433,14 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
-  ```
+```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
@@ -446,16 +460,15 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
 }
-  ```
+```
 
 ## hidebug.startAppTraceCapture<sup>12+</sup>
 
@@ -487,15 +500,15 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed.Possible causes:1.The limitSize is too small 2.The parameter value is not in enum 3. The parameter type error|
-| 11400102 | Have already capture trace                                          |
-| 11400103 | Without write permission on the file                                |
-| 11400104 | The status of the trace is abnormal                                 |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error|
+| 11400102 | Capture trace already enabled.                                         |
+| 11400103 | No write permission on the file.                                |
+| 11400104 | Abnormal trace status.                                 |
 
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -529,7 +542,7 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -558,9 +571,9 @@ getAppMemoryLimit() : MemoryLimit
 **示例**
 
 ```ts
- import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
- let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
 
 ## hidebug.getSystemCpuUsage<sup>12+</sup>
@@ -585,14 +598,14 @@ getSystemCpuUsage() : number
 
 | 错误码ID | 错误信息                                            |
 | ------- |-------------------------------------------------|
-| 11400104 | The status of the system cpu usage is abnormal. |
+| 11400104 | The status of the system CPU usage is abnormal. |
 
 **示例**
-  ```ts
-  import hidebug from '@ohos.hidebug';
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-  let cpuUsage: number = hidebug.getSystemCpuUsage();
-  ```
+let cpuUsage: number = hidebug.getSystemCpuUsage();
+```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
 
@@ -600,6 +613,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
 **注意：** 当设置的开发者选项开关打开时,此功能有效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -617,13 +632,13 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
 | 11400104 | Set limit failed due to remote exception |
 
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
@@ -648,8 +663,7 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
@@ -685,8 +699,7 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
@@ -714,8 +727,7 @@ getVMRuntimeStats(): GcStats
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
 hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
@@ -749,15 +761,14 @@ getVMRuntimeStat(item : string): number
 
 **错误码：**
 
-| 错误码ID | 错误信息                                                                                                           |
-| ------- |----------------------------------------------------------------------------------------------------------------|
-| 401 | the parameter check failed,Possible causes:1. the arg is not a string parameter. 2. the arg is unknown property. |
+| 错误码ID | 错误信息                                                                                                       |
+| ------- |------------------------------------------------------------------------------------------------------------|
+| 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
 hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
@@ -877,26 +888,21 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 说明         |
-| --------- | ------------ |
-| MAIN_THREAD  | 只采集当前应用主线程     |
-| ALL_THREADS |  采集当前应用下所有线程   |
+| 名称                         | 值 | 说明                    |
+| --------------------------- |---| ----------------------- |
+| MAIN_THREAD                 | 1 | 只采集当前应用主线程。|
+| ALL_THREADS                 | 2 | 采集当前应用下所有线程。 |
 
 ## GcStats<sup>12+</sup>
 
-用于存储GC统计信息的键值对类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+用于存储GC统计信息的键值对类型`Record<string,number>`。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 键类型          | 值类型    |
-| ------------- |--------|
-|  string | number |
-
-| GC属性名称                       | GC属性说明                    |
-|------------------------------|---------------------------|
-| ark.gc.gc-count              | 当前线程的GC次数。                |
-| ark.gc.gc-time               | 当前线程触发的GC总耗时，以ms为单位。      |
-| ark.gc.gc-bytes-allocated    | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
-| ark.gc.gc-bytes-freed        | 当前线程GC成功回收的内存，以B为单位。      |
-| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。           |
-
+| 参数名                     | 类型   | 必填 | 说明                      |
+|-------------------------| ------ | --- |------------------------- |
+| ark.gc.gc-count         | number | 是  |  当前线程的GC次数。|
+| ark.gc.gc-time          | number | 是  |  当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | number | 是  | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed   | number | 是 | 当前线程GC成功回收的内存，以B为单位。|
+| ark.gc.fullgc-longtime-count | number | 是 |  当前线程超长fullGC次数。 |

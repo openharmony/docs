@@ -651,7 +651,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_AddFinalizer (JSVM_Env env, JSVM_Value jsObject,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_AdjustExternalMemory()
@@ -674,7 +676,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_AdjustExternalMemory (JSVM_Env env, int64_t chan
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CallFunction()
@@ -700,7 +702,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CallFunction (JSVM_Env env, JSVM_Value recv, JSV
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_PENDING_EXCEPTION 表示执行的过程中产生了JS异常。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CheckObjectTypeTag()
@@ -724,7 +730,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CheckObjectTypeTag (JSVM_Env env, JSVM_Value val
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CloseEnvScope()
@@ -746,7 +754,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseEnvScope (JSVM_Env env, JSVM_EnvScope scope
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CloseEscapableHandleScope()
@@ -768,7 +776,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseEscapableHandleScope (JSVM_Env env, JSVM_Es
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_HANDLE_SCOPE_MISMATCH。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_HANDLE_SCOPE_MISMATCH 表示执行失败。
 
 
 ### OH_JSVM_CloseHandleScope()
@@ -790,7 +800,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseHandleScope (JSVM_Env env, JSVM_HandleScope
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CloseInspector()
@@ -811,7 +821,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseInspector (JSVM_Env env)
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CloseVMScope()
@@ -833,7 +843,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseVMScope (JSVM_VM vm, JSVM_VMScope scope )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CoerceToBool()
@@ -856,7 +866,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToBool (JSVM_Env env, JSVM_Value value, JS
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CoerceToNumber()
@@ -879,7 +889,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToNumber (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CoerceToObject()
@@ -902,7 +912,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToObject (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CoerceToString()
@@ -925,7 +935,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToString (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CompileScript()
@@ -952,7 +962,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript (JSVM_Env env, JSVM_Value script, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CompileScriptWithOrigin()
@@ -980,7 +994,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin (JSVM_Env env, JSVM_Valu
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
+
+JSVM_GENERIC_FAILURE 表示执行失败。
 
 
 ### OH_JSVM_CreateArray()
@@ -1002,7 +1020,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArray (JSVM_Env env, JSVM_Value * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateArraybuffer()
@@ -1026,7 +1044,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArraybuffer (JSVM_Env env, size_t byteLeng
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateArrayWithLength()
@@ -1049,7 +1067,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArrayWithLength (JSVM_Env env, size_t leng
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateBigintInt64()
@@ -1072,7 +1090,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintInt64 (JSVM_Env env, int64_t value, 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateBigintUint64()
@@ -1095,7 +1113,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintUint64 (JSVM_Env env, uint64_t value
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateBigintWords()
@@ -1120,7 +1138,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintWords (JSVM_Env env, int signBit, si
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CreateCodeCache()
@@ -1144,7 +1166,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateCodeCache (JSVM_Env env, JSVM_Script scrip
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示执行失败。
 
 
 ### OH_JSVM_CreateDataview()
@@ -1169,7 +1193,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateDataview (JSVM_Env env, size_t length, JSV
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateDate()
@@ -1192,7 +1216,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateDate (JSVM_Env env, double time, JSVM_Valu
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示执行失败。
 
 
 ### OH_JSVM_CreateDouble()
@@ -1215,7 +1241,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateDouble (JSVM_Env env, double value, JSVM_V
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateEnv()
@@ -1239,7 +1265,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnv (JSVM_VM vm, size_t propertyCount, con
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateEnvFromSnapshot()
@@ -1262,7 +1288,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnvFromSnapshot (JSVM_VM vm, size_t index,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CreateError()
@@ -1286,7 +1314,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateError (JSVM_Env env, JSVM_Value code, JSVM
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_CreateExternal()
@@ -1311,7 +1341,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateExternal (JSVM_Env env, void * data, JSVM_
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateFunction()
@@ -1336,7 +1366,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateFunction (JSVM_Env env, const char * utf8n
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateInt32()
@@ -1359,7 +1389,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateInt32 (JSVM_Env env, int32_t value, JSVM_V
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateInt64()
@@ -1382,7 +1412,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateInt64 (JSVM_Env env, int64_t value, JSVM_V
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateObject()
@@ -1404,7 +1434,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateObject (JSVM_Env env, JSVM_Value * result 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreatePromise()
@@ -1427,7 +1457,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreatePromise (JSVM_Env env, JSVM_Deferred * def
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CreateRangeError()
@@ -1451,7 +1483,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateRangeError (JSVM_Env env, JSVM_Value code,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_CreateReference()
@@ -1475,7 +1509,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateReference (JSVM_Env env, JSVM_Value value,
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateSnapshot()
@@ -1500,7 +1534,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateSnapshot (JSVM_VM vm, size_t contextCount,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_CreateStringLatin1()
@@ -1524,7 +1560,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringLatin1 (JSVM_Env env, const char * s
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateStringUtf16()
@@ -1548,7 +1584,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringUtf16 (JSVM_Env env, const char16_t 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateStringUtf8()
@@ -1572,7 +1608,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringUtf8 (JSVM_Env env, const char * str
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateSymbol()
@@ -1595,7 +1631,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateSymbol (JSVM_Env env, JSVM_Value descripti
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_CreateSyntaxError()
@@ -1619,7 +1657,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateSyntaxError (JSVM_Env env, JSVM_Value code
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
+
+\*
 
 
 ### OH_JSVM_CreateTypedarray()
@@ -1645,7 +1687,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateTypedarray (JSVM_Env env, JSVM_TypedarrayT
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_CreateTypeError()
@@ -1669,7 +1713,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateTypeError (JSVM_Env env, JSVM_Value code, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_CreateUint32()
@@ -1692,7 +1738,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateUint32 (JSVM_Env env, uint32_t value, JSVM
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_CreateVM()
@@ -1714,7 +1760,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM (const JSVM_CreateVMOptions * options, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_DefineClass()
@@ -1741,7 +1789,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClass (JSVM_Env env, const char * utf8name
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_DefineClassWithPropertyHandler()
@@ -1770,7 +1818,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClassWithPropertyHandler (JSVM_Env env, co
 
 **返回：**
 
-成功则返回JSVM_OK。失败则返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_DefineProperties()
@@ -1794,7 +1844,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineProperties (JSVM_Env env, JSVM_Value objec
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_DeleteElement()
@@ -1818,7 +1872,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeleteElement (JSVM_Env env, JSVM_Value object, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_DeleteProperty()
@@ -1842,7 +1898,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeleteProperty (JSVM_Env env, JSVM_Value object,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_DeleteReference()
@@ -1864,7 +1922,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeleteReference (JSVM_Env env, JSVM_Ref ref )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_DestroyEnv()
@@ -1885,7 +1943,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DestroyEnv (JSVM_Env env)
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_DestroyVM()
@@ -1906,7 +1964,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DestroyVM (JSVM_VM vm)
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_DetachArraybuffer()
@@ -1928,7 +1986,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DetachArraybuffer (JSVM_Env env, JSVM_Value arra
 
 **返回：**
 
-如果成功则返回JSVM_OK。如果传入的是不可拆解的ArrayBuffer， 则返回JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED。
+返回执行状态码 JSVM_Status。 如果JSVM_OK 表示执行成功。
+
+JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED 表示传入的参数不是可分析的ArrayBuffer。
 
 
 ### OH_JSVM_Equals()
@@ -1952,7 +2012,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Equals (JSVM_Env env, JSVM_Value lhs, JSVM_Value
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_EscapeHandle()
@@ -1976,7 +2036,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_EscapeHandle (JSVM_Env env, JSVM_EscapableHandle
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_ESCAPE_CALLED_TWICE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_ESCAPE_CALLED_TWICE 表示scope对象已被关闭。
 
 
 ### OH_JSVM_GetAllPropertyNames()
@@ -2002,7 +2064,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetAllPropertyNames (JSVM_Env env, JSVM_Value ob
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_GetAndClearLastException()
@@ -2024,7 +2090,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetAndClearLastException (JSVM_Env env, JSVM_Val
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetArraybufferInfo()
@@ -2048,7 +2114,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetArraybufferInfo (JSVM_Env env, JSVM_Value arr
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_GetArrayLength()
@@ -2071,7 +2139,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetArrayLength (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_ARRAY_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_ARRAY_EXPECTED 表示传入的参数不是Array类型。
 
 
 ### OH_JSVM_GetBoolean()
@@ -2094,7 +2164,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetBoolean (JSVM_Env env, bool value, JSVM_Value
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetCbInfo()
@@ -2120,7 +2190,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetCbInfo (JSVM_Env env, JSVM_CallbackInfo cbinf
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetDataviewInfo()
@@ -2146,7 +2216,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetDataviewInfo (JSVM_Env env, JSVM_Value datavi
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_GetDateValue()
@@ -2169,7 +2241,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetDateValue (JSVM_Env env, JSVM_Value value, do
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_DATE_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_DATE_EXPECTED 表示传入参数不是Date类型。
 
 
 ### OH_JSVM_GetElement()
@@ -2193,7 +2267,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetElement (JSVM_Env env, JSVM_Value object, uin
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_GetGlobal()
@@ -2215,7 +2291,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetGlobal (JSVM_Env env, JSVM_Value * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetHeapStatistics()
@@ -2237,7 +2313,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetHeapStatistics (JSVM_VM vm, JSVM_HeapStatisti
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetInstanceData()
@@ -2259,7 +2335,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetInstanceData (JSVM_Env env, void ** data )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetLastErrorInfo()
@@ -2281,7 +2357,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetLastErrorInfo (JSVM_Env env, const JSVM_Exten
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetNamedProperty()
@@ -2305,7 +2381,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetNamedProperty (JSVM_Env env, JSVM_Value objec
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_GetNewTarget()
@@ -2328,7 +2406,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetNewTarget (JSVM_Env env, JSVM_CallbackInfo cb
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetNull()
@@ -2350,7 +2428,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetNull (JSVM_Env env, JSVM_Value * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetProperty()
@@ -2374,7 +2452,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetProperty (JSVM_Env env, JSVM_Value object, JS
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_GetPropertyNames()
@@ -2397,7 +2477,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPropertyNames (JSVM_Env env, JSVM_Value objec
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetPrototype()
@@ -2420,7 +2500,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPrototype (JSVM_Env env, JSVM_Value object, J
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetReferenceValue()
@@ -2443,7 +2523,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetReferenceValue (JSVM_Env env, JSVM_Ref ref, J
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetTypedarrayInfo()
@@ -2470,7 +2550,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetTypedarrayInfo (JSVM_Env env, JSVM_Value type
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_GetUndefined()
@@ -2492,7 +2574,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetUndefined (JSVM_Env env, JSVM_Value * result 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetValueBigintInt64()
@@ -2516,7 +2598,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBigintInt64 (JSVM_Env env, JSVM_Value va
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入的值非BigInt，则返回JSVM_BIGINT_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_BIGINT_EXPECTED 表示传入的参数不是BitInt类型。
 
 
 ### OH_JSVM_GetValueBigintUint64()
@@ -2540,7 +2624,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBigintUint64 (JSVM_Env env, JSVM_Value v
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入的值非BigInt，则返回JSVM_BIGINT_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_BIGINT_EXPECTED 表示传入的参数不是BitInt类型。
 
 
 ### OH_JSVM_GetValueBigintWords()
@@ -2565,7 +2651,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBigintWords (JSVM_Env env, JSVM_Value va
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_BIGINT_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_BIGINT_EXPECTED 表示传入的参数不是BitInt类型。
 
 
 ### OH_JSVM_GetValueBool()
@@ -2588,7 +2676,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBool (JSVM_Env env, JSVM_Value value, bo
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非布尔值的JSVM_Value，则返回JSVM_BOOLEAN_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_BOOLEAN_EXPECTED 表示传入的参数不是boolean类型。
 
 
 ### OH_JSVM_GetValueDouble()
@@ -2611,7 +2701,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueDouble (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非数字的JSVM_Value，则返回JSVM_NUMBER_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_NUMBER_EXPECTED 表示传入的参数不是number类型。
 
 
 ### OH_JSVM_GetValueExternal()
@@ -2634,7 +2726,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueExternal (JSVM_Env env, JSVM_Value value
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非外部的JSVM_Value，则返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入参数非外部的JSVM_Value。
 
 
 ### OH_JSVM_GetValueInt32()
@@ -2657,7 +2751,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueInt32 (JSVM_Env env, JSVM_Value value, i
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非数字的JSVM_Value，则返回JSVM_NUMBER_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_NUMBER_EXPECTED 表示传入的参数不是number类型。
 
 
 ### OH_JSVM_GetValueInt64()
@@ -2680,7 +2776,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueInt64 (JSVM_Env env, JSVM_Value value, i
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非数字的JSVM_Value，则返回JSVM_NUMBER_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_NUMBER_EXPECTED 表示传入的参数不是number类型。
 
 
 ### OH_JSVM_GetValueStringLatin1()
@@ -2705,7 +2803,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringLatin1 (JSVM_Env env, JSVM_Value v
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非string的JSVM_Value，则返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_GetValueStringUtf16()
@@ -2730,7 +2830,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf16 (JSVM_Env env, JSVM_Value va
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非string的JSVM_Value，则返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_GetValueStringUtf8()
@@ -2755,7 +2857,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf8 (JSVM_Env env, JSVM_Value val
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非string的JSVM_Value，则返回JSVM_STRING_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
 
 
 ### OH_JSVM_GetValueUint32()
@@ -2778,7 +2882,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueUint32 (JSVM_Env env, JSVM_Value value, 
 
 **返回：**
 
-成功则返回JSVM_OK。如果传入非数字的JSVM_Value，则返回JSVM_NUMBER_EXPECTED。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_NUMBER_EXPECTED 表示传入的参数不是number类型。
 
 
 ### OH_JSVM_GetVersion()
@@ -2800,7 +2906,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVersion (JSVM_Env env, uint32_t * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetVM()
@@ -2822,7 +2928,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVM (JSVM_Env env, JSVM_VM * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_GetVMInfo()
@@ -2843,7 +2949,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVMInfo (JSVM_VMInfo * result)
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_HasElement()
@@ -2867,7 +2973,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasElement (JSVM_Env env, JSVM_Value object, uin
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_HasNamedProperty()
@@ -2891,7 +2999,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasNamedProperty (JSVM_Env env, JSVM_Value objec
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_HasOwnProperty()
@@ -2915,7 +3025,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasOwnProperty (JSVM_Env env, JSVM_Value object,
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_NAME_EXPECTED或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_HasProperty()
@@ -2939,7 +3051,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasProperty (JSVM_Env env, JSVM_Value object, JS
 
 **返回：**
 
-成功则返回JSVM_OK，可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_Init()
@@ -2960,7 +3074,7 @@ EXTERN_C_START JSVM_EXTERN JSVM_Status OH_JSVM_Init (const JSVM_InitOptions * op
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_Instanceof()
@@ -2984,7 +3098,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Instanceof (JSVM_Env env, JSVM_Value object, JSV
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_FUNCTION_EXPECTED或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_FUNCTION_EXPECTED 表示传入的参数不是Function类型。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_IsArray()
@@ -3007,7 +3125,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsArray (JSVM_Env env, JSVM_Value value, bool * 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsArraybuffer()
@@ -3030,7 +3148,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsArraybuffer (JSVM_Env env, JSVM_Value value, b
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsBigInt()
@@ -3053,7 +3171,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBigInt (JSVM_Env env, JSVM_Value value, bool *
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsBoolean()
@@ -3076,7 +3194,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBoolean (JSVM_Env env, JSVM_Value value, bool 
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsDataview()
@@ -3099,7 +3217,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDataview (JSVM_Env env, JSVM_Value value, bool
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsDate()
@@ -3122,7 +3240,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDate (JSVM_Env env, JSVM_Value value, bool * i
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsDetachedArraybuffer()
@@ -3145,7 +3263,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDetachedArraybuffer (JSVM_Env env, JSVM_Value 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsError()
@@ -3168,7 +3286,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsError (JSVM_Env env, JSVM_Value value, bool * 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsExceptionPending()
@@ -3190,7 +3308,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsExceptionPending (JSVM_Env env, bool * result 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsFunction()
@@ -3213,7 +3331,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsFunction (JSVM_Env env, JSVM_Value value, bool
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsNull()
@@ -3236,7 +3354,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNull (JSVM_Env env, JSVM_Value value, bool * i
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsNullOrUndefined()
@@ -3259,7 +3377,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNullOrUndefined (JSVM_Env env, JSVM_Value valu
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsNumber()
@@ -3282,7 +3400,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNumber (JSVM_Env env, JSVM_Value value, bool *
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsObject()
@@ -3305,7 +3423,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsObject (JSVM_Env env, JSVM_Value value, bool *
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsPromise()
@@ -3328,7 +3446,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsPromise (JSVM_Env env, JSVM_Value value, bool 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsString()
@@ -3351,7 +3469,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsString (JSVM_Env env, JSVM_Value value, bool *
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsSymbol()
@@ -3374,7 +3492,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsSymbol (JSVM_Env env, JSVM_Value value, bool *
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_IsTypedarray()
@@ -3397,7 +3515,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsTypedarray (JSVM_Env env, JSVM_Value value, bo
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_IsUndefined()
@@ -3420,7 +3538,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsUndefined (JSVM_Env env, JSVM_Value value, boo
 
 **返回：**
 
-只返回JSVM_OK，因为这个API不会触发任何异常。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功，这个API不会触发任何异常。
 
 
 ### OH_JSVM_JsonParse()
@@ -3443,7 +3561,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_JsonParse (JSVM_Env env, JSVM_Value jsonString, 
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED或JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_STRING_EXPECTED 表示传入的参数不是string类型。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_JsonStringify()
@@ -3466,7 +3588,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_JsonStringify (JSVM_Env env, JSVM_Value jsonObje
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_MemoryPressureNotification()
@@ -3488,7 +3612,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_MemoryPressureNotification (JSVM_Env env, JSVM_M
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_NewInstance()
@@ -3513,7 +3637,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_NewInstance (JSVM_Env env, JSVM_Value constructo
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_PENDING_EXCEPTION 表示执行的过程中产生了JS异常。
 
 
 ### OH_JSVM_ObjectFreeze()
@@ -3535,7 +3661,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ObjectFreeze (JSVM_Env env, JSVM_Value object )
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_ObjectSeal()
@@ -3557,7 +3685,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ObjectSeal (JSVM_Env env, JSVM_Value object )
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_OpenEnvScope()
@@ -3579,7 +3709,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenEnvScope (JSVM_Env env, JSVM_EnvScope * resu
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_OpenEscapableHandleScope()
@@ -3601,7 +3731,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenEscapableHandleScope (JSVM_Env env, JSVM_Esc
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_OpenHandleScope()
@@ -3623,7 +3753,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenHandleScope (JSVM_Env env, JSVM_HandleScope 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_OpenInspector()
@@ -3646,7 +3776,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspector (JSVM_Env env, const char * host, 
 
 **返回：**
 
-成功则返回JSVM_OK。失败则返回JSVM_PENDING_EXCEPTION。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_PENDING_EXCEPTION 表示执行的过程中产生了JS异常。
 
 
 ### OH_JSVM_OpenVMScope()
@@ -3668,7 +3800,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenVMScope (JSVM_VM vm, JSVM_VMScope * result )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ReferenceRef()
@@ -3691,7 +3823,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ReferenceRef (JSVM_Env env, JSVM_Ref ref, uint32
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ReferenceUnref()
@@ -3714,7 +3846,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ReferenceUnref (JSVM_Env env, JSVM_Ref ref, uint
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示执行失败。
 
 
 ### OH_JSVM_RejectDeferred()
@@ -3737,7 +3871,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RejectDeferred (JSVM_Env env, JSVM_Deferred defe
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_RemoveWrap()
@@ -3760,7 +3894,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RemoveWrap (JSVM_Env env, JSVM_Value jsObject, v
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ResolveDeferred()
@@ -3783,7 +3917,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ResolveDeferred (JSVM_Env env, JSVM_Deferred def
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_RunScript()
@@ -3806,7 +3940,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RunScript (JSVM_Env env, JSVM_Script script, JSV
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示执行失败。
 
 
 ### OH_JSVM_SetElement()
@@ -3830,7 +3966,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetElement (JSVM_Env env, JSVM_Value object, uin
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_SetInstanceData()
@@ -3854,7 +3992,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetInstanceData (JSVM_Env env, void * data, JSVM
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_SetNamedProperty()
@@ -3878,7 +4016,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetNamedProperty (JSVM_Env env, JSVM_Value objec
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_SetProperty()
@@ -3902,7 +4042,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetProperty (JSVM_Env env, JSVM_Value object, JS
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_StartCpuProfiler()
@@ -3924,7 +4066,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_StartCpuProfiler (JSVM_VM vm, JSVM_CpuProfiler *
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_StopCpuProfiler()
@@ -3948,7 +4090,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_StopCpuProfiler (JSVM_VM vm, JSVM_CpuProfiler pr
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_StrictEquals()
@@ -3972,7 +4114,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_StrictEquals (JSVM_Env env, JSVM_Value lhs, JSVM
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_SymbolFor()
@@ -3996,7 +4138,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SymbolFor (JSVM_Env env, const char * utf8descri
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_TakeHeapSnapshot()
@@ -4019,7 +4161,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_TakeHeapSnapshot (JSVM_VM vm, JSVM_OutputStream 
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_Throw()
@@ -4041,7 +4183,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Throw (JSVM_Env env, JSVM_Value error )
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ThrowError()
@@ -4064,7 +4206,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ThrowError (JSVM_Env env, const char * code, con
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ThrowRangeError()
@@ -4087,7 +4229,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ThrowRangeError (JSVM_Env env, const char * code
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ThrowSyntaxError()
@@ -4110,7 +4252,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ThrowSyntaxError (JSVM_Env env, const char * cod
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_ThrowTypeError()
@@ -4133,7 +4275,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ThrowTypeError (JSVM_Env env, const char * code,
 
 **返回：**
 
-成功则返回JSVM_OK。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
 
 
 ### OH_JSVM_Typeof()
@@ -4156,7 +4298,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Typeof (JSVM_Env env, JSVM_Value value, JSVM_Val
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_TypeTagObject()
@@ -4179,7 +4323,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_TypeTagObject (JSVM_Env env, JSVM_Value value, c
 
 **返回：**
 
-成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE或JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_Unwrap()
@@ -4202,7 +4350,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Unwrap (JSVM_Env env, JSVM_Value jsObject, void 
 
 **返回：**
 
-成功则返回JSVM_OK，如果jsObject传入的不是一个对象，失败返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。
 
 
 ### OH_JSVM_WaitForDebugger()
@@ -4224,7 +4374,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger (JSVM_Env env, bool breakNextLin
 
 **返回：**
 
-成功则返回JSVM_OK。失败则返回JSVM_GENERIC_FAILURE。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_GENERIC_FAILURE 表示有未知的原因导致执行失败。
 
 
 ### OH_JSVM_Wrap()
@@ -4250,4 +4402,6 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Wrap (JSVM_Env env, JSVM_Value jsObject, void * 
 
 **返回：**
 
-成功则返回JSVM_OK，如果jsObject传入的不是一个对象，失败返回JSVM_INVALID_ARG。
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。
+
+JSVM_INVALID_ARG 表示传入的参数不合法。

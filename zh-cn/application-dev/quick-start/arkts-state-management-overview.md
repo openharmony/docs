@@ -34,7 +34,7 @@
 
 - 数据源/同步源：状态变量的原始来源，可以同步给不同的状态数据。通常意义为父组件传给子组件的数据。以下示例中数据源为count: 1。
 
-- 命名参数机制：父组件通过指定参数传递给子组件的状态变量，为父子传递同步参数的主要手段。示例：CompA: ({ aProp: this.aProp })。
+- 命名参数机制：父组件通过指定参数传递给子组件的状态变量，为父子传递同步参数的主要手段。示例：CompA({ aProp: this.aProp })。
 
 - 从父组件初始化：父组件使用命名参数机制，将指定参数传递给子组件。子组件初始化的默认值在有父组件传值的情况下，会被覆盖。示例：
 
@@ -105,7 +105,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 - [\@Provide/\@Consume](arkts-provide-and-consume.md)：\@Provide/\@Consume装饰的变量用于跨组件层级（多层组件）同步状态变量，可以不需要通过参数命名机制传递，通过alias（别名）或者属性名绑定。
 
-- [\@Observed](arkts-observed-and-objectlink.md)：\@Observed装饰class，需要观察多层嵌套场景的class需要被\@Observed装饰。单独使用\@Observed没有任何作用，需要和\@ObjectLink、\@Prop连用。
+- [\@Observed](arkts-observed-and-objectlink.md)：\@Observed装饰class，需要观察多层嵌套场景的class需要被\@Observed装饰。单独使用\@Observed没有任何作用，需要和\@ObjectLink、\@Prop联用。
 
 - [\@ObjectLink](arkts-observed-and-objectlink.md)：\@ObjectLink装饰的变量接收\@Observed装饰的class的实例，应用于观察多层嵌套场景，和父组件的数据源构建双向同步。
 
@@ -203,6 +203,8 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 - 将V1版本装饰器\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp、\@Watch等在\@ComponentV2装饰的自定义组件中使用。
 - 将V2版本装饰器\@Local、\@Param、\@Once、\@Event、\@Monitor、\@Provider、\@Consumer在\@Component装饰的自定义组件中使用。
 - 将\@Component与\@ComponentV2同时使用。
+- 在\@Component装饰的自定义组件中通过\@State、\@Prop、\@Link、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp装饰的变量并且该变量的类型为\@ObservedV2装饰的类。
+- 在\@ComponentV2装饰的自定义组件中通过\@Param、\@Local、\@Event、\@Provider()、\@Consumer()装饰的变量并且该变量的类型为\@Observed装饰的类。
 
 将V2装饰器与V1装饰器混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此，不能将状态管理V2与状态管理V1在以上提到的场景混合使用。
 

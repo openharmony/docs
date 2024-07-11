@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-The @ohos.app.appstartup.startupManager module enables the AppStartup framework to manage component initialization.
+The @ohos.app.appstartup.startupManager module enables the AppStartup framework to manage component initialization. It can be called only in the main thread.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The @ohos.app.appstartup.startupManager module enables the AppStartup framework 
 ## Modules to Import
 
 ```ts
-import startupManager  from '@ohos.app.appstartup.startupManager';
+import { startupManager }  from '@kit.AbilityKit';
 ```
 
 ## startupManager.run
@@ -32,7 +32,7 @@ Runs the AppStartup framework.
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -50,30 +50,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
     let startParams = 'Sample_001';
     try {
-        startup.run(startParams).then(() => {
+      startupManager.run([startParams]).then(() => {
         console.log('StartupTest startupManager run then, startParams = ')
-        }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error)
-        let errCode = error.code
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = JSON.stringify((error as BusinessError).message);
+      let errCode = (error as BusinessError).code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
 }
 ```
@@ -89,12 +85,9 @@ Removes the initialization results of all components.
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -106,8 +99,8 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = removeAllStartupTaskResults.removeAllStartupTaskResults();
-    
+    startupManager.removeAllStartupTaskResults();
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -151,12 +144,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -213,12 +203,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -236,7 +223,7 @@ export default class EntryAbility extends UIAbility {
     } else {
       console.info("Sample_001 uninitialized");
     }
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -273,12 +260,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -291,7 +275,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     startupManager.removeStartupTaskResult('Sample_001');
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

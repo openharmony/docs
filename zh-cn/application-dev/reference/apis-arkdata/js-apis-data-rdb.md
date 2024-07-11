@@ -252,6 +252,8 @@ promise.then(()=>{
 
 ## ValueType
 
+type ValueType = number | string | boolean
+
 用于表示允许的数据字段类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -264,6 +266,8 @@ promise.then(()=>{
 
 
 ## ValuesBucket
+
+type ValuesBucket = { [key: string]: ValueType | Uint8Array | null }
 
 用于存储键值对的类型。
 
@@ -688,6 +692,14 @@ isNotNull(field: string): RdbPredicates
 | 类型 | 说明 |
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                                                                       |
+| --------- |----------------------------------------------------------------------------------------------------------------|
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
 **示例：**
 

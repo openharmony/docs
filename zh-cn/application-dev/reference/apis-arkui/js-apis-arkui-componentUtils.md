@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentUtils } from '@kit.ArkUI';
 ```
 ## componentUtils.getRectangleById
 
@@ -21,7 +21,7 @@ getRectangleById(id: string): ComponentInfo
 
 根据组件ID获取组件实例对象, 通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,13 +40,13 @@ getRectangleById(id: string): ComponentInfo
 **示例：**
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils';
+import { componentUtils } from '@kit.ArkUI';
 let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Size 
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Offset
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,7 +85,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### TranslateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,7 +97,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### ScaleResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,7 +111,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### RotateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,11 +126,13 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Matrix4Result
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围   | 说明                               |
+| 类型 | 说明                               |
 | --------| -----------------------------------|
 | [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
 
@@ -158,8 +160,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 **示例：**
 
   ```ts
-import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.arkui.componentUtils';
+import { matrix4, componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component

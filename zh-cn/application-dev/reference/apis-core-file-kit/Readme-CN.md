@@ -1,4 +1,4 @@
-# Core File Kit API参考
+# Core File Kit（文件基础服务）
 
 - ArkTS API
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
@@ -12,6 +12,7 @@
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
+  - [@ohos.file.BackupExtensionContext (备份恢复扩展能力)](js-apis-file-backupextensioncontext.md)
   <!--Del-->
   - [@ohos.file.backup (备份恢复)(系统接口)](js-apis-file-backup-sys.md)
   - [@ohos.file.cloudSync (端云同步能力)(系统接口)](js-apis-file-cloudsync-sys.md)

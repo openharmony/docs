@@ -11,7 +11,7 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 ## Modules to Import
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## onShareForm
@@ -39,7 +39,7 @@ Called to notify the widget provider that the widget host is sharing the widget 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onShareForm(formId: string) {
@@ -78,7 +78,7 @@ Called to notify the widget provider that the widget host is requesting the cust
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormData(formId: string) {

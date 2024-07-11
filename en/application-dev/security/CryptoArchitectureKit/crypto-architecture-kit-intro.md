@@ -30,7 +30,7 @@ Crypto Architecture Kit provides the following functionalities, with algorithm s
 
 - [Random Number Generation](crypto-generate-random-number.md)
 
-- [Key Derivation](crypto-key-derivation.md)
+- [Key Derivation](crypto-key-derivation-overview.md)
 
 ## Basic Concepts
 
@@ -53,5 +53,3 @@ Before you get started, be sure to understand the following concepts:
 Crypto Architecture Kit provides cryptographic operations, but not key management. It is used when temporary session keys are used only in the memory or the applications implement secure key storage.
 
 If key management (such as key storage) is required, use [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md).
-
-<!--no_check-->
