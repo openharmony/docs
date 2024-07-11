@@ -1,6 +1,10 @@
 # @ohos.calendarManager (日程管理能力)
 
-本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。
+
+- 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
+
+- 日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -124,6 +128,16 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 | calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历帐户信息。                     |
 | callback        | AsyncCallback\<[Calendar](#calendar)> | 是   | 回调函数，返回创建的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
@@ -171,6 +185,16 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 | ------------------------------ | ------------------------------------- |
 | Promise<[Calendar](#calendar)> | Promise对象，返回创建的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
@@ -207,6 +231,16 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 | -------- | --------------------- | ---- | -------------- |
 | calendar | [Calendar](#calendar) | 是   | 即将删除的Calendar对象。 |
 | callback | AsyncCallback\<void>  | 是   | 无返回结果的AsyncCallback对象。     |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
@@ -261,6 +295,16 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
@@ -306,6 +350,16 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 | -------- | ------------------------------------ | ---- | ------------------------------------ |
 | callback | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
@@ -341,6 +395,16 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 | --------------- | ------------------------------------ | ---- | ------------------------------------ |
 | calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历帐户信息。                       |
 | callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
@@ -392,6 +456,16 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 | ------------------------------ | --------------------------------------- |
 | Promise<[Calendar](#calendar)> | Promise对象，返回查询到的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
@@ -422,6 +496,16 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 | 参数名   | 类型                                   | 必填 | 说明                                      |
 | -------- | -------------------------------------- | ---- | ----------------------------------------- |
 | callback | AsyncCallback<[Calendar](#calendar)[]> | 是   | 回调函数， 返回查询到的Calendar对象数组。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
@@ -457,6 +541,16 @@ getAllCalendars(): Promise\<Calendar[]>
 | 类型                             | 说明                                        |
 | -------------------------------- | ------------------------------------------- |
 | Promise<[Calendar](#calendar)[]> | Promise对象，返回查询到的Calendar对象数组。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
@@ -1418,7 +1512,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | 名称           | 类型     | 只读    | 必填    | 说明                                                         |
 | -------------- |--------|-------|-------| ------------------------------------------------------------ |
 | enableReminder | boolean | 否     | 否     | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | string&#124;number | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| color          | number \| string | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
@@ -1437,7 +1531,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                          |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。                                                                                                  |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                 |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                              |
 | description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
 | service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
