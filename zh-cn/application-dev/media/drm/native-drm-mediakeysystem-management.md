@@ -24,7 +24,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 3. 调用MediaKeySystem类中的OH_MediaKeySystem_IsSupported方法查询设备是否支持对应名称、对应媒体类型、安全保护级别的DRM方案。
 
    ```c++
-    const char *uuid = "com.wiseplay.drm";
+    const char *uuid = "com.clearplay.drm";
     const char *mimeType = "video/mp4";
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_IsSupported(uuid);
@@ -59,7 +59,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -78,7 +78,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    ```c++
     // 创建MediaKeySystem实例
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -127,7 +127,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -155,7 +155,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallback()
     {
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -178,7 +178,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -210,7 +210,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
      int32_t requestLen;
      char defaultUrl[MAX_DEFAULT_URL_LEN];
      MediaKeySystem *keySystem = NULL;
-     const char *name = "com.wiseplay.drm";
+     const char *name = "com.clearplay.drm";
      ret = OH_MediaKeySystem_Create(name, &keySystem);
      if (ret != DRM_OK) {
        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -243,7 +243,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -262,7 +262,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -286,7 +286,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -310,7 +310,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -334,7 +334,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```c++
     MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
+    const char *name = "com.clearplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
@@ -358,7 +358,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
       DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
       {
       MediaKeySystem *keySystem = NULL;
-      const char *name = "com.wiseplay.drm";
+      const char *name = "com.clearplay.drm";
       ret = OH_MediaKeySystem_Create(name, &keySystem);
       if (ret != DRM_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
