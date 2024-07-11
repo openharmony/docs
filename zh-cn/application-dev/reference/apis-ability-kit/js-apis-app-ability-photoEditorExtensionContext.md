@@ -24,12 +24,12 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-| uri | string  | 是  | 编辑后图片的[uri](../apis-core-file-kit/js-apis-file-fileuri.md),格式为file://\<bundleName>/\<sandboxPath>。  |
+| uri | string  | 是  | 编辑后图片的[uri](../apis-core-file-kit/js-apis-file-fileuri.md)，格式为file://\<bundleName>/\<sandboxPath>。  |
 
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片uri存在want.uri中,[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
+| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片uri存在want.uri中，[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
 
 **错误码：**
 
@@ -115,7 +115,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中,[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
+| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中，[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
 
 **错误码：**
 
