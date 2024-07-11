@@ -836,6 +836,9 @@
             - 开发指导<!--huks-identity-authentication-dev-->
               - [用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-user-identity-authentication.md)
               - [细粒度用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
+          - HMAC
+              - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
+              - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
         - 密钥删除<!--huks-delete-key-->
           - [密钥删除(ArkTS)](security/UniversalKeystoreKit/huks-delete-key-arkts.md)
           - [密钥删除(C/C++)](security/UniversalKeystoreKit/huks-delete-key-ndk.md)
@@ -1372,7 +1375,7 @@
         - JSVM-API开发规范
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
-        - JSVM-API典型使用场景<!--jsvm-scenarios-->
+        - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
@@ -1456,6 +1459,7 @@
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
         - 通用能力的接口(推荐)
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
+          - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
           - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
           - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
@@ -1647,6 +1651,7 @@
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
         - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
         - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
+        - [锁屏敏感数据管理错误码](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
     - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
       - ArkTS API<!--accessibility-arkts-->
         - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
@@ -2975,7 +2980,7 @@
                 - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
-      - Mdm Kit（企业设备管理服务）<!--mdm-api-->
+      - MDM Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
           - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
