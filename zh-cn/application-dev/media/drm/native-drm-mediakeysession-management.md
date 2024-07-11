@@ -9,10 +9,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 1. 导入NDK接口，接口中提供了DRM相关的属性和方法，导入方法如下。
 
    ```c++
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/native_drm_common.h"
+    #include "multimedia/drm_framework/native_drm_err.h"
+    #include "multimedia/drm_framework/native_mediakeysession.h"
+    #include "multimedia/drm_framework/native_mediakeysystem.h"
    ```
 
 2. 在CMake脚本中链接Drm NDK动态库。
@@ -26,15 +26,15 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
@@ -51,7 +51,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     info.optionsCount = 1;
     ret = OH_MediaKeySession_GenerateMediaKeyRequest(keySession,
         &info, &mediaKeyRequest);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GenerateMediaKeyRequest failed.");
         return ret;
     }
@@ -60,17 +60,17 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     uint8_t response[5] = {1, 2, 3, 4, 5};
     ret = OH_MediaKeySession_ProcessMediaKeyResponse(keySession,
         response, sizeof(response)/sizeof(uint8_t), mediaKeyId, &mediaKeyIdLen);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ProcessMediaKeyResponse failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -81,31 +81,31 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     DRM_MediaKeyStatus mediaKeyStatus;
     ret = OH_MediaKeySession_CheckMediaKeyStatus(keySession, &mediaKeyStatus);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_CheckMediaKeyStatus failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -116,30 +116,30 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     ret = OH_MediaKeySession_ClearMediaKeys(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ClearMediaKeys failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -150,15 +150,15 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
@@ -168,7 +168,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     int32_t mediaKeyIdLen = sizeof(mediaKeyId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_GenerateOfflineReleaseRequest(keySession,
         mediaKeyId, mediaKeyIdLen, releaseRequest, &releaseRequestLen);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GenerateOfflineReleaseRequest failed.");
         return ret;
     }
@@ -178,17 +178,17 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     int32_t offlineMediaKeyIdLen = sizeof(offlineMediaKeyId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(keySession, offlineMediaKeyId, offlineMediaKeyIdLen
         keyReleaseResponse, keyReleaseResponseLen);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ProcessOfflineReleaseResponse failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -199,32 +199,32 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     uint8_t mediaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     int32_t keyIdLen = sizeof(testRestoreId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_RestoreOfflineMediaKeys(keySession, mediaKeyId, keyIdLen);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_RestoreOfflineMediaKeys failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -235,32 +235,32 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     DRM_ContentProtectionLevel sessionContentProtectionLevel;
     ret = OH_MediaKeySession_GetContentProtectionLevel(keySession,
         &sessionContentProtectionLevel);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GetContentProtectionLevel failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -271,32 +271,32 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     bool requireSecureDecoder;
     ret = OH_MediaKeySession_RequireSecureDecoderModule(keySession,
         "video/mp4", &requireSecureDecoder);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_RequireSecureDecoderModule failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
         return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
         return ret;
     }
@@ -318,22 +318,22 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     {
      MediaKeySystem *keySystem = NULL;
      const char *name = "com.clearplay.drm";
-     ret = OH_MediaKeySystem_Create(name, &keySystem);
-     if (ret != DRM_OK) {
+     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
          return ret;
      }
      DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
      MediaKeySession *keySession = NULL;
      ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-     if (ret != DRM_OK) {
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
          return ret;
      }
      MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBack, TestSessoinKeyChangeCallBack };
      ret = OH_MediaKeySession_SetMediaKeySessionCallback(keySession,
         &sessionCallback);
-     if (ret != DRM_OK) {
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetMediaKeySessionCallback failed.");
          return ret;
      }
@@ -357,22 +357,22 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     {
      MediaKeySystem *keySystem = NULL;
      const char *name = "com.clearplay.drm";
-     ret = OH_MediaKeySystem_Create(name, &keySystem);
-     if (ret != DRM_OK) {
+     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
          return ret;
      }
      DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
      MediaKeySession *keySession = NULL;
      ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-     if (ret != DRM_OK) {
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
          return ret;
      }
      OH_MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBackWithObj, TestSessoinKeyChangeCallBackWithObj };
      ret = OH_MediaKeySession_SetCallback(keySession,
         &sessionCallback);
-     if (ret != DRM_OK) {
+     if (ret != DRM_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetCallback failed.");
          return ret;
      }
@@ -384,25 +384,25 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     ```c++
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
+    Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
         return ret;
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
         return ret;
     }
     ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
