@@ -778,6 +778,7 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateStringUtf8 | 根据 Utf8 编码的字符串创建一个 JavaScript string 对象 |
 |OH_JSVM_CreateMap | 创建一个新的 JavaScript Map对象 |
 |OH_JSVM_CreateRegExp | 根据输入的字符串创建一个JavaScript 正则对象 |
+|OH_JSVM_CreateSet | 创建一个新的 JavaScript Set对象 |
 
 场景示例:
 创建指定长度的数组
@@ -842,6 +843,14 @@ OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &value);
 JSVM_Value result = nullptr;
 OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
 ```
+
+创建Set:
+
+```c++
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
+```
+
 ### 从JS类型获取C类型&获取JS类型信息
 
 #### 场景介绍
@@ -966,6 +975,7 @@ JS值操作和抽象操作。
 |OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
 |OH_JSVM_IsConstructor | 此API检查传入的值是否为构造函数。 |
 |OH_JSVM_IsMap | 此API检查传入的值是否为Map。 |
+|OH_JSVM_IsSet | 此API检查传入的值是否为Set。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
@@ -1043,6 +1053,16 @@ OH_JSVM_CreateMap(env, &value);
 bool isEquals = false;
 OH_JSVM_IsMap(env, value, &isEquals);
 ```
+
+判断JS值是否为Set类型
+
+```c++
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
+bool isSet = false;
+OH_JSVM_IsSet(env, value, &isSet);
+```
+
 ### JS属性操作
 
 #### 场景介绍
@@ -1069,6 +1089,8 @@ JS对象属性的增删获取和判断
 |OH_JSVM_DefineProperties |  批量的向给定对象中定义属性。 |
 |OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。 |
 |OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。 |
+|OH_JSVM_ObjectSetPrototypeOf | 为给定对象设置一个原型。 |
+|OH_JSVM_ObjectGetPrototypeOf | 返回 JavaScript 对象的原型 |
 
 场景示例:
 JS对象属性的增删获取和判断
@@ -1124,6 +1146,15 @@ OH_JSVM_HasNamedProperty(env, myObject, "name", &hasProperty);
 
 // 删除属性
 OH_JSVM_DeleteProperty(env, myObject, key, &hasProperty);
+
+// 设置对象原型
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
+OH_JSVM_ObjectSetPrototypeOf(env, myObject, value);
+
+// 获取对象原型
+JSVM_Value proto;
+OH_JSVM_ObjectGetPrototypeOf(env, myObject, &proto);
 ```
 
 ### JS函数操作
