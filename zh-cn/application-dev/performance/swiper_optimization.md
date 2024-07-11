@@ -170,7 +170,7 @@ Swiper 子组件页面代码如下：
 
 ```TypeScript
 import image from '@ohos.multimedia.image';
-import { MyDataSource } from './Index'
+import { MyDataSource } from './Index';
 
 @Component
 export struct PhotoItem { //Swiper的子组件
@@ -192,13 +192,13 @@ export struct PhotoItem { //Swiper的子组件
           // 创建imageSource
           const imageSource = image.createImageSource(value.buffer);
           imageSource.createPixelMap().then((value) => {
-            console.log("aboutToAppear push" + this.myIndex)
+            console.info("aboutToAppear push" + this.myIndex)
             this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value })
             this.imageContent = value;
           })
         })
       } catch (err) {
-        console.log("error code" + err);
+        console.error("error code" + err);
       }
     }
   }
@@ -214,7 +214,7 @@ export struct PhotoItem { //Swiper的子组件
 ```
 
 Swiper 主页面的代码如下：
-```
+```TypeScript
 import Curves from '@ohos.curves';
 import { PhotoItem } from './PhotoItem'
 import image from '@ohos.multimedia.image';
@@ -301,7 +301,7 @@ struct Index {
             })
           })
         } catch (err) {
-          console.log("error code" + err);
+          console.error("error code" + err);
         }
       }
     })

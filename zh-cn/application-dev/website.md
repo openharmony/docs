@@ -1066,6 +1066,7 @@
   - 性能
       - [性能优化概览](performance/performance-overview.md)
       - [应用开发性能优化入门引导](performance/application-performance-optimization-guidance.md)
+      - [应用性能优化常见问题解决指导](performance/performance-optimization-practical-guidance.md)
       - ArkTS高性能编程
         - [高性能编程规范](performance/high-performance-programming.md)
         - [高效并发编程](performance/efficient-concurrent-programming.md)
