@@ -369,3 +369,37 @@ struct SearchExample {
   }
 }
 ```
+
+## cl.arkui.7 命令式渲染节点RenderNode属性clipToFrame默认值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+命令式渲染节点RenderNode默认会将子节点的布局区域剪裁至节点大小，clipToFrame默认值对应修改为true。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为false。
+
+变更后：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为true，超出该节点大小的子节点内容会被剪裁。
+
+**起始 API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口/组件**
+
+命令式渲染节点RenderNode的clipToFrame接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。如不符合则自定义修改效果控制变量以达到预期，可显式设置RenderNode的clipToFrame。
