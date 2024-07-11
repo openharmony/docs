@@ -66,7 +66,11 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
-通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。需要注意：注册的回调中不允许进一步调用on或off。
+通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。
+
+> **说明：** 
+>
+> 注册的回调中不允许进一步调用on或off。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
