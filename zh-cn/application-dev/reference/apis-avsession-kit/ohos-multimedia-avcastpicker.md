@@ -83,7 +83,7 @@ struct Index {
           onStateChange: this.onStateChange
         })
         .width('40vp')
-        .height('40vp')
+          .height('40vp')
         .border({ width: 1, color: Color.Red })
       }.height('50%')
     }.width('50%')
