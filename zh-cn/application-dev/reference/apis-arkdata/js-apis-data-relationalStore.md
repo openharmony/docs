@@ -5969,6 +5969,8 @@ try {
 **示例2：type为SUBSCRIBE_TYPE_LOCAL_DETAILS**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
   for (let i = 0; i < changeInfos.length; i++) {
     console.info(`changeInfos = ${changeInfos[i]}`);
