@@ -47,7 +47,7 @@
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -126,7 +126,7 @@ struct ReusableComponentTwo {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -200,7 +200,7 @@ struct ReusableComponent {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -229,7 +229,7 @@ struct MyComponent {
         .backgroundColor('#cccccc')
         .width('100%')
         .onAppear(()=>{
-          console.log(`ListItem ${index} onAppear`);
+          console.info(`ListItem ${index} onAppear`);
         })
       })
     }
@@ -246,13 +246,13 @@ struct ReusableComponentOne {
 
   // 组件的生命周期回调，在可复用组件从复用缓存中加入到组件树之前调用
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentOne ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentOne ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   // 组件的生命周期回调，在可复用组件从组件树上被加入到复用缓存之前调用
   aboutToRecycle(): void {
-    console.log(`ReusableComponentOne ${this.item} Recycle`);
+    console.info(`ReusableComponentOne ${this.item} Recycle`);
   }
 
   build() {
@@ -270,12 +270,12 @@ struct ReusableComponentTwo {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentTwo ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentTwo ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ReusableComponentTwo ${this.item} Recycle`);
+    console.info(`ReusableComponentTwo ${this.item} Recycle`);
   }
 
   build() {
@@ -293,12 +293,12 @@ struct ReusableComponentThree {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentThree ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentThree ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ReusableComponentThree ${this.item} Recycle`);
+    console.info(`ReusableComponentThree ${this.item} Recycle`);
   }
 
   build() {
@@ -315,12 +315,12 @@ struct ChildComponentA {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ChildComponentA ${params.item} Reuse ${this.item}`);
+    console.info(`ChildComponentA ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ChildComponentA ${this.item} Recycle`);
+    console.info(`ChildComponentA ${this.item} Recycle`);
   }
 
   build() {
@@ -423,7 +423,7 @@ struct ChildComponentD {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -479,7 +479,7 @@ struct MyComponent {
         .backgroundColor('#cccccc')
         .width('100%')
         .onAppear(() => {
-          console.log(`ListItem ${index} onAppear`);
+          console.info(`ListItem ${index} onAppear`);
         })
       }, (item: number) => item.toString())
     }
@@ -495,12 +495,12 @@ struct ChildComponentA {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ChildComponentA ${params.item} Reuse ${this.item}`);
+    console.info(`ChildComponentA ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ChildComponentA ${this.item} Recycle`);
+    console.info(`ChildComponentA ${this.item} Recycle`);
   }
 
   build() {
