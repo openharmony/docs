@@ -19,11 +19,15 @@
 
 2. 设置编码输出流和编码参数。
 
-   format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量。
+  - format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量
+    ```ts
+    let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
+    ```
 
-   ```ts
-   let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-   ```
+  - 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)
+    ```ts
+    packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
+    ```
 
 3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
 
