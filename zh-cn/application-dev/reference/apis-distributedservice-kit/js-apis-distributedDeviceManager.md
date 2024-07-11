@@ -88,7 +88,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -163,7 +163,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -455,7 +455,7 @@ getDeviceName(networkId: string): string;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -504,7 +504,7 @@ getDeviceType(networkId: string): number;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -526,7 +526,7 @@ getDeviceType(networkId: string): number;
 
 ### startDiscovering
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。wifi场景要求同局域网。
 
@@ -538,8 +538,8 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
   | 参数名            | 类型                        | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
-  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | 是   | 发现标识。 标识发现的目标类型。<br>discoverTargetType: 发现目标默认为设备，值为1。|
-  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br>availableStatus(0-1)：仅发现设备可信，值为0表示设备不可信。<br />-0：设备离线，客户端需要通过调用bindTarget绑定设备。<br />-1：设备已在线，客户可以进行连接。<br>discoverDistance(0-100)：发现距离本地一定距离内的设备，单位为cm。wifi场景不传该参数。 <br>authenticationStatus(0-1)：根据不同的认证状态发现设备：<br />-0：设备未认证。<br />-1：设备已认证。<br>authorizationType(0-2)：根据不同的授权类型发现设备：<br />-0：根据临时协商的会话密钥认证的设备。<br />-1：基于同账号密钥进行身份验证的设备。<br />-2：基于不同账号凭据密钥认证的设备。|
+  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object;}      | 是   | 发现标识。 标识发现的目标类型。<br>discoverTargetType: 发现目标默认为设备，值为1。|
+  | filterOptions | {[key:&nbsp;string]:&nbsp;Object;}          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br>availableStatus(0-1)：仅发现设备可信，值为0表示设备不可信。<br />-0：设备离线，客户端需要通过调用bindTarget绑定设备。<br />-1：设备已在线，客户可以进行连接。<br>discoverDistance(0-100)：发现距离本地一定距离内的设备，单位为cm。wifi场景不传该参数。 <br>authenticationStatus(0-1)：根据不同的认证状态发现设备：<br />-0：设备未认证。<br />-1：设备已认证。<br>authorizationType(0-2)：根据不同的授权类型发现设备：<br />-0：根据临时协商的会话密钥认证的设备。<br />-1：基于同账号密钥进行身份验证的设备。<br />-2：基于不同账号凭据密钥认证的设备。|
 
 **错误码：**
 
@@ -621,7 +621,7 @@ stopDiscovering(): void;
 
 ### bindTarget
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
 
 认证设备。
 
@@ -634,8 +634,8 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
   | deviceId   | string                                              | 是    | 设备标识。   |
-  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。2、3和4为预埋功能，暂未支持。<br />-1：PIN码。<br />-2：二维码。<br />-3：NFC。 <br />-4：无交互。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | 是    | 认证结果回调。 |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。2、3和4为预埋功能，暂未支持。<br />-1：PIN码。<br />-2：二维码。<br />-3：NFC。 <br />-4：无交互。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | 是    | 认证结果回调。 |
 
 **错误码：**
 
@@ -644,7 +644,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 | 11600103 | Authentication unavailable.                                     |
 
@@ -705,7 +705,7 @@ unbindTarget(deviceId: string): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -725,7 +725,7 @@ unbindTarget(deviceId: string): void;
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 注册设备状态回调，以便在设备状态发生变化时根据应用捆绑包名通知应用。
 
@@ -738,7 +738,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
 **错误码：**
 
@@ -747,7 +747,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -778,7 +778,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 取消注册设备状态回调。
 
@@ -791,7 +791,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **错误码：**
 
@@ -800,7 +800,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -831,7 +831,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
 
 注册发现设备成功回调监听。
 
@@ -844,7 +844,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
   | 参数名       | 类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序，固定为discoverSuccess。 |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
 **错误码：**
 
@@ -853,7 +853,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -883,7 +883,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
 
 取消注册设备发现成功回调。
 
@@ -896,7 +896,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 取消注册设备发现回调，固定为discoverSuccess。                 |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 **错误码：**
 
@@ -905,7 +905,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -934,7 +934,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
 ### on('deviceNameChange')
 
-on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
+on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void;
 
 注册设备名称变更回调，以便在设备名称改变时通知应用程序。
 
@@ -947,7 +947,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备名称改变回调，以便在设备名称改变时通知应用程序，固定为deviceNameChange。 |
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 是    | 注册设备名称改变的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | 是    | 注册设备名称改变的回调方法。                 |
 
 **错误码：**
 
@@ -956,7 +956,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -980,7 +980,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 ### off('deviceNameChange')
 
-off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
+off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void;
 
 取消注册设备名称变更回调监听。
 
@@ -993,7 +993,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 取消注册设备名称改变回调，固定为deviceNameChange。 |
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 否    | 指示要取消注册设备名称改变的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | 否    | 指示要取消注册设备名称改变的回调方法。                 |
 
 **错误码：**
 
@@ -1002,7 +1002,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -1026,7 +1026,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 ### on('discoverFailure')
 
-on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
+on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -1039,7 +1039,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序，固定为discoverFailure。 |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
 **错误码：**
 
@@ -1048,7 +1048,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -1072,7 +1072,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 ### off('discoverFailure')
 
-off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): void;
+off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void;
 
 取消注册设备发现失败回调。
 
@@ -1085,7 +1085,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
   | 参数名       | 类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调，固定为discoverFailure。     |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
 
 **错误码：**
 
@@ -1094,7 +1094,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -1140,7 +1140,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
@@ -1182,7 +1182,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
 
