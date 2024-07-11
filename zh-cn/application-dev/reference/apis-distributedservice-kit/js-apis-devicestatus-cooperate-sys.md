@@ -771,6 +771,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -814,6 +815,7 @@ prepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -855,6 +857,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -898,6 +901,7 @@ unprepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
@@ -944,6 +948,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.|
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -999,6 +1004,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.   |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1045,6 +1051,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1090,7 +1097,13 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 | --------             | ----------------------------   |
 | Promise&lt;void&gt; |  无返回结果的Promise对象。      |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 202 | Not system application. |
 
 **示例**：
 
@@ -1134,6 +1147,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1178,6 +1192,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **返回值**：
@@ -1231,6 +1246,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1274,6 +1290,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：

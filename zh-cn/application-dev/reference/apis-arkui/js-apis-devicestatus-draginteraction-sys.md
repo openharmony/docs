@@ -58,6 +58,13 @@ on(type: 'drag', callback: Callback\<DragState>): void
 | type     | string                             | 是   | 监听类型，固定取值为 'drag'。    |
 | callback | Callback\<[DragState](#dragstate)> | 是   | 回调函数，异步返回拖拽状态消息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -86,6 +93,13 @@ off(type: 'drag', callback?: Callback\<DragState>): void
 | -------- | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
 | type     | string                             | 是   | 监听类型，固定取值为 'drag'。                                          |
 | callback | Callback\<[DragState](#dragstate)> | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
@@ -132,6 +146,12 @@ getDataSummary(): Array\<Summary>
 | 类型                          | 说明                                                 |
 | ----------------------------- | ---------------------------------------------------- |
 | Array\<[Summary](#summary11)> | 所有拖拽对象的数据摘要，包含拖拽对象的类型和数据长度。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 202 | Not system application. |
 
 **示例：**
 
