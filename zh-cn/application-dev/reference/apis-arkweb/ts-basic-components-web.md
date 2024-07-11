@@ -70,7 +70,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-  ```
+   ```
 
 Web组件统一渲染模式。
 
@@ -89,7 +89,7 @@ Web组件统一渲染模式。
       }
     }
   }
-  ```
+   ```
 
 加载本地网页。
 
@@ -1094,7 +1094,7 @@ defaultFixedFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1127,7 +1127,7 @@ defaultFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1516,7 +1516,7 @@ pinchSmooth(isEnabled: boolean)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2181,7 +2181,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
-    
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -4507,7 +4507,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -5070,6 +5070,59 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 **示例：**
 
+```ts
+// EntryAbility.ets
+
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    // API12新增：开启同层渲染BFCache开关
+    let features = new webview.BackForwardCacheSupportedFeatures();
+    features.nativeEmbed = true;
+    features.mediaTakeOver = true;
+    webview.WebviewController.enableBackForwardCache(features);
+    webview.WebviewController.initializeWebEngine();
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -5083,7 +5136,8 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // 默认行为：点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使Embed标签进入BFCache。
         Button('Destroy')
         .onClick(() => {
           try {
@@ -5092,6 +5146,31 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使Embed标签离开BFCache。
+        Button('backward')
+        .onClick(() => {
+          try {
+            this.controller.backward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使Embed标签进入BFCache。
+        Button('forward')
+        .onClick(() => {
+          try {
+            this.controller.forward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+
+        // API12新增同层标签进入离开BFCache状态：非http与https协议加载的网页，Web内核不支持进入BFCache;
+        // 因此如果要测试ENTER_BFCACHE/LEAVE_BFCACHE状态，需要将index.html放到Web服务器上，使用http或者https协议加载，如：
+        // Web({ src: "http://xxxx/index.html", controller: this.controller })
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
@@ -5106,6 +5185,14 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
+            }
+            // 同层标签所在的页面进入BFCache时，会触发Enter BFCache。
+            if (event.status == NativeEmbedStatus.ENTER_BFCACHE) {
+              this.embedStatus = 'Enter BFCache';
+            }
+            // 同层标签所在的页面离开BFCache时，会触发Leave BFCache。
+            if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
+              this.embedStatus = 'Leave BFCache';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
@@ -7740,6 +7827,8 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | CREATE                        | 0 | Embed标签创建。   |
 | UPDATE                        | 1 | Embed标签更新。   |
 | DESTROY                       | 2 | Embed标签销毁。 |
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | Embed标签进入BFCache。   |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | Embed标签离开BFCache。 |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
