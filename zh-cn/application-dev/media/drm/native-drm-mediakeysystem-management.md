@@ -100,7 +100,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
         printf("OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
     }
     // 设置字符数组类型的配置信息
-    char description[5] = {1, 2, 3, 4, 5};
+    uint8_t description[5] = {1, 2, 3, 4, 5};
     ret = OH_MediaKeySystem_SetConfigurationByteArray(keySystem, "description", description, 5);
     if (ret == DRM_ERR_OK) {
         printf("OH_MediaKeySystem_SetConfigurationByteArray success ");
@@ -108,7 +108,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
         printf("OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
     }
      // 获取字符数组类型的配置信息
-    unsigned char descriptionValue[32];
+    uint8_t descriptionValue[32];
     uint32_t descriptionValueLen = 32;
     ret = OH_MediaKeySystem_GetConfigurationByteArray(keySystem, "description", descriptionValue, &descriptionValueLen);
     if (ret == DRM_ERR_OK) {
