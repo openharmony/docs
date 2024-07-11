@@ -1,6 +1,6 @@
-# @ohos.atomicservice.InterstitialDialogAction (弹框组件)
+# @ohos.atomicservice.InterstitialDialogAction (用于元服务的弹框组件)
 
-InterstitialDialogAction高级组件，用于元服务弹框提示跳转等场景
+InterstitialDialogAction弹框在元服务中用于保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 
 > **说明：**
 >
@@ -96,55 +96,10 @@ InterstitialDialogAction {
 
 ## 示例
 
-> **说明：**
->
-> 示例中所用到的图片资源已上传到下方链接。<br>
-> 背景图：<br>https://gitee.com/openharmony/docs/blob/02c296120377cbd16e5dcdc3c31a1197ecefc6e6/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/InterstitialDialogActionBackgroundImg.png<br>
-> 前景图：<br>https://gitee.com/openharmony/docs/blob/02c296120377cbd16e5dcdc3c31a1197ecefc6e6/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/InterstitialDialogActionForegroundImg.png
-
-
 ### 示例1
 
-所有可选属性均不设置，采用默认情形
-
-```
-import { UIContext } from '@ohos.arkui.UIContext';
-import { getMyUiContext } from '../entryability/EntryAbility';
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        Text("show dialog")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            let ctx: UIContext | null = getMyUiContext();
-            let interstitialDialogAction: InterstitialDialogAction = new InterstitialDialogAction({
-              uiContext: ctx as UIContext
-            });
-            interstitialDialogAction.openDialog();
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![](figures/InterstitialDialogActionDemo01.png)
-
-### 示例2
-
-为可选属性设置相应值<br>
-用两种不同参数类型分别为主标题、副标题设置颜色值<br>
-关闭按钮设置为暗色调<br>
-主副标题相对位置设置为主标题在副标题上方<br>
-底部距离类型设置为不存在菜单栏情况下的距离<br>
+为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为暗色调；
+主副标题相对位置设置为主标题在副标题上方；底部距离类型设置为不存在菜单栏情况下的距离。
 
 ```
 import { UIContext } from '@ohos.arkui.UIContext';
@@ -186,15 +141,11 @@ struct Index {
 }
 ```
 
-![](figures/InterstitialDialogActionDemo02.png)
+![](figures/InterstitialDialogActionDemo01.png)
 
-### 示例3
+### 示例2
 
-为可选属性设置相应值<br>
-用两种不同参数类型分别为主标题、副标题设置颜色值<br>
-关闭按钮设置为亮色调<br>
-主副标题相对位置设置为主标题在副标题下方<br>
-底部距离类型设置为存在菜单栏情况下的距离<br>
+为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为亮色调；主副标题相对位置设置为主标题在副标题下方；底部距离类型设置为存在菜单栏情况下的距离。
 
 ```
 import { UIContext } from '@ohos.arkui.UIContext';
@@ -236,6 +187,6 @@ struct Index {
 }
 ```
 
-![](figures/InterstitialDialogActionDemo03.png)
+![](figures/InterstitialDialogActionDemo02.png)
 
 
