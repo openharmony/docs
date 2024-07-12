@@ -9,6 +9,8 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 >  **NOTE**
 >
 >  This decorator is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This decorator can be used in atomic services since API version 11.
 
 ## Rules of Use
 
