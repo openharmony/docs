@@ -227,7 +227,7 @@
   ```ts
   // HAP's src/main/ets/pages/PlayerDemo.ets
   import { media } from '@kit.MediaKit';
-  mport { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export class AVPlayerDemo {
     private count: number = 0;
