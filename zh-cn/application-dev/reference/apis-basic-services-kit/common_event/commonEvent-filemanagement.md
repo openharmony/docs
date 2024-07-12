@@ -88,3 +88,81 @@
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **取值：** "usual.event.data.VOLUME_EJECT"
+
+
+
+
+### COMMON_EVENT_DISK_REMOVED
+
+（预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.data.DISK_BAD_REMOVAL"
+
+
+
+
+### COMMON_EVENT_DISK_UNMOUNTED
+
+（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.data.DISK_UNMOUNTABLE"
+
+
+
+
+### COMMON_EVENT_DISK_MOUNTED
+
+（预留事件，暂未支持）外部存储设备状态变更为挂载时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED"
+
+
+
+
+### COMMON_EVENT_DISK_BAD_REMOVAL
+
+（预留事件，暂未支持）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.data.DISK_REMOVED"
+
+
+
+
+### COMMON_EVENT_DISK_UNMOUNTABLE
+
+（预留事件，暂未支持）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.data.DISK_UNMOUNTED"
+
+
+
+
+### COMMON_EVENT_DISK_EJECT
+
+（预留事件，暂未支持）用户已表示希望删除外部存储介质时发送此公共事件。
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.data.DISK_EJECT"
