@@ -1,5 +1,9 @@
 # Replace the label.
 
+test replace tag
+
+## test replace tag
+
 **1. One link replacement** 
 
 The Media Kit (media service) provides <!--RP1->[AVPlayer]() and [AVRecorder]()<!--RP1End--> for playing and recording audio and video.
@@ -49,3 +53,33 @@ The ArkUI framework implements the default drag-and-drop capability for the foll
 > Description First line
 >
 > <!--RP7--> <!--RP7End-->
+
+## test Samples
+
+test Samples test Samples test Samples
+
+### Samples
+
+internal subseciton
+
+## Samples
+
+internal subseciton  and section
+
+### Samples
+
+test test test
+
+## Multi-layer link
+
+[zero_.\/audio-playback-overview.md](./audio-playback-overview.md)
+
+[one_..\/media\/audio-playback-overview.md](../media/audio-playback-overview.md)
+
+[two_..\/..\/onlyfortest/media\/audio-playback-overview.md](../../onlyfortest/media/audio-playback-overview.md)
+
+[three_..\/..\/..\/application-dev\/onlyfortest/media\/audio-playback-overview.md](../../../application-dev/onlyfortest/media/audio-playback-overview.md)
+
+[four_..\/..\/..\/..\/en\/application-dev\/onlyfortest/media\/audio-playback-overview.md](../../../../en/application-dev/onlyfortest/media/audio-playback-overview.md)
+
+
