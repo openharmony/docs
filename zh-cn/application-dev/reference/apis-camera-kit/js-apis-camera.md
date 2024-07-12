@@ -1184,7 +1184,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
@@ -1228,8 +1228,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    let err = error as BusinessError;
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
