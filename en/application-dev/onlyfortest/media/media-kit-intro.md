@@ -42,9 +42,11 @@ IV (to add listing):
 | Understand the thread model | Several common inter-thread communication methods. | Thread Model Overview |
 <!--RP5--><!--RP5End-->
 
- **4. Image replacement**  
-
-![fig_info](intro_arch(1).png)
+ **4. Image replacement** 
+ 
+<!--RP8-->
+![fig_info](figures/intro_arch(1).png)
+<!--RP8End-->
 
  **5. Add a sentence or description** 
 
