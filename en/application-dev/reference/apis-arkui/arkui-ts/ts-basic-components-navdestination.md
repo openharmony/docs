@@ -172,7 +172,7 @@ Called when the navigation destination is about to be unmounted (or when the tra
 
 ### onBackPressed<sup>10+</sup>
 
-This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component. Called when the back button is pressed.
+Called when the back button is pressed. This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component.
 
 The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed.
 
