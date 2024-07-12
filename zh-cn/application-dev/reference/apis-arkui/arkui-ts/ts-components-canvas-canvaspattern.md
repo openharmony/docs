@@ -16,11 +16,13 @@ setTransform(transform?: Matrix2D): void
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数      | 类型                                                  | 必填 | 默认值 | 描述       |
-| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否   | null   | 转换矩阵。 |
+| 参数名      | 类型  | 必填 | 说明   |
+| --------- | -------------- | ------ | ---------- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。 |
 
 **示例：**
 
@@ -74,4 +76,3 @@ struct CanvasPatternPage {
 ```
 
 ![CanvasPattern](./figures/canvas_pattern.gif)
-

@@ -10,15 +10,32 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 constructor(width: number, height: number, data?: Uint8ClampedArray);
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型  | 必填  | 说明 |
+| ------ | ----- | ----- | ----- |
+| width | number |是| 矩形区域实际像素宽度，默认单位为vp。 |
+| height | number |是| 矩形区域实际像素高度，默认单位为vp。|
+| data | Uint8ClampedArray |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
 
 ## 属性
 
-| 属性     | 类型                | 描述                                       |
-| ------ | ----------------- | ---------------------------------------- |
-| width | number | 只读属性，矩形区域实际像素宽度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 只读属性，矩形区域实际像素高度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| data | Uint8ClampedArray | 只读属性，一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型   | 只读 | 可选 | 描述 |
+| ------ | -------- | --------- | ---------- | ------------------------------ |
+| width | number | 是 | 否 | 矩形区域实际像素宽度。<br>单位为px。 |
+| height | number | 是 | 否 | 矩形区域实际像素高度。<br>单位为px。 |
+| data | Uint8ClampedArray | 是 | 否 | 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
 
 >  **说明：**
 >
