@@ -56,6 +56,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
   ```
 
 - Example using synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12):
+  
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
