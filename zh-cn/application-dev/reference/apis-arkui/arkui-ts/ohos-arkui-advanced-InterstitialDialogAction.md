@@ -1,4 +1,4 @@
-# @ohos.atomicservice.InterstitialDialogAction (用于元服务的弹框组件)
+# @ohos.atomicservice.InterstitialDialogAction (弹框组件)
 
 InterstitialDialogAction弹框在元服务中用于保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 
@@ -117,7 +117,7 @@ InterstitialDialogAction {
 主副标题相对位置设置为主标题在副标题上方；底部距离类型设置为不存在菜单栏情况下的距离。
 
 ```
-//index.ets
+// index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
 import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
@@ -137,8 +137,8 @@ struct Index {
               uiContext: ctx as UIContext,
               title: "主标题",
               subtitle: "副标题",
-              titleColor: Color.Red,
-              subtitleColor: 'rgb(0, 255, 0)',
+              titleColor: 'rgb(255, 192, 0)',
+              subtitleColor: Color.Red,
               backgroundImage: $r('app.media.testBackgroundImg'),
               foregroundImage: $r('app.media.testForegroundImg'),
               iconStyle: IconStyle.DARK,
@@ -165,7 +165,7 @@ struct Index {
 为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为亮色调；主副标题相对位置设置为主标题在副标题下方；底部距离类型设置为存在菜单栏情况下的距离。
 
 ```
-//index.ets
+// index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
 import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
@@ -185,8 +185,8 @@ struct Index {
               uiContext: ctx as UIContext,
               title: "主标题",
               subtitle: "副标题",
-              titleColor: Color.Red,
-              subtitleColor: 'rgb(0, 255, 0)',
+              titleColor: 'rgb(255, 192, 0)',
+              subtitleColor: Color.Red,
               backgroundImage: $r('app.media.testBackgroundImg'),
               foregroundImage: $r('app.media.testForegroundImg'),
               iconStyle: IconStyle.LIGHT,
