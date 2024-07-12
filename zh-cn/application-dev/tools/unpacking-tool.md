@@ -232,6 +232,8 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述hap的原子化服务信息          | NA              |
 | formInfos            | List\<AbilityFormInfo>                        | 描述卡片的信息                       | NA              |
 | descriptions         | HashMap\<String, String>                      | 标识hap的说明信息                    | NA             |
+| compressedSize       | long                                          | 标识Hap包压缩后的大小，单位字节         | NA              |
+| originalSize         | long                                          | 标识Hap包的原始大小，单位字节         | NA             |
 
 ### AbilityInfo结构体信息
 
