@@ -909,8 +909,8 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称        | 类型                                | 必填 | 说明                  |
-| ----------- | ----------------------------------- | ---- | --------------------- |
-| reminderId  | number                              | N/A  | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#reminderrequest) | N/A  | 代理提醒对象。        |
+| 名称        | 类型                                | 只读 | 可选 | 说明                  |
+| ----------- | ----------------------------------- | ---- | ---- | --------------------- |
+| reminderId  | number                              | 否   | 否   | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 否   | 代理提醒对象。        |
 
