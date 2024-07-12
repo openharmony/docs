@@ -404,6 +404,14 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 | slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
@@ -444,6 +452,14 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 | -------- | -------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
@@ -475,6 +491,14 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
 
 **示例**：
 
@@ -512,6 +536,14 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
 
 **示例**：
 
@@ -615,7 +647,7 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 201      | Permission verification failed.                |
+| 201      | Permission denied.                |
 | 401      | If the input parameter is not valid parameter. |
 | 1700003  | The reminder does not exist.                   |
 
@@ -657,10 +689,10 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 1700003  | The reminder does not exist.    |
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
 
 **示例**：
 
@@ -699,10 +731,10 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 1700003  | The reminder does not exist.    |
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
 
 **示例**：
 
