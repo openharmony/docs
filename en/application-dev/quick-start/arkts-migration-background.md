@@ -146,3 +146,7 @@ notify(null, undefined) // Compile-time error
 In TypeScript such behavior can be turned on by a special compiler flag called `strictNullChecks`. But since the standard TypeScript is compiled to JavaScript, which does not have such feature, “strict null checks” work only in compile-time, for better type checking. However, ArkTS considers null-safety a very
 important feature from both stability and performance points of view. That’s why it is enforced in the language and the example above always produces
 compile-time errors. In exchange, we give our running engine much more information and guarantees about possible type values, which helps better optimize performance.
+
+## Differences with standard TS/JS
+
+1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number, e.g., `2.e3` is not allowed and throws `SyntaxError`. In ArkTS, this format is allowed.
