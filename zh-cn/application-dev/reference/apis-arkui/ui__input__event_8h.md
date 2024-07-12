@@ -35,6 +35,7 @@
 | [HitTestMode](_ark_u_i___event_module.md#hittestmode) { [HTMDEFAULT](_ark_u_i___event_module.md) = 0, [HTMBLOCK](_ark_u_i___event_module.md), [HTMTRANSPARENT](_ark_u_i___event_module.md), [HTMNONE](_ark_u_i___event_module.md) } | 定义触摸测试类型的枚举值。  | 
 | { [UI_MOUSE_EVENT_ACTION_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_ACTION_PRESS](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_ACTION_RELEASE](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 3 } | 定义鼠标事件的Action Code。  | 
 | {<br/>[UI_MOUSE_EVENT_BUTTON_NONE](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_BUTTON_LEFT](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_BUTTON_RIGHT](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_BUTTON_MIDDLE](_ark_u_i___event_module.md) = 3,<br/>[UI_MOUSE_EVENT_BUTTON_BACK](_ark_u_i___event_module.md) = 4, [UI_MOUSE_EVENT_BUTTON_FORWARD](_ark_u_i___event_module.md) = 5<br/>} | 定义鼠标事件的按键类型。  | 
+| [ArkUI_ModifierKeyName](_ark_u_i___event_module.md#arkui_modifierkeyname) { [ARKUI_MODIFIER_KEY_CTRL](_ark_u_i___event_module.md) = 1 &lt;&lt; 0, [ARKUI_MODIFIER_KEY_SHIFT](_ark_u_i___event_module.md) = 1 &lt;&lt; 1, [ARKUI_MODIFIER_KEY_ALT](_ark_u_i___event_module.md) = 1 &lt;&lt; 2, [ARKUI_MODIFIER_KEY_FN](_ark_u_i___event_module.md) = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 
 
 ### 函数
@@ -86,3 +87,4 @@
 | int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](_ark_u_i___event_module.md#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [HitTestMode](_ark_u_i___event_module.md#hittestmode) mode) | 配置HitTest模式。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseButton](_ark_u_i___event_module.md#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取鼠标事件的按键类型的值。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseAction](_ark_u_i___event_module.md#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](_ark_u_i___event_module.md#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 

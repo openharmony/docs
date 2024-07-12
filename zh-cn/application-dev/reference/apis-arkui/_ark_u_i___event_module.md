@@ -36,6 +36,7 @@
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
 | { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3 } | 定义鼠标事件的Action Code。  | 
 | {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
+| [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 
 
 ### 函数
@@ -87,6 +88,7 @@
 | int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [HitTestMode](#hittestmode) mode) | 配置HitTest模式。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseButton](#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的按键类型的值。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseAction](#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
 
 
 ## 类型定义说明
@@ -203,6 +205,25 @@ anonymous enum
 | UI_MOUSE_EVENT_BUTTON_MIDDLE  | 鼠标中键。  | 
 | UI_MOUSE_EVENT_BUTTON_BACK  | 鼠标左侧后退键。  | 
 | UI_MOUSE_EVENT_BUTTON_FORWARD  | 鼠标左侧前进键。  | 
+
+
+### ArkUI_ModifierKeyName
+
+```
+enum ArkUI_ModifierKeyName
+```
+**描述：**
+
+定义modifier按键。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
+| ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
+| ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -650,6 +671,7 @@ float OH_ArkUI_PointerEvent_GetHistoryTiltY (const ArkUI_UIInputEvent * event, u
 
 返回当前带有指向性的输入事件中相对XZ平面的角度。
 
+
 ### OH_ArkUI_PointerEvent_GetHistoryTouchAreaHeight()
 
 ```
@@ -696,7 +718,6 @@ float OH_ArkUI_PointerEvent_GetHistoryTouchAreaWidth (const ArkUI_UIInputEvent *
 **返回：**
 
 返回当前带有指向性的输入事件中触屏区域的宽度。
-
 
 ### OH_ArkUI_PointerEvent_GetHistoryWindowX()
 
@@ -1155,6 +1176,29 @@ int32_t OH_ArkUI_PointerEvent_SetInterceptHitTestMode (const ArkUI_UIInputEvent 
 **返回：**
 
 返回执行的状态代码。
+
+
+### OH_ArkUI_PointerEvent_SetStopPropagation()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * event, bool stopPropagation )
+```
+**描述：**
+
+设置是否阻止事件冒泡。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| stopPropagation | 表示是否阻止事件冒泡。  | 
+
+**返回：**
+
+返回执行的状态代码。返回0表示设置成功，如果返回401，表示返回失败，可能的原因是参数异常，例如event是一个空指针。
 
 
 ### OH_ArkUI_UIInputEvent_GetAction()
