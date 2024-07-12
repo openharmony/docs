@@ -6,7 +6,7 @@ test replace tag
 
 **1. One link replacement** 
 
-The Media Kit (media service) provides <!--RP1->[AVPlayer]() and [AVRecorder]()<!--RP1End--> for playing and recording audio and video.
+The Media Kit (media service) provides <!--RP1-->[AVPlayer]() and [AVRecorder]()<!--RP1End--> for playing and recording audio and video.
 
 The Media Kit development guide describes the development methods in various scenarios involving audio and video playback and recording, and guides developers how to use the audio and video APIs provided by the system to implement corresponding functions. <!--RP2--> For example, SoundPool is used to implement a simple prompt tone. When the device receives a new message, it emits a short "drip" sound. Use the AVPlayer to implement the music player and play a piece of music cyclically. <!--RP2End-->
 
@@ -44,6 +44,8 @@ IV (to add listing):
 
  **4. Image replacement**  
 
+![fig_info](intro_arch(1).png)
+
  **5. Add a sentence or description** 
 
 The ArkUI framework implements the default drag-and-drop capability for the following components to respond to data drag-out or drag-in. Developers only need to set draggable of these components to true to use the default drag-and-drop capability. <!--RP6--> <!--RP6End-->
@@ -66,7 +68,7 @@ internal subseciton
 
 internal subseciton  and section
 
-### Samples
+### test-Samples
 
 test test test
 
@@ -81,5 +83,50 @@ test test test
 [three_..\/..\/..\/application-dev\/onlyfortest/media\/audio-playback-overview.md](../../../application-dev/onlyfortest/media/audio-playback-overview.md)
 
 [four_..\/..\/..\/..\/en\/application-dev\/onlyfortest/media\/audio-playback-overview.md](../../../../en/application-dev/onlyfortest/media/audio-playback-overview.md)
+
+## section-link
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+### subsection-link
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+## Link
+[Link to otherMD-section](../reference/test.md#windowtype7)
+
+[Link to otherMD-subsection](../reference/test.md#showwindow)
+
+[Link to section](#section-link)
+
+[Link to subsection](#subsection-link)
+
 
 
