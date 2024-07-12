@@ -952,7 +952,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
-| 24700101                 |  MAll unknown errors                  |
+| 24700101                 |  All unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
