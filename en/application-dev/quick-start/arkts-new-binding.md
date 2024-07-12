@@ -11,7 +11,7 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 
 ## Overview
 
-**!!** is a syntactic sugar used to implement two-way binding of components in initialization of \@Param and \@Event of the child components. The \@Event method name must be declared as "$" + \@Param attribute name. For details, see [When to Use](#when-to-use).
+**!!** is a syntactic sugar used to implement two-way binding of components in initialization of \@Param and \@Event of the child components. The \@Event method name must be declared as "$" + \@Param attribute name. For details, see [Use Scenarios](#use-scenarios).
 
 - If the parent component uses **!!**, the change of the parent component will be synchronized to the child component, and vice versa.
 - If the parent component does not use **!!**, the change of the parent component is unidirectional.
@@ -21,7 +21,7 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 **!!** does not support multi-layer parent-child component transfer.
 
 
-## When to Use
+## Use Scenarios
 
 ### Two-Way Binding Between Custom Components
 1. Construct the **Star** child component in the **Index** component, bind the value in the parent and child components bidirectionally, and initialize **\@Param value** and **\@Event $value** of the child component.
