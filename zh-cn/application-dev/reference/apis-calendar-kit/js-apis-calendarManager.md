@@ -4,7 +4,7 @@
 
 - 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
 
-- 日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+- 日历[Calendar](#calendar)主要包含账户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -114,7 +114,7 @@ export default class EntryAbility extends UIAbility {
 
 createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
-根据日历帐户信息，创建一个Calendar对象，使用callback异步回调。
+根据日历账户信息，创建一个Calendar对象，使用callback异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR
 
@@ -124,7 +124,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 | 参数名          | 类型                                  | 必填 | 说明                               |
 | --------------- | ------------------------------------- | ---- | ---------------------------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历帐户信息。                     |
+| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历账户信息。                     |
 | callback        | AsyncCallback\<[Calendar](#calendar)> | 是   | 回调函数，返回创建的Calendar对象。 |
 
 **错误码：**
@@ -166,7 +166,7 @@ try {
 
 createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
-根据日历帐户信息，创建一个Calendar对象，使用Promise异步回调。
+根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR
 
@@ -176,7 +176,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 | 参数名          | 类型                                | 必填 | 说明           |
 | --------------- | ----------------------------------- | ---- | -------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 日历帐户信息。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 日历账户信息。 |
 
 **返回值**：
 
@@ -392,7 +392,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 | 参数名          | 类型                                 | 必填 | 说明                                 |
 | --------------- | ------------------------------------ | ---- | ------------------------------------ |
-| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历帐户信息。                       |
+| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历账户信息。                       |
 | callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
 
 **错误码：**
@@ -447,7 +447,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 | 参数名          | 类型                                | 必填 | 说明                                                         |
 | --------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 日历帐户信息，用来获取指定Calendar对象，不填时，表示获取默认Calendar对象。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 日历账户信息，用来获取指定Calendar对象，不填时，表示获取默认Calendar对象。 |
 
 **返回值**：
 
@@ -622,7 +622,7 @@ calendarMgr?.editEvent(event).then((eventId: number): void => {
 
 | 名称 | 类型   | 只读 | 必填 | 说明     |
 | ---- | ------ | ---- | ---- | -------- |
-| id   | number | 是   | 是   | 日历帐户id。 |
+| id   | number | 是   | 是   | 日历账户id。 |
 
 ### addEvent
 
@@ -1467,7 +1467,7 @@ getAccount(): CalendarAccount
 
 | 类型                                | 说明           |
 | ----------------------------------- | -------------- |
-| [CalendarAccount](#calendaraccount) | 日历帐户信息。 |
+| [CalendarAccount](#calendaraccount) | 日历账户信息。 |
 
 **示例**：
 
@@ -1490,7 +1490,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ## CalendarAccount
 
-日历帐户信息。
+日历账户信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1498,9 +1498,9 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 | 名称        | 类型                          | 只读 | 必填 | 说明                                   |
 | ----------- | ----------------------------- | ---- | ---- | -------------------------------------- |
-| name        | string                        | 是   | 是   | 帐户名称。                             |
-| type        | [CalendarType](#calendartype) | 否   | 是   | 帐户类型。                             |
-| displayName | string                        | 否   | 否   | 帐户的显示名称。不填时，默认为空字符串。 |
+| name        | string                        | 是   | 是   | 账户名称。                             |
+| type        | [CalendarType](#calendartype) | 否   | 是   | 账户类型。                             |
+| displayName | string                        | 否   | 否   | 账户的显示名称。不填时，默认为空字符串。 |
 
 ## CalendarConfig
 
@@ -1538,7 +1538,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ## CalendarType
 
-帐户类型枚举。
+账户类型枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1546,11 +1546,11 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 | 名称       | 值           | 说明                 |
 | ---------- | ------------ | -------------------- |
-| LOCAL      | 'local'      | 本地帐户。           |
-| EMAIL      | 'email'      | 邮箱帐户。           |
-| BIRTHDAY   | 'birthday'   | 生日帐户。           |
-| CALDAV     | 'caldav'     | 支持CalDAV协议帐户。 |
-| SUBSCRIBED | 'subscribed' | 订阅帐户。           |
+| LOCAL      | 'local'      | 本地账户。           |
+| EMAIL      | 'email'      | 邮箱账户。           |
+| BIRTHDAY   | 'birthday'   | 生日账户。           |
+| CALDAV     | 'caldav'     | 支持CalDAV协议账户。 |
+| SUBSCRIBED | 'subscribed' | 订阅账户。           |
 
 ## Location
 
