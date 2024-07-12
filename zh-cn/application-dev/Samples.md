@@ -1115,7 +1115,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/MediaCollections)
 
 #### 相册
 
