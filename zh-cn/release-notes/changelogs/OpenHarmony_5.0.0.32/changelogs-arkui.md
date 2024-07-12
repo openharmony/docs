@@ -402,7 +402,7 @@ struct Example {
     }
     build() {
         Column() {
-            RichEditor({controller： new RichEditorController()})
+            RichEditor({controller: new RichEditorController()})
                 // 变更前
                 .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
 
