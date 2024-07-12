@@ -6,11 +6,21 @@ InterstitialDialogAction弹框在元服务中用于保持当前的上下文环�
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 导入模块
+
+```
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
+```
+
 ## 子组件
 
 无
 
-## InterstitialDialogAction类型说明
+## 属性
+
+不支持[通用属性](ts-universal-attributes-size.md)
+
+## InterstitialDialogAction
 
 ```
 InterstitialDialogAction {
@@ -30,7 +40,7 @@ InterstitialDialogAction {
 
 **参数**：
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
 | contentNode | ComponentContent\<object\> | 是 | 组件节点对象。 |
@@ -40,20 +50,20 @@ InterstitialDialogAction {
 | openDialog | void | 否 | 设置弹框打开的接口。 |
 | closeDialog | void | 是 | 设置弹框关闭的接口。 |
 
-## DialogParams类型说明
+## DialogParams
 
 设置弹框必备的一些参数，包括弹框的特有属性以及默认关闭动作函数。
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
 | dialogOptions | [DialogOptions](#DialogOptions类型说明) | 是 | 为弹框组件设置除了基础属性外的属性。 |
 | defaultCloseAction | Callback\<void\> | 是 | 点击弹框以及关闭按钮后执行的默认关闭行为。 |
 
-## DialogOptions类型说明
+## DialogOptions
 
 设置弹框除了基础属性外特有的属性。
 
-| 名称| 类型 | 必填 | 描述 |
+| 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
 | title | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹框标题文本。 |
@@ -67,32 +77,37 @@ InterstitialDialogAction {
 | onDialogClock | Callback\<void\>| 否 | 点击弹框任意位置后触发的用户自定义动作。 |
 | onDialogClose | Callback\<void\> | 否 | 点击关闭按钮后触发的用户自定义动作。|
 
-## IconStyle枚举说明
+## 枚举
+
+### IconStyle枚举说明
 
 枚举类型。设置关闭按钮的色调样式，默认设置关闭按钮为亮色。
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | - | - | - |
 | DARK | 0 | 设置关闭按钮为暗色调。 |
 | LIGHT | 1 | 设置关闭按钮为亮色调。<br>默认值。 |
 
-## TitlePosition枚举说明
+### TitlePosition枚举说明
 
 枚举类型。设置主副标题之间的上下相对位置，默认设置为主标题在副标题之上。
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | - | - | - |
 | TOP | 0 | 设置主标题位于副标题之上。<br>默认值。 |
 | BOTTOM | 1 | 设置副标题位于主标题之上。 |
 
-## BottomOffset枚举说明
+### BottomOffset枚举说明
 
 枚举类型。设置不同情景模式下弹框距离底部的距离，判断依据为是否存在菜单栏，默认显示为不存在菜单栏情况下的距离。
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | - | - | - |
 | OFFSET_FOR_BAR | 0 | 存在菜单栏情况下与窗口底部的距离。<br>默认值，设置后弹框距离底部88vp。 |
 | OFFSET_FOR_NONE | 1 | 不存在菜单栏情况下与窗口底部的距离。<br>设置后弹框距离底部44vp。 |
+
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
@@ -190,5 +205,6 @@ struct Index {
 ```
 
 ![](figures/InterstitialDialogActionDemo02.png)
+
 
 
