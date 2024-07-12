@@ -15,7 +15,7 @@ import {
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from from '@kit.MediaLibraryKit';
+} from '@ohos.file.PhotoPickerComponent';
 ```
 
 ## 属性
@@ -293,7 +293,7 @@ import {
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from '@kit.MediaLibraryKit';
+} from '@ohos.file.PhotoPickerComponent';
 
 @Entry
 @Component
