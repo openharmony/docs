@@ -6,9 +6,9 @@
 
 ### COMMON_EVENT_WIFI_POWER_STATE<sup>9+<sup>
 
-  Wi-Fi状态公共事件的动作。
+  Wi-Fi状态变化。
 
-  当Wi-Fi状态发生变化，将会触发事件通知服务发布该系统公共事件。
+  当Wi-Fi状态发生变化时（如启用、禁用Wi-Fi），将会触发事件通知服务发布该系统公共事件。
 
 **订阅方需要的权限：** 无
 
@@ -19,7 +19,7 @@
 
 ### COMMON_EVENT_WIFI_SCAN_FINISHED<sup>9+<sup>
 
-  表示Wi-Fi接入点已被扫描并证明可用。
+  表示Wi-Fi接入点已被扫描并证明可用的动作。
 
   当Wi-Fi接入点已被扫描并证明可用，将会触发事件通知服务发布该系统公共事件。
 
@@ -71,7 +71,7 @@
 
 ### COMMON_EVENT_WIFI_HOTSPOT_STATE<sup>9+<sup>
 
-  Wi-Fi热点状态的公共事件的动作。
+  表示Wi-Fi热点状态变化。
 
   当Wi-Fi热点状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -84,7 +84,7 @@
 
 ### COMMON_EVENT_WIFI_AP_STA_JOIN<sup>9+<sup>
 
-  客户端加入当前设备Wi-Fi热点的普通事件的动作。
+  表示客户端加入当前设备Wi-Fi热点。
 
   当客户端加入当前设备Wi-Fi热点，将会触发事件通知服务发布该系统公共事件。
 
@@ -97,7 +97,7 @@
 
 ### COMMON_EVENT_WIFI_AP_STA_LEAVE<sup>9+<sup>
 
-  客户端已断开与当前设备Wi-Fi热点的连接的公共事件的动作。
+  表示客户端已断开与当前设备Wi-Fi热点的连接。
 
   当客户端已断开与当前设备Wi-Fi热点的连接，将会触发事件通知服务发布该系统公共事件。
 
@@ -110,7 +110,7 @@
 
 ### COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE<sup>9+<sup>
 
-  表示MPLink（增强Wi-Fi功能）状态已更改的公共事件的动作。
+  表示MPLink（增强Wi-Fi功能）状态已更改。
 
   当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -123,7 +123,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_CONN_STATE<sup>9+<sup>
 
-  Wi-Fi P2P连接状态改变的公共事件的动作。
+  表示Wi-Fi P2P连接状态改变。
 
   当Wi-Fi P2P连接状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -136,7 +136,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P状态公共事件的动作。
+  表示Wi-Fi P2P状态变化。
 
   当Wi-Fi P2P状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -149,7 +149,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P对等体状态变化。
+  表示Wi-Fi P2P对等体状态变化。
 
   当Wi-Fi P2P对等体状态变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -162,7 +162,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P发现状态变化。
+  表示Wi-Fi P2P发现状态变化。
 
   当Wi-Fi P2P发现状态变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -175,7 +175,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P当前设备状态变化。
+  表示Wi-Fi P2P当前设备状态变化。
 
   当Wi-Fi P2P当前设备状态变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -188,7 +188,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P群组信息已更改。
+  表示Wi-Fi P2P群组信息已更改。
 
   当Wi-Fi P2P群组信息发生变化，将会触发事件通知服务发布该系统公共事件。
 
