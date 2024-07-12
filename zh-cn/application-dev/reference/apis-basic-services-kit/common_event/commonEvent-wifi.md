@@ -6,11 +6,11 @@
 
 ### COMMON_EVENT_WIFI_POWER_STATE<sup>9+<sup>
 
-  Wi-Fi状态公共事件的动作，如启用和禁用。
+  Wi-Fi状态公共事件的动作。
 
   当Wi-Fi状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
-**订阅方需要的权限：** 无需权限
+**订阅方需要的权限：** 无
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -19,7 +19,7 @@
 
 ### COMMON_EVENT_WIFI_SCAN_FINISHED<sup>9+<sup>
 
-  表示Wi-Fi接入点已被扫描并证明可用的公共事件的操作。
+  表示Wi-Fi接入点已被扫描并证明可用。
 
   当Wi-Fi接入点已被扫描并证明可用，将会触发事件通知服务发布该系统公共事件。
 
@@ -32,7 +32,7 @@
 
 ### COMMON_EVENT_WIFI_SCAN_STATE<sup>9+<sup>
 
-  表示Wi-Fi扫描接入点状态改变的公共事件的操作。
+  表示Wi-Fi扫描接入点状态改变。
 
   当Wi-Fi扫描接入点状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -45,7 +45,7 @@
 
 ### COMMON_EVENT_WIFI_RSSI_VALUE<sup>9+<sup>
 
-  表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。
+  表示Wi-Fi信号强度（RSSI）改变。
 
   当Wi-Fi信号强度（RSSI）发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -58,11 +58,11 @@
 
 ### COMMON_EVENT_WIFI_CONN_STATE<sup>9+<sup>
 
-  Wi-Fi连接状态发生改变的公共事件的动作。
+  Wi-Fi连接状态发生改变。
 
   当Wi-Fi连接状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
-**订阅方需要的权限：** 无需权限
+**订阅方需要的权限：** 无
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -71,11 +71,11 @@
 
 ### COMMON_EVENT_WIFI_HOTSPOT_STATE<sup>9+<sup>
 
-  Wi-Fi热点状态的公共事件的动作，如启用或禁用。
+  Wi-Fi热点状态的公共事件的动作。
 
   当Wi-Fi热点状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
-**订阅方需要的权限：** 无需权限
+**订阅方需要的权限：** 无
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -136,7 +136,7 @@
 
 ### COMMON_EVENT_WIFI_P2P_STATE_CHANGED<sup>9+<sup>
 
-  Wi-Fi P2P状态公共事件的动作，如启用和禁用。
+  Wi-Fi P2P状态公共事件的动作。
 
   当Wi-Fi P2P状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
