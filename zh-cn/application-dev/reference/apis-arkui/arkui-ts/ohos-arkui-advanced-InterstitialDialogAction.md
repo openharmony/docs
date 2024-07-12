@@ -34,6 +34,8 @@ InterstitialDialogAction {
 }
 ```
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **装饰器类型：** 无
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -52,6 +54,8 @@ InterstitialDialogAction {
 
 ## DialogParams
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 设置弹框必备的一些参数，包括弹框的特有属性以及默认关闭动作函数。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -60,6 +64,8 @@ InterstitialDialogAction {
 | defaultCloseAction | Callback\<void\> | 是 | 点击弹框以及关闭按钮后执行的默认关闭行为。 |
 
 ## DialogOptions
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 设置弹框特有的属性，以及提供给用户自定义的点击触发动作。
 
@@ -90,6 +96,8 @@ InterstitialDialogAction {
 
 ### TitlePosition枚举说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 枚举类型。设置主副标题之间的上下相对位置，默认设置为主标题在副标题之上。
 
 | 名称 | 值 | 说明 |
@@ -98,6 +106,8 @@ InterstitialDialogAction {
 | BOTTOM | 1 | 设置副标题位于主标题之上。 |
 
 ### BottomOffset枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 枚举类型。设置不同情景模式下弹框距离底部的距离，判断依据为是否存在菜单栏，默认显示为不存在菜单栏情况下的距离。
 
@@ -207,6 +217,3 @@ struct Index {
 ```
 
 ![](figures/InterstitialDialogActionDemo02.png)
-
-
-
