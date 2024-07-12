@@ -480,10 +480,10 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                     |
-| -------- | ---------------------------- |
-| 201      | Permission denied.           |
-| 1700003  | The reminder does not exist. |
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permission denied.                             |
+| 401      | If the input parameter is not valid parameter. |
 
 **示例**：
 
@@ -526,10 +526,10 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                     |
-| -------- | ---------------------------- |
-| 201      | Permission denied.           |
-| 1700003  | The reminder does not exist. |
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permission denied.                             |
+| 401      | If the input parameter is not valid parameter. |
 
 **示例**：
 
