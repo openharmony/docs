@@ -151,6 +151,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | profileInfosStr | List\<String>      | 应用的配置信息 | NA   |
 | icon            | String             | 返回入口组件的icon路径，如果没有入口组件，则返回第一个组件的icon信息 | NA   |
 | label           | String             | 返回入口组件的label，如果没有入口组件，则返回第一个组件的label信息 | NA   |
+| packageSize     | long               | 表示app包的大小，单位字节 | NA   |
 
 ### PackInfo结构体信息
 
