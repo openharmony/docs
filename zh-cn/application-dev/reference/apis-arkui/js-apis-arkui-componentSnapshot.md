@@ -19,7 +19,7 @@ import { componentSnapshot } from '@kit.ArkUI';
 
 ## componentSnapshot.get
 
-get(id: string, callback: AsyncCallback<image.PixelMap>): void
+get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
@@ -85,7 +85,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.get
 
-get(id: string): Promise<image.PixelMap>
+get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
@@ -155,7 +155,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
@@ -174,8 +174,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间，当布局中使用了图片组件时，需要指定一定的延迟时间，以便系统可完成对图片资源的解码，资源越大，解码需要的时间越长，建议尽量使用pixelmap资源类型。<br/> 当使用pixelmap资源或对image组件设置syncload(true)时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 由于builer中可能存在使用状态变量控制组件创建或动态改变资源地址的情况，此时应考虑对延迟时间中留给资源解码时间的影响，应酌情增大延迟时间。<br/> 默认值：300 <br/> 单位：毫秒|
-| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前进行图片解码状态的校验，如果为true，则会在真正截图之前检查所有image组件是否已经解码完成，如果没有完成，则会放弃截图，并返回异常。<br/>默认值：false|
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
@@ -250,7 +250,7 @@ struct OffscreenSnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
@@ -267,8 +267,8 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间，当布局中使用了图片组件时，需要指定一定的延迟时间，以便系统可完成对图片资源的解码，资源越大，解码需要的时间越长，建议尽量使用pixelmap资源类型。<br/> 当使用pixelmap资源或对image组件设置syncload(true)时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 由于builer中可能存在使用状态变量控制组件创建或动态改变资源地址的情况，此时应考虑对延迟时间中留给资源解码时间的影响，应酌情增大延迟时间。<br/> 默认值：300 <br/> 单位：毫秒|
-| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前进行图片解码状态的校验，如果为true，则会在真正截图之前检查所有image组件是否已经解码完成，如果没有完成，则会放弃截图，并返回异常。<br/>默认值：false|
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **返回值：**

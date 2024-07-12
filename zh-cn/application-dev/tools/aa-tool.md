@@ -218,7 +218,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 
   > **说明**：
   > 
-  > 关于class、level、size、testType等参数的详细说明请参见[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#cmd执行)。
+  > 关于class、level、size、testType等参数的详细说明请参见<!--RP2-->[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#cmd执行)<!--RP2End-->。
 
   | 参数 | 参数说明 |
   | -------- | -------- |
