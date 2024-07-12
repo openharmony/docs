@@ -117,6 +117,7 @@ InterstitialDialogAction {
 主副标题相对位置设置为主标题在副标题上方；底部距离类型设置为不存在菜单栏情况下的距离。
 
 ```
+#index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
 import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
@@ -164,6 +165,7 @@ struct Index {
 为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为亮色调；主副标题相对位置设置为主标题在副标题下方；底部距离类型设置为存在菜单栏情况下的距离。
 
 ```
+#index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
 import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
