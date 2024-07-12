@@ -288,8 +288,9 @@ Picker的颜色模式。
 
 ```ts
 // xxx.ets
+import { photoAccessHelper } from '@ohos.file.photoAccessHelper';
 import {
-  photoAccessHelper, PhotoPickerComponent, PickerController, PickerOptions,
+  PhotoPickerComponent, PickerController, PickerOptions,
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
