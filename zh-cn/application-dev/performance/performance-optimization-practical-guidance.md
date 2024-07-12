@@ -787,7 +787,7 @@ struct ViewB {
     Column(){
       Text(reply.user)
         .maxLines(1)
-        .textOverflow({overflow: TextOverflow.MARQUEE }) // 跑马灯模式
+        .textOverflow({ overflow: TextOverflow.MARQUEE }) // 跑马灯模式
         .width("30%")
     }.width("100%")
   }
@@ -841,9 +841,6 @@ struct ViewB {
 }
 
 ```
-#### 高频程度&收益（5满分）
-1
-
 #### 高频程度&收益（5满分）
 1
 
