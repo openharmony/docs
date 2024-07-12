@@ -41,7 +41,14 @@
             object: this.testObj,
             name: "testObjName",
             methodList: ["test"],
-            controller: this.webviewController
+            controller: this.webviewController,
+            // 可选参数
+            asyncMethodList: [],
+            permission: '{"javascriptProxyPermission":{"urlPermissionList":[{"scheme":"resource","host":"rawfile","port":"","path":""},' +
+                        '{"scheme":"e","host":"f","port":"g","path":"h"}],"methodList":[{"methodName":"test","urlPermissionList":' +
+                        '[{"scheme":"https","host":"xxx.com","port":"","path":""},{"scheme":"resource","host":"rawfile","port":"","path":""}]},' +
+                        '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
+                        '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
           })
       }
     }
@@ -88,7 +95,16 @@
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"],
+                      // 可选参数, asyncMethodList
+                      [],
+                      // 可选参数, permission
+                      '{"javascriptProxyPermission":{"urlPermissionList":[{"scheme":"resource","host":"rawfile","port":"","path":""},' +
+                      '{"scheme":"e","host":"f","port":"g","path":"h"}],"methodList":[{"methodName":"test","urlPermissionList":' +
+                      '[{"scheme":"https","host":"xxx.com","port":"","path":""},{"scheme":"resource","host":"rawfile","port":"","path":""}]},' +
+                      '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
+                      '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
+              );
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -101,8 +117,65 @@
 
   > **说明：**
   >
-  > 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册方法时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)接口生效。
+  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册方法时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)接口生效。
 
+- 可选参数permission是一个json字符串，示例如下：
+  ```json
+  {
+    "javascriptProxyPermission": {
+      "urlPermissionList": [       // Object级权限，如果匹配，所有Method都授权
+        {
+          "scheme": "resource",    // 精确匹配，不能为空
+          "host": "rawfile",       // 精确匹配，不能为空
+          "port": "",              // 精确匹配，为空不检查
+          "path": ""               // 前缀匹配，为空不检查
+        },
+        {
+          "scheme": "https",       // 精确匹配，不能为空
+          "host": "xxx.com",       // 精确匹配，不能为空
+          "port": "8080",          // 精确匹配，为空不检查
+          "path": "a/b/c"          // 前缀匹配，为空不检查
+        }
+      ],
+      "methodList": [
+        {
+          "methodName": "test",
+          "urlPermissionList": [   // Method级权限
+            {
+              "scheme": "https",   // 精确匹配，不能为空
+              "host": "xxx.com",   // 精确匹配，不能为空
+              "port": "",          // 精确匹配，为空不检查
+              "path": ""           // 前缀匹配，为空不检查
+            },
+            {
+              "scheme": "resource",// 精确匹配，不能为空
+              "host": "rawfile",   // 精确匹配，不能为空
+              "port": "",          // 精确匹配，为空不检查
+              "path": ""           // 前缀匹配，为空不检查
+            }
+          ]
+        },
+        {
+          "methodName": "test11",
+          "urlPermissionList": [   // Method级权限
+            {
+              "scheme": "q",       // 精确匹配，不能为空
+              "host": "r",         // 精确匹配，不能为空
+              "port": "",          // 精确匹配，为空不检查
+              "path": "t"          // 前缀匹配，为空不检查
+            },
+            {
+              "scheme": "u",       // 精确匹配，不能为空
+              "host": "v",         // 精确匹配，不能为空
+              "port": "",          // 精确匹配，为空不检查
+              "path": ""           // 前缀匹配，为空不检查
+            }
+          ]
+        }
+      ]
+    }
+  }
+  ```
 
 - index.html前端页面触发应用侧代码。
 

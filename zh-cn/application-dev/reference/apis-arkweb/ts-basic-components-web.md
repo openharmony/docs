@@ -1094,7 +1094,7 @@ defaultFixedFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1127,7 +1127,7 @@ defaultFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1516,7 +1516,7 @@ pinchSmooth(isEnabled: boolean)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2181,7 +2181,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
-    
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -4507,7 +4507,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -8288,6 +8288,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+| permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
 ## AdsBlockedDetails<sup>12+</sup>
 
