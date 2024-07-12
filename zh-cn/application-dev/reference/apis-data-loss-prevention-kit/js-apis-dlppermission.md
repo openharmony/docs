@@ -37,9 +37,9 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -81,9 +81,9 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -131,8 +131,8 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to call this API, which is available only for DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -172,10 +172,10 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to call this API, which is available only for DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -228,7 +228,7 @@ getOriginalFileName(fileName: string): string
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -264,7 +264,7 @@ getDLPSuffix(): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -301,10 +301,10 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -341,10 +341,10 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -382,7 +382,7 @@ isInSandbox(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -420,7 +420,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -462,7 +462,7 @@ getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -500,7 +500,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -547,10 +547,10 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to call this API, which is available only for DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -591,10 +591,10 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to call this API, which is available only for DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -643,9 +643,9 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -682,9 +682,9 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -732,10 +732,10 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -772,10 +772,10 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -816,10 +816,10 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -861,8 +861,8 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -898,10 +898,10 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 
 **示例：**
 
@@ -951,11 +951,11 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
-| 19100016 | uri missing in want. |
-| 19100017 | displayName missing in want. |
+| 19100011 | System service exception. |
+| 19100016 | Uri does not exist in want. |
+| 19100017 | DisplayName does not exist in want (under parameters). |
 
 **示例：**
 
@@ -1006,10 +1006,10 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types; |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
 
 **示例：**
@@ -1045,8 +1045,8 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
-| 19100011 | The system ability works abnormally. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
 
 **示例：**
@@ -1081,7 +1081,7 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
 
 **示例：**
@@ -1117,7 +1117,7 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100011 | The system ability works abnormally. |
+| 19100011 | System service exception. |
 
 **示例：**
 
