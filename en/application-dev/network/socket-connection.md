@@ -297,6 +297,7 @@ let addr : socket.NetAddress = {
 }
 
 // Add the MulticastSocket object to a multicast group.
+// addMembership() does not support static call. You need to create a dynamic variable to call this API.
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
