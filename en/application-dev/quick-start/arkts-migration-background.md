@@ -147,6 +147,17 @@ In TypeScript such behavior can be turned on by a special compiler flag called `
 important feature from both stability and performance points of view. That’s why it is enforced in the language and the example above always produces
 compile-time errors. In exchange, we give our running engine much more information and guarantees about possible type values, which helps better optimize performance.
 
-## Differences with standard TS/JS
+## ARK Runtime Compatibility with TS/JS
 
-1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number, e.g., `2.e3` is not allowed and throws `SyntaxError`. In ArkTS, this format is allowed.
+On API version 11, the TypeScript version in OpenHarmony SDK is 4.9.5, and the target field is es2017. In the application, developers can use the syntax of ECMA2017+ for TS/JS development.
+
+**Application Environment Restrictions**
+
+1. Force the use of strict mode (use strict)
+2. Prohibit the use of `eval()`
+3. Prohibit the use of `with() {}`
+4. Prohibit creating functions with strings as code
+
+**Differences from Standard TS/JS**
+
+1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ARK Runtime, this type of scientific notation is allowed.
