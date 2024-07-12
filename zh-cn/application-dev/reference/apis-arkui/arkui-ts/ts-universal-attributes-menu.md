@@ -54,7 +54,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | 参数名       | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
-| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。             |
+| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。不支持鼠标长按。             |
 | options      | [ContextMenuOptions](#contextmenuoptions10)        | 否   | 配置弹出菜单的参数。                         |
 
 ## MenuElement
