@@ -337,7 +337,9 @@ console.log(view1) // <!--Hello, World!-->
 
 setCDATA(text: string): void
 
-写入CDATA数据。
+提供在CDATA标签中添加数据的能力，CDATA部分由"\<!\[CDATA\["字符串开始，由"\]\]\>"结束。
+
+需要注意的是：该接口对所添加数据不做标准XML校验处理，请确保添加的数据符合标准XML规范，比如CDATA标签不允许添加包含"\]\]\>"字符串的数据。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
