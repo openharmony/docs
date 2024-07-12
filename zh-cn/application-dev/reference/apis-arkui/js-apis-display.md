@@ -120,6 +120,55 @@ import { display } from '@kit.ArkUI';
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
+## DisplayPhysicalResolution<sup>13+</sup>
+折叠设备的显示模式以及对应的物理屏幕信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                        | 类型      | 可读 | 可写 | 说明               |
+| --------------------------- | ------------- | ---- | ---- | ------------------ |
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
+| physicalWidth   | number | 是 | 否 | 折叠屏的宽度，单位为px，该参数应为整数。|
+| physicalHeight  | number | 是 | 否 | 折叠屏的高度，单位为px，该参数应为整数。|
+
+## display.getAllDisplayPhysicalResolution<sup>13+</sup>
+
+getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
+
+获取当前折叠设备的DisplayPhysicalResolution对象。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution13)&gt;&gt; | Promise对象。返回当前所有的DisplayPhysicalResolution对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
+
+let displayClass: Array<display.DisplayPhysicalResolution> =[];
+let promise: Promise<Array<display.DisplayPhysicalResolution>> = display.getAllDisplayPhysicalResolution();
+promise.then((data: Array<display.DisplayPhysicalResolution>) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+});
+```
+
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
 getDefaultDisplaySync(): Display
@@ -910,6 +959,8 @@ promise.then((data: Array<display.Display>) => {
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
+| availableWidth | number | 是 | 否 |  PC上屏幕的可用区域宽度，单位为px，该参数应为整数。                                                                                    |
+| availableHeight | number | 是 | 否 | PC上屏幕的可用区域高度，单位为px，该参数应为整数。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
