@@ -36,18 +36,18 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 | 属性名称                              | 含义                                   | 数据类型 | 是否必填                   |
 | ------------------------------------- | -------------------------------------- | -------- | -------------------------- |
-| email                                 | 收件人邮箱地址（支持多个且以逗号分隔） | string[] | 否                         |
-| cc                                    | 抄收人邮箱地址（支持多个且以逗号分隔） | string[] | 否                         |
-| bcc                                   | 密送人邮箱地址（支持多个且以逗号分隔） | string[] | 否                         |
+| email                                 | 收件人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
+| cc                                    | 抄收人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
+| bcc                                   | 密送人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
 | subject                               | 邮件主题                               | string   | 否                         |
 | body                                  | 邮件内容                               | string   | 否                         |
-| ability.params.stream                 | 邮件附件（附件的uri地址列表）          | string[] | 否                         |
+| ability.params.stream                 | 邮件附件（附件的uri地址列表）          | string[ ] | 否                         |
 | ability.want.params.uriPermissionFlag | 给邮件附件赋予至少读权限               | number   | 否，邮件附件存在情况下必填 |
 | sceneType                             | 意图取值 ：1：发邮件                   | number   | 是                         |
 
 > **说明：**
 >
-> 邮件类应用扩展面板中的string或string[]类型的内容都需要经过url编码，接收方收到这些参数后需要进行url解码。
+> 邮件类应用扩展面板中的string或string[ ]类型的内容都需要经过url编码，接收方收到这些参数后需要进行url解码。
 
 
 
@@ -261,12 +261,12 @@ export default class EntryAbility extends UIAbility {
 
     | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | email  | 收件人邮箱地址（支持多个且以逗号分隔）                                  | string[] | 否 |
-    | cc | 抄收人邮箱地址（支持多个且以逗号分隔）                                  | string[] | 否 |
-    | bcc    | 密送人邮箱地址（支持多个且以逗号分隔）                                  | string[] | 否  |
+    | email  | 收件人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否 |
+    | cc | 抄收人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否 |
+    | bcc    | 密送人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否  |
     | subject    | 邮件主题                               | string   | 否  |
     | body   | 邮件内容                             | string | 否  |
-    | stream | 邮件附件列表（附件的uri地址列表）                  | string[] | 否  |
+    | stream | 邮件附件列表（附件的uri地址列表）                  | string[ ] | 否  |
     
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如撰写邮件结合接收到的参数开发不同的样式页面。
 
