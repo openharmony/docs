@@ -6140,3 +6140,46 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+### 附录
+
+- 示例代码中用到的'app.string.test'文件内容如下：
+
+```json
+{
+  "string": [
+    {
+      "name": "test",
+      "value": "10"
+    }
+  ]
+}
+```
+
+```json
+{
+  "string": [
+    {
+      "name": "test",
+      "value": "%s %d %f"
+    }
+  ]
+}
+```
+
+- 示例代码中用到的'app.strarray.test'文件内容如下：
+
+```json
+{
+  "strarray": [
+    {
+      "name": "test",
+      "value": [
+        {
+          "value": "100"
+        }
+      ]
+    }
+  ]
+}
+```
