@@ -39,6 +39,16 @@
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
+| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。 |
+| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。 |
+| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。 |
+| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。 |
+| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。 |
+| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。 |
+| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。 |
+| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。 |
+| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。 |
+
 
 ## BorderStyle
 
