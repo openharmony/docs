@@ -4517,6 +4517,7 @@ PhotoAsset的成员类型。
 | USER\_GENERIC                     | 1          | 用户相册。                           |
 | FAVORITE                          | 1025       | 收藏夹。                            |
 | VIDEO                             | 1026       | 视频相册。                           |
+| IMAGE<sup>12+</sup>               | 1031       | 图片相册。                           |
 | ANY                               | 2147483647 | 任意相册。                           |
 
 ## PhotoKeys
