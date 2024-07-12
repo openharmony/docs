@@ -189,6 +189,15 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
 |FUNC|napi_is_sendable|判断给定JS value是否是Sendable的。|12|
 |FUNC|napi_define_sendable_class|创建一个sendable类。|12|
+|FUNC|napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|12|
+|FUNC|napi_create_sendable_array | 创建一个sendable数组。|12|
+|FUNC|napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|12|
+|FUNC|napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|12|
+|FUNC|napi_create_sendable_typedarray | 创建一个sendable TypedArray。|12|
+|FUNC|napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|12|
+|FUNC|napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|12|
+|FUNC|napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|12|
+|FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|12|
 
 ### napi_qos_t
 
@@ -641,6 +650,239 @@ napi_status napi_define_sendable_class(napi_env env,
 - [in] parent：[可选]一个napi_value类型的参数，表示父类。
 
 - [out] result：一个napi_value类型的指针，用于存储创建的对象。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_sendable_object_with_properties
+
+```cpp
+napi_status napi_create_sendable_object_with_properties(napi_env env,
+                                                        size_t property_count,
+                                                        const napi_property_descriptor* properties,
+                                                        napi_value* result)
+```
+
+**描述：**
+
+使用给定的napi_property_descriptor创建一个sendable对象。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] property_count：一个size_t类型的参数，表示属性数量。
+
+- [in] properties：一个const napi_property_descriptor*类型的参数，表示属性描述符数组。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的对象。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_sendable_array
+
+```cpp
+napi_status napi_create_sendable_array(napi_env env, napi_value* result)
+```
+
+**描述：**
+
+创建一个sendable数组。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的数组。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_sendable_array_with_length
+
+```cpp
+napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, napi_value* result)
+```
+
+**描述：**
+
+创建一个指定长度的sendable数组。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] length：一个size_t类型的参数，表示数组的长度。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的数组。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_sendable_arraybuffer
+
+```cpp
+napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, void** data, napi_value* result)
+```
+
+**描述：**
+
+创建一个sendable ArrayBuffer。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] byte_length：要创建的ArrayBuffer的大小。
+
+- [in] data：指向底层字节缓冲区的指针。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的ArrayBuffer。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_sendable_typedarray
+
+```cpp
+napi_status napi_create_sendable_typedarray(napi_env env,
+                                            napi_typedarray_type type,
+                                            size_t length,
+                                            napi_value arraybuffer,
+                                            size_t byte_offset,
+                                            napi_value* result);
+```
+
+**描述：**
+
+创建一个sendable TypedArray。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] type：TypedArray 的类型。
+
+- [in] length：TypedArray 的长度。
+
+- [in] arraybuffer：一个 ArrayBuffer 实例。
+
+- [in] byte_offset：ArrayBuffer 的偏移量。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的TypedArray。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_wrap_sendable
+
+```cpp
+napi_status napi_wrap_sendable(napi_env env,
+                               napi_value js_object,
+                               void* native_object,
+                               napi_finalize finalize_cb,
+                               void* finalize_hint);
+```
+
+**描述：**
+
+包裹一个native实例到ArkTS对象中。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object：ArkTS对象。
+
+- [in] native_object：将被包裹在ArkTS对象中的native实例。
+
+- [in] napi_finalize：[可选]ArkTS对象被销毁时调用的回调函数。
+
+- [in] finalize_hint：[可选]上下文提示，会传递给回调函数。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_wrap_sendable_with_size
+
+```cpp
+napi_status napi_wrap_sendable_with_size(napi_env env,
+                                         napi_value js_object,
+                                         void* native_object,
+                                         napi_finalize finalize_cb,
+                                         void* finalize_hint,
+                                         size_t native_binding_size);
+```
+
+**描述：**
+
+包装一个native实例到ArkTS对象中并指定大小。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object：ArkTS对象。
+
+- [in] native_object：将被包裹在ArkTS对象中的native实例。
+
+- [in] napi_finalize：[可选]ArkTS对象被销毁时调用的回调函数。
+
+- [in] finalize_hint：[可选]上下文提示，会传递给回调函数。
+
+- [in] native_binding_size：[可选]绑定的native实例的大小。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_unwrap_sendable
+
+```cpp
+napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** result)
+```
+
+**描述：**
+
+获取ArkTS对象包装的native实例。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object：ArkTS对象。
+
+- [out] result：包裹在ArkTS对象中的native实例。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_remove_wrap_sendable
+
+```cpp
+napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result)
+```
+
+**描述：**
+
+移除并获取ArkTS对象包装的native实例。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object：ArkTS对象。
+
+- [out] result：包裹在ArkTS对象中的native实例。
 
 **返回：**
 
