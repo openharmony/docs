@@ -76,7 +76,7 @@ struct Index {
         .height('33%')
         .backgroundColor($r('sys.color.background_primary'))
       }
-      // 设置组件为深色模式
+      // 设置组件为浅色模式
       WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
         Column() {
           Text('WithTheme')

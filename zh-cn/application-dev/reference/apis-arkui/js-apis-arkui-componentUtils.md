@@ -132,7 +132,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围   | 说明                               |
+| 类型 | 说明                               |
 | --------| -----------------------------------|
 | [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
 

@@ -510,6 +510,7 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
+// 不建议在forEach函数中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
@@ -546,6 +547,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
@@ -589,6 +591,7 @@ while(!temp.done) {
 
 **示例：**
 ```ts
+// 不建议在Symbol.iterator中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);

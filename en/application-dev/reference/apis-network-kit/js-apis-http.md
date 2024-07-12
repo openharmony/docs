@@ -1,12 +1,12 @@
 # @ohos.net.http (Data Request)
 
-The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+The **http** module provides APIs for implementing HTTP data request capabilities. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
 > **NOTE**
 >
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-
+> **You are advised to use Remote Communication Kit for implementing HTTP data request capabilities. The Kit will continue to evolve to provide more functions.**
 ## Modules to Import
 
 ```ts
@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class Header {
-  public contentType: string;
-
-  constructor(contentType: string) {
-    this.contentType = contentType;
-  }
-}
-
 httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
   "EXAMPLE_URL",
   {
@@ -46,7 +38,7 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
     // You can add header fields based on service requirements.
-    header: new Header('application/json'),
+    header: { 'Accept' : 'application/json' },
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
@@ -58,10 +50,15 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
       certType: http.CertType.PEM, // Certificate type, optional. A certificate in the PEM format is used by default. This field is supported since API version 11.
       keyPassword: "passwordToKey" // Password of the key file, optional. It is supported since API version 11.
     },
-    certificatePinning:{ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
-      publicKeyHash: '', // Certificate PIN passed by the application. This attribute is supported since API version 12.
-      hashAlgorithm: 'SHA-256', // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
-    },
+    certificatePinning: [ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
+      {
+        publicKeyHash: 'Pin1', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+        hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
+      }, {
+        publicKeyHash: 'Pin2', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+        hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
+      }
+    ]
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -102,6 +99,8 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
 
 > **NOTE**
 > If the data in **console.info()** contains a newline character, the data will be truncated.
+>
+> HTTP responses compressed by the brotli algorithm are supported since API version 12.
 
 ## http.createHttp
 
@@ -142,6 +141,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 > **NOTE**
 > This API supports only receiving of data not greater than 5 MB.
+> If the URL contains non-English characters, call **encodeURL(url)** to encode the URL before initiating an HTTP request.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -187,10 +187,10 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -269,10 +269,10 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -379,10 +379,10 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -488,10 +488,10 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -562,10 +562,10 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -663,10 +663,10 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -1093,7 +1093,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
 | extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding (encodeURIComponent/encodeURI) and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |

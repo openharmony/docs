@@ -115,8 +115,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -252,8 +252,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

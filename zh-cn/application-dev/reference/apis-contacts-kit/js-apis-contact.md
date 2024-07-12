@@ -1275,11 +1275,6 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 

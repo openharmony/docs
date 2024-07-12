@@ -1,13 +1,13 @@
 # Basic Services Kit（基础服务）
 
 - ArkTS API
-  - 帐号管理
-    - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
-    - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
-    - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
+  - 账号管理
+    - [@ohos.account.appAccount (应用账号管理)](js-apis-appAccount.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
+    - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -70,7 +70,7 @@
       - [文件管理子系统公共事件定义](common_event/commonEvent-filemanagement.md)
       - [主题框架子系统-锁屏管理公共事件定义](common_event/commonEvent-screenlock.md)
       - [时间时区子系统公共事件定义](common_event/commonEvent-time.md)
-      - [帐号子系统公共事件定义](common_event/commonEvent-account.md)
+      - [账号子系统公共事件定义](common_event/commonEvent-account.md)
       - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
       - [Account Kit公共事件定义](common_event/commonEvent-accountkit.md)
       <!--Del-->
@@ -131,7 +131,7 @@
   - [事件错误码](errorcode-CommonEventService.md)
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [系统电源管理错误码](errorcode-power.md)
-  - [帐号管理错误码](errorcode-account.md)
+  - [账号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
   <!--Del--> 
   - [锁屏服务错误码](errorcode-screenlock.md)

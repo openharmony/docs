@@ -1342,7 +1342,7 @@ initialize: C
 
 ### attribute<sup>12+</sup>
 
-get attribute(): T
+attribute(): T
 
 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
 
@@ -1360,6 +1360,8 @@ typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
 Text类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1396,6 +1398,8 @@ type Column = TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt;
 
 Column类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Column组件的属性设置对象。 |
@@ -1429,6 +1433,8 @@ typeNode.createNode(uiContext, 'Column');
 type Row = TypedFrameNode&lt;RowInterface, RowAttribute&gt;
 
 Row类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1464,6 +1470,8 @@ type Stack = TypedFrameNode&lt;StackInterface, StackAttribute&gt;
 
 Stack类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;StackInterface, StackAttribute&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Stack组件的属性设置对象。 |
@@ -1497,6 +1505,8 @@ typeNode.createNode(uiContext, 'Stack');
 type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
 
 GridRow类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1532,6 +1542,8 @@ type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
 
 GridCol类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
@@ -1565,6 +1577,8 @@ typeNode.createNode(uiContext, 'GridCol');
 type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
 
 Flex类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1600,6 +1614,8 @@ type Swiper = TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt;
 
 Swiper类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
@@ -1633,6 +1649,8 @@ typeNode.createNode(uiContext, 'Swiper');
 type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
 Progress类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1668,6 +1686,8 @@ type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
 
 Scroll类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
@@ -1701,6 +1721,8 @@ typeNode.createNode(uiContext, 'Scroll');
 type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt;
 
 RelativeContainer类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1736,6 +1758,8 @@ type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
 
 Divider类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
@@ -1769,6 +1793,8 @@ typeNode.createNode(uiContext, 'Divider');
 type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
 
 LoadingProgress类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1804,6 +1830,8 @@ type Search = TypedFrameNode&lt;SearchInterface, SearchAttribute&gt;
 
 Search类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
@@ -1837,6 +1865,8 @@ typeNode.createNode(uiContext, 'Search');
 type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
 
 Blank类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -1872,6 +1902,8 @@ type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
 
 Image类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
@@ -1906,6 +1938,8 @@ type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
 List类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
@@ -1939,6 +1973,8 @@ typeNode.createNode(uiContext, 'List');
 type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
 
 ListItem类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |

@@ -11,7 +11,7 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 ## Modules to Import
 
 ```js
-import infraredEmitter from '@ohos.multimodalInput.infraredEmitter';
+import { infraredEmitter } from '@kit.InputKit';
 ```
 
 ## infraredEmitter.transmitInfrared 
@@ -29,7 +29,7 @@ Generates IR signals at the specified frequency and level.
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | Yes   | IR frequency, in Hz.|
-| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The number of arrays must be an even number. For example, [100,200,300,400] indicates that 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
+| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The number of arrays must be an even number. For example, in [100, 200, 300, 400], 100 μs is a high level signal, 200 μs is a low level signal, 300 μs is a high level signal, and 400 μs is a low level signal. The number of arrays must be in the range of [0, 500).|
 
 **Error codes**
 

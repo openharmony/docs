@@ -47,7 +47,9 @@ static connect<T extends object>(
 >
 >3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
 >
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
+>4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+>
+>5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
 ### remove：删除指定key的储存数据
 

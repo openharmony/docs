@@ -11,8 +11,8 @@ SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.cre
 ## 导入模块
 
 ```js
-import media from '@ohos.multimedia.media';
-import audio from '@ohos.multimedia.audio';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## PlayParameters
@@ -33,7 +33,14 @@ import audio from '@ohos.multimedia.audio';
 
 ## SoundPool
 
-音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例
+音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例。
+
+> **说明：**
+>
+> 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+> - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
+> - [on('playFinished')](#onplayfinished)：监听播放完成。
+> - [on('error')](#onerror)：监听错误事件。
 
 ### load
 
@@ -41,6 +48,11 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -64,8 +76,8 @@ load(uri: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -81,9 +93,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -105,6 +117,11 @@ load(uri: string): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -133,8 +150,8 @@ load(uri: string): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -151,9 +168,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
     let soundID: number = 0;
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -174,6 +191,11 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -199,8 +221,8 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -215,12 +237,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
   } else {
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
-    let file: fs.File;
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -243,6 +265,11 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(fd: number, offset: number, length: number): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -273,8 +300,8 @@ load(fd: number, offset: number, length: number): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -289,12 +316,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
   } else {
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
-    let file: fs.File;
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -339,7 +366,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -404,7 +431,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -468,7 +495,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -532,7 +559,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -594,7 +621,7 @@ stop(streamID: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -649,7 +676,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -713,7 +740,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -770,7 +797,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -834,7 +861,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -896,7 +923,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -965,7 +992,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1023,7 +1050,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1088,7 +1115,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1144,7 +1171,7 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1206,7 +1233,7 @@ unload(soundID: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1259,7 +1286,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1312,7 +1339,7 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1355,7 +1382,7 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1395,7 +1422,7 @@ off(type: 'loadComplete'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1434,7 +1461,7 @@ on(type: 'playFinished', callback: Callback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1474,7 +1501,7 @@ off(type: 'playFinished'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1524,7 +1551,7 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1565,7 +1592,7 @@ off(type: 'error'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;

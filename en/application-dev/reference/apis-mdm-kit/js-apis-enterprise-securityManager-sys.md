@@ -4,25 +4,25 @@ The **securityManager** module provides device security management capabilities,
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 >
-> - The APIs provided by this module are system APIs.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md).
 
 ## Modules to Import
 
 ```ts
-import securityManager from '@ohos.enterprise.securityManager';
+import { securityManager } from '@kit.MDMKit';
 ```
 
 ## securityManager.getSecurityPatchTag
 
 getSecurityPatchTag(admin: Want): string
 
-Obtains the device security patch tag through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the security patch tag is returned. If the operation fails, an exception is thrown.
+Obtains the device security patch tag through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the security patch tag is returned. If the operation fails, an exception will be thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -44,17 +44,20 @@ Obtains the device security patch tag through the specified device administrator
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -72,7 +75,7 @@ try {
 
 getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
-Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception is thrown.
+Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception will be thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -94,17 +97,20 @@ Obtains the file system encryption status of the device. This API returns the re
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -115,6 +121,41 @@ try {
     console.info(`Succeeded in getting device encryption status. isEncrypted: ${result.isEncrypted}`);
 } catch(err) {
     console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getPasswordPolicy<sup>12+</sup>
+
+getPasswordPolicy(): PasswordPolicy
+
+Obtains the password policy of this device.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| [PasswordPolicy](./js-apis-enterprise-securityManager.md#passwordpolicy) | Device password policy obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                      |          
+| ------- | ---------------------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+try {
+    let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy();
+    console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
+} catch(err) {
+    console.error(`Failed to get password policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 

@@ -874,6 +874,85 @@ async function example() {
 }
 ```
 
+### showAssetsCreationDialog<sup>12+</sup>
+
+showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+调用接口拉起保存确认弹窗。用户同意保存后，返回已创建并授予保存权限的uri列表，该列表永久生效，应用可使用该uri写入图片/视频。如果用户拒绝保存，将返回空列表。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件，在应用沙箱中的uri。 |
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('ShowAssetsCreationDialogDemo.');
+
+  try {
+    // 获取需要保存到媒体库的位于应用沙箱的图片/视频uri
+    let srcFileUris: Array<string> = [
+      'file://media/Photo/fileUriDemo1' // 实际场景请使用真实的uri
+    ];
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test2', // 可选
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
+    console.info('showAssetsCreationDialog success, data is ' + desFileUris);
+
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('uri', desFileUris[0]);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+
+    // 通过返回的媒体库uri获取对应的PhotoAsset对象
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(
+      fetchOptions);
+    let photoAssets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+
+    for (let i = 0; i < photoAssets.length; i++) {
+      // 将应用沙箱文件内容写入到媒体库
+      let changeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAssets[i]);
+      changeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, srcFileUris[i]);
+      phAccessHelper.applyChanges(changeRequest);
+    }
+} catch (err) {
+    console.error('showAssetsCreationDialog failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -4438,6 +4517,7 @@ PhotoAsset的成员类型。
 | USER\_GENERIC                     | 1          | 用户相册。                           |
 | FAVORITE                          | 1025       | 收藏夹。                            |
 | VIDEO                             | 1026       | 视频相册。                           |
+| IMAGE<sup>12+</sup>               | 1031       | 图片相册。                           |
 | ANY                               | 2147483647 | 任意相册。                           |
 
 ## PhotoKeys
@@ -4740,3 +4820,16 @@ async function example() {
 | FAST_MODE |  0 |  快速模式。 |
 | HIGH_QUALITY_MODE |  1 |  高质量模式。 |
 | BALANCE_MODE |  2 |  均衡模式。 |
+
+## PhotoCreationConfig<sup>12+</sup>
+
+保存图片/视频到媒体库的配置，包括保存的文件名等。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必填 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| title | string | 否  | 图片或者视频的标题。|
+| fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
+| photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
+| subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
