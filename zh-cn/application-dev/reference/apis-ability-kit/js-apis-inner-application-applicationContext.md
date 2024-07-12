@@ -808,7 +808,7 @@ export default class MyAbility extends UIAbility {
 
 restartApp(want: Want): void
 
-应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用，且待重启的应用需要处于获焦状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -827,6 +827,7 @@ restartApp(want: Want): void
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
@@ -836,7 +837,7 @@ restartApp(want: Want): void
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class MyAbility extends UIAbility {
-  onBackground() {
+  onForeground() {
     let applicationContext = this.context.getApplicationContext();
     let want: Want = {
       bundleName: 'com.example.myapp',
