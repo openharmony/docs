@@ -68,7 +68,8 @@ Album Picker配置选项。
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@ohos.file.AlbumPickerComponent';
+import { PickerColorMode } from '@ohos.file.PhotoPickerComponent';
 
 @Entry
 @Component
