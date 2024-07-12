@@ -116,7 +116,7 @@ getAppPowerValue(uid: number): number
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
-| 202     | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
@@ -159,7 +159,7 @@ getAppPowerPercent(uid: number): number
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
-| 202     | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
