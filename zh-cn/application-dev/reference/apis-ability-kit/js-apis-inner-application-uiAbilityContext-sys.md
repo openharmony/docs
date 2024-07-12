@@ -22,7 +22,7 @@ import { common } from '@kit.AbilityKit';
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。仅支持在主线程调用。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -109,7 +109,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。仅支持在主线程调用。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -198,7 +198,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
-启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。仅支持在主线程调用。
+启动一个Ability并在该Ability销毁时返回执行结果。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -984,7 +984,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
-根据want和accountId启动Ability（callback形式）。仅支持在主线程调用。
+根据want和accountId启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1071,7 +1071,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-根据want、accountId及startOptions启动Ability（callback形式）。仅支持在主线程调用。
+根据want、accountId及startOptions启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1162,7 +1162,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
-根据want、accountId和startOptions启动Ability（Promise形式）。仅支持在主线程调用。
+根据want、accountId和startOptions启动Ability。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1373,7 +1373,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1450,8 +1450,9 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。仅支持在主线程调用。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。当开发者需要携带启动参数时可以选择此API。使用callback异步回调。仅支持在主线程调用。
+
+
 
 > **说明：**
 >
@@ -1531,8 +1532,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。仅支持在主线程调用。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1932,7 +1932,9 @@ export default class EntryAbility extends UIAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。仅支持在主线程调用。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用promise形式异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
 
 > **说明：**
 >
@@ -2008,7 +2010,9 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。仅支持在主线程调用。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用callback形式异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
 
 > **说明：**
 >
