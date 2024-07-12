@@ -84,6 +84,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -screen |否| 采集屏幕分辨率和刷新率               |
 | -d    |否| 采集DDR                 |
 | -sections|否| 设置分段采集          |
+<!--RP1--><!--RP1End-->
 
 ### 启停采集命令参数
 
@@ -118,6 +119,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 #### 执行查看帮助命令
 
+<!--RP2-->
+
   ```
   # SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
@@ -151,6 +154,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+<!--RP2End-->
 
 #### 执行采集命令
 
@@ -413,6 +417,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+  <!--RP3--><!--RP3End-->
+
   - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
@@ -455,6 +461,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
  
+   <!--RP4-->
   ```
   # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
@@ -516,6 +523,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+   <!--RP4End-->
+
   >**说明**
   >
   >- 使用该命令采集时需进入被测应用内
@@ -697,3 +706,4 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | nativeHeapPss     | 使用的native内存大小   |单位：KB|
     | stackPss          | 使用的栈内存大小       |单位：KB|
     | timeStamp         | 当前时间戳            |对应采集时间| 
+    <!--RP5--><!--RP5End-->
