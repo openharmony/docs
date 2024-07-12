@@ -3088,7 +3088,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，应用可以自定义行为以响应用户按下的“选择文件”按钮,否则ArkWeb提供默认行为以响应用户按下的“选择文件”按钮。
+调用此函数以处理具有“文件”输入类型的HTML表单，应用可以自定义行为以响应用户按下的“选择文件”按钮,否则Web提供默认行为以响应用户按下的“选择文件”按钮。
 
 **参数：**
 
