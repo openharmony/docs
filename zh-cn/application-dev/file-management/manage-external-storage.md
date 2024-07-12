@@ -53,7 +53,7 @@
 
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
+   import { volumeManager } from '@kit.CoreFileKit';
    import { BusinessError } from '@ohos.base';
 
    let subscriber: CommonEvent.CommonEventSubscriber;
