@@ -34,10 +34,10 @@
 | appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bundleType                |[bundleManager.BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（原子化服务）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。 |
+| debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12)    | 是   | 否   | 应用多开模式。|
+| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。                                                  |
+| multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12) | 是   | 否   | 应用多开模式。|
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
 | installSource<sup>12+</sup>    | string    | 是   | 否   | 应用程序的安装来源。pre-installed表示应用为预置应用，格式为包名表示应用由包名对应的应用安装，unknown表示应用安装来源未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | releaseType<sup>12+</sup>    | string    | 是   | 否   | 标识应用打包时使用的SDK的发布类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -45,11 +45,13 @@
 ## MultiAppMode<sup>12+</sup>
 表示应用多开模式。
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
  **参数：**
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| multiAppModeType<sup>12+</sup> | [MultiAppModeType](js-apis-bundleManager.md#multiappmodetype12)  | 是 | 否 |  应用多开模式的类型。  |
+| multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
 | maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
 
 
@@ -65,10 +67,10 @@
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName     | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
-| iconId | number         | 是   | 否   | 应用图标Id。            |
-| labelId | number         | 是   | 否   | 应用标签Id。            |
+| bundleName<sup>12+</sup> | string         | 是   | 否   | 应用包的名称。                 |
+| moduleName<sup>12+</sup> | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
+| iconId<sup>12+</sup> | number         | 是   | 否   | 应用图标Id。            |
+| labelId<sup>12+</sup> | number         | 是   | 否   | 应用标签Id。            |
 
 ## ModuleMetadata<sup>10+</sup>
 

@@ -2,23 +2,26 @@
 
 You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
 
-Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
+Currently, two data input types are supported: remote connection (over HTTP or HLS) and File Descriptor (FD).
 
 The following demuxing formats are supported:
-<!--RP1-->
+
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
-| Audio/Video    | mp4                        |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
-| Audio/Video    | mkv                        |Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS|
-| Audio/Video    | mpeg-ts                    |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
-| Audio      | m4a                        |Audio stream: AAC|
+| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP1End-->|
+| Audio/Video    | fmp4                       |<!--RP2-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP2End-->|
+| Audio/Video    | mkv                        |<!--RP3-->Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS<!--RP3End-->|
+| Audio/Video    | mpeg-ts                    |<!--RP4-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP4End-->|
+| Audio/Video    | flv                        |<!--RP5-->Video stream: AVC (H.264); audio stream: AAC<!--RP5End-->|
+| Audio      | m4a                        |<!--RP6-->Audio stream: AAC<!--RP6End-->|
 | Audio      | aac                        |Audio stream: AAC|
 | Audio      | mp3                        |Audio stream: MPEG (MP3)|
 | Audio      | ogg                        |Audio stream: OGG|
-| Audio      | flac                        |Audio stream: FLAC|
+| Audio      | flac                       |Audio stream: FLAC|
 | Audio      | wav                        |Audio stream: PCM|
 | Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
-<!--RP1End-->
+| Audio      | ape                        |Audio stream: APE|
+| External subtitle  | srt                        |Subtitle stream: SRT|
 
 **Usage Scenario**
 
@@ -162,7 +165,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 4. (Optional) Register a [callback to obtain the media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
 
-   Import the header file.
+   Add the header file.
    ```c++
    #include <multimedia/drm_framework/native_drm_common.h>
    ```
@@ -171,8 +174,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
+   Register the callback to obtain the media key system information in either of the following ways:
 
-   The following is the sample code:
+   Sample code for the first method:
    ```c++
    // Implement the OnDrmInfoChanged callback.
    static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
@@ -180,11 +184,24 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
    }
 
-   // Set the asynchronous callbacks.
    DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
    int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
 
-   // After the callback is invoked, you can call the API to proactively obtain the media key system information.
+   Sample code for the second method:
+   ```c++
+   // Implement the OnDrmInfoChangedWithObj callback.
+   static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
+   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
+
+   ```
+   After the callback is invoked, you can call the API to proactively obtain the media key system information.
+   ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
@@ -297,17 +314,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 10. Destroy the demuxer instance.
-
-   ```c++
-   // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
-   if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
-      printf("destroy source pointer error");
-   }
-   source = NULL;
-   // Manually set the instance to NULL after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
-   if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
-      printf("destroy demuxer pointer error");
-   }
-   demuxer = NULL;
-   close(fd);
-   ```
+      ```c++
+      // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
+         printf("destroy source pointer error");
+      }
+      source = NULL;
+      // Manually set the instance to NULL after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
+         printf("destroy demuxer pointer error");
+      }
+      demuxer = NULL;
+      close(fd);
+      ```

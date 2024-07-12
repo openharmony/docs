@@ -1,0 +1,1617 @@
+# Styled String
+
+Styled strings are strings with associated style attributes. They can be linked to a **\<Text>** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**.
+
+>  **NOTE**
+>
+>  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Rules of Use
+
+* If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
+* If a styled string conflicts with the child components in [\<Text>](./ts-basic-components-text.md), the style set in the styled string is applied to the **\<Text>** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
+* @State is not supported.
+
+## StyledString
+
+constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | Yes| Text of the styled string.<br>**NOTE**<br>If this parameter is of the ImageAttachment or CustomSpan type, the **styles** parameter does not take effect. |
+| styles | Array<[StyleOptions](#styleoptions)> | No| Initialization options of the styled string.<br>**NOTE**<br>If **start** is set to an invalid value, it uses the default value **0**.<br>If the value of **start** is valid but that of **length** is invalid, the difference between the length of the styled string and the value of **start** is used as the value of **length**.<br>If **StyledStringKey** does not match **StyledStringValue**, it does not take effect.<br>The **styledKey** parameter has no default value.|
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name |   Type  |   Read Only  |   Optional  |   Description  |
+| ------ | ------ | ------ | ------ | -------------- |
+| length | number |  Yes  | No  | Length of the styled string.<br>**NOTE**<br>If the styled string contains an image, its length is 1.|
+
+### getString
+
+getString(): string
+
+Obtains the text of this styled string.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type             |Description      |
+| ------- | --------------------------------- | 
+| string | Text of the styled string.<br>**NOTE**<br>If the styled string contains an image, the image is represented by a space in the return value.|
+
+### equals
+
+equals(other: StyledString): boolean
+
+Checks whether this styled string the same as another styled string.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| other | [StyledString](#styledstring) | Yes  | **StyledString** object to compare.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- | 
+| boolean | Whether the two styled strings are the same.<br>**NOTE**<br>The two styled strings are the same if they have the same text and style.<br>**GestureStyle** in styled strings is not compared. This means that, if two styled strings are the same except for the event configured, they are the same.<br>In comparing **CustomSpan** objects, addresses are compared. The objects that have the same address are the same.|
+
+### subStyledString
+
+Obtains a substring of this styled string.
+
+subStyledString(start: number , length?: number): StyledString
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript that corresponds to the start position of the styled substring.|
+| length | number | No  | Length of the styled substring.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- | 
+| [StyledString](#styledstring) | Styled substring.<br>**NOTE**<br>If the value of **start** is valid, the difference between the length of the styled string and the value of **start** is used as the default value of **length**.<br>If the value of **start** or **length** is out of range or mandatory parameters are set to **undefined**, an exception is thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### getStyles
+
+Obtains the styles in the specified range of a styled string.
+
+getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<SpanStyle>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript that corresponds to the target range in the styled string.|
+| length | number | Yes  | Length of the target range in the styled string.|
+| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | No  | Style key of the styled string.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- | 
+| Array<[SpanStyle](#spanstyle)> | Array of styles.<br>**NOTE**<br>If no style is set for the specified range in the styled string, an empty array is returned.<br>If **start** and **length** are out of range or mandatory parameters are set to **undefined**, an exception is thrown.<br>If **styledKey** is set to an invalid value or **undefined**, an exception is thrown.<br>If **styledKey** is a **CustomSpan** object, the style returned is the one passed to create the object. That is, modifying the style object also affects the actual display effect.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+## MutableStyledString
+
+Inherits from the [StyledString](#styledstring) class.
+
+>  **An exception is thrown in the following cases:**
+>
+> **start** and **length** are out of range or mandatory parameters are set to **undefined**.
+>
+> **styledKey** or **styledValue** is set to an invalid value or they do not match.
+> 
+
+### replaceString
+
+Replaces the string in the specified range of this styled string.
+
+replaceString(start: number , length: number , other: string): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript of the target range.|
+| length | number | Yes  | Length of the target range.|
+| other | string | Yes  | String to replace the content in the target range.<br>**NOTE**<br>The string specified here uses the style of the character at the **start** position.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### insertString
+
+Inserts a string.
+
+insertString(start: number , other: string): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript of the position where the string will be inserted.|
+| other | string | Yes  | String to insert.<br>**NOTE**<br>The string specified here uses the style of the character at the **start** - 1 position or, if that character does not have style set, the style of the character at the **start** position.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### removeString
+
+Removes the string in the specified range of this styled string.
+
+This API equally works when the styled string contains an image.
+
+removeString(start: number , length: number): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript of the target range.|
+| length | number | Yes  | Length of the target range.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### replaceStyle
+
+Replaces the style in the specified range of this styled string.
+
+replaceStyle(spanStyle: SpanStyle): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the original style is removed and replaced with the new style.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### setStyle
+
+Sets a new style for the specified range of this styled string.
+
+setStyle(spanStyle: SpanStyle): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+
+### removeStyle
+
+Removes the style for the specified range of this styled string.
+
+After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+
+This API equally works when the styled string contains an image.
+
+removeStyle(start: number , length: number , styledKey: StyledStringKey): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript that corresponds to the start position of the target range.|
+| length | number | Yes  | Length of the target range.|
+| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Styled key.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### removeStyles
+
+Removes all styles for the specified range of this styled string.
+
+After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+
+This API equally works when the styled string contains an image.
+
+removeStyles(start: number , length: number): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript that corresponds to the start position of the target range.|
+| length | number | Yes  | Length of the target range.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### clearStyles
+
+Removes all styles of this styled string.
+
+After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+
+clearStyles(): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### replaceStyledString
+
+Replaces the styled string in the specified range.
+
+replaceStyledString(start: number , length: number , other: StyledString): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript that corresponds to the start position of the target range.|
+| length | number | Yes  | Length of the target range.|
+| other | [StyledString](#styledstring) | Yes  | New styled string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### insertStyledString
+
+Inserts a new styled string at the specified position.
+
+insertStyledString(start: number , other: StyledString): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| start | number | Yes  | Subscript of the position to insert the styled string.|
+| other | [StyledString](#styledstring) | Yes  | New styled string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### appendStyledString
+
+Appends a styled string.
+
+appendStyledString(other: StyledString): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| other | [StyledString](#styledstring) | Yes  | New styled string.|
+
+## StyleOptions
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| start | number | No  | Start position of the styled string style.|
+| length | number | No  | Length of the styled string style.|
+| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Style key.|
+| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
+
+## SpanStyle
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| start | number | Yes  | Start position of the styled string style.|
+| length | number | Yes  | Length of the styled string style.|
+| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Style key.|
+| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
+
+## TextStyle
+
+Describes the text font style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  Yes |  No | Font color of the styled string.|
+| fontFamily | string   | Yes   | No   | Font family of the styled string.|
+| fontSize   | number   | Yes   | No   | Font size of the styled string.<br>Unit: fp|
+| fontWeight   | number   | Yes   | No   | Font weight of the styled string.|
+| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes   | No   | Font style of the styled string.|
+
+### constructor
+
+constructor(value?: TextStyleInterface)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [TextStyleInterface](#textstyleinterface) | No  | Font style options.|
+
+## TextStyleInterface
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color.|
+| fontFamily | [ResourceStr](ts-types.md#resourcestr) | No  | Font family.|
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Font size. If **unit** of **LengthMetrics** is percent, the setting does not take effect, and 16 fp is used.|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight.|
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No  | Font style.|
+
+## GestureStyle
+
+Describes the event gesture style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### constructor
+
+constructor(value?: GestureStyleInterface)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [GestureStyleInterface](#gesturestyleinterface) | No  | Event options.|
+
+## GestureStyleInterface
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent)> | No  | Callback for click events.|
+| onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent)> | No  | Callback for long press events.|
+
+## DecorationStyle
+
+Describes the text decorative line style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  Yes |  Yes | Type of the text decorative line.|
+| color | [ResourceColor](ts-types.md#resourcecolor)   | Yes   | No   | Color of the text decorative line.|
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | Yes   | No   | Style of the text decorative line.|
+
+### constructor
+
+constructor(value: DecorationStyleInterface)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [DecorationStyleInterface](#decorationstyleinterface) | Yes  | Text decorative line options.|
+
+## DecorationStyleInterface
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the text decorative line.|
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
+
+## BaselineOffsetStyle
+
+Describes the text baseline offset style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| baselineOffset  | number |  Yes |  Yes | Text baseline offset.<br>Unit: vp|
+
+### constructor
+
+constructor(value: LengthMetrics)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Text baseline offset options. This API does not work if **unit** of **LengthMetrics** is percent.|
+
+## LetterSpacingStyle
+
+Describes the letter spacing style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| letterSpacing  | number |  Yes |  Yes | Letter spacing.<br>Unit: vp|
+
+### constructor
+
+constructor(value: LengthMetrics)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Letter spacing options. This API does not work if **unit** of **LengthMetrics** is percent.|
+
+## LineHeightStyle
+
+Describes the text line height style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| lineHeight  | number |  Yes |  Yes | Text line height of the styled string.<br>Unit: vp|
+
+### constructor
+
+constructor(lineHeight: LengthMetrics)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| lineHeight | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Text line height options. If **value** of **LengthMetrics** is less than or equal to 0, the text line height is unlimited and automatically adapts to the font size.|
+
+## TextShadowStyle
+
+Describes the text shadow style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> |  Yes |  Yes | Text shadow of the styled string.|
+
+### constructor
+
+constructor(value: ShadowOptions | Array\<ShadowOptions>)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)>  | Yes  | Text shadow options.|
+
+## ImageAttachment
+
+Describes the image attachment.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  Yes | Image data source of the styled string.|
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  No | Image size of the styled string.|
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  No | Image alignment mode of the styled string.|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  No | Image scale type of the styled string.|
+| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  No | Image layout of the styled string.|
+
+### constructor
+
+constructor(value: ImageAttachmentInterface)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ImageAttachmentInterface](#imageattachmentinterface) | Yes  | Image attachment options.|
+
+## ImageAttachmentInterface
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size.|
+| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text.|
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type.|
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
+
+## ImageAttachmentLayoutStyle
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | No  | Image margin.|
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | No  | Image padding.|
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Radius of the image border corners.|
+
+## CustomSpan
+
+Describes the custom span. Only the base class is provided. You need to define the specific implementation.
+
+The drag preview of a custom span is blank.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onMeasure
+
+Called to obtain the size of a custom span.
+
+abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| measureInfo | [CustomSpanMeasureInfo](#customspanmeasureinfo) | Yes  | Font size of the text.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- | 
+| [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **\<Text>** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **\<Text>** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **\<Text>** component as its height.|
+
+### onDraw
+
+Called to draw a custom span.
+
+abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **\<Text>** component. As such, the custom span does not extend beyond the area of the **\<Text>** component.|
+| drawInfo | [CustomSpanDrawInfo](#customspandrawinfo) | Yes  | Drawing information of the custom span.|
+
+## CustomSpanMeasureInfo
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| fontSize | number |  Yes | Text font size.<br>Unit: fp|
+
+## CustomSpanMetrics
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| width | number |  Yes | Width of the custom span.<br>Unit: vp|
+| height | number |  No | Height of the custom span.<br>Unit: vp|
+
+## CustomSpanDrawInfo
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| x | number |  Yes | Offset of the custom span relative to the mounted component.<br>Unit: px|
+| lineTop | number |  Yes | Top margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
+| lineBottom | number |  Yes | Bottom margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
+| baseline | number |  Yes | Baseline offset of the line where the custom span is located.<br>Unit: px|
+
+## ParagraphStyle
+
+Describes the text paragraph style.
+
+Except the first paragraph, all paragraphs are formed using the character escape '\n'.
+
+The style of a paragraph is the one (if any) set for the first element or the paragraph style of the bound component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  Yes |  No | Horizontal alignment of the text paragraph.|
+| textIndent | number   | Yes   | No   | First line indent of the text paragraph.|
+| maxLines   | number   | Yes   | No   | Maximum number of lines in the text paragraph.|
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | Yes   | No   | Display mode when the text is too long in the text paragraph.|
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes   | No   | Word break rule of the text paragraph.|
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | Yes   | No   | Indent of the text paragraph.|
+
+>  **NOTE**
+>
+>  As the **maxLines** and **overflow** attributes of the styled string take effect only in the **\<Text>** component, you are advised to set them in the component.
+
+### constructor
+
+constructor(value?: ParagraphStyleInterface)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ParagraphStyleInterface](#paragraphstyleinterface) | No  | Paragraph style options.|
+
+## ParagraphStyleInterface
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  No | Horizontal alignment of the text paragraph.|
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No   | First line indent of the text paragraph.|
+| maxLines   | number   | No   | Maximum number of lines in the text paragraph.|
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  No   | Display mode when the text is too long in the text paragraph.<br>This parameter must be used with **maxLines** for the settings to take effect. **TextOverflow.MARQUEE** is not supported.|
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | No   | Word break rule of the text paragraph.|
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | No   | Indent of the text paragraph.|
+
+## UserDataSpan
+
+Implements a **UserDataSpan** object for storing and obtaining user data. Only the base class is provided. You need to define the specific implementation.
+
+The extended user data does not affect the display effect.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+## Example
+
+### Example 1
+
+This example shows the basic usage of a styled string.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string_demo1 {
+  @State height1: number = 450;
+  @State fontSize1: number = 16;
+  @State fontWeight1: number = 400;
+  @State color1: Color = Color.Blue;
+  scroll: Scroller = new Scroller();
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyleAttr2: StyledStringValue = new TextStyle({ fontColor: Color.Orange });
+  // Create a readable and writable styled string object: mutableStyledString1.
+  mutableStyledString1: MutableStyledString = new MutableStyledString ("45-minute workout");
+  // Create the mutableStyledString2 object whose input parameters contain strings and styles.
+  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr1
+  }]);
+  // Create a read-only styled string object: styledString2.
+  styledString2: StyledString = new StyledString("45-minute workout");
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Pink })
+  };
+  spanStyle2: SpanStyle = {
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Red })
+  };
+  @State string1: string = '';
+  @State fontColor1: ResourceColor = Color.Red;
+  controller1: TextController = new TextController();
+  controller2: TextController = new TextController();
+  controller3: TextController = new TextController();
+
+  async onPageShow() {
+    this.controller1.setStyledString(this.styledString2)
+    this.controller2.setStyledString(this.mutableStyledString1)
+    this.controller3.setStyledString(this.mutableStyledString2)
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroll) {
+        Column() {
+          // Display the styled string.
+          Text(undefined, { controller: this.controller1 })
+          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
+          Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
+          Button('Change string1 Value')
+            .onClick(() => {
+              let result = this.mutableStyledString1.equals(this.styledString2);
+              if (result) {
+                this.string1 = this.mutableStyledString1.getString();
+                console.info("mutableStyledString1 content:", this.mutableStyledString1.getString());
+                console.info("mutableStyledString1 length:", this.mutableStyledString1.length);
+              }
+            })
+
+          // If the styled string conflicts with the span, the span is ignored. The attributes of the Text component take effect if they do not conflict with the styled string.
+          Text(undefined, { controller: this.controller2 }) {
+            Span("span and styledString test")
+              .fontColor(Color.Yellow)
+              .decoration({ type: TextDecorationType.LineThrough })
+            ImageSpan($r('app.media.icon'))
+          }
+          .key('styledString2')
+          .fontColor(this.fontColor1)
+          .letterSpacing(10)
+          .fontSize(32)
+          .fontWeight(600)
+          .fontStyle(FontStyle.Italic)
+          .lineHeight(30)
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
+          .textCase(TextCase.UpperCase)
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
+          .baselineOffset(2)
+          .copyOption(CopyOptions.InApp)
+          .margin({ top: 10 })
+          .draggable(true)
+
+          // The following is for comparison with the preceding.
+          Text() {
+            Span(this.string1)
+              .fontColor(this.color1)
+              .decoration({ type: TextDecorationType.LineThrough })
+            ImageSpan($r('app.media.icon'))
+              .width(50).height(50)
+          }
+          .letterSpacing(10)
+          .fontSize(32)
+          .fontWeight(600)
+          .fontStyle(FontStyle.Italic)
+          .lineHeight(30)
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
+          .textCase(TextCase.UpperCase)
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
+          .baselineOffset(2)
+
+          Button('Set Style and Replace Text')
+            .onClick(() => {
+              this.mutableStyledString1.replaceStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr1
+              })
+              this.mutableStyledString1.insertString(0, "Blood Pressure: 85 (High)")
+              this.mutableStyledString1.setStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr2
+              })
+              this.controller2.setStyledString(this.mutableStyledString1)
+            })
+            .margin({ top: 10 })
+
+          Button('Query and Clear Style')
+            .onClick(() => {
+              let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+              if (styles.length == 2) {
+                for (let i = 0; i < styles.length; i++) {
+                  console.info('StyledString style object start:' + styles[i].start)
+                  console.info('StyledString style object length:' + styles[i].length)
+                  console.info('StyledString style object key:' + styles[i].styledKey)
+                  if (styles[i].styledKey === 0) {
+                    let fontAttr = styles[i].styledValue as TextStyle;
+                    console.info('StyledString fontColor:' + fontAttr.fontColor)
+                  }
+                }
+              }
+              if (styles[0] !== undefined) {
+                this.mutableStyledString2.setStyle(styles[0]);
+                this.controller3.setStyledString(this.mutableStyledString2);
+              }
+              this.mutableStyledString1.removeStyles(2, 3);
+              this.controller2.setStyledString(this.mutableStyledString1);
+            })
+            .margin({ top: 10 })
+        }.width('100%')
+
+      }
+      .expandSafeArea([SafeAreaType.KEYBOARD])
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .edgeEffect(EdgeEffect.None)
+    }
+    .width('100%')
+  }
+}
+```
+
+![](figures/styledstring_1.jpeg)
+
+### Example 2
+
+This example shows a styled string that supports events.
+
+```ts
+// xxx.ets
+import { promptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct styled_string_demo2 {
+  scroll: Scroller = new Scroller();
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  clickGestureAttr: GestureStyle = new GestureStyle({
+    onClick: () => {
+      promptAction.showToast({ message: 'clickGestureAttr object trigger click event' })
+      this.backgroundColor1 = Color.Yellow
+    }
+  })
+  gestureStyleAttr: GestureStyle = new GestureStyle({
+    onClick: () => {
+      promptAction.showToast({ message: 'gestureStyleAttr object trigger click event' })
+      this.backgroundColor1 = Color.Green
+    },
+    onLongPress: () => {
+      promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
+      this.backgroundColor1 = Color.Orange
+    }
+  });
+  // Create the event object mutableStyledString3.
+  mutableStyledString3: MutableStyledString = new MutableStyledString("hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.GESTURE,
+    styledValue: this.clickGestureAttr
+  },
+    {
+      start: 0,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: this.fontStyleAttr1
+    },
+    {
+      start: 6,
+      length: 5,
+      styledKey: StyledStringKey.GESTURE,
+      styledValue: this.gestureStyleAttr
+    },
+    {
+      start: 6,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Pink })
+    }]);
+  @State fontColor1: ResourceColor = Color.Red;
+  @State backgroundColor1: ResourceColor | undefined = undefined;
+  controller3: TextController = new TextController();
+
+  async onPageShow() {
+    this.controller3.setStyledString(this.mutableStyledString3)
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroll) {
+        Column({ space: 30 }) {
+          Button ("Change Background Color in Response to Event") .backgroundColor (this.backgroundColor1).width ('80%')
+          // Styled string that contains an event
+          Text(undefined, { controller: this.controller3 }).fontSize(30)
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+            .clip(true)
+        }.width('100%')
+      }
+      .expandSafeArea([SafeAreaType.KEYBOARD])
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .edgeEffect(EdgeEffect.None)
+    }
+    .width('100%')
+  }
+}
+```
+
+![](figures/styledstring_2.png)
+
+### Example 3
+
+This example shows a styled string that supports text styles.
+
+```ts
+// xxx.ets
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct styled_string_demo3 {
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyleAttr2: StyledStringValue = new TextStyle({
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(20),
+    fontWeight: FontWeight.Bolder,
+    fontStyle: FontStyle.Italic,
+    fontFamily: "Arial"
+  });
+  fontStyleAttr3: StyledStringValue = new TextStyle({
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(20),
+    fontWeight: FontWeight.Lighter,
+    fontStyle: FontStyle.Italic,
+    fontFamily: "Arial"
+  });
+  // Create a styled string object with multiple text styles: mutableStyledString1.
+  mutableStyledString1: MutableStyledString = new MutableStyledString("45-minute workout", [{
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr3
+  }, {
+    start: 2,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr2
+  }
+  ]);
+  // Create a styled string object with multiple styles: mutableStyledString2.
+  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr1
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Blue })
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.TEXT_SHADOW,
+    styledValue: new TextShadowStyle({
+      radius: 5,
+      type: ShadowType.COLOR,
+      color: Color.Yellow,
+      offsetX: 10,
+      offsetY: -10
+    })
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.BASELINE_OFFSET,
+    styledValue: new BaselineOffsetStyle(LengthMetrics.px(20))
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.LETTER_SPACING,
+    styledValue: new LetterSpacingStyle(new LengthMetrics(10, LengthUnit.VP))
+  }, {
+    start: 6,
+    length: 5,
+    styledKey: StyledStringKey.BASELINE_OFFSET,
+    styledValue: new BaselineOffsetStyle(LengthMetrics.fp(10))
+  }
+  ]);
+  @State fontColor1: ResourceColor = Color.Red;
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
+  controller2: TextController = new TextController();
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Pink })
+  };
+
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString1)
+    this.controller2.setStyledString(this.mutableStyledString2)
+  }
+
+  build() {
+    Column() {
+      Column({ space: 10 }) {
+        // Display the styled string configured with various font styles. If the styled string conflicts with the style settings in the Text component, the style set in the styled string takes effect.
+        Text(undefined, this.options)
+          .fontColor(this.fontColor1)
+          .font({ size: 20, weight: 500, style: FontStyle.Normal })
+        // Display the styled string for which the text shadow, text decorative line, letter spacing, and baseline offset are configured. If the styled string conflicts with the style settings in the Text component, the style set in the styled string takes effect.
+        Text(undefined, { controller: this.controller2 })
+          .fontSize(30)
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .decoration({ type: TextDecorationType.Overline, color: Color.Pink })
+          .textShadow({
+            radius: 10,
+            type: ShadowType.COLOR,
+            color: Color.Green,
+            offsetX: -10,
+            offsetY: 10
+          })
+        Button('Query Font Style')
+          .onClick(() => {
+            let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('mutableStyledString1 style object start:' + styles[i].start)
+                console.info('mutableStyledString1 style object length:' + styles[i].length)
+                console.info('mutableStyledString1 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 0) {
+                  let fontAttr = styles[i].styledValue as TextStyle;
+                  console.info('mutableStyledString1 fontColor:' + fontAttr.fontColor)
+                  console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize)
+                  console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight)
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle)
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily)
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+        Button('Query Other Styles')
+          .onClick(() => {
+            let styles = this.mutableStyledString2.getStyles(0, this.mutableStyledString2.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('mutableStyledString2 style object start:' + styles[i].start)
+                console.info('mutableStyledString2 style object length:' + styles[i].length)
+                console.info('mutableStyledString2 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 1) {
+                  let decoAttr = styles[i].styledValue as DecorationStyle;
+                  console.info('mutableStyledString2 decoration type:' + decoAttr.type)
+                  console.info('mutableStyledString2 decoration color:' + decoAttr.color)
+                }
+                if (styles[i].styledKey === 2) {
+                  let baselineAttr = styles[i].styledValue as BaselineOffsetStyle;
+                  console.info('mutableStyledString2 baselineOffset:' + baselineAttr.baselineOffset)
+                }
+                if (styles[i].styledKey === 3) {
+                  let letterAttr = styles[i].styledValue as LetterSpacingStyle;
+                  console.info('mutableStyledString2 letterSpacing:' + letterAttr.letterSpacing)
+                }
+                if (styles[i].styledKey === 4) {
+                  let textShadowAttr = styles[i].styledValue as TextShadowStyle;
+                  let shadowValues = textShadowAttr.textShadow;
+                  if (shadowValues.length > 0) {
+                    for (let j = 0; j < shadowValues.length; j++) {
+                      console.info('mutableStyledString2 textShadow type:' + shadowValues[j].type);
+                      console.info('mutableStyledString2 textShadow radius:' + shadowValues[j].radius);
+                      console.info('mutableStyledString2 textShadow color:' + shadowValues[j].color);
+                      console.info('mutableStyledString2 textShadow offsetX:' + shadowValues[j].offsetX);
+                      console.info('mutableStyledString2 textShadow offsetY:' + shadowValues[j].offsetY);
+                    }
+                  }
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+        Button('Update mutableStyledString1 Style')
+          .onClick(() => {
+            this.mutableStyledString1.setStyle(this.spanStyle1)
+            this.controller.setStyledString(this.mutableStyledString1)
+          })
+          .margin({ top: 10 })
+      }.width('100%')
+    }
+    .width('100%')
+  }
+}
+```
+![](figures/styledstring_3.png)
+
+### Example 4
+
+This example shows a styled string that contains an image.
+
+```ts
+// xxx.ets
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  imagePixelMap: image.PixelMap | undefined = undefined
+  @State imagePixelMap3: image.PixelMap | undefined = undefined
+  mutableStr: MutableStyledString = new MutableStyledString('123');
+  controller: TextController = new TextController();
+  mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
+    start: 0,
+    length: 15,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({
+      type: TextDecorationType.Overline,
+      color: Color.Orange,
+      style: TextDecorationStyle.DOUBLE
+    })
+  }])
+
+  async aboutToAppear() {
+    console.info("aboutToAppear initial imagePixelMap")
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+
+        Button('Set Image')
+          .onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              this.mutableStr = new MutableStyledString(new ImageAttachment({
+                value: this.imagePixelMap,
+                size: { width: 50, height: 50 },
+                layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Contain
+              }))
+              this.controller.setStyledString(this.mutableStr)
+            }
+          })
+
+        Button('Image: Append')
+          .onClick(() => {
+            let str = new StyledString('123')
+            this.mutableStr.appendStyledString(str)
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image: Before Insert')
+          .onClick(() => {
+            this.mutableStr.insertString(0, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image: After Insert')
+          .onClick(() => {
+            this.mutableStr.insertString(1, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image: Replace')
+          .onClick(() => {
+            this.mutableStr.replaceString(2, 5, "789")
+            this.controller.setStyledString(this.mutableStr)
+            this.mutableStr
+          })
+
+        Button('Image: Get')
+          .onClick(() => {
+            let imageArray = this.mutableStr.getStyles(0, 1, StyledStringKey.IMAGE)
+            for (let i = 0; i < imageArray.length; ++i) {
+              console.info('mutableStr start ' + imageArray[i].start + ' length ' + imageArray[i].length + ' type ' + imageArray[i].styledKey)
+              if (imageArray[i].styledKey === 300) {
+                let attachment = imageArray[i].styledValue as ImageAttachment
+                this.imagePixelMap3 = attachment.value
+                console.info('mutableStr value ' + JSON.stringify(attachment.value))
+                if (attachment.size !== undefined) {
+                  console.info('mutableStr size width ' + attachment.size.width + ' height ' + attachment.size.height)
+                }
+                console.info('mutableStr vertical ' + attachment.verticalAlign)
+                console.info('mutableStr fit ' + attachment.objectFit)
+                if (attachment.layoutStyle !== undefined) {
+                  let radius = attachment.layoutStyle.borderRadius as BorderRadiuses
+                  console.info('mutableStr radius ' + JSON.stringify(radius))
+                }
+              }
+
+            }
+          })
+
+        Image(this.imagePixelMap3).width(50).height(50)
+
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_4.png)
+
+### Example 5
+
+This example shows a styled string configured with **LineHeightStyle** and **ParagraphStyle**.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+const canvasWidth = 1000
+const canvasHeight = 100
+class LeadingMarginCreator {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
+
+  public genSquareMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2
+    const sideLength = fontSize / 1.5
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
+  }
+
+  private clearCanvas() {
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
+  }
+}
+@Entry
+@Component
+struct Index {
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
+  leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
+    pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
+    size:[15, 15]
+  }
+  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+  // Indent the first line of the first paragraph by 15 vp.
+  paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+  // Indent the second paragraph by 15 vp, with a placeholder in the first line.
+  paragraphStyleAttr2: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin:  this.leadingMarginPlaceholder1 });
+  // Set the maximum number of lines and text overflow mode for the third paragraph, without setting the indent.
+  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
+  // Line height style object
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  // Create a paragraph style object paragraphStyledString1.
+  paragraphStyledString1: StyledString = new StyledString("Paragraph title\nStart of the first paragraph 0123456789 End of the first paragraph\nStart of the second paragraph hello world End of the second paragraph\nThird paragraph ABCDEFGHIJKLMNOPQRSTUVWXYZ", [
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.titleParagraphStyleAttr
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: new LineHeightStyle(new LengthMetrics(50))
+    },{
+    start: 0,
+    length: 4,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+  },
+    {
+      start: 5,
+      length: 3,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr1
+    },
+    {
+      start: 5,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 32,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr2
+    },
+    {
+      start: 32,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr3
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    }
+  ]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.paragraphStyledString1)
+  }
+
+  build() {
+    Row() {
+      Column( { space : 5 }) {
+        Text(undefined, { controller: this.controller })
+          .width(240)
+          .borderWidth(1)
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+
+        // Query the paragraph style.
+        Text()
+          .onClick(() => {
+            let styles = this.paragraphStyledString1.getStyles(0, this.paragraphStyledString1.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('paragraphStyledString1 style object start:' + styles[i].start)
+                console.info('paragraphStyledString1 style object length:' + styles[i].length)
+                console.info('paragraphStyledString1 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 200) {
+                  let paraAttr = styles[i].styledValue as ParagraphStyle;
+                  console.info('paragraphStyledString1 textAlign:' + paraAttr.textAlign)
+                  console.info('paragraphStyledString1 textIndent:' + paraAttr.textIndent)
+                  console.info('paragraphStyledString1 maxLines:' + paraAttr.maxLines)
+                  console.info('paragraphStyledString1 wordBreak:' + paraAttr.wordBreak)
+                  console.info('paragraphStyledString1 leadingMargin:' + paraAttr.leadingMargin)
+                  console.info('paragraphStyledString1 overflow:' + paraAttr.overflow)
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_5.png)
+
+### Example 6
+
+This example shows a styled string with a custom span.
+
+```ts
+// xxx.ets
+import { drawing } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
+
+class MyCustomSpan extends CustomSpan {
+  constructor(word: string, width: number, height: number) {
+    super();
+    this.word = word;
+    this.width = width;
+    this.height = height;
+  }
+
+  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
+    return { width: this.width, height: this.height };
+  }
+
+  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
+    let canvas = context.canvas;
+
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
+    canvas.drawRect({
+      left: options.x + 10,
+      right: options.x + vp2px(this.width) - 10,
+      top: options.lineTop + 10,
+      bottom: options.lineBottom - 10
+    });
+
+    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
+  }
+
+  setWord(word: string) {
+    this.word = word;
+  }
+
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
+}
+
+@Entry
+@Component
+struct styled_string_demo6 {
+  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
+  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
+  style2: MutableStyledString = new MutableStyledString(this.customSpan2);
+  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  textStyle: MutableStyledString = new MutableStyledString("123");
+  textController: TextController = new TextController();
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  isPageShow: boolean = true;
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    });
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+      desiredSize: { width: 50, height: 50 }
+    });
+    await imageSource.release();
+    return createPixelMap;
+  }
+
+  async onPageShow() {
+    if (!this.isPageShow) {
+      return
+    }
+    this.isPageShow = false;
+
+    this.style1.appendStyledString(new MutableStyledString("Sample CustomSpan", [
+      {
+        start: 0,
+        length: 5,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Pink })
+      }, {
+      start: 5,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Orange, fontStyle: FontStyle.Italic })
+    }, {
+      start: 10,
+      length: 500,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
+    }
+    ]))
+    this.style1.appendStyledString(new StyledString(this.customSpan3))
+    this.style1.appendStyledString(new StyledString("Custom Span", [{
+      start: 0,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
+    }]))
+    this.textController.setStyledString(this.style1)
+    this.imagePixelMap = await this.getPixmapFromMedia($r('sys.media.ohos_ic_public_voice')).then()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(undefined, { controller: this.textController })
+          .copyOption(CopyOptions.InApp)
+          .fontSize(30)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_6.PNG)

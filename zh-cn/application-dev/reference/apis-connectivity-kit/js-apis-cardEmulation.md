@@ -177,7 +177,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
 **返回值：**
 
@@ -216,7 +216,7 @@ let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, card
 
 startHCE(aidList: string[]): boolean
 
-启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
+启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[start](#start9)替代。
@@ -241,7 +241,7 @@ startHCE(aidList: string[]): boolean
 
 start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
 
-启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
+启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -263,7 +263,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
@@ -315,7 +315,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
@@ -376,7 +376,7 @@ export default class EntryAbility extends UIAbility {
 
 sendResponse(responseApdu: number[]): void
 
-发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
+发送APDU数据到对端读卡设备。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[transmit](#transmit9)替代。
@@ -422,7 +422,7 @@ transmit(response: number[]): Promise\<void>
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
