@@ -1,6 +1,6 @@
 # 系统公共事件定义
 
-## 文件管理子系统公共事件定义
+## Core File Kit
 
 文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。
 
@@ -15,7 +15,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -32,7 +32,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -49,7 +49,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -66,7 +66,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -83,7 +83,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
