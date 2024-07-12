@@ -1,28 +1,30 @@
 # 拉起图片编辑类应用编辑图片
 ## 使用场景
-当应用自身无图片编辑能力但有图片编辑的诉求时，可以通过startAbilityByType拉起图片编辑面板，由用户选择应用完成图片编辑操作。图片编辑类应用通过实现[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)注册到图片编辑面板达到将自身能力对外开放的目的。
+当应用自身不具备图片编辑能力、但存在图片编辑的场景时，可以通过startAbilityByType拉起图片编辑类应用扩展面板，由对应的应用完成图片编辑操作。图片编辑类应用可以通过PhotoEditorExtensionAbility实现图片编辑页面，并将该页面注册到图片编辑面板，从而将图片编辑能力开放给其他应用。
+
 流程示意图如下：
 
 ![](figures/photoEditorExtensionAbility.png)
 
-例如：用户在图库APP中点击编辑图片，图库APP可以通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的应用完成图片的编辑。
+例如：用户在图库App中选择编辑图片时，图库App可以通过startAbilityByType拉起图片编辑类应用扩展面板。用户可以从已实现PhotoEditorExtensionAbility应用中选择一款，并进行图片编辑。
 
 ## 接口说明
 
-接口详情参见[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)和[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)
+接口详情参见[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)和[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)。
 
 | **接口名**  | **描述** |
 | -------- | -------- |
-| onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。|
-| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。   |
+| onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 可以执行读取原始图片、加载页面等操作。|
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。   |
 
-## 图片编辑类应用实现PhotoEditorExtensionAbility
+## 图片编辑类应用实现图片编辑页面
 
-### 开发步骤
-在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
-1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，如PhotoEditorExtensionAbility。
-2. 在PhotoEditorExtensionAbility目录中，右键选择“New > File”，新建一个.ets文件，如PhotoEditorUIExtAbility.ets。
-3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并根据业务需要重写onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
+1. 在DevEco Studio工程中手动新建一个PhotoEditorExtensionAbility。
+    1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，如PhotoEditorExtensionAbility。
+    2. 在PhotoEditorExtensionAbility目录中，右键选择“New > File”，新建一个.ets文件，如PhotoEditorUIExtAbility.ets。
+2. 在PhotoEditorUIExtAbility.ets中重写onCreate、onForeground、onBackground、onDestroy和onStartContentEditing的生命周期回调。
+
+    其中，需要在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
 
     ```ts
     import { PhotoEditorExtensionAbility,UIExtensionContentSession,Want } from '@kit.AbilityKit';
@@ -60,7 +62,9 @@
     }
 
     ```
-4. 在page中实现图片编辑功能，图片编辑完成后调用saveEditedContentWithImage保存图片，并将回调结果通过terminateSelfWithResult返回给调用方。
+3. 在page中实现图片编辑功能。
+
+    图片编辑完成后调用saveEditedContentWithImage保存图片，并将回调结果通过terminateSelfWithResult返回给调用方。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -174,7 +178,9 @@
     }
 
     ```
-5. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
+4. 在工程Module对应的module.json5配置文件中注册PhotoEditorExtensionAbility。
+
+    type标签需要配置为"photoEditor"，srcEntry需要配置为PhotoEditorExtensionAbility组件所对应的代码路径。
 
     ```json
     {
@@ -195,13 +201,13 @@
     }
     ```
 ## 调用方拉起图片编辑类应用编辑图片
-开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方，具体步骤如下：
+开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑类应用扩展面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，由用户选择某个应用来完成图片编辑的功能，最终将编辑的结果返回给到调用方，具体步骤如下：
 1. 导入模块。
     ```ts
     import { common, wantConstant } from '@kit.AbilityKit';
     import { fileUri, picker } from '@kit.CoreFileKit';
     ```
-2. 图库中选取图片（可选）。
+2. （可选）实现从图库中选取图片。
     ```ts
     async photoPickerGetUri(): Promise < string > {
       try {
@@ -218,7 +224,7 @@
       return "";
     }
     ```
-3. 将图片拷贝到本地沙箱路径
+3. 将图片拷贝到本地沙箱路径。
    ```ts
     let context = getContext(this) as common.UIAbilityContext;
     let file: fileIo.File | undefined;
@@ -239,7 +245,7 @@
       fileIo.close(file);
     }
    ```
-4. 在startAbilityByType入参的回调函数获取到回调结果中编辑后的图片uri并做对应的处理。
+4. 在startAbilityByType回调函数中，通过want.uri获取编辑后的图片uri，并做对应的处理。
     ```ts
       let context = getContext(this) as common.UIAbilityContext;
       let abilityStartCallback: common.AbilityStartCallback = {
