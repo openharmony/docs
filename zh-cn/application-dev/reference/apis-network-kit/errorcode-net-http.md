@@ -512,6 +512,24 @@ Authentication error.
 
 排查传入的校验身份的字段是否与服务器匹配。
 
+## 2300998 不允许访问域名
+
+**错误信息**
+
+It is not allowed to access this domain.
+
+**错误描述**
+
+不允许访问此域名。
+
+**可能原因**
+
+元服务应用未正确配置服务器域名。
+
+**处理步骤**
+
+可参考[配置服务器域名文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)完成服务器域名相关配置。
+
 ## 2300999 未知错误
 
 **错误信息**
