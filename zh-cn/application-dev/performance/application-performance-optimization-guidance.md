@@ -161,7 +161,7 @@ build() {
 
 #### 组件复用
 
-HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
+应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
 若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用，具体指导在[组件复用实践](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)：
 
@@ -561,7 +561,7 @@ struct StackExample2 {
   build() {
     Column() { // 父容器
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -598,7 +598,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -612,7 +612,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -645,7 +645,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -659,7 +659,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -730,7 +730,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
