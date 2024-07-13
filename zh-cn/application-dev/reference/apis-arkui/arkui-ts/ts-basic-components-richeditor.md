@@ -4165,7 +4165,11 @@ struct Index {
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.selection = '[ ' + start + ' , ' + end + ' ]';
-            this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            if (start == end) {
+              this.content = "";
+            } else {
+              this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            }
           })
           Button("更新选中样式").onClick(() => {
             // 获取选中范围
