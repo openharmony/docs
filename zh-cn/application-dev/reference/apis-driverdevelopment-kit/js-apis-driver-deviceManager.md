@@ -77,7 +77,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
 | deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得。           |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调。                     |
-| callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject;](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
+| callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
 
 **错误码：**
 
@@ -190,7 +190,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 | 类型                                                                                           | 说明                                         |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Promise&lt;{deviceId: number; remote: [rpc.IRemoteObject;](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
+| Promise&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
 
 **错误码：**
 
