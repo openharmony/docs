@@ -178,7 +178,7 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown.    |
 
 **示例：**
   ```js
