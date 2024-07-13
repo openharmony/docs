@@ -178,7 +178,7 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
 
 **示例：**
   ```js
@@ -267,21 +267,19 @@ import { BusinessError } from '@ohos.base';
 
 表示当前设备的状态。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 名称                        | 类型                            | 可读 | 可写 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。         |
-| locale                      | string                          | 是   | 是   | 语言文字国家地区。 |
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。         |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。         |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。         |
-| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。       |
-| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。       |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
 
 
 
@@ -6145,41 +6143,101 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 - 示例代码中用到的'app.string.test'文件内容如下：
 
-```json
-{
-  "string": [
+    ```json
     {
-      "name": "test",
-      "value": "10"
+    "string": [
+        {
+        "name": "test",
+        "value": "10"
+        }
+    ]
     }
-  ]
-}
-```
+    ```
 
-```json
-{
-  "string": [
+    ```json
     {
-      "name": "test",
-      "value": "%s %d %f"
+    "string": [
+     {
+        "name": "test",
+        "value": "%s %d %f"
+        }
+    ]
     }
-  ]
-}
-```
+    ```
 
 - 示例代码中用到的'app.strarray.test'文件内容如下：
 
-```json
-{
-  "strarray": [
+    ```json
     {
-      "name": "test",
-      "value": [
+    "strarray": [
         {
-          "value": "100"
+        "name": "test",
+        "value": [
+    ```  
+
+- 示例代码中用到的'app.plural.test'文件内容如下：
+    ```json
+    {
+      "plural": [
+        {
+        "name": "test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples"
+            }
+        ]
+        }
+    ]
+    }
+    ``` 
+
+- 示例代码中用到的'app.boolean.boolean_test'文件内容如下：
+    ```json
+    {
+    "boolean": [
+        {
+        "name": "boolean_test",
+        "value": true
+        }
+    
+    }
+    ``` 
+
+- 示例代码中用到的"integer_test"和"float_test"文件内容如下：
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
         }
       ]
     }
-  ]
-}
-```
+    ``` 
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ``` 
+- 示例代码中用到的'app.color.test'文件内容如下：
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+       }
+      ]
+    }
+    ``` 
