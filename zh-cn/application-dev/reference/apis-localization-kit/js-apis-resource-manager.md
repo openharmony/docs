@@ -346,6 +346,8 @@ import { BusinessError } from '@ohos.base';
 > - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
 >
 > - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
+>
+> - 示例代码中test文件的具体内容请参考[附录](#附录)。
 
 ### getStringSync<sup>9+</sup>
 
