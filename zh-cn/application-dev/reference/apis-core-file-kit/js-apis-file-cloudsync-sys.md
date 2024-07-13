@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## SyncState
@@ -1213,7 +1213,7 @@ cleanCache(uri: string): void;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1371,7 +1371,7 @@ getFileSyncState(uri: string): FileSyncState
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
@@ -1416,7 +1416,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 **示例：**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {
@@ -1463,7 +1463,7 @@ unregisterChange(uri: string): void
 **示例：**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {
