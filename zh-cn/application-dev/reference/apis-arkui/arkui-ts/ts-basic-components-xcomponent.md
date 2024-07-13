@@ -349,7 +349,6 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 | -------- | -------------------------------------------- |
 | 110001 | AI analysis is unsupported.               |
 | 110002 | AI analysis is ongoing.  |
-| 110003 | AI analysis is stopped.  |
 
 ### stopImageAnalyzer<sup>12+</sup>
 
