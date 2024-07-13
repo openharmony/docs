@@ -1797,7 +1797,7 @@ layoutMode(mode: WebLayoutMode)
 > Web组件大小基于前端页面自适应布局有如下限制：
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
-> - Web组件宽高规格：分别不超过50万屏幕像素点。
+> - Web组件宽高规格：分别不超过50万px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 
 **参数：**
