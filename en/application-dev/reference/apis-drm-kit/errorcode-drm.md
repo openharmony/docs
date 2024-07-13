@@ -101,7 +101,7 @@ Release **MediaKeySession** instances that are no longer used.
 
 **Error Message**
 
-Service fatal error e.g. service died.
+Fatal service error, for example, service died.
 
 **Description**
 

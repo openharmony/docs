@@ -161,41 +161,39 @@ struct ImitationGallery {
         }
       }.width('100%').height(48)
 
-      Stack() {
-        if (this.isUseFreezeWhenInactive) {
-          Grid() {
-            LazyForEach(this.data, (imageItem: ImageInfo) => {
-              GridItem() {
-                UseFreezeItem({
-                  imageItem: imageItem,
-                  isSelectedMode: this.isSelectedMode,
-                  selectedList: this.selectedList
-                })
-              }
-            }, (item: string) => item)
-          }
-          .cachedCount(CACHED_COUNT) // 设置GridItem的缓存数量
-          .columnsTemplate('1fr 1fr 1fr 1fr')
-          .columnsGap(2)
-          .rowsGap(2)
-        } else {
-          Grid() {
-            LazyForEach(this.data, (imageItem: ImageInfo) => {
-              GridItem() {
-                NotUseFreezeItem({
-                  imageItem: imageItem,
-                  isSelectedMode: this.isSelectedMode,
-                  selectedList: this.selectedList
-                })
-              }
-            }, (item: string) => item)
-          }
-          .cachedCount(CACHED_COUNT) // 设置GridItem的缓存数量
-          .columnsTemplate('1fr 1fr 1fr 1fr')
-          .columnsGap(2)
-          .rowsGap(2)
+      if (this.isUseFreezeWhenInactive) {
+        Grid() {
+          LazyForEach(this.data, (imageItem: ImageInfo) => {
+            GridItem() {
+              UseFreezeItem({
+                imageItem: imageItem,
+                isSelectedMode: this.isSelectedMode,
+                selectedList: this.selectedList
+              })
+            }
+          }, (item: string) => item)
         }
-      }.layoutWeight(1)
+        .cachedCount(CACHED_COUNT) // 设置GridItem的缓存数量
+        .columnsTemplate('1fr 1fr 1fr 1fr')
+        .columnsGap(2)
+        .rowsGap(2)
+      } else {
+        Grid() {
+          LazyForEach(this.data, (imageItem: ImageInfo) => {
+            GridItem() {
+              NotUseFreezeItem({
+                imageItem: imageItem,
+                isSelectedMode: this.isSelectedMode,
+                selectedList: this.selectedList
+              })
+            }
+          }, (item: string) => item)
+        }
+        .cachedCount(CACHED_COUNT) // 设置GridItem的缓存数量
+        .columnsTemplate('1fr 1fr 1fr 1fr')
+        .columnsGap(2)
+        .rowsGap(2)
+      }
     }
   }
 }
@@ -303,7 +301,7 @@ struct NotUseFreezeItem {
 
 ### 不开启冻结功能
 
-如图1所示，在Grid预加载GridItem数量设置200的情况下，不开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的FlushVsync（执行布局任务、执行渲染任务并通知图形进行渲染）耗时为293ms。其中FlushDirtyNodeUpdate（更新脏节点）耗时153ms,UITaskScheduler::FlushTask（主要是对懒加载的GridItem进行重新布局）耗时94ms。
+如图1所示，在Grid预加载GridItem数量设置200的情况下，不开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask（执行布局任务、执行渲染任务并通知图形进行渲染）耗时为162ms。其中FlushDirtyNodeUpdate（更新脏节点）耗时104ms,UITaskScheduler::FlushTask（主要是对懒加载的GridItem进行重新布局）耗时28ms。
 
 图1 不开启自定义组件冻结功能
 ![](./figures/custom_component_freeze_not_freeze_duration.png)
@@ -315,7 +313,7 @@ struct NotUseFreezeItem {
 
 ### 开启冻结功能
 
-如图3所示，在Grid预加载GridItem数量设置200的情况下，开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的FlushVsync耗时仅为24ms。其中FlushDirtyNodeUpdate耗时10ms，UITaskScheduler::FlushTask耗时5ms。和不开启冻结功能的耗时相比缩短了11倍。
+如图3所示，在Grid预加载GridItem数量设置200的情况下，开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask耗时仅为32ms。其中FlushDirtyNodeUpdate耗时7ms，UITaskScheduler::FlushTask耗时14ms。和不开启冻结功能相比耗时减少了约80%（性能耗时数据因设备型号版本而异，以实测为准）。
 
 图3 开启自定义组件冻结功能
 ![](./figures/custom_component_freeze_freeze_duration.png)
@@ -325,9 +323,9 @@ struct NotUseFreezeItem {
 图4 开启冻结功能后CustomNodeUpdate耗时
 ![](./figures/custom_component_freeze_freeze_item.png)
 
-图5为Grid懒加载场景下，设置不同预加载缓存GridItem数量（cachedCount）的FlushVsunc耗时对比图。可以看出懒加载中设置的预加载缓存GridItem的数量越大，FlushVsync耗时越长。
+图5为Grid懒加载场景下，设置不同预加载缓存GridItem数量（cachedCount）的UIVsyncTask耗时对比图。可以看出懒加载中设置的预加载缓存GridItem的数量越大，UIVsyncTask耗时越长。
 
-图5 FlushVsunc耗时对比
+图5 UIVsyncTask耗时对比（性能耗时数据因设备型号版本而异，以实测为准）
 
 ![](./figures/custom_component_freeze_duration.png)
 

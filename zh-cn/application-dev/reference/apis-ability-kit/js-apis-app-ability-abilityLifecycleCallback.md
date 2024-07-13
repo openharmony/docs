@@ -204,6 +204,8 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#uiabilityoncreate)触发前回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -221,6 +223,8 @@ onAbilityWillCreate?(ability: UIAbility): void
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)触发前回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -241,6 +245,8 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy)触发前回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -260,6 +266,8 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#uiabilityonforeground)触发前回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -277,6 +285,8 @@ onAbilityWillForeground?(ability: UIAbility): void
 onAbilityWillDestroy?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#uiabilityondestroy)触发前回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -296,6 +306,8 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#uiabilityonbackground)触发前回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -314,6 +326,8 @@ onWillNewWant?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发前回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -331,6 +345,8 @@ onWillNewWant?(ability: UIAbility): void
 onNewWant?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发后回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

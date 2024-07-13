@@ -50,8 +50,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
@@ -61,7 +59,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  //供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
   currentAVSession = data;
@@ -97,8 +95,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
@@ -108,7 +104,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  //供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -322,13 +318,18 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg"
-};
+let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource= await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
 currentAVSession.setCallMetadata(calldata).then(() => {
   console.info('setCallMetadata successfully');
 }).catch((err: BusinessError) => {
@@ -611,7 +612,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 import { wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -679,7 +680,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 import { wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -1273,7 +1274,6 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 | -------- |---------------------------------------|
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
 
 **示例：**
 
@@ -1313,7 +1313,6 @@ getAVCastController(): Promise\<AVCastController>
 | -------- | --------------------------------------- |
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
 
 **示例：**
 
@@ -3733,15 +3732,15 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 
 **示例：**
 
-以下示例中的getLicense()函数实现可参考[投播组件开发指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/distributed-playback-guide-V5)附录实现。
 ```ts
 import { http } from '@kit.NetworkKit';
 
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
   // 根据assetId获取对应的DRM url
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
-  // 从服务器获取许可证
-  let licenseResponseData = await this.getLicense(assetId, requestData);
+  // 从服务器获取许可证，需要开发者根据实际情况进行赋值
+  let licenseResponseData: Uint8Array = new Uint8Array();
+  console.info('Succeeded in get license by ' + drmUrl);
   aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
 ```
@@ -4729,8 +4728,6 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | DEVICE_TYPE_LOCAL      | 0    | 本地播放类型 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
@@ -4744,14 +4741,12 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | 是   | 投播的类别。         |
-| deviceId   | string | 是   | 播放设备的ID。  |
-| deviceName | string | 是   | 播放设备的名称。    |
-| deviceType | DeviceType | 是   | 播放设备的类型。    |
+| castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
+| deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
+| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 

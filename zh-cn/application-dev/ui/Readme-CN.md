@@ -88,6 +88,7 @@
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
   - [使用镜像能力](arkts-mirroring-display.md)
+  - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
   - 使用NDK接口构建UI

@@ -2434,6 +2434,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
@@ -2469,6 +2471,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {

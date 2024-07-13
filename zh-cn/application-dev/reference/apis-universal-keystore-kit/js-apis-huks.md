@@ -2815,6 +2815,19 @@ async function testListAliases() {
 | HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | 表示用户认证类型为人脸 。 |
 | HUKS_USER_AUTH_TYPE_PIN         | 1 << 2  | 表示用户认证类型为PIN码。 |
 
+## HuksUserAuthMode<sup>12+</sup>
+
+表示用户认证模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
+
+| 名称                            | 值   | 说明                      |
+| ------------------------------- | ---- | ------------------------- |
+| HUKS_USER_AUTH_MODE_LOCAL       | 0    | 本地认证模式。   |
+| HUKS_USER_AUTH_MODE_COAUTH      | 1    | 跨端协同认证模式。|
+
 ## HuksAuthAccessType<sup>9+</sup>
 
 表示安全访问控制类型。
@@ -2953,7 +2966,8 @@ async function testListAliases() {
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316    | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USER_AUTH_MODE<sup>12+</sup>         | HuksTagType.HUKS_TAG_TYPE_UINT \| 319   | 表示用户认证模式。从[HuksUserAuthMode](#huksuserauthmode12)中选择。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。从API version 9开始废弃。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |

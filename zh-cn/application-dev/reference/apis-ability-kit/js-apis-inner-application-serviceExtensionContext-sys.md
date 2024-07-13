@@ -2390,7 +2390,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**: 此接口为系统接口。

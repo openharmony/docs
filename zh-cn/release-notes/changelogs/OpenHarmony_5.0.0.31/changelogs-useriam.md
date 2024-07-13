@@ -12,13 +12,17 @@
 
 **变更影响**
 
-该变更为非兼容性变更，需要开发者适配。
+该变更为不兼容变更，会导致编译报错，报错信息如下：
+```
+'"@kit.UserAuthenticationKit"' has no exported member named 'userAuthIcon'. Did you mean 'UserAuthIcon'? <ArkTSCheck>。
+```
 
 **起始 API Level**
 
 12
 
 **变更发生版本**
+
 从OpenHarmony SDK 5.0.0.31开始。
 
 **修改前**

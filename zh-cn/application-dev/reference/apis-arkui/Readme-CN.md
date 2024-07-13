@@ -363,6 +363,7 @@
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
   - 头文件
+    - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
     - [native_animate.h](native__animate_8h.md)
     - [native_dialog.h](native__dialog_8h.md)

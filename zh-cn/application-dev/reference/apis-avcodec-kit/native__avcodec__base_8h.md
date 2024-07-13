@@ -123,11 +123,11 @@
 | const char \* [OH_MD_KEY_CODEC_CONFIG](_codec_base.md#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](_codec_base.md#oh_md_key_title) | 源格式标题的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ARTIST](_codec_base.md#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 | 
-| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 相册的源格式键，值类型为string。 | 
-| const char \* [OH_MD_KEY_ALBUM_ARTIST](_codec_base.md#oh_md_key_album_artist) | 相册艺术家的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 专辑的源格式键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](_codec_base.md#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DATE](_codec_base.md#oh_md_key_date) | 源格式日期的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_COMMENT](_codec_base.md#oh_md_key_comment) | 源格式注释的键，值类型为string。 | 
-| const char \* [OH_MD_KEY_GENRE](_codec_base.md#oh_md_key_genre) | 源格式类型的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_GENRE](_codec_base.md#oh_md_key_genre) | 源格式流派的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_COPYRIGHT](_codec_base.md#oh_md_key_copyright) | 源格式版权的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_LANGUAGE](_codec_base.md#oh_md_key_language) | 源格式语言的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DESCRIPTION](_codec_base.md#oh_md_key_description) | 源格式描述的键，值类型为string。 | 

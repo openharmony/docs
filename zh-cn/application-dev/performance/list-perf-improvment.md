@@ -1,4 +1,4 @@
-# 应用列表场景性能提升实践
+# 列表场景性能提升实践
 
 在应用的UI开发中，使用列表是一种常规场景，因此，对列表性能进行优化是非常重要的。本文将针对应用开发列表场景的性能提升实践方法展开介绍。
 
@@ -627,7 +627,7 @@ build() {
 
 ![](figures/list-perf-flat-layout.png)
 
-系统还提供了更多的扁平化布局方案，例如绝对定位、自定义布局、Grid、GridRow等，适用更多不同的场景，具体的使用方法可以参考[官方文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/readme-CN.md)。
+系统还提供了更多的扁平化布局方案，例如绝对定位、自定义布局、Grid、GridRow等，适用更多不同的场景，具体的使用方法可以参考[官方文档](../ui/Readme-CN.md)。
 
 ## 总结
 

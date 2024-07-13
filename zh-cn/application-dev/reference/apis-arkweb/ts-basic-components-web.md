@@ -70,7 +70,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-  ```
+   ```
 
 Web组件统一渲染模式。
 
@@ -89,7 +89,7 @@ Web组件统一渲染模式。
       }
     }
   }
-  ```
+   ```
 
 加载本地网页。
 
@@ -1094,7 +1094,7 @@ defaultFixedFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1127,7 +1127,7 @@ defaultFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1516,7 +1516,7 @@ pinchSmooth(isEnabled: boolean)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1896,6 +1896,63 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
+### forceDisplayScrollBar<sup>12+</sup>
+
+forceDisplayScrollBar(enabled: boolean)
+
+
+设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述           |
+| ------- | -------- | ---- | ------ | ------------------ |
+| enabled | boolean  | 是   | false  | 滚动条是否常驻。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .forceDisplayScrollBar(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:2560px;
+          height:2560px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
@@ -2124,7 +2181,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
-    
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -2145,6 +2202,55 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
   <body>
     <h1>selectionMenuOptions Demo</h1>
     <span>selection menu options</span>
+  </body>
+  </html>
+  ```
+
+### keyboardAvoidMode<sup>12+</sup>
+
+keyboardAvoidMode(mode: WebKeyboardAvoidMode)
+
+Web组件自定义软件键盘避让模式。
+
+当UIContext设置的键盘避让模式为[KeyboardAvoidMode.RESIZE](../apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)模式时，该接口功能不生效。
+
+**参数：**
+
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State avoidMode: WebKeyboardAvoidMode = WebKeyboardAvoidMode.RESIZE_VISUAL;
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .keyboardAvoidMode(this.avoidMode)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Text">
   </body>
   </html>
   ```
@@ -2982,7 +3088,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+调用此函数以处理具有“文件”输入类型的HTML表单。如果不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。如果返回true，应用可以自定义“选择文件”的响应行为。
 
 **参数：**
 
@@ -4401,7 +4507,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -4964,6 +5070,59 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 **示例：**
 
+```ts
+// EntryAbility.ets
+
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    // API12新增：开启同层渲染BFCache开关
+    let features = new webview.BackForwardCacheSupportedFeatures();
+    features.nativeEmbed = true;
+    features.mediaTakeOver = true;
+    webview.WebviewController.enableBackForwardCache(features);
+    webview.WebviewController.initializeWebEngine();
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -4977,7 +5136,8 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // 默认行为：点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使Embed标签进入BFCache。
         Button('Destroy')
         .onClick(() => {
           try {
@@ -4986,6 +5146,31 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使Embed标签离开BFCache。
+        Button('backward')
+        .onClick(() => {
+          try {
+            this.controller.backward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使Embed标签进入BFCache。
+        Button('forward')
+        .onClick(() => {
+          try {
+            this.controller.forward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+
+        // API12新增同层标签进入离开BFCache状态：非http与https协议加载的网页，Web内核不支持进入BFCache;
+        // 因此如果要测试ENTER_BFCACHE/LEAVE_BFCACHE状态，需要将index.html放到Web服务器上，使用http或者https协议加载，如：
+        // Web({ src: "http://xxxx/index.html", controller: this.controller })
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
@@ -5000,6 +5185,14 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
+            }
+            // 同层标签所在的页面进入BFCache时，会触发Enter BFCache。
+            if (event.status == NativeEmbedStatus.ENTER_BFCACHE) {
+              this.embedStatus = 'Enter BFCache';
+            }
+            // 同层标签所在的页面离开BFCache时，会触发Leave BFCache。
+            if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
+              this.embedStatus = 'Leave BFCache';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
@@ -6151,7 +6344,7 @@ confirm(userName: string, password: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的帐号密码认证。
+通知Web组件用户使用服务器缓存的账号密码认证。
 
 **返回值：**
 
@@ -7634,6 +7827,8 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | CREATE                        | 0 | Embed标签创建。   |
 | UPDATE                        | 1 | Embed标签更新。   |
 | DESTROY                       | 2 | Embed标签销毁。 |
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | Embed标签进入BFCache。   |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | Embed标签离开BFCache。 |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
@@ -7838,6 +8033,16 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
 | action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
 
+## WebKeyboardAvoidMode<sup>12+</sup>
+
+软键盘避让的模式。
+
+| 名称               | 值 | 描述           |
+| ------------------ | -- | ------------ |
+| RESIZE_VISUAL      | 0 | 软键盘避让时，仅调整可视视口大小，不调整布局视口大小。   |
+| RESIZE_CONTENT     | 1 | 默认值，软键盘避让时，同时调整可视视口和布局视口的大小。 |
+| OVERLAYS_CONTENT   | 2 | 不调整任何视口大小，不会触发软键盘避让。   |
+
 ## OnPageEndEvent<sup>12+</sup>
 
 定义网页加载结束时触发的函数。
@@ -7877,7 +8082,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | JsGeolocation | 是 | 通知Web组件用户操作行为。                       |
+| geolocation | [JsGeolocation](#jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnAlertEvent<sup>12+</sup>
 

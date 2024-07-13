@@ -1,15 +1,15 @@
-# Image Kit API Reference
+# Image Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
+  - [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](js-apis-sendableImage.md)
+  - [@ohos.multimedia.image (Image Processing) (System API)](js-apis-image-sys.md)
 - C APIs
   - Modules
     - [Image](image.md)
+    - [Image_NativeModule](_image___native_module.md)
     - [ImageEffect](_image_effect.md)
   - Header Files
-    - [image_effect.h](image__effect_8h.md)
-    - [image_effect_errors.h](image__effect__errors_8h.md)
-    - [image_effect_filter.h](image__effect__filter_8h.md)
     - [image_mdk.h](image__mdk_8h.md)
     - [image_mdk_common.h](image__mdk__common_8h.md)
     - [image_packer_mdk.h](image__packer__mdk_8h.md)
@@ -17,17 +17,20 @@
     - [image_pixel_map_napi.h](image__pixel__map__napi_8h.md)
     - [image_receiver_mdk.h](image__receiver__mdk_8h.md)
     - [image_source_mdk.h](image__source__mdk_8h.md)
+    - [image_common.h](image__common_8h.md)
+    - [image_native.h](image__native_8h.md)
+    - [image_packer_native.h](image__packer__native_8h.md)
+    - [image_receiver_native.h](image__receiver__native_8h.md)
+    - [image_source_native.h](image__source__native_8h.md)
+    - [pixelmap_native.h](pixelmap__native_8h.md)
+    - [image_effect.h](image__effect_8h.md)
+    - [image_effect_errors.h](image__effect__errors_8h.md)
+    - [image_effect_filter.h](image__effect__filter_8h.md)
   - Structs
-    - [ImageEffect_Any](_image_effect___any.md)
-    - [ImageEffect_DataValue](union_image_effect___data_value.md)
-    - [ImageEffect_FilterDelegate](_image_effect___filter_delegate.md)
-    - [ImageEffect_FilterNames](_image_effect___filter_names.md)
-    - [ImageEffect_Region](_image_effect___region.md)
-    - [ImageEffect_Size](_image_effect___size.md)
-    - [ImagePacker_Opts_](_image_packer___opts__.md)
+    - [ImagePacker_Opts](_image_packer___opts__.md)
     - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
     - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
-    - [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+    - [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
     - [OhosImageDecodingOps](_ohos_image_decoding_ops.md)
     - [OhosImageReceiverInfo](_ohos_image_receiver_info.md)
     - [OhosImageRegion](_ohos_image_region.md)
@@ -42,5 +45,14 @@
     - [OhosImageSourceUpdateData](_ohos_image_source_update_data.md)
     - [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md)
     - [OhosPixelMapInfos](_ohos_pixel_map_infos.md)
+    - [Image_Region](_image___region.md)
+    - [Image_Size](_image___size.md)
+    - [Image_String](_image___string.md)
+    - [ImageEffect_Any](_image_effect___any.md)
+    - [ImageEffect_DataValue](union_image_effect___data_value.md)
+    - [ImageEffect_FilterDelegate](_image_effect___filter_delegate.md)
+    - [ImageEffect_FilterNames](_image_effect___filter_names.md)
+    - [ImageEffect_Region](_image_effect___region.md)
+    - [ImageEffect_Size](_image_effect___size.md)
 - Error Codes
   - [Image Error Code](errorcode-image.md)

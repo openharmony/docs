@@ -5,7 +5,9 @@
 
 The **native_drm_err.h** file declares the DRM error codes.
 
-**Library**: libnative_drm.z.so
+**Library**: libnative_drm.so
+
+**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 

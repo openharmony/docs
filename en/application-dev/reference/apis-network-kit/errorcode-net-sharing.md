@@ -81,7 +81,7 @@ The specified Iface does not exist or the Iface name is incorrect.
 1. Check whether the shared Iface is available.
 
     ```
-    > ifconfig -a
+    ifconfig -a
     ```
 
 2. Check whether the Iface name is correct.

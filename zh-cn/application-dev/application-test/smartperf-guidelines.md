@@ -21,11 +21,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ## 约束与限制
 
-1.<!--Del-->Device-hap端、<!--DelEnd-->Device-daemon端在API 9版本开始预置使用。
+1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。
 
-2.<!--Del-->Device-hap端需在有屏幕设备使用，<!--DelEnd-->Device-daemon端执行需连接硬件设备。
+2. Device-daemon端执行需连接硬件设备<!--Del-->，Device-hap端需在有屏幕设备使用<!--DelEnd-->。
 
-3.Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
+3. Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
 ## 执行性能测试
 
@@ -81,9 +81,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -VIEW |否| 设置图层，需要先获取应用图层名                |
 | -screen |否| 采集屏幕分辨率和刷新率               |
 | -d    |否| 采集DDR                 |
-| -m  |否| 采集进程内存信息         |
 | -sections|否| 设置分段采集          |
-
+<!--RP1--><!--RP1End-->
 
 ### 启停采集命令参数
 
@@ -118,6 +117,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 #### 执行查看帮助命令
 
+<!--RP2-->
+
   ```
   # SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
@@ -141,10 +142,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   -screen        get screen resolution
   -OUT           set csv output path
   -d             get device DDR information
-  -m             get other memory
   example:
-  SP_daemon -N 20 -c -g -t -p -r -m -net -snapshot -d
-  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -net -snapshot -d
+  SP_daemon -N 20 -c -g -t -p -r -net -snapshot -d
+  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d
   SP_daemon -start -c
   SP_daemon -stop
   SP_daemon -screen
@@ -152,6 +152,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+<!--RP2End-->
 
 #### 执行采集命令
 
@@ -280,46 +281,34 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1711679596851
-  order:1 memAvailable=8267076
-  order:2 memFree=7870760
-  order:3 memTotal=11769320
-  order:4 pss=78045
+  order:0 timestamp=1720427095197
+  order:1 arktsHeapPss=17555
+  order:2 gpuPss=7021
+  order:3 graphicPss=163320
+  order:4 heapAlloc=120344
+  order:5 heapFree=14362
+  order:6 heapSize=133436
+  order:7 memAvailable=2757504
+  order:8 memFree=190852
+  order:9 memTotal=11742716
+  order:10 nativeHeapPss=49102
+  order:11 privateClean=1100020
+  order:12 privateDirty=175169
+  order:13 pss=422172
+  order:14 sharedClean=89348
+  order:15 sharedDirty=19084
+  order:16 stackPss=1588
+  order:17 swap=122076
+  order:18 swapPss=122076
+
 
   command exec finished!
   #
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内
-
-  - 采集1次指定应用其他内存
-
-  ```
-  # SP_daemon -N 1 -PKG ohos.samples.ecg -m
-
-  order:0 timestamp=1711681812033
-  order:1 arktsHeapPss=12311
-  order:2 gpuPss=270
-  order:3 graphicPss=0
-  order:4 heapAlloc=46120
-  order:5 heapFree=1582
-  order:6 heapSize=49060
-  order:7 nativeHeapPss=40302
-  order:8 privateClean=64352
-  order:9 privateDirty=2906
-  order:10 sharedClean=74200
-  order:11 sharedDirty=13220
-  order:12 stackPss=624
-  order:13 swap=0
-  order:14 swapPss=0
-
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入应用内
+  >- 使用该命令采集时需进入被测应用内
+  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
 
   - 采集2次截图
 
@@ -385,7 +374,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内，滑动或切换页面
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
   >
  
   - 采集10次指定图层帧率
@@ -425,11 +415,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+  <!--RP3--><!--RP3End-->
 
   - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
-  # SP_daemon -N 10 -c -g -t -p -r -d -net -snapshot
+  # SP_daemon -N 10 ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
   order:0 timestamp=1705042018276
   order:1 cpu0Frequency=490000
@@ -466,12 +457,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   #
   ```
 
-  - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、其他内存信息、DDR信息、网络速率、屏幕截图
+  - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
  
+   <!--RP4-->
   ```
-  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
+  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
-  order:0 timestamp=1705307489445
+  order:0 timestamp=1705042018276
   order:1 ProcAppName=ohos.samples.ecg
   order:2 ProcCpuLoad=0.000001
   order:3 ProcCpuUsage=0.000000
@@ -479,7 +471,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   order:5 ProcSCpuUsage=0.000000
   order:6 ProcUCpuUsage=0.000000
   order:7 cpu0Frequency=418000
-  order:8 cpu0Usage=27.884615
+  order:8 cpu0Usage=27.884616
   order:9 cpu0idleUsage=72.115385
   order:10 cpu0ioWaitUsage=0.000000
   order:11 cpu0irqUsage=0.961538
@@ -501,27 +493,27 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   order:125 fps=3
   order:126 fpsJitters=881659966;;108846354;;8289583
   order:127 refreshrate=120
-  order:128 memAvailable=6354252
-  order:129 memFree=5971776
-  order:130 memTotal=11530092
-  order:131 pss=78045
-  order:132 arktsHeapPss=13394
-  order:133 gpuPss=280
-  order:134 graphicPss=0
-  order:135 heapAlloc=48080
-  order:136 heapFree=2576
-  order:137 heapSize=50788
-  order:138 nativeHeapPss=41897
-  order:139 privateClean=67232
-  order:140 privateDirty=12848
-  order:141 sharedClean=76224
-  order:142 sharedDirty=12848
-  order:143 stackPss=1096
-  order:144 swap=0
-  order:145 swapPss=0
-  order:146 ddrFrequency=1531000000
-  order:147 networkDown=0
-  order:148 networkUp=0
+  order:128 arktsHeapPss=16464
+  order:129 gpuPss=7021
+  order:130 graphicPss=163320
+  order:131 heapAlloc=118870
+  order:132 heapFree=14076
+  order:133 heapSize=131948
+  order:134 memAcailable=2776508
+  order:135 memFree=258668
+  order:136 memTotal=11742716
+  order:137 nativeHeapPss=45361
+  order:138 privateClean=104828
+  order:139 privateDirty=175189
+  order:140 pss=419476
+  order:141 sharedClean=87744
+  order:142 sharedDirty=19084
+  order:143 stackPss=1592
+  order:144 swap=125408
+  order:145 swapPss=125408
+  order:146 ddrFrequency=749000000
+  order:147 networkDown=7893
+  order:148 networkUp=1546
   order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
 
   ...
@@ -529,6 +521,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+   <!--RP4End-->
+
+  >**说明**
+  >
+  >- 使用该命令采集时需进入被测应用内
+  >
 
   - 采集当前界面fps
 
@@ -585,36 +583,33 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
 
-  - 启停服务（开始采集）
+  - 启停服务
 
   ```
+  开始采集
   # SP_daemon -start -c
   SP_daemon Collection begins
   command exec finished!
   #
-  ```
-  >**说明**
-  >
-  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -m -d -net -snapshot
-  >
-  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
-  >
-  >- 查看与导出方式同(输出采集结果和查看采集结果)
-
-  - 启停服务（结束采集）
-
-  ```
+  
+  结束采集
   # SP_daemon -stop
   SP_daemon Collection ended
   Output Path: data/local/tmp/smartperf/1/t_index_info_csv
   command exec finished!
   #
+
   ```
   >**说明**
   >
-  >- 启停服务文件路径为：data/local/tmp/smartperf/1/t_index_info.csv
+  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot
   >
-  >- 查看与导出方式同下
+  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
+  >
+  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
+  >
+  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
+  >
 
   - 获取屏幕分辨率
 
@@ -709,3 +704,4 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | nativeHeapPss     | 使用的native内存大小   |单位：KB|
     | stackPss          | 使用的栈内存大小       |单位：KB|
     | timeStamp         | 当前时间戳            |对应采集时间| 
+    <!--RP5--><!--RP5End-->

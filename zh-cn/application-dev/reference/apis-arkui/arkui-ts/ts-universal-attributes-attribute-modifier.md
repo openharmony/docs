@@ -169,7 +169,7 @@ struct attributePressedDemo {
 ### 示例2
 自定义Modifier不支持@State标注的状态数据的变化感知。
 ```ts
-import {CommonModifier} from "@ohos.arkui.modifier"
+import { CommonModifier } from "@kit.ArkUI"
 
 class MyModifier extends CommonModifier {
   applyNormalAttribute(instance: CommonAttribute) : void{
@@ -218,7 +218,7 @@ struct Index {
 ### 示例3
 自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
 ```ts
-import {CommonModifier} from "@ohos.arkui.modifier"
+import { CommonModifier } from "@kit.ArkUI"
 
 class MyModifier extends CommonModifier {
   applyNormalAttribute(instance: CommonAttribute) : void{

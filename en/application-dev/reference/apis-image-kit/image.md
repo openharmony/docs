@@ -17,13 +17,13 @@ The **Image** module enables access to image APIs.
 
 | Name| Description| 
 | -------- | -------- |
-| [image_mdk.h](image__mdk_8h.md) | Declares the APIs used to access the image rectangle, size, format, and component data.<br>**File to include**: &lt;multimedia/image_framework/image_mdk.h&gt;<br>**Library**: libimage_ndk.z.so| 
-| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image APIs.<br>**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;<br>**Library**: libimage_ndk.z.so|
-| [image_packer_mdk.h](image__packer__mdk_8h.md) | Declares the APIs used to pack an image into a buffer or file.<br>**File to include**: &lt;multimedia/image_framework/image_packer_mdk.h&gt;<br>**Library**:| 
-| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs used to lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | (Deprecated) Declares the APIs used to lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
-| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs used to obtain image data from the native layer.<br>**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br>**Library**: libimage_receiver_ndk.z.so| 
-| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_source_mdk.h&gt;<br>**Library**: libimage_source_ndk.z.so|
+| [image_mdk.h](image__mdk_8h.md) | Declares the APIs used to access the image rectangle, size, format, and component data.| 
+| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image APIs.|
+| [image_packer_mdk.h](image__packer__mdk_8h.md) | Declares the APIs used to pack an image into a buffer or file.| 
+| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs used to lock, access, and unlock a pixel map.| 
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | (Deprecated) Declares the APIs used to lock, access, and unlock a pixel map.| 
+| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs used to obtain image data from the native layer.| 
+| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a pixel map.|
 
 
 ### Structs
@@ -33,10 +33,10 @@ The **Image** module enables access to image APIs.
 | [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) | Defines the information about an image rectangle.| 
 | [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) | Defines the information about an image component.| 
 | [OhosImageSize](_ohos_image_size.md) | Defines the image size.| 
-| [ImagePacker_Opts_](_image_packer___opts__.md) | Defines the image packing options.| 
+| [ImagePacker_Opts](_image_packer___opts__.md) | Defines the image packing options.| 
 | [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the information about a pixel map.| 
 | [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options for creating a pixel map.| 
-| [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
+| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
 | [OhosImageReceiverInfo](_ohos_image_receiver_info.md) | Defines the information about an image receiver.| 
 | [OhosImageRegion](_ohos_image_region.md) | Defines the region of an image source to decode.| 
 | [OhosImageSourceOps](_ohos_image_source_ops.md) | Defines the image source options.| 
@@ -240,7 +240,7 @@ Defines an image packer object at the native layer.
 ### ImagePacker_Opts
 
 ```
-typedef struct ImagePacker_Opts_ImagePacker_Opts
+typedef struct ImagePacker_Opts_ ImagePacker_Opts
 ```
 
 **Description**
@@ -2667,7 +2667,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **Description**
 
-Creates a **PixelMap** object. Currently, only BGRA input streams are supported.
+Creates a **PixelMap** object. Currently, only BGRA input streams are supported. The buffer passed in by this API does not support the stride.
 
 **Since**: 10
 
@@ -3363,7 +3363,7 @@ Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
-[GetDensity](oh_pixelmap_getdensity)
+[GetDensity](#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()

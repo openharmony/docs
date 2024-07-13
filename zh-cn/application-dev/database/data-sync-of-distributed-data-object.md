@@ -9,6 +9,7 @@
 
 分布式数据对象即实现了对“变量”的“全局”访问。向应用开发者提供内存对象的创建、查询、删除、修改、订阅等基本数据对象的管理能力，同时具备分布式能力。为开发者在分布式应用场景下提供简单易用的JS接口，轻松实现多设备间同应用的数据协同，同时设备间可以监听对象的状态和数据变更。满足超级终端场景下，相同应用多设备间的数据对象协同需求。与传统方式相比，分布式数据对象大大减少了开发者的工作量。
 
+目前<!--RP2-->分布式数据对象只能在[跨端迁移](../application-models/hop-cross-device-migration.md)和[通过跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中使用。<!--RP2End-->
 
 ## 基本概念
 
@@ -69,10 +70,18 @@
 
 （3）监听状态变更，感知其他设备的加入和退出。
 
+分布式数据对象加入session时，如果它的数据与session中的数据不同，则它会更新session中的数据。如果希望分布式数据对象加入sessionId时不更新session中的数据，并且得到session中的数据，需要将对象的属性的值设置为undefined（资产类型的属性则是将它的各个属性值设置为空字符串）。
 
 ### 同步的最小单位
 
 关于分布式数据对象的数据同步，值得注意的是，同步的最小单位是“属性”。比如，下图中对象1包含三个属性：name、age和parents。当其中一个属性变更时，则数据同步时只需同步此变更的属性。
+
+对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、Object类型）。针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
+
+```ts
+dataObject['parents'] = {mom: "amy"}; // 支持的修改
+dataObject['parents']['mon'] = "amy"; // 不支持的修改
+```
 
 **图3** 数据同步视图 
 
@@ -95,6 +104,8 @@
 在分布式对象中，可以使用[资产类型](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。当前只支持资产类型，不支持[资产类型数组](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
 
 ## 约束限制
+
+- 目前<!--RP2-->分布式数据对象只能在[跨端迁移](../application-models/hop-cross-device-migration.md)和[通过跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中使用。<!--RP2End-->
 
 - 不同设备间只有相同bundleName的应用才能直接同步。
 
@@ -136,222 +147,6 @@
 
 
 ## 开发步骤
-
-### 跨设备数据同步
-
-以一次分布式数据对象同步为例，说明开发步骤。
-
-1. 导入distributedDataObject模块。
-
-   ```ts
-   import { distributedDataObject } from '@kit.ArkData';
-   ```
-
-2. 请求权限。
-
-   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
-   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
-
-3. 创建并得到一个分布式数据对象实例。
-
-   Stage模型示例：
-   
-   ```ts
-   // 导入模块
-   import { UIAbility } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { window } from '@kit.ArkUI';
-
-   class ParentObject {
-     mother: string
-     father: string
-
-     constructor(mother: string, father: string) {
-       this.mother = mother
-       this.father = father
-     }
-   }
-   class SourceObject {
-     name: string | undefined
-     age: number | undefined
-     isVis: boolean | undefined
-     parent: Object | undefined
-
-     constructor(name: string | undefined, age: number | undefined, isVis: boolean | undefined, parent: ParentObject | undefined) {
-       this.name = name
-       this.age = age
-       this.isVis = isVis
-       this.parent = parent
-     }
-   }
-
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-       let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
-       let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
-     }
-   }
-   ```
-
-   FA模型示例：
-
-   ```ts
-   // 导入模块
-   import { featureAbility } from '@kit.AbilityKit';
-   // 获取context
-   let context = featureAbility.getContext();
-   class ParentObject {
-     mother: string
-     father: string
-     constructor(mother: string, father: string) {
-       this.mother = mother
-       this.father = father
-     }
-   }
-   class SourceObject {
-     name: string | undefined
-     age: number | undefined
-     isVis: boolean | undefined
-     parent: ParentObject | undefined
-     constructor(name: string | undefined, age: number | undefined, isVis: boolean | undefined, parent: ParentObject | undefined) {
-       this.name = name
-       this.age = age
-       this.isVis = isVis
-       this.parent = parent
-     }
-   }
-   let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-   let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
-   // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
-   ```
-
-4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
-
-   > **说明：**
-   > 
-   > 一个分布式对象加入组网时，如果它的数据与组网中的数据不同，它会刷新组网中的数据。若希望加入组网时不刷新组网中的数据，并且得到组网中的数据，可以将属性设置为undefined。
-
-   ```ts
-   // 设备1加入sessionId
-   let sessionId: string = '123456';
-   
-   localObject.setSessionId(sessionId);
-   
-   // 和设备1协同的设备2加入同一个session
-   
-   // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
-   let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
-   // 收到status上线后remoteObject同步数据，即name变成jack，age变成18
-   remoteObject.setSessionId(sessionId);
-   ```
-
-5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
-
-   ```ts
-   localObject.on("change", (sessionId: string, fields: Array<string>) => {
-     console.info("change" + sessionId);
-     if (fields != null && fields != undefined) {
-       for (let index: number = 0; index < fields.length; index++) {
-         console.info(`The element ${localObject[fields[index]]} changed.`);
-       }
-     }
-   });
-   ```
-
-6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
-
-   ```ts
-   localObject["name"] = 'jack1';
-   localObject["age"] = 19;
-   localObject["isVis"] = false;
-   let parentSource1: ParentObject = new ParentObject('jack1 mom', 'jack1 Dad');
-   localObject["parent"] = parentSource1;
-   ```
-
-   > **说明：**
-   >
-   > 针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
-
-
-   ```ts
-   // 支持的修改方式
-   let parentSource1: ParentObject = new ParentObject('mom', 'Dad');
-   localObject["parent"] = parentSource1;
-   // 不支持的修改方式
-   localObject["parent"]["mother"] = 'mom';
-   ```
-
-7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
-
-   ```ts
-   console.info(`name:${localObject['name']}`); 
-   ```
-
-8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
-
-   ```ts
-   // 删除变更回调
-   localObject.off('change', (sessionId: string, fields: Array<string>) => {
-     console.info("change" + sessionId);
-     if (fields != null && fields != undefined) {
-       for (let index: number = 0; index < fields.length; index++) {
-         console.info("changed !" + fields[index] + " " + localObject[fields[index]]);
-       }
-     }
-   });
-   // 删除所有的变更回调
-   localObject.off('change'); 
-   ```
-
-9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
-
-   ```ts
-   localObject.on('status', (sessionId: string, networkId: string, status: 'online' | 'offline') => {
-     console.info("status changed " + sessionId + " " + status + " " +  networkId);
-     // 业务处理
-   });
-   ```
-
-10. 保存和撤回已保存的数据对象。
-
-    ```ts
-    // 保存数据对象，如果应用退出后组网内设备需要恢复对象数据时调用
-    localObject.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
-      console.info(`Succeeded in saving. SessionId:${result.sessionId},version:${result.version},deviceId:${result.deviceId}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to save. Code:${err.code},message:${err.message}`);
-    });
-   
-    // 撤回保存的数据对象
-    localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
-      console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to revokeSave. Code:${err.code},message:${err.message}`);
-    });
-    ```
-
-11. 删除监听分布式数据对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
-
-    ```ts
-    // 删除上下线回调
-    localObject.off('status', (sessionId: string, networkId: string, status: 'online' | 'offline') => {
-      console.info("status changed " + sessionId + " " + status + " " + networkId);
-      // 业务处理
-    });
-    // 删除所有的上下线回调
-    localObject.off('status');
-    ```
-
-12. 退出同步组网。分布式数据对象退出组网后，本地的数据变更对端不会同步。
-
-    ```ts
-    localObject.setSessionId(() => {
-      console.info('leave all session.');
-    });
-    ```
 
 ### 在跨端迁移中使用分布式数据对象迁移数据
 
@@ -515,6 +310,176 @@ export default class EntryAbility extends UIAbility {
     }
     return attachment;
   }
+}
+```
+
+### 在多端协同中使用分布式数据对象
+
+1. 调用端调用startAbilityByCall接口拉起对端Ability：
+
+    1.1 调用genSessionId接口创建一个sessionId，通过分布式设备管理接口获取对端设备networkId。
+
+    1.2 组装want，并将sessionId放入want。
+
+    1.3 调用startAbilityByCall接口拉起对端Ability。
+
+2. 调用端拉起对端Ability后创建分布式数据对象并加入组网：
+
+   2.1 创建分布式数据对象实例。
+
+   2.2 注册数据变更监听。
+
+   2.3 设置同步sessionId加入组网。
+
+3. 被调用端被拉起后创建和恢复分布式数据对象：
+
+   3.1 创建分布式数据对象实例。
+
+   3.2 注册数据变更监听。
+
+   3.3 从want中获取源端放入的sessionId，使用这个sessionId加入组网。
+
+> **说明：**
+>
+> - 暂时只支持<!--RP3-->在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)中使用分布式数据对象进行数据同步。<!--RP3End-->
+>
+> - 跨设备Call调用实现的多端协同开发<!--RP4-->需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限和配置单实例启动标签，详见跨设备Call调用实现的多端协同的[开发步骤](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。<!--RP4End-->
+>
+> - wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
+>
+> - 使用分布式设备管理获取对端设备networkId详见[设备信息查询开发指导](../distributedservice/devicemanager-guidelines.md#设备信息查询开发指导)。
+
+ 示例代码如下：
+
+```ts
+import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { distributedDataObject } from '@kit.ArkData';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 业务数据定义
+class Data {
+  title: string | undefined;
+  text: string | undefined;
+
+  constructor(title: string | undefined, text: string | undefined) {
+    this.title = title;
+    this.text = text;
+  }
+}
+
+const TAG = '[DistributedDataObject]';
+
+let sessionId: string;
+let caller: Caller;
+let dataObject: distributedDataObject.DataObject;
+
+export default class EntryAbility extends UIAbility {
+  // 1. 调用端调用startAbilityByCall接口拉起对端Ability
+  callRemote() {
+    if (caller) {
+      console.error(TAG + 'call remote already');
+      return;
+    }
+    let context = getContext(this) as common.UIAbilityContext;
+
+    // 1.1 调用genSessionId接口创建一个sessionId，通过分布式设备管理接口获取对端设备networkId
+    sessionId = distributedDataObject.genSessionId();
+    console.log(TAG + `gen sessionId: ${sessionId}`);
+    let deviceId = getRemoteDeviceId();
+    if (deviceId == "") {
+      console.warn(TAG + 'no remote device');
+      return;
+    }
+    console.log(TAG + `get remote deviceId: ${deviceId}`);
+
+    // 1.2 组装want，并将sessionId放入want
+    let want: Want = {
+      bundleName: 'com.example.collaboration',
+      abilityName: 'EntryAbility',
+      deviceId: deviceId,
+      parameters: {
+        'ohos.aafwk.param.callAbilityToForeground': true, // 前台启动，非必须
+        'distributedSessionId': sessionId
+      }
+    }
+    try {
+      // 1.3 调用startAbilityByCall接口拉起对端Ability
+      context.startAbilityByCall(want).then((res) => {
+        if (!res) {
+          console.error(TAG + 'startAbilityByCall failed');
+        }
+        caller = res;
+      })
+    } catch (e) {
+      let err = e as BusinessError;
+      console.error(TAG + `get remote deviceId error, error code: ${err.code}, error message: ${err.message}`);
+    }
+  }
+
+  // 2. 拉起对端Ability后创建分布式数据对象
+  createDataObject() {
+    if (!caller) {
+      console.error(TAG + 'call remote first');
+      return;
+    }
+    if (dataObject) {
+      console.error(TAG + 'create dataObject already');
+      return;
+    }
+    let context = getContext(this) as common.UIAbilityContext;
+
+    // 2.1 创建分布式数据对象实例
+    let data = new Data('The title', 'The text');
+    dataObject = distributedDataObject.create(context, data);
+
+    // 2.2 注册数据变更监听
+    dataObject.on('change', (sessionId: string, fields: Array<string>) => {
+      fields.forEach((field) => {
+        console.log(TAG + `${field}: ${dataObject[field]}`);
+      });
+    });
+    // 2.3 设置同步sessionId加入组网
+    dataObject.setSessionId(sessionId);
+  }
+
+  // 3. 被调用端被拉起后创建和恢复分布式数据对象
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (want.parameters && want.parameters.distributedSessionId) {
+      // 3.1 创建分布式数据对象实例
+      let data = new Data(undefined, undefined);
+      dataObject = distributedDataObject.create(this.context, data);
+
+      // 3.2 注册数据变更监听
+      dataObject.on('change', (sessionId: string, fields: Array<string>) => {
+        fields.forEach((field) => {
+          console.log(TAG + `${field}: ${dataObject[field]}`);
+        });
+      });
+      // 3.3 从want中获取源端放入的sessionId，使用这个sessionId加入组网
+      let sessionId = want.parameters.distributedSessionId as string;
+      console.log(TAG + `onCreate get sessionId: ${sessionId}`);
+      dataObject.setSessionId(sessionId);
+    }
+  }
+}
+
+// 获取可信组网中的设备
+function getRemoteDeviceId() {
+  let deviceId = "";
+  try {
+    let deviceManager = distributedDeviceManager.createDeviceManager('com.example.collaboration');
+    let devices = deviceManager.getAvailableDeviceListSync();
+    if (devices[0] && devices[0].networkId) {
+      deviceId = devices[0].networkId;
+    }
+  } catch (e) {
+    let err = e as BusinessError;
+    console.error(TAG + `get remote deviceId error, error code: ${err.code}, error message: ${err.message}`);
+  }
+  return deviceId;
 }
 ```
 

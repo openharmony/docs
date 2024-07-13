@@ -947,7 +947,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${keyValue}`)
+  console.info(`observer : ${data}`)
 }
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);

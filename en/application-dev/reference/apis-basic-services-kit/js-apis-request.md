@@ -106,6 +106,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
@@ -161,6 +163,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
@@ -320,6 +324,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
@@ -361,6 +366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
@@ -402,6 +408,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     for (let i = 0; i < taskStates.length; i++) {
@@ -446,6 +453,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
@@ -489,6 +497,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
@@ -531,6 +540,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
@@ -596,6 +606,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
@@ -635,6 +646,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
@@ -2281,7 +2293,8 @@ The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** 
 
 You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-<!--Del-->For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
+<!--Del-->
+For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2497,12 +2510,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2573,12 +2588,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2649,12 +2666,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2723,11 +2742,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2795,11 +2816,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2867,11 +2890,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2941,11 +2966,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -3015,12 +3042,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3099,12 +3128,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3183,12 +3214,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3265,11 +3298,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3345,11 +3380,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3425,11 +3462,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3507,11 +3546,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3599,6 +3640,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3672,6 +3715,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3737,6 +3782,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3806,6 +3853,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3876,6 +3925,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3951,6 +4002,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4022,6 +4075,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4089,6 +4144,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4152,7 +4209,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4162,6 +4219,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4238,7 +4297,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4248,6 +4307,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4325,7 +4386,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
-  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
     console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4362,6 +4425,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
@@ -4407,6 +4472,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
@@ -4442,6 +4509,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4484,6 +4553,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
@@ -4520,6 +4591,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4563,6 +4636,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
@@ -4595,6 +4670,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
@@ -4630,6 +4707,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
@@ -4675,6 +4754,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND

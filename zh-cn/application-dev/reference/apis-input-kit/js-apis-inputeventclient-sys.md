@@ -22,6 +22,8 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -78,6 +80,8 @@ injectKeyEvent(keyEvent: KeyEventData): void
 按键(包括单个按键和组合键)事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -136,6 +140,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 鼠标/触摸板事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -237,6 +243,8 @@ injectTouchEvent(touchEvent: TouchEventData): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -324,6 +332,8 @@ permitInjection(result: boolean): void
 允许事件注入权限。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
