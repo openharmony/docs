@@ -99,6 +99,11 @@ function factorial(n: number): number {
   }
   return n * factorial(n - 1);
 }
+
+factorial(n1)  //  7.660344000000002 
+factorial(n2)  //  7.680640444893748 
+factorial(n3)  //  1 
+factorial(n4)  //  9.33262154439441e+157 
 ```
 
 #### `Boolean`
@@ -245,6 +250,8 @@ Compound assignment operators are as follows: `+=`, `-=`, `*=`, `/=`, `%=`, `<<=
 
 | Operator | Description                                                  |
 | -------- | ------------------------------------------------------------ |
+| `===`    | Returns true if both operands are strict equal.              |
+| `!==`    | Returns true if both operands are nots trict equal.          |
 | `==`     | Returns true if both operands are equal.                     |
 | `!=`     | Returns true if both operands are not equal.                 |
 | `>`      | Returns true if the left operand is greater than the right.  |
@@ -689,7 +696,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // pass the function as the parameter
 ```
 
-### Arrow Functions or Lambdas
+### Arrow Functions(Lambdas functions)
 
 A function can be defined as an arrow function, for example:
 
@@ -1034,7 +1041,7 @@ interface DateInterface {
 class MyDate implements DateInterface {
   now(): string {
     // implementation is here
-    return 'now is now';
+    return 'now';
   }
 }
 ```
@@ -1530,14 +1537,17 @@ A postfix operator `!` can be used to assert that its operand is non-null.
 If applied to a null value, the operator throws an error. Otherwise, the type of the value is changed from `T | null` to `T`:
 
 ```typescript
-class C {
-  value: number | null = 1;
+class A {
+  value: number = 0;
 }
 
-let c = new C();
-let y: number;
-y = c.value + 1;  // compile time error: cannot add to a nullable value
-y = c.value! + 1; // ok，2
+function foo(a: A | null) {
+  a.value;   // compile time error: cannot access to a nullable value
+
+  // ok, if the value of a is not null at runtime, the fields of a can be accessed;
+  // If the value of runtime a is empty, a runtime exception occurs.
+  a!.value;  
+}
 ```
 
 ### Null-Coalescing Operator
