@@ -13,9 +13,9 @@
 
    ```ts
    import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
+   import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -56,9 +56,9 @@
 
    ```ts
    import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
+   import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.filesDir;

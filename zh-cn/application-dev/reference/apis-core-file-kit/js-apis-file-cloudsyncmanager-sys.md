@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import cloudSyncManager from '@ohos.file.cloudSyncManager';
+import { cloudSyncManager } from '@kit.CoreFileKit';
 ```
 
 ## cloudSyncManager.changeAppCloudSwitch
