@@ -703,7 +703,6 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-// 不建议在forEach函数中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
@@ -711,7 +710,16 @@ treeMap.forEach((value ?: number, key ?: string) : void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+ // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
+ }
+```
 
 ### entries
 
@@ -740,7 +748,6 @@ entries(): IterableIterator<[K, V]>
 **示例：**
 
 ```ts
-// 不建议在entries函数中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
@@ -751,7 +758,16 @@ while(!t.done) {
   t = it.next()
 }
 ```
-
+```ts
+ // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
+ }
+```
 
 ### [Symbol.iterator]
 
@@ -783,7 +799,6 @@ while(!t.done) {
 **示例：**
 
 ```ts
-// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
@@ -803,5 +818,15 @@ while(!t.done) {
    console.log("key:" + temp.value[0]);
    console.log("value:" + temp.value[1]);
    temp = iter.next();
+ }
+```
+```ts
+ // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
  }
 ```
