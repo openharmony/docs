@@ -3725,7 +3725,7 @@ try {
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 值 | 说明         |
-| ---------- | - ---- | ----------- |
+| ---------- | ----- | ----------- |
 | SYSTEM_WINDOW  | 0 | 系统窗口。|
 | SUB_WINDOW  | 1 | 子窗口。|
 
