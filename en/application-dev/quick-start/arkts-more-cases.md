@@ -2230,7 +2230,7 @@ function deepCopy(obj: object): object {
 }
 ```
 
-## Typical Application Scenarios of State Management
+## Typical Use Scenarios of State Management
 
 ### Using State Variables Outside of Structs
 

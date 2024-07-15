@@ -8,7 +8,7 @@ The **componentSnapshot** module provides APIs for obtaining component snapshots
 >
 >In scenarios where [\<XComponent>](arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
 >
-> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 
 ## Modules to Import

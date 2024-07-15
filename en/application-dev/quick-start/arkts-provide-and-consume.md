@@ -1,4 +1,4 @@
-# \@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components
+# \@Provide and \@Consume Decorators: Creating a Two-Way Synchronization with Descendant Components
 
 
 \@Provide and \@Consume are used for two-way data synchronization with descendant components when state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
@@ -180,7 +180,7 @@ struct CompA {
 ![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
 
 
-## Application Scenarios
+## Use Scenarios
 
 The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When the buttons in the **CompA** and **CompD** components are clicked, the changes to **reviewVotes** are synchronized to the **CompA** and **CompD** components.
 
