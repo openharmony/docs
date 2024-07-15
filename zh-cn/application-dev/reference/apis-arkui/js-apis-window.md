@@ -635,19 +635,15 @@ export default class EntryAbility extends UIAbility {
         }
         windowClass = data;
         windowClass.setUIContent("pages/Index");
-        try {
-          windowClassId = windowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        windowClassId = windowClass.getWindowProperties().id;
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
         console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
       });
 
       // 创建或获取子窗及ID，此时子窗口获焦
-      let promise = windowStage.createSubWindow("testSubWindow");
-      promise.then((data) => {
+      let promiseSub = windowStage.createSubWindow("testSubWindow");
+      promiseSub.then((data) => {
         if (data == null) {
           console.error("Failed to obtaining the window. Cause: The data is empty");
           return;
@@ -672,7 +668,7 @@ export default class EntryAbility extends UIAbility {
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to shift app focus. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
