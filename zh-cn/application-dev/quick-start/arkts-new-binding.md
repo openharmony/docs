@@ -24,12 +24,12 @@
 ## 使用场景
 
 ### 自定义组件间双向绑定
-1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`\@Param value`和`\@Event $value`
+1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`@Param value`和`@Event $value`
 - 双向绑定语法糖可视为：
 
-```
-Star({ value: this.value, $value: (val: number) => { this.value = val }})
-```
+    ```
+    Star({ value: this.value, $value: (val: number) => { this.value = val }})
+    ```
 2. 点击改变Index中的Button，改变value，父组件Index和子组件Star中Text更新。
 3. 点击改变子组件Star中的Button，调用`this.$value(10)`，父组件Index和子组件Star中Text更新。
 
