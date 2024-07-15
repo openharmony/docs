@@ -41,7 +41,7 @@ getUserDownloadDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDownloadDirExample() {
   try {
     let path = Environment.getUserDownloadDir();
@@ -81,7 +81,7 @@ getUserDesktopDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDesktopDirExample() {
   try {
     let path = Environment.getUserDesktopDir();
@@ -121,7 +121,7 @@ getUserDocumentDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDocumentDirExample() {
   try {
     let path = Environment.getUserDocumentDir();
