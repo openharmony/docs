@@ -28,7 +28,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
     
   ```ts
   import { statfs } from '@kit.CoreFileKit';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
@@ -46,7 +46,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
     
   ```ts
   import { storageStatistics } from '@kit.CoreFileKit';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {

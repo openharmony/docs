@@ -78,7 +78,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
@@ -121,7 +121,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
@@ -207,7 +207,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath).then((type: string) => {
     console.log("getSecurityLabel successfully, Label: " + type);
@@ -249,7 +249,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath, (err: BusinessError, type: string) => {
     if (err) {

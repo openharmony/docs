@@ -48,7 +48,7 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true).then(() => {
@@ -88,7 +88,7 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true, (err: BusinessError) => {
@@ -134,7 +134,7 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName).then(() => {
@@ -173,7 +173,7 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName, (err: BusinessError) => {
@@ -233,7 +233,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let userId: number = 100;
   let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
@@ -275,7 +275,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let userId: number = 100;
   let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
@@ -323,7 +323,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;vo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let switches: Record<string, boolean> = {
     'com.example.bundleName1': true,
@@ -367,7 +367,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>, callback: Asyn
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let switches: Record<string, boolean> = {
     'com.example.bundleName1': true,
@@ -417,7 +417,7 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   cloudSyncManager.disableCloud(accountId).then(() => {
     console.info("disableCloud successfully");
@@ -456,7 +456,7 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   cloudSyncManager.disableCloud(accountId, (err: BusinessError) => {
     if (err) {
@@ -516,7 +516,7 @@ clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let appActions: Record<string, cloudSyncManager.Action> = {
     'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,
@@ -561,7 +561,7 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
     let appActions: Record<string, cloudSyncManager.Action> = {
     'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,
