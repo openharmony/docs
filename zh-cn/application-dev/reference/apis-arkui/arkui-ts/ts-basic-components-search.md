@@ -1186,7 +1186,7 @@ struct SearchExample {
 
 ### 示例10
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
