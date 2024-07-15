@@ -3809,7 +3809,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
+| number | 资源ID值对应的数值。integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
 
 **错误码：**
 
@@ -3865,7 +3865,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -3917,7 +3917,7 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
