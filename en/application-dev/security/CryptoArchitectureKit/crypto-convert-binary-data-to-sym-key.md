@@ -56,6 +56,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
   ```
 
 - Example using synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12):
+  
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -77,6 +78,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
     let encodedKey = key.getEncoded(); // Obtain the binary data of the symmetric key and output the data as a byte array. The length is 24 bytes.
     console.info('key getEncoded hex' + encodedKey.data);
   }
+  ```
 
 
 ## Converting Binary Data into an HMAC Key

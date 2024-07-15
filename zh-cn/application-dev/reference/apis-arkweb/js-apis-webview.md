@@ -14991,7 +14991,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
 
-# RectEvent<sup>12+<sup>
+## RectEvent<sup>12+<sup>
 
 矩形定义。
 

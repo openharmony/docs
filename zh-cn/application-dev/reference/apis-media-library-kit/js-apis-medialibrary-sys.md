@@ -46,12 +46,6 @@ deleteAsset(uri: string): Promise\<void>
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise对象，返回删除的结果。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
-
 **示例：**
 
 ```ts
@@ -104,12 +98,6 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 | uri | string | 是    | 需要删除的媒体文件资源的uri。 |
 |callback |AsyncCallback\<void>| 是  |callback返回空。|
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
-
 **示例：**
 
 ```ts
@@ -159,12 +147,6 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有在线对端设备的PeerInfo。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
-
 **示例：**
 
 ```ts
@@ -205,12 +187,6 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 | ------------------- | -------------------- |
 | callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有在线对端设备的PeerInfo对象。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
-
 **示例：**
 
 ```ts
@@ -246,12 +222,6 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有对端设备的PeerInfo。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -292,12 +262,6 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 | callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有对端设备的PeerInfo对象。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 8000001 | This API is no longer supported. | 
 
 **示例：**
 

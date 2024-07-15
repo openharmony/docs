@@ -26,9 +26,9 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function persistPermissionExample() {
     try {
@@ -75,9 +75,9 @@ async function persistPermissionExample() {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function revokePermissionExample() {
     try {
@@ -123,9 +123,9 @@ async function revokePermissionExample() {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function activatePermissionExample() {
     try {

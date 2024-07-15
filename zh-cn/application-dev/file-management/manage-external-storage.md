@@ -53,8 +53,8 @@
 
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
-   import { BusinessError } from '@ohos.base';
+   import { volumeManager } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let subscriber: CommonEvent.CommonEventSubscriber;
    async function example() {

@@ -46,7 +46,7 @@
 | typedef struct [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
 | typedef struct [ArkUI_ListItemSwipeActionItem](_ark_u_i___native_module.md#arkui_listitemswipeactionitem) [ArkUI_ListItemSwipeActionItem](_ark_u_i___native_module.md#arkui_listitemswipeactionitem) | 定义ListItemSwipeActionOption方法内Item的配置信息。  | 
 | typedef struct [ArkUI_ListItemSwipeActionOption](_ark_u_i___native_module.md#arkui_listitemswipeactionoption) [ArkUI_ListItemSwipeActionOption](_ark_u_i___native_module.md#arkui_listitemswipeactionoption) | 定义ListItemSwipeActionOption方法的配置信息。  | 
-| typedef struct ArkUI_Context \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle) | 定义ArkUI native UI的上下文实例对象指针定义。  | 
+| typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) | 定义ArkUI native UI的上下文实例对象指针定义。  | 
 | typedef struct ArkUI_NodeContent \* [ArkUI_NodeContentHandle](_ark_u_i___native_module.md#arkui_nodecontenthandle) | 定义ArkUI NodeContent实例在Native侧的实例对象指针定义。  | 
 | typedef struct [ArkUI_AlignmentRuleOption](_ark_u_i___native_module.md#arkui_alignmentruleoption) [ArkUI_AlignmentRuleOption](_ark_u_i___native_module.md#arkui_alignmentruleoption) | 指定设置在相对容器中子组件的对齐规则。  | 
 | typedef struct [ArkUI_GuidelineOption](_ark_u_i___native_module.md#arkui_guidelineoption) [ArkUI_GuidelineOption](_ark_u_i___native_module.md#arkui_guidelineoption) | guideLine参数，用于定义guideline的id、方向和位置。  | 
@@ -158,7 +158,6 @@
 | [ArkUI_SafeAreaEdge](_ark_u_i___native_module.md#arkui_safeareaedge) { [ARKUI_SAFE_AREA_EDGE_TOP](_ark_u_i___native_module.md) = 1, [ARKUI_SAFE_AREA_EDGE_BOTTOM](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [ARKUI_SAFE_AREA_EDGE_START](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [ARKUI_SAFE_AREA_EDGE_END](_ark_u_i___native_module.md) = 1 &lt;&lt; 3 } | 定义扩展安全区域的方向的枚举值。  | 
 | [ArkUI_NavDestinationState](_ark_u_i___native_module.md#arkui_navdestinationstate) {<br/>[ARKUI_NAV_DESTINATION_STATE_ON_SHOW](_ark_u_i___native_module.md) = 0, [ARKUI_NAV_DESTINATION_STATE_ON_HIDE](_ark_u_i___native_module.md) = 1, [ARKUI_NAV_DESTINATION_STATE_ON_APPEAR](_ark_u_i___native_module.md) = 2, [ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR](_ark_u_i___native_module.md) = 3,<br/>[ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW](_ark_u_i___native_module.md) = 4, [ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE](_ark_u_i___native_module.md) = 5, [ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR](_ark_u_i___native_module.md) = 6, [ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR](_ark_u_i___native_module.md) = 7,<br/>[ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS](_ark_u_i___native_module.md) = 100<br/>} | 定义NavDestination组件的状态。  | 
 | [ArkUI_RouterPageState](_ark_u_i___native_module.md#arkui_routerpagestate) {<br/>[ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR](_ark_u_i___native_module.md) = 0, [ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR](_ark_u_i___native_module.md) = 1, [ARKUI_ROUTER_PAGE_STATE_ON_SHOW](_ark_u_i___native_module.md) = 2, [ARKUI_ROUTER_PAGE_STATE_ON_HIDE](_ark_u_i___native_module.md) = 3,<br/>[ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS](_ark_u_i___native_module.md) = 4<br/>} | 定义Router Page的状态。  | 
-
 ### 函数
 
 | 名称 | 描述 | 

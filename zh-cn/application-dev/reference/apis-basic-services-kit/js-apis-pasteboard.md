@@ -741,7 +741,7 @@ addRecord(mimeType: string, value: ValueType): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900002 | The number of record exceeds the maximum limit. |
+| 12900002 | The number of records exceeds the upper limit. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1503,7 +1503,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1549,7 +1549,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1591,7 +1591,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
@@ -1633,8 +1633,8 @@ getData(): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
-| 201      | Permission verification failed. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
@@ -2022,7 +2022,7 @@ isRemoteData(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2058,7 +2058,7 @@ getDataSource(): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2101,7 +2101,7 @@ hasDataType(mimeType: string): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2131,7 +2131,7 @@ clearDataSync(): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2169,8 +2169,8 @@ getDataSync(): PasteData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
-| 201      | Permission verification failed. |
+| 12900005 | Request timed out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
@@ -2207,7 +2207,7 @@ setDataSync(data: PasteData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2244,7 +2244,7 @@ hasDataSync(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2280,8 +2280,8 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201      | Permission denied. |
-| 12900003 | Another copy or paste is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900003 | Another copy or paste operation is in progress. |
 
 **示例：**
 
@@ -2326,8 +2326,8 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201      | Permission denied. |
-| 12900005 | Request time out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2370,7 +2370,7 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 
 **示例：**
@@ -2418,7 +2418,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
