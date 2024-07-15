@@ -87,7 +87,7 @@ disableWifi(): void
 
 enableSemiWifi(): void
 
-使能WLAN半关闭，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否使能成功。
+使能WLAN半关闭（STA关闭、其他P2p、Hml可用），异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否使能成功。
 
 **系统接口：** 此接口为系统接口。
 
