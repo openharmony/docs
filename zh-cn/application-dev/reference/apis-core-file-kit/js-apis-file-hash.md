@@ -65,7 +65,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
@@ -104,7 +104,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
