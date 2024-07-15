@@ -251,7 +251,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -299,7 +299,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.start((err: BusinessError) => {
@@ -346,7 +346,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop().then(() => {
@@ -391,7 +391,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop((err: BusinessError) => {
@@ -575,7 +575,7 @@ start(uri: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -636,7 +636,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -690,7 +690,7 @@ stop(uri: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -737,7 +737,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -930,7 +930,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   let callback = (pg: cloudSync.SyncProgress) => {
@@ -981,7 +981,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.start((err: BusinessError) => {
@@ -1027,7 +1027,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop().then(() => {
@@ -1071,7 +1071,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop((err: BusinessError) => {
@@ -1115,7 +1115,7 @@ getLastSyncTime(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime().then((timeStamp: number) => {
@@ -1159,7 +1159,7 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
@@ -1212,7 +1212,7 @@ cleanCache(uri: string): void;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
@@ -1267,7 +1267,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
@@ -1315,7 +1315,7 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
@@ -1370,7 +1370,7 @@ getFileSyncState(uri: string): FileSyncState
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
