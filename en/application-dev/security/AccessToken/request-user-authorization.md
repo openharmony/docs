@@ -1,11 +1,8 @@
 # Requesting User Authorization
 
-
 Before an application accesses user privacy information or use a system capability, for example, to obtain location information, access the Calendar, or use the camera to take a photo or record a video, the application needs to request user authorization. The permissions that must be authorized by users are user_grant permissions.
 
-
 The procedure for requesting user_grant permissions is as follows:
-
 
 1. Declare the permissions required by your application in the configuration file. 
 
@@ -16,9 +13,7 @@ The procedure for requesting user_grant permissions is as follows:
 
 4. Check the user authorization result, and allow the next step only after the user has granted the permission to the application.
 
-
 This topic elaborates steps 3 and 4.
-
 
 ## Constraints
 
@@ -27,13 +22,12 @@ This topic elaborates steps 3 and 4.
   You can use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted specific permissions to your application. This API returns [PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
 
 - Each time before an API that requires a **user_grant** permission is called, use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
- 
+
   After a permission is granted, the user may revoke the permission in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 - For a user_grant permission, show a rationale to the user in a UI element, clearly explaining why your application needs the permission. Based on the rationale, the user then determines whether to grant the permission.
 
 - Frequent pop-up windows may disturb user experience and are not recommended. If a user rejects the authorization, the window for requesting user authorization will not be displayed again. The application needs to provide information to guide the user to manually grant the permission in **Settings**.
-
 
 ## How to Develop
 
@@ -46,7 +40,7 @@ The following example steps you through on how to request the permission for usi
 1. Declare the ohos.permission.MICROPHONE permission in the configuration file. For details, see [Declaring Permissions](declare-permissions.md).
 
 2. Check whether the user has granted the permission.
-   
+
    Use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, the application can use the microphone. Otherwise, user authorization is required.
 
    ```ts
@@ -55,7 +49,7 @@ The following example steps you through on how to request the permission for usi
    
    const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
    
-   async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
+   async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
@@ -82,7 +76,7 @@ The following example steps you through on how to request the permission for usi
    }
    
    async function checkPermissions(): Promise<void> {
-     let grantStatus: abilityAccessCtrl.GrantStatus = await checkAccessToken(permissions[0]);
+     let grantStatus: abilityAccessCtrl.GrantStatus = await checkPermissionGrant(permissions[0]);
    
      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
        // If the user has granted the permission, the application can use the microphone.
@@ -93,14 +87,16 @@ The following example steps you through on how to request the permission for usi
    ```
 
 3. Request user authorization when your application needs to access the microphone.
-   
+
    Use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array<Permissions>** parameter of this API. The user can grant or deny the permissions.
 
    You can have [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
-   <!--RP1-->
 
+   <!--RP1--><!--RP1End-->
+
+   <!--RP2-->
    - Sample code for requesting user authorization using UIAbility
-      
+
       ```ts
       import { abilityAccessCtrl, common, Permissions, UIAbility } from '@kit.AbilityKit';
       import { window } from '@kit.ArkUI';
@@ -179,10 +175,10 @@ The following example steps you through on how to request the permission for usi
         }
       }
       ```
-   <!--RP1End-->
+   <!--RP2End-->
 
 4. Perform subsequent operations based on the authorization result.
 
-   After [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can use the microphone. Otherwise, display a message indicating that user authorization is required, and direct the user to set the permission in the **Settings** page.
+   After [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can use the microphone. Otherwise, display a message indicating that user authorization is required, and direct the user to set the permission in the **Settings** page.<!--RP3-->
 
-   Path: **Settings**\> **Privacy**\> **Permission manager**\> **Apps**\> Target app
+   Path: **Settings**\> **Privacy**\> **Permission manager**\> **Apps**\> Target app<!--RP3End-->
