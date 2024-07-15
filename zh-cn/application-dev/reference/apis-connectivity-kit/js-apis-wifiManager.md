@@ -2,7 +2,7 @@
 该模块主要提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 > **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -1185,7 +1185,7 @@ getIpv6Info(): Ipv6Info
 
 | **类型** | **说明** |
 | -------- | -------- |
-| Ipv6Info | Ipv6信息。 |
+| [Ipv6Info](#ipv6info10) | Ipv6信息。 |
 
 **错误码：**
 
@@ -1208,7 +1208,7 @@ getIpv6Info(): Ipv6Info
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## Ipv6Info <sup>10+</sup>
+## Ipv6Info<sup>10+</sup>
 
 Ipv6信息。
 
@@ -1280,7 +1280,7 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | bandType | WifiBandType | 是 | Wifi 频段类型。 |
+  | bandType | [WifiBandType](#wifibandtype10) | 是 | Wifi 频段类型。 |
 
 **返回值：**
 
