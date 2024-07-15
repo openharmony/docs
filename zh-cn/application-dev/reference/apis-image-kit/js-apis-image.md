@@ -112,8 +112,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | Ipc error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
