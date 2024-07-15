@@ -1,7 +1,7 @@
 
 # @ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)
 
-AtomicServiceNavigation高级组件，为原子化服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
+作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@ AtomicServiceNavigation高级组件，为原子化服务提供定制化诉求，
 
 AtomicServiceNavigation({
     navPathStack?: NavPathStack,
-    navigationContent: Callback<void> ,
+    navigationContent: Callback\<void\>,
     title?: ResourceStr,
     titleBackgroundColor?: ResourceColor,
     hideTitleBar?: boolean,
@@ -24,8 +24,8 @@ AtomicServiceNavigation({
     navDestinationBuilder?: NavDestinationBuilder,
     navBarWidthRange?: [Dimension, Dimension],
     minContentWidth?: Dimension,
-    stateChangeCallback?: Callback<boolean>,
-    modeChangeCallback?: Callback<NavigationMode>
+    stateChangeCallback?: Callback\<boolean\>,
+    modeChangeCallback?: Callback\<NavigationMode\>
 })
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -51,7 +51,7 @@ AtomicServiceNavigation({
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
 | modeChangeCallback | Callback\<[NavigationMode](#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
-## TitleOptions类型说明
+## TitleOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -63,7 +63,7 @@ AtomicServiceNavigation({
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
 | TitleOptions | [BarStyle<sup>12+</sup>](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 
-## NavDestinationBuilder类型说明
+## NavDestinationBuilder
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -77,9 +77,9 @@ AtomicServiceNavigation({
 ## 示例
 
 ```ts
-//index. ets
-import { AtomicServiceNavigation, NavDestinationBuilder } from '@ohos.atomicservice.AtomicServiceNavigation';
-import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@ohos.atomicservice.AtomicServiceTabs';
+// Index. ets
+import { AtomicServiceNavigation, NavDestinationBuilder } from '@kit.ArkUI';
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 
 @Entry
 @Component
