@@ -210,9 +210,8 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Index.ets
-import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
+import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -334,9 +333,8 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Index.ets
-import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
+import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
