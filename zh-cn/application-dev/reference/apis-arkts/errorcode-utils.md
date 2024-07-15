@@ -427,7 +427,7 @@ The callback is not registered on the host side.
 
 **错误信息**
 
-The task to be added to SequenceRunner has dependent tasks.
+A dependent task cannot be added to SequenceRunner.
 
 **错误描述**
 
