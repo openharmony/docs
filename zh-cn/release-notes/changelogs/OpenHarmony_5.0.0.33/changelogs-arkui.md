@@ -131,3 +131,83 @@ Menu组件的BindContextMenu接口
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.5 Repeat接口RepeatItem参数index可选改为必选
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了提升Repeat使用的易用性，在该组件的实现上，进行了优化处理。对其接口RepeatItem所需要的index参数从非必填优化为了必填，这样开发者在使用index参数的时候，无需对index参数进行判空处理。
+
+**变更影响**
+
+该变更为兼容性变更。兼容应用已写代码，无需应用修改代码。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口/组件**
+
+Repeat组件，RepeatItem接口的index参数。
+
+**适配指导**
+
+适配已开发的代码，新开发的代码无需对index做判空处理。
+
+变更前：
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatTest {
+  @Local arr: Array<number> = [0, 1, 2, 3]
+
+  build() {
+    List({ space: 3 }) {
+      Repeat(this.arr)
+        .virtualScroll()
+        .key((item) => item.toString())
+        .each((repeatItem) => {
+          ListItem() {
+            Text(`${repeatItem.index! + 1}. Item ${repeatItem.item}`) // repeatItem.index需做判空处理
+              .height(50).backgroundColor(Color.Blue)
+          }.backgroundColor(Color.Green)
+        })
+
+    }.height(200).backgroundColor(Color.Red)
+  }
+}
+```
+
+变更后：
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatTest {
+  @Local arr: Array<number> = [0, 1, 2, 3]
+
+  build() {
+    List({ space: 3 }) {
+      Repeat(this.arr)
+        .virtualScroll()
+        .key((item) => item.toString())
+        .each((repeatItem) => {
+          ListItem() {
+            Text(`${repeatItem.index + 1}. Item ${repeatItem.item}`) // repeatItem.index可不做判空处理
+              .height(50).backgroundColor(Color.Blue)
+          }.backgroundColor(Color.Green)
+        })
+
+    }.height(200).backgroundColor(Color.Red)
+  }
+}
+```
