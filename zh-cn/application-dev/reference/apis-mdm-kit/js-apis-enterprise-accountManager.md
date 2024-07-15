@@ -1,4 +1,4 @@
-# @ohos.enterprise.accountManager（帐户管理）
+# @ohos.enterprise.accountManager（账户管理）
 
 本模块提供设备帐户管理能力，包括禁止创建本地用户等。
 

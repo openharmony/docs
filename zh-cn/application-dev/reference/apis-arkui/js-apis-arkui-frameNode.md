@@ -33,7 +33,7 @@ FrameNode的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 
 ### getRenderNode
 
@@ -1344,7 +1344,7 @@ initialize: C
 
 ### attribute<sup>12+</sup>
 
-get attribute(): T
+attribute(): T
 
 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
 
@@ -1363,6 +1363,8 @@ type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
 Text类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;TextInterface, TextAttribute&gt; | 提供Text类型FrameNode节点。<br/>**说明：**<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Text组件的属性设置对象。 |
@@ -1378,7 +1380,7 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Text' | 是 | 创建Text类型的FrameNode节点。 |
 
 **返回值：**
@@ -1398,6 +1400,8 @@ type Column = TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt;
 
 Column类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Column组件的属性设置对象。 |
@@ -1413,7 +1417,7 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Column' | 是 | 创建Column类型的FrameNode节点。 |
 
 **返回值：**
@@ -1432,6 +1436,8 @@ type Row = TypedFrameNode&lt;RowInterface, RowAttribute&gt;
 
 Row类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RowInterface, RowAttribute&gt; | 提供Row类型FrameNode节点。<br/>**说明：**<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Row组件的属性设置对象。 |
@@ -1447,7 +1453,7 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Row' | 是 | 创建Row类型的FrameNode节点。 |
 
 **返回值：**
@@ -1466,6 +1472,8 @@ type Stack = TypedFrameNode&lt;StackInterface, StackAttribute&gt;
 
 Stack类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;StackInterface, StackAttribute&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Stack组件的属性设置对象。 |
@@ -1481,7 +1489,7 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Stack' | 是 | 创建Stack类型的FrameNode节点。 |
 
 **返回值：**
@@ -1500,6 +1508,8 @@ type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
 
 GridRow类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
@@ -1515,7 +1525,7 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridRow' | 是 | 创建GridRow类型的FrameNode节点。 |
 
 **返回值：**
@@ -1534,6 +1544,8 @@ type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
 
 GridCol类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
@@ -1549,7 +1561,7 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridCol' | 是 | 创建GridCol类型的FrameNode节点。 |
 
 **返回值：**
@@ -1568,6 +1580,8 @@ type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
 
 Flex类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
@@ -1583,7 +1597,7 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Flex' | 是 | 创建Flex类型的FrameNode节点。 |
 
 **返回值：**
@@ -1602,6 +1616,8 @@ type Swiper = TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt;
 
 Swiper类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
@@ -1617,7 +1633,7 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Swiper' | 是 | 创建Swiper类型的FrameNode节点。 |
 
 **返回值：**
@@ -1636,6 +1652,8 @@ type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
 Progress类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
@@ -1651,7 +1669,7 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Progress' | 是 | 创建Progress类型的FrameNode节点。 |
 
 **返回值：**
@@ -1670,6 +1688,8 @@ type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
 
 Scroll类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
@@ -1685,7 +1705,7 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Scroll' | 是 | 创建Scroll类型的FrameNode节点。 |
 
 **返回值：**
@@ -1704,6 +1724,8 @@ type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeC
 
 RelativeContainer类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
@@ -1719,7 +1741,7 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'RelativeContainer' | 是 | 创建RelativeContainer类型的FrameNode节点。 |
 
 **返回值：**
@@ -1738,6 +1760,8 @@ type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
 
 Divider类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
@@ -1753,7 +1777,7 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Divider' | 是 | 创建Divider类型的FrameNode节点。 |
 
 **返回值：**
@@ -1772,6 +1796,8 @@ type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgre
 
 LoadingProgress类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
@@ -1787,7 +1813,7 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'LoadingProgress' | 是 | 创建LoadingProgress类型的FrameNode节点。 |
 
 **返回值：**
@@ -1806,6 +1832,8 @@ type Search = TypedFrameNode&lt;SearchInterface, SearchAttribute&gt;
 
 Search类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
@@ -1821,7 +1849,7 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Search' | 是 | 创建Search类型的FrameNode节点。 |
 
 **返回值：**
@@ -1840,6 +1868,8 @@ type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
 
 Blank类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
@@ -1855,7 +1885,7 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank;
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Blank' | 是 | 创建Blank类型的FrameNode节点。 |
 
 **返回值：**
@@ -1874,6 +1904,8 @@ type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
 
 Image类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
@@ -1889,7 +1921,7 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Image' | 是 | 创建Image类型的节点。 |
 
 **返回值：**
@@ -1908,6 +1940,8 @@ type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
 List类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
@@ -1923,7 +1957,7 @@ createNode(context: UIContext, nodeType: 'List'): List
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'List' | 是 | 创建List类型的节点。 |
 
 **返回值：**
@@ -1942,6 +1976,8 @@ type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
 
 ListItem类型的FrameNode节点类型。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItem组件的属性设置对象。 |
@@ -1957,7 +1993,7 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
 
 **返回值：**
@@ -1970,6 +2006,76 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 ```ts
 typeNode.createNode(uiContext, 'ListItem');
+```
+
+### TextInput<sup>12+</sup>
+type TextInput = TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt;
+
+TextInput类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回TextInput组件的属性设置对象。 |
+
+### createNode('TextInput')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'TextInput'): TextInput
+
+创建TextInput类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextInput' | 是 | 创建TextInput类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextInput](#textinput12) | TextInput类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextInput');
+```
+
+### Button<sup>12+</sup>
+type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
+
+Button类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。 |
+
+### createNode('Button')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Button'): Button
+
+创建Button类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Button' | 是 | 创建Button类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Button](#button12) | Button类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Button');
 ```
 
 ## 自定义具体类型节点示例

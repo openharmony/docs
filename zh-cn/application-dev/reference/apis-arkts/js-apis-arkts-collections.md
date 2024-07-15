@@ -2199,6 +2199,12 @@ ArkTS TypedArray映射函数类型。
 | value | FromElementType | 是 | 当前遍历的用于构造ArkTS TypedArray的元素。 |
 | index | number | 是 | 当前遍历的用于构造ArkTS TypedArray的元素下标。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| ToElementType | 转换后的元素值。 |
+
 ## TypedArrayPredicateFn
 type TypedArrayPredicateFn\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
@@ -2216,6 +2222,12 @@ ArkTS TypedArray断言测试函数类型。
 | index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| boolean | 如果值符合条件，则为true，否则为false。 |
+
 ## TypedArrayForEachCallback
 type TypedArrayForEachCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void
 
@@ -2232,6 +2244,29 @@ ArkTS TypedArray遍历函数类型。
 | value | ElementType | 是 | 当前遍历的ArkTS TypedArray元素。 |
 | index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
+
+## TypedArrayMapCallback
+type TypedArrayMapCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => ElementType
+
+ArkTS TypedArray转换映射函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| value | ElementType | 是 | 当前映射的ArkTS TypedArray元素。 |
+| index | number | 是 | 当前映射的ArkTS TypedArray元素下标。 |
+| array | ArrayType | 是 | 当前映射的ArkTS TypedArray实例。 |
+
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| ElementType | 转换后的元素值。 |
 
 ## TypedArrayReduceCallback
 type TypedArrayReduceCallback\<AccType, ElementType, ArrayType> = (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
@@ -2251,6 +2286,12 @@ ArkTS TypedArray归约函数类型。
 | currentIndex | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| AccType | 归约函数的结果。该结果会作为下一次调用TypedArrayReduceCallback时的previousValue参数。 |
+
 ## TypedArrayCompareFn
 type TypedArrayCompareFn\<ElementType> = (first: ElementType, second: ElementType) => number
 
@@ -2266,6 +2307,12 @@ ArkTS TypedArray排序函数类型。
 | ------- | ------ | ---- | --------------------------- |
 | first | ElementType | 是 | 当前待比较的第一个元素。 |
 | second | ElementType | 是 | 当前待比较的第二个元素。 |
+
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| number | 元素比较的结果。如果`first`小于`second`，返回值为负数；如果`first`大于`second`，返回值为正数；如果两个值相等，返回值为0。 |
 
 ## collections.TypedArray
 
@@ -2934,7 +2981,7 @@ let joined: string = array.join('-'); // "1-2-3-4-5"
 ```
 
 ### map
-map(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): TypedArray
+map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
 对ArkTS TypedArray中的每个元素应用指定的回调函数，并使用结果创建一个新的ArkTS TypedArray对象。
 
@@ -2945,7 +2992,7 @@ map(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): TypedArray
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
 | --------- | ------ | ---- | ---------------------------------------------------- |
-| callbackFn | [TypedArrayForEachCallback](#typedarrayforeachcallback)\<number, TypedArray> | 是  | 回调函数。 |
+| callbackFn | [TypedArrayMapCallback](#typedarraymapcallback)\<number, TypedArray> | 是  | 回调函数。 |
 
 
 **返回值：**

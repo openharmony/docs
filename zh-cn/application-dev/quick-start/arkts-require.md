@@ -20,6 +20,8 @@
 
 \@Require装饰器仅用于装饰struct内的\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)。
 
+预览器限制场景请参考[PreviewChecker检测规则]( https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-previewer-previewchecker-0000001910869788-V5)。
+
 ## 使用场景
 
 当Child组件内使用\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)结合使用时，父组件Index在构造Child时必须传参，否则编译不通过。

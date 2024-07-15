@@ -9,7 +9,7 @@
 
 ## 子组件
 
-仅支持[GridItem](ts-container-griditem.md)子组件。
+仅支持[GridItem](ts-container-griditem.md)子组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
@@ -19,9 +19,9 @@
 >
 >  if/else语句中，只有条件成立分支内的子组件会参与索引值计算，条件不成立分支内的子组件不计算索引值。
 >
->  ForEach/LazyForEach语句中，会计算展开所有子节点索引值。
+>  ForEach/LazyForEach和Repeat语句中，会计算展开所有子节点索引值。
 >
->  [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。
+>  [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)发生变化以后，会更新子节点索引值。
 >
 >  Grid子组件的visibility属性设置为Hidden或None时依然会计算索引值。
 >
@@ -1385,3 +1385,55 @@ struct GridExample {
 ```
 
 ![pinch](figures/grid-pinch.gif)
+
+### 示例8
+属性[columnsTemplate](#columnstemplate)中auto-fill和auto-fit的使用示例
+
+```ts
+@Entry
+@Component
+struct GridColumnsTemplate {
+  data: number[] = [0, 1, 2, 3, 4, 5]
+  data1: number[] = [0, 1, 2, 3, 4, 5]
+
+  build() {
+    Column({ space: 10 }) {
+      Text('auto-fill 根据设定的列宽自动计算列数').width('90%')
+      Grid() {
+        ForEach(this.data, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fill, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+
+      Text('auto-fit 先根据设定的列宽计算列数，余下的空间会均分到每一列中').width('90%')
+      Grid() {
+        ForEach(this.data1, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fit, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![gridColumnsTemplate](figures/gridColumnsTemplate.png)

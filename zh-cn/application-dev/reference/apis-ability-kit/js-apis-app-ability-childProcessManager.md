@@ -70,6 +70,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import { childProcessManager } from '@kit.AbilityKit';
@@ -129,6 +130,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import { childProcessManager } from '@kit.AbilityKit';

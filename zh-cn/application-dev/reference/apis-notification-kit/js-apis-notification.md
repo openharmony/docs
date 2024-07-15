@@ -1139,7 +1139,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | 名称                 | 类型                  | 可读 | 可写 | 说明                     |
 | -------------------- | --------------------- | ---- | --- |------------------------|
 | type                 | [notification.SlotType](#slottype) | 是  | 是  | 通道类型。                  |
-| level                | [SlotLevel](#slotlevel)                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| level                | [notification.SlotLevel](#slotlevel)                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
 | desc                 | string                | 是  | 是  | 通知渠道描述信息。              |
 | badgeFlag            | boolean               | 是  | 是  | 是否显示角标。                |
 | bypassDnd            | boolean               | 是  | 是  | 设置是否在系统中绕过免打扰模式。       |

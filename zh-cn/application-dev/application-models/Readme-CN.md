@@ -25,8 +25,6 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
-      - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
-      - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
     - [应用启动框架AppStartup](app-startup.md)
     <!--Del-->
@@ -44,7 +42,7 @@
       <!--Del-->
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
       <!--DelEnd-->
-      - [应用间显式跳转切换link跳转适配指导](uiability-startup-adjust.md)
+      - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
       - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)

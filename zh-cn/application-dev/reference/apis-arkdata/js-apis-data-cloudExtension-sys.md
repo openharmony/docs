@@ -8,9 +8,9 @@
 
 端云共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
-同步云是指： 端云同步的服务端，是同应用同帐号跨设备的同步。
+同步云是指： 端云同步的服务端，是同应用同账号跨设备的同步。
 
-共享云是指： 端云共享的服务端，是同应用跨帐号跨设备的共享。
+共享云是指： 端云共享的服务端，是同应用跨账号跨设备的共享。
 
 > **说明：** 
 >
@@ -66,9 +66,9 @@ import { cloudExtension } from '@kit.ArkData';
 | 名称           | 类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | enableCloud    | boolean | 是   | 表示是否启用了云服务，为true时是启用云服务，为false时是未启用。 |
-| id             | string  | 是   | 使用哈希函数SHA256生成的云帐户ID。                           |
-| totalSpace     | number  | 是   | 服务器上帐户的总空间（KB）。                                 |
-| remainingSpace | number  | 是   | 服务器上帐户的可用空间（KB）。                               |
+| id             | string  | 是   | 使用哈希函数SHA256生成的云账号ID。                           |
+| totalSpace     | number  | 是   | 服务器上账号的总空间（KB）。                                 |
+| remainingSpace | number  | 是   | 服务器上账号的可用空间（KB）。                               |
 | user           | number  | 是   | 设备的当前用户ID。                                           |
 
 ## Flag
@@ -259,7 +259,7 @@ import { cloudExtension } from '@kit.ArkData';
 | SUCCESS               | 0    | 表示端云同步过程成功。                                       |
 | UNKNOWN_ERROR         | 1    | 表示端云同步过程中遇到未知错误。                             |
 | NETWORK_ERROR         | 2    | 表示端云同步过程中遇到网络错误。                             |
-| CLOUD_DISABLED        | 3    | 表示云端不可用。                                             |
+| CLOUD_DISABLED        | 3    | 表示云同步开关未开启，请检查云空间同步开关状态。             |
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在进行端云同步，本设备无法进行端云同步。请确保无其他设备占用端云资源后，在使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
 | NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
@@ -617,7 +617,7 @@ query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCurso
 ```ts
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
-    async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
+  async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
     console.info(`query, table: ${table}`);
     // ...
     // 返回插入数据的结果

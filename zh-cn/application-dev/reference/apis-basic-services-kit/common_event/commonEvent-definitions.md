@@ -862,13 +862,13 @@
 
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-（预留事件，暂未支持）提示帐户发生可见性的更改。
+（预留事件，暂未支持）提示账户发生可见性的更改。
   - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
   - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_ACCOUNT_DELETED
-（预留事件，暂未支持）提示有帐户被删除。
+（预留事件，暂未支持）提示有账户被删除。
   - 值：usual.event.data.ACCOUNT_DELETED
   - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 

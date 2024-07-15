@@ -50,6 +50,10 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -168,6 +172,10 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -211,6 +219,11 @@ static isSuggested(language: string, region?: string): boolean
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
 
 **示例：**
   ```ts
@@ -1866,6 +1879,11 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
@@ -2434,6 +2452,8 @@ static getThreeLetterLanguage(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
@@ -2469,6 +2489,8 @@ static getThreeLetterRegion(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let region : string = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {

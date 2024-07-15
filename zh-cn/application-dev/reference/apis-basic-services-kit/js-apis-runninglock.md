@@ -77,6 +77,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
@@ -120,6 +121,7 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
@@ -293,6 +295,7 @@ hold(timeout: number): void
 |---------|----------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
@@ -329,6 +332,7 @@ unhold(): void
 | 错误码ID   | 错误信息     |
 |---------|----------|
 | 4900101 | If connecting to the service failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 

@@ -718,14 +718,19 @@ maxFontSize(value: number | string | Resource)
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
-设置文本自适应高度的方式。
+组件设置为内联输入风格时，设置文本自适应高度的方式。
 
-当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性(组件设置为内联输入风格且编辑态时使用)来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
-组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
 
-当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，与TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST效果一样。
+
+组件设置为非内联输入风格时，设置文本自适应高度(TextHeightAdaptivePolicy)的三种方式效果一样，即在minFontSize和maxFontSize的范围内缩小字体以显示更多文本。
+
+>  **说明：**
+>
+>  组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -768,22 +773,6 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
-
-### selectionMenuOptions<sup>12+</sup>
-
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
-
-设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
@@ -1930,52 +1919,3 @@ struct TextInputExample {
 ```
 
 ![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
-
-### 示例15
-
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  @State text: string = 'This is ss01 on : 0123456789'
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'TextInput扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextInput扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextInput扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextInput扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
-
-  build() {
-    Column() {
-      TextInput({ text: this.text })
-        .width('95%')
-        .height(50)
-        .selectionMenuOptions(this.menuOptionArray)
-    }
-    .backgroundColor(Color.White)
-    .width("90%")
-    .margin("5%")
-  }
-}
-```
-
-![textInputSelectionMenuOptions](figures/textInputSelectionMenuOptions.png)

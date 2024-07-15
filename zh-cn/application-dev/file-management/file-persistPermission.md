@@ -27,8 +27,8 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 
 ```ts
 import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.fileshare';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function persistPermissionExample() {
     try {
@@ -59,7 +59,7 @@ async function persistPermissionExample() {
 }
 ```
 **注意**
-> **1**、持久化授权文件信息建议应用在本地存储数据库，供后续按需激活持久化文件。
+> **1**、持久化授权文件信息建议应用在本地存储数据，供后续按需激活持久化文件。
 > <br>**2**、持久化授权的数据存储在系统的数据库中，应用或者设备重启后需要激活已持久化的授权才可以正常使用[激活持久化授权](#激活已经持久化的权限访问文件或目录)。
 > <br>**3**、持久化权限接口(仅在2in1上生效可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
 > <br>**4**、应用在卸载时会将之前的授权数据全部清除，重新安装后需要重新授权。
@@ -76,8 +76,8 @@ async function persistPermissionExample() {
 
 ```ts
 import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function revokePermissionExample() {
     try {
@@ -124,8 +124,8 @@ async function revokePermissionExample() {
 
 ```ts
 import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function activatePermissionExample() {
     try {

@@ -1115,7 +1115,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/MediaCollections)
 
 #### 相册
 
@@ -2389,37 +2389,37 @@ Preferences.flush()保存并刷新文件内容。
 
 ### 安全
 
-#### 应用帐号管理
+#### 应用账号管理
 
 ##### 介绍
 
-本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。
+本示例选择应用进行注册/登录，并设置账号相关信息，简要说明应用账号管理相关功能。
 
 ##### 使用
 
-1.首页面选择想要进入的应用，首次进入该应用需要进行注册，如已注册帐号则直接登录。
+1.首页面选择想要进入的应用，首次进入该应用需要进行注册，如已注册账号则直接登录。
 
-2.注册页面可设置帐号名、邮箱、个性签名、密码（带*号为必填信息），注册完成后返回登录页面使用注册的帐号进行登录。
+2.注册页面可设置账号名、邮箱、个性签名、密码（带*号为必填信息），注册完成后返回登录页面使用注册的账号进行登录。
 
-3.登录后进入帐号详情界面，点击**修改信息**按钮可跳转至帐号信息修改页面重新设置帐号信息。
+3.登录后进入账号详情界面，点击**修改信息**按钮可跳转至账号信息修改页面重新设置账号信息。
 
-4.点击**切换应用**按钮则退出该帐号并返回首页面。重新选择想要进入的应用。
+4.点击**切换应用**按钮则退出该账号并返回首页面。重新选择想要进入的应用。
 
-5.点击**删除帐号**按钮则会删除该帐号所有相关信息。
+5.点击**删除账号**按钮则会删除该账号所有相关信息。
 
 ##### 基本原理
 
 * 本示例分为音乐，视频，地图三个模块
   * 音乐模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用帐号管理器对象
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用账号管理器对象
     * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 视频模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用账号管理器对象
     * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 地图模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用账号管理器对象
     * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
 ##### 约束与限制
@@ -2675,11 +2675,11 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 签名校验的功能接口Verify封装在Model中
-    * 安装私有凭据：调用[certManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
-    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
-    * 填充源数据：调用[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
-    * 完成签名的操作：调用[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
-    * 完成验签的操作：同上，再依次调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+    * 安装私有凭据：调用[certManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
+    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口进行初始化，并获取返回结果signHandle。
+    * 填充源数据：调用[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口填充源数据。
+    * 完成签名的操作：调用[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish)接口完成签名，并获取签名结果signResult。
+    * 完成验签的操作：同上，再依次调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口，[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
 
 ##### 约束与限制
 
@@ -4233,26 +4233,26 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributeCalc)
 
-#### 分布式帐号
+#### 分布式账号
 
 ##### 介绍
 
-本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能。
+本示例主要展示了分布式账号相关的功能，使用[@ohos.account.distributedAccount](reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式账号、解绑分布式账号、更新分布式账号信息和管理分布式账号的功能。
 
 ##### 使用
 
-1. 首次进入应用会根据分布式帐号绑定状态进行页面跳转，若帐号已绑定，则直接跳转至帐号列表界面；若帐号未绑定，则需要在首页进行绑定；
-1. 首页输入分布式帐号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统帐号，点击**绑定**，绑定成功跳转至帐号列表界面；
-2. 在帐号列表界面，可对所有可解绑分布式帐号进行管理，点击选择分布式帐号，跳转至对应的帐号信息界面；
-3. 在帐号信息界面，点击**解绑**，可解绑该分布式帐号；
-3. 在帐号解绑之后，可对分布式帐号信息进行更新，在首页直接进行输入后点击绑定即可。
+1. 首次进入应用会根据分布式账号绑定状态进行页面跳转，若账号已绑定，则直接跳转至账号列表界面；若账号未绑定，则需要在首页进行绑定；
+1. 首页输入分布式账号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统账号，点击**绑定**，绑定成功跳转至账号列表界面；
+2. 在账号列表界面，可对所有可解绑分布式账号进行管理，点击选择分布式账号，跳转至对应的账号信息界面；
+3. 在账号信息界面，点击**解绑**，可解绑该分布式账号；
+3. 在账号解绑之后，可对分布式账号信息进行更新，在首页直接进行输入后点击绑定即可。
 
 ##### 基本原理
 
-* 绑定、解绑、查询、更新分布式帐号的功能接口封装在DistributedAccountModel：
-    * 使用distributedAccount.getDistributedAccountAbility()获取分布式帐号单实例对象accountAbility;
-    * 绑定、解绑和更新分布式帐号：使用accountAbility.setOsAccountDistributedInfoByLocalId();
-    * 查询分布式帐号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
+* 绑定、解绑、查询、更新分布式账号的功能接口封装在DistributedAccountModel：
+    * 使用distributedAccount.getDistributedAccountAbility()获取分布式账号单实例对象accountAbility;
+    * 绑定、解绑和更新分布式账号：使用accountAbility.setOsAccountDistributedInfoByLocalId();
+    * 查询分布式账号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
 
 ##### 约束与限制
 

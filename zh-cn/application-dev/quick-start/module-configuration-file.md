@@ -92,7 +92,8 @@
         "package": "hnpsample.hnp",
         "type": "public"
       }
-    ]
+    ],
+    "fileContextMenu": "$profile:menu"
   }
 }
 ```
@@ -921,7 +922,8 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过31字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
-| [data](#data标签)  | 标识自定义数据，总长度不超过4096。  | 对象   | 该标签可缺省，缺省值为空。   |
+| [data](#data标签)  | 标识字符串类型的自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
+| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096。  | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 
@@ -933,7 +935,20 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
         {
           "name": "DynamicPage1",
           "pageSourceFile": "src/main/ets/pages/pageOne.ets",
-          "buildFunction": "myFunction"
+          "buildFunction": "myFunction",
+          "customData": {
+            "stringKey": "data1",
+            "numberKey": 123,
+            "booleanKey": true,
+            "objectKey": {
+              "name": "test"
+            },
+            "arrayKey": [
+              {
+                "id": 123
+              }
+            ]
+          }
         },
         {
           "name": "DynamicPage2",
@@ -952,8 +967,7 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 
 ### data标签
 
-此标签用于支持在路由表中配置自定义数据。
-data对象内部，可以填入自定义数据。
+此标签用于支持在路由表中配置自定义的字符串数据。
 
 data标签示例：
 
@@ -965,6 +979,29 @@ data标签示例：
       "pageSourceFile": "src/main/ets/pages/pageOne.ets",
       "buildFunction": "myBuilder",
       "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
+    }
+  ]
+}
+```
+
+### customData标签
+
+此标签用于支持在路由表中配置自定义数据。
+customData对象内部，可以填入任意类型的自定义数据。
+
+customData标签示例：
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage",
+      "pageSourceFile": "src/main/ets/pages/pageOne.ets",
+      "buildFunction": "myBuilder",
+      "customData": {
         "stringKey": "data1",
         "numberKey": 123,
         "booleanKey": true,
@@ -1049,7 +1086,7 @@ definePermissions标签示例：
 
 该标签标识应用包含的Native软件包信息。
 
-**表10** hnpPackages标签说明
+**表25** hnpPackages标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1071,3 +1108,86 @@ hnpPackages示例：
   }
 }
 ```
+
+## fileContextMenu标签
+
+该标签用来标识当前HAP的右键菜单配置项，是一个profile文件资源，用于指定描述应用注册右键菜单配置文件。
+
+fileContextMenu标签示例
+
+```json
+{
+  "module": {
+    // ...
+    "fileContextMenu": "$profile:menu" // 通过profile下的资源文件配置
+  }
+}
+```
+
+在开发视图的resources/base/profile下面定义配置文件menu.json，其中文件名“menu.json”可自定义，需要和fileContextMenu标签指定的信息对应。配置文件中描述了当前应用注册的右键菜单的项目和响应行为。
+配置文件根节点名称为fileContextMenu，为对象数组，标识当前module注册右键菜单的数量。（单模块和单应用注册数量不能超过5个，配置超过数量当前只解析随机5个）
+
+**表26** fileContextMenu标签配置说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省 |
+| menuItem | 右键菜单显示的信息。 | 资源id | 不可缺省 |
+| menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省 |
+| menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省 |
+
+**表27** menuContext标签配置说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| menuKind | 表示什么情况下触发该右键菜单：0：空白处 1：文件 2: 文件夹 3：文件和文件夹。 | 数值 | 不可缺省 |
+| menuRule | 用来表示是单选/多选下选择单个文件/文件夹，或者两种情况都显示。单选：single, 多选：multi 单选+多选：both（全小写）。 | 字符串 | 不可缺省，当menuKind为1或2读取 |
+| fileSupportType | 当选中的文件列表里包含这些文件类型时，显示该右键菜单。 | 字符串数组 | 不可缺省，仅menuKind为1时候读取，为*才读取fileNotSupportType字段，如果为具体值，不读取fileNotSupportType字段，如果为空，这条策略废弃 |
+| fileNotSupportType | 当选中的文件列表里包含这些文件类型时，不显示该右键菜单。 | 字符串数组 | 仅menuKind为1，且fileSupportType为*才读取该字段 |
+
+fileContextMenu配置文件示例
+```json
+{
+  "fileContextMenu": [
+    {
+      "abilityName": "EntryAbility",
+      "menuItem": "$string:module_desc",
+      "menuHandler": "openCompress",
+      "menuContext": [
+        {
+          "menuKind": 0
+        },
+        {
+          "menuKind": 1,
+          "menuRule": "both",
+          "fileSupportType": [
+            ".rar",
+            ".zip"
+          ],
+          "fileNotSupportType": [
+            ""
+          ]
+        },
+        {
+          "menuKind": 2,
+          "menuRule": "single"
+        },
+        {
+          "menuKind": 3
+        }
+      ]
+    }
+  ]
+}
+```
+
+**响应行为**
+
+进行右键注册后，在文件管理器的右键菜单的更多选项中，会出现配置menuItem的值的子列表，当用户在文管右键点击后，文管默认通过startAbility的方式拉起三方应用，除了指定三方应用的包名和ability名之外，want中的parameter中，也会传入如下字段：
+
+**表28** want中parameter字段说明
+
+| 参数名 | 值 | 类型 |
+| -------- | -------- | -------- |
+| menuHandler | 对应注册配置文件中menuHandler的值。 | 字符串 |
+| uriList | 用户在具体文件上触发右键的uri值，如果空白处响应，此值为空，单个文件响应，数组长度1，多个文件响应则传入对应所有文件的uri值。 | 字符串数组 |

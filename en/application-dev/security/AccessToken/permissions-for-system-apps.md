@@ -137,7 +137,7 @@ Allows an application to obtain the phone numbers of the device.
 
 Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 

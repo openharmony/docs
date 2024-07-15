@@ -630,14 +630,15 @@ struct ImageExample2 {
   build() {
     Column({ space: 10 }) {
       Image("https://www.example.com/xxx.png")// 直接加载网络地址，请填写一个具体的网络图片地址
-        .alt($r('app.media.icon'))// 使用alt，在网络图片加载成功前使用占位图
-        .width(100)
-        .height(100)
+        .alt($r('app.media.LoadingProgress'))// 使用alt，在网络图片加载成功前使用占位图
+        .width(375)
+        .height(300)
     }
   }
 }
 ```
 
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
 
 ### 示例3
 
@@ -726,6 +727,8 @@ struct ImageExample4 {
   }
 }
 ```
+
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 
 ### 示例5
 
@@ -817,7 +820,7 @@ struct ImageExample {
     Column() {
       Row() {
         Image(this.animated)
-          .width('500px').height('280px')
+          .width('500px').height('500px')
           .onFinish(() => {
             console.info("finish")
           })
@@ -864,12 +867,15 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.icon'))//gif图, 生成多张PixelMap
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.view'))//gif图, 生成多张PixelMap
     Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) //添加一张图片
     return Mypixelmaps;
   }
 }
 ```
+
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
+
 ### 示例7
 
 该示例实现了给图像设置颜色滤镜效果

@@ -22,8 +22,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件大小的宽度。 |
-| height | number | 是   | 是   | 组件大小的高度。 |
+| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp |
+| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp |
 
 ## Position
 
@@ -35,9 +35,9 @@ type Position = Vector2
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-| [Vector2](#vector2) | 包含x和y两个值的向量。 |
+| 类型                | 说明                                |
+| ------------------- | ----------------------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。<br/>单位：vp |
 
 ## PositionT<sup>12+</sup>
 
@@ -47,24 +47,24 @@ type PositionT\<T> = Vector2T\<T>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                         | 说明                   |
-| ---------------------------- | ---------------------- |
-| [Vector2T\<T>](#vector2tt12) | 包含x和y两个值的向量。 |
+| 类型                         | 说明                                |
+| ---------------------------- | ----------------------------------- |
+| [Vector2T\<T>](#vector2tt12) | 包含x和y两个值的向量。<br/>单位：vp |
 
 ## Frame
 
-用于设置或返回组件的布局大小和位置，单位为vp。
+用于设置或返回组件的布局大小和位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 可读 | 可写 | 说明                     |
-| ------ | ------ | ---- | ---- | ------------------------ |
-| x      | number | 是   | 是   | 水平方向位置，单位为vp。 |
-| y      | number | 是   | 是   | 垂直方向位置，单位为vp。 |
-| width  | number | 是   | 是   | 组件的宽度，单位为vp。   |
-| height | number | 是   | 是   | 组件的高度，单位为vp。   |
+| 名称   | 类型   | 可读 | 可写 | 说明                        |
+| ------ | ------ | ---- | ---- | --------------------------- |
+| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp |
+| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp |
+| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp   |
+| height | number | 是   | 是   | 组件的高度。<br/>单位：vp   |
 
 ## Pivot
 
@@ -76,9 +76,9 @@ type Pivot = Vector2
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-| [Vector2](#vector2) | 包含x和y两个值的向量。 |
+| 类型                | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| [Vector2](#vector2) | 轴心的x和y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
 
 ## Scale
 
@@ -90,9 +90,9 @@ type Scale = Vector2
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-| [Vector2](#vector2) | 包含x和y两个值的向量。 |
+| 类型                | 说明                                            |
+| ------------------- | ----------------------------------------------- |
+| [Vector2](#vector2) | x和y轴的缩放参数。该参数为浮点数，默认值为1.0。 |
 
 ## Translation
 
@@ -104,9 +104,9 @@ type Translation = Vector2
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-| [Vector2](#vector2) | 包含x和y两个值的向量。 |
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| [Vector2](#vector2) | x和y轴的平移量。<br/>单位：px |
 
 ## Rotation
 
@@ -118,9 +118,9 @@ type Rotation = Vector3
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| [Vector3](#vector3) | 包含x、y、z三个值的向量。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| [Vector3](#vector3) | x、y、z轴方向的旋转角度。<br/>单位：vp |
 
 ## Offset
 
@@ -132,9 +132,9 @@ type Offset = Vector2
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-| [Vector2](#vector2) | 包含x和y两个值的向量。 |
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
+| [Vector2](#vector2) | x和y轴方向的偏移量。<br/>单位：vp |
 
 ## Matrix4
 
@@ -160,7 +160,7 @@ const transform: Matrix4 = [
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 只读 | 可选 | 说明              |
+| 名称 | 类型   | 可读 | 可写 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x    | number | 否   | 否   | 向量x轴方向的值。 |
 | y    | number | 否   | 否   | 向量y轴方向的值。 |
@@ -169,13 +169,15 @@ const transform: Matrix4 = [
 
 用于表示包含x、y、z三个值的向量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                          |
-| ---- | ------ | ---- | ---- | ----------------------------- |
-| x    | number | 是   | 是   | x轴方向的旋转角度，单位为vp。 |
-| y    | number | 是   | 是   | y轴方向的旋转角度，单位为vp。 |
-| z    | number | 是   | 是   | z轴方向的旋转角度，单位为vp。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                |
+| ---- | ------ | ---- | ---- | ------------------- |
+| x    | number | 否   | 否   | x轴方向的旋转角度。 |
+| y    | number | 否   | 否   | y轴方向的旋转角度。 |
+| z    | number | 否   | 否   | z轴方向的旋转角度。 |
 
 ## Vector2T\<T><sup>12+</sup>
 
@@ -187,8 +189,8 @@ const transform: Matrix4 = [
 
 | 名称 | 类型   | 可读 | 可写 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | T | 是   | 是   | 向量x轴方向的值。 |
-| y    | T | 是   | 是   | 向量y轴方向的值。 |
+| x    | T | 否  | 否  | 向量x轴方向的值。 |
+| y    | T | 否  | 否  | 向量y轴方向的值。 |
 
 ## DrawContext
 
@@ -355,7 +357,7 @@ struct Index {
 
 constructor(value: number, unit?: LengthUnit)
 
-LengthMetrics的构造函数。
+LengthMetrics的构造函数。若参数unit不传入值或传入undefined，返回值使用默认单位VP；若unit传入非LengthUnit类型的值，返回默认值0VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -499,6 +501,15 @@ static resource(value: Resource): LengthMetrics
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 180001   | System resources does not exist.           |
+| 180002   | The type of system resources is incorrect. |
 
 ## ColorMetrics<sup>12+</sup>
 
@@ -789,9 +800,9 @@ type Rect = common2D.Rect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型   | 可读 | 可写 | 说明                                                                                                                |
-| -------- | ------ | ---- | ---- | ------------------------------------------------------------------------------------------------------------------- |
-| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | 是   | 是   | 路径绘制的指令字符串，单位为px。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。 |
+| 名称                                                         | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
 
 ## ShapeMask<sup>12+</sup>
 

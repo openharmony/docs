@@ -126,6 +126,10 @@ getSystemFontList(): Array\<string>
 | -------------------- | ----------------- |
 | Array\<string>       | 系统的字体名列表。  |
 
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
+
 **示例：**
 
 ```ts
@@ -303,6 +307,7 @@ getUIFontConfig() : UIFontConfig
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct FontExample {
