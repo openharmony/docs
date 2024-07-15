@@ -258,7 +258,7 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
+配置textOverflow一起使用时，maxlines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示，内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -496,7 +496,9 @@ textIndent(value: Dimension)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。在非内联模式、内联模式下支持
+设置文本超长时的显示方式。
+
+内联模式，主动配置textoverflow才会生效按maxline截断效果，不配置时，默认不截断。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
