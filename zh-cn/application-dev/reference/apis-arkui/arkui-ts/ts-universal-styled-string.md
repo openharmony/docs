@@ -1290,7 +1290,6 @@ struct styled_string_demo4 {
           .onClick(() => {
             this.mutableStr.replaceString(2, 5, "789")
             this.controller.setStyledString(this.mutableStr)
-            this.mutableStr
           })
 
         Button('Image之Get')
