@@ -11,7 +11,7 @@ The **ble** module provides APIs for operating and managing Bluetooth.
 ## Modules to Import
 
 ```js
-import ble from '@ohos.bluetooth.ble';
+import { ble } from '@kit.ConnectivityKit';
 ```
 
 
@@ -20,6 +20,8 @@ import ble from '@ohos.bluetooth.ble';
 createGattServer(): GattServer
 
 Creates a **GattServer** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -43,6 +45,8 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 Creates a **GattClientDevice** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -57,10 +61,19 @@ Creates a **GattClientDevice** instance.
 | ------------------------------------- | ------------------------------------ |
 | [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -91,6 +104,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -98,7 +113,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
@@ -115,6 +130,8 @@ Starts BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -130,6 +147,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -137,7 +157,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -151,7 +171,7 @@ try {
     let scanOptions: ble.ScanOptions = {
     interval: 500,
     dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
-    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE
     }
     ble.startBLEScan([scanFilter],scanOptions);
 } catch (err) {
@@ -168,6 +188,8 @@ Stops BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -176,6 +198,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -183,7 +207,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopBLEScan();
 } catch (err) {
@@ -199,6 +223,8 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 Starts BLE advertising.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -216,6 +242,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -223,7 +253,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -241,7 +271,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -254,12 +284,12 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     ble.startAdvertising(setting, advData ,advResponse);
 } catch (err) {
@@ -276,6 +306,8 @@ Stops BLE advertising.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -284,6 +316,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -291,7 +325,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopAdvertising();
 } catch (err) {
@@ -304,7 +338,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-Starts BLE advertising.
+Starts BLE advertising. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -324,7 +358,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -333,7 +367,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -364,18 +398,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -383,7 +417,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 } catch (err) {
@@ -396,7 +430,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-Starts BLE advertising.
+Starts BLE advertising. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -421,7 +455,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -430,7 +464,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -448,7 +482,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -461,18 +495,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams)
@@ -489,7 +523,7 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
-Temporarily enables BLE advertising.
+Temporarily enables BLE advertising. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -509,7 +543,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -518,7 +552,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -536,7 +570,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -549,18 +583,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 300,
+        duration: 300
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -568,7 +602,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -593,7 +627,7 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
-Temporarily enables BLE advertising.
+Temporarily enables BLE advertising. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -618,7 +652,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                   |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -627,7 +661,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -645,7 +679,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -658,18 +692,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 300,
+        duration: 300
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -677,7 +711,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -701,7 +735,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-Disables BLE advertising temporarily.
+Disables BLE advertising temporarily. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -721,7 +755,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -730,7 +764,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -748,7 +782,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -761,18 +795,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -780,7 +814,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -802,7 +836,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-Disables BLE advertising temporarily.
+Disables BLE advertising temporarily. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -827,7 +861,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -836,7 +870,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -854,7 +888,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -867,18 +901,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -886,7 +920,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -906,7 +940,7 @@ try {
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Stops BLE advertising.
+Stops BLE advertising. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -926,7 +960,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -935,7 +969,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -953,7 +987,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -966,18 +1000,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -985,7 +1019,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -1004,7 +1038,7 @@ try {
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
-Stops BLE advertising.
+Stops BLE advertising. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1029,7 +1063,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                 |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1038,7 +1072,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -1056,7 +1090,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -1069,18 +1103,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -1088,7 +1122,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -1106,7 +1140,7 @@ try {
 
 on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-Subscribes to BLE advertising status.
+Subscribes to BLE advertising status. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1126,14 +1160,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1169,14 +1203,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1193,9 +1227,11 @@ try {
 
 on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-Subscribes to BLE device discovery events.
+Subscribes to BLE device discovery events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1212,12 +1248,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1237,6 +1276,8 @@ Unsubscribes from BLE device discovery events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1253,12 +1294,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1284,6 +1328,8 @@ Adds a service to this GATT server.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1298,6 +1344,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1305,7 +1354,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1347,6 +1396,8 @@ Removes a service from this GATT server.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1361,6 +1412,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -1369,7 +1423,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     // Before removeService is called, the server and the client must be paired and connected.
@@ -1388,6 +1442,8 @@ Closes this GATT server to unregister it from the protocol stack. The closed [Ga
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -1396,6 +1452,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1403,7 +1461,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
@@ -1421,6 +1479,8 @@ Notifies a connected client device when a characteristic value changes. This API
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1437,6 +1497,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1444,13 +1507,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     characteristicValue: arrayBufferC,
-    confirm: true,
+    confirm: true
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1475,6 +1538,8 @@ Notifies a connected client device when a characteristic value changes. This API
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1496,6 +1561,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1503,13 +1571,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     characteristicValue: arrayBufferC,
-    confirm: true,
+    confirm: true
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1530,6 +1598,8 @@ Sends a response to a read or write request from the GATT client.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1544,6 +1614,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1551,7 +1624,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -1561,7 +1634,7 @@ let serverResponse: ble.ServerResponse = {
     transId: 0,
     status: 0,
     offset: 0,
-    value: arrayBufferCCC,
+    value: arrayBufferCCC
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1576,9 +1649,11 @@ try {
 
 on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
-Subscribes to characteristic read request events.
+Subscribes to characteristic read request events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1589,10 +1664,20 @@ Subscribes to characteristic read request events.
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.|
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.           |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -1623,6 +1708,8 @@ Unsubscribes from characteristic read request events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1632,13 +1719,23 @@ Unsubscribes from characteristic read request events.
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.   |
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('characteristicRead');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('characteristicRead');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1649,9 +1746,11 @@ gattServer.off('characteristicRead');
 
 on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-Subscribes to characteristic write request events.
+Subscribes to characteristic write request events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1662,10 +1761,20 @@ Subscribes to characteristic write request events.
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.|
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.            |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1699,6 +1808,8 @@ Unsubscribes from characteristic write request events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1708,13 +1819,23 @@ Unsubscribes from characteristic write request events.
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.  |
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('characteristicWrite');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('characteristicWrite');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1725,9 +1846,11 @@ gattServer.off('characteristicWrite');
 
 on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadRequest&gt;): void
 
-Subscribes to descriptor read request events.
+Subscribes to descriptor read request events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1736,12 +1859,22 @@ Subscribes to descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.       |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -1772,6 +1905,8 @@ Unsubscribes from descriptor read request events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1781,13 +1916,23 @@ Unsubscribes from descriptor read request events.
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.       |
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('descriptorRead');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('descriptorRead');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1798,9 +1943,11 @@ gattServer.off('descriptorRead');
 
 on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
-Subscribes to descriptor write request events.
+Subscribes to descriptor write request events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1809,12 +1956,22 @@ Subscribes to descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.        |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1848,6 +2005,8 @@ Unsubscribes from descriptor write request events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1857,10 +2016,20 @@ Unsubscribes from descriptor write request events.
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.      |
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
@@ -1874,9 +2043,11 @@ gattServer.off('descriptorWrite');
 
 on(type: 'connectionStateChange', callback: Callback&lt;BLEConnectionChangeState&gt;): void
 
-Subscribes to BLE connection state changes.
+Subscribes to BLE connection state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1887,18 +2058,28 @@ Subscribes to BLE connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                         |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
-function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
-  let deviceId: string = bleConnectionChangeState.deviceId;
-  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
+let Connected = (bleConnectionChangeState: ble.BLEConnectionChangeState) => {
+    let deviceId: string = bleConnectionChangeState.deviceId;
+    let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.on('connectionStateChange', Connected);
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.on('connectionStateChange', Connected);
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1913,6 +2094,8 @@ Unsubscribes from BLE connection state changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1922,13 +2105,23 @@ Unsubscribes from BLE connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('connectionStateChange');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('connectionStateChange');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1939,7 +2132,7 @@ gattServer.off('connectionStateChange');
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to MTU status changes for the server.
+Subscribes to MTU status changes for the server. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1952,14 +2145,24 @@ Subscribes to MTU status changes for the server.
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.on('BLEMtuChange', (mtu: number) => {
-      console.info('BLEMtuChange, mtu: ' + mtu);
+    console.info('BLEMtuChange, mtu: ' + mtu);
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1981,13 +2184,23 @@ Unsubscribes from MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.off('BLEMtuChange');
@@ -2010,6 +2223,8 @@ Connects to the remote BLE device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -2018,6 +2233,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2025,7 +2242,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -2043,6 +2260,8 @@ Disconnects from the remote BLE device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -2051,6 +2270,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2058,7 +2279,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -2076,6 +2297,8 @@ Closes this GATT client to unregister it from the protocol stack. The closed [Ga
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -2084,6 +2307,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2091,7 +2316,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -2109,6 +2334,8 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2123,13 +2350,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2152,6 +2382,8 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Return value**
@@ -2166,13 +2398,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2194,6 +2429,8 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2208,24 +2445,27 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Callback mode.
-function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
-  if (code.code == 0) {
-      let services: Array<ble.GattService> = gattServices;
-      console.log('bluetooth code is ' + code.code);
-      console.log('bluetooth services size is ', services.length);
+let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
+    if (code) {
+        let services: Array<ble.GattService> = gattServices;
+        console.info('bluetooth code is ' + code.code);
+        console.info('bluetooth services size is ', services.length);
 
-      for (let i = 0; i < services.length; i++) {
-        console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
-      }
-  }
+        for (let i = 0; i < services.length; i++) {
+            console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
+        }
+    }
 }
 
 try {
@@ -2246,6 +2486,8 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Return value**
@@ -2260,13 +2502,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Promise
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -2288,6 +2533,8 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2303,6 +2550,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2310,14 +2560,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
   }
-  console.log('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
+  console.info('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
   let value = new Uint8Array(BLECharacteristic.characteristicValue);
-  console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+  console.info('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
@@ -2353,6 +2603,8 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2373,6 +2625,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2380,7 +2635,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2414,6 +2669,8 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2429,6 +2686,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2436,14 +2696,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
     }
-    console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
+    console.info('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
     let value = new Uint8Array(BLEDescriptor.descriptorValue);
-    console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
 let bufferDesc = new ArrayBuffer(8);
@@ -2472,6 +2732,8 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2492,6 +2754,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2901000 | Read forbidden.                |
 |2900099 | Operation failed.              |
@@ -2499,7 +2764,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -2522,9 +2787,11 @@ try {
 
 writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes a characteristic value to the remote BLE device.
+Writes a characteristic value to the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2542,6 +2809,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2549,7 +2819,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2569,7 +2839,7 @@ function writeCharacteristicValueCallBack(code: BusinessError) {
     if (code != null) {
         return;
     }
-    console.log('bluetooth writeCharacteristicValue success');
+    console.info('bluetooth writeCharacteristicValue success');
 }
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -2584,9 +2854,11 @@ try {
 
 writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType): Promise&lt;void&gt;
 
-Writes a characteristic value to the remote BLE device.
+Writes a characteristic value to the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2609,6 +2881,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2616,7 +2891,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2645,9 +2920,11 @@ try {
 
 writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;void&gt;): void
 
-Writes binary data to the specific descriptor of the remote BLE device.
+Writes binary data to the specific descriptor of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2664,6 +2941,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2671,7 +2951,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2694,9 +2974,11 @@ try {
 
 writeDescriptorValue(descriptor: BLEDescriptor): Promise&lt;void&gt;
 
-Writes binary data to the specific descriptor of the remote BLE device.
+Writes binary data to the specific descriptor of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2718,6 +3000,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2725,7 +3010,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2750,9 +3035,11 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the RSSI of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the RSSI of the remote BLE device. It can be used only after a connection is set up by calling [connect](#connect). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2768,12 +3055,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2792,9 +3082,11 @@ try {
 
 getRssiValue(): Promise&lt;number&gt;
 
-Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the RSSI of the remote BLE device. It can be used only after a connection is set up by calling [connect](#connect). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2810,12 +3102,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2836,6 +3131,8 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2850,13 +3147,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -2870,9 +3170,11 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
+Sets a notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2890,13 +3192,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2923,9 +3228,11 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
+Sets a notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2948,13 +3255,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2968,10 +3278,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeNotification(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeNotification(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -2981,9 +3291,11 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets indication for the change of a characteristic. The GATT client that subscribes to the change will be indicated when the characteristic changes.
+Sets an indication for the change of a characteristic. The GATT client must acknowledge the indication received. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3001,13 +3313,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3021,10 +3336,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeIndication(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -3034,9 +3349,11 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets indication for the change of a characteristic. The GATT client that subscribes to the change will be indicated when the characteristic changes.
+Sets an indication for the change of a characteristic. The GATT client must acknowledge the indication received. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3059,13 +3376,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3079,10 +3399,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeIndication(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -3092,9 +3412,11 @@ try {
 
 on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to BLE characteristic changes. The client can receive a notification from the server only after [setCharacteristicChangeNotification](#setcharacteristicchangenotification) is called.
+Subscribes to BLE characteristic changes. The client can receive a notification from the server only after [setCharacteristicChangeNotification](#setcharacteristicchangenotification) is called. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3105,10 +3427,20 @@ Subscribes to BLE characteristic changes. The client can receive a notification 
 | type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value changes.                 |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -3131,6 +3463,8 @@ Unsubscribes from BLE characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -3140,10 +3474,20 @@ Unsubscribes from BLE characteristic changes.
 | type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -3157,9 +3501,11 @@ try {
 
 on(type: 'BLEConnectionStateChange', callback: Callback&lt;BLEConnectionChangeState&gt;): void
 
-Subscribes to BLE connection state changes.
+Subscribes to BLE connection state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3170,13 +3516,23 @@ Subscribes to BLE connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                          |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
-  console.log('bluetooth connect state changed');
-  let connectState: ble.ProfileConnectionState = state.state;
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
 }
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -3195,6 +3551,8 @@ Unsubscribes from BLE connection state changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -3204,10 +3562,20 @@ Unsubscribes from BLE connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -3221,9 +3589,11 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to MTU status changes for the client.
+Subscribes to MTU status changes for the client. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3231,13 +3601,23 @@ Subscribes to MTU status changes for the client.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     gattClient.on('BLEMtuChange', (mtu: number) => {
@@ -3257,6 +3637,8 @@ Unsubscribes from MTU status changes for the client.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -3266,10 +3648,20 @@ Unsubscribes from MTU status changes for the client.
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');
@@ -3282,6 +3674,8 @@ try {
 ## GattService
 
 Defines the GATT service API parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3297,6 +3691,8 @@ Defines the GATT service API parameters.
 
 Defines the characteristic API parameters.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                 | Type                                    | Readable  | Writable  | Description                                |
@@ -3310,7 +3706,9 @@ Defines the characteristic API parameters.
 
 ## BLEDescriptor
 
-Defines the BLE descriptor.
+Represents a BLE descriptor.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3326,6 +3724,8 @@ Defines the BLE descriptor.
 
 Defines the parameters in the notifications sent when the server characteristic value changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                 | Type       | Readable  | Writable  | Description                                      |
@@ -3333,12 +3733,14 @@ Defines the parameters in the notifications sent when the server characteristic 
 | serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be confirmed by the remote end. Set this parameter to **true** for an indication, which needs to be confirmed by the remote end. Set this parameter to **false** for a notification, which does not need to be confirmed by the remote end.|
+| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end.|
 
 
 ## CharacteristicReadRequest
 
 Defines the parameters of the **CharacteristicReadReq** event received by the server.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3354,6 +3756,8 @@ Defines the parameters of the **CharacteristicReadReq** event received by the se
 ## CharacteristicWriteRequest
 
 Defines the parameters of the **CharacteristicWriteReq** event received by the server.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3373,6 +3777,8 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 
 Defines the parameters of the **DescriptorReadReq** event received by the server.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
@@ -3388,6 +3794,8 @@ Defines the parameters of the **DescriptorReadReq** event received by the server
 ## DescriptorWriteRequest
 
 Defines the parameters of the **DescriptorWriteReq** event received by the server.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3408,6 +3816,8 @@ Defines the parameters of the **DescriptorWriteReq** event received by the serve
 
 Defines the parameters of the server's response to the GATT client's read/write request.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name      | Type       | Readable  | Writable  | Description                                    |
@@ -3421,7 +3831,9 @@ Defines the parameters of the server's response to the GATT client's read/write 
 
 ## BLEConnectionChangeState
 
-Defines the parameters of **BLEConnectChangedState**.
+Represents the GATT profile connection state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3434,6 +3846,8 @@ Defines the parameters of **BLEConnectChangedState**.
 ## ScanResult
 
 Defines the scan result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3450,6 +3864,8 @@ Defines the scan result.
 
 Defines the BLE advertising parameters.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
@@ -3462,6 +3878,8 @@ Defines the BLE advertising parameters.
 ## AdvertiseData
 
 Represents the content of a BLE advertising packet, which is 31 bytes in size.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3483,7 +3901,7 @@ Defines the parameters for starting BLE advertising for the first time.
 | advertisingSettings<sup>11+</sup> | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
-| duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br> Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |
+| duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br>Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
@@ -3494,7 +3912,7 @@ Defines the parameters for temporarily enabling BLE advertising.
 | Name               | Type                  | Readable | Writable | Description                     |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                | Yes   | Yes   | ID of the advertisement.    |
-| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising, in 10 ms.<br> Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.  |
+| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising, in 10 ms.<br>Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.  |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
@@ -3521,6 +3939,8 @@ Represents the advertising status information.
 
 Defines the content of a BLE advertisement packet.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name              | Type               | Readable  | Writable  | Description                |
@@ -3533,6 +3953,8 @@ Defines the content of a BLE advertisement packet.
 
 Defines the service data contained in an advertisement packet.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name          | Type       | Readable  | Writable  | Description        |
@@ -3544,6 +3966,8 @@ Defines the service data contained in an advertisement packet.
 ## ScanFilter
 
 Defines the scan filter parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3566,6 +3990,8 @@ Defines the scan filter parameters.
 
 Defines the scan configuration parameters.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name       | Type                   | Readable  | Writable  | Description                                    |
@@ -3580,20 +4006,24 @@ Defines the scan configuration parameters.
 
 Defines the properties of a GATT characteristic.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name      | Type | Mandatory  | Description         |
 | -------- | ------ |---- | ----------- |
-| write    | boolean | Yes | Permits writes of the characteristic value (with a response).|
-| writeNoResponse | boolean | Yes   | Permits writes of the characteristic value (without a response).|
-| read | boolean   |  Yes   | Permits reads of the characteristic value.|
-| notify | boolean   | Yes   | Permits notifications of the characteristic value.|
-| indicate | boolean   | Yes   | Permits notifications of the characteristic value without acknowledgement.|
+| write    | boolean | No | Permits writes of the characteristic value (with a response).|
+| writeNoResponse | boolean | No   | Permits writes of the characteristic value (without a response).|
+| read | boolean   |  No   | Permits reads of the characteristic value.|
+| notify | boolean   | No   | Permits notifications of the characteristic value.|
+| indicate | boolean   | No   | Permits notifications of the characteristic value without acknowledgement.|
 
 
 ## GattWriteType<a name="GattWriteType"></a>
 
 Enumerates the GATT write types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3607,6 +4037,8 @@ Enumerates the GATT write types.
 
 Enumerates the scan duties.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                   | Value | Description          |
@@ -3619,6 +4051,8 @@ Enumerates the scan duties.
 ## MatchMode
 
 Enumerates the hardware match modes of BLE scan filters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3643,6 +4077,8 @@ Enumerates the advertising statuses.
 ## PhyType<sup>12+</sup>
 
 Enumerates the PHY types used in scanning.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

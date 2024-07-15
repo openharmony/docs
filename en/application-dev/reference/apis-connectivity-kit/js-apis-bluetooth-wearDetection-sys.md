@@ -12,7 +12,7 @@ The **bluetooth.wearDetection** module provides APIs for checking whether a Blue
 ## Modules to Import
 
 ```js
-import wearDetection from '@ohos.bluetooth.wearDetection';
+import { wearDetection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -41,6 +41,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -89,6 +93,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -130,6 +138,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -178,6 +190,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -219,6 +235,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -265,6 +285,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -306,6 +330,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
@@ -352,6 +380,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
 |2900099 | Operation failed.              |
