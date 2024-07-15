@@ -2923,9 +2923,9 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
     if (display.state === avSession.CastDisplayState.STATE_ON) {
         castDisplay = display;
-        console.info(`castDisplayChange display : ${display.id} ON`);
+        console.info(`Succeeded in castDisplayChange display : ${display.id} ON`);
     } else if (display.state === avSession.CastDisplayState.STATE_OFF){
-        console.info(`castDisplayChange display : ${display.id} OFF`);
+        console.info(`Succeeded in castDisplayChange display : ${display.id} OFF`);
     }
 });
 ```
@@ -3099,13 +3099,11 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.getAllCastDisplays()
   .then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
-       castDisplay =  data[0];
-     } else {
-       console.info('There is not a cast display');
+       castDisplay = data[0];
      }
    })
    .catch((err: BusinessError) => {
-     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
 
@@ -3735,45 +3733,14 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { http } from '@kit.NetworkKit';
-
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
-   // get media key from DRM server
-   let licenseResponseStr: string = 'defaultStr';
-   let httpRequest = http.createHttp();
-   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
-   try {
-     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
-        method: http.RequestMethod.POST,
-        header: {
-           'Content-Type': 'application/json',
-           'Accept-Encoding': 'gzip, deflate',
-        },
-        extraData: licenseRequestStr,
-        expectDataType: http.HttpDataType.STRING
-      });
-      if (response?.responseCode == http.ResponseCode.OK) {
-        if (typeof response.result == 'string') {
-          licenseResponseStr = response.result;
-        }
-      }
-      httpRequest.destroy();
-   } catch (e) {
-     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
-     return;
-   }
-
-   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
-   try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
-   } catch (err) {
-    let error = err as BusinessError;
-    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
-   }
+  // 根据assetId获取对应的DRM url
+  let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+  // 从服务器获取许可证，需要开发者根据实际情况进行赋值
+  let licenseResponseData: Uint8Array = new Uint8Array();
+  console.info('Succeeded in get license by ' + drmUrl);
+  aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
-
 ```
 
 ### release<sup>11+</sup>
@@ -4481,10 +4448,9 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
-aVCastController.on('keyRequest', keyRequestCallback);
+aVCastController.on('keyRequest', this.keyRequestCallback);
 ```
 ### off('keyRequest')<sup>12+</sup>
 
@@ -4537,8 +4503,7 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
 ```
 
