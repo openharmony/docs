@@ -625,8 +625,8 @@ export default class EntryAbility extends UIAbility {
     let windowClassId: number = -1;
     let subWindowClassId: number = -1;
 
-    // 获取应用主窗及ID
     try {
+      // 获取应用主窗及ID
       let promise = windowStage.getMainWindow();
       promise.then((data) => {
         if (data == null) {
@@ -644,12 +644,8 @@ export default class EntryAbility extends UIAbility {
       }).catch((err: BusinessError) => {
         console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
 
-    // 创建或获取子窗及ID，此时子窗口获焦
-    try {
+      // 创建或获取子窗及ID，此时子窗口获焦
       let promise = windowStage.createSubWindow("testSubWindow");
       promise.then((data) => {
         if (data == null) {
@@ -657,11 +653,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         subWindowClass = data;
-        try {
-          subWindowClassId = subWindowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        subWindowClassId = subWindowClass.getWindowProperties().id;
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
@@ -670,16 +662,12 @@ export default class EntryAbility extends UIAbility {
         subWindowClass.on("windowEvent", (windowEvent) => {
           if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
             // 切换焦点
-            try {
-              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
-              promise.then(() => {
-                console.info('Succeeded in shifting app window focus');
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (exception) {
-              console.error(`Failed to shift app window focus. Cause code: ${exception.code}, message: ${exception.message}`);
-            }
+            let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+            promise.then(() => {
+              console.info('Succeeded in shifting app window focus');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+            });
           }
         });
       });
