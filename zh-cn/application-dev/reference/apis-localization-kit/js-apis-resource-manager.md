@@ -6241,5 +6241,5 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
           "value": "#FFFFFF"
        }
       ]
-    }
+    } 
     ``` 
