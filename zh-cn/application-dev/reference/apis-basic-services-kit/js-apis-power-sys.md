@@ -174,6 +174,8 @@ suspend(isImmediate?: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -294,8 +296,8 @@ setScreenOffTime(timeout: number): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
-| 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
+
 
 **示例：**
 
