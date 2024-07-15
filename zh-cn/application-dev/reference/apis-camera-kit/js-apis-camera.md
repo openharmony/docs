@@ -7107,6 +7107,27 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
+**P3广色域与HDR高动态范围成像**   
+
+应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
+当应用不主动设置色彩空间时，拍照以及录像模式默认为HDR拍摄效果。  
+在拍照模式下设置HDR高显效果可直接支持P3色域。  
+应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
+
+**录像模式：**
+
+| SDR/HRD拍摄         | CameraFormat             | ColorSpace       |
+|--------------------|--------------------------|------------------|
+| SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+
+**拍照模式：**
+
+| SDR/HRD拍摄    | ColorSpace |
+|--------------|------------|
+| SDR          | SRGB       |
+| HDR(Default) | DISPLAY_P3 |
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
