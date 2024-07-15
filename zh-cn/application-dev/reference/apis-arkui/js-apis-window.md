@@ -4327,7 +4327,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-允许应用窗口设置屏幕亮度值，使用callback异步回调。
+允许应用主窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -4355,20 +4355,37 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let brightness: number = 1;
-try {
-  windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the brightness.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let brightness: number = 1;
+      try {
+        windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the brightness.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -4376,7 +4393,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-允许应用窗口设置屏幕亮度值，使用Promise异步回调。
+允许应用主窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -4409,18 +4426,35 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let brightness: number = 1;
-try {
-  let promise = windowClass.setWindowBrightness(brightness);
-  promise.then(() => {
-    console.info('Succeeded in setting the brightness.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let brightness: number = 1;
+      try {
+        let promise = windowClass.setWindowBrightness(brightness);
+        promise.then(() => {
+          console.info('Succeeded in setting the brightness.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
