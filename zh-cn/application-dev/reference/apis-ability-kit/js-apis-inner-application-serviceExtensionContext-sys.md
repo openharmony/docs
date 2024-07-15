@@ -2472,3 +2472,84 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   }
 }
 ```
+
+## ServiceExtensionContext.preStartMission<sup>12+<sup>
+preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
+
+打开原子化服务跳过loading框并预打开窗口，使用Promise异步回调。
+
+参数校验通过，拉起目标方时出现的错误需要通过异常机制捕获。
+
+**需要权限**：ohos.permission.PRE_START_ATOMIC_SERVICE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 打开原子化服务对应的包名。 |
+| moduleName | string | 是 | 打开原子化服务对应的模块名。 |
+| abilityName | string | 是 | 打开原子化服务对应的能力名。 |
+| startTime | string | 是 | 打开原子化服务对应的开始时间，单位为毫秒级的时间戳。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16300007 | The target free install task does not exist. |
+| 16000011 | The context does not exist.        |
+
+**示例：**
+
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function log(info: string) {
+  console.error(`[ServiceExtApp]:: ${JSON.stringify(info)}`);
+}
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    log(`ServiceExtAbility OnCreate`);
+  }
+
+  onRequest(want: Want, startId: number) {
+    log(`ServiceExtAbility onRequest`);
+    try {
+      this.context.preStartMission(
+        want.bundleName,
+        want.moduleName,
+        want.abilityName,
+        want.parameters["ohos.aafwk.param.startTime"]
+      ).then(() => {
+        log(`pre-start mission success.`);
+      }).catch((err: BusinessError) => {
+        log(`pre-start mission failed, errCode ${JSON.stringify(err.code)}`);
+      });
+    }
+    catch (e) {
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
+    }
+  }
+
+  onDestroy() {
+    log(`ServiceExtAbility onDestroy`);
+  }
+}
+```
