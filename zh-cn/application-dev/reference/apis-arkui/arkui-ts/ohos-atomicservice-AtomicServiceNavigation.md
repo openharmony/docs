@@ -47,7 +47,7 @@ AtomicServiceNavigation({
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
 | mode|[NavigationMode](#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
-| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建**NavDestination**组件所需要的Builder数据。 |
+| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
