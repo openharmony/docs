@@ -44,7 +44,7 @@
 
 ```ts
 // pages/xxx.ets
-import {fileIo, ReadOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -54,9 +54,9 @@ let filesDir = context.filesDir;
 
 function createFile(): void {
   // 新建并打开文件
-  let file = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+  let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
-  let writeLen = fileIo.writeSync(file.fd, "Try to write str.");
+  let writeLen = fs.writeSync(file.fd, "Try to write str.");
   console.info("The length of str is: " + writeLen);
   // 从文件读取一段内容
   let arrayBuffer = new ArrayBuffer(1024);
@@ -64,11 +64,11 @@ function createFile(): void {
     offset: 0,
     length: arrayBuffer.byteLength
   };
-  let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
+  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
   let buf = buffer.from(arrayBuffer, 0, readLen);
   console.info("the content of file: " + buf.toString());
   // 关闭文件
-  fileIo.closeSync(file);
+  fs.closeSync(file);
 }
 ```
 
@@ -78,7 +78,7 @@ function createFile(): void {
 
 ```ts
 // pages/xxx.ets
-import {fileIo, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
@@ -87,8 +87,8 @@ let filesDir = context.filesDir;
 
 function readWriteFile(): void {
   // 打开文件
-  let srcFile = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  let destFile = fileIo.openSync(filesDir + '/destFile.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 读取源文件内容并写入至目的文件
   let bufSize = 4096;
   let readSize = 0;
@@ -97,19 +97,19 @@ function readWriteFile(): void {
     offset: readSize,
     length: bufSize
   };
-  let readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
+  let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
     let writeOptions: WriteOptions = {
       length: readLen
     };
-    fileIo.writeSync(destFile.fd, buf, writeOptions);
+    fs.writeSync(destFile.fd, buf, writeOptions);
     readOptions.offset = readSize;
-    readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
+    readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
   // 关闭文件
-  fileIo.closeSync(srcFile);
-  fileIo.closeSync(destFile);
+  fs.closeSync(srcFile);
+  fs.closeSync(destFile);
 }
 ```
 
@@ -123,7 +123,7 @@ function readWriteFile(): void {
 
 ```ts
 // pages/xxx.ets
-import {fileIo, ReadOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
@@ -132,8 +132,8 @@ let filesDir = context.filesDir;
 
 async function readWriteFileWithStream(): Promise<void> {
   // 打开文件流
-  let inputStream = fileIo.createStreamSync(filesDir + '/test.txt', 'r+');
-  let outputStream = fileIo.createStreamSync(filesDir + '/destFile.txt', "w+");
+  let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
+  let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
   // 以流的形式读取源文件内容并写入目的文件
   let bufSize = 4096;
   let readSize = 0;
@@ -166,7 +166,7 @@ async function readWriteFileWithStream(): Promise<void> {
 以下示例代码演示了如何查看文件列表：
 
 ```ts
-import {fileIo, Filter, ListFileOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
@@ -185,7 +185,7 @@ function getListFile(): void {
       lastModifiedAfter: new Date(0).getTime()
     }
   };
-  let files = fileIo.listFileSync(filesDir, listFileOption);
+  let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
   }
@@ -198,7 +198,7 @@ function getListFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
@@ -241,7 +241,7 @@ function copyFileWithData(): void {
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { hash } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 

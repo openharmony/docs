@@ -12,9 +12,9 @@
    将A设备的待拷贝沙箱文件，拷贝到A设备的分布式路径下。
 
    ```ts
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    import { common } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
@@ -55,9 +55,9 @@
    B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
 
    ```ts
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    import { common } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息

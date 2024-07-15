@@ -20,9 +20,9 @@
 
    ```ts
    import  { picker } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    import { common } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建文件类型、文件选择选项实例。
@@ -83,8 +83,8 @@
 
    ```ts
    import  { picker } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 
