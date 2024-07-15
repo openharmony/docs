@@ -274,7 +274,7 @@ OnInfo类型
 | AV_INFO_TYPE_EOS | 播放完成时返回消息，extra表示是否设置循环播放，0表示设置循环，1表示未设置循环。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息，extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate-1)。 |
 | AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置，extra表示当前位置。 |
-| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra默认为1，表示视频首帧渲染。 |
+| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra表示视频首帧渲染。 |
 | AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间，extra表示视频时长。 |
