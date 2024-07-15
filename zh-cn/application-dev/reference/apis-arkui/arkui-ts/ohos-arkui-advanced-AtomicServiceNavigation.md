@@ -71,8 +71,8 @@ AtomicServiceNavigation({
     
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
-| name | string | 是 | NavDestination页面名称。 |
-| param | Object | 是 | NavDestination页面详细参数。 |
+| name | string | 是 | [NavDestination](ts-basic-components-navdestination.md)页面名称。 |
+| param | Object | 是 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 
 ## 示例
 
