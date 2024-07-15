@@ -29,7 +29,7 @@ InterstitialDialogAction {
     bottomOffsetType?: BottomOffset,
     constructor: (dialogOptions: DialogOptions),
     openDialog(): Callback\<void\>,
-    closeDialog(): Callback\<void\>,
+    closeDialog(): Callback\<void\>
 }
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -41,7 +41,7 @@ InterstitialDialogAction {
 | 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| contentNode | [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md)\<object\> | 是 | 组件节点对象。 |
+| contentNode | [ComponentContent](../js-apis-arkui-ComponentContent.md)\<object\> | 是 | 组件节点对象。 |
 | dialogParam | [DialogParams](#DialogParams类型说明) | 是 | 设置弹框的一些属性。 |
 | bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值：[BottomOffset](#BottomOffset枚举说明).OFFSET_FOR_BAR。 |
 | constructor | (dialogOptions: [DialogOptions](#DialogOptions类型说明)) | 是 | InterstitialDialogAction类的构造方法。 |
