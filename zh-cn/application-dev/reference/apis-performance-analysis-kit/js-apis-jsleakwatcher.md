@@ -38,7 +38,7 @@ jsLeakWatcher.enable(true);
 
 watch(obj: object, msg: string): void;
 
-注册需要检测是否发生泄露的对象
+注册被检测泄露的对象
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -52,7 +52,8 @@ watch(obj: object, msg: string): void;
 **示例：**
 
 ```js
-jsLeakWatcher.watch("myTestFunc", 1);//待补充
+let obj:Object = new Object();
+jsLeakWatcher.watch(obj, "Trace Object");
 ```
 
 
@@ -60,7 +61,7 @@ jsLeakWatcher.watch("myTestFunc", 1);//待补充
 
 check(): string;
 
-检测可能发生泄露的对象
+获取可能发生泄露的对象列表，触发GC后未被回收的对象会被标记为泄露
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -72,7 +73,7 @@ check(): string;
 
 **示例：**
 ```js
-jsLeakWatcher.check();//待补充
+let leakObjlist:string = jsLeakWatcher.check();
 ```
 
 
@@ -80,7 +81,7 @@ jsLeakWatcher.check();//待补充
 
 dump(filePath: string): Array<string>;
 
-导出泄漏列表和堆快照
+导出泄漏列表和虚拟机内存快照
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -88,16 +89,16 @@ dump(filePath: string): Array<string>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| filePath | string | 是 | 导出信息存放的文件名 |
+| filePath | string | 是 | 导出信息生成的文件名 |
 
 **返回值：**
 
 | 类型    | 说明                                                       |
 | ------- | ---------------------------------------------------------- |
-| Array<string> | 导出结果的数组，索引0为leakListFileName，索引1为heapSnapShotFileName |
+| Array<string> | 导出结果的数组，索引0为泄露列表文件名，后缀为.jsleaklist，索引1为虚拟机内存快照文件名，后缀为.heapsnapshort |
 
 **示例：**
 
 ```js
-jsLeakWatcher.dump("/data/local/tmp/leakinfo.txt");//待补充
+let result:Array<string> = jsLeakWatcher.dump("/data/local/tmp/leakinfo.txt");
 ```
