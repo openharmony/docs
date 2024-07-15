@@ -266,7 +266,7 @@ onReady(callback:Callback\<void\>)
 
 ### onSelect
 
-onSelect(callback:Callback<[RichEditorSelection](#richeditorselection)>)
+onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
 鼠标左键按下选择，松开左键后触发回调。
 
@@ -282,11 +282,11 @@ onSelect(callback:Callback<[RichEditorSelection](#richeditorselection)>)
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback<[RichEditorSelection](#richeditorselection)> | 是   | [RichEditorSelection](#richeditorselection)为选中的所有span信息。<br/>选择时触发的回调。 |
+| callback | Callback\<[RichEditorSelection](#richeditorselection)\> | 是   | [RichEditorSelection](#richeditorselection)为选中的所有span信息。<br/>选择时触发的回调。 |
 
 ### aboutToIMEInput
 
-aboutToIMEInput(callback:Callback<[RichEditorInsertValue](#richeditorinsertvalue), boolean>)
+aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\>)
 
 输入法输入内容前，触发回调。
 
@@ -300,11 +300,11 @@ aboutToIMEInput(callback:Callback<[RichEditorInsertValue](#richeditorinsertvalue
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback<[RichEditorInsertValue](#richeditorinsertvalue), boolean> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
+| callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
 
 ### onIMEInputComplete
 
-onIMEInputComplete(callback:Callback<[RichEditorTextSpanResult](#richeditortextspanresult)>)
+onIMEInputComplete(callback:Callback\<[RichEditorTextSpanResult](#richeditortextspanresult)\>)
 
 输入法完成输入后，触发回调。
 
@@ -318,11 +318,11 @@ onIMEInputComplete(callback:Callback<[RichEditorTextSpanResult](#richeditortexts
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback<[RichEditorTextSpanResult](#richeditortextspanresult)>) | 是 | [RichEditorTextSpanResult](#richeditortextspanresult)为输入法完成输入后的文本Span信息。<br/>输入法完成输入后的回调。|
+| callback | Callback\<[RichEditorTextSpanResult](#richeditortextspanresult)\> | 是 | [RichEditorTextSpanResult](#richeditortextspanresult)为输入法完成输入后的文本Span信息。<br/>输入法完成输入后的回调。|
 
 ### aboutToDelete
 
-aboutToDelete(callback:Callback<[RichEditorDeleteValue](#richeditordeletevalue), boolean>)
+aboutToDelete(callback:Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\>)
 
 输入法删除内容前，触发回调。
 
@@ -336,7 +336,7 @@ aboutToDelete(callback:Callback<[RichEditorDeleteValue](#richeditordeletevalue),
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback<[RichEditorDeleteValue](#richeditordeletevalue), boolean>) | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调。|
+| callback | Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\> | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调。|
 
 ### onDeleteComplete
 
@@ -374,7 +374,7 @@ onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
 ### onSelectionChange<sup>12+</sup>
 
-onSelectionChange(callback:Callback<[RichEditorRange](#richeditorrange)>)
+onSelectionChange(callback:Callback\<[RichEditorRange](#richeditorrange)\>)
 
 文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。光标位置发生变化回调时，选择区域的起始位置等于终止位置。
 
@@ -386,7 +386,7 @@ onSelectionChange(callback:Callback<[RichEditorRange](#richeditorrange)>)
 
 | 参数名   | 类型                                    | 必填   | 说明        |
 | ----- | --------------------------------------- | ---- | ----------- |
-| callback |Callback<[RichEditorRange](#richeditorrange)> | 是    | [RichEditorRange](#richeditorrange)为文本选择区域起始和终止位置。<br/>订阅文本选择区域发生变化或编辑状态下光标位置发生变化时触发的回调|
+| callback |Callback\<[RichEditorRange](#richeditorrange)\> | 是    | [RichEditorRange](#richeditorrange)为文本选择区域起始和终止位置。<br/>订阅文本选择区域发生变化或编辑状态下光标位置发生变化时触发的回调|
 
 ### onEditingChange<sup>12+</sup>
 
@@ -418,7 +418,7 @@ onSubmit(callback: SubmitCallback)
 
 ### onWillChange<sup>12+</sup>
 
-onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
+onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
 文本变化前，触发回调。
 
@@ -430,7 +430,7 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
+| callback | Callback\<[RichEditorChangeValue](#richeditorchangevalue12) , boolean\> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
@@ -1588,8 +1588,8 @@ SymbolSpan样式选项。
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| onClick    | Callback<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onLongPress | Callback<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
+| onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
+| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
 
@@ -1626,6 +1626,7 @@ SymbolSpan样式选项。
 ## PasteEventCallback<sup>12+</sup>
 
 完成粘贴前，触发回调。
+type PasteEventCallback = (event?: PasteEvent) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
