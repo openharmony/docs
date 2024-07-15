@@ -145,7 +145,7 @@ struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
-    Row() {
+    Column() {
       NodeContainer(this.myNodeController)
         .width('100%')
       Button('Invalidate')
