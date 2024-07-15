@@ -201,4 +201,4 @@ export struct PageTwo {
 }
 ```
 
-![](figures/AtomicServiceNavigationDemo01.png)
+![](figures/AtomicServiceNavigationDemo01.gif)
