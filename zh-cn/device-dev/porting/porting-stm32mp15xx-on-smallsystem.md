@@ -577,7 +577,7 @@ vendor
         {
         "component": "aafwk_lite",
         "features": [
-            "enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
         ]
         }
     ]

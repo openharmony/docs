@@ -1382,8 +1382,8 @@ To adapt the `aafwk` subsystem, you need to add the `aafwk_lite` component in th
         {
           "component": "aafwk_lite",
           "features": [
-            "enable_ohos_appexecfwk_feature_ability = true",	 --- Enable the FA to support the graphics capability.
-            "config_ohos_aafwk_ams_task_size = 4096"			 --- Configure the size of the aafwk stack.
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",	 --- Enable the FA to support the graphics capability.
+            "ability_lite_config_ohos_aafwk_ams_task_size = 4096"			 --- Configure the size of the aafwk stack.
           ]
         }
       ]
