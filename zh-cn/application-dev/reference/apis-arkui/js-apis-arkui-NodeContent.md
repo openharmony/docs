@@ -9,7 +9,7 @@ NodeContent是ArkUI提供的ContentSlot的管理器。
 ## 导入模块
 
 ```ts
-import { NodeContent } from "@ohos.arkui.node";
+import {NodeContent } from '@kit.ArkUI'
 ```
 
 ## NodeContent
@@ -26,7 +26,7 @@ constructor()
 
 ```ts
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@ohos.arkui.node'
+import {NodeContent } from '@kit.ArkUI'
 
 @Component
 struct Parent {
@@ -77,7 +77,7 @@ removeFrameNode(node: FrameNode): void
 **示例：**
 
 ```ts
-import { NodeContent, typeNode } from '@ohos.arkui.node';
+import {NodeContent, typeNode } from '@kit.ArkUI';
 
 class NodeContentCtrl {
   content: NodeContent

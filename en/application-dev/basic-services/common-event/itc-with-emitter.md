@@ -12,9 +12,10 @@ To develop the Emitter mode, perform the following steps:
    ```ts
    import emitter from '@ohos.events.emitter';
    import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ThreadModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
    ```ts
    // Define an event with eventId 1.
@@ -27,7 +28,7 @@ To develop the Emitter mode, perform the following steps:
      promptAction.showToast({
        message: JSON.stringify(eventData)
      });
-     Logger.info(TAG, 'event callback:' + JSON.stringify(eventData));
+     hilog.info(DOMAIN_NUMBER, TAG, 'event callback:' + JSON.stringify(eventData));
    };
    
    // Subscribe to the event with eventId 1.
@@ -60,5 +61,3 @@ To develop the Emitter mode, perform the following steps:
    // Emit the event with eventId 1 and event content eventData.
    emitter.emit(event, eventData);
    ```
-
- <!--no_check--> 

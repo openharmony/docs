@@ -1870,37 +1870,61 @@ Lock操作
 加锁解锁操作
 
 ```c++
-static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
-    // create vm, and open vm scope
-    JSVM_VM vm;
-    JSVM_CreateVMOptions options;
-    memset(&options, 0, sizeof(options));
-    OH_JSVM_CreateVM(&options, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-    // create env, register native method, and open env scope
-    JSVM_Env env;
-    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
-    // open handle scope
-    JSVM_HandleScope handleScope;
-    OH_JSVM_OpenHandleScope(env, &handleScope);
-    std::thread t1([vm, env]() {
-        bool isLocked = false;
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (!isLocked) {
-            OH_JSVM_AcquireLock(env);
-        }
-        JSVM_VMScope vmScope;
-        OH_JSVM_OpenVMScope(vm, &vmScope);
-        JSVM_EnvScope envScope;
-        OH_JSVM_OpenEnvScope(env, &envScope);
+class LockWrapper {
+ public:
+  LockWrapper(JSVM_Env env) : env(env) {
+    OH_JSVM_IsLocked(env, &isLocked);
+    if (!isLocked) {
+      OH_JSVM_AcquireLock(env);
+      OH_JSVM_GetVM(env, &vm);
+      OH_JSVM_OpenVMScope(vm, &vmScope);
+      OH_JSVM_OpenEnvScope(env, &envScope);
+    }
+  }
+
+  ~LockWrapper() {
+    if (!isLocked) {
+      OH_JSVM_CloseEnvScope(env, envScope);
+      OH_JSVM_CloseVMScope(vm, vmScope);
+      OH_JSVM_ReleaseLock(env);
+    }
+  }
+
+  LockWrapper(const LockWrapper&) = delete;
+  LockWrapper& operator=(const LockWrapper&) = delete;
+  LockWrapper(LockWrapper&&) = delete;
+  void* operator new(size_t) = delete;
+  void* operator new[](size_t) = delete;
+
+ private:
+  JSVM_Env env;
+  JSVM_EnvScope envScope;
+  JSVM_VMScope vmScope;
+  JSVM_VM vm;
+  bool isLocked;
+};
+
+static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    static JSVM_VM vm;
+    static JSVM_Env env;
+    if (aa == 0) {
+        OH_JSVM_Init(nullptr);
+        aa++;
+        // create vm
+        JSVM_CreateVMOptions options;
+        memset(&options, 0, sizeof(options));
+        OH_JSVM_CreateVM(&options, &vm);
+        // create env
+        OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
+    }
+
+    std::thread t1([]() {
+        LockWrapper lock(env);
         JSVM_HandleScope handleScope;
         OH_JSVM_OpenHandleScope(env, &handleScope);
         JSVM_Value value;
         JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
-        if (rst) {
+        if (rst == JSVM_OK) {
             OH_LOG_INFO(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 suc");
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
@@ -1909,28 +1933,14 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
-        OH_JSVM_CloseEnvScope(env, envScope);
-        OH_JSVM_DestroyEnv(env);
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (isLocked) {
-            OH_JSVM_ReleaseLock(env);
-        }
     });
-    std::thread t2([vm, env]() {
-        bool isLocked = false;
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (!isLocked) {
-            OH_JSVM_AcquireLock(env);
-        }
-        JSVM_VMScope vmScope;
-        OH_JSVM_OpenVMScope(vm, &vmScope);
-        JSVM_EnvScope envScope;
-        OH_JSVM_OpenEnvScope(env, &envScope);
+    std::thread t2([]() {
+        LockWrapper lock(env);
         JSVM_HandleScope handleScope;
         OH_JSVM_OpenHandleScope(env, &handleScope);
         JSVM_Value value;
         JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
-        if (rst) {
+        if (rst == JSVM_OK) {
             OH_LOG_INFO(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 suc");
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
@@ -1939,22 +1949,9 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
-        OH_JSVM_CloseEnvScope(env, envScope);
-        OH_JSVM_DestroyEnv(env);
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (isLocked) {
-            OH_JSVM_ReleaseLock(env);
-        }
     });
     t1.detach();
     t2.detach();
-    sleep(10);
-    // exit vm and clean memory
-    OH_JSVM_CloseHandleScope(env, handleScope);
-    OH_JSVM_CloseEnvScope(env, envScope);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
     return nullptr;
 }
 ```

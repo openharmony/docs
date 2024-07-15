@@ -28,19 +28,29 @@
 | -------- | -------- |-------- |
 | 文件Picker（DocumentViewPicker） | 用于访问、保存公共目录中文档类文件。 |- [选择文档类文件](../file-management/select-user-file.md#选择文档类文件) <br/> - [保存文档类文件](../file-management/save-user-file.md#保存文档类文件)|
 | 音频Picker（AudioViewPicker） | 用于访问、保存用户公共目录的音频文件。 |- [选择音频类文件](../file-management/select-user-file.md#选择音频类文件) <br/> - [保存音频类文件](../file-management/save-user-file.md#保存音频类文件) |
-| 照片Picker（PhotoViewPicker）| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md)  <br/> - [保存图片或视频类文件](../file-management/save-user-file.md#保存图片或视频类文件)|
-| 相机Picker （Camera Picker）| 用于拉起系统相机，进行拍照、录制。 |[cameraPicker.pick](../reference/apis-camera-kit/js-apis-cameraPicker.md#pick) |
+| 照片Picker（PhotoViewPicker）| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md)  <br/> - [使用安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)|
+| 相机Picker （Camera Picker）| 用于拉起系统相机，进行拍照、录制。 |[cameraPicker](../reference/apis-camera-kit/js-apis-cameraPicker.md) |
 | 联系人Picker（Contacts Picker） | 用于拉起联系人应用，读取联系人数据人。 |[选择联系人](../contacts/contacts-intro.md#选择联系人) |
+<!--RP1--><!--RP1End-->
 
 
 
  
 ## 使用系统应用提供的接口
 
+系统应用提供了一些特定的接口，供其他应用访问。
+
+> **说明：**
+> 
+> 这些接口当前只能在应用中使用，不支持在网页中使用。
+
 | 系统应用 | 主要功能 | 使用指导 |
 | -------- | -------- |-------- |
-| 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
+| 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [makeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
+<!--RP2--><!--RP2End-->
+
+<!--RP3--><!--RP3End-->
 
 
 

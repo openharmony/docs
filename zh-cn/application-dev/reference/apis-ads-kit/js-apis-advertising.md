@@ -95,7 +95,7 @@ function requestAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   };
   const adOptions: advertising.AdOptions = {
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
@@ -105,8 +105,7 @@ function requestAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-  };
+    tagForUnderAgeOfPromise: -1
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
@@ -173,13 +172,13 @@ function requestMultiAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom86",
+      adId: "testy63txaom86"
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -190,7 +189,7 @@ function requestMultiAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
+    tagForUnderAgeOfPromise: -1
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -265,7 +264,7 @@ export struct ShowAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {
@@ -449,7 +448,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
 | clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
 | rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| [key: string] | number \| boolean \| string \| undefined  | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -519,7 +518,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adParam | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
 
 **返回值：**
@@ -553,7 +552,7 @@ function getAdRequestBody(): void {
     'adType': 3,
     'adCount': 2,
     'adWidth': 100,
-    'adHeight': 100,
+    'adHeight': 100
   };
 
   adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
@@ -565,20 +564,20 @@ function getAdRequestBody(): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
     'tagForChildProtection': 1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    'tagForUnderAgeOfPromise': -1,
+    'tagForUnderAgeOfPromise': -1
   };
   advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
     Prompt.showToast({
       message: data,
-      duration: 1000,
+      duration: 1000
     });
   }).catch((error: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s',
       `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
     Prompt.showToast({
       message: error.code.toString() + ',' + error.message,
-      duration: 1000,
+      duration: 1000
     });
   })
 }

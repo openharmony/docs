@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import reminderAgentManager from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## reminderAgentManager.publishReminder
@@ -45,7 +45,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -96,7 +96,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -138,7 +138,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
@@ -182,7 +182,7 @@ cancelReminder(reminderId: number): Promise\<void>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
@@ -223,7 +223,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
   if (err.code) {
@@ -287,7 +287,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
   console.log("promise, getValidReminders length = " + reminders.length);
@@ -343,7 +343,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
   if (err.code) {
@@ -379,7 +379,7 @@ cancelAllReminders(): Promise\<void>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.cancelAllReminders().then(() => {
   console.log("cancelAllReminders promise")
@@ -407,8 +407,8 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 **示例**：
 
 ```ts
-import notificationManager from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -447,8 +447,8 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 **示例**：
 
 ```ts
-import notificationManager from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -479,10 +479,10 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
+reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION,
   (err: BusinessError) => {
   if (err.code) {
     console.error("callback err code:" + err.code + " message:" + err.message);
@@ -516,10 +516,10 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION).then(() => {
   console.log("removeNotificationSlot promise");
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
@@ -557,7 +557,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
   console.log("promise, getAllValidReminders length = " + reminders.length);
@@ -622,7 +622,7 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 let date = new Date();
@@ -665,7 +665,7 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
@@ -707,7 +707,7 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.getExcludeDates(reminderId).then((dates) => {

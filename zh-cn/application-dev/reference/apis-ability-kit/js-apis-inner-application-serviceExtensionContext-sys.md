@@ -2274,7 +2274,7 @@ class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'com.example.myapplication.UIExtAbility',
+      abilityName: 'UIExtAbility',
       moduleName: 'entry_test',
       parameters: {
         'bundleName': 'com.example.myapplication',
@@ -2390,7 +2390,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**: 此接口为系统接口。
@@ -2434,8 +2434,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { ServiceExtensionAbility, Want, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {

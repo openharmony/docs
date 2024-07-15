@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## State<sup>11+</sup>
@@ -173,7 +173,7 @@ start(uri: string): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -237,7 +237,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -289,7 +289,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -333,7 +333,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);

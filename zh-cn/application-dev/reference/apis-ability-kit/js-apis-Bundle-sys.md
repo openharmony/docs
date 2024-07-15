@@ -26,7 +26,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用。      |
 | ohos.permission.REMOVE_CACHE_FILES | system_basic | 清理应用缓存。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## bundle.getBundleInstaller<sup>deprecated<sup>
 

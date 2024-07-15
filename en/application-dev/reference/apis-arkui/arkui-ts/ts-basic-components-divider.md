@@ -16,7 +16,7 @@ Not supported
 
 Divider()
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## Attributes
 
@@ -24,10 +24,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name     | Type        | Description       |
 | ----------- | ---------- | ------------------ |
-| vertical    | boolean | Whether a vertical divider is used. **false**: A horizontal divider is used.<br>**true**: A vertical divider is used.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| color       | [ResourceColor](ts-types.md#resourcecolor) | Color of the divider.<br>Default value: **'\#33182431'**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | number \| string | Width of the divider.<br>Default value: **1px**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md#height). If the value of this attribute is greater than that of **height**, cropping is performed based on the **height** settings.|
-| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Cap style of the divider.<br>Default value: **LineCapStyle.Butt**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| vertical    | boolean | Whether a vertical divider is used. **false**: A horizontal divider is used.<br>**true**: A vertical divider is used.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.|
+| color       | [ResourceColor](ts-types.md#resourcecolor) | Color of the divider.<br>Default value: **'\#33182431'**<br>This API can be used in ArkTS widgets since API version 9.|
+| strokeWidth | number \| string | Width of the divider.<br>Default value: **1px**<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md#height). If the value of this attribute is greater than that of **height**, cropping is performed based on the **height** settings.|
+| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Cap style of the divider.<br>Default value: **LineCapStyle.Butt**<br>This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Example

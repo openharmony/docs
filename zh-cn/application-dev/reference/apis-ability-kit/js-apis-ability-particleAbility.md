@@ -39,6 +39,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -92,6 +93,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -130,6 +132,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -158,6 +161,7 @@ terminateSelf(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -195,6 +199,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -227,6 +232,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -298,6 +304,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -356,6 +363,7 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -391,6 +399,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -431,6 +440,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -478,6 +488,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -528,6 +539,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';

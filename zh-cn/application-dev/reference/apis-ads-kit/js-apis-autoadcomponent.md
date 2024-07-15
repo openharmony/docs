@@ -50,11 +50,11 @@ export struct ShowCarouselAd {
     // 广告类型
     adType: 8,
     // 测试广告位ID
-    adId: "test1",
+    adId: "test1"
   };
   private adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
-    adContentClassification: 'A',
+    adContentClassification: 'A'
   };
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {

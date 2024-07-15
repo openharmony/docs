@@ -12,7 +12,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
@@ -75,6 +75,8 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -123,6 +125,8 @@ query(id: string): Promise&lt;TaskInfo&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

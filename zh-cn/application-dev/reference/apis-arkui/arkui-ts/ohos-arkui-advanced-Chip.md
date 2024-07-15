@@ -38,16 +38,17 @@ ChipOptions定义chip的样式及具体式样参数。
 | enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| prefixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| suffixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
@@ -116,9 +117,9 @@ SuffixIconOptions定义后缀图标的属性。
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | 否   | 后缀图标设定事件。 |
 
-## SymbolOptions<sup>12+</sup>
+## ChipSymbolGlyphOptions<sup>12+</sup>
 
-SymbolOptions定义前缀图标和后缀图标的属性。
+ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -148,6 +149,7 @@ LabelOptions定义文本的属性。
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
 | fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LabelMarginOptions
 
@@ -162,15 +164,27 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 | left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 | right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 
+## LocalizedLabelMarginOptions<sup>12+</sup>
+
+LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                         | 必填 | 说明                                                     |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 
 ## 示例
 
 ### 示例1
 
-自定义删除图标的操作快。
+自定义删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -211,10 +225,10 @@ struct Index {
 
 ### 示例2
 
-使用默认删除图标的操作快。
+使用默认删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -250,10 +264,10 @@ struct Index {
 
 ### 示例3
 
-不显示删除图标的操作快。
+不显示删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -292,10 +306,10 @@ struct Index {
 
 ### 示例4
 
-激活态操作快。
+激活态操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -350,8 +364,7 @@ struct Index {
 Chip组件的前缀、后缀图标使用symbol类型资源展示。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { Chip, ChipSize, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -403,3 +416,53 @@ struct Index {
 ```
 
 ![](figures/chip5.gif)
+
+### 示例6
+
+Chip布局镜像化展示
+
+```ts
+
+import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ChipPage {
+  @State message: string = 'Hello World';
+
+  build() {
+    Column() {
+      Chip({
+        direction: Direction.Auto,
+        prefixIcon: {
+          src: $r('app.media.chips'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Red,
+        },
+        label: {
+          text: "操作块",
+          fontSize: 12,
+          fontColor: Color.Blue,
+          fontFamily: "HarmonyOS Sans",
+          localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
+        },
+        suffixIcon: {
+          src: $r('app.media.close'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Red,
+        },
+        size: ChipSize.NORMAL,
+        allowClose: false,
+        enabled: true,
+        backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+        borderRadius: $r('sys.float.ohos_id_corner_radius_button')
+      })
+    }.justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/chip6.png)

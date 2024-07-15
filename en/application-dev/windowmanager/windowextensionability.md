@@ -113,8 +113,3 @@ struct Index {
 }
 ```
 
-## Samples
-
-The following sample is provided to help you better understand how to develop WindowExtensionAbilities:
-
-- [Window Extension Application (ArkTS, API version 9, Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)

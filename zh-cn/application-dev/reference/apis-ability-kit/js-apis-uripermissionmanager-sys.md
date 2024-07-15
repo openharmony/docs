@@ -190,7 +190,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
-撤销授权指定应用的URI。使用callback异步回调。
+撤销授权指定应用的URI。使用Promise异步回调。
 
 
 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。

@@ -112,7 +112,7 @@ function notify(who: string, what: string) {
 notify('Jack', 'You look great today')
 ```
 
-In most cases, the `notify` function will take two string variables as an input and produces a new string. However, what if we pass some “special” values to the function, for example `notify(null, undefined)`? The program will continue to work, the output will be as expected (`Dear undefined, a message for you: null`), so from the first glance everything is fine. But please note that the engine that runs our code should always check for such special cases to ensure correct behavior. In pseudocode, something like this happens:
+In most cases, the `notify` function will take two string variables as an input and produces a new string. However, what if we pass some “special” values to the function, for example `notify(null, undefined)`? The program will continue to work, the output will be as expected (`Dear null, a message for you: undefined`), so from the first glance everything is fine. But please note that the engine that runs our code should always check for such special cases to ensure correct behavior. In pseudocode, something like this happens:
 
 ```typescript
 function __internal_tostring(s: any): string {
@@ -146,3 +146,18 @@ notify(null, undefined) // Compile-time error
 In TypeScript such behavior can be turned on by a special compiler flag called `strictNullChecks`. But since the standard TypeScript is compiled to JavaScript, which does not have such feature, “strict null checks” work only in compile-time, for better type checking. However, ArkTS considers null-safety a very
 important feature from both stability and performance points of view. That’s why it is enforced in the language and the example above always produces
 compile-time errors. In exchange, we give our running engine much more information and guarantees about possible type values, which helps better optimize performance.
+
+## ARK Runtime Compatibility with TS/JS
+
+On API version 11, the TypeScript version in OpenHarmony SDK is 4.9.5, and the target field is es2017. In the application, developers can use the syntax of ECMA2017+ for TS/JS development.
+
+**Application Environment Restrictions**
+
+1. Force the use of strict mode (use strict)
+2. Prohibit the use of `eval()`
+3. Prohibit the use of `with() {}`
+4. Prohibit creating functions with strings as code
+
+**Differences from Standard TS/JS**
+
+1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ARK Runtime, this type of scientific notation is allowed.

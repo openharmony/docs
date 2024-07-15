@@ -13,10 +13,10 @@ import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Sce
 场景资源参数对象。包含name和uri。用于提供场景资源的名称以及3D场景所需的资源文件路径。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | 否 | 是 | 要创建资源的名称，可由开发者自定填写。|
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 否 | 3D场景所需的资源文件路径。默认值为undefined。|
+| name | string | 否 | 否 | 要创建资源的名称，可由开发者自定填写。|
+| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 是 | 3D场景所需的资源文件路径。默认值为undefined。|
 
 **示例：**
 ```ts
@@ -43,10 +43,10 @@ function createShaderPromise() : Promise<Shader> {
 场景结点参数对象，它用于提供场景结点层次中的名称和路径。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | 否 | 是 | 要创建的结点名称，可由开发者自定义填写。
-| path | string | 否 | 否 | 场景结点层次中的路径。用于指定创建的摄影机、灯光或结点在场景结点层次中的放置位置。每层之间使用'/'符号进行分割。如果未提供，则将其设置为根结点的子结点。默认值为undefined。|
+| name | string | 否 | 否 | 要创建的结点名称，可由开发者自定义填写。
+| path | string | 否 | 是 | 场景结点层次中的路径。用于指定创建的摄影机、灯光或结点在场景结点层次中的放置位置。每层之间使用'/'符号进行分割。如果未提供，则将其设置为根结点的子结点。默认值为undefined。|
 
 **示例：**
 ```ts
@@ -74,7 +74,7 @@ function createNodePromise() : Promise<Node> {
 ### createCamera
 createCamera(params: SceneNodeParameters): Promise\<Camera>
 
-根据结点参数创建相机。
+根据结点参数创建相机, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -110,7 +110,7 @@ function createCameraPromise() : Promise<Camera> {
 ### createLight
 createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
-根据结点参数和灯光类型创建灯光。
+根据结点参数和灯光类型创建灯光, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -147,7 +147,7 @@ function createLightPromise() : Promise<Light> {
 ### createNode
 createNode(params: SceneNodeParameters): Promise\<Node>
 
-创建结点。
+创建结点, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -184,7 +184,7 @@ function createNodePromise() : Promise<Node> {
 ### createMaterial
 createMaterial(params: SceneResourceParameters, materialType: MaterialType): Promise\<Material>
 
-根据场景资源参数和材质类型创建材质。
+根据场景资源参数和材质类型创建材质, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -221,7 +221,7 @@ function createMaterialPromise() : Promise<Material> {
 ### createShader
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
-根据场景资源参数创建着色器。
+根据场景资源参数创建着色器, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -259,7 +259,7 @@ function createShaderPromise() : Promise<Shader> {
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
 
-创建图片资源。
+创建图片资源, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -295,7 +295,7 @@ function createImagePromise() : Promise<Image> {
 ### createEnvironment
 createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
-根据场景资源参数创建环境。
+根据场景资源参数创建环境, 使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -335,11 +335,11 @@ function createEnvironmentPromise() : Promise<Environment> {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 是 | 环境对象。 |
-| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 是 | 动画数组。 用于保存3D场景中的动画对象。|
-| root | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 是 | 3D场景树根结点。 |
+| environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 否 | 环境对象。 |
+| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 否 | 动画数组。 用于保存3D场景中的动画对象。|
+| root | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 否 | 3D场景树根结点。 |
 
 ### load
 static load(uri?: Resource): Promise\<Scene>

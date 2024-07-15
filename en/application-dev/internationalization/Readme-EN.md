@@ -7,7 +7,9 @@
     - Language and User Preference Setting
         - [System Language and Region Setting](i18n-system-language-region.md)
         - [Preferred Language Setting](i18n-preferred-language.md)
+        <!--Del-->
         - [User Preference Setting](i18n-user-preferences.md)
+        <!--DelEnd-->
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
     - [Phone Number Formatting](i18n-phone-numbers.md)

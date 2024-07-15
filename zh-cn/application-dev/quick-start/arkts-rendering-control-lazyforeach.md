@@ -10,8 +10,8 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // 需要进行数据迭代的数据源
-    itemGenerator: (item: any, index: number) => void,  // 子组件生成函数
-    keyGenerator?: (item: any, index: number) => string // 键值生成函数
+    itemGenerator: (item: Object, index: number) => void,  // 子组件生成函数
+    keyGenerator?: (item: Object, index: number) => string // 键值生成函数
 ): void
 ```
 
@@ -21,8 +21,8 @@ LazyForEach(
 | 参数名        | 参数类型                                               | 必填 | 参数描述                                                     |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource类型说明)                    | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
-| itemGenerator | (item:&nbsp;any， index:number)&nbsp;=&gt;&nbsp;void  | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
-| keyGenerator  | (item:&nbsp;any, index:number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>数据源中的每一个数据项生成的键值不能重复。 |
+| itemGenerator | (item:&nbsp;Object， index:number)&nbsp;=&gt;&nbsp;void  | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
+| keyGenerator  | (item:&nbsp;Object, index:number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>数据源中的每一个数据项生成的键值不能重复。 |
 
 ## 事件
 ### onMove
@@ -54,7 +54,7 @@ interface IDataSource {
 | 接口声明                                                     | 参数类型                                          | 说明                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount():&nbsp;number                                    | -                                                 | 获得数据总数。                                              |
-| getData(index:&nbsp;number):&nbsp;any                        | number                                            | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值。 |
+| getData(index:&nbsp;number):&nbsp;Object                        | number                                            | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值。 |
 | registerDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注册数据改变的监听器。<br/>listener：数据变化监听器         |
 | unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注销数据改变的监听器。<br/>listener：数据变化监听器         |
 
@@ -200,7 +200,7 @@ declare enum DataOperationType {
 
 在`LazyForEach`循环渲染过程中，系统会为每个item生成一个唯一且持久的键值，用于标识对应的组件。当这个键值变化时，ArkUI框架将视为该数组元素已被替换或修改，并会基于新的键值创建一个新的组件。
 
-`LazyForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: any, index: number) => { return viewId + '-' + index.toString(); }`, viewId在编译器转换过程中生成，同一个LazyForEach组件内其viewId是一致的。
+`LazyForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`, viewId在编译器转换过程中生成，同一个LazyForEach组件内其viewId是一致的。
 
 ## 组件创建规则
 

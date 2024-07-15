@@ -657,6 +657,44 @@ This error code is reported when the target ability is already running.
 
 When **launchType** of the target ability is singleton or specified, do not specify **processMode** and **startupVisibility** in **startAbility()**.
 
+## 16000069 ExtensionAbility Fails to Start a Third-Party Application in Strict Mode
+
+**Error Message**
+
+The extension cannot start the third party application.
+
+**Description**
+
+This type of ExtensionAbility cannot start a third-party application in strict mode.
+
+**Possible Causes**
+
+The ExtensionAbility is in strict mode, and this type of ExtensionAbility is forbidden to start third-party applications in strict mode.
+
+**Solution**
+
+1. Check the conditions for enabling the strict mode of this [type of ExtensionAbility](../../application-models/extensionability-overview.md).
+2. Start the ExtensionAbility in non-strict mode.
+
+## 16000070 ExtensionAbility Fails to Start a ServiceExtensionAbility in Strict Mode
+
+**Error Message**
+
+The extension cannot start the service.
+
+**Description**
+
+This type of ExtensionAbility cannot start a ServiceExtensionAbility in strict mode.
+
+**Possible Causes**
+
+The ExtensionAbility is in strict mode, and this type of ExtensionAbility is forbidden to start a ServiceExtensionAbility in strict mode.
+
+**Solution**
+
+1. Check the conditions for enabling the strict mode of this [type of ExtensionAbility](../../application-models/extensionability-overview.md).
+2. Start the ExtensionAbility in non-strict mode.
+
 ## 16000071 Application Clone Is Not Supported
 
 **Error Message**

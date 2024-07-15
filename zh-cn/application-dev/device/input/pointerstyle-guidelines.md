@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -33,7 +33,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 4. 在应用中调用鼠标光标显示接口显示光标。
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 // 1.应用切换到全屏播放
 // 2.调用鼠标光标隐藏接口隐藏光标
@@ -77,9 +77,9 @@ try {
 5. 设置鼠标光标样式为默认样式。
 
 ```js
-import { BusinessError }  from '@ohos.base';
-import pointer from '@ohos.multimodalInput.pointer';
-import window from '@ohos.window';
+import { pointer } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 1.开发者使能取色功能
 // 2.调用窗口实例获取对应的窗口id

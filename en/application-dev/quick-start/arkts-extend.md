@@ -7,9 +7,10 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 > **NOTE**
 >
 > Since API version 9, this decorator is supported in ArkTS widgets.
+>
+> This decorator can be used in atomic services since API version 11.
 
-
-## Rules of Use
+## How to Use
 
 
 ### Syntax

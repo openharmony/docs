@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher'
+import { SwipeRefresher } from '@kit.ArkUI'
 ```
 
 
@@ -47,7 +47,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 ## 示例
 ```ts
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher';
+import { SwipeRefresher } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -18,7 +18,7 @@ Import the **mediaquery** module, as shown below:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 Use the **matchMediaSync** API to set the media query condition and save the returned listener. The following is the example for listening for landscape events:
@@ -68,6 +68,8 @@ Examples are as follows:
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 
+- **(dark-mode: true)**: The query is valid when the system is in dark mode.
+
 
 ### media-type
 
@@ -108,6 +110,8 @@ The media features include the width and height of the application display area,
 
   **Table 3** Media features
 
+For width and height related features, the units vp and px are supported. If no unit is specified, px is used by default.
+
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
 | height            | Height of the drawing area of the application.                           |
@@ -142,9 +146,8 @@ Stage model:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import window from '@ohos.window';
-import common from '@ohos.app.ability.common';
+import { mediaquery, window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -203,8 +206,8 @@ FA model:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import featureAbility from '@ohos.ability.featureAbility';
+import { mediaquery } from '@kit.ArkUI';
+import { featureAbility } from '@kit.AbilityKit';
 
 @Entry
 @Component

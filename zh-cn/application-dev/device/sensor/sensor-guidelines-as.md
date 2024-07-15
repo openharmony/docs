@@ -5,7 +5,7 @@
 
 当设备需要获取传感器数据时，可以使用sensor模块，例如：通过订阅方向传感器数据感知用户设备当前的朝向。
 
-详细的接口介绍请参考[Sensor接口](../../reference/apis-as/js-apis-sensor.md)。
+详细的接口介绍请参考[Sensor接口](../../reference/apis-sensor-service-kit/js-apis-sensor.md)。
 
 
 ## 接口说明
@@ -23,7 +23,7 @@
 1. 导入模块。
 
     ```ts
-    import sensor from '@ohos.sensor';
+    import { sensor } from '@kit.SensorServiceKit';
     ```
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。

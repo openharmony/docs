@@ -15,7 +15,7 @@ Not supported
 
 Line(value?: {width?: string | number, height?: string | number})
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -34,7 +34,7 @@ startPoint(value: Array&lt;any&gt;)
 
 Sets the coordinates (relative coordinates) of the start point of the line. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,7 +50,7 @@ endPoint(value: Array&lt;any&gt;)
 
 Sets the coordinates (relative coordinates) of the end point of the line. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ fill(value: ResourceColor)
 
 Sets the color of the fill area. This attribute does not take effect because the **\<Line>** component cannot be used to draw a closed shape.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -82,7 +82,7 @@ fillOpacity(value: number | string | Resource)
 
 Sets the opacity of the fill area. This attribute does not take effect because the **\<Line>** component cannot be used to draw a closed shape.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,7 +98,7 @@ stroke(value: ResourceColor)
 
 Sets the stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,7 +114,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 Sets stroke dashes. Line segments may overlap when they intersect. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -130,7 +130,7 @@ strokeDashOffset(value: number | string)
 
 Sets the offset of the start point for drawing the stroke.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -146,7 +146,7 @@ strokeLineCap(value: LineCapStyle)
 
 Sets the cap style of the stroke.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,7 +162,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 Sets the join style of the stroke. This attribute does not work for the **\<Line>** component, which does not have corners.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +178,7 @@ strokeMiterLimit(value: number | string)
 
 Limit value when the sharp angle is drawn as a miter. This attribute does not take effect because the **\<Line>** component cannot be used to draw a shape with a sharp angle.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -194,7 +194,7 @@ strokeOpacity(value: number | string | Resource)
 
 Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -210,7 +210,7 @@ strokeWidth(value: Length)
 
 Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1px.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -226,7 +226,7 @@ antiAlias(value: boolean)
 
 Specifies whether anti-aliasing is enabled.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

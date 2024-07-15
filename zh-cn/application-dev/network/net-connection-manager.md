@@ -5,7 +5,7 @@
 网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息、DNS解析等功能。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
 
 ## 基本概念
 
@@ -163,13 +163,12 @@ export class GlobalContext {
 }
 
 // 获取所有处于连接状态的网络列表
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
   }
-})
+});
 ```
 
 ## 根据数据网络查询网络的能力信息及连接信息
@@ -216,15 +215,13 @@ export class GlobalContext {
 }
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
-connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getDefaultNet().then((data:connection.NetHandle) => {
   if (data) {
+    console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
-
     // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-      console.log(JSON.stringify(err));
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
+      console.info("getNetCapabilities get data: " + JSON.stringify(data));
 
       // 获取网络类型(bearerTypes)
       let bearerTypes: Set<number> = new Set(data.bearerTypes);
@@ -268,15 +265,13 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
 })
 
 // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等
-connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
+  console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
 
 // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("getAllNets get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
 
@@ -284,15 +279,13 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
     let dataNumber = Array.from(itemNumber.values());
     for (let item of dataNumber) {
       // 循环获取网络列表每个netHandle对应网络的能力信息
-      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+        console.info("getNetCapabilities get data: " + JSON.stringify(data));
       })
 
       // 循环获取网络列表每个netHandle对应的网络的连接信息
-      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
       })
     }
   }
@@ -316,8 +309,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 使用默认网络解析主机名以获取所有IP地址
-connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
-})
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
+});
 ```

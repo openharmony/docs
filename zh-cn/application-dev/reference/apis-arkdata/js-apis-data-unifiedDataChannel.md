@@ -68,7 +68,7 @@ let getDelayData: unifiedDataChannel.GetDelayData = ((type: string) => {
 
 ## ValueType<sup>12+</sup>
 
-type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
+type ValueType = number | string | boolean | image.PixelMap | Want | ArrayBuffer | object | null | undefined
 
 用于表示统一数据记录允许的数据字段类型。
 
@@ -80,9 +80,13 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 | -------- | -------- |
 | number | 表示number的类型。 |
 | string | 表示string的类型。 |
+| boolean | 表示boolean的类型。 |
 | image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
+| object | 表示object的类型。 |
+| null | 表示null。 |
+| undefined | 表示undefined。 |
 
 ## UnifiedDataProperties<sup>12+</sup>
 
@@ -405,7 +409,7 @@ constructor(type: string, value: ValueType)
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { Want } from '@kit.AbilityKit';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
@@ -420,6 +424,18 @@ const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 let pixelMap = image.createPixelMapSync(color, opts);
 let pixelMapRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
+
+let hyperlinkDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let hyperlink : uniformDataStruct.Hyperlink = {
+  uniformDataType:'general.hyperlink',
+  url : 'www.XXX.com',
+  description : 'This is the description of this hyperlink',
+  details : hyperlinkDetails,
+}
+let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 ```
 
 ### getType
@@ -473,10 +489,23 @@ getValue(): ValueType
 **示例：**
 
 ```ts
-import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let value = text.getValue();
+
+let hyperlinkDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let hyperlink : uniformDataStruct.Hyperlink = {
+  uniformDataType:'general.hyperlink',
+  url : 'www.XXX.com',
+  description : 'This is the description of this hyperlink',
+  details : hyperlinkDetails,
+}
+let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
+let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
 ## Text
@@ -825,13 +854,11 @@ let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
 UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | 公共数据通路。 |
+| DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## Options
 

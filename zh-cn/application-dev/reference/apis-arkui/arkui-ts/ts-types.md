@@ -544,6 +544,23 @@ Tabs组件动画相关信息集合。
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
 
+## LayoutSafeAreaType<sup>12+</sup>
+
+扩展布局安全区域的枚举类型。
+
+| 名称     | 描述                                       |
+| -------- | ------------------------------------------ |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+
+## LayoutSafeAreaEdge<sup>12+</sup>
+
+扩展安全区域的方向。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TOP    | 上方区域。 |
+| BOTTOM | 下方区域。 |
+
 ## TouchPoint<sup>11+</sup>
 
 配置跟手点坐标，不配置时，默认居中。
@@ -652,6 +669,7 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
 | CustomSpan | 自定义绘制Span样式。 |
+| UserDataSpan | UserDataSpan样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 

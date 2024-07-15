@@ -77,10 +77,10 @@ Loads the input model from the full path for model inference. This API uses a pr
 
 **Parameters**
 
-| Name | Type               | Mandatory| Description                |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | string              | Yes  | Complete path of the input model.|
-| context | [Context](#context) | No  | Configuration information of the running environment.|
+| Name | Type               | Mandatory| Description                                         |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | string              | Yes  | Complete path of the input model.                         |
+| context | [Context](#context) | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -179,10 +179,10 @@ Loads the input model from the memory for inference. This API uses a promise to 
 
 **Parameters**
 
-| Name | Type               | Mandatory| Description                |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | ArrayBuffer         | Yes  | Memory that contains the input model.    |
-| context | [Context](#context) | No  | Configuration information of the running environment.|
+| Name | Type               | Mandatory| Description                                         |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | ArrayBuffer         | Yes  | Memory that contains the input model.                             |
+| context | [Context](#context) | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -279,10 +279,10 @@ Loads the input model based on the specified file descriptor for inference. This
 
 **Parameters**
 
-| Name | Type               | Mandatory| Description                |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | number              | Yes  | File descriptor of the input model.  |
-| context | [Context](#context) | No  | Configuration information of the running environment.|
+| Name | Type               | Mandatory| Description                                         |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | number              | Yes  | File descriptor of the input model.                           |
+| context | [Context](#context) | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -311,11 +311,11 @@ Loads the training model file based on the specified path. This API uses a promi
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | string                  | Yes  | Complete path of the input model.|
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration.      |
-| context  | [Context](#context)     | No  | Configuration information of the running environment.|
+| Name  | Type                   | Mandatory| Description                                          |
+| -------- | ----------------------- | ---- | ---------------------------------------------- |
+| model    | string                  | Yes  | Complete path of the input model.                          |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**.  |
+| context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -343,11 +343,11 @@ Loads a training model from the memory buffer. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | ArrayBuffer             | Yes  | Memory accommodating the training model.|
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration.      |
-| context  | [Context](#context)     | No  | Configuration information of the running environment.|
+| Name  | Type                   | Mandatory| Description                                         |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | ArrayBuffer             | Yes  | Memory accommodating the training model.                         |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**. |
+| context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -376,11 +376,11 @@ Loads the training model file from the file descriptor. This API uses a promise 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                  |
-| -------- | ----------------------- | ---- | ---------------------- |
-| model    | number                  | Yes  | File descriptor of the training model.|
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration.        |
-| context  | [Context](#context)     | No  | Configuration information of the running environment.  |
+| Name  | Type                   | Mandatory| Description                                         |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | number                  | Yes  | File descriptor of the training model.                       |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**. |
+| context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
 
@@ -431,11 +431,11 @@ Defines the configuration information of the running environment.
 **System capability**: SystemCapability.AI.MindSporeLite
 
 
-| Name  | Type                     | Readable| Writable| Description                                                        |
+| Name  | Type                     | Read Only| Optional| Description                                                        |
 | ------ | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| target | string[]                  | Yes  | Yes  | Target backend. The value can be **cpu** or **nnrt**. The default value is **cpu**.                |
-| cpu    | [CpuDevice](#cpudevice)   | Yes  | Yes  | CPU backend device option. Set this parameter set only when **target** is set to **cpu**. The default value is the combination of the default value of each **CpuDevice** option.|
-| nnrt   | [NNRTDevice](#nnrtdevice) | Yes  | Yes  | NNRt backend device option. Set this parameter set only when **target** is set to **nnrt**. Currently, this parameter is empty.|
+| target | string[]                  | No  | Yes  | Target backend. The value can be **cpu** or **nnrt**. The default value is **cpu**.                |
+| cpu    | [CpuDevice](#cpudevice)   | No  | Yes  | CPU backend device option. Set this parameter set only when **target** is set to **cpu**. The default value is an array of the default values of attributes in **CpuDevice**.|
+| nnrt   | [NNRTDevice](#nnrtdevice) | No  | Yes  | NNRt backend device option. Set this parameter set only when **target** is set to **nnrt**. The default value is an array of the default values of attributes in **NNRTDevice**.|
 
 **Example**
 
@@ -452,12 +452,12 @@ Defines the CPU backend device option.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name                  | Type                                     | Readable| Writable| Description                                                        |
+| Name                  | Type                                     | Read Only| Optional| Description                                                        |
 | ---------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| threadNum              | number                                    | Yes  | Yes  | Number of runtime threads. The default value is **2**.                             |
-| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | Yes  | Yes  | Affinity mode for binding runtime threads to CPU cores. The default value is **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**.|
-| threadAffinityCoreList | number[]                                  | Yes  | Yes  | List of CPU cores bound to runtime threads. Set this parameter only when **threadAffinityMode** is set. If **threadAffinityMode** is set to **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**, this parameter is empty. The number in the list indicates the SN of the CPU core. The default value is **[]**.|
-| precisionMode          | string                                    | Yes  | Yes  | Whether to enable the Float16 inference mode. The value **preferred_fp16** means to enable half-precision inference and the default value **enforce_fp32** means to disable half-precision inference. Other settings are not supported.|
+| threadNum              | number                                    | No  | Yes  | Number of runtime threads. The default value is **2**.                             |
+| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | No  | Yes  | Affinity mode for binding runtime threads to CPU cores. The default value is **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**.|
+| threadAffinityCoreList | number[]                                  | No  | Yes  | List of CPU cores bound to runtime threads. Set this parameter only when **threadAffinityMode** is set. If **threadAffinityMode** is set to **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**, this parameter is empty. The number in the list indicates the SN of the CPU core. The default value is **[]**.|
+| precisionMode          | string                                    | No  | Yes  | Whether to enable the Float16 inference mode. The value **preferred_fp16** means to enable half-precision inference and the default value **enforce_fp32** means to disable half-precision inference. Other settings are not supported.|
 
 **Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
@@ -493,16 +493,16 @@ Represents an NNRt device. Neural Network Runtime (NNRt) is a bridge that connec
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name                         | Type                               | Mandatory| Description                    |
-| ----------------------------- | ----------------------------------- | ---- | ------------------------ |
-| deviceID<sup>12+</sup>        | bigint                              | No | NNRt device ID.            |
-| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | No  | NNRt device performance mode.|
-| priority<sup>12+</sup>        | [Priority](#priority12)               | No  | NNRt inference task priority.   |
-| extensions<sup>12+</sup>      | [Extension](#extension12)             | No  | Extended NNRt device configuration.   |
+| Name                         | Type                               | Read Only| Optional| Description                    |
+| ----------------------------- | ----------------------------------- | ---- | ------------------------ | ------------------------ |
+| deviceID<sup>12+</sup>        | bigint                              | No| Yes | NNRt device ID. The default value is **0**.    |
+| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | No | Yes | NNRt device performance mode. The default value is **PERFORMANCE_NONE**.|
+| priority<sup>12+</sup>        | [Priority](#priority12)               | No | Yes | NNRt inference task priority. The default value is **PRIORITY_MEDIUM**.|
+| extensions<sup>12+</sup>      | [Extension](#extension12)[]         | No | Yes | Extended NNRt device configuration. This parameter is left empty by default.|
 
 ## PerformanceMode<sup>12+</sup>
 
-Enumeates NNRt device performance modes.
+Enumerates NNRt device performance modes.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -516,7 +516,7 @@ Enumeates NNRt device performance modes.
 
 ## Priority<sup>12+</sup>
 
-Enumeates NNRt inference task priorities.
+Enumerates NNRt inference task priorities.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -535,10 +535,10 @@ Defines the extended NNRt device configuration.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name               | Type       | Mandatory| Description            |
-| ------------------- | ----------- | ---- | ---------------- |
-| name<sup>12+</sup>  | string      | Yes  | Configuration name.      |
-| value<sup>12+</sup> | ArrayBuffer | Yes  | Memory accommodating the extended configuration.|
+| Name               | Type       | Read Only| Optional| Description            |
+| ------------------- | ----------- | ---- | ---- | ---------------- |
+| name<sup>12+</sup>  | string      | No  | No  | Configuration name.      |
+| value<sup>12+</sup> | ArrayBuffer | No  | No  | Memory accommodating the extended configuration.|
 
 ## NNRTDeviceDescription<sup>12+</sup>
 
@@ -657,10 +657,10 @@ Defines the configuration for on-device training.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name                           | Type                                     | Mandatory| Description                    |
-| ------------------------------- | ----------------------------------------- | ---- | ------------------------ |
-| lossName<sup>12+</sup>          | string[]                                  | No  | List of loss functions.    |
-| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | No  | Network optimization level for on-device training.|
+| Name                           | Type                                     | Read Only| Optional| Description                                                        |
+| ------------------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| lossName<sup>12+</sup>          | string[]                                  | No  | Yes  | List of loss functions. The default value is ["loss\_fct", "\_loss\_fn", "SigmoidCrossEntropy"].|
+| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | No  | Yes  | Network optimization level for on-device training. The default value is **O0**.                        |
 
 **Example**
 
@@ -706,10 +706,10 @@ In the following sample code, you first need to use [loadModelFromFile()](#minds
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name                      | Type   | Mandatory| Description                |
-| -------------------------- | ------- | ---- | -------------------- |
-| learningRate<sup>12+</sup> | number  | No  | Learning rate of a training model.  |
-| trainMode<sup>12+</sup>    | boolean | No  | Training mode.|
+| Name                      | Type   | Read Only| Optional| Description                                                        |
+| -------------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| learningRate<sup>12+</sup> | number  | No  | Yes  | Learning rate of a training model. The default value is read from the loaded model.                |
+| trainMode<sup>12+</sup>    | boolean | No  | Yes  | Training mode. The value **true** indicates the training mode, and the value **false** indicates the non-training mode. The default value is **true** for a training model and **false** for an inference model.|
 
 ### getInputs
 
@@ -1042,7 +1042,7 @@ Exports training models.
 | modelFile           | string                                  | Yes  | File path of the training models.                                        |
 | quantizationType    | [QuantizationType](#quantizationtype12) | No  | Quantization type. The default value is **NO_QUANT**.                                  |
 | exportInferenceOnly | boolean                                 | No  | Whether to export inference models only. The value **true** means to export only inference models, and the value **false** means to export both training and inference models. The default value is **true**.|
-| outputTensorName    | string[]                                | No  | Name of the output tensor of the exported training model.                              |
+| outputTensorName    | string[]                                | No  | Name of the output tensor of the exported training model. The default value is an empty string array, which indicates full export.|
 
 **Return value**
 
@@ -1076,7 +1076,7 @@ Micro inference is a ultra-lightweight micro AI deployment solution provided by 
 | weightFile            | string   | Yes  | Path of the weight file.                                              |
 | isInference           | boolean  | No  | Whether to export weights from the inference model. The value **true** means to export weights from the inference model. The default value is **true**. Currently, only **true** is supported.|
 | enableFp16            | boolean  | No  | Whether to store floating-point weights in float16 format. The value **true** means to store floating-point weights in float16 format, and the value **false** means the opposite. The default value is **false**.|
-| changeableWeightsName | string[] | No  | Name of the variable weight.                                        |
+| changeableWeightsName | string[] | No  | Name of the variable weight. The default value is an empty string array.                    |
 
 **Return value**
 
@@ -1102,14 +1102,14 @@ In the following sample code, you first need to use [getInputs()](#getinputs) to
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
-| Name      | Type                 | Readable| Writable| Description                                                |
-| ---------- | --------------------- | ---- | ---- | ---------------------------------------------------- |
-| name       | string                | Yes  | Yes  | Tensor name. The default value is **null**.                              |
-| shape      | number[]              | Yes  | Yes  | Tensor dimension array. The default value is **0**.                           |
-| elementNum | number                | Yes  | Yes  | Length of the tensor dimension array. The default value is **0**.                     |
-| dataSize   | number                | Yes  | Yes  | Length of tensor data. The default value is **0**.                         |
-| dtype      | [DataType](#datatype) | Yes  | Yes  | Tensor data type. The default value is **0**, indicating **TYPE_UNKNOWN**.       |
-| format     | [Format](#format)     | Yes  | Yes  | Tensor data format. The default value is **-1**, indicating **DEFAULT_FORMAT**.|
+| Name      | Type                 | Read Only| Optional| Description                  |
+| ---------- | --------------------- | ---- | ---- | ---------------------- |
+| name       | string                | No  | No  | Tensor name.          |
+| shape      | number[]              | No  | No  | Tensor dimension array.      |
+| elementNum | number                | No  | No  | Length of the tensor dimension array.|
+| dataSize   | number                | No  | No  | Length of tensor data.    |
+| dtype      | [DataType](#datatype) | No  | No  | Tensor data type.      |
+| format     | [Format](#format)     | No  | No  | Tensor data format.  |
 
 **Example**
 

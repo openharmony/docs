@@ -14,14 +14,16 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetri
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 在API version 11中，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
+| 参数名      | 类型  | 必填   | 说明    |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
 
 
 ### RenderingContextSettings
@@ -34,21 +36,23 @@ RenderingContextSettings(antialias?: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名       | 参数类型    | 必填   | 参数描述                          |
+| 参数名       | 类型    | 必填   | 说明                          |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false |
+| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false。 |
 
 ### LengthMetricsUnit<sup>12+</sup>
 
-用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改。
+用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 **示例：**
 
 ```ts
 // xxx.ets
-import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
+import { LengthMetricsUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -87,32 +91,36 @@ struct LengthMetricsUnitDemo {
 
 ## 属性
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                                       | 类型                                       | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap)                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin)     | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign)          | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline)           | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>单位：px<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>默认值：0.0<br/>shadowBlur取值不支持负数，负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowColor](#shadowcolor)              | string                                   | 设置绘制阴影时的阴影颜色。<br/>默认值：透明黑色。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。<br/>默认值：0<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。<br/>默认值：0<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [height](#height)                        | number                                   | 组件高度。 <br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [width](#width)                          | number                                   | 组件宽度。 <br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值：ImageSmoothingQuality.low<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 用于设置绘制文字时使用的文字方向。<br/>默认值：CanvasDirection.inherit<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [filter](#filter)                        | string                                   | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
+| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
+| [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
+| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'。 |
+| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'。 |
+| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
+| [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0。 |
+| [lineDashOffset](#linedashoffset)        | number | 否 | 否 | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>单位：px。 |
+| [globalCompositeOperation](#globalcompositeoperation) | string | 否 | 否 | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'。 |
+| [shadowBlur](#shadowblur)                | number | 否 | 否 | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>默认值：0.0<br/>shadowBlur取值不支持负数，负数按异常值处理，异常值按默认值处理。 |
+| [shadowColor](#shadowcolor)              | string | 否 | 否 | 设置绘制阴影时的阴影颜色。<br/>默认值：透明黑色。 |
+| [shadowOffsetX](#shadowoffsetx)          | number | 否 | 否 | 设置绘制阴影时和原有对象的水平偏移值。<br/>默认值：0<br/>默认单位：vp。 |
+| [shadowOffsetY](#shadowoffsety)          | number | 否 | 否 | 设置绘制阴影时和原有对象的垂直偏移值。<br/>默认值：0<br/>默认单位：vp。 |
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean | 否 | 否 | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true。 |
+| [height](#height)                        | number | 是 | 否 | 组件高度。 <br/>默认单位：vp。 |
+| [width](#width)                          | number | 是 | 否 | 组件宽度。 <br/>默认单位：vp。 |
+| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值：ImageSmoothingQuality.low。 |
+| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值：CanvasDirection.inherit。 |
+| [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'。 |
 
 > **说明：**
 >
@@ -914,14 +922,16 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数     | 类型     | 必填   | 默认值  | 说明            |
-| ------ | ------ | ---- | ---- | ------------- |
-| x      | number | 是    | 0    | 指定矩形左上角点的x坐标，默认单位：vp。 |
-| y      | number | 是    | 0    | 指定矩形左上角点的y坐标，默认单位：vp。 |
-| w      | number | 是    | 0    | 指定矩形的宽度，默认单位：vp。 |
-| h      | number | 是    | 0    | 指定矩形的高度，默认单位：vp。 |
+| 参数名     | 类型     | 必填 | 说明            |
+| ------ | ------ | ---- | ------------- |
+| x      | number | 是  | 指定矩形左上角点的x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y      | number | 是  | 指定矩形左上角点的y坐标。<br>默认单位：vp。<br>默认值：0。 |
+| w      | number | 是  | 指定矩形的宽度。<br>默认单位：vp。<br>默认值：0。 |
+| h      | number | 是  | 指定矩形的高度。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -962,14 +972,16 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 说明           |
-| ---- | ------ | ---- | ---- | ------------ |
-| x    | number | 是    | 0    | 指定矩形的左上角x坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定矩形的左上角y坐标，默认单位：vp。 |
-| w    | number | 是    | 0    | 指定矩形的宽度，默认单位：vp。 |
-| h    | number | 是    | 0    | 指定矩形的高度，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明           |
+| ---- | ------ | ----  | ------------ |
+| x    | number | 是     | 指定矩形的左上角x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是     | 指定矩形的左上角y坐标。<br>默认单位：vp。<br>默认值：0。 |
+| w    | number | 是     | 指定矩形的宽度。<br>默认单位：vp。<br>默认值：0。 |
+| h    | number | 是     | 指定矩形的高度。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1010,14 +1022,16 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述            |
-| ---- | ------ | ---- | ---- | ------------- |
-| x    | number | 是    | 0    | 指定矩形上的左上角x坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定矩形上的左上角y坐标，默认单位：vp。 |
-| w    | number | 是    | 0    | 指定矩形的宽度，默认单位：vp。 |
-| h    | number | 是    | 0    | 指定矩形的高度，默认单位：vp。 |
+| 参数名   | 类型     | 必填  | 说明  |
+| ---- | ------ | ---- | ------------- |
+| x    | number | 是 | 指定矩形上的左上角x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是 | 指定矩形上的左上角y坐标。<br>默认单位：vp。<br>默认值：0。 |
+| w    | number | 是 | 指定矩形的宽度。<br>默认单位：vp。<br>默认值：0。 |
+| h    | number | 是 | 指定矩形的高度。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1060,14 +1074,16 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数       | 类型     | 必填   | 默认值  | 说明              |
-| -------- | ------ | ---- | ---- | --------------- |
-| text     | string | 是    | ''   | 需要绘制的文本内容。      |
-| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标，默认单位：vp。 |
-| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标，默认单位：vp。 |
-| maxWidth | number | 否    | -    | 指定文本允许的最大宽度，默认单位：vp。 |
+| 参数名       | 类型     | 必填   | 说明 |
+| -------- | ------ | ---- | --------------- |
+| text     | string | 是    | 需要绘制的文本内容。<br>默认值：''。      |
+| x        | number | 是    | 需要绘制的文本的左下角x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y        | number | 是    | 需要绘制的文本的左下角y坐标。<br>默认单位：vp。<br>默认值：0。 |
+| maxWidth | number | 否    | 指定文本允许的最大宽度。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -1101,7 +1117,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 ### strokeText
 
-strokeText(text: string, x: number, y: number, maxWidth?:number): void
+strokeText(text: string, x: number, y: number, maxWidth?: number): void
 
 绘制描边类文本。
 
@@ -1109,14 +1125,16 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数       | 类型     | 必填   | 默认值  | 描述              |
-| -------- | ------ | ---- | ---- | --------------- |
-| text     | string | 是    | ''   | 需要绘制的文本内容。      |
-| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标，默认单位：vp。 |
-| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标，默认单位：vp。 |
-| maxWidth | number | 否    | -    | 需要绘制的文本的最大宽度，默认单位：vp。 |
+| 参数名       | 类型     | 必填 | 说明     |
+| -------- | ------ | ---- | --------------- |
+| text     | string | 是    | 需要绘制的文本内容。<br>默认值：''。      |
+| x        | number | 是    | 需要绘制的文本的左下角x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y        | number | 是    | 需要绘制的文本的左下角y坐标。<br>默认单位：vp。<br>默认值：0。 |
+| maxWidth | number | 否    | 需要绘制的文本的最大宽度。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -1158,17 +1176,19 @@ measureText(text: string): TextMetrics
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 说明         |
-| ---- | ------ | ---- | ---- | ---------- |
-| text | string | 是    | ''   | 需要进行测量的文本。 |
+| 参数名   | 类型     | 必填   | 说明         |
+| ---- | ------ | ---- |---------- |
+| text | string | 是  | 需要进行测量的文本。<br>默认值：''。 |
 
 **返回值：**
 
 | 类型          | 说明                                       |
 | ----------- | ---------------------------------------- |
-| [TextMetrics](#textmetrics) | 文本的尺寸信息。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [TextMetrics](#textmetrics) | 文本的尺寸信息。 |
 
 **示例：**
 
@@ -1211,11 +1231,13 @@ stroke(path?: Path2D): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型                                       | 必填   | 默认值  | 描述           |
-| ---- | ---------------------------------------- | ---- | ---- | ------------ |
-| path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
+| 参数名   | 类型      | 必填   | 说明     |
+| ---- | ---------------------------------------- | ---- | ------------ |
+| path | [Path2D](ts-components-canvas-path2d.md) | 否 | 需要绘制的Path2D。<br>默认值：null。 |
 
 **示例：**
 
@@ -1261,6 +1283,8 @@ beginPath(): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **示例：**
 
   ```ts
@@ -1305,12 +1329,14 @@ moveTo(x: number, y: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 说明        |
-| ---- | ------ | ---- | ---- | --------- |
-| x    | number | 是    | 0    | 指定位置的x坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定位置的y坐标，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| x    | number | 是    | 指定位置的x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是    | 指定位置的y坐标。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1354,12 +1380,14 @@ lineTo(x: number, y: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述        |
-| ---- | ------ | ---- | ---- | --------- |
-| x    | number | 是    | 0    | 指定位置的x坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定位置的y坐标，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| x    | number | 是    | 指定位置的x坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是    | 指定位置的y坐标。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1402,6 +1430,8 @@ closePath(): void
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
@@ -1447,12 +1477,14 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数  | 类型  | 必填  | 默认值  | 描述  |
-| ---------- | ---------- | ---- | ---------- | ---------------------------------------- |
-| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  |     | 图源对象，具体参考ImageBitmap对象。 |
-| repetition | string \| null  | 是    | null    | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。 |
+| 参数名  | 类型  | 必填  | 说明  |
+| ---------- | ---------- | ---- | ---------------------------------------- |
+| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  | 图源对象，具体参考ImageBitmap对象。 |
+| repetition | string \| null  | 是  | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。 <br>默认值：null。|
 
 **返回值：**
 
@@ -1504,16 +1536,18 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述             |
-| ---- | ------ | ---- | ---- | -------------- |
-| cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值，默认单位：vp。 |
-| cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值，默认单位：vp。 |
-| cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值，默认单位：vp。 |
-| cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值，默认单位：vp。 |
-| x    | number | 是    | 0    | 路径结束时的x坐标值，默认单位：vp。 |
-| y    | number | 是    | 0    | 路径结束时的y坐标值，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明  |
+| ---- | ------ | ---- | -------------- |
+| cp1x | number | 是  | 第一个贝塞尔参数的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| cp1y | number | 是  | 第一个贝塞尔参数的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| cp2x | number | 是  | 第二个贝塞尔参数的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| cp2y | number | 是  | 第二个贝塞尔参数的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| x    | number | 是  | 路径结束时的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是  | 路径结束时的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1557,14 +1591,16 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述          |
-| ---- | ------ | ---- | ---- | ----------- |
-| cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值，默认单位：vp。 |
-| cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值，默认单位：vp。 |
-| x    | number | 是    | 0    | 路径结束时的x坐标值，默认单位：vp。 |
-| y    | number | 是    | 0    | 路径结束时的y坐标值，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| cpx  | number | 是    | 贝塞尔参数的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| cpy  | number | 是    | 贝塞尔参数的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| x    | number | 是    | 路径结束时的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是    | 路径结束时的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1608,16 +1644,18 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数               | 类型      | 必填   | 默认值   | 描述         |
-| ---------------- | ------- | ---- | ----- | ---------- |
-| x                | number  | 是    | 0     | 弧线圆心的x坐标值，默认单位：vp。 |
-| y                | number  | 是    | 0     | 弧线圆心的y坐标值，默认单位：vp。 |
-| radius           | number  | 是    | 0     | 弧线的圆半径，默认单位：vp。 |
-| startAngle       | number  | 是    | 0     | 弧线的起始弧度。   |
-| endAngle         | number  | 是    | 0     | 弧线的终止弧度。   |
-| counterclockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
+| 参数名       | 类型      | 必填   | 说明         |
+| ---------------- | ------- | ---- | ---------- |
+| x                | number  | 是  | 弧线圆心的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y                | number  | 是  | 弧线圆心的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| radius           | number  | 是  | 弧线的圆半径。<br>默认单位：vp。<br>默认值：0。 |
+| startAngle       | number  | 是  | 弧线的起始弧度。<br>默认值：0。   |
+| endAngle         | number  | 是  | 弧线的终止弧度。<br>默认值：0。   |
+| counterclockwise | boolean | 否  | 是否逆时针绘制圆弧。<br>默认值：false。 |
 
 **示例：**
 
@@ -1660,15 +1698,17 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数     | 类型     | 必填   | 默认值  | 描述              |
-| ------ | ------ | ---- | ---- | --------------- |
-| x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值，默认单位：vp。 |
-| y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值，默认单位：vp。 |
-| x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值，默认单位：vp。 |
-| y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值，默认单位：vp。 |
-| radius | number | 是    | 0    | 圆弧的圆半径值，默认单位：vp。 |
+| 参数名     | 类型     | 必填   | 说明          |
+| ------ | ------ | ---- | --------------- |
+| x1     | number | 是    | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y1     | number | 是    | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| x2     | number | 是    | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y2     | number | 是    | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| radius | number | 是    | 圆弧的圆半径值。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1711,18 +1751,20 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数               | 类型      | 必填   | 默认值   | 说明                                       |
-| ---------------- | ------- | ---- | ----- | ---------------------------------------- |
-| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标，默认单位：vp。 |
-| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标，默认单位：vp。 |
-| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度，默认单位：vp。 |
-| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度，默认单位：vp。 |
-| rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。                           |
-| startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。                        |
-| endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。                        |
-| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。 |
+| 参数名               | 类型      | 必填   | 说明                                       |
+| ---------------- | ------- | ---- | ---------------------------------------- |
+| x                | number  | 是 | 椭圆圆心的x轴坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y                | number  | 是 | 椭圆圆心的y轴坐标。<br>默认单位：vp。<br>默认值：0。 |
+| radiusX          | number  | 是 | 椭圆x轴的半径长度。<br>默认单位：vp。<br>默认值：0。 |
+| radiusY          | number  | 是 | 椭圆y轴的半径长度。<br>默认单位：vp。<br>默认值：0。 |
+| rotation         | number  | 是 | 椭圆的旋转角度，单位为弧度。<br>默认值：0。 |
+| startAngle       | number  | 是 | 椭圆绘制的起始点角度，以弧度表示。<br>默认值：0。 |
+| endAngle         | number  | 是 | 椭圆绘制的结束点角度，以弧度表示。<br>默认值：0。 |
+| counterclockwise | boolean | 否 | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。<br>默认值：false。 |
 
 **示例：**
 
@@ -1768,14 +1810,16 @@ rect(x: number, y: number, w: number, h: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述            |
-| ---- | ------ | ---- | ---- | ------------- |
-| x    | number | 是    | 0    | 指定矩形的左上角x坐标值，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定矩形的左上角y坐标值，默认单位：vp。 |
-| w    | number | 是    | 0    | 指定矩形的宽度，默认单位：vp。 |
-| h    | number | 是    | 0    | 指定矩形的高度，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明            |
+| ---- | ------ | ---- | ------------- |
+| x    | number | 是    | 指定矩形的左上角x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是    | 指定矩形的左上角y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| w    | number | 是    | 指定矩形的宽度。<br>默认单位：vp。<br>默认值：0。 |
+| h    | number | 是    | 指定矩形的高度。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -1817,11 +1861,13 @@ fill(fillRule?: CanvasFillRule): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:** 
 
-| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+| 参数名 | 类型             | 必填   | 说明    |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -1860,12 +1906,16 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:** 
 
-| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | 是    |           | Path2D填充路径。                              |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+| 参数名    | 类型             | 必填   | 说明  |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | 是  | Path2D填充路径。                              |
+| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -1917,11 +1967,13 @@ clip(fillRule?: CanvasFillRule): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:** 
 
-| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+| 参数名       | 类型             | 必填   | 说明                            |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| fillRule | [CanvasFillRule](#canvasfillrule) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 **示例:** 
 
@@ -1962,12 +2014,16 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:** 
 
-| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | -         | Path2D剪切路径。                              |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+| 参数名      | 类型             | 必填   | 说明          |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | Path2D剪切路径。                              |
+| fillRule | [CanvasFillRule](#canvasfillrule) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 
 **示例:** 
@@ -2016,6 +2072,8 @@ reset(): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **示例：**
 
   ```ts
@@ -2055,6 +2113,8 @@ saveLayer(): void
 创建一个图层。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
@@ -2099,20 +2159,56 @@ saveLayer(): void
 
 restoreLayer(): void
 
-恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例代码同saveLayer。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### resetTransform
 
 resetTransform(): void
 
-使用单位矩阵重新设置当前矩阵。该接口为空接口。
+使用单位矩阵重新设置当前矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ResetTransform {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.setTransform(1,0.5, -0.5, 1, 10, 10)
+            this.context.fillStyle = 'rgb(0,0,255)'
+            this.context.fillRect(0, 0, 100, 100)
+            this.context.resetTransform()
+            this.context.fillStyle = 'rgb(255,0,0)'
+            this.context.fillRect(0, 0, 100, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001239032417](figures/zh-cn_image_ResetTransform.png)
 
 ### rotate
 
@@ -2124,11 +2220,13 @@ rotate(angle: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数    | 类型     | 必填   | 默认值  | 描述                                       |
-| ----- | ------ | ---- | ---- | ---------------------------------------- |
-| angle | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ----- | ------ | ---- |  ---------------------------------------- |
+| angle | number | 是   | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。<br>默认值：0。 |
 
 **示例：**
 
@@ -2170,12 +2268,14 @@ scale(x: number, y: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述          |
-| ---- | ------ | ---- | ---- | ----------- |
-| x    | number | 是    | 0    | 设置水平方向的缩放值。 |
-| y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
+| 参数名   | 类型     | 必填  | 说明    |
+| ---- | ------ | ---- | ----------- |
+| x    | number | 是  | 设置水平方向的缩放值。<br>默认值：0。 |
+| y    | number | 是  | 设置垂直方向的缩放值。<br>默认值：0。 |
 
 **示例：**
 
@@ -2219,6 +2319,8 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 > **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
@@ -2228,14 +2330,14 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述                   |
-| ---- | ------ | ---- | ---- | -------------------- |
-| a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
-| b    | number | 是    | 0    | skewX: 指定垂直倾斜值。      |
-| c    | number | 是    | 0    | skewY: 指定水平倾斜值。      |
-| d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
-| e    | number | 是    | 0    | translateX: 指定水平移动值，默认单位：vp。 |
-| f    | number | 是    | 0    | translateY: 指定垂直移动值，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明                   |
+| ---- | ------ | ---- | -------------------- |
+| a    | number | 是  | scaleX: 指定水平缩放值。<br>默认值：0。    |
+| b    | number | 是  | skewY: 指定垂直倾斜值。 <br>默认值：0。    |
+| c    | number | 是  | skewX: 指定水平倾斜值。 <br>默认值：0。    |
+| d    | number | 是  | scaleY: 指定垂直缩放值。<br>默认值：0。    |
+| e    | number | 是  | translateX: 指定水平移动值。<br>默认单位：vp。<br>默认值：0。 |
+| f    | number | 是  | translateY: 指定垂直移动值。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -2283,16 +2385,18 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述                   |
-| ---- | ------ | ---- | ---- | -------------------- |
-| a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
-| b    | number | 是    | 0    | skewY: 指定垂直倾斜值。      |
-| c    | number | 是    | 0    | skewX: 指定水平倾斜值。      |
-| d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
-| e    | number | 是    | 0    | translateX: 指定水平移动值，默认单位：vp。 |
-| f    | number | 是    | 0    | translateY: 指定垂直移动值，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | -------------------- |
+| a    | number | 是 | scaleX: 指定水平缩放值。<br>默认值：0。  |
+| b    | number | 是 | skewY: 指定垂直倾斜值。 <br>默认值：0。  |
+| c    | number | 是 | skewX: 指定水平倾斜值。 <br>默认值：0。  |
+| d    | number | 是 | scaleY: 指定垂直缩放值。<br>默认值：0。  |
+| e    | number | 是 | translateX: 指定水平移动值。<br>默认单位：vp。<br>默认值：0。 |
+| f    | number | 是 | translateY: 指定垂直移动值。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -2334,11 +2438,15 @@ setTransform(transform?: Matrix2D): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                       | 必填   | 默认值  | 描述    |
-| --------- | ---------------------------------------- | ---- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否    | null | 变换矩阵。 |
+| 参数名  | 类型 | 必填 | 说明  |
+| --------- | ---------------------------------------- | ---- | ----- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否 | 变换矩阵。<br>默认值：null。 |
 
 **示例：**
 
@@ -2392,6 +2500,8 @@ getTransform(): Matrix2D
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -2455,12 +2565,14 @@ translate(x: number, y: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述       |
-| ---- | ------ | ---- | ---- | -------- |
-| x    | number | 是    | 0    | 设置水平平移量，默认单位：vp。 |
-| y    | number | 是    | 0    | 设置竖直平移量，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明 |
+| ---- | ------ | ---- | -------- |
+| x    | number | 是   | 设置水平平移量。<br>默认单位：vp。<br>默认值：0。 |
+| y    | number | 是   | 设置竖直平移量。<br>默认单位：vp。<br>默认值：0。 |
 
 **示例：**
 
@@ -2499,27 +2611,29 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
 drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void
 
-drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number):void
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void
 
 进行图像绘制。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数    | 类型                                       | 必填   | 默认值  | 描述                                       |
-| ----- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值，默认单位：vp。 |
-| sy    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值，默认单位：vp。 |
-| sw    | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度，默认单位：vp。 |
-| sh    | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度，默认单位：vp。 |
-| dx    | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置，默认单位：vp。 |
-| dy    | number                                   | 是    | 0    | 绘制区域左上角在y轴的位置，默认单位：vp。 |
-| dw    | number                                   | 否    | 0    | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度，默认单位：vp。 |
-| dh    | number                                   | 否    | 0    | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度，默认单位：vp。 |
+| 参数名  | 类型  | 必填  | 说明 |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| sx    | number                                   | 否  | 裁切源图像时距离源图像左上角的x坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| sy    | number                                   | 否  | 裁切源图像时距离源图像左上角的y坐标值。<br>默认单位：vp。<br>默认值：0。 |
+| sw    | number                                   | 否  | 裁切源图像时需要裁切的宽度。<br>默认单位：vp。<br>默认值：0 |
+| sh    | number                                   | 否  | 裁切源图像时需要裁切的高度。<br>默认单位：vp。<br>默认值：0 |
+| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。<br>默认值：0 |
+| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。<br>默认值：0 |
+| dw    | number                                   | 否  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp。<br>默认值：0 |
+| dh    | number                                   | 否  | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>默认单位：vp。<br>默认值：0 |
 
 
 **示例：**
@@ -2556,31 +2670,37 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 createImageData(sw: number, sh: number): ImageData
 
-根据当前ImageData对象重新创建一个宽、高相同的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
+创建新的、空白的、指定大小的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认   | 描述            |
-| ---- | ------ | ---- | ---- | ------------- |
-| sw   | number | 是    | 0    | ImageData的宽度，默认单位：vp。 |
-| sh   | number | 是    | 0    | ImageData的高度，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明 |
+| ---- | ------ | ---- | ------------- |
+| sw   | number | 是 | ImageData的宽度。<br>默认单位：vp。<br>默认值：0。 |
+| sh   | number | 是 | ImageData的高度。<br>默认单位：vp。<br>默认值：0。 |
 
 
 createImageData(imageData: ImageData): ImageData
 
-创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
+根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                       | 必填   | 默认   | 描述                |
-| --------- | ---------------------------------------- | ---- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是    | null | 复制现有的ImageData对象。 |
+| 参数名 | 类型  | 必填 | 说明  |
+| --------- | ---------------------------------------- | ---- | ----------------- |
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是 | 现有的ImageData对象。 |
 
   **返回值：**
 
@@ -2597,14 +2717,16 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述              |
-| ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标，默认单位：vp。 |
-| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标，默认单位：vp。 |
-| sw   | number | 是    | 0    | 需要输出的区域的宽度，默认单位：vp。 |
-| sh   | number | 是    | 0    | 需要输出的区域的高度，默认单位：vp。 |
+| 参数名   | 类型     | 必填 | 说明 |
+| ---- | ------ | ---- | --------------- |
+| sx   | number | 是  | 需要输出的区域的左上角x坐标。<br>默认单位：vp。<br>默认值：0 |
+| sy   | number | 是  | 需要输出的区域的左上角y坐标。<br>默认单位：vp。<br>默认值：0 |
+| sw   | number | 是  | 需要输出的区域的宽度。<br>默认单位：vp。<br>默认值：0 |
+| sh   | number | 是  | 需要输出的区域的高度。<br>默认单位：vp。<br>默认值：0 |
 
 **返回值：**
 
@@ -2653,14 +2775,16 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述              |
-| ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标，默认单位：vp。 |
-| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标，默认单位：vp。 |
-| sw   | number | 是    | 0    | 需要输出的区域的宽度，默认单位：vp。 |
-| sh   | number | 是    | 0    | 需要输出的区域的高度，默认单位：vp。 |
+| 参数名 | 类型 | 必填   | 说明  |
+| ---- | ------ | ---- | --------------- |
+| sx   | number | 是 | 需要输出的区域的左上角x坐标。<br>默认单位：vp。<br>默认值：0 |
+| sy   | number | 是 | 需要输出的区域的左上角y坐标。<br>默认单位：vp。<br>默认值：0 |
+| sw   | number | 是 | 需要输出的区域的宽度。<br>默认单位：vp。<br>默认值：0 |
+| sh   | number | 是 | 需要输出的区域的高度。<br>默认单位：vp。<br>默认值：0 |
 
   **返回值：**
 
@@ -2713,17 +2837,19 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数          | 类型                                       | 必填   | 默认值          | 描述                            |
-| ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | null         | 包含像素值的ImageData对象。 |
-| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 0            | 填充区域在x轴方向的偏移量，默认单位：vp。 |
-| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 0            | 填充区域在y轴方向的偏移量，默认单位：vp。 |
-| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量，默认单位：vp。 |
-| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量，默认单位：vp。 |
-| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度，默认单位：vp。 |
-| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度，默认单位：vp。 |
+| 参数名 | 类型 | 必填  | 说明 |
+| ----------- | ---------------------------------------- | ---- | ----------------------------- |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>默认单位：vp。<br>默认值：0 |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>默认单位：vp。<br>默认值：0 |
+| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>默认单位：vp。<br>默认值：0 |
+| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。<br>默认单位：vp。<br>默认值：0 |
+| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 源图像数据矩形裁切范围的宽度。<br>默认单位：vp。<br>默认值：imagedata的宽度 |
+| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 源图像数据矩形裁切范围的高度。<br>默认单位：vp。<br>默认值：imagedata的高度 |
 
 **示例：**
 
@@ -2772,11 +2898,13 @@ setLineDash(segments: number[]): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数       | 类型       | 描述                  |
-| -------- | -------- | ------------------- |
-| segments | number[] | 描述线段如何交替和线段间距长度的数组，默认单位：vp。 |
+| 参数名      | 类型      | 必填  | 说明 |
+| -------- | -------- | ------- | ------------ |
+| segments | number[] | 是 | 描述线段如何交替和线段间距长度的数组。<br>默认单位：vp。 |
 
 **示例：** 
 
@@ -2819,11 +2947,13 @@ getLineDash(): number[]
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：** 
 
 | 类型       | 说明                       |
 | -------- | ------------------------ |
-| number[] | 返回数组，该数组用来描述线段如何交替和间距长度，默认单位：vp。 |
+| number[] | 返回数组，该数组用来描述线段如何交替和间距长度。<br>默认单位：vp。 |
 
 
 **示例：** 
@@ -2877,11 +3007,13 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数     | 类型                                       | 描述                 |
-| ------ | ---------------------------------------- | ------------------ |
-| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 待显示的ImageBitmap对象。 |
+| 参数名 | 类型  | 必填 | 说明  |
+| ------ | ----------------------- | ----------------- | ------------------ |
+| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md)  | 是 | 待显示的ImageBitmap对象。 |
 
 **示例：** 
 
@@ -2923,7 +3055,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 ### toDataURL
 
-toDataURL(type?: string, quality?: number): string
+toDataURL(type?: string, quality?: any): string
 
 生成一个包含图片展示的URL。
 
@@ -2931,12 +3063,14 @@ toDataURL(type?: string, quality?: number): string
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数名     | 参数类型   | 必填   | 默认值         | 描述                                       |
-| ------- | ------ | ---- | ----------- | ---------------------------------------- |
-| type    | string | 否    | "image/png" | 可选参数，用于指定图像格式，默认格式为image/png。            |
-| quality | number | 否    | 0.92        | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
+| 参数名     | 类型   | 必填  | 说明  |
+| ------- | ------ | ---- | ---------------------------------------- |
+| type    | string | 否  | 可选参数，用于指定图像格式，默认格式为image/png。            |
+| quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
 
 **返回值：** 
 
@@ -2986,6 +3120,8 @@ restore(): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **示例：**
 
   ```ts
@@ -3027,6 +3163,8 @@ save(): void
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
@@ -3070,14 +3208,16 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述       |
-| ---- | ------ | ---- | ---- | -------- |
-| x0   | number | 是    | 0    | 起点的x轴坐标，默认单位：vp。 |
-| y0   | number | 是    | 0    | 起点的y轴坐标，默认单位：vp。 |
-| x1   | number | 是    | 0    | 终点的x轴坐标，默认单位：vp。 |
-| y1   | number | 是    | 0    | 终点的y轴坐标，默认单位：vp。 |
+| 参数名   | 类型     | 必填 | 说明   |
+| ---- | ------ | ---- | -------- |
+| x0   | number | 是  | 起点的x轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| y0   | number | 是  | 起点的y轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| x1   | number | 是  | 终点的x轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| y1   | number | 是  | 终点的y轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
 
 **返回值：** 
 
@@ -3129,16 +3269,18 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数   | 类型     | 必填   | 默认值  | 描述                |
-| ---- | ------ | ---- | ---- | ----------------- |
-| x0   | number | 是    | 0    | 起始圆的x轴坐标，默认单位：vp。 |
-| y0   | number | 是    | 0    | 起始圆的y轴坐标，默认单位：vp。 |
-| r0   | number | 是    | 0    | 起始圆的半径。必须是非负且有限的，默认单位：vp。 |
-| x1   | number | 是    | 0    | 终点圆的x轴坐标，默认单位：vp。 |
-| y1   | number | 是    | 0    | 终点圆的y轴坐标，默认单位：vp。 |
-| r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的，默认单位：vp。 |
+| 参数名   | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----------------- |
+| x0   | number | 是  | 起始圆的x轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| y0   | number | 是  | 起始圆的y轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| r0   | number | 是  | 起始圆的半径。必须是非负且有限的。<br>默认单位：vp。 <br>默认值：0。 |
+| x1   | number | 是  | 终点圆的x轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| y1   | number | 是  | 终点圆的y轴坐标。<br>默认单位：vp。 <br>默认值：0。 |
+| r1   | number | 是  | 终点圆的半径。必须为非负且有限的。<br>默认单位：vp。 <br>默认值：0。 |
 
 **返回值：** 
 
@@ -3187,13 +3329,15 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数         | 类型     | 必填   | 默认值  | 描述                                  |
-| ---------- | ------ | ---- | ---- | ----------------------------------- |
-| startAngle | number | 是    | 0    | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。 |
-| x          | number | 是    | 0    | 圆锥渐变的中心x轴坐标，默认单位：vp。 |
-| y          | number | 是    | 0    | 圆锥渐变的中心y轴坐标，默认单位：vp。 |
+| 参数名   | 类型     | 必填 | 说明  |
+| ---------- | ------ | ---- | ----------------------------------- |
+| startAngle | number | 是    | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。<br>默认值：0 |
+| x          | number | 是    | 圆锥渐变的中心x轴坐标。<br>默认单位：vp。<br>默认值：0。 |
+| y          | number | 是    | 圆锥渐变的中心y轴坐标。<br>默认单位：vp。<br>默认值：0。 |
 
 **返回值：** 
 
@@ -3238,7 +3382,7 @@ struct CanvasExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[使能](ts-components-canvas-canvas.md#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。
+配置AI分析并启动AI分析功能，使用前需先[使能](ts-components-canvas-canvas.md#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3268,7 +3412,6 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 | -------- | -------------------------------------------- |
 | 110001 | AI analysis is unsupported.               |
 | 110002 | AI analysis is ongoing.  |
-| 110003 | AI analysis is stopped.  |
 
 ### stopImageAnalyzer<sup>12+</sup>
 
@@ -3287,7 +3430,7 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -3350,7 +3493,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                  |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明                  |
 | ------- | ------------------- |
 | inherit | 继承canvas组件通用属性已设定的文本方向。 |
 | ltr     | 从左往右。               |
@@ -3362,7 +3507,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明    |
 | ------- | ----- |
 | evenodd | 奇偶规则。 |
 | nonzero | 非零规则。 |
@@ -3373,7 +3520,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明                           |
 | ------ | ----------------------------- |
 | butt   | 线条两端为平行线，不额外扩展。               |
 | round  | 在线条两端延伸半个圆，直径等于线宽。            |
@@ -3385,7 +3534,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称    | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明                                       |
 | ----- | ---------------------------------------- |
 | bevel | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。             |
 | miter | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
@@ -3397,7 +3548,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述           |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明           |
 | ------ | ------------ |
 | center | 文本居中对齐。      |
 | start  | 文本对齐界线开始的地方。 |
@@ -3411,7 +3564,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明                                       |
 | ----------- | ---------------------------------------- |
 | alphabetic  | 文本基线是标准的字母基线。                            |
 | bottom      | 文本基线在文本块的底部。 与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
@@ -3426,7 +3581,9 @@ struct ImageAnalyzerExample {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型      | 说明   |
 | ------ | ---- |
 | low    | 低画质  |
 | medium | 中画质  |
@@ -3434,20 +3591,24 @@ struct ImageAnalyzerExample {
 
 ## TextMetrics
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性                       | 类型     | 描述                                       |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | 只读属性，字符串的宽度。                                  |
-| height                   | number | 只读属性，字符串的高度。                                  |
-| actualBoundingBoxAscent  | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0。 |
-| actualBoundingBoxDescent | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0。 |
-| actualBoundingBoxLeft    | number | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离，当前值为0。 |
-| actualBoundingBoxRight   | number | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界右侧的距离，当前值为0。 |
-| alphabeticBaseline       | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0。 |
-| emHeightAscent           | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块顶部的距离，当前值为0。 |
-| emHeightDescent          | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块底部的距离，当前值为0。 |
-| fontBoundingBoxAscent    | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0。 |
-| fontBoundingBoxDescent   | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0。 |
-| hangingBaseline          | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 hanging 基线的距离，当前值为0。 |
-| ideographicBaseline      | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 ideographic 基线的距离，当前值为0。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---------- | -------------- | ------ | ---------------- | ------------------------ |
+| width                    | number | 是 | 否 | 只读属性，字符串的宽度。 |
+| height                   | number | 是 | 否 | 只读属性，字符串的高度。 |
+| actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
+| actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
+| actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离。 |
+| actualBoundingBoxRight   | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界右侧的距离。 |
+| alphabeticBaseline       | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 alphabetic 基线的距离。 |
+| emHeightAscent           | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块顶部的距离。 |
+| emHeightDescent          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块底部的距离。 |
+| fontBoundingBoxAscent    | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离。 |
+| fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
+| hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 hanging 基线的距离。 |
+| ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 ideographic 基线的距离。 |

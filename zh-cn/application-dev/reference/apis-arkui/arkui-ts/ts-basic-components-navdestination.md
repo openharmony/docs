@@ -28,7 +28,9 @@ NavDestination()
 
 ## 属性
 
-仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
+支持[通用属性](ts-universal-attributes-size.md)。
+
+不推荐设置位置、大小等布局相关属性，可能会造成页面显示异常。
 
 ### title
 
@@ -67,7 +69,7 @@ hideTitleBar(value: boolean)
 
 mode(value: NavDestinationMode)
 
-设置NavDestination类型。
+设置NavDestination类型，不支持动态修改。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -118,6 +120,47 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+
+### ignoreLayoutSafeArea<sup>12+</sup>
+
+ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
+
+控制组件的布局，使其扩展到非安全区域
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                               | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值: <br />[LayoutSafeAreaType.SYSTEM] |
+| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值: <br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
+
+>  **说明：**
+>   
+>  组件设置LayoutSafeArea之后生效的条件为：   
+>  设置LayoutSafeAreaType.SYSTEM时，组件的边界与非安全区域重合时组件能够延伸到非安全区域下。例如：设备顶部状态栏高度100，组件在屏幕中纵向方位的绝对偏移需要在0到100之间。  
+>   
+>  若组件延伸到非安全区域内，此时在非安全区域里触发的事件（例如：点击事件）等可能会被系统拦截，优先响应状态栏等系统组件。
+
+### systemBarStyle<sup>12+</sup>
+
+systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
+
+当Navigation中显示当前NavDestination时，设置对应系统状态栏的样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| style  | Optional&lt;[SystemBarStyle](../js-apis-window.md#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
+
+> **说明：**
+>
+> 1. 必须配合Navigaiton使用，作为其Navigation目的页面的根节点时才能生效。
+> 2. 其他使用限制请参考Navigation对应的[systemBarStyle](ts-basic-components-navigation.md#systembarstyle12)属性说明。
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 

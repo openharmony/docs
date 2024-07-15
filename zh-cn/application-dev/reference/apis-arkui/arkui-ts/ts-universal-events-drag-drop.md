@@ -126,7 +126,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，不包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onPreDrag<sup>12+</sup>
 
@@ -202,7 +202,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，Pad、手机外接带Fn键的键盘不支持Fn键查询。 |
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 |
 
 
 **错误码：**
@@ -260,10 +260,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ```ts
 // xxx.ets
-import UDC from '@ohos.data.unifiedDataChannel';
-import UTD from '@ohos.data.uniformTypeDescriptor';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -294,7 +293,7 @@ struct Index {
       if (!data) {
         return false;
       }
-      let records: Array<UDC.UnifiedRecord> = data.getRecords();
+      let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
       if (!records || records.length <= 0) {
         return false;
       }
@@ -367,9 +366,9 @@ struct Index {
           Text('change video source')
         }.draggable(true)
         .onDragStart((event) => {
-          let video: UDC.Video = new UDC.Video();
+          let video: unifiedDataChannel.Video = new unifiedDataChannel.Video();
           video.videoUri = '/resources/rawfile/01.mp4';
-          let data: UDC.UnifiedData = new UDC.UnifiedData(video);
+          let data: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(video);
           (event as DragEvent).setData(data);
           return { builder: () => {
             this.pixelMapBuilder()
@@ -385,10 +384,10 @@ struct Index {
         .height(100)
         .onDragStart((event) => {
           this.backGroundColor = Color.Transparent;
-          let data: UDC.PlainText = new UDC.PlainText();
+          let data: unifiedDataChannel.PlainText = new unifiedDataChannel.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
-          (event as DragEvent).setData(new UDC.UnifiedData(data));
+          (event as DragEvent).setData(new unifiedDataChannel.UnifiedData(data));
         })
         .onPreDrag((status: PreDragStatus) => {
           this.PreDragChange(status);
@@ -410,14 +409,14 @@ struct Index {
           .draggable(true)
           .margin({ left: 15 })
           .border({ color: Color.Black, width: 1 })
-          .allowDrop([UTD.UniformDataType.IMAGE])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((dragEvent?: DragEvent) => {
             this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
-              this.targetImage = (records[0] as UDC.Image).imageUri;
+              this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
               event.useCustomDropAnimation = false;
               animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
@@ -434,11 +433,11 @@ struct Index {
           .height(100)
           .border({ color: Color.Black, width: 1 })
           .margin(15)
-          .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
           .onDrop((dragEvent?: DragEvent) => {
             this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+              let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
+              let plainText: unifiedDataChannel.PlainText = records[0] as unifiedDataChannel.PlainText;
               this.targetText = plainText.textContent;
             })
           })
@@ -447,7 +446,7 @@ struct Index {
           .width('100%')
           .height(200)
           .controls(true)
-          .allowDrop([UTD.UniformDataType.VIDEO])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
 
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
@@ -457,11 +456,11 @@ struct Index {
         .height(100)
         .margin(20)
         .border({ color: Color.Black, width: 1 })
-        .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
+        .allowDrop([uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
         .onDrop((dragEvent?: DragEvent) => {
           this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-            let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
+            let plainText: unifiedDataChannel.PlainText = records[0] as unifiedDataChannel.PlainText;
             this.abstractContent = plainText.abstract as string;
             this.textContent = plainText.textContent;
           })

@@ -189,7 +189,7 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 ```ts
 // xxx.ets
-import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors, Theme, ThemeControl } from '@kit.ArkUI';
 
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;

@@ -50,7 +50,7 @@ static setSystemLanguage(language: string): void
 
 **示例：**
   ```ts
-  import { BusinessError, CommonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
 
   // 设置系统语言
   try {
@@ -61,14 +61,14 @@ static setSystemLanguage(language: string): void
   }
  
   // 订阅公共事件
-  let subscriber: CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
-    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
+    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
   };
-  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // 创建订阅者
+  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // 创建订阅者
       console.info("createSubscriber");
       subscriber = commonEventSubscriber;
-      CommonEventManager.subscribe(subscriber, (err, data) => {
+      commonEventManager.subscribe(subscriber, (err, data) => {
         if (err) {
           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
           return;
@@ -377,6 +377,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -427,6 +428,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -462,6 +464,14 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 |       类型        |         说明          |
 | ----------------- | -------------------- |
 | Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
   ```ts

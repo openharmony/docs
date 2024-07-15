@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## WindowModeType<sup>10+</sup>
@@ -81,7 +81,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 interface  EventData {
   widgetContextId: number;
@@ -143,7 +143,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -189,7 +189,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -247,7 +247,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let userAuthWidgetMgrVersion = 1;
 try {
@@ -281,7 +281,7 @@ sendCommand(cmdData: string): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {

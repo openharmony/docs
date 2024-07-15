@@ -25,8 +25,8 @@
 1. 导入模块。
 
    ```ts
-   import sensor from '@ohos.sensor';
-   import { BusinessError } from '@ohos.base';
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 查询设备支持的所有传感器的参数。

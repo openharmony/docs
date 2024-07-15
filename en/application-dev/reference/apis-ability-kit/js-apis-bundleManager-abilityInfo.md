@@ -36,7 +36,7 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 | enabled               | boolean                                                  | Yes  | No  | Whether the ability is enabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | Yes  | No  | Window modes supported by the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | windowSize|[WindowSize](#windowsize)                                            |    Yes  | No  | Window size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ability.       |
 | appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
 

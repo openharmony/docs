@@ -6,7 +6,7 @@ With property animations, you can animate changes to certain component propertie
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 ## APIs
 

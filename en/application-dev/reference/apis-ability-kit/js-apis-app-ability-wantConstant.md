@@ -46,7 +46,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Do not display any tips if the ability implicitly started does not match any application.      |
 ## wantConstant.ShowMode<sup>12+</sup>
 
-Enumerates the modes used to show the ability startup.
+Enumerates the modes used to show the atomic service startup.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

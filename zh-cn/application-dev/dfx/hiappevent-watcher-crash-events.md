@@ -47,8 +47,11 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
-| signo | number | 信号值。 |
-| code | number | 信号错误码。 |
+| signo | number | 信号值(siginfo_t中的si_signo属性) |
+| code | number | 信号值二级分类（siginfo_t中的si_code属性） |
+| address | string | 信号错误地址（siginfo_t中的si_address属性） |
+
+[信号值&信号值二级分类详解](cppcrash-guidelines.md)
 
 **thread属性：**
 

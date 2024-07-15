@@ -7,6 +7,61 @@
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 
+
+
+## 验证需求-Gitee上正确的链接回流后断链
+
+[AB文档处于同层，验证正常跳转-1](js-apis-audio.md)
+
+[AB文档处于同层，验证正常跳转-2](./js-apis-audio.md)
+
+[AB文档处于同层，退出一级apis-audio-kit 正常跳转](../apis-audio-kit/js-apis-audio.md)
+
+[AB文档处于同层，退出2级reference\/apis-audio-kit,再次进入正常跳转](../../reference/apis-audio-kit/js-apis-audio.md)
+
+[AB文档处于同层，退出3级onlyfortest\/reference\/apis-audio-kit，再次进入正常跳转](../../../onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
+
+[AB文档处于同层，退出4级application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入正常跳转](../../../../application-dev/onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
+
+[AB文档处于同层，退出5级zh-cn\/application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入正常跳转](../../../../../zh-cn/application-dev/onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
+
+[AB文档处于同层，退出6级docs\/zh-cn\/application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入正常跳转](../../../../../../docs/zh-cn/application-dev/onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
+
+
+## 验证替换后正常断链
+
+<!--Del-->
+[AB文档处于同层，验证正常跳转](../../../onlyfortest/media/audio/audio-kit-intro.md)
+<!--DelEnd-->
+
+<!--RP2-->
+[AB文档处于同层，验证替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP2End-->
+
+<!--RP3-->
+[AB文档处于同层，退出一级apis-audio-kit 替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP3End-->
+
+<!--RP4-->
+[AB文档处于同层，退出2级reference\/apis-audio-kit,再次进入替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP4End-->
+
+<!--RP5-->
+[AB文档处于同层，退出3级onlyfortest\/reference\/apis-audio-kit，再次进入替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP5End-->
+
+<!--RP6-->
+[AB文档处于同层，退出4级application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP6End-->
+
+<!--RP7-->
+[AB文档处于同层，退出5级zh-cn\/application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP7End-->
+
+<!--RP8-->
+[AB文档处于同层，退出6级docs\/zh-cn\/application-dev\/onlyfortest\/reference\/apis-audio-kit，再次进入替换后正常跳转](../../media/audio/audio-kit-intro.md)
+<!--RP8End-->
+
 ## 导入模块
 
 ```ts

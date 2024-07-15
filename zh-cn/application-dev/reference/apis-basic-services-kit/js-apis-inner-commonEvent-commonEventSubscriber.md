@@ -199,7 +199,7 @@ setCodeSync(code: number): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 
@@ -377,7 +377,7 @@ setDataSync(data: string): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 
@@ -478,7 +478,7 @@ setCodeAndDataSync(code: number, data: string): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 

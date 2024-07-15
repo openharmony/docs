@@ -16,7 +16,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
 
    ```ts
    // 导入相关模块包
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
 
    // 获取沙箱路径创建ImageSource
    const fd : number = 0; // 获取需要被处理的图片的fd
@@ -26,7 +26,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
 2. 读取、编辑EXIF信息。
 
     ```ts
-    import {BusinessError} from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     // 读取EXIF信息，BitsPerSample为每个像素比特数
     let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {

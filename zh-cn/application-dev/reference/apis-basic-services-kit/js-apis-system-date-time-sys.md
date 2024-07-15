@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import systemDateTime from '@ohos.systemDateTime';
+import { systemDateTime } from '@kit.BasicServicesKit';
 ```
 
 ## TimeType<sup>10+</sup>
@@ -55,7 +55,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -110,7 +110,7 @@ setTime(time : number) : Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
@@ -162,7 +162,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date();
 try {
@@ -220,7 +220,7 @@ setDate(date: Date): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date(); 
 try {
@@ -267,7 +267,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
@@ -320,7 +320,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai').then(() => {

@@ -45,10 +45,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](_drawing.md#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*font, const char \*str, float \*textWidth) | 用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。  | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](_drawing.md#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*bounds, float \*textWidth) | 用于获取文本的宽度和边界框。 | 
 | void [OH_Drawing_FontSetBaselineSnap](_drawing.md#oh_drawing_fontsetbaselinesnap) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, bool baselineSnap) | 当前画布矩阵轴对齐时，将字形基线设置为是否与像素对齐。 | 
 | bool [OH_Drawing_FontIsBaselineSnap](_drawing.md#oh_drawing_fontisbaselinesnap) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 当前画布矩阵轴对齐时，获取字形基线是否与像素对齐。 | 
 | void [OH_Drawing_FontSetEdging](_drawing.md#oh_drawing_fontsetedging) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, [OH_Drawing_FontEdging](_drawing.md#oh_drawing_fontedging)) | 用于设置字形边缘效果。 | 
-| [OH_Drawing_FontEdging](_drawing.md#oh_drawing_fontedging)[OH_Drawing_FontGetEdging](_drawing.md#oh_drawing_fontgetedging) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形边缘效果。 | 
+| [OH_Drawing_FontEdging](_drawing.md#oh_drawing_fontedging) [OH_Drawing_FontGetEdging](_drawing.md#oh_drawing_fontgetedging) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形边缘效果。 | 
 | void [OH_Drawing_FontSetForceAutoHinting](_drawing.md#oh_drawing_fontsetforceautohinting) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, bool isForceAutoHinting) | 用于设置是否自动调整字形轮廓。 | 
 | bool [OH_Drawing_FontIsForceAutoHinting](_drawing.md#oh_drawing_fontisforceautohinting) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形轮廓是否自动调整。 | 
 | void [OH_Drawing_FontSetSubpixel](_drawing.md#oh_drawing_fontsetsubpixel) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, bool isSubpixel) | 设置字形是否使用次像素渲染。 | 
@@ -70,7 +72,7 @@
 | void [OH_Drawing_FontSetScaleX](_drawing.md#oh_drawing_fontsetscalex) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, float scaleX) | 用于设置字形对象在x轴上的缩放比例。 | 
 | float [OH_Drawing_FontGetScaleX](_drawing.md#oh_drawing_fontgetscalex) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形对象在x轴上的缩放比例。 | 
 | void [OH_Drawing_FontSetHinting](_drawing.md#oh_drawing_fontsethinting) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, [OH_Drawing_FontHinting](_drawing.md#oh_drawing_fonthinting)) | 用于设置字形轮廓效果。 | 
-| [OH_Drawing_FontHinting](_drawing.md#oh_drawing_fonthinting)[OH_Drawing_FontGetHinting](_drawing.md#oh_drawing_fontgethinting) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形轮廓效果枚举类型。 | 
+| [OH_Drawing_FontHinting](_drawing.md#oh_drawing_fonthinting) [OH_Drawing_FontGetHinting](_drawing.md#oh_drawing_fontgethinting) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形轮廓效果枚举类型。 | 
 | void [OH_Drawing_FontSetEmbeddedBitmaps](_drawing.md#oh_drawing_fontsetembeddedbitmaps) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, bool isEmbeddedBitmaps) | 用于设置字形是否转换成位图处理。 | 
 | bool [OH_Drawing_FontIsEmbeddedBitmaps](_drawing.md#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 获取字形是否转换成位图处理。 | 
 | void [OH_Drawing_FontDestroy](_drawing.md#oh_drawing_fontdestroy) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 用于销毁字体对象并回收该对象占有的内存。 | 

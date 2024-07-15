@@ -9,9 +9,9 @@
 
 ## 接口关键参数说明
 
-开发者通过调用[startAbility](../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口即可实现由已安装的垂域应用来打开文件。
+开发者通过调用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口即可实现由已安装的垂域应用来打开文件。
 
-表1 startAbility请求中[want](../../application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md)相关参数说明
+表1 startAbility请求中[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)相关参数说明
 
 | 参数名称 | 类型   | 是否必填 | 说明                                                                                                                                                                                   |
 |----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -20,7 +20,7 @@
 | parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。                                                                                                                                                                                       |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
-**表2** [parameters](../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
+**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
 
 
 | 参数名称                              | 类型    | 说明                                                                                                                                                                |
@@ -28,7 +28,7 @@
 | ability.params.stream                 | string  | 指示携带的文件URI要授权给目标方，用于待打开的文件存在其他文件依赖的场景。例如打开本地html文件依赖本地其余资源文件的场景等。对应的value必须是string类型的文件URI数组。文件URI的获取参考表1中uri参数。 |
 | ohos.ability.params.showDefaultPicker | string | 表示在系统仅找到一个应用打开文件的场景下，是否需要展示选择文件打开方式的弹框来给用户选择。<br>- false：表示由系统策略或默认应用设置决定直接拉起文件打开应用还是展示弹框。<br>- true：表示始终展示弹框。缺省为false。                                                                            |
 
-**表3** [flags](../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)相关参数说明
+**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)相关参数说明
 
 | 参数名称                       | 值         | 说明                       |
 |--------------------------------|------------|----------------------------|
@@ -44,10 +44,10 @@
     // xxx.ets
     import { fileUri } from '@kit.CoreFileKit';
     import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-2. 获取[应用文件路径](../../application-dev/application-models/application-context-stage.md#获取应用文件路径)。
+2. 获取[应用文件路径](application-context-stage.md#获取应用文件路径)。
     ```TypeScript
     // xxx.ets
     // 假设应用bundleName值为com.example.demo
@@ -157,7 +157,7 @@
     // xxx.ets
     import fs from '@ohos.file.fs';
     import { Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

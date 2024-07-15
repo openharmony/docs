@@ -649,7 +649,7 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -718,14 +718,19 @@ maxFontSize(value: number | string | Resource)
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
-设置文本自适应高度的方式。
+组件设置为内联输入风格时，设置文本自适应高度的方式。
 
-当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性(组件设置为内联输入风格且编辑态时使用)来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
-组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
 
-当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，与TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST效果一样。
+
+组件设置为非内联输入风格时，设置文本自适应高度(TextHeightAdaptivePolicy)的三种方式效果一样，即在minFontSize和maxFontSize的范围内缩小字体以显示更多文本。
+
+>  **说明：**
+>
+>  组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -769,9 +774,9 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
 
-### selectionMenuOptions<sup>12+</sup>
+### editMenuOptions<sup>12+</sup>
 
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
@@ -783,7 +788,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
 
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
@@ -817,6 +822,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 | NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -840,9 +846,9 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 | PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
 | PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
 | PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
-| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。 |
 | PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
-| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。 |
 | EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
 | BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
 | ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
@@ -1501,14 +1507,14 @@ struct TextInputExample {
 
 ### 示例6
 本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+
 ```ts
 @Entry
 @Component
 struct phone_example {
   @State submitValue: string = ''
-  @State text : string = ''
-
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+  @State text: string = ''
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
 
   isEmpty(str?: string): boolean {
     return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
@@ -1538,40 +1544,35 @@ struct phone_example {
 
   build() {
     Column() {
-        Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
-            .onChange((number: string) => {
-              let teleNumberNoSpace: string = this.removeSpace(number);
-              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+      Row() {
+        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+          .onChange((number: string) => {
+            let teleNumberNoSpace: string = this.removeSpace(number);
+            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              this.text = teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(number)) {
+              if (teleNumberNoSpace.length <= 3) {
                 this.text = teleNumberNoSpace;
-              } else if (this.checkNeedNumberSpace(number)) {
-                if (teleNumberNoSpace.length <= 3) {
-                  this.text = teleNumberNoSpace;
-                } else {
-                  let split1: string = teleNumberNoSpace.substring(0, 3);
-                  let split2: string = teleNumberNoSpace.substring(3);
-                  this.text = split1 + ' ' + split2;
-                  if (teleNumberNoSpace.length > 7) {
-                    split2 = teleNumberNoSpace.substring(3, 7);
-                    let split3: string = teleNumberNoSpace.substring(7);
-                    this.text = split1 + ' ' + split2 + ' ' + split3;
-                  }
-                }
-              } else if (teleNumberNoSpace.length > 8) {
-                let split4 = teleNumberNoSpace.substring(0, 8);
-                let split5 = teleNumberNoSpace.substring(8);
-                this.text = split4 + ' ' + split5;
               } else {
-                this.text = number;
+                let split1: string = teleNumberNoSpace.substring(0, 3);
+                let split2: string = teleNumberNoSpace.substring(3);
+                this.text = split1 + ' ' + split2;
+                if (teleNumberNoSpace.length > 7) {
+                  split2 = teleNumberNoSpace.substring(3, 7);
+                  let split3: string = teleNumberNoSpace.substring(7);
+                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                }
               }
-            })
-        }
+            } else {
+              this.text = number;
+            }
+          })
+      }
     }
     .width('100%')
     .height("100%")
   }
 }
-
 ```
 ![phone_example](figures/phone_number.PNG)
 
@@ -1938,49 +1939,68 @@ struct TextInputExample {
 
 ### 示例15
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'This is ss01 on : 0123456789'
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'TextInput扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
+  @State text: string = 'TextInput editMenuOptions'
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    menuItems.forEach((value, index) => {
+      value.icon = $r('app.media.startIcon')
+      if (value.id.equals(TextMenuItemId.COPY)) {
+        value.content = "复制change"
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        value.content = "全选change"
+      }
+    })
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('custom1'),
     }
-    },
-    {
-      content: 'TextInput扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.startIcon'),
     }
-    },
-    {
-      content: 'TextInput扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextInput扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
+    menuItems.push(item1)
+    menuItems.unshift(item2)
+    return menuItems
+  }
 
   build() {
     Column() {
       TextInput({ text: this.text })
         .width('95%')
         .height(50)
-        .selectionMenuOptions(this.menuOptionArray)
+        .editMenuOptions({
+          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+              console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.COPY)) {
+              console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+              console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+              return false;
+            }
+            return false;
+          }
+        })
+        .margin({ top: 100 })
     }
-    .backgroundColor(Color.White)
     .width("90%")
     .margin("5%")
   }
 }
 ```
 
-![textInputSelectionMenuOptions](figures/textInputSelectionMenuOptions.png)
+![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)

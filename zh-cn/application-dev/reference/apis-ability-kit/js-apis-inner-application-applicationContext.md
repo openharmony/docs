@@ -21,7 +21,7 @@ import { common } from '@kit.AbilityKit';
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+注册监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +109,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+取消监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期。使用Promise异步回调。不支持多线程并发调用。
+取消监听应用内生命周期。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -214,7 +214,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
-注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
+注册对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -277,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
+取消对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +329,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-取消对系统环境变化的监听。使用Promise异步回调。不支持多线程并发调用。
+取消对系统环境变化的监听。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
+注册对当前应用前后台变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -436,7 +436,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。使用callback异步回调。不支持多线程并发调用。
+取消当前应用注册的前后台变化的全部监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -568,7 +568,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。
+杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。
+杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -647,7 +647,7 @@ export default class MyAbility extends UIAbility {
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
-设置应用的颜色模式。
+设置应用的颜色模式。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -685,7 +685,7 @@ export default class MyAbility extends UIAbility {
 
 setLanguage(language: string): void
 
-设置应用的语言。
+设置应用的语言。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -724,7 +724,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -764,7 +764,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -808,7 +808,7 @@ export default class MyAbility extends UIAbility {
 
 restartApp(want: Want): void
 
-应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用，且待重启的应用需要处于获焦状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -827,6 +827,7 @@ restartApp(want: Want): void
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
@@ -836,7 +837,7 @@ restartApp(want: Want): void
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class MyAbility extends UIAbility {
-  onBackground() {
+  onForeground() {
     let applicationContext = this.context.getApplicationContext();
     let want: Want = {
       bundleName: 'com.example.myapp',
@@ -897,7 +898,7 @@ export default class MyAbility extends UIAbility {
 
 setFont(font: string): void
 
-设置应用的字体类型。
+设置应用的字体类型。仅支持主线程调用。
 
 > **说明：**
 >
@@ -951,6 +952,57 @@ struct Index {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+## ApplicationContext.setSupportedProcessCache<sup>12+</sup>
+
+setSupportedProcessCache(isSupported : boolean): void
+
+应用设置自身是否支持缓存后快速启动。仅支持主线程调用。
+
+> **说明：**
+>
+> - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
+> - 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，可以重新设置。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| isSupported | boolean | 是 | 表示应用是否支持缓存后快速启动。true表示支持，false表示不支持。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)、[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | The input parameter is not a valid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported.|
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.setSupportedProcessCache(true);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
+    }
   }
 }
 ```

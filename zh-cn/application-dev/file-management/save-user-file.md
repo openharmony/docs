@@ -18,10 +18,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
+   import { picker } from '@kit.CoreFileKit';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { common } from '@kit.AbilityKit';
    ```
 2. 创建文档保存选项实例。
 
@@ -77,10 +77,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
+   import  { picker } from '@kit.CoreFileKit';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 创建音频保存选项实例。
@@ -134,10 +134,10 @@
 1. 导入选择器模块和文件管理模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
+   import { picker } from '@kit.CoreFileKit';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 创建文件保存选项实例。

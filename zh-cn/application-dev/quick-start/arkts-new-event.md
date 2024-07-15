@@ -27,7 +27,7 @@
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数 | 无。 |
 | 允许装饰的变量类型 | 回调方法，例如()=>void、(x:number)=>boolean等。回调方法是否含有参数以及返回值由开发者决定。 |
-| 允许传入的函数类型 | 成员方法、箭头函数以及传入时创建的临时函数。 |
+| 允许传入的函数类型 | 箭头函数。 |
 
 ## 限制条件
 
@@ -58,41 +58,43 @@
 struct Index {
   @Local title: string = "Titile One";
   @Local fontColor: Color = Color.Red;
-  changeFactory: (type: number) => void = (type: number) => {
-    if (type == 1) {
-      this.title = "Title One";
-      this.fontColor = Color.Red;
-    } else if (type == 2) {
-      this.title = "Title Two";
-      this.fontColor = Color.Green;
-    }
-  }
+
   build() {
     Column() {
       Child({
         title: this.title,
         fontColor: this.fontColor,
-        changeFactory: this.changeFactory.bind(this)
+        changeFactory: (type: number) => {
+          if (type == 1) {
+            this.title = "Title One";
+            this.fontColor = Color.Red;
+          } else if (type == 2) {
+            this.title = "Title Two";
+            this.fontColor = Color.Green;
+          }
+        }
       })
     }
   }
 }
+
 @ComponentV2
 struct Child {
   @Param title: string = '';
   @Param fontColor: Color = Color.Black;
   @Event changeFactory: (x: number) => void = (x: number) => {};
+
   build() {
     Column() {
       Text(`${this.title}`)
       Button("change to Title Two")
         .onClick(() => {
           this.changeFactory(2)
-      })
+        })
       Button("change to Title One")
         .onClick(() => {
           this.changeFactory(1)
-      })
+        })
     }
   }
 }

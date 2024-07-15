@@ -53,8 +53,8 @@
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
    // 方式一：创建子窗口。
@@ -161,8 +161,8 @@
    > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getLastWindow`接口来获取得到主窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let mainWindowClass: window.Window | null = null;
    

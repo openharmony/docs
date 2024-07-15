@@ -6,7 +6,7 @@
 
 本文描述中称被启动的ServiceExtensionAbility为服务端，称启动ServiceExtensionAbility的组件为客户端。
 
-[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)支持以启动和连接两种形式运行，系统应用可以调用[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动后台服务，也可以调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability)方法连接后台服务，而三方应用只能调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability)方法连接后台服务。启动和连接后台服务的差别：
+[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)支持以启动和连接两种形式运行，系统应用可以调用[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动后台服务，也可以调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接后台服务，而三方应用只能调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接后台服务。启动和连接后台服务的差别：
 
 - **启动**：AbilityA启动ServiceB，启动后AbilityA和ServiceB为弱关联，AbilityA退出后，ServiceB可以继续存在。
 
@@ -14,7 +14,7 @@
 
 此处有如下细节需要注意：
 
-- 若Service只通过connect的方式被拉起，那么该Service的生命周期将受客户端控制，当客户端调用一次[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability)方法，将建立一个连接，当客户端退出或者调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)方法，该连接将断开。当所有连接都断开后，Service将自动退出。
+- 若Service只通过connect的方式被拉起，那么该Service的生命周期将受客户端控制，当客户端调用一次[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法，将建立一个连接，当客户端退出或者调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)方法，该连接将断开。当所有连接都断开后，Service将自动退出。
 
 - Service一旦通过start的方式被拉起，将不会自动退出，系统应用可以调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability)方法将Service退出。
 
@@ -43,7 +43,7 @@
   当另一个组件调用[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动该服务组件时，触发该回调。执行此方法后，服务会启动并在后台运行。每调用一次[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法均会触发该回调。
 
 - **onConnect**
-  当另一个组件调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability)方法与该服务连接时，触发该回调。开发者在此方法中，返回一个远端代理对象（IRemoteObject），客户端拿到这个对象后可以通过这个对象与服务端进行RPC通信，同时系统侧也会将该远端代理对象（IRemoteObject）储存。后续若有组件再调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability)方法，系统侧会直接将所保存的远端代理对象（IRemoteObject）返回，而不再触发该回调。
+  当另一个组件调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法与该服务连接时，触发该回调。开发者在此方法中，返回一个远端代理对象（IRemoteObject），客户端拿到这个对象后可以通过这个对象与服务端进行RPC通信，同时系统侧也会将该远端代理对象（IRemoteObject）储存。后续若有组件再调用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法，系统侧会直接将所保存的远端代理对象（IRemoteObject）返回，而不再触发该回调。
 
 - **onDisconnect**
   当最后一个连接断开时，将触发该回调。客户端死亡或者调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)方法可以使连接断开。
@@ -136,11 +136,10 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 3. 在ServiceExtAbility.ets文件中，增加导入ServiceExtensionAbility的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在onConnect生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
 
    ```ts
-   import hilog from '@ohos.hilog';
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+   import { rpc } from '@kit.IPCKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   import type Want from '@ohos.app.ability.Want';
-   import type rpc from '@ohos.rpc';
    
    const TAG: string = '[ServiceExtAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -203,11 +202,10 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+   import { common, Want } from '@kit.AbilityKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    const TAG: string = '[Page_ServiceExtensionAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -253,11 +251,10 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 2. 在系统应用中停止一个已启动的ServiceExtensionAbility。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
+   import { common, Want } from '@kit.AbilityKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const TAG: string = '[Page_ServiceExtensionAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -302,11 +299,10 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 3. 已启动的ServiceExtensionAbility停止自身。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
-   import Want from '@ohos.app.ability.Want';
+   import { common } from '@kit.AbilityKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    const TAG: string = '[Page_ServiceExtensionAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -353,19 +349,17 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 ## 连接一个后台服务
 
-系统应用或者三方应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextconnectserviceextensionability)连接一个服务（在Want对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的Want对象，从而建立长连接。
+系统应用或者三方应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)连接一个服务（在Want对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的Want对象，从而建立长连接。
 
-ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)中返回IRemoteObject对象，开发者通过该IRemoteObject定义通信接口，用于客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务的交互后，客户端需要通过调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextdisconnectserviceextensionability)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
+ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)中返回IRemoteObject对象，开发者通过该IRemoteObject定义通信接口，用于客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务的交互后，客户端需要通过调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
 
 - 使用connectServiceExtensionAbility()建立与后台服务的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  import rpc from '@ohos.rpc';
-  import Want from '@ohos.app.ability.Want';
+  import { common, Want } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
   
@@ -437,10 +431,10 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
 - 使用disconnectServiceExtensionAbility()断开与后台服务的连接。
   
   ```ts
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[Page_ServiceExtensionAbility]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -489,9 +483,9 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
 
   ```ts
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import rpc from '@ohos.rpc';
+  import { common } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
   
   const TAG: string = '[Page_ServiceExtensionAbility]';
@@ -525,11 +519,11 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
 - 直接使用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息（不推荐）
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  import rpc from '@ohos.rpc';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[Page_CollaborateAbility]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -587,12 +581,11 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
   通过调用[getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)接口获取客户端的uid，再调用[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid)接口获取uid对应的bundleName，从而识别客户端身份。此处需要注意的是[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid)是一个异步接口，因此服务端无法将校验结果返回给客户端，这种校验方式适合客户端向服务端发起执行异步任务请求的场景，示例代码如下：
 
   ```ts
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-  import bundleManager from '@ohos.bundle.bundleManager';
+  import { bundleManager } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import IdlServiceExtStub from './idl_service_ext_stub';
-  import hilog from '@ohos.hilog';
-  import rpc from '@ohos.rpc';
-  import type { BusinessError } from '@ohos.base';
   import type { InsertDataToMapCallback } from './i_idl_service_ext';
   import type { ProcessDataCallback } from './i_idl_service_ext';
   
@@ -634,12 +627,11 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
   通过调用[getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/permissions-for-all.md)。示例代码如下：
 
   ```ts
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-  import bundleManager from '@ohos.bundle.bundleManager';
+  import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import IdlServiceExtStub from './idl_service_ext_stub';
-  import hilog from '@ohos.hilog';
-  import rpc from '@ohos.rpc';
-  import type { BusinessError } from '@ohos.base';
   import type { InsertDataToMapCallback } from './i_idl_service_ext';
   import type { ProcessDataCallback } from './i_idl_service_ext';
   

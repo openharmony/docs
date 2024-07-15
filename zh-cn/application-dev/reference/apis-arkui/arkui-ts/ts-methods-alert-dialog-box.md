@@ -409,7 +409,7 @@ struct AlertDialogExample {
 AlertDialog显示动画持续3秒，退出动画持续100毫秒
 ```ts
 // xxx.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct AlertDialogExample {
@@ -476,6 +476,7 @@ struct AlertDialogExample {
               borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
               backgroundColor: Color.White,
               shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+              textStyle: { wordBreak: WordBreak.BREAK_ALL },
               confirm: {
                 value: 'button',
                 action: () => {

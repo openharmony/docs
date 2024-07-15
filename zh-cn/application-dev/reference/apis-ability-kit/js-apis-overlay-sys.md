@@ -11,7 +11,7 @@
 ## 导入模块
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabledByBundleName
@@ -57,8 +57,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -115,8 +115,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -178,8 +178,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -232,8 +232,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -286,8 +286,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 
 try {
@@ -347,8 +347,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -401,8 +401,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -455,8 +455,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {

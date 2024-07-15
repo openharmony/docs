@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 ```
 
 
@@ -43,6 +43,12 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ToolBarOptions
 
+继承于 Array<[ToolBarOption](#toolbaroption)>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+## ToolBarOption
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -68,7 +74,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 ## 示例
 
 ```ts
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
 enum ItemState {
   ENABLE = 1,

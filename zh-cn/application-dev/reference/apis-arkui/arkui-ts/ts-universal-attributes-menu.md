@@ -548,7 +548,7 @@ struct MenuExample {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct MenuExample {

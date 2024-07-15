@@ -31,8 +31,8 @@
 3. 调用selectOutputDevice，将当前设备播放的所有音频投放到指定的远端设备播放。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
@@ -73,8 +73,8 @@ async function selectOutputDevice(): Promise<void> {
 4. 调用selectOutputDeviceByFilter，将当前设备播放的指定音频流投放到指定的远端设备播放。
  
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();

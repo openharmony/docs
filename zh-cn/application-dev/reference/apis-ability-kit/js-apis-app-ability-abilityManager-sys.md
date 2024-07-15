@@ -662,10 +662,10 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err: BusinessError) => {
-    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
-  }).then(() => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).then(() => {
     console.log(`notifySaveAsResult success`);
+  }).catch((err: BusinessError) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   });
 } catch (paramError) {
   let code: number = (paramError as BusinessError).code;

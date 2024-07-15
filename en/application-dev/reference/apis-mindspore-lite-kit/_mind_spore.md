@@ -63,6 +63,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | Defines training optimization levels.|
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | Defines quantization types.|
 | [NNRTDeviceDesc](#nnrtdevicedesc) | Defines NNRt device information, including the device ID and device name.|
+| [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) | Handle of the memory allocator.|
 
 
 ### Enums
@@ -169,6 +170,8 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_TensorGetElementNum](#oh_ai_tensorgetelementnum) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of tensor elements.|
 | [OH_AI_TensorGetDataSize](#oh_ai_tensorgetdatasize) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of bytes of the tensor data.|
 | [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | Sets the tensor as the user data. This function allows you to reuse user data as the model input, which helps to reduce data copy by one time. > **NOTE**<br>The user data is type of external data for the tensor and is not automatically released when the tensor is destroyed. The caller needs to release the data separately. In addition, the caller must ensure that the user data is valid during use of the tensor.|
+| [OH_AI_TensorGetAllocator](#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains a memory allocator. The allocator is responsible for allocating memory for tensors.|
+| [OH_AI_TensorSetAllocator](#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) allocator) | Sets the memory allocator.  The allocator is responsible for allocating memory for tensors.|
 
 
 ## Macro Description
@@ -202,6 +205,17 @@ Defines NNRt device information, including the device ID and device name.
 
 **Since**: 10
 
+### OH_AI_AllocatorHandle
+
+```
+typedef void *OH_AI_AllocatorHandle
+```
+
+**Description**
+
+Handle of the memory allocator.
+
+**Since**: 12
 
 ### OH_AI_CallBackParam
 
@@ -2065,6 +2079,28 @@ Creates a tensor object.
 
 Handle of a tensor object.
 
+### OH_AI_TensorGetAllocator()
+
+```
+OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor)
+```
+
+**Description**
+
+Obtains a memory allocator. The allocator is responsible for allocating memory for tensors.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| tensor | Handle of the tensor object.|
+
+**Returns**
+
+Handle of the memory allocator.
+
 
 ### OH_AI_TensorDestroy()
 
@@ -2268,6 +2304,29 @@ Obtains the tensor shape.
 **Returns**
 
 Shape array.
+
+### OH_AI_TensorSetAllocator()
+
+```
+OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator)
+```
+
+**Description**
+
+Sets the memory allocator. The allocator is responsible for allocating memory for tensors.
+
+**Since**: 12
+
+**Parameters**
+
+| Name     | Description                |
+| --------- | -------------------- |
+| tensor    | Handle of the tensor object.      |
+| allocator | Handle of the memory allocator.|
+
+**Returns**
+
+Execution status code. The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_TensorSetData()

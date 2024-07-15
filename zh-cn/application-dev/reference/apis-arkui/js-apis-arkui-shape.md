@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape";
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 ```
 
 ## CircleShape
@@ -166,10 +166,10 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 形状的宽度。 |
-| height | number &nbsp;\|&nbsp; string | 形状的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。 |
+| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 |
 
 ## PathShapeOptions
 
@@ -179,9 +179,9 @@ PathShape 的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| commands | string | 绘制路径的指令。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| commands | string | 否 | 绘制路径的指令。 |
 
 ## RectShapeOptions
 
@@ -193,9 +193,9 @@ RectShape 的构造函数参数。
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 矩形形状的圆角半径。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。 |
 
 ## RoundRectShapeOptions
 
@@ -207,10 +207,10 @@ RectShape 带有半径的构造函数参数。
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的宽度。 |
-| radiusHeight | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。 |
+| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。 |
 
 ## BaseShape
 
@@ -313,7 +313,7 @@ position(position: Position): T
 ## **示例**
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 @Entry
 @Component

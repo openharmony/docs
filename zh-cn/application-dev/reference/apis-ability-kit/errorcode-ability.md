@@ -632,8 +632,8 @@ Start options check failed.
 
 **可能原因**
 
-1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
-2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
 
 **处理步骤**
 
@@ -869,24 +869,6 @@ wangAgent object has been canceled.
 **处理步骤**
 
 检查触发的wantAgent对象是否已取消。
-
-## 16000200 应用缓存后快速启动支持状态设置超过1次
-
-**错误信息**
-
-The supported process cache state cannot be set more than once.
-
-**错误描述**
-
-在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
-
-**可能原因**
-
-应用缓存后快速启动支持状态设置超过1次。
-
-**处理步骤**
-
-检查应用缓存后快速启动支持状态是否设置超过1次。
 
 ## 16100001 指定Uri的Ability不存在
 

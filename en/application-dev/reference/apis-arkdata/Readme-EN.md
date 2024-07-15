@@ -1,4 +1,4 @@
-# ArkData API Reference
+# ArkData (ArkData Management)
 
 - ArkTS APIs 
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)

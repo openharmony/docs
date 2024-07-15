@@ -11,12 +11,12 @@
 1. 导入drm接口，接口中提供了drm相关的属性和方法。
 
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   import { drm } from '@kit.DrmKit';
    ```
 2. 导入BusinessError模块，用于获取drm模块相关接口抛出的错误码。
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 3. 通过isMediaKeySystemSupported方法，查询设备是否支持对应的插件类型。
 

@@ -12,7 +12,7 @@
 
 
 ```ts
-import wallpaper from '@ohos.wallpaper';
+import { wallpaper } from '@kit.BasicServicesKit';
 ```
 ## WallpaperResourceType<sup>10+</sup>
 
@@ -62,7 +62,7 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -117,7 +117,7 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -164,7 +164,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -219,7 +219,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -459,7 +459,7 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
@@ -507,7 +507,7 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to restore.`);
@@ -549,8 +549,8 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -621,8 +621,8 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -683,8 +683,8 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -733,8 +733,8 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
@@ -771,8 +771,8 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -814,8 +814,8 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);

@@ -104,8 +104,6 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 
 文本框主要用于获取用户输入的信息，把信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的内容。用户也可以使用通用事件来进行相应的交互操作。
 
-
-
 ```ts
 TextInput()
   .onChange((value: string) => {
@@ -115,7 +113,6 @@ TextInput()
     console.info('获取焦点');
   })
 ```
-
 
 ## 场景示例
 
@@ -141,9 +138,35 @@ struct TextInputSample {
 }
 ```
 
-
 ![textinput](figures/textinput.gif)
 
+## 键盘避让
+
+键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让，若希望无滚动能力的容器组件也生效键盘避让，建议在组件外嵌套一层具有滚动能力的容器组件，比如[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7']
+
+  build() {
+    Scroll() {
+      Column() {
+        ForEach(this.placeHolderArr, (placeholder: string) => {
+          TextInput({ placeholder: 'TextInput ' + placeholder })
+            .margin(30)
+        })
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![textinputkeyboardavoid](figures/TextInputKeyboardAvoid.gif)
 
 ## 相关实例
 

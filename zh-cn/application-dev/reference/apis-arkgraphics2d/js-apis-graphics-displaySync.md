@@ -38,8 +38,8 @@ let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
 | 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | 是   | 否   | 当前帧到达的时间（单位：纳秒）。 |
-| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
+| timestamp      | number | 是   | 是   | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | number| 是   | 是   | 下一帧预期到达的时间（单位：纳秒）。 |
 
 ## DisplaySync
 
@@ -67,7 +67,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **示例：**
 

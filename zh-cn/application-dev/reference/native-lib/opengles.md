@@ -486,6 +486,7 @@ void glBufferData(GLenum target, // target：指定缓冲对象的类型，可�
 ```
 - 片段（Fragment）：是光栅化阶段生成的元素，它代表一个潜在的屏幕像素，包括所有与这个像素相关的信息，比如颜色、深度、模板值等。每个片段会经过片段着色器处理，并最终决定是否写入到帧缓冲区中。
 - 片段着色器是一个运行在每个片段上的程序，这里用于计算片段的最终颜色值。片段着色器可以访问插值后的顶点数据，并执行复杂的光照计算、纹理采样等操作。
+
 ```cpp
 
 const char* fragmentShaderSource = R"(
@@ -504,11 +505,13 @@ const char* fragmentShaderSource = R"(
 
 ```
 在 OpenGL ES渲染管线中，以下步骤描述了从顶点数据到最终像素输出的整个过程：
+
 1. 顶点着色器处理。
 
    首先，将缓冲区中的顶点数据传入顶点着色器程序。在顶点着色器中进行以下操作：
    
    - 矩阵转换：使用用模型视图矩阵（MV矩阵）和投影矩阵（透视矩阵）对顶点位置进行变换。
+
    - 照明计算：根据光照公式计算顶点的颜色或其他属性。
    
 2. 图元装配。
@@ -524,52 +527,64 @@ const char* fragmentShaderSource = R"(
    光栅化输出的片段数据作为片段着色器的输入变量。在片段着色器中进行以下操作：
 
    - 光照计算：计算片段的光照效果。
-     - 纹理采样：从纹理中获取颜色数据。
-     - 颜色混合：结合光照和纹理数据生成新的颜色、深度和屏幕坐标位置等。
+
+   - 纹理采样：从纹理中获取颜色数据。
+
+   - 颜色混合：结合光照和纹理数据生成新的颜色、深度和屏幕坐标位置等。
 
 5. 逐片段操作。
 
    片段着色器的输出被送入逐片段操作阶段，包括：
 
    - 像素归属测试：确定片段是否属于当前绘制的像素区域。
-     - 剪裁测试：确定片段是否在可视区域内。
-     - 模板测试：使用模板缓冲区进行测试。
-     - 深度测试：比较片段的深度值，以确定其是否可见。
-     - 混合：将新计算的颜色与帧缓冲区中已有的颜色进行混合。
-     - 抖动：减少颜色量化误差，在原始图像上添加小的、随机或有序的噪声，使得颜色的量化误差在空间上被分散，而不是集中在某些特定的区域。
+
+   - 剪裁测试：确定片段是否在可视区域内。
+
+   - 模板测试：使用模板缓冲区进行测试。
+
+   - 深度测试：比较片段的深度值，以确定其是否可见。
+
+   - 混合：将新计算的颜色与帧缓冲区中已有的颜色进行混合。
+
+   - 抖动：减少颜色量化误差，在原始图像上添加小的、随机或有序的噪声，使得颜色的量化误差在空间上被分散，而不是集中在某些特定的区域。
 
 6. 写入帧缓冲区。
 
   经过上述所有测试和处理后，最终的片段数据被写入帧缓冲区，形成最终显示在屏幕上的图像。
-### 创建着色器程序，使用着色器程序
+
+### 创建并使用着色器程序
+
 ```cpp
-   GLuint vertexShader, fragmentShader, shaderProgram;
-    // 创建顶点着色器
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-    glCompileShader(vertexShader);
+GLuint vertexShader, fragmentShader, shaderProgram;
+// 创建顶点着色器
+vertexShader = glCreateShader(GL_VERTEX_SHADER);
+glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+glCompileShader(vertexShader);
 
-    // 创建片段着色器
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-    glCompileShader(fragmentShader);
+// 创建片段着色器
+fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+glCompileShader(fragmentShader);
 
-    // 创建着色器程序
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
+// 创建着色器程序
+shaderProgram = glCreateProgram();
+glAttachShader(shaderProgram, vertexShader);
+glAttachShader(shaderProgram, fragmentShader);
+glLinkProgram(shaderProgram);
 
-    // 使用着色器程序
-    glUseProgram(shaderProgram);
+// 使用着色器程序
+glUseProgram(shaderProgram);
 ```
+
 ```cpp
 GLuint glCreateShader(GLenum shaderType);
 ```
 glCreateShader用于创建一个指定类型（顶点着色器、片段着色器等）的着色器对象，并返回该对象的句柄。其中shaderType参数指定要创建的着色器类型，可以是GL_VERTEX_SHADER（顶点着色器）或 GL_FRAGMENT_SHADER（片段着色器）等。
+
 ```cpp
-void glShaderSource(GLuint shader, GLsizei count, const GLchar **string, const GLint *length);
+void glShaderSource(GLuint shader, GLsizei count, const GLchar \**string, const GLint *length);
 ```
+
 glShaderSource函数用于设置着色器对象的源代码。其中各参数含义如下：
 
 - shader：要设置源代码的着色器对象的标识符。
@@ -580,25 +595,34 @@ glShaderSource函数用于设置着色器对象的源代码。其中各参数含
 ```cpp
 void glCompileShader(GLuint shader);
 ```
+
 glCompileShader函数用于编译指定的着色器对象，其中shader参数是要编译的着色器对象的标识符。
+
 ```cpp
 GLuint glCreateProgram(void);
 ```
+
 glCreateProgram函数用于创建一个新的着色器程序对象，该函数返回一个新创建的着色器程序对象的标识符。
+
 ```cpp
 void glAttachShader(GLuint program, GLuint shader);
 ```
+
 glAttachShader函数用于将一个着色器对象附加到一个着色器程序对象上，参数program是目标着色器程序对象的标识符，参数shader是要附加的着色器对象的标识符。
+
 ```cpp
 void glLinkProgram(GLuint program);
 ```
+
 glLinkProgram函数用于链接一个着色器程序对象，将附加到该程序对象的着色器链接成一个可执行的渲染管线。
+
 参数program是要链接的着色器程序对象的标识符。链接着色器程序时，OpenGL将会执行以下操作：将各个着色器对象中的代码合并成一个可执行的渲染管线。执行连接器优化，以优化渲染管线的性能。并将Uniform变量和Uniform块的信息进行绑定。
 
 ```cpp
 void glUseProgram(GLuint program);
 ```
 glUseProgram函数用于激活指定的着色器程序对象。在调用glUseProgram 之后，所有的渲染调用将会使用该着色器程序进行处理。
+
 在使用glCompileShader时可以使用以下代码检查是否正常。
 
 ```cpp
@@ -633,7 +657,9 @@ if (!compiled)
     return 0;
 }
 ```
+
 在使用glLinkProgram可使用如下代码检查是否正常。
+
 ```cpp
 // 链接程序对象
 glLinkProgram(programObject);
@@ -666,6 +692,7 @@ if (!linked)
     return FALSE;
 }
 ```
+
 ### 确定顶点属性数组的配置
 
 包括顶点属性在缓冲区中的布局和格式。
@@ -682,6 +709,7 @@ void glVertexAttribPointer(GLuint index, // 指定要修改的顶点数组的起
 ```cpp
 void glEnableVertexAttribArray(GLuint index);
 ```
+
 glEnableVertexAttribArray 函数用于启用指定索引的顶点属性数组。例如，调用glEnableVertexAttribArray(0)可以启用位置索引为 0 的顶点属性数组，这与顶点着色器程序中的 layout (location = 0) in vec3 aPos 相关联。
 
 在示例代码中，glVertexAttribPointer 的第一个参数index对应顶点着色器中aPos的location，即位置 0。其他参数设置了顶点属性的格式，告诉 OpenGL 该属性包含 3 个组件（x、y、z），数据类型为 GL_FLOAT，并且每个顶点数据的第一个属性从偏移量 0 开始。
@@ -690,17 +718,21 @@ glBindBuffer函数绑定当前的顶点缓冲对象（VBO），glBufferData将�
 
 
 ### 绘制图元并显示
+
 ```cpp
 void glDrawArrays(GLenum mode, // 参数指定要绘制的图元的类型，比如GL_TRIANGLES表示绘制三角形。
                   GLint first,// 参数指定要绘制的顶点数组的起始索引。
                   GLsizei count  // 参数指定要绘制的顶点数量
                   );
 ```
+
 glDrawArrays函数用于根据当前绑定的顶点数组和顶点属性以及其他设置来绘制图元。
+
 ```cpp
 EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
                           EGLSurface surface); // 要交换其缓冲区的EGL表面
 ```
+
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
 
 ## 相关实例

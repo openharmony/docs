@@ -56,9 +56,9 @@ Describes the information about the dynamic shared library on which the module d
 
 | Name       | Type  | Readable| Writable| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
-| bundleName  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
+| bundleName<sup>10+</sup>  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
 | moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
-| versionCode | number | Yes  | No  | Version number of the shared bundle.  |
+| versionCode<sup>10+</sup> | number | Yes  | No  | Version number of the shared bundle.  |
 
 ## RouterItem<sup>12+</sup>
 

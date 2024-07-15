@@ -20,11 +20,14 @@
   - [Database Backup and Restoration](data-backup-and-restore.md)
   - [Database Encryption](data-encryption.md)
   - [Access Control by Device and Data Level](access-control-by-device-and-data-level.md)
+  - [Using an EL5 Database](encrypted_estore_guidelines.md)
 - Cross-Application Data Sharing
   - [Data Sharing Overview](data-share-overview.md)
+  <!--Del-->
   - One-to-Many Data Sharing (for System Applications Only)
     - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
     - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
+  <!--DelEnd-->
   - Many-to-Many Data Sharing
     - [Sharing Data Using Unified Data Channels](unified-data-channels.md)
 - [RelationalStore Development (C/C++)](native-relational-store-guidelines.md)

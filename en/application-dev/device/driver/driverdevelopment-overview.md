@@ -8,10 +8,13 @@ Driver Development Kit provides easy-to-use APIs to elevate your app experience 
 ## When to Use
 You can use Driver Development Kit to:
 
-1. Develop drivers of dedicated peripherals for bank counters, enterprise office, and medical detection, such as high-speed document scanners, ID card scanners, fingerprint scanners, and blood oxygen and blood glucose meters.
+1. Develop drivers of special
 
-2. Develop enhanced functions of non-standard peripherals, such as customizing handwriting pad shortcut keys, setting the pressure sensing/drawing area, setting extended enhancement capabilities, setting the mouse lighting effect, customizing mouse extended buttons, and setting DPI and X and Y axes.
+   peripherals for bank counters, enterprise office, and medical detection, such as high-speed document scanners, ID card scanners, fingerprint scanners, and blood oxygen and blood glucose meters.
 
+2. Develop enhanced functions of non-standard peripherals,
+
+   such as customizing handwriting pad shortcut keys, setting the pressure sensing/drawing area, setting extended enhancement capabilities, setting the mouse lighting effect, customizing mouse extended buttons, and setting DPI and X and Y axes.
 
 ## Working Principles
 

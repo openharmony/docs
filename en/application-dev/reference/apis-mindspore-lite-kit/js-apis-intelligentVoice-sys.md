@@ -16,7 +16,7 @@ Its functions are implemented by:
 
 ## Modules to Import
 ```ts
-import intelligentVoice from '@ohos.ai.intelligentVoice';
+import { intelligentVoice } from '@kit.MindSporeLiteKit';
 ```
 
 ## intelligentVoice.getIntelligentVoiceManager
@@ -47,7 +47,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let intelligentVoiceManager: intelligentVoice.IntelligentVoiceManager | null = null;
 try {
@@ -87,7 +87,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wakeupManager: intelligentVoice.WakeupManager | null = null;
 try {
@@ -129,7 +129,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: 'Xiaohua Xiaohua',
@@ -182,7 +182,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: 'Xiaohua Xiaohua',
@@ -228,7 +228,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
@@ -281,7 +281,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
@@ -439,7 +439,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).setParameter('wakeup_phrase', 'xiaohuaxiaohua').then(() => {
@@ -486,7 +486,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).getParameter('isEnrolled').then((data: string) => {
@@ -535,7 +535,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).getUploadFiles(2).then((data: Array<intelligentVoice.UploadFile>) => {
@@ -577,7 +577,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).getWakeupSourceFiles().then(
@@ -628,7 +628,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let filesInfo: Array<intelligentVoice.WakeupSourceFile> = [];
 filesInfo[0] = {filePath: "", fileContent: new ArrayBuffer(100)};
@@ -674,7 +674,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).clearUserData().then(() => {
@@ -942,7 +942,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -984,7 +984,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -1028,7 +1028,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
@@ -1081,7 +1081,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
@@ -1126,7 +1126,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -1175,7 +1175,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -1213,7 +1213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop((err: BusinessError) => {
@@ -1253,7 +1253,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop().then(() => {
@@ -1292,7 +1292,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit((err: BusinessError) => {
@@ -1333,7 +1333,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit().then(() => {
@@ -1374,7 +1374,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -1420,7 +1420,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -1465,7 +1465,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
@@ -1513,7 +1513,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
@@ -1555,7 +1555,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
@@ -1604,7 +1604,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
@@ -1645,7 +1645,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
@@ -1694,7 +1694,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key').then((data: string) => {
@@ -1741,7 +1741,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).evaluateForResult('word').then(
@@ -1781,7 +1781,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release((err: BusinessError) => {
@@ -1821,7 +1821,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release().then(() => {
@@ -1861,7 +1861,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
@@ -1902,7 +1902,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
@@ -1944,7 +1944,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -1997,7 +1997,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -2042,7 +2042,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
@@ -2090,7 +2090,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
@@ -2132,7 +2132,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
@@ -2181,7 +2181,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
@@ -2222,7 +2222,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
@@ -2271,7 +2271,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key').then((data: string) => {
@@ -2312,7 +2312,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getPcm().then((data: ArrayBuffer) => {
@@ -2361,7 +2361,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).startCapturer(1).then(() => {
@@ -2402,7 +2402,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).read().then((data: ArrayBuffer) => {
@@ -2442,7 +2442,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).stopCapturer().then(() => {
@@ -2480,7 +2480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release((err: BusinessError) => {
@@ -2520,7 +2520,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release().then(() => {

@@ -9,7 +9,7 @@ The common2D module defines some common data types in the 2D graphics field.
 ## Modules to Import
 
 ```ts
-import common2D from '@ohos.graphics.common2D';
+import { common2D } from '@kit.ArkGraphics2D';
 ```
 
 ## Color

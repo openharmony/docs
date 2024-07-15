@@ -57,7 +57,7 @@
 1. 导入模块。
 
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
    ```
 
 2. 申请能效资源。

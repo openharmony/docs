@@ -1,6 +1,6 @@
 # @ohos.arkui.uiExtension (uiExtension)
 
-用于EmbeddedUIExtensionAbility（或UIExtensionAbility）中获取宿主应用的窗口信息或对应的EmbeddedComponent（或UIExtensionComponent）组件的信息。
+用于EmbeddedUIExtensionAbility（或UIExtensionAbility）中获取宿主应用的窗口信息或对应的EmbeddedComponent<!--Del-->（或UIExtensionComponent）<!--DelEnd-->组件的信息。
 
 > **说明**
 >
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -45,17 +45,15 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 获取宿主应用窗口的避让信息
-    const avoidArea = extensionHostWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-    console.log(`avoidArea: ${JSON.stringify(avoidArea)}`);
+    let avoidArea: window.AvoidArea | undefined = extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    console.info(`avoidArea: ${JSON.stringify(avoidArea)}`);
   }
 }
 ```
@@ -85,15 +83,14 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { uiExtension } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注册避让区变化的监听
-    extensionHostWindow.on('avoidAreaChange', (info) => {
+    extensionWindow.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
       console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
     });
   }
@@ -113,18 +110,25 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 | type     | string | 是 | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注销所有避让区变化的监听
-    extensionHostWindow.off('avoidAreaChange');
+    extensionWindow.off('avoidAreaChange');
   }
 }
 ```
@@ -154,15 +158,14 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注册宿主应用窗口大小变化的监听
-    extensionHostWindow.on('windowSizeChange', (size) => {
+    extensionWindow.on('windowSizeChange', (size: window.Size) => {
       console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
     });
   }
@@ -194,14 +197,13 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注销宿主应用窗口大小变化的监听
-    extensionHostWindow.off('windowSizeChange');
+    extensionWindow.off('windowSizeChange');
   }
 }
 ```
@@ -236,7 +238,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
@@ -244,23 +246,21 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     const subWindowOpts: window.SubWindowOptions = {
       title: 'This is a subwindow',
       decorEnabled: true
     };
     // 创建子窗口
-    extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+    extensionWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
-        subWindow.loadContent('pages/Index', (err, data) =>{
+        subWindow.setUIContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
@@ -309,7 +309,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -328,7 +328,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;
@@ -344,31 +344,29 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 - EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     
     onCreate() {
-      console.log(TAG, `onCreate`);
+      console.info(TAG, `onCreate`);
     }
 
     onForeground() {
-      console.log(TAG, `onForeground`);
+      console.info(TAG, `onForeground`);
     }
 
     onBackground() {
-      console.log(TAG, `onBackground`);
+      console.info(TAG, `onBackground`);
     }
 
     onDestroy() {
-      console.log(TAG, `onDestroy`);
+      console.info(TAG, `onDestroy`);
     }
 
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
       let param: Record<string, UIExtensionContentSession> = {
         'session': session
       };
@@ -381,10 +379,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 - EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import uiExtension from '@ohos.arkui.uiExtension';
-  import window from '@ohos.window';
-
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+  import { uiExtension, window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let storage = LocalStorage.getShared()
 
   @Entry(storage)
@@ -396,10 +393,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     private subWindow: window.Window | undefined = undefined;
 
     aboutToAppear(): void {
-      this.extensionWindow?.on('windowSizeChange', (size) => {
+      this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow?.on('avoidAreaChange', (info) => {
+      this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
     }

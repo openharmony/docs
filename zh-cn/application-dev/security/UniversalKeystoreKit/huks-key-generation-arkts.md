@@ -3,6 +3,8 @@
 
 以生成DH密钥为例，生成随机密钥。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
+> **注意：**
+> 密钥别名中禁止包含个人数据等敏感信息。
 
 ## 开发步骤
 
@@ -21,68 +23,67 @@
 
 ```ts
 /* 以下以生成DH密钥为例 */
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
 
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC;
-}
 /* 1.确定密钥别名 */
 let keyAlias = 'dh_key';
 /* 2.初始化密钥属性集 */
-let properties1: HuksProperties[] = [
-    {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_DH
-    },
-    {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-    },
-    {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
-    },
-    {
-        tag: huks.HuksTag.HUKS_TAG_DIGEST,
-        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-    }
+let properties1: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_DH
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  }
 ];
 let huksOptions: huks.HuksOptions = {
-    properties: properties1,
-    inData: new Uint8Array(new Array())
+  properties: properties1,
+  inData: new Uint8Array(new Array())
 }
+
 /* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions){
-    return new Promise<void>((resolve, reject) => {
-        try {
-            huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throw (error as Error);
-        }
-    });
-}
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-    console.info(`enter promise generateKeyItem`);
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  return new Promise<void>((resolve, reject) => {
     try {
-        await generateKeyItem(keyAlias, huksOptions)
-        .then((data) => {
-            console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-        })
-        .catch((error) => {
-            console.error(`promise: generateKeyItem failed` + error);
-        });
+      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid` + error);
+      throw (error as Error);
     }
+  });
 }
+
+async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`enter promise generateKeyItem`);
+  try {
+    await generateKeyItem(keyAlias, huksOptions)
+      .then((data) => {
+        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: Error) => {
+        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+      });
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid, ` + JSON.stringify(error));
+  }
+}
+
 async function TestGenKey() {
-    await publicGenKeyFunc(keyAlias, huksOptions);
+  await publicGenKeyFunc(keyAlias, huksOptions);
 }
 ```

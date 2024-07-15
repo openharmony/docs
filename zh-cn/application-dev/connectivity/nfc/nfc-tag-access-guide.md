@@ -169,8 +169,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     nfcTagElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
   }

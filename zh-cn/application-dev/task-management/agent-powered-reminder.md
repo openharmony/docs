@@ -43,9 +43,9 @@
 3. 导入模块。
    
    ```ts
-   import reminderAgentManager from '@ohos.reminderAgentManager';
-   import notificationManager from '@ohos.notificationManager';
-   import { BusinessError } from '@ohos.base';
+   import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
@@ -124,7 +124,7 @@
       ```
 
    - 定义闹钟实例。
-    
+   
       ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型

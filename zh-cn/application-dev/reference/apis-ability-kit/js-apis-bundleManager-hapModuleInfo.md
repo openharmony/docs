@@ -25,13 +25,13 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | deviceTypes                       | Array\<string>                                               | 是   | 否   | 可以运行模块的设备类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type                              | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 原子化服务中模块的预加载列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | codePath<sup>12+</sup>            | string                                                       | 是   | 否   | 模块的安装路径。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序内某个hapModule的本地库文件路径。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
+| nativeLibraryPath<sup>12+</sup>     | string                                                       | 是   | 否   | 应用程序内某个hapModule的本地库文件路径。                    |
 
 ## PreloadItem
 
@@ -72,4 +72,18 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | name          | string | 是   | 是   | 标识跳转页面的名称。       |
 | pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
 | buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | string | 是   | 是   | 标识自定义数据的JSON字符串。   |
+| data          | Array\<[DataItem](#dataitem12)> | 是   | 是   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的字符串自定义数据，即data字段的信息，该字段已由系统解析，无需开发者自行解析。   |
+| customData    | string | 是   | 是   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的任意类型的自定义数据，即customData字段的JSON字符串，开发者需要调用JSON.parse函数解析出具体内容。   |
+
+## DataItem<sup>12+</sup>
+
+描述模块配置的路由表中的自定义数据。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称          | 类型    | 只读 | 必填 | 说明                   |
+| ------------- | ------ | ---- | ---- | ---------------------- |
+| key           | string | 是   | 是   | 标识路由表自定义数据的键。       |
+| value         | string | 是   | 是   | 标识路由表自定义数据的值。 |

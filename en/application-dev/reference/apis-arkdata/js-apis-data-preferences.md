@@ -48,7 +48,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -125,7 +125,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -196,7 +196,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -280,7 +280,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -361,7 +361,7 @@ Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -425,7 +425,7 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -501,7 +501,7 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -570,7 +570,7 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -652,7 +652,7 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -729,7 +729,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -805,7 +805,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -873,7 +873,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -929,7 +929,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1010,7 +1010,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1083,7 +1083,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1161,7 +1161,7 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1207,7 +1207,7 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1252,7 +1252,7 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1283,7 +1283,7 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1424,7 +1424,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1475,7 +1475,7 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1519,7 +1519,7 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1552,7 +1552,7 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1602,7 +1602,7 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1651,7 +1651,7 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1689,7 +1689,7 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1735,7 +1735,7 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1774,7 +1774,7 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1806,7 +1806,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1884,7 +1884,7 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -1980,7 +1980,7 @@ Subscribes to data changes. The registered callback will be invoked to return th
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -2025,7 +2025,7 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                               |
 | -------- | -------------------------------------- |
@@ -2072,7 +2072,7 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -2122,7 +2122,7 @@ Unsubscribes from data changes.
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -2168,7 +2168,7 @@ Unsubscribes from inter-process data changes.
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
@@ -2214,7 +2214,7 @@ Unsubscribes from changes of specific data.
 
 **Error codes**
 
-For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |

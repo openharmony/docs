@@ -180,7 +180,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 ## Bias对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -383,7 +383,7 @@ struct Example3 {
 // 通用布局属性支持镜像能力
 // 从上到下依次为position，offset，markAnchor接口效果
 // 黄色赋值为原本效果，粉色赋值为镜像效果
-import { LengthMetrics } from '@ohos.arkui.node';
+import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct Example4 {

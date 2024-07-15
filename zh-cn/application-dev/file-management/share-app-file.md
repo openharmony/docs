@@ -35,9 +35,9 @@
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -58,11 +58,11 @@
    > 写权限分享时，同时授予读权限。
 
    ```ts
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
-   import wantConstant from '@ohos.app.ability.wantConstant';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import Want from '@ohos.app.ability.Want';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
+   import { wantConstant } from '@kit.AbilityKit';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { Want } from '@kit.AbilityKit';
    import { BusinessError } from '@ohos.base';
    
    export default class EntryAbility extends UIAbility {
@@ -131,7 +131,7 @@
 ```ts
 // xxx.ets
 import fs from '@ohos.file.fs';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 function getShareFile() {

@@ -17,7 +17,7 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 在使用WindowExtensionContext的功能前，需要通过WindowExtensionAbility子类实例获取。
 
 ```ts
-import WindowExtensionAbility, { WindowExtensionContext } from '@ohos.application.WindowExtensionAbility';
+import { WindowExtensionAbility, WindowExtensionContext } from '@kit.ArkUI';
 
 let context: WindowExtensionContext | null = null;
 
@@ -55,10 +55,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want, StartOptions } from '@kit.AbilityKit';
 
 class WindowExtAbility extends WindowExtensionAbility {
   
@@ -125,10 +124,9 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want, StartOptions } from '@kit.AbilityKit';
 
 class WindowExtAbility extends WindowExtensionAbility {
 

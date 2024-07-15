@@ -26,6 +26,8 @@ import { ArrayList } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -38,6 +40,8 @@ import { ArrayList } from '@kit.ArkTS';
 constructor()
 
 ArrayList的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -61,6 +65,8 @@ let arrayList: ArrayList<string | number> = new ArrayList();
 add(element: T): boolean
 
 在ArrayList尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -108,6 +114,8 @@ insert(element: T, index: number): void
 
 在长度范围内任意位置插入指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -141,6 +149,8 @@ arrayList.insert(true, 2);
 has(element: T): boolean
 
 判断此ArrayList中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -177,6 +187,8 @@ let result: boolean = arrayList.has("squirrel");
 getIndexOf(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -220,6 +232,8 @@ getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -261,6 +275,8 @@ let result: number = arrayList.getLastIndexOf(2);
 removeByIndex(index: number): T
 
 根据元素的下标值查找元素，返回元素后将其删除。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -304,6 +320,8 @@ remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -343,6 +361,8 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 从一段范围内删除元素，包括起始值但不包括终止值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -379,6 +399,8 @@ replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt
 thisArg?: Object): void
 
 用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -427,6 +449,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -472,6 +496,8 @@ sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 对ArrayList中的元素排序。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -515,6 +541,8 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -557,6 +585,8 @@ clear(): void
 
 清除ArrayList中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -583,6 +613,8 @@ arrayList.clear();
 clone(): ArrayList&lt;T&gt;
 
 克隆一个与ArrayList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -618,6 +650,8 @@ getCapacity(): number
 
 获取当前实例的容量大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -650,6 +684,8 @@ let result: number = arrayList.getCapacity();
 convertToArray(): Array&lt;T&gt;
 
 把当前ArrayList实例转换成数组，并返回转换后的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -684,6 +720,8 @@ isEmpty(): boolean
 
 判断该ArrayList是否为空。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -716,6 +754,8 @@ let result: boolean = arrayList.isEmpty();
 increaseCapacityTo(newCapacity: number): void
 
 如果传入的新容量大于或等于ArrayList中的元素个数，将容量变更为新容量。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -752,6 +792,8 @@ trimToCurrentLength(): void
 
 把容量限制为当前的length大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -782,6 +824,8 @@ arrayList.trimToCurrentLength();
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

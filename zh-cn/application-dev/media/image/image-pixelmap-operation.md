@@ -17,7 +17,7 @@
 2. 从PixelMap位图对象中获取信息。
 
    ```ts
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    // 获取图像像素的总字节数
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // 获取图像像素每行字节数
@@ -29,7 +29,7 @@
 3. 读取并修改目标区域像素数据，写回原图。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中
    const readBuffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(readBuffer).then(() => {

@@ -50,193 +50,203 @@
 /*
  * 以下以AES 128密钥的Promise操作使用为例
  */
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
+
 let aesKeyAlias = 'test_aesKeyAlias';
-let handle:number;
+let handle: number;
 let plainText = '123456';
 let IV = '001122334455';
-let cipherData:Uint8Array;
+let cipherData: Uint8Array;
+
 function StringToUint8Array(str: String) {
-    let arr:number[]=new Array();
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+  let arr: number[] = new Array();
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
 }
-function Uint8ArrayToString(fileData:Uint8Array) {
-    let dataString = '';
-    for (let i = 0; i < fileData.length; i++) {
-        dataString += String.fromCharCode(fileData[i]);
-    }
-    return dataString;
+
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
 }
+
 function GetAesGenerateProperties() {
-    let properties: Array<huks.HuksParam> =[{
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    }];
-    return properties;
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }];
+  return properties;
 }
+
 function GetAesEncryptProperties() {
-    let properties: Array<huks.HuksParam> = [{
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV)
-    }];
-    return properties;
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }];
+  return properties;
 }
+
 function GetAesDecryptProperties() {
-    let properties: Array<huks.HuksParam> = [{
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC
-    }, {
-        tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV)
-    }];
-    return properties;
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }];
+  return properties;
 }
+
 async function GenerateAesKey() {
-    /*
-    * 模拟生成密钥场景
-    * 1. 确定密钥别名
-    */
-    /*
-    * 2. 获取生成密钥算法参数配置
-    */
-    let genProperties = GetAesGenerateProperties();
-    let options: huks.HuksOptions = {
-        properties: genProperties
-    }
-    /*
-    * 3. 调用generateKeyItem
-    */
-    await huks.generateKeyItem(aesKeyAlias, options)
+  /*
+  * 模拟生成密钥场景
+  * 1. 确定密钥别名
+  */
+  /*
+  * 2. 获取生成密钥算法参数配置
+  */
+  let genProperties = GetAesGenerateProperties();
+  let options: huks.HuksOptions = {
+    properties: genProperties
+  }
+  /*
+  * 3. 调用generateKeyItem
+  */
+  await huks.generateKeyItem(aesKeyAlias, options)
     .then((data) => {
-        console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error)=>{
-        console.error(`promise: generate AES Key failed` + error);
+      console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
+    }).catch((error: Error) => {
+      console.error(`promise: generate AES Key failed, ${JSON.stringify(error)}`);
     })
 }
+
 async function EncryptData() {
-    /*
-    * 模拟加密场景
-    * 1. 获取密钥别名
-    */
-    /*
-    * 2. 获取待加密的数据
-    */
-    /*
-    * 3. 获取加密算法参数配置
-    */
-    let encryptProperties = GetAesEncryptProperties();
-    let options: huks.HuksOptions = {
-        properties: encryptProperties,
-        inData: StringToUint8Array(plainText)
-    }
-    /*
-    * 4. 调用initSession获取handle
-    */
-    await huks.initSession(aesKeyAlias, options)
+  /*
+  * 模拟加密场景
+  * 1. 获取密钥别名
+  */
+  /*
+  * 2. 获取待加密的数据
+  */
+  /*
+  * 3. 获取加密算法参数配置
+  */
+  let encryptProperties = GetAesEncryptProperties();
+  let options: huks.HuksOptions = {
+    properties: encryptProperties,
+    inData: StringToUint8Array(plainText)
+  }
+  /*
+  * 4. 调用initSession获取handle
+  */
+  await huks.initSession(aesKeyAlias, options)
     .then((data) => {
-        handle = data.handle;
-    }).catch((error)=>{
-        console.error(`promise: init EncryptData failed` + error);
+      handle = data.handle;
+    }).catch((error: Error) => {
+      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
     })
-    /*
-    * 5. 调用finishSession获取加密后的密文
-    */
-    await huks.finishSession(handle, options)
+  /*
+  * 5. 调用finishSession获取加密后的密文
+  */
+  await huks.finishSession(handle, options)
     .then((data) => {
-        console.info(`promise: encrypt data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
-        cipherData = data.outData as Uint8Array;
-    }).catch((error)=>{
-        console.error(`promise: encrypt data failed` + error);
+      console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+      cipherData = data.outData as Uint8Array;
+    }).catch((error: Error) => {
+      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
     })
 }
+
 async function DecryptData() {
-    /*
-    * 模拟解密场景
-    * 1. 获取密钥别名
-    */
-    /*
-    * 2. 获取待解密的密文
-    */
-    /*
-    * 3. 获取解密算法参数配置
-    */
-    let decryptOptions = GetAesDecryptProperties()
-    let options: huks.HuksOptions = {
-        properties: decryptOptions,
-        inData: cipherData
-    }
-    /*
-    * 4. 调用initSession获取handle
-    */
-    await huks.initSession(aesKeyAlias, options)
+  /*
+  * 模拟解密场景
+  * 1. 获取密钥别名
+  */
+  /*
+  * 2. 获取待解密的密文
+  */
+  /*
+  * 3. 获取解密算法参数配置
+  */
+  let decryptOptions = GetAesDecryptProperties()
+  let options: huks.HuksOptions = {
+    properties: decryptOptions,
+    inData: cipherData
+  }
+  /*
+  * 4. 调用initSession获取handle
+  */
+  await huks.initSession(aesKeyAlias, options)
     .then((data) => {
-        handle = data.handle;
-    }).catch((error)=>{
-        console.error(`promise: init DecryptData failed` + error);
+      handle = data.handle;
+    }).catch((error: Error) => {
+      console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
     })
-    /*
-    * 5. 调用finishSession获取解密后的数据
-    */
-    await huks.finishSession(handle, options)
+  /*
+  * 5. 调用finishSession获取解密后的数据
+  */
+  await huks.finishSession(handle, options)
     .then((data) => {
-        console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error)=>{
-        console.error(`promise: decrypt data failed` + error);
+      console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+    }).catch((error: Error) => {
+      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
     })
 }
+
 async function DeleteKey() {
-    /*
-    * 模拟删除密钥场景
-    * 1. 获取密钥别名
-    */
-    let emptyOptions: huks.HuksOptions = {
-        properties: []
-    }
-    /*
-    * 2. 调用deleteKeyItem删除密钥
-    */
-    await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
+  /*
+  * 模拟删除密钥场景
+  * 1. 获取密钥别名
+  */
+  let emptyOptions: huks.HuksOptions = {
+    properties: []
+  }
+  /*
+  * 2. 调用deleteKeyItem删除密钥
+  */
+  await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
     .then((data) => {
-        console.info(`promise: delete data success`);
-    }).catch((error)=>{
-        console.error(`promise: delete data failed` + error);
+      console.info(`promise: delete data success`);
+    }).catch((error: Error) => {
+      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
 ```

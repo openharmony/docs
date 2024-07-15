@@ -42,6 +42,8 @@ WithTheme(options: WithThemeOptions)
 
 ## 示例
 
+设置局部深浅色时，需要在resources文件夹下添加dark目录，dark目录添加dark.json资源文件，深浅色模式才会生效。
+
 ```ts
 // 指定局部深浅色模式
 @Entry
@@ -74,7 +76,7 @@ struct Index {
         .height('33%')
         .backgroundColor($r('sys.color.background_primary'))
       }
-      // 设置组件为深色模式
+      // 设置组件为浅色模式
       WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
         Column() {
           Text('WithTheme')
@@ -99,7 +101,7 @@ struct Index {
 
 ```ts
 // 自定义WithTheme作用域内组件缺省配色
-import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors } from '@kit.ArkUI';
 
 class GreenColors implements CustomColors {
   fontPrimary = '#ff049404';

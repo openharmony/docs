@@ -2717,7 +2717,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.                                           |
 
@@ -2771,7 +2771,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.                                           |
 
@@ -4631,6 +4631,8 @@ Describes the sensor data reporting frequency.
 
 ## SensorFrequency<sup>11+</sup>
 
+type SensorFrequency = 'game'|'ui'|'normal'
+
 Defines the reporting frequency mode of the sensor.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -4681,7 +4683,7 @@ Describes a geomagnetic response object.
 | geomagneticDip  | number | Yes  | Yes  | Magnetic dip, also called magnetic inclination, which is the angle measured from the horizontal plane to the magnetic field vector.            |
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
-| totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
+| totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                          |
 
 ## LocationOptions
 

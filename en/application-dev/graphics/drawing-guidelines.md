@@ -334,11 +334,11 @@ Follow the steps below to draw a 2D graphic by using the canvas and pen of the n
     OH_Drawing_PenSetJoin(cPen_, LINE_ROUND_JOIN);
     // Attach the pen to the canvas.
     OH_Drawing_CanvasAttachPen(cCanvas_, cPen_);
-    
+
     // Create a brush object and set the color.
     cBrush_ = OH_Drawing_BrushCreate();
     OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
-    
+
     // Attach the brush to the canvas.
     OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
     ```
@@ -398,7 +398,8 @@ The following describes how to use the two types of APIs to implement text drawi
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // If multiple measurements are required, it is recommended that fontCollection be used as a global variable to significantly reduce memory usage.
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateSharedFontCollection();
     // Register the customized font.
     const char* fontFamily = "myFamilyName"; // myFamilyName is the family name of the customized font.
     const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // Set the sandbox path where the customized font is located.

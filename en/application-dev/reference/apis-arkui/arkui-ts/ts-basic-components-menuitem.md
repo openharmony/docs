@@ -36,7 +36,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                          | Type                                                    | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| selected                       | boolean                                                      | Whether the menu item is selected.<br>Default value: **false**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| selected                       | boolean                                                      | Whether the menu item is selected.<br>Default value: **false**<br>Since API version 10, this parameter supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | selectIcon                     | boolean \| [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | Whether to display the selected icon for a menu item is selected.<br>Default value: **false**<br>**true**: When a menu item is selected, the default tick icon is displayed.<br>**false**: When a menu item is selected, no icon is displayed.<br>**ResourceStr**: When a menu item is selected, the specified icon is displayed.|
 | contentFont<sup>10+</sup>      | [Font](ts-types.md#font)                                     | Font style of the menu item content.                            |
 | contentFontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the menu item content.                            |

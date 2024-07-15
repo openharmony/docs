@@ -43,7 +43,7 @@ if (kvManager !== undefined) {
       // 设置数据库加密
       encrypt: true,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedKVStore.SecurityLevel.S2
     };

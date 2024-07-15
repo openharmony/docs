@@ -147,13 +147,13 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 **参数：**
 
-  | 名称       | 类型                                                                 | 必填 | 说明                                 |
-  | ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
-  | storeName  | string                                                               | 是   | 待绑定资产在所属的数据库中的库名。   |
-  | tableName  | string                                                               | 是   | 待绑定资产在所属的数据库中的表名。   |
-  | primaryKey | [CommonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
-  | field      | string                                                               | 是   | 待绑定资产在所属的数据库中的列名。   |
-  | assetName  | string                                                               | 是   | 待绑定资产在所属的数据库中的资产名。 |
+  | 名称       | 类型                                                               | 必填 | 说明                                 |
+  | ---------- | ------------------------------------------------------------------ | ---- | ------------------------------------ |
+  | storeName  | string                                                             | 是   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                                                             | 是   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                                                             | 是   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                                                             | 是   | 待绑定资产在所属的数据库中的资产名。 |
 
 ## DataObject
 
@@ -171,20 +171,20 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | 是 | 分布式数据对象在可信组网中的标识ID。设置为""时表示退出分布式组网。|
-  | callback | AsyncCallback&lt;void&gt; | 是 | 加入session的异步回调。|
+  | 参数名    | 类型                      | 必填 | 说明                                                                                                           |
+  | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
+  | sessionId | string                    | 是   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。设置为""时表示退出分布式组网。 |
+  | callback  | AsyncCallback&lt;void&gt; | 是   | 加入session的异步回调。                                                                                        |
 
 **错误码：**
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201      | Permission verification failed. |
-  | 401      | Parameter error. Incorrect parameter types. |
-  | 15400001 | Create table failed. |
+  | 错误码ID | 错误信息                                                                                                                                                           |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+  | 15400001 | Create table failed.                                                                                                                                               |
 
 **示例：**
 
@@ -250,9 +250,9 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | 否 | 分布式数据对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
+  | 参数名    | 类型   | 必填 | 说明                                                                                                                         |
+  | --------- | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | sessionId | string | 否   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。如果要退出分布式组网，设置为""或不设置均可。 |
 
 **返回值：**
 
@@ -264,11 +264,11 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201      | Permission verification failed. |
-  | 401      | Parameter error. Incorrect parameter types. |
-  | 15400001 | Create table failed. |
+  | 错误码ID | 错误信息                                                                                                                                                           |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+  | 15400001 | Create table failed.                                                                                                                                               |
 
 **示例：**
 
@@ -700,7 +700,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
@@ -787,7 +787,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore("attachment", bindInfo).then(() => {

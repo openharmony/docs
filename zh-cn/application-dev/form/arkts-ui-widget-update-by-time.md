@@ -2,8 +2,7 @@
 
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
-
-- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_updatebytime_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
+- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
 
   > **说明：**
   >
@@ -45,7 +44,7 @@
   }
   ```
 
-- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_updatebytime_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
+- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
 
   > **说明：**
   >

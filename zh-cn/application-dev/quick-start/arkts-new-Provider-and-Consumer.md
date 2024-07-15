@@ -51,7 +51,6 @@
 
 \@Consumer语法：
 `@Consumer(alias?: string) varName : varType = initValue`
-`@Consumer(alias?: string) varName?: varType`
 
 
 | \@Consumer属性装饰器 | 说明                                                         |
@@ -59,7 +58,7 @@
 | 装饰器参数            | `aliasName?: string`，别名，缺省时默认为属性名，向上查找最近的\@Provider。    |
 | 可装饰的变量          | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持修饰箭头函数。 |
 | 从父组件初始化      | 禁止。 |
-| 本地初始化         | 可选。 |
+| 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Provider。 |
 
 ### aliasName和属性名

@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo.setBatteryConfig<sup>11+</sup>
@@ -44,14 +44,14 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 202     | If the system permission is denied. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let sceneValue = '0';
@@ -88,14 +88,14 @@ getBatteryConfig(sceneName: string): string
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 202     | If the system permission is denied. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.getBatteryConfig(sceneName);
@@ -131,14 +131,14 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 202     | If the system permission is denied. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.isBatteryConfigSupported(sceneName);
@@ -160,11 +160,11 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **示例**：
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let estimatedRemainingChargeTimeInfo: number = batteryInfo.estimatedRemainingChargeTime;
   console.info("The estimatedRemainingChargeTimeInfo is: " + estimatedRemainingChargeTimeInfo);
-  
+
   let totalEnergyInfo: number = batteryInfo.totalEnergy;
   console.info("The totalEnergyInfo is: " + totalEnergyInfo);
 

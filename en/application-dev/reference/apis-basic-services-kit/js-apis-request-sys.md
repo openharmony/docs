@@ -12,7 +12,7 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
@@ -68,13 +68,15 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -116,13 +118,15 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

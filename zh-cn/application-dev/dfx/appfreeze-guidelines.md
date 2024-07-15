@@ -37,7 +37,7 @@
 
 ### 生命周期切换超时
 
-生命周期切换超时分为[Ability生命周期](../../application-dev/application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
+生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
 
 该故障出现在生命周期切换的过程中，影响当前应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -166,16 +166,16 @@ Tid:1561,Name:i.myapplication
 示例表明当前1561进程向685进程请求通信，等待超过10s没有得到响应。
 
 ```
-PeerBinderCatcher -pid==1561 Layer_==0 
+PeerBinderCatcher -pid==1561 Layer_==0
 
 
 BinderCatcher --
-    1561::1561t0685:0c0de0Wait:10.366245919s 1329::1376t0487:794c0de0Wait:0.12070041s 
+    1561::1561t0685:0c0de0Wait:10.366245919s 1329::1376t0487:794c0de0Wait:0.12070041s
 
 pid   context  request  started  max  ready free_async_space
-1561   binder    0       3       16     4       520192 
-544    binder    0       4       16     5       520192 
-1104   binder    0       1       16     2       520192 
+1561   binder    0       3       16     4       520192
+544    binder    0       4       16     5       520192
+1104   binder    0       1       16     2       520192
 1397   binder    0       1       16     3       520192
 ...
 ```
@@ -193,7 +193,7 @@ Timestamp:2017-08-0817:06:55.000
 Pid:685
 Uid:1000
 Process name:wifi_manager_service
-Tid:658,Name:wifi_manager_service 
+Tid:658,Name:wifi_manager_service
 #00 pc 000669f0 /system/lib/ld-musl-arm.so.1
 #01 pc 000c60cc /system/lib/ld-musl-arm.so.1
 #02 pc 000c5040 /system/lib/ld-musl-arm.so.1
@@ -237,7 +237,7 @@ Details of Processes:
 ```
 -------------------------------------------[memory]----------------------------------------
                  Pss      Shared   Shared   Private  Private   Swap   SwapPss   Heap  Heap
-                 Total    CLean    Dirty    CLean    Dirty     Total  Total     Size  Alloc 
+                 Total    CLean    Dirty    CLean    Dirty     Total  Total     Size  Alloc
                  (kB)     (kB)     (kB)     (kB)      (kB)     (kB)    (kB)     (kB)  (kB)
 -------------------------------------------------------------------------------------------
 guard             0        0         0       0         0         0      0        0      0
@@ -246,9 +246,9 @@ AnonPage other   17881    12        12376    88       15948      0      0       
 stack            292       0        0        0        292        0      0        0      0
 .S0              5053     63408     4172     1812     2640       0      0        0      0
 .ttf             1133     3092      0        4        0          0      0        0      0
-dev              10       0         108      8        0          0      0        0      0 
+dev              10       0         108      8        0          0      0        0      0
 FilePage other   121      556       8        0        4          0      0        0      0
------------------------------------------------------------------------------------------- 
+------------------------------------------------------------------------------------------
 Total            34675    67068     16844    1912     19044      0      0        0      0
 ```
 
@@ -289,7 +289,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
   Idle priority event queue information:
   Total size of Idle events 0
   Total event size :2
- 
+
  Timestamp: 2017-08-0817:06:24.4142447784
  Pid: 1561
  Uid: 20010039
@@ -314,7 +314,7 @@ PID = 1561
 UID = 20010039
 TID = 1566
 PACKAGE_NAME com.ohos.huawei.myapplication
-PROCESS NAME com.ohos.huawei.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile 
+PROCESS NAME com.ohos.huawei.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
 eventLog_interval 10
 MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:27.291
   Event runner (Thread name =Thread ID =1561)is running
@@ -330,7 +330,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
   Idle priority event queue information:
   Total size of Idle events 0
   Total event size 3
-  
+
 Timestamp:2017-08-0817:0k:27,4142447784
 Pid:1561
 Uid:20010039
@@ -400,11 +400,11 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
 
-- 方式二：通过hiappevent获取
+- 方式二：通过hiAppEvent接口订阅
 
-    hiappevent对外提供订阅系统卡死事件，可以查询卡死事件信息，详见[订阅系统事件（卡死事件）](hiappevent-watcher-freeze-events.md)。
+    hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
 
 <!--Del-->
 - 方式三：通过shell获取日志
@@ -459,8 +459,8 @@ PROCESS NAME:com.xxx.xxx
 | -------- |--------|--------|
 |前台应用：6s <br> 后台应用 ：3s * 5 + 6s = 21s | 5s | Load：10s <br> Active：5s <br> Inactive：0.5s <br> Terminate：10s <br> Connect：3s <br> Disconnect：0.5s <br> Restart：5s <br> Foreground：5s <br> Background：3s |
 
-<small> 注：  1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报。  
-2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件  
+<small> 注：  1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报。
+2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件
 3、后台应用存在计数器 backgroundReportCount_ = 0，发生THREAD_BLOCK_3S后 +1 累计到 5 次后才会上报 （即连续发生5次 THREAD_BLOCK_3S 事件，计数不清零，才会上报THREAD_BLOCK_6S 事件，可知后台应用THREAD_BLOCK_3S 与THREAD_BLOCK_6S 检测时长依次为 18s 与 21s</samll>
 
 通过故障上报时间点往前推检测时长可得到故障发生的具体时间
@@ -698,22 +698,22 @@ pid     context     request   started    max     ready   fre
 16028   binder        1        14        16        15        520192
 
 14727   binder        1        14        16        16        520192
-``` 
+```
 
-request：当前请求数  
+request：当前请求数
 
-started：已启动线程数  
+started：已启动线程数
 
-max：最大线程数  
+max：最大线程数
 
-ready：当前可用的ipc线程个数  
+ready：当前可用的ipc线程个数
 
-free_async_space：buffer 剩余空间  
+free_async_space：buffer 剩余空间
 
-- 当请求太多，即 ready = started 时，没有空余线程时，会导致新请求无响应，此时表现为 Tid 为 0，表示还未分配 binder 线程；  
+- 当请求太多，即 ready = started 时，没有空余线程时，会导致新请求无响应，此时表现为 Tid 为 0，表示还未分配 binder 线程；
     --> 分析为什么 其他 binder 线程不释放
 
-- 当 free_async_space 值很小时，表示 buffer 不足，可能会导致线程卡死；  
+- 当 free_async_space 值很小时，表示 buffer 不足，可能会导致线程卡死；
     --> 分析为什么 buffer 被用完，其他线程在做什么业务
 
 ### 结合 hilog
@@ -756,7 +756,7 @@ free_async_space：buffer 剩余空间
 
    [form_mgr_proxy.cpp(GetFormsInfoByApp:1128)] 中的逻辑超时
 
-- 应用频繁打印输出日志：分析对应输出表示的场景及其合理性  
+- 应用频繁打印输出日志：分析对应输出表示的场景及其合理性
 
    ![appfreeze_2024061408](figures/appfreeze_2024061408.png)
 
@@ -1007,15 +1007,15 @@ int xxx()
 
 #### 背景/原理
 
-用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报  
+用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报
 
-该问题为线程繁忙导致卡死  
+该问题为线程繁忙导致卡死
 
 #### 错误代码实例
 
-对于组件的刷新复用，是通过组件的 key 值来控制的，当页面更新时，若组件的 key 不变，会复用之前的组件；若 key 值变化，会更新组件及其子组件。  
+对于组件的刷新复用，是通过组件的 key 值来控制的，当页面更新时，若组件的 key 不变，会复用之前的组件；若 key 值变化，会更新组件及其子组件。
 
-该函数用户生成桌面组件的 key，关联有 themeStyle，当用户在桌面连续切换主题时，导致组件反复全量刷新，导致卡死。  
+该函数用户生成桌面组件的 key，关联有 themeStyle，当用户在桌面连续切换主题时，导致组件反复全量刷新，导致卡死。
 
 ```ts
 private getForeachKey(item: xxx): string {
@@ -1064,7 +1064,7 @@ mainHandler dump is:
  Current Running: start at 2024-03-14 02:40:53.499, Event { send thread = 2918, send time = 2024-03-14 02:40:53.499, handle time = 2024-03-14 02:40:53.499, task name =  }
 ```
 
-用户输入事件需要第一时间响应，所以同 watchdog 一样都在 High priority event queue；  
+用户输入事件需要第一时间响应，所以同 watchdog 一样都在 High priority event queue；
 
 可以看到此时已经有 200+ 的 input event 在队列中阻塞住没有处理了；
 
@@ -1098,7 +1098,7 @@ mainHandler dump is:
 ```
 
 从逻辑来看，input event 触发应用主线程任务开始执行，但是 6s 还没有执行完，没有反馈，导致 ANR 超时；
-因此我们只需要关心 input 触发了应用执行什么任务，该任务为什么会执行超时即可。  
+因此我们只需要关心 input 触发了应用执行什么任务，该任务为什么会执行超时即可。
 
 主线程栈：此时运行时状态，栈顶的 ark_jsruntime GetCurrentThreadId 也不是持锁阻塞或耗时很长函数，抓到的栈为瞬时栈，没有参考意义；
 
@@ -1122,7 +1122,7 @@ Tid:2918, Name:ohos.sceneboard
 ...
 ```
 
-接下来排查流水日志：  
+接下来排查流水日志：
 
 首先找到上报 APP_INPUT_BLOCK 的时间点，大概在 13:40:59.448 左右，且从这里我们可以看到在事件上报完后，dfx 将卡死的 scb 杀掉。
 
@@ -1142,9 +1142,9 @@ Tid:2918, Name:ohos.sceneboard
 
 发现 scb 主线程被占满，确实很繁忙。选择耗时较长的任务，是 **CustomNodeUpdate SwiperPage**，后续就需要排查为啥这个组件里一直在做刷新。
 
-根据对应领域排查后发现：swiperPage上把 themeStyle 加入到了 key 里面，key 变了就会走控件新建流程  
+根据对应领域排查后发现：swiperPage上把 themeStyle 加入到了 key 里面，key 变了就会走控件新建流程
 
-即当用户切换主题或者切换图标风格时，会造成桌面上控件的全量新建，导致主线程繁忙，导致输入事件未响应  
+即当用户切换主题或者切换图标风格时，会造成桌面上控件的全量新建，导致主线程繁忙，导致输入事件未响应
 
 #### 修改方法
 
@@ -1311,7 +1311,7 @@ Tid:5235, Name:edialibrarydata
 # 18 pc 000000000001106c /system/bin/appspawn(_start_c+76)(7b715884c45cfe57b22df46fdaeeca88)
 ```
 
-以上可以得到信息：应用通过文件系统 Open::Sync 同步通过 uri 加载文件，调用到 datashare 请求媒体库文件数据  
+以上可以得到信息：应用通过文件系统 Open::Sync 同步通过 uri 加载文件，调用到 datashare 请求媒体库文件数据
 
 查看对应时间点的流水信息：进程调用 datashare 加载云图后卡死，与堆栈信息吻合；
 

@@ -302,7 +302,7 @@ struct Index {
 该示例实现了如何设置Span基线的偏移量。
 
 ```ts
-import { LengthUnit,LengthMetrics } from '@ohos.arkui.node';
+import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component

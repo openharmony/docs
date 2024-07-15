@@ -80,7 +80,7 @@ The following table lists the APIs for cross-device data sync of the single KV s
 | API| Description| 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.| 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.| 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.| 
@@ -100,7 +100,7 @@ The following uses a single KV store as an example to describe how to implement 
 1. Import the module.
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    ```
 
 2. Request permissions.
@@ -116,9 +116,9 @@ The following uses a single KV store as an example to describe how to implement 
      
    ```ts
    // Obtain the context of the stage model.
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -129,8 +129,8 @@ The following uses a single KV store as an example to describe how to implement 
    }
     
     // Obtain the context of the FA model.
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
@@ -164,14 +164,34 @@ The following uses a single KV store as an example to describe how to implement 
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ['$.id', '$.name'];
+     // The value 0 indicates the strict mode, and 1 indicates the compatible mode.
+     schema.mode = 1;
+     // Set the number of bytes to be skipped during the value check. The value range is [0, 4M-2].
+     schema.skip = 0;
+
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
        backup: false,
        autoSync: false,
        // If kvStoreType is left empty, a device KV store is created by default.
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+       // The schema parameter is optional. You need to set this parameter when the schema function is required, for example, when predicates are used for query.
+       schema: schema,
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
@@ -215,7 +235,8 @@ The following uses a single KV store as an example to describe how to implement 
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // If schema is not defined, pass in other values that meet the requirements.
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -238,7 +259,8 @@ The following uses a single KV store as an example to describe how to implement 
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // If schema is not defined, pass in other values that meet the requirements.
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -270,12 +292,12 @@ The following uses a single KV store as an example to describe how to implement 
    > In manual sync mode, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     
-   let devManager: deviceManager.DeviceManager;
+   let devManager: distributedDeviceManager.DeviceManager;
    try {
      // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds is obtained by devManager.getAvailableDeviceListSync.
      let deviceIds: string[] = [];
      if (devManager != null) {

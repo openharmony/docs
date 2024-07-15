@@ -5,9 +5,9 @@
 1. 导入选择器模块和文件管理模块。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建图片-音频类型文件选择选项实例。
@@ -45,21 +45,21 @@
 
 ## 指定URI读取文件数据
 
-1. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
+1. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fileIo.OpenMode.READ_ONLY。
 
    ```ts
    let uri: string = '';
-   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
 
-2. 通过fd使用[fs.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
+2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
    let buffer = new ArrayBuffer(4096);
-   let readLen = fs.readSync(file.fd, buffer);
+   let readLen = fileIo.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
-   fs.closeSync(file);
+   fileIo.closeSync(file);
    ```
 
 ## 指定URI获取图片或视频资源
@@ -67,7 +67,7 @@
 媒体库支持Picker选择文件URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);

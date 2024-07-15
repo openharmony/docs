@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```js
-import update from '@ohos.update';
+import { update } from '@kit.BasicServicesKit';
 ```
 
 ## update.getOnlineUpdater
@@ -138,7 +138,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
       console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
@@ -173,7 +173,7 @@ checkNewVersion(): Promise\<CheckResult>
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion()
       .then((result: update.CheckResult) => {
@@ -214,7 +214,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
       console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -250,7 +250,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
@@ -291,7 +291,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -347,7 +347,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -395,7 +395,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
@@ -432,7 +432,7 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
@@ -520,8 +520,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
+import { BusinessError } from '@kit.BasicServicesKit';
 // 描述文件选项
 const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
@@ -562,7 +561,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
@@ -597,7 +596,7 @@ getTaskInfo(): Promise\<TaskInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
@@ -637,7 +636,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -690,7 +689,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -740,7 +739,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo : update.VersionDigestInfo= {
@@ -792,7 +791,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -841,7 +840,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -893,7 +892,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -942,7 +941,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -994,7 +993,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1043,7 +1042,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1095,7 +1094,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1141,7 +1140,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
@@ -1177,7 +1176,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
@@ -1216,7 +1215,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1262,7 +1261,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1304,7 +1303,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
@@ -1339,7 +1338,7 @@ terminateUpgrade(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
@@ -1468,7 +1467,7 @@ factoryReset(): Promise\<void>
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
@@ -1556,7 +1555,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
@@ -1637,7 +1636,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包

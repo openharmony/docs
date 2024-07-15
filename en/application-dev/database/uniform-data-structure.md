@@ -48,11 +48,10 @@ The following table lists the commonly used APIs for managing uniform data struc
 
 The following describes how to encapsulate an image and a plaint text into an object in a uniform data struct and manage the data.
 
-1. Import the **@ohos.data.unifiedDataChannel** and **@ohos.data.uniformTypeDescriptor** modules.
+1. Import the **unifiedDataChannel** and **uniformTypeDescriptor** modules.
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
 2. Create an image object and create a **UnifiedData** instance with the image object.
 

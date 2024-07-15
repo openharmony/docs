@@ -9,8 +9,9 @@ An \@Provide decorated state variable exists in the ancestor component and is sa
 
 > **NOTE**
 >
-> Since API version 9, these two decorators are supported in ArkTS widgets.
-
+> These two decorators can be used in ArkTS widgets since API version 9.
+>
+> These two decorators can be used in atomic services since API version 11.
 
 ## Overview
 
@@ -45,7 +46,8 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Provide a: string \| undefined = undefined is recommended; **@Provide a: string = undefined** is not recommended.
+<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
 | Initial value for the decorated variable     | Mandatory.                                   |
 | Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter).|
 
@@ -53,7 +55,8 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.
+<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
 | Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
 
 
@@ -174,6 +177,8 @@ struct CompA {
 
    As can be learned from the initial render procedure, the \@Consume decorated variable holds an instance of \@Provide. After the \@Consume decorated variable is updated, the update method of \@Provide is called to synchronize the changes to \@Provide.
 
+![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
+
 
 ## Application Scenarios
 
@@ -234,9 +239,9 @@ struct CompA {
 
 > **NOTE**
 >
-> Since API version 11, \@Provide and \@Consume support the Map type.
+> \@Provide and \@Consume support the Map type since API version 11.
 
-In this example, the **message** variable is of the Map<number, string> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable is of the Map\<number, string> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
@@ -294,9 +299,9 @@ struct MapSample {
 
 > **NOTE**
 >
-> Since API version 11, \@Provide and \@Consume support the Set type.
+> \@Provide and \@Consume support the Set type since API version 11.
 
-In this example, the **message** variable is of the Set\<number\> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable is of the Set\<number\> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component

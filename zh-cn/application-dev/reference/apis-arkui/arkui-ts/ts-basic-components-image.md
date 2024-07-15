@@ -409,7 +409,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值：false |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -417,7 +417,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 设置期望展示的图像动态范围。
 
-该属性仅在手机设备上生效。
+<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -425,7 +425,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。 |
+| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ## ImageInterpolation
 
@@ -630,14 +630,15 @@ struct ImageExample2 {
   build() {
     Column({ space: 10 }) {
       Image("https://www.example.com/xxx.png")// 直接加载网络地址，请填写一个具体的网络图片地址
-        .alt($r('app.media.icon'))// 使用alt，在网络图片加载成功前使用占位图
-        .width(100)
-        .height(100)
+        .alt($r('app.media.LoadingProgress'))// 使用alt，在网络图片加载成功前使用占位图
+        .width(375)
+        .height(300)
     }
   }
 }
 ```
 
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
 
 ### 示例3
 
@@ -703,6 +704,7 @@ struct ImageExample4 {
         .enableAnalyzer(true)
         .width(200)
         .height(200)
+        .margin({bottom:10})
       Button('getTypes')
         .width(80)
         .height(80)
@@ -726,6 +728,8 @@ struct ImageExample4 {
   }
 }
 ```
+
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 
 ### 示例5
 
@@ -817,7 +821,7 @@ struct ImageExample {
     Column() {
       Row() {
         Image(this.animated)
-          .width('500px').height('280px')
+          .width('500px').height('500px')
           .onFinish(() => {
             console.info("finish")
           })
@@ -864,12 +868,15 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.icon'))//gif图, 生成多张PixelMap
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.view'))//gif图, 生成多张PixelMap
     Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) //添加一张图片
     return Mypixelmaps;
   }
 }
 ```
+
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
+
 ### 示例7
 
 该示例实现了给图像设置颜色滤镜效果
@@ -920,3 +927,50 @@ struct ImageExample3 {
 }
 ```
 ![imageSetColorFilter](figures/imageSetColorFilter.gif)
+
+### 示例8
+
+该示例实现了给图像设置objectFit效果
+
+```ts
+@Entry
+@Component
+struct ImageExample{
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row() {
+          // 加载png格式图片
+          Image($r('app.media.sky'))
+            .width(110).height(110).margin(15)
+            .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+            .border({ width: 2, color: Color.Pink })
+            .objectFit(ImageFit.TOP_START)
+          // 加载gif格式图片
+          Image($r('app.media.loading'))
+            .width(110).height(110).margin(15)
+            .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+            .border({ width: 2, color: Color.Pink })
+            .objectFit(ImageFit.BOTTOM_START)
+        }
+        Row() {
+          // 加载svg格式图片
+          Image($r('app.media.svg'))
+            .width(110).height(110).margin(15)
+            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+            .border({ width: 2, color: Color.Pink })
+            .objectFit(ImageFit.TOP_END)
+          // 加载jpg格式图片
+          Image($r('app.media.jpg'))
+            .width(110).height(110).margin(15)
+            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+            .border({ width: 2, color: Color.Pink })
+            .objectFit(ImageFit.CENTER)
+        }
+      }
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+}
+```
+
+![imageResizable](figures/imageSetFit.gif)

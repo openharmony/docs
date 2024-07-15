@@ -20,7 +20,7 @@ Button(options: ButtonOptions)
 
 Creates a button that can contain a single child component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,7 +36,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 Creates a button component based on text content. In this case, the component cannot contain child components.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,7 +204,7 @@ Sets the size for the button.
 
 ## ButtonType
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Description                |
 | ------- | ------------------ |
@@ -232,7 +232,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ButtonStyleMode<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 | Name     | Description                |
 | ------- | ------------------ |
@@ -242,7 +242,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 ## ControlSize<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 | Name     | Description                |
 | ------- | ------------------ |

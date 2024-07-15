@@ -25,7 +25,7 @@ For more details, see [UI Development](../ui/arkui-overview.md).
 
 ### Application Model
 
-The application model is the abstraction of capabilities required by OpenHarmony applications. It provides necessary components and running mechanisms for applications. With application models, you can develop applications based on a unified set of models, making application development simpler and more efficient. For details, see [Elements of the Application Model](../application-models/application-model-composition.md).
+The application model is the abstraction of capabilities required by applications. It provides necessary components and running mechanisms for applications. With application models, you can develop applications based on a unified set of models, making application development simpler and more efficient. For details, see [Elements of the Application Model](../application-models/application-models.md#elements-of-the-application-model).
 
 Along its evolution, OpenHarmony has provided two application models:
 
@@ -33,15 +33,15 @@ Along its evolution, OpenHarmony has provided two application models:
 
 - **Feature Ability (FA) model**: This model is supported since API version 7. It is no longer recommended. For details about development based on the FA model, see [FA Model Development Overview](../application-models/fa-model-development-overview.md).
 
-For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
+For details about the differences between the FA model and stage model, see [Application Models](../application-models/application-models.md).
 
 To help you better understand the preceding basic concepts and application development process, **Getting Started** walks you through an example of building the first ArkTS application with two pages in the stage model.
 
 
 ## Tool Preparation
 
-1. Download the latest version of [DevEco Studio](../../release-notes/OpenHarmony-v4.1-beta1.md#version-mapping).
+1. Download the latest version of DevEco Studio.
 
-2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3).
+2. Install DevEco Studio and configure the development environment.
 
 When you are done, you can set out to [build your first ArkTS application in the stage model](start-with-ets-stage.md).

@@ -41,7 +41,7 @@
 - 创建及应用文本字体样式对象（TextStyle）
 
   ```ts
-  import { LengthMetrics } from '@ohos.arkui.node'
+  import { LengthMetrics } from '@kit.ArkUI'
   @Entry
   @Component
   struct styled_string_demo2 {
@@ -151,7 +151,7 @@
 - 创建及应用文本基线偏移量对象（BaselineOffsetStyle）
 
   ```ts
-  import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+  import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
   // xxx.ets
   @Entry
   @Component
@@ -184,7 +184,7 @@
 - 创建及应用文本行高对象（LineHeightStyle）
 
   ```ts
-  import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+  import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
   // xxx.ets
   @Entry
   @Component
@@ -218,7 +218,7 @@
 - 创建及应用文本字符间距对象（LetterSpacingStyle）
 
   ```ts
-  import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+  import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
   // xxx.ets
   @Entry
   @Component
@@ -257,7 +257,7 @@
 以下代码示例展示了如何创建 ParagraphStyle 并应用。如果将 ParagraphStyle 附加到段落开头末尾或之间的任何位置均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
-  import { LengthMetrics } from '@ohos.arkui.node'
+  import { LengthMetrics } from '@kit.ArkUI'
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   //段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
@@ -298,7 +298,7 @@
   除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式, 同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
-  import { LengthMetrics } from '@ohos.arkui.node'
+  import { LengthMetrics } from '@kit.ArkUI'
   //段落不设置缩进配置最大行数及超长显示方式
   paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
   // 后续某个节点触发更新段落样式
@@ -320,8 +320,8 @@
 
   ```ts
   // xxx.ets
-  import image from '@ohos.multimedia.image'
-  import { LengthMetrics } from '@ohos.arkui.node'
+  import { image } from '@kit.ImageKit'
+  import { LengthMetrics } from '@kit.ArkUI'
 
   @Entry
   @Component
@@ -478,7 +478,7 @@
 除了初始化属性字符串对象即初始样式对象，亦可通过[setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle)接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
-import drawing from '@ohos.graphics.drawing';
+import { drawing } from '@kit.ArkGraphics2D';
 
 class MyCustomSpan extends CustomSpan {
   constructor(word: string, width: number, height: number, fontSize: number) {
@@ -576,7 +576,7 @@ struct styled_string_demo6 {
 ## 场景示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component

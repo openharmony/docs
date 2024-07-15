@@ -49,9 +49,9 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure.               |
+| 10200003 | Worker initialization failed.               |
 | 10200006 | An exception occurred during serialization.  |
-| 10200014 | The function is not mark as concurrent.      |
+| 10200014 | The function is not marked as concurrent.      |
 
 **示例：**
 
@@ -97,9 +97,9 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure.              |
+| 10200003 | Worker initialization failed.             |
 | 10200006 | An exception occurred during serialization. |
-| 10200014 | The function is not mark as concurrent.     |
+| 10200014 | The function is not marked as concurrent.     |
 | 10200051 | The periodic task cannot be executed again. |
 
 **示例：**
@@ -208,7 +208,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 | 类型                 | 说明                               |
 | ----------------    | ---------------------------------- |
-| Promise\<Object>  | Promise对象数组，返回任务函数的执行结果。 |
+| Promise\<Object>  | Promise对象，返回任务函数的执行结果。 |
 
 **错误码：**
 
@@ -340,8 +340,8 @@ cancel(task: Task): void
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200015 | The task does not exist when it is canceled. |
-| 10200016 | The task is executing when it is canceled.   |
+| 10200015 | The task to cancel does not exist. |
+| 10200016 | The task to cancel is being executed.   |
 
 从API version10开始，此接口调用时不再涉及上报错误码10200016。
 
@@ -419,7 +419,7 @@ cancel(group: TaskGroup): void
 | 错误码ID | 错误信息                                                 |
 | -------- | ------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200018 | The task group does not exist when it is canceled.      |
+| 10200018 | The task group to cancel does not exist.      |
 
 **示例：**
 
@@ -573,14 +573,12 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。 |
-| MEDIUM | 1 | 任务为中优先级。 |
-| LOW | 2 | 任务为低优先级。 |
-| IDLE<sup>12+</sup> | 3 | 任务为后台任务。 |
+| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -661,7 +659,7 @@ Task的构造函数。
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -700,7 +698,7 @@ Task的构造函数，可以指定任务名称。
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -811,7 +809,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+| 10200029 | An ArrayBuffer cannot be set as both a transfer list and a clone list. |
 
 **示例：**
 
@@ -876,7 +874,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+| 10200029 | An ArrayBuffer cannot be set as both a transfer list and a clone list. |
 
 **示例：**
 
@@ -1015,6 +1013,12 @@ static sendData(...args: Object[]): void
 
 在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需要先构造Task。
 
+> **说明：**
+>
+> - 该接口在taskpool的线程中调用。
+> - 避免在回调函数中使用该方法。
+> - 调用该接口时确保处理数据的回调函数在宿主线程已注册。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
@@ -1033,7 +1037,7 @@ static sendData(...args: Object[]): void
 | -------- | --------------------------------------- |
 | 401       | The input parameters are invalid. |
 | 10200006  | An exception occurred during serialization. |
-| 10200022  | The function is not called in the taskpool thread. |
+| 10200022  | The function is not called in the TaskPool thread. |
 | 10200023  | The function is not called in the concurrent function. |
 | 10200024  | The callback is not registered on the host side. |
 
@@ -1041,12 +1045,29 @@ static sendData(...args: Object[]): void
 
 ```ts
 @Concurrent
-function ConcurrentFunc(num: number): number {
+function sendDataTest(num: number): number {
   let res: number = num * 10;
   taskpool.Task.sendData(res);
   return num;
 }
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function taskpoolTest(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
+
 
 ### onReceiveData<sup>11+</sup>
 
@@ -1314,7 +1335,7 @@ function delay(args: number): number {
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(test, 1);
+let task: taskpool.Task = new taskpool.Task(delay, 1);
 task.onStartExecution(()=>{
   console.info("taskpool: onStartExecution")
 });
@@ -1595,7 +1616,7 @@ addTask(func: Function, ...args: Object[]): void
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -1633,7 +1654,7 @@ addTask(task: Task): void
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
@@ -1698,7 +1719,7 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-SequenceRunner的构造函数。如果名字相同，将返回相同的SequenceRunner。
+SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回相同的串行队列。
 
 > **说明：**
 >
@@ -1764,9 +1785,9 @@ execute(task: Task): Promise\<Object>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200003 | Worker initialization failure.              |
+| 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | Add dependent task to SequenceRunner.       |
+| 10200025 | The task to be added to SequenceRunner has dependent tasks.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**

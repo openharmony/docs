@@ -16,20 +16,23 @@
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1.确定密钥别名 */
 let keyAlias = "test_Key";
 /* 2.构造空对象 */
-let huksOptions:huks.HuksOptions = {
-  properties:[]
+let huksOptions: huks.HuksOptions = {
+  properties: []
 }
-class throwObject{
-  isThrow=false;
+
+class throwObject {
+  isThrow = false;
 }
+
 function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<void>((resolve, reject) => {
     try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data)=> {
+      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
         if (error) {
           reject(error);
         } else {
@@ -38,30 +41,32 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw(error as Error);
+      throw (error as Error);
     }
   });
 }
+
 /* 3.删除密钥*/
-async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
+async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject:throwObject = {isThrow: false};
+  let throwObject: throwObject = { isThrow: false };
   try {
     await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then ((data) => {
+      .then((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw(error as Error);
+          throw (error as Error);
         } else {
-          console.error(`promise: deleteKeyItem failed` + error);
+          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
+
 async function testDerive() {
   await publicDeleteKeyFunc(keyAlias, huksOptions);
 }

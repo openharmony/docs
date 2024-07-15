@@ -4,6 +4,8 @@ This document lists the common system events provided by the window management s
 ## COMMON_EVENT_SPLIT_SCREEN<sup>10+</sup>
 Indicates a screen splitting action.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 - Value: usual.event.SPLIT_SCREEN
 - Required subscriber permissions: none
 

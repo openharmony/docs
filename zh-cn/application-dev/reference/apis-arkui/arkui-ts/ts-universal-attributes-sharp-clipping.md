@@ -192,18 +192,18 @@ struct ClipAndMaskExample {
       .borderRadius(20)
       // 用一个280px直径的圆对图片进行裁剪
       Image($r('app.media.testImg'))
-        .clip(new Circle({ width: '280px', height: '280px' }))
+        .clipShape(new Circle({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
       Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
       // 给图片添加了一个500px*280px的方形遮罩
       Image($r('app.media.testImg'))
-        .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
       // 给图片添加了一个280px*280px的圆形遮罩
       Image($r('app.media.testImg'))
-        .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
     }
     .width('100%')
@@ -279,40 +279,3 @@ struct ProgressMaskExample {
 ```
 
 ![progressMask](figures/progressMask.gif)
-
-
-### 示例3
-
-```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
-
-@Entry
-@Component
-struct ShapeExample {
-  build() {
-    Column({ space: 15 }) {
-      Text('CircleShape, position').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Image($r('app.media.startIcon'))
-        .clipShape(new CircleShape({ width: '280px', height: '280px' }).position({ x: '20px', y: '20px' }))
-        .width('500px').height('280px')
-
-      Text('EllipseShape, offset').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Image($r('app.media.startIcon'))
-        .clipShape(new EllipseShape({ width: '350px', height: '280px' }).offset({ x: '10px', y: '10px' }))
-        .width('500px').height('280px')
-
-      Text('PathShape, fill').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Image($r('app.media.startIcon'))
-        .maskShape(new PathShape().commands('M100 0 L200 240 L0 240 Z').fill(Color.Red))
-        .width('500px').height('280px')
-    
-      Text('RectShape, width, height, fill').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Image($r('app.media.startIcon'))
-        .maskShape(new RectShape().width('350px').height('280px').fill(Color.Red))
-        .width('500px').height('280px')
-    }
-    .width('100%')
-    .margin({ top: 15 })
-  }
-}
-```

@@ -45,7 +45,7 @@ borderWidth(value: Length | EdgeWidths)
 
 Sets the border width.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,7 +61,7 @@ borderColor(value: ResourceColor | EdgeColors)
 
 Sets the border color.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +77,7 @@ borderRadius(value: Length | BorderRadiuses)
 
 Sets the radius of the border rounded corners. The radius is restricted by the component size. The maximum value is half of the component width or height.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

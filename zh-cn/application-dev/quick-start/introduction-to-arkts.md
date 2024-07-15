@@ -470,7 +470,7 @@ label: while (true) {
   switch (x) {
     case 1:
       // statements
-      break label // 中断while语句
+      break label; // 中断while语句
   }
 }
 ```
@@ -1387,13 +1387,13 @@ s.push(55); // 将会产生编译时错误
 
 ### 泛型约束
 
-泛型类型的类型参数可以绑定。例如，`HashMap<Key, Value>`容器中的`Key`类型参数必须具有哈希方法，即它应该是可哈希的。
+泛型类型的类型参数可以被限制只能取某些特定的值。例如，`MyHashMap<Key, Value>`这个类中的`Key`类型参数必须具有`hash`方法。
 
 ```typescript
 interface Hashable {
   hash(): number
 }
-class HasMap<Key extends Hashable, Value> {
+class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
     let h = k.hash();
     // ...其他代码...

@@ -11,7 +11,7 @@ AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-
 ## 导入模块
 
 ```ts
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -28,19 +28,17 @@ import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
-      parameters: { "demo.result": 123456 }
+      parameters: {
+        "demo.result": 123456
+      }
     };
 
     try {

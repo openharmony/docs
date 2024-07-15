@@ -26,7 +26,7 @@
 
 ![project](figures/project.png)
 
-- **AppScope &gt; app.json5**：应用的全局配置信息。
+- **AppScope &gt; app.json5**：应用的全局配置信息，详见[app.json5配置文件](app-configuration-file.md)。
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
@@ -125,13 +125,14 @@
 
 1. 创建第二个页面。
 
-   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击“**Finish**”。可以看到文件目录结构如下：
+   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击**回车键**。可以看到文件目录结构如下：
 
       ![secondPage](figures/secondPage.png)
 
       >  **说明：**
       >
-      > 开发者也可以在右键点击“**pages**”文件夹时，选择“**New &gt; Page**”，则无需手动配置相关页面路由。
+      > 开发者也可以在右键点击“**pages**”文件夹时，选择“**New > Page > Empty Page**”，命名为“**Second**”，点击“**Finish**”完成第二个页面的创建。使用此种方式则无需再进行下文中第二个页面路由的手动配置。
+
    - 配置第二个页面的路由。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; resources &gt; base &gt; profile**”，在main_pages.json文件中的“src”下配置第二个页面的路由“pages/Second”。示例如下：
      
       ```json

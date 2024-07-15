@@ -34,8 +34,8 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { common } from '@kit.AbilityKit';
 
 async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -84,10 +84,10 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -153,9 +153,9 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 - **桌面应用**
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function preLaunch(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -175,9 +175,9 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
   具体申请方式及校验方式，请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function setPreLaunchConfig(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);

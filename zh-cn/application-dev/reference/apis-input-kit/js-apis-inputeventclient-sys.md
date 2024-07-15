@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -21,6 +21,8 @@ injectEvent({KeyEvent: KeyEvent}): void
 按键(包括单个按键和组合键)注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -78,6 +80,8 @@ injectKeyEvent(keyEvent: KeyEventData): void
 按键(包括单个按键和组合键)事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -137,6 +141,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -155,7 +161,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -237,6 +243,8 @@ injectTouchEvent(touchEvent: TouchEventData): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -255,7 +263,7 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import touchEvent from '@ohos.multimodalInput.touchEvent'
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
@@ -325,6 +333,8 @@ permitInjection(result: boolean): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名    | 类型    | 必填   | 说明        |
@@ -342,7 +352,7 @@ permitInjection(result: boolean): void
 
 
 ```ts
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 
 try {
   let result = true;

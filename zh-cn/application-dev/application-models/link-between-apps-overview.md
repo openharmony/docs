@@ -9,12 +9,12 @@
 
 - 指向性跳转：拉起方应用明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
 
-    - 指定应用链接（推荐）：通过[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
+    - 指定应用链接（推荐）：通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
 
 
     - 指定Ability（不推荐）：通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口指定具体的Ability，显式拉起目标应用页面。
 
-    > 说明：
+    > **说明：**
     >
     > API 11及以前版本，可以使用显式want拉起其他应用。从API 12开始，已不再支持三方应用使用该方式拉起其他应用。
 
@@ -23,7 +23,8 @@
     常见的通用意图跳转包括导航、分享、文件打开等高频场景，不同意图类型的跳转实现也有多种方式。
 
     - [导航](start-intent-panel.md)：支持导航、地点搜索、路线规划
-    - [文件打开](file-processing-apps-startup.md)：打开特定类型的文件
+    - [文件打开](file-processing-apps-startup.md)：打开特定类型的文件<!--RP1-->
+    <!--RP1End-->
 
 ## 应用链接
 
@@ -43,7 +44,7 @@ scheme://host[:port]/path/
 > 
 > 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
 > 
-> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
+> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
 
 ### 应用链接跳转的运作机制
 
@@ -52,11 +53,11 @@ scheme://host[:port]/path/
 3. 系统接收到URL等相关信息，会寻找对应匹配项，并跳转至目标应用。
 
 
-### App Linking与Deep Linking的对比
+### Deep Linking与App Linking的对比
 
-[**Deep Linking**](./deep-linking-startup.md)：是一种通过链接跳转至应用特定页面的技术，其特点是支持开发者定义任意形式的scheme。
+**Deep Linking**：是一种通过链接跳转至应用特定页面的技术，其特点是支持开发者定义任意形式的scheme。
 
-[**App Linking**](./app-linking-startup.md)：是一种特定类型的Deep Linking，其限定了scheme必须为https，同时通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。
+**App Linking**：是一种特定类型的Deep Linking，其限定了scheme必须为https，同时通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。
 
 相比Deep Linking，App Linking具有更高的安全性和可靠性，用户体验更佳，推荐作开发者的首选App Linking方案。
 

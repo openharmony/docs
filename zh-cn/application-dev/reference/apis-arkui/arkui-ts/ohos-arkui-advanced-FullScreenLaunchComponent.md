@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```
-import { FullScreenLaunchComponent } from "@ohos.arkui.advanced.FullScreenLaunchComponent"
+import { FullScreenLaunchComponent } from '@kit.ArkUI'
 ```
 
 
@@ -49,7 +49,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 ## 示例
 
 ```ts
-import { FullScreenLaunchComponent } from '@ohos.arkui.advanced.FullScreenLaunchComponent';
+import { FullScreenLaunchComponent } from '@kit.ArkUI';
 
 @Entry
 @Component

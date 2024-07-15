@@ -72,7 +72,7 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 - 完成子系统DFX机制增强，如：支持业务流程打点、支持上层分布式业务统计以及支持对组网监控事件进行业务告警。
 
-- IPC支持引用技术查询和时间戳查询的接口，以及维测能力增强。
+- IPC支持引用计数查询和时间戳查询的接口，以及维测能力增强。
 
 
 ### 分布式数据管理
@@ -511,8 +511,8 @@ MindSpore Lite轻量化端侧学习能力开放C API。
 | Hi3516解决方案-LiteOS（二进制） | 4.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 318.7 MB |
 | Hi3516解决方案-Linux（二进制）  | 4.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 215.8 MB |
 | RK3568标准系统解决方案（二进制）        | 4.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 8.4 GB |
-| 标准系统Public SDK包（Mac）             | 4.1.7.5 | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 841 MB |
-| 标准系统Public SDK包（Mac-M1）             | 4.1.7.5  | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 897.8 MB |
+| 标准系统Public SDK包（Mac）             | 4.1.7.5 | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public-signed.tar.gz.sha256) | 1.1 GB |
+| 标准系统Public SDK包（Mac-M1）             | 4.1.7.5  | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz.sha256) | 1.1 GB |
 | 标准系统Public SDK包（Windows/Linux）   | 4.1.7.5   | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
 
 

@@ -35,7 +35,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ImagePacker_Opts_](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
+| [ImagePacker_Opts](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
 
 
 ### 类型定义

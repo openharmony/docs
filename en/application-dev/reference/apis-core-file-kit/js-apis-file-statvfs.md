@@ -64,7 +64,7 @@ Obtains the free size of the specified file system in bytes. This API uses an as
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the free size obtained, in bytes.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the free size obtained, in bytes.|
 
 **Error codes**
 
@@ -174,7 +174,7 @@ Obtains the total size of the specified file system in bytes. This API uses an a
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size obtained, in bytes.  |
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the total size obtained, in bytes.  |
 
 **Error codes**
 
@@ -190,7 +190,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let path = context.filesDir;
   statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getTotalSize succeed, Size: " + number);
     }
