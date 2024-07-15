@@ -18,7 +18,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function loadModel() : void {
   // 加载模型
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {};
+  scene.then(async (result: Scene) => {});
 }
 ```
 由于3D模型往往数据量很大，所以这里采用异步加载的方式，加载成功将返回一个scene对象，对于整个3D场景进行编辑。
