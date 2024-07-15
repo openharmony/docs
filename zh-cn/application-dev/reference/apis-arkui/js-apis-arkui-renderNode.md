@@ -2573,7 +2573,9 @@ struct Index {
 
 set markNodeGroup(isNodeGroup: boolean)
 
-标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。
+标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。设置效果如下：
+
+![markNodeGroup](./figures/renderNode-markNodeGroup.png)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
