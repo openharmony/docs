@@ -259,6 +259,7 @@
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
+      - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-arkui-advanced-InterstitialDialogAction.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
       - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)
       - [@ohos.arkui.advanced.SegmentButton (分段按钮)](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
