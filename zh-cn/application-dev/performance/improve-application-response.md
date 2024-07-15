@@ -456,3 +456,261 @@ class AVPlayerManager {
   }
 }
 ```
+
+## 延迟执行相机的资源释放操作
+
+将相机的关闭和释放操作放在setTimeout函数中执行，使其延迟到系统相对空闲的时刻进行，可以避免在程序忙碌时段占用关键资源，提升整体性能及响应能力；确保相机资源在系统任务负载减轻时得以释放，维护了应用的稳定性和效率。
+### 反例
+
+这段代码定义了在相机页面隐藏时触发的函数，用于释放相机相关资源。通过“停止拍摄进程 > 暂停并释放相机会话 > 关闭和释放预览及拍照的输入输出对象 > 清空相机管理对象”的过程，确保应用程序在不再使用相机时能够有效管理并回收所有相机资源。但是直接调用的release方法中captureSession、cameraInput、previewOutput、cameraOutput都用了await,使相机关闭和释放顺序执行可能会导致应用程序的响应性下降，造成用户界面卡顿。
+```ts
+// 相机页面每次隐藏时触发一次
+onPageHide() {
+  this.service.release()
+}
+
+// 释放资源
+public async release() {
+  this.stopCapture();
+  if (this.isSessionStart) {
+    try {
+      // 拍照模式会话类暂停
+      await this.captureSession?.stop();
+      // 拍照模式会话类释放
+      await this.captureSession?.release();
+    } catch (e) {
+      logger.error("release session error:",JSON.stringify(e))
+    }
+    this.isSessionStart = false;
+    this.isSessionCapture = false;
+    try {
+      // 拍照输入对象类关闭
+      await this.cameraInput?.close()
+      // 预览输出对象类释放
+      await this.previewOutput?.release()
+      // 拍照输出对象类释放
+      await this.cameraOutput?.release()
+    } catch (e) {
+     logger.error('release input output error:',JSON.stringify(e))
+    }
+    // 相机管理对象置空
+    this.cameraManager = null
+  }
+}
+```
+
+反例trace图
+
+利用Smart-Perf工具分析得到反例trace图，追踪流程从应用侧的`DispatchTouchEvent`（type=1，标识手指离开屏幕）标签开始，到render_service直至RSHardwareThread硬件提交vsync，最终定位到首帧渲染的变化。在直接于`onPageHide`中执行相机关闭与释放操作时，该过程耗时457.5ms。
+
+![](./figures/camera_release.PNG)
+
+### 正例
+
+这个代码片段启动setTimeout异步延迟操作，在200ms后调用release释放关闭相机。其通过“停止拍摄进程 >  并发执行：（暂停并释放相机会话 > 关闭和释放预览及拍照的输入输出对象 > 清空相机管理对象）”的过程，确保应用程序在不再使用相机时能够有效管理并回收所有相机资源。移除await关键字应用于相机资源释放操作，允许异步并发执行，显著减少了主线程阻塞，从而提升了应用性能和响应速度。
+
+```ts
+// 相机页面每次隐藏时触发一次
+onPageHide() {
+  setTimeout(this.service.release, 200)
+}
+
+// 释放资源
+public async release() {
+  // 摄像机在停止拍摄时的生命周期
+  this.stopCapture();
+  if (this.isSessionStart) {
+    try {
+      // 拍照模式会话类暂停
+      await this.captureSession?.stop();
+      // 拍照模式会话类释放
+      this.captureSession?.release();
+    } catch (e) {
+      logger.error("release session error:",JSON.stringify(e))
+    }
+    this.isSessionStart = false;
+    this.isSessionCapture = false;
+    try {
+      // 拍照输入对象类关闭
+      await this.cameraInput?.close()
+      // 预览输出对象类释放
+      this.previewOutput?.release()
+      // 拍照输出对象类释放
+      this.cameraOutput?.release()
+    } catch (e) {
+     logger.error('release input output error:',JSON.stringify(e))
+    }
+    // 相机管理对象置空
+    this.cameraManager = null
+  }
+}
+```
+
+正例trace图
+
+而利用Smart-Perf工具分析得到正例trace图，追踪流程从应用侧的`DispatchTouchEvent`（type=1，标识手指离开屏幕）标签开始，到render_service直至RSHardwareThread硬件提交vsync，最终定位到首帧渲染的变化。而通过在`onPageHide`中引入200ms的`setTimeout`延迟机制，执行时间减少至85.6ms。
+
+![](./figures/camera_release_use_settimeout.PNG)
+
+### 性能比对 
+
+（注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+| 操作类型        | 执行时间    | 备注                                            |
+| ----------- | ------- | --------------------------------------------- |
+| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作                   |
+| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作 |
+
+正反例数据表明，合理运用延时策略能显著提升函数执行效率，是优化相机资源管理与关闭操作性能的有效手段，对提升整体用户体验具有重要价值。
+
+## 减小拖动识别距离
+
+应用识别拖动手势事件时需要设置合理的拖动距离，设置不合理的拖动距离会导致滑动不跟手、响应时延慢等问题。针对此类问题可以通过设置distance大小来解决。
+
+### 反例
+
+指定触发拖动手势事件的最小拖动距离为100vp
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+
+@Entry
+@Component
+struct PanGestureExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+
+  build() {
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
+      // 左右拖动触发该手势事件
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            hiTraceMeter.startTrace("PanGesture", 1)
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd(() => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            hiTraceMeter.finishTrace("PanGesture", 1)
+          })
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          this.panOption.setDistance(100)
+        })
+    }
+  }
+}
+```
+
+利用Profiler工具分析得到反例trace图，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和PanGesture代表响应，追踪流程从应用侧的DispatchTouchEvent（type=0，标识手指接触屏幕）标签开始，到PanGesture（事件响应）的变化，该过程耗时145.1ms。
+
+反例trace图
+
+![反例响应时延](./figures/pangesture_distance_max.png)
+
+日志主要关注从应用接收TouchDown事件到pan识别耗时，该过程耗时127ms。（注：日志信息和trace图非同一时间获取，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+反例日志
+
+![反例响应时延日志](./figures/pangesture_distance_max_log.png)
+
+### 正例
+
+指定触发拖动手势事件的最小拖动距离为4vp
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+
+@Entry
+@Component
+struct PanGestureExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+
+  build() {
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
+      // 左右拖动触发该手势事件
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            hiTraceMeter.startTrace("PanGesture", 1)
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd(() => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            hiTraceMeter.finishTrace("PanGesture", 1)
+          })
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          this.panOption.setDistance(4)
+        })
+    }
+  }
+}
+```
+
+利用Profiler工具分析得到正例trace图，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和PanGesture代表响应，追踪流程从应用侧的DispatchTouchEvent（type=0，标识手指接触屏幕）标签开始，到PanGesture（事件响应）的变化，该过程耗时38.4ms。
+
+正例trace图
+
+![正例响应时延](./figures/pangesture_distance_min.png)
+
+日志主要关注从应用接收TouchDown事件到pan识别耗时，该过程耗时42ms。（注：日志信息和trace图非同一时间获取，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+正例日志
+
+![正例响应时延日志](./figures/pangesture_distance_min_log.png)
+
+### 性能比对 
+（注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考，该表格仅分析trace图。）
+
+| 拖动距离设置              | 执行时间 | 备注                                                         |
+| ------------------------- | -------- | ------------------------------------------------------------ |
+| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化 |
+| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能                                     |
+
+正反例数据表明，合理减小拖动距离能显著提升执行效率，是优化响应时延的有效手段，对提升整体用户体验具有重要价值。（注：本案例通过设置较大和较小拖动距离进行数据对比得出相关结论。distance的默认值为5vp，设置过小的distance容易出现误触等问题，开发者可根据具体应用场景进行设置。）
