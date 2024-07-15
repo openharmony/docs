@@ -13,7 +13,7 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class EntryAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -165,7 +165,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 axContext.setTargetBundleName(targetNames).then(() => {
@@ -201,7 +201,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 try {
@@ -248,8 +248,8 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -287,8 +287,8 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -329,8 +329,8 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isAccessibilityFocus = true;
 let rootElement: AccessibilityElement;
@@ -377,8 +377,8 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -416,8 +416,8 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -458,8 +458,8 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId = 10;
 let rootElement: AccessibilityElement;
@@ -506,8 +506,8 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows().then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in get windows, ${JSON.stringify(data)}`);
@@ -542,8 +542,8 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
   if (err && err.code) {
@@ -581,8 +581,8 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
@@ -632,14 +632,13 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath).then(() => {
@@ -681,13 +680,12 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath, (err: BusinessError) => {
@@ -724,12 +722,11 @@ injectGestureSync(gesturePath: GesturePath): void
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGestureSync(gesturePath);
@@ -758,8 +755,8 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
@@ -786,8 +783,8 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
@@ -833,8 +830,8 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -874,8 +871,8 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -906,7 +903,7 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.actionNames().then((data: string[]) => {
@@ -976,7 +973,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -991,7 +988,7 @@ rootElement.performAction(actionName).then(() => {
 **无参数Action示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 // Action描述中无明确要求的，均为无参数Action
@@ -1005,7 +1002,7 @@ rootElement.performAction('click').then(() => {
 **有参数Action示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 // setSelection示例代码
@@ -1021,7 +1018,7 @@ rootElement.performAction('setSelection', {
 ```
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 // setCursorPosition示例代码
@@ -1061,7 +1058,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -1103,7 +1100,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 let parameters: object = [];
@@ -1150,7 +1147,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1189,7 +1186,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1235,8 +1232,8 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 **示例：**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1275,8 +1272,8 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 **示例：**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1322,8 +1319,8 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 **示例：**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 
@@ -1362,8 +1359,8 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 **示例：**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 
@@ -1409,7 +1406,7 @@ findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //elementId为10
 let condition = 10;
@@ -1454,7 +1451,7 @@ findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityE
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
 let condition = 'location'; 
@@ -1484,7 +1481,7 @@ getCursorPosition(): Promise\<number>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.getCursorPosition().then((data: number) => {
@@ -1511,7 +1508,7 @@ getCursorPosition(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.getCursorPosition((err: BusinessError, data: number) => {
