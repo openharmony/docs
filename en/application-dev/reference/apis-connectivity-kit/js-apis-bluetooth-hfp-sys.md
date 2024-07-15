@@ -11,7 +11,7 @@ The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP
 ## Modules to Import
 
 ```js
-import hfp from '@ohos.bluetooth.hfp';
+import { hfp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -39,15 +39,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
@@ -81,15 +85,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');

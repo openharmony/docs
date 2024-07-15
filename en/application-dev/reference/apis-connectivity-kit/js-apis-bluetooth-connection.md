@@ -11,7 +11,7 @@ The **connection** module provides APIs for operating and managing Bluetooth.
 ## Modules to Import
 
 ```js
-import connection from '@ohos.bluetooth.connection';
+import { connection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -22,6 +22,8 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 Pairs a Bluetooth device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -38,20 +40,26 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// Callback
 try {
-    // The address can be scanned.
-    connection.pairDevice('XX:XX:XX:XX:XX:XX');
+    connection.pairDevice('11:22:33:44:55:66', (err: BusinessError) => {
+        console.info('pairDevice, device name err:' + JSON.stringify(err));
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
+
 ```
 
 
@@ -62,6 +70,8 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 Pairs a Bluetooth device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -83,17 +93,25 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// Promise
 try {
-    // The address can be scanned.
-    connection.pairDevice('XX:XX:XX:XX:XX:XX');
+    connection.pairDevice('11:22:33:44:55:66').then(() => {
+        console.info('pairDevice');
+    }, (error: BusinessError) => {
+        console.info('pairDevice: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -107,6 +125,8 @@ getRemoteDeviceName(deviceId: string): string
 Obtains the name of a remote Bluetooth device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -128,14 +148,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -172,16 +195,115 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.getRemoteProfileUuids
+
+getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
+
+Obtains the profile UUIDs of a remote Bluetooth device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.    |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
+        console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+
+```
+
+
+## connection.getRemoteProfileUuids
+
+getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
+
+Obtains the profile UUIDs of a remote Bluetooth device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.    |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
+        console.info('getRemoteProfileUuids');
+    }, (err: BusinessError) => {
+        console.error('getRemoteProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -210,13 +332,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localName: string = connection.getLocalName();
 } catch (err) {
@@ -233,6 +357,8 @@ Obtains the paired devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Return value**
@@ -247,14 +373,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
@@ -270,6 +398,8 @@ getPairState(deviceId: string): BondState
 Obtains the Bluetooth pairing state.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -291,17 +421,20 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
-    console.log('getPairState: ' + res);
+    console.info('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -322,7 +455,7 @@ Obtains the connection state of a Bluetooth profile. The **ProfileId** parameter
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | [profileId](js-apis-bluetooth-constant.md#profileid) | No   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+| profileId | [ProfileId](js-apis-bluetooth-constant.md#profileid) | No   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -336,16 +469,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Incorrect parameter types.        |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
 try {
     let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
@@ -377,14 +513,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data is the input parameter for the pairing request.
     console.info('pin required  = '+ JSON.stringify(data));
@@ -402,7 +541,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**.
+Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -422,14 +561,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
@@ -445,7 +587,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
-Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**.
+Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -470,14 +612,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
@@ -514,14 +659,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.setLocalName('device_name');
 } catch (err) {
@@ -553,14 +701,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // The device can be discovered and connected only when the discoverable and connectable mode is used.
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -584,7 +735,7 @@ Obtains the Bluetooth scan mode.
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| [ScanMode](#scanmode) | Bluetooth scan mode obtained. |
+| [ScanMode](#scanmode) | Bluetooth scan mode obtained.|
 
 **Error codes**
 
@@ -592,14 +743,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
@@ -616,6 +769,8 @@ Starts to discover Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -624,16 +779,18 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
-    console.log('data length' + data.length);
+    console.info('data length' + data.length);
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
@@ -652,6 +809,8 @@ Stops discovering Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -660,14 +819,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
@@ -698,17 +859,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: boolean = connection.isBluetoothDiscovering();
-    console.log('isBluetoothDiscovering: ' + res);
+    console.info('isBluetoothDiscovering: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -718,9 +881,11 @@ try {
 
 setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
-Sets the name of a remote Bluetooth device.
+Sets the name of a remote Bluetooth device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -743,13 +908,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
@@ -768,7 +935,7 @@ try {
 
 getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
-obtains the battery information of a remote Bluetooth device.
+obtains the battery information of a remote Bluetooth device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -792,13 +959,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.getRemoteDeviceBatteryInfo('11:22:33:AA:BB:FF').then((data: connection.BatteryInfo) => {
@@ -814,7 +983,7 @@ try {
 
 on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 
-Subscribes to the changes in the battery information of a remote Bluetooth device.
+Subscribes to the changes in the battery information of a remote Bluetooth device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -833,12 +1002,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
     console.info('BatteryInfo = '+ JSON.stringify(data));
 }
@@ -873,12 +1043,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
     console.info('BatteryInfo = '+ JSON.stringify(data));
 }
@@ -895,9 +1066,11 @@ try {
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Subscribes to the discovery of a Bluetooth device.
+Subscribes to the discovery of a Bluetooth device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -914,12 +1087,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) { // data is an array of Bluetooth device addresses.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -939,6 +1115,8 @@ Unsubscribes from the discovery of a Bluetooth device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -954,12 +1132,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -976,7 +1156,7 @@ try {
 
 on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to Bluetooth pairing state changes.
+Subscribes to Bluetooth pairing state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -995,12 +1175,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -1035,12 +1218,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -1057,7 +1243,7 @@ try {
 
 on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
-Subscribes to the pairing request events of the remote Bluetooth device.
+Subscribes to the pairing request events of the remote Bluetooth device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1076,12 +1262,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) { // data is the pairing request parameter.
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1116,12 +1305,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1221,6 +1413,8 @@ Enumerates the scan modes.
 ## BondState
 
 Enumerates the pairing states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
