@@ -289,7 +289,6 @@
     - [@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
     - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动原子化服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
     - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
-    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-arkui-advanced-InterstitialDialogAction.md)
     - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)
     - [@ohos.arkui.advanced.SegmentButton (分段按钮)](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
@@ -302,6 +301,7 @@
     - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
     - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
+    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-arkui-advanced-InterstitialDialogAction.md)
   - 安全控件
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
