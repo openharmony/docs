@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import Hash from '@ohos.file.hash';
+import { hash } from '@kit.CoreFileKit';
 ```
 
 ## 使用说明
@@ -17,8 +17,8 @@ import Hash from '@ohos.file.hash';
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -67,7 +67,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256").then((str: string) => {
+  hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
     console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
@@ -106,7 +106,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
+  hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
       console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -149,7 +149,7 @@ createHash(algorithm: string): HashStream;
     // 创建文件可读流
     const rs = fs.createReadStream(filePath);
     // 创建哈希流
-    const hs = Hash.createHash('sha256');
+    const hs = hash.createHash('sha256');
     rs.on('data', (emitData) => {
       const data = emitData?.data;
       hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
@@ -183,7 +183,7 @@ update(data: ArrayBuffer): void
 
   ```ts
   // 创建哈希流
-  const hs = Hash.createHash('sha256');
+  const hs = hash.createHash('sha256');
   hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   const hashResult = hs.digest();
@@ -207,7 +207,7 @@ digest(): string
 
   ```ts
   // 创建哈希流
-  const hs = Hash.createHash('sha256');
+  const hs = hash.createHash('sha256');
   hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   const hashResult = hs.digest();

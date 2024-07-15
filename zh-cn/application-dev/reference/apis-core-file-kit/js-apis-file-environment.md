@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import environment from '@ohos.file.environment';
+import { Environment } from '@kit.CoreFileKit';
 ```
 
 ## environment.getUserDownloadDir<sup>11+</sup>
@@ -41,7 +41,7 @@ getUserDownloadDir(): string
 import { BusinessError } from '@ohos.base';
 function getUserDownloadDirExample() {
   try {
-    let path = environment.getUserDownloadDir();
+    let path = Environment.getUserDownloadDir();
     console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
@@ -78,7 +78,7 @@ getUserDesktopDir(): string
 import { BusinessError } from '@ohos.base';
 function getUserDesktopDirExample() {
   try {
-    let path = environment.getUserDesktopDir();
+    let path = Environment.getUserDesktopDir();
     console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
@@ -115,7 +115,7 @@ getUserDocumentDir(): string
 import { BusinessError } from '@ohos.base';
 function getUserDocumentDirExample() {
   try {
-    let path = environment.getUserDocumentDir();
+    let path = Environment.getUserDocumentDir();
     console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);

@@ -38,8 +38,8 @@ startWork(work: WorkInfo): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
-| 9700005 | StartWork failed. |
+| 9700004 | Check on workInfo failed. |
+| 9700005 | Calling startWork failed |
 
 **示例**：
 
@@ -93,7 +93,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
@@ -147,7 +147,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
@@ -193,7 +193,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
@@ -368,7 +368,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 ## workScheduler.isLastWorkTimeOut<sup>10+<sup>
 
@@ -395,7 +395,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
@@ -441,7 +441,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 

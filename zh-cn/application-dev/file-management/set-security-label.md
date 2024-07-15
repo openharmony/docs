@@ -25,9 +25,9 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-ki
 
   
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
+import { securityLabel } from '@kit.CoreFileKit';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
 
 // 获取需要设备数据等级的文件沙箱路径
