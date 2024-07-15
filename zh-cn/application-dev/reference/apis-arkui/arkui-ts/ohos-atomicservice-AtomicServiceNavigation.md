@@ -1,5 +1,5 @@
 
-# @ohos.atomicservice.AtomicServiceNavigation (用于元服务的路由导航根视图容器组件)
+# @ohos.atomicservice.AtomicServiceNavigation (导航根视图容器组件)
 
 AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
@@ -30,9 +30,9 @@ AtomicServiceNavigation({
 })
 ```
 
-**装饰器类型：**@Component
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**装饰器类型：**@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,6 +55,8 @@ AtomicServiceNavigation({
 
 ## TitleOptions类型说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
@@ -63,6 +65,8 @@ AtomicServiceNavigation({
 
 ## NavDestinationBuilder类型说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
 | name | string | 是 | NavDestination页面名称。 |
@@ -70,43 +74,63 @@ AtomicServiceNavigation({
 
 ## 示例
 
-```typescript
-// Index.ets
-import { AtomicServiceNavigation } from '@ohos.atomicservice.AtomicServiceNavigation'
-import { PageOne } from './PageOne';
-import { PageTwo } from './PageTwo';
+```
+//index. ets
+import { AtomicServiceNavigation, NavDestinationBuilder } from '@ohos.atomicservice.AtomicServiceNavigation';
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@ohos.atomicservice.AtomicServiceTabs';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = '首页';
+  @State message: string = '主题';
   childNavStack: NavPathStack = new NavPathStack();
+  @Builder
+  tabContent1() {
+    Text('first page')
+      .onClick(() => {
+        this.childNavStack.pushPath({ name: 'page one' })
+      })
+  }
+
+  @Builder
+  tabContent2() {
+    Text('second page')
+  }
+
+  @Builder
+  tabContent3() {
+    Text('third page')
+  }
 
   @Builder
   navigationContent() {
-    Tabs({ barPosition: BarPosition.End}) {
-      TabContent() {
-        Text('first page')
-          .onClick(() => {
-            this.childNavStack.pushPath({ name: 'page one' })
-          })
-      }.tabBar('first')
-
-      TabContent() {
-        Text('second page')
-      }.tabBar('second')
-
-      TabContent() {
-        Text('third page')
-      }.tabBar('third')
-    }
-    .onTabBarClick((index: number) => {
-      if (index == 0) {
-        this.message = '首页';
-      } else if (index == 1) {
-        this.message = '消息';
-      } else {
-        this.message = '我的';
+    AtomicServiceTabs({
+      tabContents: [
+        () => {
+          this.tabContent1()
+        },
+        () => {
+          this.tabContent2()
+        },
+        () => {
+          this.tabContent3()
+        }
+      ],
+      tabBarOptionsArray: [
+        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '功能1'),
+        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '功能2', Color.Green, Color.Red),
+        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '功能3')
+      ],
+      tabBarPosition: TabBarPosition.BOTTOM,
+      barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
+      onTabBarClick: (index: Number) => {
+        if (index == 0) {
+          this.message = '功能1';
+        } else if (index == 1) {
+          this.message = '功能2';
+        } else {
+          this.message = '功能3';
+        }
       }
     })
   }
@@ -128,18 +152,21 @@ struct Index {
             this.navigationContent()
           },
           title: this.message,
-          titleBackgroundColor: Color.Blue,
+          titleOptions: {
+            backgroundColor: 'rgb(61, 157, 180)',
+            isBlurEnabled: false
+          },
           navDestinationBuilder: this.pageMap,
-          navPathStack: this.childNavStack })
+          navPathStack: this.childNavStack,
+          mode: NavigationMode.Stack
+        })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
-```
-```typescript
-// PageOne.ets
+
 @Component
 export struct PageOne {
   pageInfo: NavPathStack = new NavPathStack();
@@ -157,10 +184,7 @@ export struct PageOne {
     })
   }
 }
-```
 
-```typescript
-// PageTwo.ets
 @Component
 export struct PageTwo {
   pageInfo: NavPathStack = new NavPathStack();
@@ -176,3 +200,5 @@ export struct PageTwo {
   }
 }
 ```
+
+![](figures/AtomicServiceNavigationDemo01.png)
