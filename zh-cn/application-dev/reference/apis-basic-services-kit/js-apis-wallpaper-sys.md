@@ -12,7 +12,7 @@
 
 
 ```ts
-import wallpaper from '@ohos.wallpaper';
+import { wallpaper } from '@kit.BasicServicesKit';
 ```
 ## WallpaperResourceType<sup>10+</sup>
 
@@ -49,10 +49,20 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -88,6 +98,16 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 | source | string | 是 | mp4文件的Uri路径。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -97,7 +117,7 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -131,10 +151,20 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -176,10 +206,20 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -197,7 +237,7 @@ try {
 
 on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-订阅壁纸变化通知事件。
+订阅壁纸变化通知事件。不支持多线程并发调用。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -209,6 +249,15 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
 | callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -227,7 +276,7 @@ try {
 
 off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-取消订阅壁纸变化通知事件。
+取消订阅壁纸变化通知事件。不支持多线程并发调用。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -239,6 +288,15 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
 | callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -289,6 +347,15 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 | -------- | -------- |
 | Array&lt;[RgbaColor](js-apis-wallpaper.md#rgbacolordeprecated)&gt; | 返回壁纸的主要颜色信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例**：
 
 ```ts
@@ -316,6 +383,14 @@ getMinHeightSync(): number
 | -------- | -------- |
 | number | 返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+
 **示例：**
 
 ```ts
@@ -337,6 +412,14 @@ getMinWidthSync(): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
@@ -363,10 +446,20 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
@@ -401,10 +494,20 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to restore.`);
@@ -433,11 +536,21 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -495,11 +608,21 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -547,11 +670,21 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -587,11 +720,21 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 | -------- | -------- |
 | Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
@@ -628,8 +771,8 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -671,84 +814,12 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
-});
-```
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
-
-获取指定类型的壁纸文件。
-
-> **说明：**
-> 
-> 从 API version 8开始支持，从API version 9开始废弃。
-
-**需要权限**：ohos.permission.GET_WALLPAPER
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
-    if (error) {
-        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
-        return;
-    }
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-});
-```
-
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
-
-获取指定类型的壁纸文件。
-
-> **说明：**
->
-> 从 API version 8开始支持，从API version 9开始废弃。
-
-**需要权限**：ohos.permission.GET_WALLPAPER
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | 调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
 });
 ```

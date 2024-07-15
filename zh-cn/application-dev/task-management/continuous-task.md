@@ -12,7 +12,7 @@
 
 ### 使用场景
 
-下表给出了当前长时任务支持的类型，包含数据传输、音频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
+下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
 | 参数名 | 描述 | 配置项 | 场景举例 |
@@ -23,11 +23,11 @@
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
 | MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
-| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
-| VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
-| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件。 |
+| <!--DelRow-->WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
+| <!--DelRow-->VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
-- 实现上传下载的功能，建议调用系统[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行。
+- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。
 - 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
@@ -38,13 +38,15 @@
 - **数量限制**：一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持申请一个长时任务，即在一个长时任务结束后才可能继续申请。如果一个应用同时需要申请多个长时任务，需要创建多个UIAbility；一个应用的一个UIAbility申请长时任务后，整个应用下的所有进程均不会被挂起。
 
 - **运行限制**：在手机产品上，系统会进行长时任务校验。\
-场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音频播放），但实际未播放音乐，系统则会终止对应的进程。\
-场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
+场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音视频播放），但实际未播放音乐，长时任务会被取消。\
+场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音视频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
 场景3：若运行长时任务的进程后台负载持续高于所申请类型的典型负载，系统会对应用进行管控。
 
 > **说明：**
-> 
+>
 > 应用按需求申请长时任务，当应用无需在后台运行（任务结束）时，要及时主动取消长时任务，否则系统会强行取消。例如用户点击音乐暂停播放时，应用需及时取消对应的长时任务；用户再次点击音乐播放时，需重新申请长时任务。
+>
+> 播放音频的应用在后台停止长时任务的同时，需要暂停或停止音频流，否则应用会被系统强制终止。
 
 ## 接口说明
 
@@ -67,8 +69,9 @@
 
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
-2. 声明后台模式类型。
-   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
+2. 声明后台模式类型，以及添加uris等配置。
+   - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
+   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例，"scheme"应根据实际业务场景进行修改。
    
    ```json
     "module": {
@@ -78,6 +81,24 @@
                  // 长时任务类型的配置项
                 "audioRecording"
                 ], 
+                "skills": [
+                    // 需添加隐式跳转的uris配置
+                    {
+                        "entities": [
+                           "entity.system.home"
+                        ],
+                        "actions": [
+                            "action.system.home"
+                        ]    
+                    },
+                    {
+                        "uris": [
+                            {
+                                "scheme": "test"
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         ...
@@ -89,21 +110,19 @@
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
    ```ts
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import rpc from '@ohos.rpc';
-    import { BusinessError } from '@ohos.base';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。
 
-   - 在Stage模型中，长时任务支持设备本应用申请，也支持跨设备或跨应用申请。
-
-   - 跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行UIAbility，具体使用请参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)和[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。
+   - 在Stage模型中，长时任务支持设备本应用申请，也支持跨设备或跨应用申请<!--RP2--><!--RP2End-->。
+   <!--Del-->
+   - 跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行UIAbility，具体使用请参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)和[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。<!--DelEnd-->
 
    **设备本应用**申请长时任务示例代码如下：
 
@@ -195,7 +214,7 @@
       }
     }
    ```
-
+   <!--Del-->
    **跨设备或跨应用**申请长时任务示例代码如下：
    
    ```ts
@@ -319,6 +338,7 @@
       }
     };
    ```
+   <!--DelEnd-->
 
 ### FA模型
 
@@ -354,12 +374,12 @@
 3. 导入模块。
    
    ```js
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import featureAbility from '@ohos.ability.featureAbility';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-    import rpc from "@ohos.rpc";
-    import { BusinessError } from '@ohos.base';
-    import Want from '@ohos.app.ability.Want';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。

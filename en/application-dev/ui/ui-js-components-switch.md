@@ -1,7 +1,7 @@
 # &lt;switch&gt; Development
 
 
-The **&lt;switch&gt;** component is used to switch between the on and off states. For details, see [switch](../reference/arkui-js/js-components-basic-switch.md).
+The **&lt;switch&gt;** component is used to switch between the on and off states. For details, see [switch](../reference/apis-arkui/arkui-js/js-components-basic-switch.md).
 
 
 ## Creating a &lt;switch&gt; Component

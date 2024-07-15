@@ -22,6 +22,7 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | 获取所有处于连接状态的网络列表。 |
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
 | OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。 |
+| OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle \*netHandle) | 将套接字与指定的网络进行绑定。 |
 
 ## 网络管理接口开发示例
 

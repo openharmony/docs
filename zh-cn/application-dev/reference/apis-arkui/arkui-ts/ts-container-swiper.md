@@ -13,23 +13,27 @@
 
 >  **说明：** 
 >
->  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。
 >
->  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AUTO_LINEAR或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>  - Swiper子组件的visibility属性设置为None，Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
->  Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+>  - Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
->  当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
->>  当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
->>
->>  当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
+>  - 当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
+>    
+>    - 当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
 >
->  当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
-
+>    - 当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
+>
+>  - 当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
+>
+>  - 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
 
 ## 接口
 
 Swiper(controller?: SwiperController)
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -52,6 +56,8 @@ index(value: number)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,6 +76,8 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -85,6 +93,8 @@ interval(value: number)
 设置使用自动播放时播放的时间间隔。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,6 +112,8 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -118,6 +130,8 @@ loop(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -131,6 +145,12 @@ loop(value: boolean)
 duration(value: number)
 
 设置子组件切换的动画时长。
+
+duration需要和[curve](#curve8)一起使用。
+
+curve默认曲线为弹簧曲线，此时动画时长只受曲线自身参数影响，不再受duration的控制，如果希望动画时长受到duration控制，需要给curve属性设置合理的曲线。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,6 +167,8 @@ vertical(value: boolean)
 设置是否为纵向滑动。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -166,6 +188,8 @@ itemSpace(value: number | string)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -182,6 +206,8 @@ displayMode(value: SwiperDisplayMode)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -194,7 +220,11 @@ displayMode(value: SwiperDisplayMode)
 
 cachedCount(value: number)
 
-设置预加载子组件个数。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cacheCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+设置预加载子组件个数, 以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,6 +242,8 @@ disableSwipe(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -224,9 +256,11 @@ disableSwipe(value: boolean)
 
 curve(value: Curve | string | ICurve)
 
-设置Swiper的动画曲线，默认为线性曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
+设置Swiper的动画曲线, 默认为弹簧插值曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -234,7 +268,7 @@ curve(value: Curve | string | ICurve)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
-| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>默认值：Curve.Linear |
+| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>默认值：interpolatingSpring(-1, 1, 328, 34) |
 
 ### indicatorStyle<sup>(deprecated)</sup>
 
@@ -258,7 +292,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AUTO_LINEAR。
+字符串类型仅支持设置为'auto'。
 
 使用number类型且设置小于等于0时，按默认值1显示。
 
@@ -272,6 +306,8 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -279,7 +315,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
-| swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值;如果为false，则为默认翻页行为，即按照子元素进行翻页。 |
+| swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值;如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 ### effectMode<sup>8+</sup>
 
@@ -288,6 +324,8 @@ effectMode(value: EdgeEffect)
 设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -303,6 +341,8 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 设置导航点箭头样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -314,13 +354,15 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 ### nextMargin<sup>10+</sup>
 
-nextMargin(value: Length)
+nextMargin(value: Length, ignoreBlank?:boolean)
 
 设置后边距，用于露出后一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
 
 当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。
 
 当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -329,16 +371,19 @@ nextMargin(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 后边距。<br/>默认值：0 |
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下尾页不显示nextMargin。<br/>默认值：false |
 
 ### prevMargin<sup>10+</sup>
 
-prevMargin(value: Length)
+prevMargin(value: Length, ignoreBlank?:boolean)
 
 设置前边距，用于露出前一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
 
 当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。
 
 当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -347,12 +392,15 @@ prevMargin(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 前边距。<br/>默认值：0 |
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下首页不显示prevMargin。<br/>默认值：false |
 
 ### nestedScroll<sup>11+</sup>
 
 nestedScroll(value: SwiperNestedScrollMode)
 
 设置Swiper组件和父组件的嵌套滚动模式。loop为true时Swiper组件没有边缘，不会触发父组件嵌套滚动。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -361,6 +409,10 @@ nestedScroll(value: SwiperNestedScrollMode)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 是   | Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY |
+
+> **说明：**
+>
+> 由于Swiper的抛滑动画逻辑和其它滚动类组件不同（Swiper一次只能滑动一页，抛滑时做翻页动画），当Swiper内嵌套其它滚动组件时，如果Swiper的翻页动画已经启动，将无法接受子节点上传的滚动偏移量。这时Swiper的翻页动画和子节点的边缘效果动画会同时执行。
 
 ### indicatorInteractive<sup>12+</sup>
 
@@ -378,6 +430,10 @@ indicatorInteractive(value: boolean)
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型                                       | 必填 | 描述                                                 |
 | ------------- | ------------------------------------------ | ---- | ---------------------------------------------------- |
 | left          | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件左边的距离。                 |
@@ -391,23 +447,41 @@ indicatorInteractive(value: boolean)
 
 ## SwiperDisplayMode枚举说明
 
-| 名称                                | 描述                                       |
-| --------------------------------- | ---------------------------------------- |
+Swiper在主轴上的尺寸大小模式枚举。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                              | 描述                                                         |
+| --------------------------------- | ------------------------------------------------------------ |
 | Stretch<sup>(deprecated)</sup>    | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API version 10开始不再维护，建议使用STRETCH代替。 |
-| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API version 10开始不再维护，建议使用AUTO_LINEAR代替。 |
-| STRETCH<sup>10+</sup>             | Swiper滑动一页的宽度为Swiper组件自身的宽度。             |
-| AUTO_LINEAR<sup>10+</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。              |
+| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API version 10开始不再维护，建议使用[Scroller.scrollTo](ts-container-scroll.md#scrollto)代替。 |
+| STRETCH<sup>10+</sup>             | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_LINEAR<sup>(deprecated)</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。<br/>从API version 10开始支持，从API version 12开始不再维护，建议使用[Scroller.scrollTo](ts-container-scroll.md#scrollto)代替。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SwiperNestedScrollMode<sup>11+</sup>枚举说明
 
-| 名称          | 描述                                       |
-| ------------ | ---------------------------------------- |
-| SELF_ONLY    | Swiper只自身滚动，不与父组件联动。 |
-| SELF_FIRST   | Swiper自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则Swiper触发边缘效果。 |
+Swiper组件和父组件的嵌套滚动模式枚举。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值 | 描述                                       |
+| ------------ | -- | ---------------------------------------- |
+| SELF_ONLY    | 0  | Swiper只自身滚动，不与父组件联动。 |
+| SELF_FIRST   | 1  | Swiper自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则Swiper触发边缘效果。 |
 
 ## SwiperController
 
 Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -415,23 +489,51 @@ Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可�
 let controller: SwiperController = new SwiperController()
 ```
 
+### constructor
+
+constructor()
+
+SwiperController的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### showNext
 
-showNext(): void
+showNext()
 
 翻至下一页。翻页带动效切换过程，时长通过duration指定。
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### showPrevious
 
-showPrevious(): void
+showPrevious()
 
 翻至上一页。翻页带动效切换过程，时长通过duration指定。
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### changeIndex<sup>12+</sup>
 
-changeIndex(index: number, useAnimation?: boolean): void
+changeIndex(index: number, useAnimation?: boolean)
 
 翻至指定页面。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -442,9 +544,15 @@ changeIndex(index: number, useAnimation?: boolean): void
 
 ### finishAnimation
 
-finishAnimation(callback?: () => void): void
+finishAnimation(callback?: () => void)
 
 停止播放动画。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -456,28 +564,55 @@ finishAnimation(callback?: () => void): void
 
 设置导航点距离Swiper组件距离。
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名    | 参数类型                         | 必填项  | 参数描述                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
-| left   | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件左边的距离。<br/>默认值：0<br/>单位：vp |
-| top    | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件顶部的距离。<br/>默认值：0<br/>单位：vp |
-| right  | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
-| bottom | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件底部的距离。<br/>默认值：0<br/>单位：vp |
-| static dot    |          无           | 否    | 返回一个DotIndicator对象。 |
-| static digit  |          无           | 否    | 返回一个DigitIndicator对象。 |
+| left   | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件左边的距离。<br/>默认值：0<br/>单位：vp |
+| top    | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件顶部的距离。<br/>默认值：0<br/>单位：vp |
+| right  | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
+| bottom | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件底部的距离。<br/>默认值：0<br/>单位：vp |
+| start<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
+| end<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
+| static dot | 无 | 是 | 返回一个DotIndicator对象。 |
+| static digit | 无 | 是 | 返回一个DigitIndicator对象。 |
 
 ## DotIndicator<sup>10+</sup>
 
 圆点指示器属性及功能继承自Indicator。
 
-| 参数名                | 参数类型                                     | 必填项  | 参数描述                                     |
-| ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| itemWidth          | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
-| itemHeight         | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
-| selectedItemWidth  | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
-| selectedItemHeight | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
-| mask               | boolean                                  | 否    | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
-| color              | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
-| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名                        | 参数类型                                   | 必填项 | 参数描述                                                     |
+| ----------------------------- | ------------------------------------------ | ------ | ------------------------------------------------------------ |
+| itemWidth                     | [Length](ts-types.md#length)               | 是     | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| itemHeight                    | [Length](ts-types.md#length)               | 是     | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| selectedItemWidth             | [Length](ts-types.md#length)               | 是     | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
+| selectedItemHeight            | [Length](ts-types.md#length)               | 是     | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| mask                          | boolean                                    | 是     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
+| color                         | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+| selectedColor                 | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
+| maxDisplayCount<sup>12+</sup> | number                                     | 是     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。|
+
+### constructor
+
+constructor()
+
+DotIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 >**说明：** 
 >
@@ -487,15 +622,37 @@ finishAnimation(callback?: () => void): void
 
 数字指示器属性及功能继承自Indicator。
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名               | 参数类型                                     | 必填项  | 参数描述                                     |
 | ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
-| selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
-| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。 |
-| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。 |
+| fontColor         | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
+| selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
+| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。<br/>默认值：FontWeight.Normal |
+| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。<br/>默认值：FontWeight.Normal |
+
+### constructor
+
+constructor()
+
+DigitIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ArrowStyle<sup>10+</sup>
 左右箭头属性。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名              | 参数类型                                     | 必填项  | 参数描述                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -509,6 +666,12 @@ finishAnimation(callback?: () => void): void
 ## SwiperAutoFill<sup>10+</sup>
 
 自适应属性。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名  | 参数类型             | 必填项 | 参数描述                             |
 | ------- | -------------------- | ------ | ------------------------------------ |
@@ -528,6 +691,8 @@ Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页�
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -543,6 +708,8 @@ onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAn
 切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -564,6 +731,8 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -578,6 +747,8 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 在页面跟手滑动过程中，逐帧触发该回调。多列Swiper时，index为最左侧组件的索引。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -596,7 +767,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 使用说明：
 
-1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>5、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -614,7 +785,7 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 
 使用说明：
 
-1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](#contentdidscrollcallback12类型说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](#contentdidscrollcallback12类型说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -628,6 +799,8 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 
 Swiper自定义切换动画相关信息。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
@@ -637,26 +810,50 @@ Swiper自定义切换动画相关信息。
 
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
-| index | number | 是 | 视窗内某个页面的索引。 |
-| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
-| finishTransition() | void | 是 | 通知Swiper组件，此页面的自定义动画已结束。 |
+| selectedIndex | number | 是 | 当前选中页面的索引。 |
+| index | number | 是 | 视窗内页面的索引。 |
+| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
+
+>**说明：** 
+>
+>例如，当前选中的子组件的索引为0，从第0页切换到第1页的动画过程中，每帧都会对视窗内所有页面触发回调，当视窗内有第0
+>页和第1页两页时，每帧会触发两次回调。其中第一次回调的selectedIndex为0，index为0，position为当前帧第0页相对于动画开
+>始前第0页的移动比例，mainAxisLength为主轴方向上第0页的长度；第二次回调的selectedIndex仍为0，index为1，position为当
+>前帧第1页相对于动画开始前第0页的移动比例，mainAxisLength为主轴方向上第1页的长度。
+>
+>若动画曲线为弹簧插值曲线，从第0页切换到第1页的动画过程中，可能会因为离手时的位置和速度，先过滑到第2页，再回弹到
+>第1页，该过程中每帧会对视窗内第1页和第2页触发回调。
+
+
+### finishTransition<sup>12+</sup>
+
+finishTransition()
+
+通知Swiper组件，此页面的自定义动画已结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ContentDidScrollCallback<sup>12+</sup>类型说明
 
-Swiper滑动时触发的回调。
+Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)中的说明。
 
 ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
-| index | number | 是 | 视窗内某个页面的索引。 |
-| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
+| selectedIndex | number | 是 | 当前选中页面的索引。 |
+| index | number | 是 | 视窗内页面的索引。 |
+| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
 
 ## 示例
 
@@ -1019,3 +1216,99 @@ struct SwiperCustomAnimationExample {
 }
 ```
 ![swiper](figures/swiper-custom-animation.gif)
+
+### 示例5
+
+本示例通过DotIndicator接口的maxDisplayCount属性实现了圆点导航点超长显示动画效果。
+
+```ts
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 1; i <= 15; i++) {
+      list.push(i);
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .cachedCount(2)
+      .index(5)
+      .autoPlay(true)
+      .interval(4000)
+      .loop(true)
+      .duration(1000)
+      .itemSpace(0)
+      .indicator( // 设置圆点导航点样式
+        new DotIndicator()
+          .itemWidth(8)
+          .itemHeight(8)
+          .selectedItemWidth(16)
+          .selectedItemHeight(8)
+          .color(Color.Gray)
+          .selectedColor(Color.Blue)
+          .maxDisplayCount(9))
+      .displayArrow({ // 设置导航点箭头样式
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
+      .curve(Curve.Linear)
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+![swiper](figures/point_animation.gif)

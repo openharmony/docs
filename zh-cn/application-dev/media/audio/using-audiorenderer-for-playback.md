@@ -31,7 +31,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8)。
      
     ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
@@ -64,8 +64,8 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 2. 调用on('writeData')方法，订阅监听音频数据写入回调。
      
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo } from '@kit.CoreFileKit';
 
     let bufferSize: number = 0;
     class Options {
@@ -73,16 +73,18 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
       length?: number;
     }
 
+    let path = getContext().cacheDir;
+    //确保该路径下存在该资源
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+   
     let writeDataCallback = (buffer: ArrayBuffer) => {
-      let path = getContext().cacheDir;
-      //确保该路径下存在该资源
-      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fs.readSync(file.fd, buffer, options);
+      fileIo.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
     }
 
@@ -92,7 +94,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 3. 调用start()方法进入running状态，开始渲染音频。
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.start((err: BusinessError) => {
       if (err) {
@@ -106,7 +108,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 4. 调用stop()方法停止渲染。
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.stop((err: BusinessError) => {
       if (err) {
@@ -120,7 +122,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 5. 调用release()方法销毁实例，释放资源。
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.release((err: BusinessError) => {
       if (err) {
@@ -136,8 +138,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 下面展示了使用AudioRenderer渲染音频文件的示例代码。
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -163,17 +166,18 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
+let path = getContext().cacheDir;
+//确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+
 let writeDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  //确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   let options: Options = {
-    offset: renderBufferSize,
+    offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.readSync(file.fd, buffer, options);
-  renderBufferSize += buffer.byteLength;
+  fileIo.readSync(file.fd, buffer, options);
+   bufferSize += buffer.byteLength;
 }
 
 // 初始化，创建实例，设置监听事件
@@ -242,6 +246,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
+        fileIo.close(file);
         console.info('Renderer stop success.');
       }
     });

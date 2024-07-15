@@ -20,7 +20,7 @@ Date and time formatting is implemented by the [format](../reference/apis-locali
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **DateTimeFormat** object.
@@ -28,8 +28,8 @@ Date and time formatting is implemented by the [format](../reference/apis-locali
    You can use **DateTimeOptions** to set different date and time formats. For details, see Table 1 to Table 6.
 
    ```ts
-   let dateFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat(locale: string | Array<string>, options?: DateTimeOptions);
-   let dateFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat(); // Do not pass in the locale parameter.
+   let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(locale: string | Array<string>, options?: DateTimeOptions);
+   let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(); // Do not pass in the locale.
    ```
 
 3. Format the date and time.
@@ -43,7 +43,7 @@ Date and time formatting is implemented by the [format](../reference/apis-locali
 
 4. Obtain **DateTimeOptions** and view the configuration of formatting options.
    ```ts
-   let options: Intl.DateTimeOptions = dateFormat.resolvedOptions();
+   let options: intl.DateTimeOptions = dateFormat.resolvedOptions();
    ```
 
 **Date and Time Formatting Options**
@@ -96,7 +96,7 @@ The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an e
 **Development Example**
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 
 // Set the date to be formatted.
 let date = new Date(2021, 8, 17, 13, 4, 0);
@@ -104,35 +104,35 @@ let startDate = new Date(2021, 8, 17, 13, 4, 0);
 let endDate = new Date(2021, 8, 18, 13, 4, 0);
 
 // Display complete time information.
-let dateFormat1 = new Intl.DateTimeFormat('zh-CN', {dateStyle: 'full', timeStyle: 'full'});
+let dateFormat1 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'full', timeStyle: 'full'});
 let formattedDate1 = dateFormat1.format(date); // formattedDate1: Friday, September 17, 2021 at 13:04:00 China Standard Time
 
 // Display short time information in limited space.
-let dateFormat2 = new Intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short'});
+let dateFormat2 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short'});
 let formattedDate2 = dateFormat2.format(date); // formattedDate2: 2021/9/17 13:04 
 
 // Customize the display effect of year, month, day, hour, minute, and second.
-let dateFormat3 = new Intl.DateTimeFormat('zh-CN', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+let dateFormat3 = new intl.DateTimeFormat('zh-CN', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'});
 let formattedDate3 = dateFormat3.format(date); // formattedDate3: 2021/09/17 13:04:00
 
 // Display only part of the time.
-let dateFormat4 = new Intl.DateTimeFormat('zh-CN', {month: 'long', day: 'numeric', weekday: 'long' });
+let dateFormat4 = new intl.DateTimeFormat('zh-CN', {month: 'long', day: 'numeric', weekday: 'long' });
 let formattedDate4 = dateFormat4.format(date); // formattedDate4: Friday, September 17
 
 // Customize the date and time format.
-let dateFormat5 = new Intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', hourCycle: 'h11'});
+let dateFormat5 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', hourCycle: 'h11'});
 let formattedDate5 = dateFormat5.format(date); // formattedDate5: 2021/9/17 1:04 PM
 
 // Customize the date and time format for users accustomed to other numeral systems.
-let dateFormat6 = new Intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', numberingSystem: 'arab'});
+let dateFormat6 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', numberingSystem: 'arab'});
 let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١٧ ١٣:٠٤
 
 // Format a time segment.
-let dataFormat7 = new Intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/9/2021 - 18/9/2021
+let dataFormat7 = new intl.DateTimeFormat('en-GB');
+let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
 
 // Obtain formatting options.
-let dataFormat8 = new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
+let dataFormat8 = new intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
 let options = dataFormat8.resolvedOptions();
 let dateStyle = options.dateStyle; // dateStyle: full
 ```
@@ -143,13 +143,13 @@ Relative time formatting is implemented by the [format](../reference/apis-locali
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **RelativeTimeFormat** object.
    You can use **RelativeTimeFormatInputOptions** to set different output message formats and message lengths. For details, see Table 7 and Table 8.
    ```ts
-   let relativeTimeFormat: Intl.RelativeTimeFormat = new Intl.RelativeTimeFormat(locale: string | Array<string>, options?: RelativeTimeFormatInputOptions);
+   let relativeTimeFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat(locale: string | Array<string>, options?: RelativeTimeFormatInputOptions);
    ```
 
 3. Format the relative time. **value** indicates the formatted value, and **unit** indicates the formatted unit.
@@ -164,7 +164,7 @@ Relative time formatting is implemented by the [format](../reference/apis-locali
 
 5. Obtain **RelativeTimeFormatInputOptions** and view the configuration of formatting options.
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **Relative Time Formatting Options**
@@ -190,29 +190,29 @@ Table 7 Internationalization message length (style)
 **Development Example**
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 
 // Display the relative time.
-let relativeTimeFormat1 = new Intl.RelativeTimeFormat('en-GB');
+let relativeTimeFormat1 = new intl.RelativeTimeFormat('en-GB');
 let formattedRelativeTime1 = relativeTimeFormat1.format(-1, 'day'); // formattedRelativeTime1: 1 day ago
 
 // Display the relative time in a conversational style.
-let relativeTimeFormat2 = new Intl.RelativeTimeFormat('en-GB', {numeric: "auto"});
+let relativeTimeFormat2 = new intl.RelativeTimeFormat('en-GB', {numeric: "auto"});
 let formattedRelativeTime2 = relativeTimeFormat2.format(-1, 'day'); // formattedRelativeTime2: yesterday
 
 // Use the narrow style for certain languages.
-let relativeTimeFormat3 = new Intl.RelativeTimeFormat('fr-FR'); // The default style is long.
+let relativeTimeFormat3 = new intl.RelativeTimeFormat('fr-FR'); // The default style is long.
 let formattedRelativeTime3 = relativeTimeFormat3.format(-1, 'day'); // formattedRelativeTime3: il y a 1 jour
-let relativeTimeFormat4 = new Intl.RelativeTimeFormat('fr-FR', {style: 'narrow'});
+let relativeTimeFormat4 = new intl.RelativeTimeFormat('fr-FR', {style: 'narrow'});
 let formattedRelativeTime4 = relativeTimeFormat4.format(-1, 'day'); // formattedRelativeTime4: -1 j
 
 // Display the custom relative time for the specified locale.
-let relativeTimeFormat5 = new Intl.RelativeTimeFormat('en-GB', {style: 'long'});
+let relativeTimeFormat5 = new intl.RelativeTimeFormat('en-GB', {style: 'long'});
 // parts: [{type: 'literal', value: 'in'}, {type: 'integer', value: 1, unit: 'day'}, {type: 'literal', value: 'day'}]
 let parts = relativeTimeFormat5.formatToParts(1, 'day');
 
 // Obtain the formatting options of RelativeTimeFormat.
-let relativeTimeFormat6 = new Intl.RelativeTimeFormat('en-GB', {numeric: 'auto'});
+let relativeTimeFormat6 = new intl.RelativeTimeFormat('en-GB', {numeric: 'auto'});
 let options = relativeTimeFormat6.resolvedOptions();
 let numeric = options.numeric; // numeric: auto
 ```

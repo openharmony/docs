@@ -17,6 +17,10 @@ This module provides the following typical features related to media sessions:
 import avSession from '@ohos.multimedia.avsession';
 ```
 
+## Usage Guidelines
+
+This topic describes only system APIs. Before using these APIs, you must create an instance. For details about how to create an instance, see the description and example of the public API [avSession.createAVSession](js-apis-avsession.md#avsessioncreateavsession10).
+
 ## avSession.getAllSessionDescriptors
 
 getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
@@ -41,6 +45,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -84,6 +89,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
 | 6600101  |Session service exception. |
 
 **Example**
@@ -135,6 +141,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -172,7 +179,7 @@ Obtains the descriptors of all historical sessions. This API uses an asynchronou
 
 | Name  | Type                                                                           | Mandatory| Description                                                            |
 | -------- | ------------------------------------------------------------------------------ | ---- | -----------------------------------------------------------------|
-| maxSize  | number                                                                         | Yes  | Maximum number of descriptors to obtain. The value ranges from 0 to 10. If this parameter is left blank, the default value **3** is used.|
+| maxSize  | number                                                                         | Yes | Maximum number of descriptors to obtain. The value ranges from 0 to 10.|
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of **AVSessionDescriptor** objects, each of which is read only.                             |
 
 **Error codes**
@@ -181,6 +188,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  |Session service exception. |
 
 **Example**
@@ -235,6 +243,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -275,6 +284,9 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  |Session service exception. |
 
 **Example**
@@ -321,6 +333,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -363,6 +377,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -415,6 +431,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600104  | The remote session connection failed. |
@@ -472,6 +490,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600104  | The remote session connection failed. |
@@ -534,6 +554,9 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -590,6 +613,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -628,6 +653,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -665,6 +692,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -702,6 +731,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -735,6 +766,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -768,6 +801,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -799,6 +834,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -832,6 +869,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -856,7 +895,7 @@ Sends a system key event to the top session. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| event    | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | Yes  | Key event.                           |
+| event    | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | Yes  | Key event.                           |
 | callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -865,6 +904,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 
@@ -902,7 +943,7 @@ Sends a system key event to the top session. This API uses a promise to return t
 
 | Name| Type                           | Mandatory| Description      |
 | ------ | ------------------------------- | ---- | ---------- |
-| event  | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | Yes  | Key event.|
+| event  | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | Yes  | Key event.|
 
 **Return value**
 
@@ -916,6 +957,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 
@@ -960,6 +1003,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600107  | Too many commands or events. |
@@ -967,8 +1012,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'pause';
 // let cmd : avSession.AVControlCommandType = 'stop';
@@ -1024,6 +1067,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600107  | Too many commands or events. |
@@ -1031,7 +1076,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let cmd : avSession.AVControlCommandType = 'play';
@@ -1115,6 +1159,13 @@ Starts cast-enabled device discovery with filter criteria specified. This API us
 | filter | number | Yes| Filter criteria for device discovery. The value consists of **ProtocolType**s.|
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent and device discovery starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **Example**
 
@@ -1133,7 +1184,7 @@ avSession.startCastDeviceDiscovery(filter, (err: BusinessError) => {
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
-startCastDeviceDiscovery(filter?: number): Promise\<void>
+startCastDeviceDiscovery(filter?: number, drmSchemes?: Array\<string>): Promise\<void>
 
 Starts cast-enabled device discovery. This API uses a promise to return the result.
 
@@ -1146,6 +1197,7 @@ Starts cast-enabled device discovery. This API uses a promise to return the resu
 | Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | filter | number | No| Filter criteria for device discovery. The value consists of **ProtocolType**s.|
+| drmSchemes | Array\<string> | No| Filter criteria for discovering devices that support DRM resource playback. The value consists of DRM UUIDs.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1153,13 +1205,23 @@ Starts cast-enabled device discovery. This API uses a promise to return the resu
 | -------------- | ----------------------------- |
 | Promise\<void> | Promise used to return the result. If the command is sent and device discovery starts, no value is returned; otherwise, an error object is returned.|
 
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let filter = 2;
-avSession.startCastDeviceDiscovery(filter).then(() => {
+let drmSchemes = ['3d5e6d35-9b9a-41e8-b843-dd3c6e72c42c'];
+avSession.startCastDeviceDiscovery(filter, drmSchemes).then(() => {
   console.info(`startCastDeviceDiscovery successfully`);
 }).catch((err: BusinessError) => {
   console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -1242,6 +1304,13 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 | enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **Example**
 
@@ -1272,6 +1341,14 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 | Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **Return value**
 
@@ -1306,13 +1383,20 @@ Subscribes to device discovery events.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | Yes  | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
-| callback | (device: OutputDeviceInfo) => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
+| callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let castDevice: avSession.OutputDeviceInfo;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
@@ -1335,7 +1419,16 @@ Unsubscribes from device discovery events.
 | Name   | Type                   | Mandatory |      Description                                              |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | Yes   | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
-| callback     | function                 | No   | Callback used to return the device information.|
+| callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void                 | No   | Callback used to return the device information.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -1360,11 +1453,18 @@ Subscribes to device offline events.
 | type     | string               | Yes  | Event type. The event **'deviceOffline'** is triggered when a device gets offline.|
 | callback | (deviceId: string) => void | Yes  | Callback used to return the result. The **deviceId** parameter in the callback indicates the device ID. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let castDeviceId: string;
 avSession.on('deviceOffline', (deviceId: string) => {
   castDeviceId = deviceId;
@@ -1390,6 +1490,16 @@ Unsubscribes from device offline events.
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | Yes   | Event type, which is **'deviceOffline'** in this case.|
 | callback | (deviceId: string) => void | No  | Callback used to return the result. The **deviceId** parameter in the callback indicates the device ID. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -1424,6 +1534,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception |
 | 6600102  | session does not exist |
 
@@ -1436,18 +1548,6 @@ let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
 let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
@@ -1492,6 +1592,8 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | server exception |
 | 6600102  | The session does not exist |
 
@@ -1504,18 +1606,6 @@ let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
 let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
@@ -1552,31 +1642,15 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600108 | Device connecting failed.       |
+| 6600108 | Device connection failed.       |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1629,31 +1703,15 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600108 | Device connecting failed.       |
+| 6600108 | Device connection failed.       |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1695,30 +1753,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1760,30 +1801,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // Used as an input parameter of subsequent functions.
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1821,6 +1845,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
@@ -1867,6 +1892,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
@@ -1917,6 +1943,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -1950,6 +1977,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -2010,6 +2038,6 @@ Declares the session descriptor.
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | Yes| Yes| Session type.   |
 | sessionTag   | string             | Yes| Yes| Custom session name.   |
 | elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | Yes| Yes| Information about the application to which the session belongs, including the bundle name and ability name.|
-| isActive     | boolean             | Yes| Yes| Whether the session is activated.                                     |
-| isTopSession | boolean             | Yes| Yes| Whether the session is the top session.                               |
+| isActive     | boolean             | Yes| Yes| Whether the session is activated.<br>**true**: The session is activated.<br>**false**: The service is not activated.                                     |
+| isTopSession | boolean             | Yes| Yes| Whether the session is the top session.<br>**true**: The session is the top session.<br>**false**: The session is not the top session.               |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | Yes| Yes| Information about the output device.  |

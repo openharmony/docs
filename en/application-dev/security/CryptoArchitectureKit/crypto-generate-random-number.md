@@ -9,7 +9,7 @@ You can call APIs to:
 
 - Generate a random number of the specified length and uses it to generate a key.
 
-- Generate a series of random sequences based on the specified seed.
+- Generate a series of random sequences based on a seed.
 
 
 It will be helpful if you have basic knowledge of encryption and decryption and understand the following basic concepts:
@@ -39,15 +39,15 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
 
 1. Use [cryptoFramework.createRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreaterandom) to create a **Random** instance.
 
-2. Use [Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed) to set a seed for the random number generation pool.
+2. (Optional) Use [Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed) to set a seed for the random number generation pool.
 
-3. Use [Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom) to generate a random number based on the specified byte length.
+3. Use [Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom) or [Random.generateRandomSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandomsync10) to generate a random number.
    
-   The byte length ranges from **1** to **INT_MAX**.
+   The length of the random number to generate ranges from **1** to **INT_MAX**, in bytes.
 
 - Return the result using **await**:
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function doRand() {
     let rand = cryptoFramework.createRandom();
@@ -61,8 +61,8 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
 
 - Return the result synchronously:
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function doRandBySync() {
     let rand = cryptoFramework.createRandom();

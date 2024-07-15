@@ -40,7 +40,7 @@ Check whether any system API is called. Delete it if any.
 
 **Error Message**
 
-BusinessError 401: Parameter error. The type of "${parameterName}" must be ${validType}[or ${validInput}].
+BusinessError 401: Parameter error. The type of `${parameterName}` must be `${validType}` [or `${validInput}`].
 
 **Description**
 
@@ -58,7 +58,7 @@ Make sure the mandatory parameter is passed in and the type of the passed parame
 
 **Error Message**
 
-BusinessError 801: Capability not supported. function ${functionName } can not work correctly due to limited device capabilities.
+BusinessError 801: Capability not supported. function `${functionName}` can not work correctly due to limited device capabilities.
 
 **Description**
 

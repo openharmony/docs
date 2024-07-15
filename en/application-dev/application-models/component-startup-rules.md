@@ -24,17 +24,17 @@ In view of this, the system formulates a set of component startup rules, as foll
 
 - Before starting a component of another application, check whether the component can be called by others.
 
-  If the **exported** field of the component is set to **true**, the component can be called by other applications. If the field is set to **false**, the component cannot be called by other applications. If this is the case, you must also verify the **ohos.permission.START_INVISIBLE_ABILITY** permission. For details about the **exported** fields, see [abilities](../quick-start/module-configuration-file.md#abilities).
+  If the **exported** field of the component is set to **true**, the component can be called by other applications. If the field is set to **false**, the component cannot be called by other applications. If this is the case, you must also verify the permission **ohos.permission.START_INVISIBLE_ABILITY**, which is available only for system applications. For details about the **exported** fields, see [abilities](../quick-start/module-configuration-file.md#abilities).
 
-- Before starting a UIAbility component of a background application, verify the permission **ohos.permission.START_ABILITIES_FROM_BACKGROUND**.
+- Before starting a UIAbility component of a background application, verify the permission **ohos.permission.START_ABILITIES_FROM_BACKGROUND**, which is available only for system applications.
 
-  > NOTE
+  > **NOTE**
   > 
   > An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
  
 - Before using **startAbilityByCall()** to start a component running on another device, verify the permission **ohos.permission.DISTRIBUTED_DATASYNC**.
 
-The preceding component startup rules take effect since API version 9. Familiarity with these rules helps you prevent service function exceptions.  
+The preceding component startup rules take effect since API version 9. Familiarity with these rules helps you prevent service exceptions.  
 
 
 

@@ -7,6 +7,8 @@
 
 **库：** libohcamera.so
 
+**引用文件：**&lt;ohcamera/capture_session.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **起始版本：** 11
@@ -40,6 +42,8 @@
 | -------- | -------- |
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注册捕获会话事件回调。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_UnregisterCallback](_o_h___camera.md#oh_capturesession_unregistercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注销捕获会话事件回调。  | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_SetSessionMode](_o_h___camera.md#oh_capturesession_setsessionmode) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_SceneMode](_o_h___camera.md#camera_scenemode) sceneMode) | 指定具体的模式。  | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddSecureOutput](_o_h___camera.md#oh_capturesession_addsecureoutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, Camera_PreviewOutput \*previewOutput) | 增加安全模式的安全流标记。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_BeginConfig](_o_h___camera.md#oh_capturesession_beginconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | 开始捕获会话配置。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_CommitConfig](_o_h___camera.md#oh_capturesession_commitconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | 提交捕获会话配置。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddInput](_o_h___camera.md#oh_capturesession_addinput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | 添加相机输入。  | 

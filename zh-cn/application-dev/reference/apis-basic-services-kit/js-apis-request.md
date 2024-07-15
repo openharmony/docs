@@ -11,7 +11,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -95,18 +95,22 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400002 | bad file path. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -148,18 +152,22 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400002 | bad file path. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -215,7 +223,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -257,7 +265,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -306,8 +314,17 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为B。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
@@ -320,7 +337,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-订阅上传任务HTTP标头事件，异步方法，使用callback形式返回结果。
+订阅上传任务HTTP响应事件，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -330,17 +347,26 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应）。 |
+  | callback | function | 是 | HTTP&nbsp;Response事件的回调函数。 |
 
   回调函数的参数：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+| header | object | 是 | HTTP&nbsp;Response。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
@@ -372,8 +398,17 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     for (let i = 0; i < taskStates.length; i++) {
@@ -408,8 +443,17 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
@@ -430,7 +474,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-取消订阅上传任务HTTP标头事件。
+取消订阅上传任务HTTP响应事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -440,11 +484,20 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
+  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
@@ -477,8 +530,17 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
   | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
@@ -534,8 +596,17 @@ delete(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用Promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
@@ -543,6 +614,10 @@ delete(): Promise&lt;boolean&gt;
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -561,8 +636,17 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
@@ -572,6 +656,10 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
     console.info('Succeeded in deleting the upload task.');
   });
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -652,11 +740,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
-| method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用PUT修改资源，使用POST新增资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
 | begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
 | ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以 HTTP 的 multipart/form-data 格式提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
@@ -666,11 +754,29 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径 |
-| responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息 |
-| message | string | 是 | 上传任务结果描述信息 |
+| 名称 | 类型 | 必填 | 说明                                                                                                                                        |
+| -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
+| path | string | 是 | 文件路径                                                                                                                                      |
+| responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
+| message | string | 是 | 上传任务结果描述信息                                                                                                                                |
+
+其中，responseCode 包含的返回码值如下：
+
+| 返回码 | 具体信息                               |
+|-----|------------------------------------|
+| 0   | 上传成功                               |
+| 5   | 任务被主动暂停或停止                         |
+| 6   | 任务所属应用被切换到后台或终止，导致前台任务被停止，请检查应用状态  |
+| 7   | 无网络，请检查设备是否处于联网状态                  |
+| 8   | 网络类型不匹配，请检查当前网络类型和任务所需网络类型是否匹配     |
+| 10  | 创建HTTP请求失败，请检查参数是否正确或重试任务          |
+| 12  | 超时，请检查参数是否正确、检查网络，又或是重试任务          |
+| 13  | 连接失败，请检查参数是否正确、检查网络，又或是重试任务        |
+| 14  | 请求失败，请检查参数是否正确、检查网络，又或是重试任务        |
+| 15  | 上传失败，请检查参数是否正确、检查网络，又或是重试任务        |
+| 16  | 重定向失败，请检查参数是否正确、检查网络，又或是重试任务       |
+| 17  | 协议错误，服务器返回 4XX 或 5XX 状态码，请检查参数是否正确 |
+| 20  | 其他错误，请检查参数是否正确、检查网络，又或是重试任务        |
 
 ## File
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
@@ -725,10 +831,12 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
   | 13400003 | task service ability error. |
@@ -736,9 +844,10 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -775,10 +884,12 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
   | 13400003 | task service ability error. |
@@ -786,9 +897,10 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -840,6 +952,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   ```js
   let downloadTask;
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -875,6 +988,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
   ```js
   let downloadTask;
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -918,12 +1032,21 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 | receivedSize | number | 是 | 当前下载的进度，单位为B。 |
 | totalSize | number | 是 | 下载文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -956,12 +1079,21 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -1002,12 +1134,21 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
   | type | string | 是 | 订阅的事件类型。<br>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 是 | 下载任务相关的回调函数。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1050,12 +1191,21 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1129,12 +1279,21 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | err | number | 是 | 下载失败的错误码，错误原因见[下载任务的错误码](#下载任务的错误码)。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1167,12 +1326,21 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1211,12 +1379,21 @@ delete(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1231,6 +1408,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -1249,12 +1430,21 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1271,6 +1461,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1289,12 +1483,21 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  使用promise方式，异步返回下载任务信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1309,6 +1512,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 } 
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1327,12 +1534,21 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数，异步返回下载任务信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1350,12 +1566,16 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### getTaskMimeType<sup>9+</sup>
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
+查询下载的任务的 MimeType (HTTP中表示资源的媒体类型)，异步方法，使用promise形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1367,12 +1587,21 @@ getTaskMimeType(): Promise&lt;string&gt;
   | -------- | -------- |
   | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1387,6 +1616,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1405,12 +1638,21 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，异步返回下载任务的MimeType。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1427,6 +1669,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1445,12 +1691,21 @@ suspend(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回暂停下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1465,6 +1720,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1483,12 +1742,21 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回暂停下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1505,6 +1773,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1523,12 +1795,21 @@ restore(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回重新启动暂停的下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1543,6 +1824,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1561,12 +1846,21 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回重新启动暂停的下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -1583,6 +1877,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -1950,6 +2248,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 定义操作选项。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
@@ -1962,6 +2262,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 定义模式选项。<br>
 前端任务在应用切换到后台一段时间后失败/暂停；后台任务不受影响。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
@@ -1973,6 +2275,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 定义网络选项。<br>
 网络不满足设置条件时，未执行的任务等待执行，执行中的任务失败/暂停。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1989,7 +2293,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
 
-事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。
+<!--Del-->
+事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2000,18 +2305,22 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径：<br/>-位于调用方的缓存文件夹下的相对路径。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
+| path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
-| extras | Object | 否 | 文件信息的附加内容。 |
+| extras | object | 否 | 文件信息的附加内容。 |
 
 
 ## FormItem<sup>10+</sup> 
 任务的表单项信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2028,34 +2337,36 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
-| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。 |
-| description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。 |
-| mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。 |
-| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
-| method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
-| headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。 |
-| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，仅支持"internal://cache/"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。 |
-| network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。 |
-| metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否|
-| roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否 |
-| retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。<br/>-true：是 <br/>-false：否 |
-| redirect | boolean | 否 | 是否允许重定向，默认为true。<br/>-true：是 <br/>-false：否 |
-| proxy | string | 否 | 设置代理地址，其最大长度为512个字符，默认为空。<br/>代理地址格式:"http://\<domain or address\>:\<port\>" |
-| index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。 |
-| begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。 |
-| ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。 |
-| gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
-| precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。 |
-| token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。 |
+| action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址，其最大长度为2048个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| redirect | boolean | 否 | 是否允许重定向，默认为true。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| proxy<sup>12+</sup> | string | 否 | 设置代理地址，其最大长度为512个字符，默认为空。<br/>代理地址格式:"http://\<domain or address\>:\<port\>" |
+| index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
-| extras | object | 否 | 配置的附加功能，默认为空。 |
+| extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## State<sup>10+</sup>  
 
 定义任务当前的状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2075,6 +2386,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## Progress<sup>10+</sup> 
 任务进度的数据结构。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -2089,6 +2402,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## Faults<sup>10+</sup>  
 
 定义任务失败的原因。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2129,7 +2444,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
-| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
+| priority<sup>11+</sup> | number | 是 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
@@ -2139,11 +2454,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | tries | number | 是 | 任务的尝试次数。 |
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
-| extras | string | 否 | 任务的额外部分。|
+| extras | object | 否 | 任务的额外部分。|
 
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2160,6 +2477,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ### 属性
 包括任务id和任务的配置信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -2174,6 +2493,8 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 订阅任务进度的事件，异步方法，使用callback形式返回结果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -2185,15 +2506,18 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2204,7 +2528,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2230,6 +2554,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2238,12 +2563,15 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('completed')<sup>10+</sup>
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 订阅任务完成事件，异步方法，使用callback形式返回结果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2256,15 +2584,18 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2275,7 +2606,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2301,6 +2632,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2309,12 +2641,15 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('failed')<sup>10+</sup>
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 订阅任务失败事件，异步方法，使用callback形式返回结果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2327,15 +2662,18 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2346,7 +2684,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2372,6 +2710,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2380,6 +2719,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('pause')<sup>11+</sup>
 
@@ -2398,11 +2738,17 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2413,7 +2759,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2439,6 +2785,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2465,11 +2812,17 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2480,7 +2833,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2506,6 +2859,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2532,11 +2886,17 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2547,7 +2907,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2573,6 +2933,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2588,6 +2949,8 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 订阅任务响应头，异步方法，使用callback形式返回结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -2599,11 +2962,17 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2614,7 +2983,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2640,6 +3009,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2655,6 +3025,8 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务进度事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -2666,15 +3038,18 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2685,7 +3060,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2719,6 +3094,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务进度的所有回调
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2727,12 +3103,15 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('completed')<sup>10+</sup>
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务完成事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2745,15 +3124,18 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2764,7 +3146,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2798,6 +3180,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务完成的所有回调
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2806,12 +3189,15 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('failed')<sup>10+</sup>
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务失败事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2824,15 +3210,18 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2843,7 +3232,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2877,6 +3266,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务失败的所有回调
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2885,6 +3275,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('pause')<sup>11+</sup>
 
@@ -2903,11 +3294,17 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2918,7 +3315,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2952,6 +3349,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务暂停的所有回调
     task.off('pause');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2978,11 +3376,17 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2993,7 +3397,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3027,6 +3431,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务恢复的所有回调
     task.off('resume');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3053,11 +3458,17 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3068,7 +3479,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3102,6 +3513,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务移除的所有回调
     task.off('remove');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3117,6 +3529,8 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 取消订阅任务响应头。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -3128,11 +3542,17 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3143,7 +3563,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3177,6 +3597,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
     //表示取消订阅任务移除的所有回调
     task.off('response');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3190,9 +3611,13 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用callback异步回调。
+以下状态的任务可以被启动：
+1. 刚被 request.agent.create 接口创建的任务
+2. 使用 request.agent.create 接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3204,19 +3629,22 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3258,9 +3686,13 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 start(): Promise&lt;void&gt;
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用Promise异步回调。
+以下状态的任务可以被启动：
+1. 刚被 request.agent.create 接口创建的任务
+2. 使用 request.agent.create 接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3272,19 +3704,22 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3336,7 +3771,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3347,9 +3782,11 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3370,6 +3807,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3403,7 +3842,7 @@ pause(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3414,9 +3853,11 @@ pause(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3437,6 +3878,8 @@ pause(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -3470,10 +3913,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900005 | task mode error. |
   | 21900007 | task state error. |
@@ -3481,9 +3925,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3504,6 +3950,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3540,10 +3990,11 @@ resume(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900005 | task mode error. |
   | 21900007 | task state error. |
@@ -3551,9 +4002,11 @@ resume(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3574,6 +4027,10 @@ resume(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -3596,6 +4053,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 停止任务，可以停止正在运行/正在等待/正在重试的任务。使用callback异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -3606,7 +4065,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3616,9 +4075,11 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3639,6 +4100,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3659,6 +4122,8 @@ stop(): Promise&lt;void&gt;
 
 停止任务，可以停止正在运行/正在等待/正在重试的任务。使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **返回值：** 
@@ -3669,7 +4134,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3679,9 +4144,11 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3702,6 +4169,8 @@ stop(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -3717,10 +4186,12 @@ stop(): Promise&lt;void&gt;
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用callback异步回调。
+创建要上传或下载的任务，并将其排入队列。使用callback异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3734,18 +4205,22 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | permission denied. |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
+  | 21900004 | the application task queue is full. |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -3756,7 +4231,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3782,6 +4257,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    task.start();
   });
   ```
 
@@ -3793,10 +4269,12 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用Promise异步回调。
+创建要上传或下载的任务，并将其排入队列。使用Promise异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3815,18 +4293,22 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | permission denied. |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
+  | 21900004 | the application task queue is full. |
   | 21900005 | task mode error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -3837,7 +4319,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3859,7 +4341,8 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-  }).catch((err) => {
+    task.start();
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -3892,18 +4375,21 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
-  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
+    console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3914,6 +4400,8 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3926,16 +4414,19 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
@@ -3951,6 +4442,8 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 remove(id: string): Promise&lt;void&gt;
 
 移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止，使用Promise异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3968,16 +4461,19 @@ remove(id: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
@@ -4002,16 +4498,19 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4043,16 +4542,19 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
@@ -4078,16 +4580,19 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4120,16 +4625,19 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
@@ -4152,15 +4660,18 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4186,17 +4697,19 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
@@ -4231,17 +4744,19 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }

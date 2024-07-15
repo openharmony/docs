@@ -1,6 +1,6 @@
 # 组件内隐式共享元素转场 (geometryTransition)
 
-在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件(in指新视图、out指旧视图)的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
+在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
 
 > **说明：**
 >
@@ -16,11 +16,13 @@ geometryTransition(id: string)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名  | 参数类型                 | 必填 | 参数描述                                                     |
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                   | 是   | 用于设置绑定关系，id置""清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
+| id      | string                   | 是   | 用于设置绑定关系，id置空字符串清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
 
 ## geometryTransition<sup>11+<sup>
 
@@ -28,18 +30,22 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 
 组件内隐式共享元素转场。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名  | 参数类型                 | 必填 | 参数描述                                                     |
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                   | 是   | 用于设置绑定关系，id置""清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
+| id      | string                   | 是   | 用于设置绑定关系，id置空字符串清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
 | options | [GeometryTransitionOptions](#geometrytransitionoptions11) | 否   | 组件内共享元素转场动画参数。                                   |
 
 ## GeometryTransitionOptions<sup>11+<sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

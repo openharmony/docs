@@ -18,6 +18,8 @@ onLoopTimeOut?(timeout: number): void
 
 Called when a timeout occurs for the main thread to process an event in the JS runtime.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**

@@ -24,6 +24,8 @@ import ability from '@ohos.ability.ability';
 
 ## Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name       |  Type                | Read-only| Mandatory| Description                                                        |

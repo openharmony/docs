@@ -233,11 +233,11 @@ WiFi模块中使用wifi.getIpInfo().ipAddress，报错Error: assertion (wifiDevi
 
 https://gitee.com/openharmony/interface_sdk_c/tree/master/network
 
-## Socket下的TLSConnectOptions不配置是否会使用手机上的默认证书？(API 11)
+## Socket下的TLSConnectOptions不配置是否会使用设备上的默认证书？(API 11)
 
 **解决方案**
 
-使用TLSSocket请求需要手动通过代码配置，不会使用手机上的默认证书。TLSConnectOptions部分配置证书需要使用与请求地址相匹配的证书内容，可将证书放至rawfile文件下通过getRawFileContent()方法读取转换为string类型数据放入。  
+使用TLSSocket请求需要手动通过代码配置，不会使用设备上的默认证书。TLSConnectOptions部分配置证书需要使用与请求地址相匹配的证书内容，可将证书放至rawfile文件下通过getRawFileContent()方法读取转换为string类型数据放入。  
 
 **参考资料**
 

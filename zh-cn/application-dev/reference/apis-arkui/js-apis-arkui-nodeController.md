@@ -11,12 +11,14 @@ NodeController用于实现自定义节点的创建、显示、更新等操作的
 ## 导入模块
 
 ```ts
-import { NodeController } from "@ohos.arkui.node";
+import {  NodeController  } from '@kit.ArkUI';
 ```
 
 ## NodeController
 
 通常搭配[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行使用。用于创建控制器管理绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件。一个NodeController只允许与一个[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行绑定。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,6 +28,8 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 当实例绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)。
 或者可以通过NodeController的rebuild()方法进行回调的触发。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +51,8 @@ aboutToAppear?(): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示时触发此回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### aboutToDisappear
@@ -55,6 +61,8 @@ aboutToDisappear?(): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)卸载消失时触发此回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### aboutToResize
@@ -62,6 +70,8 @@ aboutToDisappear?(): void
 aboutToResize?(size: Size): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)布局的时候触发此回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,6 +87,8 @@ onTouchEvent?(event: TouchEvent): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)收到Touch事件时触发此回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -91,13 +103,14 @@ rebuild(): void
 
 调用此接口通知[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件重新回调[makeNode](#makenode)方法，更改子节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, Size, FrameNode } from '@ohos.arkui.node';
+import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"

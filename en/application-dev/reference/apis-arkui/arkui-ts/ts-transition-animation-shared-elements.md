@@ -20,11 +20,11 @@ A shared element transition is a transition animation applied to a component tha
 > **motionPath** is effective only when **type** is set to **SharedTransitionEffectType.Exchange**.
 
 ## sharedTransitionOptions
- 
+
 | Name             | Type     | Mandatory      | Description                                                     |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  No          | Animation duration.<br>Default value: **1000**<br>Unit: ms|
-| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>  | No| Animation duration.<br>Default value: **1000**<br>Unit: ms|
+| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>  | No| Animation curve.<br>Default value: **Curve.Linear**|
 | delay          |     number   |  No          | Delay of animation playback.<br>Default value: **0**<br>Unit: ms|
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  No          | Motion path.|
 | zIndex          |     number   |  No             | Z-axis.|

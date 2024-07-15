@@ -10,13 +10,15 @@
 ## 导入模块
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
 format(format: string,  ...args: Object[]): string
 
 通过式样化字符串对输入的内容按特定格式输出。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -33,6 +35,13 @@ format(format: string,  ...args: Object[]): string
 | ------ | -----------------|
 | string | 格式化后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **格式说明符：**
 
@@ -51,7 +60,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -120,6 +129,8 @@ errnoToString(errno: number): string
 
 获取系统错误码对应的详细信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -133,6 +144,14 @@ errnoToString(errno: number): string
 | 类型   | 说明                   |
 | ------ | ---------------------- |
 | string | 错误码对应的详细信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -162,6 +181,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -175,6 +196,14 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 | 类型 | 说明 |
 | -------- | -------- |
 | Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -195,6 +224,8 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 对异步函数处理并返回一个promise的函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -208,6 +239,14 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 | 类型 | 说明 |
 | -------- | -------- |
 | Function | 返回一个&nbsp;Promise&nbsp;的函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -230,7 +269,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -246,6 +287,14 @@ generateRandomUUID(entropyCache?: boolean): string
 | -------- | -------- |
 | string | 表示此UUID的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -260,6 +309,8 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -273,6 +324,14 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 表示此UUID的Uint8Array值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -289,6 +348,8 @@ parseUUID(uuid: string): Uint8Array
 
 将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，如RFC 4122版本4中所述。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -302,6 +363,14 @@ parseUUID(uuid: string): Uint8Array
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回表示此UUID的Uint8Array，如果解析失败，则抛出SyntaxError。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -402,11 +471,59 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 
-## TextDecoderOptions<sup>11+</sup>
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| object | object | 是 | 希望获取Hash值的对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | Hash值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Dany', age: 20 };
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// 输出：result1 与 result2 的值相等，且为随机的Hash值。
+```
+
+
+## TextDecoderOptions<sup>11+</sup>
+
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
@@ -416,9 +533,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 解码是否跟随附加数据块相关选项参数。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -435,6 +554,8 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 
 在指定的类对象的原方法执行前插入一个函数。addBefore接口执行完成后，都会先执行插入的函数逻辑，再执行指定类对象的原方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -445,6 +566,14 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | methodName   | string   | 是   | 指定的方法名。                    |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -517,6 +646,8 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 
 在指定的类方法执行后插入一段逻辑。最终返回值是插入函数执行后的返回值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -527,6 +658,14 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 | methodName   | string   | 是   | 指定的原方法名。                   |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -590,6 +729,8 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 
 将指定的类方法的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，只会执行替换后的逻辑。最终返回值为替换函数执行完毕的返回值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -600,6 +741,14 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 | methodName   | string   | 是   | 指定的原方法名。                  |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
 | instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -644,6 +793,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -657,6 +808,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 constructor()
 
 TextDecoder的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -672,6 +825,8 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -680,6 +835,14 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -698,6 +861,8 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -712,6 +877,14 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 解码后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -821,6 +994,8 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | 是 | 否 |表示已读取的字符数。 |
@@ -834,11 +1009,13 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -846,6 +1023,8 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 constructor()
 
 TextEncoder的构造函数。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -861,6 +1040,8 @@ constructor(encoding?: string)
 
 TextEncoder的构造函数。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -868,6 +1049,14 @@ TextEncoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -881,6 +1070,8 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -888,6 +1079,14 @@ static create(encoding?: string): TextEncoder
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -900,6 +1099,8 @@ let textEncoder = util.TextEncoder.create("utf-8");
 encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -914,6 +1115,14 @@ encodeInto(input?: string): Uint8Array
 | 类型       | 说明               |
 | ---------- | ------------------ |
 | Uint8Array | 返回编码后的Uint8Array对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -930,6 +1139,8 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -944,6 +1155,14 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 | 类型       | 说明               |
 | ---------- | ------------------ |
 | [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1033,6 +1252,8 @@ constructor()
 
 RationalNumber的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -1047,6 +1268,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1056,6 +1279,14 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 | numerator   | number | 是   | 分子，整数类型。 |
 | denominator | number | 是   | 分母，整数类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1064,9 +1295,11 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1082,6 +1315,14 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 | -------- | -------- |
 | Object | 返回RationalNumber对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The type of rationalString must be string. |
+
 **示例：**
 
 ```ts
@@ -1090,9 +1331,11 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 ### compare<sup>9+</sup>
 
-compare​(another: RationalNumber): number​
+compare(another: RationalNumber): number​
 
 将当前RationalNumber对象与目标RationalNumber对象进行比较，并返回比较结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1107,6 +1350,14 @@ compare​(another: RationalNumber): number​
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | number | 如果两个对象相等，则返回0；如果给定对象小于当前对象，则返回1；如果给定对象大于当前对象，则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1123,6 +1374,8 @@ console.info("result = " + result);
 valueOf(): number
 
 以整数形式或者浮点数的形式获取当前RationalNumber对象的值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1150,9 +1403,11 @@ console.info("result = " + result);
 
 ### equals<sup>8+</sup>
 
-equals​(obj: Object): boolean
+equals(obj: Object): boolean
 
 将当前的RationalNumber对象与给定的对象进行比较是否相等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1192,6 +1447,8 @@ getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1207,6 +1464,14 @@ getCommonFactor(number1: number,number2: number): number
 | ------ | ------------------------------ |
 | number | 返回两个给定数字的最大公约数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1217,9 +1482,11 @@ console.info("result = " + result);
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​(): number
+getNumerator(): number
 
 获取当前RationalNumber对象的分子。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1247,9 +1514,11 @@ console.info("result = " + result);
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​(): number
+getDenominator(): number
 
 获取当前RationalNumber对象的分母。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1277,9 +1546,11 @@ console.info("result = " + result);
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero():boolean
 
 检查当前RationalNumber对象是否为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1307,9 +1578,11 @@ console.info("result = " + result);
 
 ### isNaN<sup>8+</sup>
 
-isNaN​(): boolean
+isNaN(): boolean
 
 检查当前RationalNumber对象是否表示非数字(NaN)值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1337,9 +1610,11 @@ console.info("result = " + result);
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite():boolean
 
 检查当前RationalNumber对象是否表示一个有限值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1367,9 +1642,11 @@ console.info("result = " + result);
 
 ### toString<sup>8+</sup>
 
-toString​(): string
+toString(): string
 
 获取当前RationalNumber对象的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1422,7 +1699,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 ### compareTo<sup>(deprecated)</sup>
 
-compareTo​(another: RationalNumber): number​
+compareTo(another: RationalNumber): number​
 
 将当前的RationalNumber对象与给定的对象进行比较。
 
@@ -1454,7 +1731,7 @@ let result = rationalNumber.compareTo(rational);
 
 ### getCommonDivisor<sup>(deprecated)</sup>
 
-static getCommonDivisor​(number1: number,number2: number): number
+static getCommonDivisor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
@@ -1490,6 +1767,8 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
@@ -1510,6 +1789,8 @@ let result = pro.length;
 constructor(capacity?: number)
 
 默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1532,6 +1813,8 @@ updateCapacity(newCapacity: number): void
 
 将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1539,6 +1822,14 @@ updateCapacity(newCapacity: number): void
 | 参数名      | 类型   | 必填 | 说明                         |
 | ----------- | ------ | ---- | ---------------------------- |
 | newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1552,6 +1843,8 @@ pro.updateCapacity(100);
 toString(): string
 
 返回对象的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1579,6 +1872,8 @@ getCapacity(): number
 
 获取当前缓冲区的容量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1600,6 +1895,8 @@ clear(): void
 
 从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -1616,6 +1913,8 @@ pro.clear();
 getCreateCount(): number
 
 获取创建对象的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1651,6 +1950,8 @@ getMissCount(): number
 
 获取查询值不匹配的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1673,6 +1974,8 @@ let result = pro.getMissCount();
 getRemovalCount(): number
 
 获取缓冲区键值对回收的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1698,6 +2001,8 @@ getMatchCount(): number
 
 获取查询值匹配成功的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1721,6 +2026,8 @@ getPutCount(): number
 
 获取将值添加到缓冲区的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1742,6 +2049,8 @@ let result = pro.getPutCount();
 isEmpty(): boolean
 
 检查当前缓冲区是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1765,6 +2074,8 @@ get(key: K): V | undefined
 
 表示要查询的键。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1779,6 +2090,14 @@ get(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1792,6 +2111,8 @@ let result  = pro.get(2);
 put(key: K,value: V): V
 
 将键值对添加到缓冲区。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1808,6 +2129,14 @@ put(key: K,value: V): V
 | ---- | ------------------------------------------------------------ |
 | V    | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1820,6 +2149,8 @@ let result = pro.put(2,10);
 values(): V[]
 
 获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1845,6 +2176,8 @@ keys(): K[]
 
 获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1867,6 +2200,8 @@ remove(key: K): V | undefined
 
 从当前缓冲区中删除指定的键及其关联的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1880,6 +2215,14 @@ remove(key: K): V | undefined
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1895,6 +2238,8 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 删除值后执行后续操作。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1905,6 +2250,14 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 | key      | K       | 是   | 表示删除的键。                                               |
 | value    | V       | 是   | 表示删除的值。                                               |
 | newValue | V       | 是   | 如果已调用put方法并且要添加的键已经存在，则参数值是关联的新值。其他情况下参数值为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1934,6 +2287,8 @@ contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1947,6 +2302,14 @@ contains(key: K): boolean
 | 类型    | 说明                                       |
 | ------- | ------------------------------------------ |
 | boolean | 如果缓冲区包含指定的键，则返回&nbsp;true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1966,6 +2329,8 @@ createDefault(key: K): V
 
 如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1980,6 +2345,14 @@ createDefault(key: K): V
 | ---- | ------------------ |
 | V    | 返回与键关联的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1992,6 +2365,8 @@ let result = pro.createDefault(50);
 entries(): IterableIterator&lt;[K,V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2023,6 +2398,8 @@ for (let value of arrayValue) {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2056,6 +2433,8 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2095,6 +2474,8 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
+type ScopeType = ScopeComparable | number
+
 用于表示范围中的值的类型。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2114,6 +2495,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2122,6 +2505,14 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 | -------- | ------------------------ | ---- | ---------------------- |
 | lowerObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的上限。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2151,6 +2542,8 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 toString(): string
 
 该字符串化方法返回一个包含当前范围的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2191,6 +2584,8 @@ intersect(range: ScopeHelper): ScopeHelper
 
 获取给定范围和当前范围的交集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2204,6 +2599,14 @@ intersect(range: ScopeHelper): ScopeHelper
 | 类型                           | 说明                           |
 | ------------------------------ | ------------------------------ |
 | [ScopeHelper](#scopehelper9) | 返回给定范围和当前范围的交集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2239,6 +2642,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 获取当前范围与给定下限和上限范围的交集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2253,6 +2658,14 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 | 类型                         | 说明                                     |
 | ---------------------------- | ---------------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回当前范围与给定下限和上限范围的交集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2286,6 +2699,8 @@ let result = range.intersect(tempMiDF, tempMidS);
 getUpper(): ScopeType
 
 获取当前范围的上限。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2326,6 +2741,8 @@ getLower(): ScopeType
 
 获取当前范围的下限。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2365,6 +2782,8 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 创建并返回包括当前范围和给定下限和上限的并集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2379,6 +2798,14 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 | 类型                         | 说明                                 |
 | ---------------------------- | ------------------------------------ |
 | [ScopeHelper](#scopehelper9) | 返回当前范围和给定下限和上限的并集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2413,6 +2840,8 @@ expand(range: ScopeHelper): ScopeHelper
 
 创建并返回包括当前范围和给定范围的并集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2426,6 +2855,14 @@ expand(range: ScopeHelper): ScopeHelper
 | 类型                         | 说明                               |
 | ---------------------------- | ---------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回包括当前范围和给定范围的并集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2461,6 +2898,8 @@ expand(value: ScopeType): ScopeHelper
 
 创建并返回包括当前范围和给定值的并集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2474,6 +2913,14 @@ expand(value: ScopeType): ScopeHelper
 | 类型                         | 说明                             |
 | ---------------------------- | -------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回包括当前范围和给定值的并集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2507,6 +2954,8 @@ contains(value: ScopeType): boolean
 
 检查给定value是否包含在当前范围内。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2520,6 +2969,14 @@ contains(value: ScopeType): boolean
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
 | boolean | 如果给定值包含在当前范围内返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2553,6 +3010,8 @@ contains(range: ScopeHelper): boolean
 
 检查给定range是否在当前范围内。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2566,6 +3025,14 @@ contains(range: ScopeHelper): boolean
 | 类型    | 说明                                                  |
 | ------- | ----------------------------------------------------- |
 | boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2601,6 +3068,8 @@ clamp(value: ScopeType): ScopeType
 
 将给定值限定到当前范围内。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2614,6 +3083,14 @@ clamp(value: ScopeType): ScopeType
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
 | [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2653,9 +3130,11 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **示例：**
 
-  ```ts 
+  ```ts
   let base64 = new util.Base64Helper();
   ```
 
@@ -2664,6 +3143,8 @@ Base64Helper的构造函数。
 encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2680,12 +3161,20 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 | ---------- | ----------------------------- |
 | Uint8Array | 返回编码后的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64Helper.encodeSync(array);
   ```
 
 
@@ -2694,6 +3183,8 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2710,12 +3201,20 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | ------ | -------------------- |
 | string | 返回编码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  let result = that.encodeToStringSync(array, util.Type.MIME);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
@@ -2724,6 +3223,8 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2740,12 +3241,20 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 | ---------- | ----------------------------- |
 | Uint8Array | 返回解码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  let result = that.decodeSync(buff, util.Type.MIME);
+  let result = base64Helper.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -2754,6 +3263,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2770,16 +3281,21 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{
-    for (let i = 0; i < rarray.length; i++) {
-      console.info(val[i].toString());
-    }
+  base64Helper.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -2789,6 +3305,8 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 通过输入参数异步编码后输出对应文本。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2805,13 +3323,21 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 | --------------------- | ------------------------ |
 | Promise&lt;string&gt; | 返回异步编码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  that.encodeToString(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
+    console.info(val);
   })
   ```
 
@@ -2821,6 +3347,8 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步解码后输出对应Uint8Array对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2837,13 +3365,21 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  that.decode(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.decode(array, util.Type.MIME).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -2857,6 +3393,8 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2864,6 +3402,14 @@ StringDecoder的构造函数。
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | encoding  | string | 否   | 输入数据的编码类型。默认值：'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2876,6 +3422,8 @@ StringDecoder的构造函数。
 write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2890,6 +3438,14 @@ write(chunk: string | Uint8Array): string
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
 | string | 返回解码后的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2906,6 +3462,10 @@ end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明                |
@@ -2917,6 +3477,14 @@ end(chunk?: string | Uint8Array): string
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
 | string | 返回解码后的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2935,12 +3503,13 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。|
-| MIME  | 1 | 表示MIME编码格式。 |
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| BASIC | 0 | 表示BASIC编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 
 ## types<sup>8+</sup>
@@ -2952,6 +3521,8 @@ types为不同类型的内置对象提供类型检查，可以避免由于类型
 constructor()
 
 Types的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2967,6 +3538,8 @@ Types的构造函数。
 isAnyArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2998,6 +3571,8 @@ isArrayBufferView(value: Object): boolean
 
 ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3025,6 +3600,8 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 isArgumentsObject(value: Object): boolean
 
 检查输入的value是否是一个arguments对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3057,6 +3634,8 @@ isArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3084,6 +3663,8 @@ isArrayBuffer(value: Object): boolean
 isAsyncFunction(value: Object): boolean
 
 检查输入的value是否是一个异步函数类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3113,6 +3694,8 @@ isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3141,6 +3724,8 @@ isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3168,6 +3753,8 @@ isBoxedPrimitive(value: Object): boolean
 isDataView(value: Object): boolean
 
 检查输入的value是否是DataView类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3198,6 +3785,8 @@ isDate(value: Object): boolean
 
 检查输入的value是否是Date类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3225,6 +3814,8 @@ isDate(value: Object): boolean
 isExternal(value: Object): boolean
 
 检查输入的value是否是native External类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3254,6 +3845,8 @@ isFloat32Array(value: Object): boolean
 
 检查输入的value是否是Float32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3281,6 +3874,8 @@ isFloat32Array(value: Object): boolean
 isFloat64Array(value: Object): boolean
 
 检查输入的value是否是Float64Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3314,6 +3909,8 @@ isGeneratorFunction(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3346,6 +3943,8 @@ isGeneratorObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3377,6 +3976,8 @@ isInt8Array(value: Object): boolean
 
 检查输入的value是否是Int8Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3404,6 +4005,8 @@ isInt8Array(value: Object): boolean
 isInt16Array(value: Object): boolean
 
 检查输入的value是否是Int16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3433,6 +4036,8 @@ isInt32Array(value: Object): boolean
 
 检查输入的value是否是Int32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3461,6 +4066,8 @@ isMap(value: Object): boolean
 
 检查输入的value是否是Map类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3488,6 +4095,8 @@ isMap(value: Object): boolean
 isMapIterator(value: Object): boolean
 
 检查输入的value是否是Map的Iterator类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3519,6 +4128,8 @@ isNativeError(value: Object): boolean
 
 检查输入的value是否是Error类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3546,6 +4157,8 @@ isNativeError(value: Object): boolean
 isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3575,6 +4188,8 @@ isPromise(value: Object): boolean
 
 检查输入的value是否是Promise类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3602,6 +4217,8 @@ isPromise(value: Object): boolean
 isProxy(value: Object): boolean
 
 检查输入的value是否是Proxy类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3635,6 +4252,8 @@ isRegExp(value: Object): boolean
 
 检查输入的value是否是RegExp类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3662,6 +4281,8 @@ isRegExp(value: Object): boolean
 isSet(value: Object): boolean
 
 检查输入的value是否是Set类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3692,6 +4313,8 @@ isSetIterator(value: Object): boolean
 
 检查输入的value是否是Set的Iterator类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3720,6 +4343,8 @@ isSetIterator(value: Object): boolean
 isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3753,6 +4378,8 @@ isSymbolObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3785,6 +4412,8 @@ isTypedArray(value: Object): boolean
 
 TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3812,6 +4441,8 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 isUint8Array(value: Object): boolean
 
 检查输入的value是否是Uint8Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3841,6 +4472,8 @@ isUint8ClampedArray(value: Object): boolean
 
 检查输入的value是否是Uint8ClampedArray数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3868,6 +4501,8 @@ isUint8ClampedArray(value: Object): boolean
 isUint16Array(value: Object): boolean
 
 检查输入的value是否是Uint16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3897,6 +4532,8 @@ isUint32Array(value: Object): boolean
 
 检查输入的value是否是Uint32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3924,6 +4561,8 @@ isUint32Array(value: Object): boolean
 isWeakMap(value: Object): boolean
 
 检查输入的value是否是WeakMap类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3954,6 +4593,8 @@ isWeakSet(value: Object): boolean
 
 检查输入的value是否是WeakSet类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3982,6 +4623,8 @@ isBigInt64Array(value: Object): boolean
 
 检查输入的value是否是BigInt64Array类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4009,6 +4652,8 @@ isBigInt64Array(value: Object): boolean
 isBigUint64Array(value: Object): boolean
 
 检查输入的value是否是BigUint64Array类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4042,6 +4687,8 @@ isModuleNamespaceObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4060,7 +4707,7 @@ isModuleNamespaceObject(value: Object): boolean
 
   ```ts
   // 本接口不支持在.ets文件中使用。
-  import url from '@ohos.url'
+  import { url } from '@kit.ArkTS';
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
   ```
@@ -4071,6 +4718,8 @@ isModuleNamespaceObject(value: Object): boolean
 isSharedArrayBuffer(value: Object): boolean
 
 检查输入的value是否是SharedArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -5348,9 +5997,9 @@ encodeSync(src: Uint8Array): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64.encodeSync(array);
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -5380,9 +6029,9 @@ encodeToStringSync(src: Uint8Array): string
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeToStringSync(array);
+  let result = base64.encodeToStringSync(array);
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -5412,9 +6061,9 @@ decodeSync(src: Uint8Array | string): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let buff = 'czEz';
-  let result = that.decodeSync(buff);
+  let result = base64.decodeSync(buff);
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -5444,13 +6093,10 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString())
-      }
+  base64.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -5481,10 +6127,10 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  that.encodeToString(array).then(val=>{    
-      console.info(val)
+  base64.encodeToString(array).then((val) => {
+      console.info(val);
   })
   ```
 
@@ -5516,12 +6162,9 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
-  let rarray = new Uint8Array([115,49,51]);
-  that.decode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString());
-      }
+  base64.decode(array).then((val) => {
+    console.info(val.toString());
   })
   ```

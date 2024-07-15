@@ -13,7 +13,7 @@
 ## Modules to Import
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContentSession.sendData
@@ -34,11 +34,13 @@ Sends data to the UIExtensionComponent.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
@@ -58,11 +60,13 @@ Sets a callback to receive data from the UIExtensionComponent. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
@@ -83,11 +87,13 @@ Sets a callback with a return value to receive data from the UIExtensionComponen
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.startAbility
 
@@ -95,11 +101,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -114,8 +119,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -132,19 +142,16 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with **options** specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -160,8 +167,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -176,19 +188,16 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -209,8 +218,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -227,8 +241,6 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
@@ -240,11 +252,10 @@ An ability can be terminated in the following ways:
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -259,8 +270,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -277,8 +293,6 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
@@ -290,11 +304,10 @@ An ability can be terminated in the following ways:
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -310,8 +323,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -326,8 +344,6 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
@@ -339,11 +355,10 @@ An ability can be terminated in the following ways:
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> The application where the UIExtensionComponent is located must be running in the foreground and gain focus.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -365,8 +380,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -382,8 +402,6 @@ Observe the following when using this API:
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -403,11 +421,13 @@ Sets the background color for the loading page of the UIExtensionAbility. This A
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -426,11 +446,15 @@ Starts an ability as the caller. The initial ability places its caller informati
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
-
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -446,8 +470,6 @@ Starts an ability as the caller. The initial ability places its caller informati
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -467,11 +489,15 @@ Starts an ability as the caller, with **options** specified. The initial ability
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
-
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -485,8 +511,6 @@ Starts an ability as the caller, with **options** specified. The initial ability
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -513,8 +537,13 @@ Starts an ability as the caller. The initial ability places its caller informati
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -531,8 +560,6 @@ Starts an ability as the caller. The initial ability places its caller informati
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 ## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
 
 getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
@@ -547,54 +574,56 @@ Obtains the window object corresponding to the current UIExtension to notify the
 
 | Type| Description|
 | -------- | -------- |
-| uiExtensionHost.UIExtensionHostWindowProxy | Window object.|
+| [uiExtensionHost.UIExtensionHostWindowProxy](../apis-arkui/js-apis-uiExtensionHost-sys.md) | Window information of the host application.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
 
 **Example**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-import Want from '@ohos.app.ability.Want';
-import uiExtensionHost from '@ohos.uiExtensionHost';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { uiExtensionHost } from '@kit.ArkUI';
 
-const TAG: string = '[UIExtAbility]'
+const TAG: string = '[UIExtAbility]';
+
 export default class UIExtAbility extends UIExtensionAbility {
 
   onCreate() {
-    console.log(TAG, `UIExtAbility onCreate`)
+    console.log(TAG, `UIExtAbility onCreate`);
   }
 
   onForeground() {
-    console.log(TAG, `UIExtAbility onForeground`)
+    console.log(TAG, `UIExtAbility onForeground`);
   }
 
   onBackground() {
-    console.log(TAG, `UIExtAbility onBackground`)
+    console.log(TAG, `UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    console.log(TAG, `UIExtAbility onDestroy`)
+    console.log(TAG, `UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
     let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
-        'session': session,
-        'extensionHostWindow': extensionHostWindow
-    }
+      'session': session,
+      'extensionHostWindow': extensionHostWindow
+    };
     let storage: LocalStorage = new LocalStorage(data);
+
     session.loadContent('pages/extension', storage);
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionDestroy`)
+    console.log(TAG, `UIExtAbility onSessionDestroy`);
   }
 }
 ```
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).

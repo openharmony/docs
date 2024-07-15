@@ -1,6 +1,6 @@
 # @ohos.net.statistics (Traffic Management) (System API)
 
-The **statistics** module provides APIs to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
+The **statistics** module provides APIs to query real-time or historical traffic statistics by the specified network interface card (NIC) or user ID (UID).
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -9,7 +9,7 @@ The **statistics** module provides APIs to query real-time or historical data tr
 ## Modules to Import
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 
@@ -41,13 +41,13 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -86,13 +86,13 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -111,7 +111,7 @@ statistics.off('netStatsChange');
 
 getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
-Obtains the historical data traffic of the specified NIC. This API uses an asynchronous callback to return the result.
+Obtains the historical traffic statistics of the specified NIC. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -124,7 +124,7 @@ Obtains the historical data traffic of the specified NIC. This API uses an async
 | Name   | Type                                           | Mandatory| Description                                                                                   |
 | --------- | ----------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | ifaceInfo | [IfaceInfo](#ifaceinfo10)                       | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).                                    |
-| callback  | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the NIC. Otherwise, **error** is an error object.|
+| callback  | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical traffic statistics of the NIC. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -136,15 +136,15 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -174,7 +174,7 @@ if (iFaceInfo) {
 
 getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
-Obtains the historical data traffic of the specified NIC. This API uses a promise to return the result.
+Obtains the historical traffic statistics of the specified NIC. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -189,7 +189,7 @@ Obtains the historical data traffic of the specified NIC. This API uses a promis
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise\<[NetStatsInfo](#netstatsinfo10)> | Promise used to return the result, which is the historical data traffic of the specified NIC.|
+| Promise\<[NetStatsInfo](#netstatsinfo10)> | Promise used to return the result, which is the historical traffic statistics of the specified NIC.|
 
 **Error codes**
 
@@ -201,14 +201,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -237,7 +237,7 @@ if (iFaceInfo) {
 
 getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
-Obtains the historical data traffic of the specified application. This API uses an asynchronous callback to return the result.
+Obtains the historical traffic statistics of the specified application. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -250,7 +250,7 @@ Obtains the historical data traffic of the specified application. This API uses 
 | Name  | Type                                           | Mandatory| Description                                                                                   |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | uidInfo  | [UidInfo](#uidinfo10)                           | Yes  | Application information. For details, see [UidInfo](#uidinfo10).                                        |
-| callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the application. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical traffic statistics of the application. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -262,19 +262,23 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(
@@ -305,7 +309,7 @@ statistics.getTrafficStatsByUid(
 
 getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
-Obtains the historical data traffic of the specified application. This API uses a promise to return the result.
+Obtains the historical traffic statistics of the specified application. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -323,7 +327,7 @@ Obtains the historical data traffic of the specified application. This API uses 
 
 | Type                                     | Description                                              |
 | ----------------------------------------- | -------------------------------------------------- |
-| Promise\<[NetStatsInfo](#netstatsinfo10)> | Promise used to return the result, which is the historical data traffic of the specified NIC.|
+| Promise\<[NetStatsInfo](#netstatsinfo10)> | Promise used to return the result, which is the historical traffic statistics of the specified NIC.|
 
 **Error codes**
 
@@ -335,9 +339,9 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
@@ -346,7 +350,11 @@ import statistics from '@ohos.net.statistics'
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
@@ -357,6 +365,122 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 })
 ```
 
+## statistics.getTrafficStatsByNetwork<sup>12+</sup>
+
+getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>
+
+Obtains the traffic statistics of all applications on the specified network within the specified period. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_NETWORK_STATS
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name        | Type                           | Mandatory| Description                                        |
+|-------------|-------------------------------|----|--------------------------------------------|
+| networkInfo | [NetworkInfo](#networkinfo12) | Yes | Network information. For details, see [NetworkInfo](#networkinfo12).|
+
+**Return value**
+
+| Type                                             | Description                              |
+|-------------------------------------------------|----------------------------------|
+| Promise\<[UidNetStatsInfo](#uidnetstatsinfo12)> | Promise used to return the result, which is the historical traffic statistics of all applications.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+| 2103017   | Failed to read the database.                 |
+
+**Example**
+
+```js
+import { connection, statistics } from '@kit.NetworkKit';
+
+let networkInfo: statistics.NetworkInfo = {
+  type: connection.NetBearType.BEARER_CELLULAR,
+  startTime: Math.floor(Date.now() / 1000) - 86400 * 7, 
+  endTime: Math.floor(Date.now() / 1000) + 5,
+  simId: 1,
+}
+
+statistics.getTrafficStatsByNetwork(networkInfo).then((statsInfo: statistics.UidNetStatsInfo) => {
+  let rank: Map<string, object> = new Map<string, object>(Object.entries(statsInfo));
+  rank.forEach((value: object, key: string) => {
+    console.info("getTrafficStatsByNetwork key=" + key + ", value=" + JSON.stringify(value));
+  })
+})
+```
+
+## statistics.getTrafficStatsByUidNetwork<sup>12+</sup>
+
+getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>
+
+Obtains the traffic statistics of the specified application on the specified network within the specified period. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_NETWORK_STATS
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name        | Type                           | Mandatory| Description                                        |
+|-------------|-------------------------------|----|--------------------------------------------|
+| uid         | number                        | Yes | Application UID.                              |
+| networkInfo | [NetworkInfo](#networkinfo12) | Yes | Network information. For details, see [NetworkInfo](#networkinfo12).|
+
+**Return value**
+
+| Type                                                       | Description                              |
+|-----------------------------------------------------------|----------------------------------|
+| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | Promise used to return the result, which is the historical traffic statistics of the specified application.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+| 2103017   | Failed to read the database.                 |
+
+**Example**
+
+```js
+import { connection, statistics } from '@kit.NetworkKit';
+
+let uid: number = 20020147;
+let networkInfo: statistics.NetworkInfo = {
+  type: connection.NetBearType.BEARER_CELLULAR,
+  startTime: Math.floor(Date.now() / 1000) - 86400 * 7, 
+  endTime: Math.floor(Date.now() / 1000) + 5,
+  simId: 1,
+}
+
+statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence: statistics.NetStatsInfoSequence) => {
+  for (let i = 0; i < statsInfoSequence.length; i--) {
+    console.info("getTrafficStatsByUidNetwork item:" + JSON.stringify(statsInfoSequence[i]));
+  }
+})
+```
 
 ## IfaceInfo<sup>10+</sup>
 
@@ -412,3 +536,44 @@ Defines the NIC status and usage of an application.
 | --------- | ------ | ---- | --------- |
 | iface     | string | Yes  | NIC name.|
 | uid       | number | No  | Application UID. |
+
+## NetworkInfo<sup>12+</sup>
+
+Defines the network information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name       | Type                                                  | Mandatory| Description          |
+|-----------|------------------------------------------------------|----|--------------|
+| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | Yes | Network type.       |
+| startTime | number                                               | Yes | Start timestamp, in seconds.|
+| endTime   | number                                               | Yes | End timestamp, in seconds.|
+| simId     | number                                               | No | SIM card ID.   |
+
+## UidNetStatsInfo<sup>12+</sup>
+
+Defines the historical traffic statistics of all applications.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name       | Type                                           | Mandatory| Description          |
+|-----------|-----------------------------------------------|----|--------------|
+| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | Yes | Historical traffic statistics of all applications.|
+
+## NetStatsInfoSequence<sup>12+</sup>
+
+Defines the historical traffic statistics of the specified application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name       | Type                             | Mandatory| Description          |
+|-----------|---------------------------------|----|--------------|
+| startTime | number                          | Yes | Start timestamp, in seconds.|
+| endTime   | number                          | Yes | End timestamp, in seconds.|
+| info      | [NetStatsInfo](#netstatsinfo10) | Yes | Historical traffic statistics of the specified application.|

@@ -10,17 +10,21 @@ The [UIContext](../js-apis-arkui-UIContext.md#uicontext) provides the **keyframe
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 
+Sets the keyframe animation.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name        | Type                                             | Mandatory| Description                        |
+| Name       | Type                                             | Mandatory| Description                        |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](#keyframeanimateparam) | Yes     | Global parameters of the keyframe animation.    |
-| keyframes    | Array&lt;[KeyframeState](#keyframestate)&gt;  | Yes     | Array of keyframes.           |  
+| keyframes    | Array&lt;[KeyframeState](#keyframestate)&gt;  | Yes     | Array of keyframes.           |
 
 ## KeyframeAnimateParam
 | Name      | Type   | Mandatory| Description                                   |
 | ---------- | ---------- | ------- | ------------------------------------- |
-| delay      | number     | No     | Delay of animation playback, in ms.<br>Default value: **0**, indicating that the playback is not delayed.<br>Value range: (-∞, +∞)<br>**NOTE**<br>A value greater than 0 means to begin the animation after the specified amount of time has elapsed.<br>A value less than 0 means to begin the animation in advance. If the absolute value of **delay** is less than the actual animation duration, the animation starts its first frame from the state at the absolute value. If the absolute value of **delay** is greater than or equal to the actual animation duration, the animation starts its first frame from the end state. The actual animation duration is equal to the duration of a single animation multiplied by the number of animation playback times.|
+| delay      | number     | No     | Delay of animation playback, in ms.<br>Default value: **0**, indicating that the playback is not delayed.<br>**NOTE**<br>A value greater than 0 means to begin the animation after the specified amount of time has elapsed.<br>A value less than 0 means to begin the animation in advance. If the absolute value of **delay** is less than the actual animation duration, the animation starts its first frame from the state at the absolute value. If the absolute value of **delay** is greater than or equal to the actual animation duration, the animation starts its first frame from the end state. The actual animation duration is equal to the duration of a single animation multiplied by the number of animation playback times.|
 | iterations | number     | No     | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that there is no animation.<br>Default value: **1**<br>Value range: [-1, +∞)|
 | onFinish   | () => void | No     | Callback invoked when the animation playback is complete. This API is called after the keyframe animation has played for the specified number of times.|
 

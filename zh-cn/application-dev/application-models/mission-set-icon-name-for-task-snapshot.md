@@ -21,23 +21,24 @@
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image/image-decoding.md)。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Logger from '../utils/Logger';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
-... // 获取pixelMap
+// ... // 获取pixelMap
 
 // 设置任务快照的图标
 context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
-    Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
   } else {
-    Logger.info(TAG, `Success to set mission icon.`);
+    hilog.info(DOMAIN_NUMBER, TAG, `Success to set mission icon.`);
   }
 })
 ```
@@ -52,19 +53,20 @@ context.setMissionIcon(pixelMap, (err: BusinessError) => {
 通过调用[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法修改任务快照的名称。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import Logger from '../utils/Logger';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // 设置任务快照的名称
 context.setMissionLabel('test').then(() => {
-  Logger.info(TAG, 'Succeeded in seting mission label.');
+  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in seting mission label.');
 }).catch((err: BusinessError) => {
-  Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+  hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

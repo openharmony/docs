@@ -14,7 +14,11 @@ Public
 
 Before change: The **expandSafeArea** attribute of the **\<Navigation>** and **\<NavDestination>** components is defaulted to **[SafeAreaExpandType.NONE, SafeAreaExpandEdges.NONE]**.
 
+![stack](../../figures/navigation_unexpandSafeArea.jpg)
+
 After change: The **expandSafeArea** attribute of the **\<Navigation>** and **\<NavDestination>** components is defaulted to **[SafeAreaExpandType.SYSTEM, SafeAreaExpandEdges.BOTTOM, SafeAreaEdge.TOP]**, meaning that the components' background color is expanded to the status bar and navigation bar.
+
+![stack](../../figures/navigation_expandSafeArea.jpg )
 
 **API Level**
 
@@ -60,7 +64,7 @@ struct NavigationExample {
 }
 ```
 
-## cl.arkui.1 Expansion of the \<Tabs> Component to the Bottom Non-Safe Area
+## cl.arkui.2 Expansion of the \<Tabs> Component to the Bottom Non-Safe Area
 
 When conditions permit, the **\<Tabs>** component is expanded to the bottom non-safe area by default.
 
@@ -124,3 +128,37 @@ OpenHarmony SDK 4.1.6.1
 **Adaptation Guide**
 
 This change is about the default settings, and no adaptation is required. To change the component to its original default display effect, set **autoResize** to **true** and **interpolation** to **None**.
+
+## cl.arkui.4 Addition of the Edge Scrolling Effect to the \<Swiper> Component with One Page
+
+**Access Level**
+
+Public
+
+**Reason for Change**
+
+When a **\<Swiper>** component contains only one page, it does not exhibit the edge scrolling effect available when it contains multiple pages in non-repeating mode.
+
+**Change Impact**
+
+This change is a non-compatible change.
+
+Before change, the **\<Swiper>** component does not exhibit the edge scrolling effect when it contains only one page.
+
+After change, the **\<Swiper>** component exhibits an edge scrolling effect (**EdgeEffect.Spring** by default) when it contains only one page.
+
+**API Level**
+
+8
+
+**Change Since**
+
+OpenHarmony SDK 4.1.6.1
+
+**Key API/Component Changes**
+
+\<Swiper>
+
+**Adaptation Guide**
+
+No adaptation is required. If you want the **\<Swiper>** component to have no edge scrolling effect, set its **effectMode** attribute to **EdgeEffect.None**.

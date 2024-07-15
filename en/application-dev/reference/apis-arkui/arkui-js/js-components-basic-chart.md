@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                            | Type                                      | Default Value | Mandatory  | Description                                      |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
@@ -134,7 +134,7 @@ For the **gauge** charts, the following attributes are also supported.
 
 
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name                      | Type            | Default Value                       | Mandatory  | Description                                      |
 | ------------------------ | -------------- | -------------------------- | ---- | ---------------------------------------- |
@@ -146,18 +146,18 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | radius                   | &lt;length&gt; | -                          | No   | Radius of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the **width** and **height** in the common styles, and must be used together with **center-x** and **center-y**. This style is supported by the gauge chart only.|
 | colors                   | Array          | -                          | No   | Color of each section for the scale bar of the gauge component.<br>For example, **colors: \#ff0000, \#00ff00**. This style is supported by the gauge chart only.|
 | weights                  | Array          | -                          | No   | Weight of each section for the scale bar of the gauge component.<br>For example, **weights: 2, 2**. This style is supported by the gauge chart only.|
-| font-family<sup>5+</sup> | Array          | -                          | No   | Font style of the description text. You can use a [custom font](../arkui-js/js-components-common-customizing-font.md).|
+| font-family<sup>5+</sup> | Array          | -                          | No   | Font style of the description text. You can use a [custom font](js-components-common-customizing-font.md).|
 | font-size<sup>5+</sup>   | &lt;length&gt; | -                          | No   | Font size of the description text.                           |
 
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name    | Parameter                                      | Description                                      |
 | ------ | ---------------------------------------- | ---------------------------------------- |

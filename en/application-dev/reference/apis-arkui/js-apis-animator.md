@@ -10,7 +10,7 @@ The **Animator** module provides APIs for applying animation effects, including 
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
 >
 > Since API version 10, you can use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
@@ -25,6 +25,8 @@ create(options: AnimatorOptions): AnimatorResult
 
 Creates an **Animator** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -38,6 +40,14 @@ Creates an **Animator** object.
 | Type                               | Description           |
 | --------------------------------- | ------------- |
 | [AnimatorResult](#animatorresult) | Animator result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -66,6 +76,8 @@ reset(options: AnimatorOptions): void
 
 Updates this animator.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -80,6 +92,7 @@ For details about the error codes, see [Animator Error Codes](errorcode-animator
 
 | ID  | Error Message|
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if no page is found for pageId or fail to get object property list. |
 
 
@@ -124,6 +137,8 @@ play(): void
 
 Plays this animation. The animation retains the previous playback state. For example, if the animation is set to **reverse** and paused, it will remain in **reverse** when resumed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -137,6 +152,8 @@ animator.play();
 finish(): void
 
 Ends this animation.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +169,8 @@ pause(): void
 
 Pauses this animation.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -165,6 +184,8 @@ animator.pause();
 cancel(): void
 
 Cancels this animation.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -180,6 +201,8 @@ reverse(): void
 
 Plays this animation in reverse order. This API does not take effect when the interpolating spring curve is used.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -188,7 +211,89 @@ Plays this animation in reverse order. This API does not take effect when the in
 animator.reverse();
 ```
 
-### onframe
+### onFrame<sup>12+</sup>
+
+onFrame: (progress: number) => void
+
+Called when a frame is received.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description      |
+| -------- | ------ | ---- | -------- |
+| progress | number | Yes   | Current progress of the animation.|
+
+**Example**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onFrame = (value)=> {
+  console.info("onFrame callback")
+}
+```
+
+### onFinish<sup>12+</sup>
+
+onFinish: () => void
+
+Called when this animation is finished.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onFinish = ()=> {
+  console.info("onFinish callback")
+}
+```
+
+### onCancel<sup>12+</sup>
+
+onCancel: () => void
+
+Called when this animation is canceled.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onCancel = ()=> {
+  console.info("onCancel callback")
+}
+```
+
+### onRepeat<sup>12+</sup>
+
+onRepeat: () => void
+
+Called when this animation repeats.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onRepeat = ()=> {
+  console.info("onRepeat callback")
+}
+```
+
+### onframe<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [onFrame](#onframe12) instead.
 
 onframe: (progress: number) => void
 
@@ -212,7 +317,11 @@ animatorResult.onframe = (value)=> {
 }
 ```
 
-### onfinish
+### onfinish<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [onFinish](#onfinish12) instead.
 
 onfinish: () => void
 
@@ -230,7 +339,12 @@ animatorResult.onfinish = ()=> {
 }
 ```
 
-### oncancel
+### oncancel<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [onCancel](#oncancel12) instead.
+
 
 oncancel: () => void
 
@@ -248,7 +362,11 @@ animatorResult.oncancel = ()=> {
 }
 ```
 
-### onrepeat
+### onrepeat<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [onRepeat](#onrepeat12) instead.
 
 onrepeat: () => void
 
@@ -266,23 +384,59 @@ animatorResult.onrepeat = ()=> {
 }
 ```
 
+### setExpectedFrameRateRange<sup>12+</sup>
 
+setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
+
+Sets the expected frame rate range.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name          | Type                                      | Mandatory| Description                         |
+| --------------- | ------------------------------------------ | ---- | -----------------------------|
+| rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes  | Expected frame rate range.|
+
+**Example**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult: AnimatorResult | undefined = animator.create({
+  duration: 2000,
+  easing: "ease",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 1,
+  begin: 100,
+  end: 200
+})
+let expectedFrameRate: ExpectedFrameRateRange = {
+  min: 0,
+  max: 120,
+  expected: 30
+}
+animatorResult.setExpectedFrameRateRange(expectedFrameRate);
+```
 
 ## AnimatorOptions
 
 Defines animator options.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name      | Type                                                       | Mandatory| Description                                                        |
 | ---------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | duration   | number                                                      | Yes  | Duration for playing the animation, in milliseconds.<br>Default value: **0**                                  |
-| easing     | string                                                      | Yes  | Animation interpolation curve. Only the following values are supported:<br>**"linear"**: The animation speed keeps unchanged.<br>**"ease"**: The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.<br>**"ease-in"**: The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.<br>**"ease-out"**: The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.<br>**"ease-in-out"**: The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.<br>**"fast-out-slow-in"**: The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0).<br>**"linear-out-slow-in"**: The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0).<br>**"fast-out-linear-in"**: The animation uses acceleration cubic-bezier curve (0.4, 0.0, 1.0, 1.0)<br>**"friction"**: The animation uses the damping cubic-bezier curve (0.2, 0.0, 0.2, 1.0).<br>**"extreme-deceleration"**: The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).<br>**"rhythm"**: The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).<br>**"sharp"**: The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).<br>**"smooth"**: The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0).<br>**"cubic-bezier(x1,y1,x2,y2)"**: The animation uses the defined cubic bezier curve, where the value of **x1** and **x2** must range from 0 to 1. For example, **"cubic-bezier(0.42,0.0,0.58,1.0)"**.<br>**"steps(number,step-position)"**: The animation uses a step curve. The **number** parameter is mandatory and must be set to a positive integer. The **step-position** parameter is optional and can be set to **start** or **end** (default value). For example, **"steps(3,start)"**.<br>**"interpolating-spring(velocity,mass,stiffness,damping)"**: The animation uses an interpolating spring curve. This API is supported since API version 11 and can be used only in ArkTS. The **velocity**, **mass**, **stiffness**, and **damping** parameters are of the numeric type, and the values of **mass**, **stiffness**, and **damping** must be greater than 0. For details about the parameters, see [Curves.interpolatingSpring](./js-apis-curve.md#curvesinterpolatingspring10). When an interpolating spring curve is used, settings for the **duration**, **fill**, **direction**, and **iterations** do not take effect. Rather, the value of **duration** is subject to the spring settings, **fill** is fixed at **forwards**, **direction** at **normal**, and **iterations** at **1**. In addition, invoking [reverse](#reverse) of **animator** is not effective. In other words, when using an interpolating spring curve, the animation can play only once in forward mode.|
-| delay      | number                                                      | Yes  | Animation delay duration, in milliseconds. Value **0** means that there is no delay.         |
+| easing     | string                                                      | Yes  | Animation interpolation curve. Only the following values are supported:<br>**"linear"**: The animation speed keeps unchanged.<br>**"ease"**: The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.<br>**"ease-in"**: The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.<br>**"ease-out"**: The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.<br>**"ease-in-out"**: The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.<br>**"fast-out-slow-in"**: The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0).<br>**"linear-out-slow-in"**: The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0).<br>**"fast-out-linear-in"**: The animation uses acceleration cubic-bezier curve (0.4, 0.0, 1.0, 1.0)<br>**"friction"**: The animation uses the damping cubic-bezier curve (0.2, 0.0, 0.2, 1.0).<br>**"extreme-deceleration"**: The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).<br>**"rhythm"**: The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).<br>**"sharp"**: The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).<br>**"smooth"**: The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0).<br>**"cubic-bezier(x1,y1,x2,y2)"**: The animation uses the defined cubic bezier curve, where the value of **x1** and **x2** must range from 0 to 1. For example, **"cubic-bezier(0.42,0.0,0.58,1.0)"**.<br>**"steps(number,step-position)"**: The animation uses a step curve. The **number** parameter is mandatory and must be set to a positive integer. The **step-position** parameter is optional and can be set to **start** or **end** (default value). For example, **"steps(3,start)"**.<br>**"interpolating-spring(velocity,mass,stiffness,damping)"**: The animation uses an interpolating spring curve. This API is supported since API version 11 and can be used only in ArkTS. The **velocity**, **mass**, **stiffness**, and **damping** parameters are of the numeric type, and the values of **mass**, **stiffness**, and **damping** must be greater than 0. For details about the parameters, see [Curves.interpolatingSpring](./js-apis-curve.md#curvesinterpolatingspring10). When an interpolating spring curve is used, settings for the **duration**, **fill**, **direction**, and **iterations** do not take effect. Rather, the value of **duration** is subject to the spring settings, **fill** is fixed at **forwards**, **direction** at **normal**, and **iterations** at **1**. In addition, invoking [reverse](#reverse) of **animator** is not effective. In other words, when using an interpolating spring curve, the animation can play only once in forward mode.<br>Default value: **"ease"**|
+| delay      | number                                                      | Yes  | Animation delay duration, in milliseconds. Value **0** means that there is no delay.<br>Default value: **0**         |
 | fill       | "none" \| "forwards" \| "backwards" \| "both"               | Yes  | State of the animated target after the animation is executed.<br>**"none"**: No style is applied to the target before or after the animation is executed.<br>**"forwards"**: The target keeps the state at the end of the animation (defined in the last key frame) after the animation is executed.<br>**"backwards"**: The animation uses the value defined in the first key frame during the **animation-delay**. When **animation-direction** is set to **normal** or **alternate**, the value in the **from** key frame is used. When **animation-direction** is set to **reverse** or **alternate-reverse**, the value in the **to** key frame is used.<br>**"both"**: The animation follows the **forwards** and **backwards** rules.|
 | direction  | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | Yes  | Animation playback mode.<br>**"normal"**: plays the animation in forward loop mode.<br>**"reverse"**: plays the animation in reverse loop mode.<br>**"alternate"**: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.<br>**"alternate-reverse"**: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.<br>Default value: **'normal'**|
 | iterations | number                                                      | Yes  | Number of times that the animation is played. The value **0** means not to play the animation, and **-1** means to play the animation for an unlimited number of times.<br>**NOTE**<br>If this parameter is set to a negative value other than **-1**, the value is invalid. In this case, the animation is played once.|
-| begin      | number                                                      | Yes  | Start point of the animation interpolation.<br>Default value: **1**                                              |
+| begin      | number                                                      | Yes  | Start point of the animation interpolation.<br>Default value: **0**                                              |
 | end        | number                                                      | Yes  | End point of animation interpolation.<br>Default value: **1**                                              |
 
 
@@ -361,7 +515,7 @@ class DateT{
     }
     let _this = DataTmp;
     if(DataTmp.animator){
-      DataTmp.animator.onframe = (value:number)=> {
+      DataTmp.animator.onFrame = (value:number)=> {
         _this.divWidth = value;
         _this.divHeight = value;
       };
@@ -399,17 +553,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onfinish = ()=> {
+    this.backAnimator.onFinish = ()=> {
       _this.flag = true
       console.info(_this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onrepeat = ()=> {
+    this.backAnimator.onRepeat = ()=> {
       console.info(_this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.oncancel = ()=> {
+    this.backAnimator.onCancel = ()=> {
       console.info(_this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onframe = (value:number)=> {
+    this.backAnimator.onFrame = (value:number)=> {
       _this.wid = value
       _this.hei = value
     }
@@ -597,4 +751,3 @@ let options: AnimatorOptions = { // The explicit type AnimatorOptions does not n
 };
 this.animator = animator.createAnimator(options);
 ```
-<!--no_check-->

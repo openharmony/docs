@@ -18,22 +18,22 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
+The [universal attributes](js-components-common-attributes.md) are supported.
 
 
 ## Styles
 
-The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+The [universal styles](js-components-common-styles.md) are supported.
 
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 
 ### getContext
@@ -59,7 +59,7 @@ Obtains the canvas drawing context. This API cannot be called in **onInit** or *
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| [CanvasRenderingContext2D](../arkui-js/js-components-canvas-canvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts on the canvas component.|
+| [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts on the canvas component.|
 
 ### toDataURL<sup>6+</sup>
 

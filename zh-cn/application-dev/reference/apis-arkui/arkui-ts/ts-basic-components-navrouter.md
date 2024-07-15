@@ -24,12 +24,15 @@
 
 NavRouter()
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 ### NavRouter<sup>10+</sup>
 
 NavRouter(value: RouteInfo)
 
 提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -47,6 +50,8 @@ mode(mode: NavRouteMode)
 
 设置指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -57,12 +62,16 @@ mode(mode: NavRouteMode)
 
 ## RouteInfo<sup>10+</sup>对象说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string            | 是   | 点击NavRouter跳转到的NavDestination页面的名称。 |
 | param             | unknown            | 否   | 点击NavRouter跳转到NavDestination页面时，传递的参数。 |
 
 ## NavRouteMode枚举类型说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述               |
 | ----- | ---------------- |
@@ -78,13 +87,15 @@ onStateChange(callback: (isActivated: boolean) => void)
 
 组件激活状态切换时触发该回调。开发者点击激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)。NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型    | 必填 | 描述                                    |
 | ----------- | ------- | ---- | --------------------------------------- |
-| isActivated | boolean | 是   | 为true时表示激活，为false时表示未激活。 |
+| isActivated | boolean | 是   | isActivated为true时表示激活，为false时表示未激活。 |
 
 ## 示例
 

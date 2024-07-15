@@ -1,14 +1,17 @@
-# Camera Kit API参考
+# Camera Kit（相机服务）
 
 - ArkTS API
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
+  <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [OH_Camera](_o_h___camera.md)
   - 头文件
     - [camera.h](camera_8h.md)
+    - [camera_device.h](camera__device_8h.md)
     - [camera_input.h](camera__input_8h.md)
     - [camera_manager.h](camera__manager_8h.md)
     - [capture_session.h](capture__session_8h.md)

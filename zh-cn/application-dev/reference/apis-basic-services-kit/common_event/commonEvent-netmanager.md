@@ -6,6 +6,8 @@
 
 提示网络连接状态变化。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 - 值：usual.event.CONNECTIVITY_CHANGE
 - 订阅者所需权限：无
 

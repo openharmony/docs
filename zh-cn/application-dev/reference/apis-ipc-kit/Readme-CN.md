@@ -1,6 +1,21 @@
-# IPC Kit API参考
+# IPC Kit（进程间通信服务）
 
 - ArkTS API
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
+- C API
+  - 模块
+    - [OHIPCParcel](_o_h_i_p_c_parcel.md)
+    - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
+    - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
+    - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
+    - [IPCKit](_i_p_c_kit.md)
+  - 头文件
+    - [ipc_cparcel.h](ipc__cparcel_8h.md)
+    - [ipc_cremote_object.h](ipc__cremote__object_8h.md)
+    - [ipc_cskeleton.h](ipc__cskeleton_8h.md)
+    - [ipc_error_code.h](ipc__error__code_8h.md)
+    - [ipc_kit.h](ipc__kit_8h.md)
+  - 结构体
+    - [OH_IPC_MessageOption](_o_h___i_p_c___message_option.md)
 - 错误码
   - [RPC错误码](errorcode-rpc.md)

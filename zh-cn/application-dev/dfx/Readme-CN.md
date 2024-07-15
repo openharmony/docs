@@ -23,12 +23,29 @@
         - [资源泄漏事件介绍](hiappevent-watcher-resourceleak-events.md)
         - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
         - [订阅资源泄漏事件（C/C++）](hiappevent-watcher-resourceleak-events-ndk.md)
+      - 踩内存事件
+        - [踩内存事件介绍](hiappevent-watcher-address-sanitizer-events.md)
+        - [订阅踩内存事件（ArkTS）](hiappevent-watcher-address-sanitizer-events-arkts.md)
+        - [订阅踩内存事件（C/C++）](hiappevent-watcher-address-sanitizer-events-ndk.md)
+      - 主线程超时事件
+        - [主线程超时事件介绍](hiappevent-watcher-mainthreadjank-events.md)
+        - [订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)
+        - [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
+  <!--Del-->
   - [事件上报](hiappevent-event-reporting.md)
+  <!--DelEnd-->
 - HiTraceMeter使用指导
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
   - [查看HiTraceMeter日志](hitracemeter-view.md)
-- [HiTraceChain使用指导](hitracechain-guidelines.md)
+- HiTraceChain使用指导
+  - [使用HiTraceChain打点（ArkTS/JS）](hitracechain-guidelines-arkts.md)
+  - [使用HiTraceChain打点（C/C++）](hitracechain-guidelines-ndk.md)
+- HiChecker使用指导
+  - [使用HiChecker检测问题（ArkTS/JS）](hichecker-guidelines-arkts.md)
+- Hidebug使用指导
+  - [使用Hidebug获取调试信息（ArkTS）](hidebug-guidelines-arkts.md)
+  - [使用Hidebug获取调试信息（C/C++）](hidebug-guidelines-ndk.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
@@ -43,4 +60,6 @@
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
   - [hisysevent](hisysevent.md)
+  <!--Del-->
   - [uinput](uinput.md)
+  <!--DelEnd-->

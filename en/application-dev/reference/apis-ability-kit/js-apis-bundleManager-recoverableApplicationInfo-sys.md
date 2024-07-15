@@ -22,3 +22,6 @@ Defines the information about a preinstalled application that can be restored af
 | moduleName       | string                         | Yes  | No  | Module name.|
 | labelId          | number                         | Yes  | No  | ID of the module label.    |
 | iconId           | number                         | Yes  | No  | ID of the module icon.   |
+| systemApp        | boolean                        | Yes  | No  | Whether the application is a system application.|
+| bundleType       |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (application) or **ATOMIC_SERVICE** (atomic service).                               |
+| codePaths        | Array\<string>                 | Yes  | No  | Installation directory of the application.         |

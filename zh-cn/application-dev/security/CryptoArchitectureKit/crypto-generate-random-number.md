@@ -23,7 +23,7 @@
   
   一个用来对伪随机数的内部状态进行初始化的数据，随机数生成器通过种子来生成一系列的随机序列。
 
-  当前OpenSSL实现方式，随时生成器内部状态是不断变化的，即使设置相同的种子，生成的随机数序列也不会相同。
+  当前OpenSSL实现方式，随机数生成器内部状态是不断变化的，即使设置相同的种子，生成的随机数序列也不会相同。
 
 
 ## 支持的算法与规格
@@ -47,7 +47,7 @@
 
 - 通过await返回异步结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function doRand() {
     let rand = cryptoFramework.createRandom();
@@ -61,8 +61,8 @@
 
 - 同步返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function doRandBySync() {
     let rand = cryptoFramework.createRandom();

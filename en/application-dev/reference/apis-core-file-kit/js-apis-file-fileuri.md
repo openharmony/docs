@@ -32,7 +32,7 @@ Before using this module, you need to obtain the application sandbox path of the
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | path<sup>10+</sup> | string | Yes| No| Path of the file.|
 | name<sup>10+</sup> | string | Yes| No| Name of the file.|
@@ -58,6 +58,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ---------------------------- | ---------- |
 | 13900005 | I/O error |
 | 13900042 | Unknown error |
+| 13900020 | invalid argument |
+| 13900002 | invalid uri |
 
 **Example**
 
@@ -184,16 +186,16 @@ Obtains the URI from a file path. This API returns the result synchronously.
 
 **Return value**
 
-| Type                          | Description        |
-| ---------------------------- | ---------- |
-| string | File URI obtained.|
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | string | File URI obtained.|
 
 **Error codes** 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 
 **Example**
 

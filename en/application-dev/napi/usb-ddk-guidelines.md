@@ -132,4 +132,3 @@ libusb_ndk.z.so
     // Release the USB DDK.
     OH_Usb_Release();
     ```
-<!--no_check-->

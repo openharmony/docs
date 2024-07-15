@@ -21,7 +21,7 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Quantity limit**: An application can request a maximum of 10 deferred tasks during a time segment.
 
-- **Execution frequency limit**: The system controls the execution frequency of deferred tasks based on the [application activity group](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md). Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.
+- **Execution frequency limit**: The system controls the execution frequency of deferred tasks<!--RP1--> based on the [application activity group](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->. Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.
 
   **Table 1** Application activity groups  
   | Group| Deferred Task Execution Frequency|
@@ -73,8 +73,8 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | ID of a deferred task.         |
-| bundleName      | string                            | Yes   | Bundle name of the application that requests the deferred task.          |
-| abilityName     | string                            | Yes   | Name of the ability to be notified by a deferred task scheduling callback.|
+| bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
+| abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | No   | Charging type.            |
@@ -137,6 +137,8 @@ The development of deferred task scheduling consists of two steps: implementing 
      // Callback invoked when the system starts scheduling the deferred task.
      onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
+       // Print the parameter, for example, key1, in parameters.
+       // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
      // Callback invoked when the system stops scheduling the deferred task.

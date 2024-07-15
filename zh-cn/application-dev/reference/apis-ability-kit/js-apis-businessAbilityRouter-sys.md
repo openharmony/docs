@@ -20,7 +20,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 | ------------------------------------------ | ------------ | -------------------- |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## BusinessType
 
@@ -68,6 +68,16 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | 是    | 支持按业务类型过滤的对象。 |
 | callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -113,6 +123,16 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 | 类型                                                         | 说明                                        |
 | ------------------------------------------------------------ | ------------------------------------------- |
 | Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 

@@ -438,14 +438,18 @@ rm -rf ./out
 2. 在```drivers/peripheral/nnrt```下补充```bundle.json```文件，```bundle.json```的写法参考本教程上面[开发步骤](#开发步骤)中的[实现HDI服务](#实现hdi服务)章节。
 
 3. 由于Demo依赖MindSpore Lite CPU算子，因此需要添加MindSpore Lite依赖文件：
-    - 下载MindSpore Lite的头文件，[MindSpore Lite 1.8.1](https://ms-release.obs.cn-north-4.myhuaweicloud.com/1.8.1/MindSpore/lite/release/android/gpu/mindspore-lite-1.8.1-android-aarch64.tar.gz)。
+    - 在OpenHarmony源码根目录执行以下命令编译MindSpore Lite动态库。MindSpore源码在OpenHarmony源码根目录third_party/mindspore位置下。
+      ```shell
+      # 编译mindspore动态库
+      ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
+      ```
     - 在```drivers/peripheral/nnrt/v2_0```下创建```mindspore```目录，用于存放mindspore动态库和头文件。
       ```shell
       mkdir drivers/peripheral/nnrt/v2_0/mindspore
       ```
-    - 解压```mindspore-lite-1.8.1-android-aarch64.tar.gz```文件，将```runtime/include```目录拷贝到```drivers/peripheral/nnrt/v2_0/mindspore```目录下。
+    - 将MindSpore源码中```mindspore-src/source/include```目录拷贝到```drivers/peripheral/nnrt/v2_0/mindspore```目录下。
       ```shell
-      cp mindspore-lite-1.8.1-android-aarch64/runtime/include drivers/peripheral/nnrt/v2_0/mindspore
+      cp third_party/mindspore/mindspore-src/source/include drivers/peripheral/nnrt/v2_0/mindspore
       ```
     - Demo还依赖mindspore的```schema```文件：
       ```shell
@@ -453,17 +457,14 @@ rm -rf ./out
       mkdir drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema
 
       # 从third_party目录拷贝mindspore schema文件
-      cp third_party/mindspore/mindspore/lite/schema/* drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema/
+      cp third_party/mindspore/mindspore-src/source/mindspore/lite/schema/* drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema/
       ```
-    - 编译OpenHarmony的MindSpore Lite动态库，并将动态库拷贝到```mindspore```目录下。
+    - 将编译好的OpenHarmony的MindSpore Lite动态库拷贝到```mindspore```目录下。
       ```shell
-      # 编译mindspore动态库
-      ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
-
       # 在drivers/peripheral/nnrt/v2_0/mindspore下创建mindspore目录
       mkdir drivers/peripheral/nnrt/v2_0/mindspore/mindspore
 
       # 从out目录将mindspore动态库拷贝到drivers/peripheral/nnrt/v2_0/mindspore/mindspore下
-      cp out/rk3568/package/phone/system/lib/libmindspore-lite.huawei.so drivers/peripheral/nnrt/v2_0/mindspore/mindspore/
+      cp out/rk3568/package/phone/system/lib/libmindspore-lite.so drivers/peripheral/nnrt/v2_0/mindspore/mindspore/
       ```
 4. 其他配置请参考本教程上面的[开发步骤](#开发步骤)章节。

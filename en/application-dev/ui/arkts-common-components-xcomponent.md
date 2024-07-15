@@ -1,4 +1,4 @@
-# CustomDraw (XComponent)
+# Custom Drawing (XComponent)
 
 
 As a drawing component, the \<[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)> is usually used to meet relatively complex drawing customization requirements, for example, display of a camera preview stream and drawing of a game image.
@@ -80,6 +80,7 @@ static napi_value Init(napi_env env, napi_value exports)
 {
 	// Define the API exposed on the module.
     napi_property_descriptor desc[] ={
+        // Use the DECLARE_NAPI_FUNCTION macro to map the PluginRender::NapiChangeColor method on the native side to the changeColor method on the ArkTS side.
         DECLARE_NAPI_FUNCTION("changeColor", PluginRender::NapiChangeColor),
     };
     // You can mount the native method (PluginRender::NapiChangeColor) to exports through this API. exports is bound to a JS object at the JS layer through the JS engine.
@@ -100,14 +101,14 @@ static napi_module nativerenderModule = {
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
     // Register the SO module.
-    napi_module_register(&nativerenderModule);c
+    napi_module_register(&nativerenderModule);
 }
 ```
 
 
 ### Parsing the NativeXComponent Instance
 
-**NativeXComponent** provides an instance at the native layer for the **\<XComponent>**, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. For details about the NDK APIs, see [Native XComponent](../reference/native-apis/_o_h___native_x_component.md).
+**NativeXComponent** provides an instance at the native layer for the **\<XComponent>**, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. For details about the NDK APIs, see [Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md).
 
 
 The **NativeXComponent** instance can be obtained by parsing the callback (that is, the **Init** function in [NAPI module registration](#registering-the-n-api-module)) when the module is loaded.
@@ -134,7 +135,7 @@ The **NativeXComponent** instance can be obtained by parsing the callback (that 
 
 ### Registering XComponent Callback
 
-Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent instance](#parsing-the-nativexcomponent-instance), perform callback registration through the **OH_NativeXComponent_RegisterCallback** API.
+Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent instance](#parsing-the-nativexcomponent-instance), perform callback registration through the **OH_NativeXComponent_RegisterCallback** API. Generally, callback registration is performed in the callback function (that is, the **Init** function in [NAPI module registration](#registering-the-n-api-module)) when the module is loaded.
 
 
 
@@ -186,8 +187,11 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   .onDestroy(() => {})
 ```
 
-- **id**: corresponds to an **\<XComponent>** and must be unique. Generally, you can use the **OH_NativeXComponent_GetXComponentId** API on the native side to obtain the corresponding ID and bind the corresponding **\<XComponent>**.
+- **id**: corresponds to an **\<XComponent>**. You are advised to set **id** to a unique value. Generally, you can use the **OH_NativeXComponent_GetXComponentId** API on the native side to obtain the corresponding ID and bind the corresponding **\<XComponent>**.
 
+  >**NOTE**
+  >
+  > Duplicate IDs make it difficult to identify a **\<XComponent>** on the native side.
 - **libraryname**: name of the loaded module, which must be the same as the value of **nm_modname** used when the Napi module is registered on the native side.
 
   >**NOTE**

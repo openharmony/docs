@@ -28,16 +28,21 @@ napi_status napi_load_module_with_info(napi_env env,
 
 | 场景            | 详细分类           | 说明                         |
 | :------------- | :----------------------------- | :--------------------------- |
-| 本地工程模块   | 加载模块内文件路径       | 要求路径以moduleName开头             |
-| 本地工程模块   | 加载HAR模块名           | -                            |
-| 远程包         | 加载远程HAR模块名        | -                            |
-| 远程包         | 加载ohpm包名            | -                            |
-| API        |    加载@ohos.*或 @system.*          | -                            |
-| 模块Native库   | 加载libNativeLibrary.so | -                            |
+| 本地工程模块   | HAP加载模块内文件路径       | 要求路径以moduleName开头             |
+| 本地工程模块   | HAP加载HAR模块名           | -                            |
+| 远程包         | HAP加载远程HAR模块名        | -                            |
+| 远程包         | HAP加载ohpm包名            | -                            |
+| API        |    HAP加载@ohos.*或 @system.*          | -                            |
+| 模块Native库   | HAP加载libNativeLibrary.so | -                            |
+
+注：
+
+1. 加载一个模块名，实际的行为是加载该模块的入口文件，一般为index.ets/ts。
+2. 如果在HAR中加载另外一个HAR，需要确保module_info的配置正确，尤其注意moduleName应为HAP的moduleName
 
 ## 使用示例
 
-- **加载模块内文件路径**
+- **HAP加载模块内文件路径**
 
 当加载文件中的模块时，如以下ArkTS代码：
 
@@ -90,7 +95,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **加载HAR模块名**
+- **HAP加载HAR模块名**
 
 HAR包Index.ets文件如下
 
@@ -113,7 +118,7 @@ export {value, test};
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进项配置
+2. 其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -134,7 +139,7 @@ export {value, test};
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module_with_info加载Test文件中的模块
+    //1. 使用napi_load_module_with_info加载library
     napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
 
     napi_value testFn;
@@ -153,7 +158,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **加载远程HAR模块名**
+- **HAP加载远程HAR模块名**
 
 1. 在远程HAR模块名时，首先需要在oh-package.json5文件中配置dependencies项
 
@@ -165,7 +170,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进项配置
+2. 其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -199,7 +204,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **加载ohpm包名**
+- **HAP加载ohpm包名**
 
 1. 在加载ohpm包时，首先需要在oh-package.json5文件中配置dependencies项
 
@@ -211,7 +216,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进项配置
+2. 其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -257,7 +262,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **加载API模块**
+- **HAP加载API模块**
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -287,7 +292,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **模块Native库**
+- **HAP加载Native库**
 
 libentry.so的index.d.ts文件如下
 
@@ -306,7 +311,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进项配置
+2. 其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -342,6 +347,69 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     //3. 使用napi_call_function调用函数add
     napi_value returnValue;
     napi_call_function(env, result, addFn, 2, args, &returnValue);
+    return result;
+}
+```
+
+- **HAR加载HAR模块名**
+
+场景为har1加载har2，har2中的Index.ets文件如下
+
+```javascript
+//har2 Index.ets
+let value = 123;
+function test() {
+  console.log("Hello OpenHarmony");
+}
+export {value, test};
+```
+
+1. 在加载har2时，首先需要在har1中的oh-package.json5文件中配置dependencies项
+
+```json
+{
+    "dependencies": {
+        "har2": "file:../har2"
+    }
+}
+```
+
+2. 其次，还需要在har1的build-profile.json5文件中进行配置
+
+```json
+{
+    "buildOption" : {
+        "arkOptions" : {
+            "runtimeOnly" : {
+                "packages": [
+                    "har2"
+                ]
+            }
+        }
+    }
+}
+```
+
+3. 在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value
+
+```cpp
+static napi_value loadModule(napi_env env, napi_callback_info info) {
+    napi_value result;
+    //1. 使用napi_load_module_with_info加载har2，注意这里的moduleName为模块所在HAP包的moduleName
+    napi_status status = napi_load_module_with_info(env, "har2", "com.example.application/entry", &result);
+
+    napi_value testFn;
+    //2. 使用napi_get_named_property获取test函数
+    napi_get_named_property(env, result, "test", &testFn);
+    //3. 使用napi_call_function调用函数test
+    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+
+    napi_value value;
+    napi_value key;
+    std::string keyStr = "value";
+    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+    //4. 使用napi_get_property获取变量value
+    napi_get_property(env, result, key, &value);
     return result;
 }
 ```

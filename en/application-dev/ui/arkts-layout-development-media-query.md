@@ -1,9 +1,9 @@
-# MediaQuery (@ohos.mediaquery)
+# Media Query (@ohos.mediaquery)
 
 
 ## Overview
 
-[Media queries](../reference/apis/js-apis-mediaquery.md) are at the core of responsive design and widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
+[Media queries](../reference/../reference/apis-arkui/js-apis-mediaquery.md) are at the core of responsive design and widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
 
 1. Design a layout style based on the device and application attributes (such as display area, dark light color, and resolution).
 
@@ -18,7 +18,7 @@ Import the **mediaquery** module, as shown below:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 Use the **matchMediaSync** API to set the media query condition and save the returned listener. The following is the example for listening for landscape events:
@@ -68,6 +68,8 @@ Examples are as follows:
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 
+- **(dark-mode: true)**: The query is valid when the system is in dark mode.
+
 
 ### media-type
 
@@ -108,6 +110,8 @@ The media features include the width and height of the application display area,
 
   **Table 3** Media features
 
+For width and height related features, the units vp and px are supported. If no unit is specified, px is used by default.
+
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
 | height            | Height of the drawing area of the application.                           |
@@ -130,6 +134,9 @@ The media features include the width and height of the application display area,
 | round-screen      | Screen type. The value **true** indicates a circular screen, and **false** indicates a non-circular screen.             |
 | dark-mode         | Whether the device is in dark mode. The value **true** means that the device is in dark mode, and **false** means the opposite.                 |
 
+>**NOTE**
+>
+>Of the preceding media features, only height and width are supported on widgets.
 
 ## Example Scenario
 
@@ -139,9 +146,8 @@ Stage model:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import window from '@ohos.window';
-import common from '@ohos.app.ability.common';
+import { mediaquery, window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -200,8 +206,8 @@ FA model:
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import featureAbility from '@ohos.ability.featureAbility';
+import { mediaquery } from '@kit.ArkUI';
+import { featureAbility } from '@kit.AbilityKit';
 
 @Entry
 @Component

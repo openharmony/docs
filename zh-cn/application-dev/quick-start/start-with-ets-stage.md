@@ -3,7 +3,7 @@
 
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
 
 ## 创建ArkTS工程
 
@@ -26,7 +26,7 @@
 
 ![project](figures/project.png)
 
-- **AppScope &gt; app.json5**：应用的全局配置信息。
+- **AppScope &gt; app.json5**：应用的全局配置信息，详见[app.json5配置文件](app-configuration-file.md)。
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
@@ -125,13 +125,14 @@
 
 1. 创建第二个页面。
 
-   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击“**Finish**”。可以看到文件目录结构如下：
+   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击**回车键**。可以看到文件目录结构如下：
 
       ![secondPage](figures/secondPage.png)
 
       >  **说明：**
       >
-      > 开发者也可以在右键点击“**pages**”文件夹时，选择“**New &gt; Page**”，则无需手动配置相关页面路由。
+      > 开发者也可以在右键点击“**pages**”文件夹时，选择“**New > Page > Empty Page**”，命名为“**Second**”，点击“**Finish**”完成第二个页面的创建。使用此种方式则无需再进行下文中第二个页面路由的手动配置。
+
    - 配置第二个页面的路由。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; resources &gt; base &gt; profile**”，在main_pages.json文件中的“src”下配置第二个页面的路由“pages/Second”。示例如下：
      
       ```json
@@ -194,8 +195,8 @@
    ```ts
    // Index.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -246,8 +247,8 @@
    ```ts
    // Second.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -310,4 +311,4 @@
 
    ![zh-cn_image_0000001364254729](figures/zh-cn_image_0000001364254729.png)
 
-恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来探索更多的OpenHarmony功能吧。

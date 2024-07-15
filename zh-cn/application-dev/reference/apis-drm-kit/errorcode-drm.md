@@ -101,7 +101,7 @@ Too many MediaKeySession streams.
 
 **错误信息**
 
-Service fatal error e.g. service died.
+Fatal service error, for example, service died.
 
 **错误描述**
 

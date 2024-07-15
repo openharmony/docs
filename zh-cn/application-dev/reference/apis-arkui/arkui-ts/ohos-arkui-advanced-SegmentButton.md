@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@ohos.arkui.advanced.SegmentButton'
+import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -21,6 +21,8 @@ import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } fr
 SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 **装饰器类型：**@Component
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,6 +43,10 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 属性                    | 类型                                                         | 描述                                                         |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                    | "tab" \| "capsule"                                           | 分段按钮的类型。                                             |
@@ -57,6 +63,9 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
 | buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
 | textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
+| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Auto                                                                                                                                                                                                                                          |
 | backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
 
 ### constructor
@@ -64,6 +73,10 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -77,6 +90,10 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 创建页签类的SegmentButtonOptions。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -97,6 +114,10 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 创建单选类/多选类的SegmentButtonOptions。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -114,6 +135,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 不支持百分比类型的长度的联合类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                             | 说明                                          |
@@ -127,6 +150,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 ## CommonSegmentButtonOptions
 
 用于定义分段按钮组件可自定义的属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,6 +170,9 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
 | buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
 | textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Auto                                                                                                                                                                                                                                          |
 | backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
 
 ## TabSegmentButtonConstructionOptions
@@ -152,6 +180,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 用于构建页签类的SegmentButtonOptions对象。
 
 继承[CommonSegmentButtonOptions](#commonsegmentbuttonoptions)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,6 +195,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 继承[CommonSegmentButtonOptions](#commonsegmentbuttonoptions)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性     | 类型                                              | 必填 | 描述                          |
@@ -175,6 +207,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 ## ItemRestriction
 
 用于保存按钮信息的元组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 取值范围                                  | 说明                              |
 | ----------------------------------------- | --------------------------------- |
@@ -188,6 +222,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 用于保存按钮信息的元组的联合类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 取值范围                                                     | 说明                      |
@@ -199,6 +235,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 ## SegmentButtonItemArray
 
 用于保存按钮信息的数组的联合类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -222,6 +260,8 @@ constructor(elements: SegmentButtonItemTuple)
 
 构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 
@@ -234,6 +274,8 @@ constructor(elements: SegmentButtonItemTuple)
 push(...items: SegmentButtonItemArray): number
 
 在数组末尾添加新的元素，返回添加元素后数组的长度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -258,6 +300,8 @@ pop(): SegmentButtonItemOptions | undefined
 
 移除数组末尾最后一个元素，返回被移除的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -274,6 +318,8 @@ shift(): SegmentButtonItemOptions | undefined
 
 移除数组开头第一个元素，返回被移除的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -289,6 +335,8 @@ shift(): SegmentButtonItemOptions | undefined
 unshift(...items: SegmentButtonItemArray): number
 
 在数组开头添加新的元素，返回添加元素后数组的长度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -312,6 +360,8 @@ unshift(...items: SegmentButtonItemArray): number
 splice(start: number, deleteCount: number, ...items: SegmentButtonItemOptions[]): SegmentButtonItemOptions[]
 
 在数组中，删除从start位置开始的deleteCount数量的元素，并插入items中的元素，返回一个包含了被删除的元素的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -338,6 +388,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 创建一个SegmentButtonItemOptionsArray对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 
@@ -355,6 +407,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 页签类分段按钮选项。继承自[TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性 | 类型  | 描述                   |
@@ -364,6 +418,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 ## CapsuleSegmentButtonOptions
 
 单选类/多选类分段按钮选项。继承自[CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,6 +431,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 仅文本按钮信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性 | 类型                                   | 必填 | 描述       |
@@ -384,6 +442,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 ## SegmentButtonIconItem
 
 仅图标按钮信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -400,6 +460,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 图标+文本按钮信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性         | 类型                                   | 必填 | 描述                 |
@@ -415,6 +477,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 ## SegmentButtonItemOptions
 
 分段按钮中按钮的选项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **属性：**
 
@@ -441,6 +505,8 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
 SegmentButtonItemOptions的构造参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性         | 类型                                   | 必填 | 描述                 |
@@ -461,7 +527,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -541,7 +607,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -629,7 +695,7 @@ import {
   SegmentButtonItemOptionsArray,
   SegmentButtonItemTuple,
   SegmentButtonItemOptions
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -684,3 +750,108 @@ struct Index {
 ```
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
+
+### 示例4
+SegmentButton布局镜像展示
+
+```ts
+// xxx.ets
+import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }],
+    direction: Direction.Auto,
+    backgroundColor: Color.Green,
+    selectedBackgroundColor: Color.Orange,
+    localizedTextPadding: {
+      end: LengthMetrics.vp(10),
+      start: LengthMetrics.vp(10)
+    },
+  })
+  @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }],
+    multiply: false,
+    direction: Direction.Auto,
+    fontColor: Color.Black,
+    selectedFontColor: Color.Yellow,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }],
+    multiply: true,
+    direction: Direction.Auto,
+    fontSize: 18,
+    selectedFontSize: 18,
+    fontWeight: FontWeight.Bolder,
+    selectedFontWeight: FontWeight.Lighter,
+  })
+  @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
+    ],
+    multiply: false,
+    direction: Direction.Auto,
+    imageSize: { width: 40, height: 40 },
+    localizedButtonPadding: {
+      end: LengthMetrics.vp(10),
+      start: LengthMetrics.vp(10)
+    },
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标2', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标3', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标4', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标5', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
+    ],
+    multiply: true,
+    direction: Direction.Auto,
+    imageSize: { width: 10, height: 10 },
+  })
+  @State tabSelectedIndexes: number[] = [0]
+  @State singleSelectCapsuleSelectedIndexes: number[] = [0]
+  @State multiplySelectCapsuleSelectedIndexes: number[] = [0, 1]
+  @State singleSelectIconCapsuleSelectedIndexes: number[] = [3]
+  @State multiplySelectIconTextCapsuleSelectedIndexes: number[] = [1, 2]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 20 }) {
+          SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.multiplySelectCapsuleOptions,
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![segmentbutton-sample4](figures/segmentbutton-sample4.png)

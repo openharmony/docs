@@ -965,7 +965,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代
+> 从 API version 7开始支持，从API version 9开始废弃。<!--Del-->建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代。<!--DelEnd-->
 
 | 名称  | 类型   | 可读 | 可写 | 说明     |
 | ----- | ------ | ---- | --- | -------- |
@@ -1069,39 +1069,11 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 | 名称        | 类型                                                         | 可读 | 可写 | 说明               |
 | ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](#contenttype)                                  | 是  | 是  | 通知内容类型。       |
+| contentType | [notification.ContentType](#contenttype)                                  | 是  | 是  | 通知内容类型。       |
 | normal      | [NotificationBasicContent](#notificationbasiccontent)        | 是  | 是  | 基本类型通知内容。   |
 | longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | 是  | 是  | 长文本类型通知内容。 |
 | multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | 是  | 是  | 多行类型通知内容。   |
 | picture     | [NotificationPictureContent](#notificationpicturecontent)    | 是  | 是  | 图片类型通知内容。   |
-
-
-## NotificationFlagStatus<sup>8+</sup>
-
-描述通知标志状态。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-| 名称           | 值  | 说明                               |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | 默认标志。                         |
-| TYPE_OPEN      | 1   | 通知标志打开。                     |
-| TYPE_CLOSE     | 2   | 通知标志关闭。                     |
-
-
-## NotificationFlags<sup>8+</sup>
-
-描述通知标志的实例。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称             | 类型                    | 可读 | 可写 | 说明                               |
-| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus8) | 是   | 否   | 是否启用声音提示。                  |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus8) | 是   | 否   | 是否启用振动提醒功能。               |
-
 
 ## NotificationRequest
 
@@ -1113,7 +1085,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
 | content               | [NotificationContent](#notificationcontent)   | 是  | 是  | 通知内容。                   |
 | id                    | number                                        | 是  | 是  | 通知ID。                     |
-| slotType              | [SlotType](#slottype)                         | 是  | 是  | 通道类型。                   |
+| slotType              | [notification.SlotType](#slottype)                         | 是  | 是  | 通道类型。                   |
 | isOngoing             | boolean                                       | 是  | 是  | 是否进行时通知。             |
 | isUnremovable         | boolean                                       | 是  | 是  | 是否可移除。                 |
 | deliveryTime          | number                                        | 是  | 是  | 通知发送时间。               |
@@ -1141,7 +1113,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | groupName<sup>8+</sup>| string                                        | 是  | 是  | 组通知名称。                 |
 | template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | 是  | 是  | 通知模板。                   |
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | 是  | 是  | 分布式通知的选项。          |
-| notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | 是  | 否  | 获取NotificationFlags。          |
+| notificationFlags<sup>8+</sup> | [NotificationFlags](./js-apis-inner-notification-notificationFlags.md)                    | 是  | 否  | 获取NotificationFlags。          |
 | removalWantAgent<sup>9+</sup> | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
 | badgeNumber<sup>9+</sup> | number                    | 是  | 是  | 应用程序图标上显示的通知数。          |
 
@@ -1166,8 +1138,8 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 | 名称                 | 类型                  | 可读 | 可写 | 说明                     |
 | -------------------- | --------------------- | ---- | --- |------------------------|
-| type                 | [SlotType](#slottype) | 是  | 是  | 通道类型。                  |
-| level                | number                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| type                 | [notification.SlotType](#slottype) | 是  | 是  | 通道类型。                  |
+| level                | [notification.SlotLevel](#slotlevel)                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
 | desc                 | string                | 是  | 是  | 通知渠道描述信息。              |
 | badgeFlag            | boolean               | 是  | 是  | 是否显示角标。                |
 | bypassDnd            | boolean               | 是  | 是  | 设置是否在系统中绕过免打扰模式。       |
@@ -1188,7 +1160,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | 名称 | 类型                    | 可读 | 可写 | 说明       |
 | ---- | ---------------------- | ---- | ---- | ---------- |
 | name | string                 | 是   | 是   | 模板名称。 |
-| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
+| data | Record<string, Object> | 是   | 是   | 模板数据。 |
 
 
 ## NotificationUserInput<sup>8+</sup>

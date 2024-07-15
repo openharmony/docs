@@ -20,7 +20,7 @@
 - 以使用Promise方式随机生成AES密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateAesKey() {
     // 创建SymKeyGenerator实例
@@ -37,7 +37,7 @@
 
 - 同步方法（调用方法[generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // 创建SymKeyGenerator实例
@@ -65,7 +65,7 @@
 - 以使用Promise方式随机生成SM4密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateSM4Key() {
     // 创建SymKeyGenerator实例
@@ -82,7 +82,7 @@
 
 - 同步方法（调用方法[generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // 创建SymKeyGenerator实例

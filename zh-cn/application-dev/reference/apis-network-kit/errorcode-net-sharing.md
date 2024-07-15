@@ -26,7 +26,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -80,8 +80,8 @@ Try to share an unavailable iface.
 
 1.通过指令查看共享的网卡是否被创建。
 
-    ```bash
-    > ifconfig -a
+    ```
+    ifconfig -a
     ```
 
 2.检查网卡名是否拼写错误。
@@ -130,7 +130,7 @@ Bluetooth sharing failed.
 
 **错误信息**
 
-Network share enable forwarding error.
+Failed to enable forwarding for network sharing.
 
 **错误描述**
 

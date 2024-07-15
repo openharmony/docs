@@ -17,9 +17,9 @@ During application development, you must subscribe to playback state changes and
 1. Call **createSoundPool()** to create a **SoundPool** instance.
 
     ```ts
-    import media from '@ohos.multimedia.media';
-    import audio from '@ohos.multimedia.audio';
-    import { BusinessError } from '@ohos.base';
+    import { media } from '@kit.MediaKit';
+    import { audio } from '@kit.AudioKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
@@ -43,13 +43,13 @@ During application development, you must subscribe to playback state changes and
     You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load).
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
     async function load() {
-      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+      await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
         console.info("file fd: " + file.fd);
         uri = 'fd://' + (file.fd).toString()
       }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
@@ -81,7 +81,7 @@ During application development, you must subscribe to playback state changes and
 5. Call **on('error')** to listen for errors that may occur.
      
     ```ts
-    soundPool.on('error', (error) => {
+    soundPool.on('error', (error: BusinessError) => {
       console.info('error happened,message is :' + error.message);
     });
     ```
@@ -98,7 +98,7 @@ During application development, you must subscribe to playback state changes and
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // The sound playback has the lowest priority.
       }
-    soundPool.play(soundID, playParameters, (error, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
@@ -111,7 +111,7 @@ During application development, you must subscribe to playback state changes and
 7. Call **setLoop()** to set the number of loops.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
@@ -131,7 +131,7 @@ During application development, you must subscribe to playback state changes and
 9. Call **setVolume()** to set the playback volume.
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     let streamID: number;
     // Call play() to obtain the stream ID.
@@ -146,7 +146,7 @@ During application development, you must subscribe to playback state changes and
 10. Call **stop()** to stop the playback.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     
     let streamID: number;
     // Call play() to obtain the stream ID.
@@ -161,7 +161,7 @@ During application development, you must subscribe to playback state changes and
 11. Call **unload()** to unload a sound.
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     
     let soundID: number;
     // Call load() to obtain the sound ID.
@@ -194,7 +194,7 @@ During application development, you must subscribe to playback state changes and
 15. Call **release()** to release the **SoundPool** instance.
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     
     soundPool.release().then(() => {
       console.info('release success');
@@ -206,11 +206,12 @@ During application development, you must subscribe to playback state changes and
 ## Sample Code
 
 The following sample code implements low-latency playback using **SoundPool**.
-  
+
 ```ts
-import audio from '@ohos.multimedia.audio';
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs'
+import { audio } from '@kit.AudioKit';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
 let streamId: number = 0;
@@ -219,7 +220,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
-let PlayParameters: media.PlayParameters = {
+let playParameters: media.PlayParameters = {
   loop: 3, // The sound is played four times (three loops).
   rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
   leftVolume: 0.5, // range = 0.0-1.0
@@ -235,20 +236,20 @@ async function create() {
   finishPlayCallback();
   setErrorCallback();
   // Load a sound.
-  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+  await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
     console.info("file fd: " + file.fd);
     uri = 'fd://' + (file.fd).toString()
   }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
   soundId = await soundPool.load(uri);
 }
-async function loadCallback() {
+function loadCallback() {
   // Callback invoked when the sound finishes loading.
   soundPool.on('loadComplete', (soundId_: number) => {
     console.info('loadComplete, soundId: ' + soundId_);
   })
 }
 // Set the listener when the sound finishes playing.
-async function finishPlayCallback() {
+function finishPlayCallback() {
   // Callback invoked when the sound finishes playing.
   soundPool.on('playFinished', () => {
     console.info("recive play finished message");
@@ -257,23 +258,30 @@ async function finishPlayCallback() {
 }
 // Set the listener for errors.
 function setErrorCallback() {
-  soundPool.on('error', (error) => {
+  soundPool.on('error', (error: BusinessError) => {
     console.info('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // Start playback. PlayParameters can be carried in the play() API.
-  streamId = await soundPool.play(soundId);
+  soundPool.play(soundId, playParameters, (error, streamID: number) => {
+    if (error) {
+      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    } else {
+      streamId = streamID;
+      console.info('play success soundid:' + streamId);
+    }
+  });
   // Set the number of loops.
-  soundPool.setLoop (streamId, 2); // The sound is played three times (two loops).
+  await soundPool.setLoop(streamId, 2); // The sound is played three times (two loops).
   // Set the priority.
-  soundPool.setPriority(streamId, 1);
+  await soundPool.setPriority(streamId, 1);
   // Set the volume.
-  soundPool.setVolume(streamId, 0.5, 0.5);
+  await soundPool.setVolume(streamId, 0.5, 0.5);
 }
 async function release() {
   // Stop the playback of the stream.
-  soundPool.stop(streamId);
+  await soundPool.stop(streamId);
   // Unload the sound.
   await soundPool.unload(soundId);
   // Unregister the listeners.

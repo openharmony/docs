@@ -2,6 +2,9 @@
 
 在申请目标权限前，建议开发者先阅读[申请应用权限](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
+> **说明：**
+> 权限级别为normal的权限，不涉及ACL使能字段。
+
 ## system_grant（系统授权）权限列表
 
 以下权限的授权方式均为[system_grant](app-permission-mgmt-overview.md#system_grant系统授权)，申请方式请参考[声明权限](declare-permissions.md)。
@@ -14,8 +17,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GET_BUNDLE_INFO
@@ -25,8 +26,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -38,8 +37,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：10
 
 ### ohos.permission.PRINT
@@ -49,8 +46,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：10
 
@@ -62,8 +57,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.ACCELEROMETER
@@ -74,8 +67,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_BIOMETRIC
@@ -85,8 +76,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：6
 
@@ -100,8 +89,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：7
 
 ### ohos.permission.GET_NETWORK_INFO
@@ -111,8 +98,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -124,8 +109,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GYROSCOPE
@@ -135,8 +118,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -148,8 +129,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.KEEP_BACKGROUND_RUNNING
@@ -159,8 +138,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -172,8 +149,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：8
 
 ### ohos.permission.NFC_TAG
@@ -183,8 +158,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：7
 
@@ -196,8 +169,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.PUBLISH_AGENT_REMINDER
@@ -207,8 +178,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -220,8 +189,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.VIBRATE
@@ -231,8 +198,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -244,8 +209,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.COMMONEVENT_STICKY
@@ -255,8 +218,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -268,8 +229,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.RUNNING_LOCK
@@ -279,8 +238,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -292,8 +249,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_CERT_MANAGER
@@ -303,8 +258,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：9
 
@@ -316,8 +269,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：10
 
 ### ohos.permission.RUN_DYN_CODE
@@ -327,8 +278,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：11
 
@@ -340,8 +289,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：11
 
 ### ohos.permission.STORE_PERSISTENT_DATA
@@ -351,8 +298,6 @@
 **权限级别**: normal
 
 **授权方式**：system_grant
-
-**ACL使能**: false
 
 **起始版本**: 11
 
@@ -364,19 +309,15 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：11
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
-允许应用读取用户帐号的登录状态。
+允许应用读取用户账号的登录状态。
 
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：12
 
@@ -388,7 +329,17 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+**起始版本**：12
+
+### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+
+允许应用在锁屏后保护本应用敏感数据不被访问。
+
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
 
 **起始版本**：12
 
@@ -404,8 +355,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：10
 
 ### ohos.permission.MEDIA_LOCATION
@@ -415,8 +364,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -428,8 +375,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.ACTIVITY_MOTION
@@ -439,8 +384,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -452,8 +395,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
@@ -463,8 +404,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -482,11 +421,15 @@
 2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
 3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
+   设置路径：
+   <!--RP1-->
+   - 路径一：设置 > 隐私 > 权限管理 > 位置信息 > *具体应用*
+   - 路径二：设置 > 隐私 > 权限管理 > 应用 > *具体应用* > 位置信息
+   <!--RP1End-->
+
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：false
 
 **起始版本**：7
 
@@ -494,13 +437,11 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -512,8 +453,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：9
 
 ### ohos.permission.MICROPHONE
@@ -523,8 +462,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -536,7 +473,15 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
+**起始版本**：8
+
+### ohos.permission.WRITE_CALENDAR
+
+允许应用添加、移除或更改日历活动。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
 
 **起始版本**：8
 
@@ -548,44 +493,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
-**起始版本**：7
-
-### ohos.permission.READ_MEDIA
-
-允许应用读取用户外部存储中的媒体文件信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
-### ohos.permission.WRITE_CALENDAR
-
-允许应用添加、移除或更改日历活动。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
-### ohos.permission.WRITE_MEDIA
-
-允许应用读写用户外部存储中的媒体文件信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_NEARLINK
@@ -596,6 +503,36 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：12
+
+### ohos.permission.READ_MEDIA
+
+允许应用读取用户外部存储中的媒体文件信息。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**起始版本**：7
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+
+### ohos.permission.WRITE_MEDIA
+
+允许应用读写用户外部存储中的媒体文件信息。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**起始版本**：7
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。

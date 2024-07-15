@@ -14,8 +14,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## How to Use
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle.
-For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
@@ -53,7 +52,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -62,6 +61,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
     });
   });
   ```
+> **NOTE**<br>> In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +109,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,6 +120,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
     console.error("error is " + error);
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 
@@ -266,7 +267,7 @@ Defines the device capability.
 
 ## RawFileDescriptor<sup>8+</sup>
 
-Defines the descriptor of the HAP where the raw file is located.
+Defines the descriptor of the raw file.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -274,9 +275,9 @@ Defines the descriptor of the HAP where the raw file is located.
 
 | Name    | Type   | Readable  | Writable | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
+| fd     | number  | Yes   | No| File descriptor of the HAP where the raw file is located.|
 | offset | number  | Yes   | No| Start offset of the raw file.     |
-| length | number  | Yes   | No| File length.      |
+| length | number  | Yes   | No| Length of the raw file.      |
 
 ## Resource<sup>9+</sup>
 
@@ -302,11 +303,16 @@ Defines the capability of accessing application resources.
 >
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
-> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use **$r(resource address).id**, for example, **$r('app.string.test').id**, to obtain the resource ID.
+> - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 >
-> - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
+> - You can use **.context().resourceManager** to access intra-package resources in an application by resource ID or resource name.
 >
-> - For details about intra-HAP and cross-HAP/HSP resource access modes, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+> - For cross-package resources within an application, two methods are available for accessing a resource:
+by way of a resource object or by creating the context of the corresponding module and accessing the resource through **.context().createModuleContext().resourceManager**.
+>
+> - For cross-application package resources, use **.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager**. This API can be used only by system applications.
+>
+> - For details about **Context**, see [Context (Stage Model)] (../../application-models/application-context-stage.md).
 
 ### getStringSync<sup>9+</sup>
 
@@ -400,7 +406,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringSync(resource: Resource): string
 
-Obtains a string based on the specified resource object. This API returns the result synchronously.
+Obtains a string based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -451,7 +457,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-Obtains a string based on the specified resource object and formats the string based on **args**. This API returns the result synchronously.
+Obtains a string based on the specified resource object and formats the string based on **args**. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -683,7 +689,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a string based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains a string based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -735,7 +741,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-Obtains a string based on the specified resource object. This API uses a promise to return the result.
+Obtains a string based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -924,7 +930,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-Obtains a string array based on the specified resource object. This API returns the result synchronously.
+Obtains a string array based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1107,7 +1113,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains a string array based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains a string array based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1158,7 +1164,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains a string array based on the specified resource object. This API uses a promise to return the result.
+Obtains a string array based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1352,7 +1358,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API returns the result synchronously.
+Obtains a singular-plural string by the specified number based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 >**NOTE**
 >
@@ -1557,7 +1563,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains a singular-plural string by the specified number based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 >**NOTE**
 >
@@ -1614,7 +1620,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses a promise to return the result.
+Obtains a singular-plural string by the specified number based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 >**NOTE**
 >
@@ -1826,7 +1832,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2116,7 +2122,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2167,7 +2173,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2219,7 +2225,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result.
+Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2273,7 +2279,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2559,7 +2565,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2849,7 +2855,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2900,7 +2906,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2952,7 +2958,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result.
+Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3006,7 +3012,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3299,7 +3305,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously.
+Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3465,7 +3471,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getBoolean(resource: Resource): boolean
 
-Obtains a Boolean result based on the specified resource object. This API returns the result synchronously.
+Obtains a Boolean result based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3610,7 +3616,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getNumber(resource: Resource): number
 
-Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
+Obtains an integer or float value based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3755,7 +3761,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getColorSync(resource: Resource): number
 
-Obtains a color value based on the specified resource object. This API returns the result synchronously.
+Obtains a color value based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3940,7 +3946,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3992,7 +3998,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-Obtains a color value based on the specified resource object. This API uses a promise to return the result.
+Obtains a color value based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4406,7 +4412,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFdSync(path: string): RawFileDescriptor
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4420,7 +4426,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the raw file.|
 
 **Error codes**
 
@@ -4447,7 +4453,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4456,7 +4462,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Error codes**
 
@@ -4492,7 +4498,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4506,7 +4512,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Error codes**
 
@@ -4540,7 +4546,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFdSync(path: string): void
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
+Closes the descriptor of the raw file in the **resources/rawfile** directory.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4575,7 +4581,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4615,7 +4621,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

@@ -1,8 +1,9 @@
-# ArkTS API参考 
+# ArkTS（方舟编程语言）
 
-- ArkTS API 
+- ArkTS API
   - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
+  - [@arkts.math.Decimal (高精度数学库Decimal)](js-apis-arkts-decimal.md)
   - [@arkts.utils (ArkTS工具库)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
@@ -23,6 +24,7 @@
   - [@ohos.util.PlainArray (非线性容器PlainArray)](js-apis-plainarray.md)
   - [@ohos.util.Queue (线性容器Queue)](js-apis-queue.md)
   - [@ohos.util.Stack (线性容器Stack)](js-apis-stack.md)
+  - [@ohos.util.stream (数据流基类stream)](js-apis-stream.md)
   - [@ohos.util.TreeMap (非线性容器TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (非线性容器TreeSet)](js-apis-treeset.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)

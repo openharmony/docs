@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -36,7 +36,7 @@ Operation failed. Cannot connect to service.
 
 **错误信息**
 
-Operation failed. System is shutting down.
+Operation failed. The system is shutting down.
 
 **错误描述**
 

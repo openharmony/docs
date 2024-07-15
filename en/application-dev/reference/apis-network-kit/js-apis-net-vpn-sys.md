@@ -1,6 +1,7 @@
 # @ohos.net.vpn (VPN Management) (System API)
 
 The **vpn** module implements virtual private network (VPN) management, such as starting and stopping a VPN.
+This module is the built-in VPN function provided by the OS. It allows users to set up VPN connections through the network settings of the OS. Generally, this module provides only limited functions and is subject to strict restrictions.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -9,7 +10,7 @@ The **vpn** module implements virtual private network (VPN) management, such as 
 ## Modules to Import
 
 ```js
-import vpn from "@ohos.net.vpn";
+import { vpn } from '@kit.NetworkKit';
 ```
 
 ## vpn.createVpnConnection
@@ -47,8 +48,8 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 Stage model:
 
 ```ts
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -98,15 +99,15 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **Example**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -170,15 +171,15 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **Example**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -243,10 +244,9 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 **Example**
 
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -260,11 +260,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -320,10 +321,9 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 **Example**
 
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -337,11 +337,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -391,9 +392,9 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 **Example**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -434,6 +435,7 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
+| 401       | Parameter error.                                 |
 | 202       | Non-system applications use system APIs.     |
 | 2200002   | Operation failed. Cannot connect to service. |
 | 2200003   | System internal error.                       |
@@ -441,9 +443,9 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 **Example**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -482,5 +484,3 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
-
-<!--no_check-->

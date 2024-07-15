@@ -16,6 +16,7 @@
 - 字符/文本属性(uchar.h，uscript.h)
 - 编码转换(ucnv.h)
 - 文本双向处理(ubidi.h)
+- 域名转换(uidna.h)
 
 
 ## 标准库中导出的符号列表

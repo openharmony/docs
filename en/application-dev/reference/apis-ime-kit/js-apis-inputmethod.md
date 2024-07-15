@@ -186,6 +186,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -240,6 +241,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -302,7 +304,7 @@ Switches to another subtype of this input method. This API uses an asynchronous 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -311,6 +313,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -365,7 +368,7 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
@@ -379,6 +382,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -425,7 +429,7 @@ Obtains the current input method subtype.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md) | Current input method subtype.|
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
 
 **Example**
 
@@ -451,7 +455,7 @@ Switches to a specified subtype of a specified input method. This API uses an as
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -460,6 +464,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -505,7 +510,7 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
@@ -519,6 +524,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -548,7 +554,7 @@ try {
 
 getInputMethodController(): InputMethodController
 
-Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
+Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
 > **NOTE**
 >
@@ -778,6 +784,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -836,6 +843,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1126,6 +1134,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1179,6 +1188,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1221,6 +1231,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1270,6 +1281,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1314,6 +1326,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1364,6 +1377,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1405,6 +1419,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1454,6 +1469,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -2581,7 +2597,7 @@ Enables listening for the input method and subtype change event. This API uses a
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type. The value is fixed at **'imeChange'**.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | Yes| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -2609,7 +2625,7 @@ Disables listening for the input method and subtype change event. This API uses 
 | Name  | Type   | Mandatory| Description         |
 | -------- | --------- | ---- | --------------- |
 | type     | string    | Yes  | Listening type. The value is fixed at **'imeChange'**.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | No| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -2630,7 +2646,7 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes| Input method.|
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -2638,6 +2654,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2685,7 +2702,7 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the specified input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -2693,6 +2710,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2732,7 +2750,7 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -2740,6 +2758,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2775,7 +2794,7 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the current input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -2783,6 +2802,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2831,6 +2851,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2884,6 +2905,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2935,6 +2957,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.                 |
 | 12800008 |input method manager service error. |
 
@@ -2968,6 +2991,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -3009,6 +3033,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 

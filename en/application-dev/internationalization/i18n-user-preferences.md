@@ -6,7 +6,7 @@ In addition to system locales and application preferred languages, the system su
 
 ## How to Develop
 
-User preference setting is implemented by using [setUsingLocalDigit](../reference/apis/js-apis-i18n.md#setusinglocaldigit9) and [set24HourClock](../reference/apis/js-apis-i18n.md#set24hourclock9). The development procedure is as follows:
+User preference setting is implemented by using **setUsingLocalDigit** and **set24HourClock**. The development procedure is as follows:
 
 
 1. Import the **intl** module.

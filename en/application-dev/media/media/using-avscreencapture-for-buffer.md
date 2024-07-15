@@ -10,6 +10,8 @@ By default, the main screen is captured, and the **Graphics** module generates t
 
 The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
 
+If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
+
 This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
 ## How to Develop
@@ -177,7 +179,10 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
         // (Optional) Configure screen capture rotation.
         int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     }
-
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // Process the screen capture interruption caused by incoming calls.
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // Process the state change.
     }
@@ -202,15 +207,18 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
-int main() {
+struct OH_AVScreenCapture *capture;
+static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Instantiate AVScreenCapture.
-    struct OH_AVScreenCapture *capture;
+    capture = OH_AVScreenCapture_Create();
     
     // Set the callbacks.
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
 
+    // (Optional) Configure screen capture rotation. This API should be called when the device screen rotation is detected. If the device screen does not rotate, the API call is invalid.
+    OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // Optional. Filter audio.
     OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // Add a filter announcement.
@@ -252,6 +260,10 @@ int main() {
     OH_AVScreenCapture_StopScreenCapture(capture);
     // Release the AVScreenCapture instance.
     OH_AVScreenCapture_Release(capture);
-    return 0;
+    // Return the call result. In the example, only a random number is returned.
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
 }
 ```

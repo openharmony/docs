@@ -560,6 +560,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Multimedia.AVSession.ExtendedDisplayDisplay
+
+扩展媒体投屏能力
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是      | 是     | 否            |
+
 ## SystemCapability.Multimedia.Audio.Core
 
 音频基础能力
@@ -771,6 +779,14 @@ GNSS硬件相关能力
 ## SystemCapability.Customization.ConfigPolicy
 
 定制框架
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Customization.CustomConfig
+
+定制配置
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|
@@ -1002,7 +1018,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.OsAccount
 
-系统帐号
+系统账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|
@@ -1010,7 +1026,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.AppAccount
 
-应用帐号
+应用账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|

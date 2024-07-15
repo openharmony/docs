@@ -5,6 +5,10 @@
 窗口沉浸式能力：指对状态栏、导航栏等系统窗口进行控制，减少状态栏导航栏等系统界面的突兀感，从而使用户获得最佳体验的能力。
 沉浸式能力只在应用主窗口作为全屏窗口时生效。通常情况下，应用子窗口（弹窗、悬浮窗口等辅助窗口）和处于自由窗口下的应用主窗口无法使用沉浸式能力。
 
+> **说明：**
+>
+> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
+
 ## 场景介绍
 
 在FA模型下，管理应用窗口的典型场景有：
@@ -49,8 +53,8 @@
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
    // 方式一：创建子窗口。
@@ -157,8 +161,8 @@
    > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getLastWindow`接口来获取得到主窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let mainWindowClass: window.Window | null = null;
    

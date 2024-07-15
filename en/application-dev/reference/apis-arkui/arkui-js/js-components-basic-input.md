@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                              | Type                     | Default Value      | Mandatory  | Description                                      |
 | -------------------------------- | ----------------------- | --------- | ---- | ---------------------------------------- |
@@ -48,7 +48,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name                      | Type                        | Default Value       | Mandatory  | Description                                      |
 | ------------------------ | -------------------------- | ---------- | ---- | ---------------------------------------- |
@@ -56,13 +56,13 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | font-size                | &lt;length&gt;             | 16px       | No   | Font size of the single-line text box or button.                         |
 | allow-scale              | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000 | No   | Color of the hint text in the single-line text box. This attribute is available only when the component type is set to **text**, **email**, **date**, **time**, **number**, or **password**. |
-| font-weight              | number \| string | normal     | No   | Font weight of the single-line text box or button. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md) component. |
+| font-weight              | number \| string | normal     | No   | Font weight of the single-line text box or button. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md) component. |
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -          | No   | Color of the caret.                              |
 
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 - When **type** is set to **text**, **email**, **date**, **time**, **number**, or **password**, the following events are supported.
 
@@ -84,7 +84,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name                 | Parameter                                      | Description                                      |
 | ------------------- | ---------------------------------------- | ---------------------------------------- |

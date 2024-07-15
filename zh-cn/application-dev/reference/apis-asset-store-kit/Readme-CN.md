@@ -1,7 +1,10 @@
-# Asset Store Kit API参考
+# Asset Store Kit（关键资产存储服务）
 
 - ArkTS API
   - [@ohos.security.asset (关键资产存储服务)](js-apis-asset.md)
+  <!--Del-->
+  - [@ohos.security.asset (关键资产存储服务)(系统接口)](js-apis-asset-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [AssetApi](_asset_api.md)

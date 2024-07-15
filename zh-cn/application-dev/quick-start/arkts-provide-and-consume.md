@@ -10,7 +10,8 @@
 > **说明：**
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -166,7 +167,7 @@ struct CompA {
 1. 初始渲染：
    1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件；
    2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR；
-   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会保存在map中查找到的\@Provide变量，并把自己注册给\@Provide。
+   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
    1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）；
@@ -175,6 +176,8 @@ struct CompA {
 3. 当\@Consume装饰的数据变化时：
 
    通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
+
+![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
 
 
 ## 使用场景

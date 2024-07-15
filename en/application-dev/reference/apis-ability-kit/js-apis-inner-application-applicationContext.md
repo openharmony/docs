@@ -1,6 +1,6 @@
 # ApplicationContext
 
-The **ApplicationContext** module provides application-level context. You can use the APIs of this module to register and deregister the ability lifecycle listener in an application.
+The ApplicationContext module, inherited from [Context](js-apis-inner-application-context.md), provides application-level context capabilities, including APIs for registering and deregistering the lifecycle of application components.
 
 > **NOTE**
 >
@@ -21,7 +21,9 @@ Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContex
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-Registers a listener to monitor the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Registers a listener to monitor the ability lifecycle of the application. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -38,11 +40,20 @@ Registers a listener to monitor the ability lifecycle of the application. Multi-
 | ------ | ------------------------------ |
 | number | ID of the registered listener. The ID is incremented by 1 each time the listener is registered. When the ID exceeds 2^63-1, **-1** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -82,10 +93,14 @@ export default class EntryAbility extends UIAbility {
                 console.log(`AbilityLifecycleCallback onAbilityContinue ability: ${ability}`);
             }
         }
-        // 1. Obtain applicationContext through the context attribute.
+        // 1. Obtain applicationContext through the context property.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on() to subscribe to the 'abilityLifecycle' event.
-        lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
+        try {
+            // 2. Use applicationContext.on() to subscribe to the 'abilityLifecycle' event.
+            lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }
 }
@@ -95,7 +110,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Deregisters the listener that monitors the ability lifecycle of the application. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,12 +122,21 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'abilityLifecycle' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -118,13 +144,17 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log(`stage applicationContext: ${applicationContext}`);
-        applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
-            if (error) {
-                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
-            } else {
-                console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
+        try {
+            applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
+                if (error) {
+                    console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
+                } else {
+                    console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
+                }
+            });
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -133,7 +163,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Deregisters the listener that monitors the ability lifecycle of the application. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -150,10 +182,19 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | -------- | -------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -161,7 +202,11 @@ export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log(`stage applicationContext: ${applicationContext}`);
-        applicationContext.off('abilityLifecycle', lifecycleId);
+        try {
+            applicationContext.off('abilityLifecycle', lifecycleId);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -172,6 +217,8 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 Registers a listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -179,7 +226,7 @@ Registers a listener for system environment changes. This API uses an asynchrono
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
 | type | 'environment' | Yes  | Event type.|
-| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the system environment changes.|
 
 **Return value**
 
@@ -187,11 +234,20 @@ Registers a listener for system environment changes. This API uses an asynchrono
 | ------ | ------------------------------ |
 | number | ID of the registered listener. The ID is incremented by 1 each time the listener is registered. When the ID exceeds 2^63-1, **-1** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
@@ -208,8 +264,12 @@ export default class EntryAbility extends UIAbility {
         };
         // 1. Obtain an applicationContext object.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on() to subscribe to the 'environment' event.
-        callbackId = applicationContext.on('environment', environmentCallback);
+        try {
+            // 2. Use applicationContext.on() to subscribe to the 'environment' event.
+            callbackId = applicationContext.on('environment', environmentCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
     }
 }
@@ -221,6 +281,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -229,25 +291,38 @@ Deregisters the listener for system environment changes. This API uses an asynch
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                 |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId, (error, data) => {
-            if (error) {
-                console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
-            } else {
-                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
+        try {
+            applicationContext.off('environment', callbackId, (error, data) => {
+                if (error) {
+                    console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
+                } else {
+                    console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+                }
+            });
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -256,7 +331,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-Deregisters the listener for system environment changes. Multi-thread concurrent calls are not supported.
+Deregisters the listener for system environment changes. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -273,17 +350,30 @@ Deregisters the listener for system environment changes. Multi-thread concurrent
 | -------- | -------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId);
+        try {
+            applicationContext.off('environment', callbackId);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -294,6 +384,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -301,13 +393,22 @@ Registers a listener for application foreground/background state changes. This A
 | Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | 'applicationStateChange'                                     | Yes  | Event type.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
     onCreate() {
@@ -323,18 +424,24 @@ export default class MyAbility extends UIAbility {
 
         // 1. Obtain an applicationContext object.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        try {
+            // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log('Resgiter applicationStateChangeCallback');
     }
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-Deregisters all the listeners for application foreground/background state changes. Multi-thread concurrent calls are not supported.
+Deregisters all the listeners for application foreground/background state changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -343,17 +450,30 @@ Deregisters all the listeners for application foreground/background state change
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | Yes  | Event type.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('applicationStateChange');
+        try {
+            applicationContext.off('applicationStateChange');
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -363,6 +483,8 @@ export default class MyAbility extends UIAbility {
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -374,12 +496,13 @@ Obtains information about the running processes. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -405,22 +528,25 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the process information.|
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the information about the running processes.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -447,21 +573,24 @@ killAllProcesses(): Promise\<void\>
 
 Kills all the processes where the application is located. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -482,21 +611,24 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 Kills all the processes where the application is located. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result. If all the processes are killed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -520,6 +652,8 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 Sets the color mode for the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -530,12 +664,12 @@ Sets the color mode for the application.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -557,6 +691,8 @@ setLanguage(language: string): void
 
 Sets the language for the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -567,12 +703,13 @@ Sets the language for the application.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-| 401 | If the input parameter is not valid parameter. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -593,6 +730,10 @@ clearUpApplicationData(): Promise\<void\>
 
 Clears up the application data and revokes the permissions that the application has requested from users. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API stops the application process. After the application process is stopped, all subsequent callbacks will not be triggered.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -603,12 +744,12 @@ Clears up the application data and revokes the permissions that the application 
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -629,6 +770,10 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 Clears up the application data and revokes the permissions that the application has requested from users. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API stops the application process. After the application process is stopped, all subsequent callbacks will not be triggered.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -638,12 +783,13 @@ Clears up the application data and revokes the permissions that the application 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -667,6 +813,8 @@ restartApp(want: Want): void
 
 Restarts the application and starts the specified UIAbility. The **onDestroy** callback is not triggered during the restart.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -676,13 +824,14 @@ Restarts the application and starts the specified UIAbility. The **onDestroy** c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -701,6 +850,110 @@ export default class MyAbility extends UIAbility {
     } catch (error) {
       console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
     }
+  }
+}
+```
+
+## ApplicationContext.getCurrentAppCloneIndex<sup>12+</sup>
+
+getCurrentAppCloneIndex(): number
+
+Obtains the index of the current application clone.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Index of the current application clone.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000071 | App clone is not supported. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      let appCloneIndex = applicationContext.getCurrentAppCloneIndex();
+    } catch (error) {
+      console.error(`getCurrentAppCloneIndex fail, error: ${JSON.stringify(error)}`);
+    }
+  }
+}
+```
+
+## ApplicationContext.setFont<sup>12+</sup>
+
+setFont(font: string): void
+
+Sets the font for this application.
+
+> **NOTE**
+>
+> This API can be called only after a page window is created. That is, this API must be called after the lifecycle callback [onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| font | string | Yes  | Font, which can be registered by calling [font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont). |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+
+**Example**
+
+```ts
+import font from '@ohos.font';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  aboutToAppear() {
+    font.registerFont({
+      familyName: 'fontName',
+      familySrc: $rawfile('font/medium.ttf')
+    })
+    
+    getContext().getApplicationContext().setFont("fontName");
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(50)
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

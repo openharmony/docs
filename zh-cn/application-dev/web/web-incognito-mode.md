@@ -7,12 +7,13 @@
  
    ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -21,17 +22,17 @@
   }
   ```
 
-- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode) 判断当前Web组件是否是隐私模式。
+- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) 判断当前Web组件是否是隐私模式。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -41,8 +42,7 @@
               let result = this.controller.isIncognitoMode();
               console.log('isIncognitoMode' + result);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -57,13 +57,13 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -71,10 +71,10 @@
         Button('allowGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.allowGeolocation(this.origin, true);
+              // allowGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，允许指定来源使用地理位置。
+              webview.GeolocationPermissions.allowGeolocation(this.origin, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -87,13 +87,13 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -101,10 +101,10 @@
         Button('deleteGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
+              // deleteGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，清除指定来源的地理位置权限状态。
+              webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -117,13 +117,13 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -131,7 +131,8 @@
         Button('getAccessibleGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+              // getAccessibleGeolocation第三个参数表示隐私模式（true）或非隐私模式（false）下，以回调方式异步获取指定源的地理位置权限状态。
+              webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
                 if (error) {
                   console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
                   return;
@@ -139,8 +140,7 @@
                 console.log('getAccessibleGeolocationAsync result: ' + result);
               }, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -153,23 +153,23 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('deleteAllData')
           .onClick(() => {
             try {
-              web_webview.WebStorage.deleteAllData(true);
+              // deleteAllData参数表示删除所有隐私模式（true）或非隐私模式（false）下，内存中的web数据。
+              webview.WebStorage.deleteAllData(true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.controller, incognitoMode: true })
@@ -179,28 +179,28 @@
   }
   ```
 
-- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync)获取隐私模式下指定url对应cookie的值。
+- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('fetchCookieSync')
           .onClick(() => {
             try {
-              let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
+              // fetchCookieSync第二个参数表示获取隐私模式（true）或非隐私模式（false）下，webview的内存cookies。
+              let value = webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
               console.log("fetchCookieSync cookie = " + value);
             } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -209,27 +209,27 @@
   }
   ```
 
-- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync)设置隐私模式下指定url的单个cookie的值。
+- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11)设置隐私模式下指定url的单个cookie的值。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('configCookieSync')
           .onClick(() => {
             try {
-              web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
+              // configCookieSync第三个参数表示获取隐私模式（true）或非隐私模式（false）下，对应url的cookies。
+              webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -242,18 +242,19 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('existCookie')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.existCookie(true);
+            // existCookie参数表示隐私模式（true）或非隐私模式（false）下，查询是否存在cookies。
+            let result = webview.WebCookieManager.existCookie(true);
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -262,22 +263,23 @@
   }
   ```
 
-- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync)清除隐私模式下所有cookie。 
+- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync11)清除隐私模式下所有cookie。 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('clearAllCookiesSync')
           .onClick(() => {
-            web_webview.WebCookieManager.clearAllCookiesSync(true);
+            // clearAllCookiesSync参数表示清除隐私模式（true）或非隐私模式（false）下，webview的所有内存cookies。
+            webview.WebCookieManager.clearAllCookiesSync(true);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
       }

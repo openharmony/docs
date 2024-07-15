@@ -11,7 +11,7 @@ This is the base class of [UIAbility](js-apis-app-ability-uiAbility.md) and [Ext
 ## Modules to Import
 
 ```ts
-import Ability from '@ohos.app.ability.Ability';
+import { Ability } from '@kit.AbilityKit';
 ```
 
 ## Ability.onConfigurationUpdate
@@ -19,6 +19,8 @@ import Ability from '@ohos.app.ability.Ability';
 onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -31,8 +33,7 @@ Called when the configuration of the environment where the ability is running is
 **Example**
   ```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { UIAbility, Configuration } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
     onConfigurationUpdate(config: Configuration) {
@@ -47,6 +48,8 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system adjusts the memory level.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -59,12 +62,11 @@ Called when the system adjusts the memory level.
 
   ```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
-    } 
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+  }
 }
   ```

@@ -12,6 +12,5 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
-

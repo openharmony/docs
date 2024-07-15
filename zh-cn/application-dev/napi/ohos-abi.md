@@ -62,7 +62,7 @@ OpenHarmony系统采用ELF文件格式作为全系统的二进制文件格式，
 
 ### x86_64
 
-此ABI是以Intel64和IA-32 ABI为基础，支持MMX、SSE、SSE2、SSE3、SSSE3、SSE4.1等指令，与x86相关的规范参考《[System V Application Binary Interface](undefined)[AMD64 Architecture Processor Supplement](undefined)》。
+此ABI是以Intel64和IA-32 ABI为基础，支持MMX、SSE、SSE2、SSE3、SSSE3、SSE4.1等指令，与x86相关的规范参考《System V Application Binary Interface》、《AMD64 Architecture Processor Supplement》。
 
 此ABI使用128位long double(IEEE binary128)，x86架构上很多平台采用float80格式，OpenHarmony仍然采用128bit形式。
 

@@ -66,7 +66,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br/>NETCONN_NET_CAPABILITY_MMS = 0,<br/>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br/>NETCONN_NET_CAPABILITY_INTERNET = 12,<br/>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br/>NETCONN_NET_CAPABILITY_VALIDATED = 16<br/>} | 网络能力集。 | 
-| [NetConn_NetBearerType](#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>} | 网络载体类型。 | 
+| [NetConn_NetBearerType](#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>NETCONN_BEARER_VPN = 4<br/>} | 网络载体类型。 |
 
 
 ### 函数
@@ -84,6 +84,7 @@
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | 查询所有激活的数据网络。 | 
 | [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 | 
 | [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 | 
+| [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | 将套接字与指定的网络进行绑定。 |
 
 
 ## 类型定义说明
@@ -243,11 +244,12 @@ enum NetConn_NetBearerType
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| NETCONN_BEARER_CELLULAR | 蜂窝网络。 | 
-| NETCONN_BEARER_WIFI | WIFI。 | 
-| NETCONN_BEARER_ETHERNET | Ethernet。 | 
+|         枚举值          |         描述            |
+| ------------------------| ----------------------- |
+| NETCONN_BEARER_CELLULAR | 蜂窝网络。              |
+| NETCONN_BEARER_WIFI     | WIFI。                  |
+| NETCONN_BEARER_ETHERNET | Ethernet。              |
+| NETCONN_BEARER_VPN      | VPN。<br/>起始版本：12。|
 
 
 ### NetConn_NetCap
@@ -675,3 +677,35 @@ int32_t OHOS_NetConn_UnregisterDnsResolver (void )
 **Permission：**
 
 ohos.permission.INTERNET
+
+
+### OH_NetConn_BindSocket()
+
+```
+int32_t OH_NetConn_BindSocket (int32_t socketFd, NetConn_NetHandle * netHandle)
+```
+
+**描述**
+
+将套接字与指定的网络进行绑定。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| socketFd | 用户创建的套接字. |
+| netHandle | 存放网络ID. |
+
+**返回：**
+
+0 - 成功.
+
+401 - 参数错误.
+
+2100002 - 无法连接到服务.
+
+2100003 - 内部错误.

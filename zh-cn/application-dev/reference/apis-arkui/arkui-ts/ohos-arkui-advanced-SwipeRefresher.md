@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher'
+import { SwipeRefresher } from '@kit.ArkUI'
 ```
 
 
@@ -31,21 +31,23 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 **装饰器类型：**\@Component
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| content | string | 否 | \@Prop | 内容加载时显示的文本。 | 
-| isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 | 
+| content | string | 否 | \@Prop | 内容加载时显示的文本。 |
+| isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 ```ts
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher';
+import { SwipeRefresher } from '@kit.ArkUI';
 
 @Entry
 @Component

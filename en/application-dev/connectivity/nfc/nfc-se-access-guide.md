@@ -12,12 +12,12 @@ The following table describes the APIs for accessing SEs.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService                    | Creates an **SEService** instance for connecting to all available SEs in the system.                                                               |
-| getReaders(): Reader[]                      | Obtains available SE readers, which include all the SEs on the device.                                                               |
-| openSession(): Session                 | Opens a session to connect to an SE in this reader. This API returns a session instance.                                                               |
+| newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService                    | Creates an **SEService** instance for connecting to all available SEs in the system.    |
+| getReaders(): Reader[]                      | Obtains available SE readers, which include all the SEs on the device.             |
+| openSession(): Session                 | Opens a session to connect to an SE in this reader. This API returns a session instance.    |
 | openLogicalChannel(aid: number[]): Promise\<Channel>                  | Opens a logical channel. This API returns a logical channel instance.                                                               |
-| transmit(command: number[]): Promise\<number[]> | Transmits APDU data to this SE.                                                      |
-| close(): void | Closes this channel.                                                           |
+| transmit(command: number[]): Promise\<number[]> | Transmits APDU data to this SE.    |
+| close(): void | Closes this channel.         |
 
 
 ## How to Develop
@@ -30,6 +30,8 @@ The following table describes the APIs for accessing SEs.
 ```ts
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
 
 let seService : secureElement.SEService;
 let seReaders : secureElement.Reader[];
@@ -103,7 +105,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // transmit data
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
       seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));

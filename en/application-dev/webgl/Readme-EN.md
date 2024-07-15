@@ -1,4 +1,3 @@
 # WebGL
 
-- [WebGL Overview](webgl-overview.md)
-- [WebGL Development](webgl-guidelines.md)
+- [Using WebGL to Draw Graphics](webgl-2d-guidelines.md)

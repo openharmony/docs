@@ -84,6 +84,12 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | Deregisters the display update callback for this **OH_NativeXComponent** instance and disables the callback for each frame.|
 | int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Attaches the UI component created through the native API of ArkUI to this **OH_NativeXComponent** instance. | 
 | int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Detaches the native component of ArkUI from this **OH_NativeXComponent** instance. | 
+| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. | 
+| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. |
+| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. | 
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground.|
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background.|
+| int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the touch event source type of an **OH_NativeXComponent** instance. |
 
 ### Variables
 
@@ -1284,6 +1290,50 @@ Returns the status code of the execution.
 
 11
 
+### OH_NativeXComponent_RegisterOnTouchInterceptCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponent * component, HitTestMode(*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event))
+```
+**Description**
+
+Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| component | Pointer to the **OH_NativeXComponent** instance. | 
+| callback | Pointer to the custom event intercept callback. | 
+
+**Returns**
+
+Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+
+### OH_NativeXComponent_RegisterUIInputEventCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type), ArkUI_UIInputEvent_Type type )
+```
+**Description**
+
+Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| component | Pointer to the **OH_NativeXComponent** instance. | 
+| callback | Pointer to the UI input event callback. | 
+| type | Type of the current UI input event. | 
+
+**Returns**
+
+Returns the status code of the execution.
 
 ### OH_NativeXComponent_SetExpectedFrameRateRange()
 
@@ -1332,6 +1382,112 @@ Returns the status code of the execution.
 **Since**
 
 11
+
+### OH_NativeXComponent_SetNeedSoftKeyboard()
+
+```
+int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool isNeedSoftKeyboard)
+```
+
+**Description**
+
+Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance.
+
+**Parameters**
+
+| Name              | Description                                         |
+| ------------------ | --------------------------------------------- |
+| component          | Pointer to the **OH_NativeXComponent** instance.      |
+| isNeedSoftKeyboard | Whether the soft keyboard is required for the **OH_NativeXComponent** instance.|
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+### OH_NativeXComponent_RegisterSurfaceShowCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**Description**
+
+Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground.
+
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| callback  | Pointer to the surface display callback.               |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+### OH_NativeXComponent_RegisterSurfaceHideCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**Description**
+
+Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background.
+
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| callback  | Pointer to the surface hiding callback.               |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+### OH_NativeXComponent_GetTouchEventSourceType()
+
+```
+int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType);
+```
+
+**Description**
+
+Obtains the touch event source type of an **OH_NativeXComponent** instance.
+
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| pointId  | ID of the touch point.<br>**NOTE**<br>The touch event source type can be correctly returned only when the ID passed in is the ID of the touch point that triggers the touch event. Otherwise, **OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER** is returned.|
+| sourceType  | Pointer to the touch event source type.|
+
+**Returns**
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_SUCCESS** if the operation is successful.
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER** if a parameter error occurs.
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_FAILED** if any other error occurs.
+
+**Since**
+
+12
+
 <!--  -->
 
 ## Variable Description
@@ -1934,4 +2090,3 @@ Minimum value of the expected frame rate range.
 **Since**
 
 11
-<!--no_check-->

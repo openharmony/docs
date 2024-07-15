@@ -11,8 +11,8 @@ SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.cre
 ## 导入模块
 
 ```js
-import media from '@ohos.multimedia.media';
-import audio from '@ohos.multimedia.audio';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## PlayParameters
@@ -33,14 +33,26 @@ import audio from '@ohos.multimedia.audio';
 
 ## SoundPool
 
-音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例
+音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例。
+
+> **说明：**
+>
+> 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+> - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
+> - [on('playFinished')](#onplayfinished)：监听播放完成。
+> - [on('error')](#onerror)：监听错误事件。
 
 ### load
 
 load(uri: string, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
-该方法不支持加载rawfile目录资源，需要通过load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void或者load(fd: number, offset: number, length: number): Promise\<number>实现。
+该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -64,8 +76,8 @@ load(uri: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -75,23 +87,23 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(uri, (error: BusinessError, soundId_: number) => {
         if (error) {
-          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
         } else {
-          console.info(`load soundPool Success` + JSON.stringify(soundId_))
+          console.info(`Succeeded in loading soundPool` + JSON.stringify(soundId_))
         }
       });
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -104,7 +116,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(uri: string): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
-该方法不支持加载rawfile目录资源，需要通过load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void或者load(fd: number, offset: number, length: number): Promise\<number>实现。
+该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -133,8 +150,8 @@ load(uri: string): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -144,24 +161,24 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
     let soundID: number = 0;
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(uri).then((soundId: number) => {
-        console.info('soundPool load uri success');
+        console.info('Succeeded in loading uri');
         soundID = soundId;
       }, (err: BusinessError) => {
-        console.error('soundPool load failed and catch error is ' + err.message);
+        console.error('Failed to load soundPool and catch error is ' + err.message);
       });
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
   }
@@ -174,6 +191,11 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -199,8 +221,8 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -210,26 +232,26 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
-    let file: fs.File;
+    console.info(`Succeeded in createSoundPool`)
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(file.fd, 0, fileSize, (error: BusinessError, soundId_: number) => {
         if (error) {
-          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
         } else {
           soundID = soundId_;
-          console.info('load success soundid:' + soundId_);
+          console.info('Succeeded in loading soundId:' + soundId_);
         }
       });
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -243,6 +265,11 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(fd: number, offset: number, length: number): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -273,8 +300,8 @@ load(fd: number, offset: number, length: number): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -284,25 +311,25 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
-    let file: fs.File;
+    console.info(`Succeeded in createSoundPool`)
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(file.fd, 0, fileSize).then((soundId: number) => {
-        console.info('load success');
+        console.info('Succeeded in loading soundpool');
         soundID = soundId;
       }, (err: BusinessError) => {
-        console.error('soundpool load failed and catch error is ' + err.message);
+        console.error('Failed to load soundpool and catch error is ' + err.message);
       });
     });
   }
@@ -332,14 +359,14 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -349,11 +376,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
@@ -365,10 +392,10 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     }
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
-        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to play soundpool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
-        console.info('play success soundid:' + streamId);
+        console.info('Succeeded in playing soundpool, streamId:' + streamId);
       }
     });
   }
@@ -397,14 +424,14 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -414,19 +441,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let soundID: number = 0;
     let streamID: number = 0;
     soundPool.play(soundID,  (error: BusinessError, streamId: number) => {
       if (error) {
-        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to play soundpool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
-        console.info('play success soundid:' + streamId);
+        console.info('Succeeded in playing soundpool, streamId:' + streamId);
       }
     });
   }
@@ -461,14 +488,14 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -478,11 +505,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
@@ -494,10 +521,10 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     }
 
     soundPool.play(soundID, playParameters).then((streamId: number) => {
-      console.info('play success');
+      console.info('Succeeded in playing soundpool');
       streamID = streamId;
     },(err: BusinessError) => {
-      console.error('soundpool play failed and catch error is ' + err.message);
+      console.error('Failed to play soundpool and catch error is ' + err.message);
     });
   }
 });
@@ -525,14 +552,14 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -542,18 +569,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     //先调用play方法给拿到对应的streamID
     soundPool.stop(streamID, (error: BusinessError) => {
       if (error) {
-        console.error(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to stop soundpool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('stop success');
+        console.info('Succeeded in stopping soundpool');
       }
     })
   }
@@ -587,14 +614,14 @@ stop(streamID: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -604,17 +631,17 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     //先调用play方法给拿到对应的streamID
     soundPool.stop(streamID).then(() => {
-      console.info('stop success');
+      console.info('Succeeded in stopping soundpool');
     }, (err: BusinessError) => {
-      console.error('soundpool load stop and catch error is ' + err.message);
+      console.error('Failed to stop soundpool and catch error is ' + err.message);
     });
   }
 });
@@ -642,14 +669,14 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -659,19 +686,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     //先通过调用play方法获取到对应的streamID
     //设置循环2次
     soundPool.setLoop(streamID, 2, (error: BusinessError) => {
       if (error) {
-        console.error(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to setLoop soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('setLoop success streamID:' + streamID);
+        console.info('Succeeded in setLoopping soundpool, streamID:' + streamID);
       }
     });
   }
@@ -706,14 +733,14 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -723,18 +750,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     //先通过调用play方法获取到对应的streamID
     //设置循环1次
     soundPool.setLoop(streamID, 1).then(() => {
-      console.info('setLoop success streamID:' + streamID);
+      console.info('Succeeded in setLoopping soundpool, streamID:' + streamID);
     }).catch((err: BusinessError) => {
-      console.error('soundpool setLoop failed and catch error is ' + err.message);
+      console.error('Failed to setLoop soundPool and catch error is ' + err.message);
     });
   }
 });
@@ -763,14 +790,14 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -780,19 +807,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     // 先调用play方法获取到对应资源的streamID
     // 给对应的streamID资源设置优先级为1
     soundPool.setPriority(streamID, 1, (error: BusinessError) => {
       if (error) {
-        console.error(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to setPriority soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('setPriority success streamID:' + streamID);
+        console.info('Succeeded in setPriority soundpool, streamID:' + streamID);
       }
     });
   }
@@ -827,14 +854,14 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -844,19 +871,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     // 先调用play方法获取到对应资源的streamID
     // 给对应的streamID资源设置优先级为1
 
     soundPool.setPriority(streamID, 1).then(() => {
-      console.info('setPriority success');
+      console.info('Succeeded in setPriority soundpool');
     }, (err: BusinessError) => {
-      console.error('soundpool setPriority failed and catch error is ' + err.message);
+      console.error('Failed to setPriority soundPool and catch error is ' + err.message);
     });
   }
 });
@@ -868,9 +895,10 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 设置音频流播放速率。使用callback方式异步获取返回值。
-
+<!--RP1-->
 > **说明：**
 > 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -888,14 +916,14 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -905,19 +933,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
     // 先调用play方法获取到对应资源的streamID
     soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) => {
       if (error) {
-        console.error(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to setRate soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('setRate success streamID:' + streamID);
+        console.info('Succeeded in setRate success, streamID:' + streamID);
       }
     })
   }
@@ -931,8 +959,10 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 设置音频流的播放速率。使用Promise方式异步获取返回值。
 
+<!--RP1-->
 > **说明：**
 > 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -955,14 +985,14 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -972,18 +1002,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
     // 先调用play方法获取到对应资源的streamID
     soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
-      console.info('setRate success');
+      console.info('Succeeded in setRate soundpool');
     }, (err: BusinessError) => {
-      console.error('soundpool setRate failed and catch error is ' + err.message);
+      console.error('Failed to setRate soundpool and catch error is ' + err.message);
     });
   }
 });
@@ -1013,14 +1043,14 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1030,19 +1060,19 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     // 先调用play方法获取到对应资源的streamID
     //设置音量为0.5
     soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {
       if (error) {
-        console.error(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to setVolume soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('setVolume success streamID:' + streamID);
+        console.info('Succeeded in setVolume soundpool, streamID:' + streamID);
       }
     })
   }
@@ -1078,14 +1108,14 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1095,18 +1125,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let streamID: number = 0;
     // 先调用play方法获取到对应资源的streamID
 
     soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
-      console.info('setVolume success');
+      console.info('Succeeded in setVolume soundpool');
     }, (err: BusinessError) => {
-      console.error('soundpool setVolume failed and catch error is ' + err.message);
+      console.error('Failed to setVolume soundPool and catch error is ' + err.message);
     });
   }
 });
@@ -1141,7 +1171,7 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1151,18 +1181,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let soundID: number = 0;
     // 先调用load方法获取到对应资源的soundID
     soundPool.unload(soundID, (error: BusinessError) => {
       if (error) {
-        console.error(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to unload soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('unload success:');
+        console.info('Succceeded in unload soundPool');
       }
     })
   }
@@ -1203,7 +1233,7 @@ unload(soundID: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1213,18 +1243,18 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     let soundID: number = 0;
     // 先调用load方法获取到对应资源的soundID
 
     soundPool.unload(soundID).then(() => {
-      console.info('unload success');
+      console.info('Succceeded in unload soundPool');
     }, (err: BusinessError) => {
-      console.error('soundpool unload failed and catch error is ' + err.message);
+      console.error('Failed to unload soundPool and catch error is ' + err.message);
     });
   }
 });
@@ -1256,7 +1286,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1266,16 +1296,16 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.release((error: BusinessError) => {
       if (error) {
-        console.error(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`Failed to release soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
-        console.info('release success');
+        console.info('Succeeded in releasing soundPool');
       }
     })
   }
@@ -1309,7 +1339,7 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1319,15 +1349,15 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.release().then(() => {
-      console.info('release success');
+      console.info('Succeeded in releasing soundPool');
     }, (err: BusinessError) => {
-      console.error('soundpool release failed and catch error is ' + err.message);
+      console.error('Failed to release soundPool and catch error is ' + err.message);
     });
   }
 });
@@ -1352,7 +1382,7 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1362,13 +1392,13 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.on('loadComplete', (soundId: number) => {
-      console.info('loadComplete success，soundId：' + soundId)
+      console.info('Succeeded in loadComplete, soundId：' + soundId)
     })
   }
 });
@@ -1392,7 +1422,7 @@ off(type: 'loadComplete'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1402,11 +1432,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.off('loadComplete')
   }
 });
@@ -1431,7 +1461,7 @@ on(type: 'playFinished', callback: Callback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1441,13 +1471,13 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.on('playFinished', () => {
-      console.info('playFinished success')
+      console.info('Succeeded in playFinished')
     });
   }
 });
@@ -1471,7 +1501,7 @@ off(type: 'playFinished'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1481,11 +1511,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.off('playFinished')
   }
 });
@@ -1521,7 +1551,7 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1531,11 +1561,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.on('error', (error: BusinessError) => {
       console.error('error happened,and error message is :' + error.message)
       console.error('error happened,and error code is :' + error.code)
@@ -1562,7 +1592,7 @@ off(type: 'error'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1572,11 +1602,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
     soundPool.off('error')
   }
 });

@@ -23,17 +23,17 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以对一张图片注册监听，通过将这张图片设置为收藏触发监听回调为例。
+下面以对一张图片注册监听，通过将这张图片删除触发监听回调为例。
 
 **开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. 对指定PhotoAsset注册监听。
-3. 将指定媒体资源设置为收藏。
+3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -52,7 +52,7 @@ async function example() {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -79,8 +79,8 @@ async function example() {
 
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -124,17 +124,17 @@ async function example() {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以对所有PhotoAsset注册监听，对被监听的PhotoAsset设置为收藏触发监听回调为例。
+下面以对所有PhotoAsset注册监听，通过将被监听的PhotoAsset删除触发监听回调为例。
 
 **开发步骤**
 
 1. 对所有PhotoAsset注册监听。
 2. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
-3. 将指定媒体资源设置为收藏。
+3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -152,7 +152,7 @@ async function example() {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -169,17 +169,17 @@ async function example() {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以取消对一张图片指定的监听为例，取消监听后，改变图片的收藏状态不再触发对应的监听回调。
+下面以取消对一张图片指定的监听为例，取消监听后，删除图片不再触发对应的监听回调。
 
 **开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. 取消对指定媒体资源uri的监听。
-3. 将指定媒体资源设置为收藏。
+3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -203,7 +203,7 @@ async function example() {
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
     phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);

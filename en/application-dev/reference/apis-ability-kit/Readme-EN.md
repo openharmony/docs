@@ -8,6 +8,7 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AtomicServiceOptions (Optional Start Options of EmbeddableUIAbilities)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
@@ -20,11 +21,18 @@
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
     - [@ohos.app.ability.InsightIntentContext (InsightIntent Call Execution Context)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentExecutor (Base Class for InsightIntent Call Execution)](js-apis-app-ability-insightIntentExecutor.md)
+    - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](js-apis-app-ability-openLinkOptions.md)
     - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionAbility.md)
     - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionContentSession.md)
+    - [@ohos.app.appstartup.StartupConfig](js-apis-app-appstartup-startupConfig.md)
+    - [@ohos.app.appstartup.StartupConfigEntry](js-apis-app-appstartup-startupConfigEntry.md)
+    - [@ohos.app.appstartup.StartupListener](js-apis-app-appstartup-startupListener.md)
+    - [@ohos.app.appstartup.startupManager](js-apis-app-appstartup-startupManager.md)
+    - [@ohos.app.appstartup.StartupTask](js-apis-app-appstartup-startupTask.md)
+    <!--Del-->
     - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](js-apis-app-ability-autoStartupManager-sys.md)
@@ -35,6 +43,7 @@
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility) (System API)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions) (System API)](js-apis-app-ability-startOptions-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI) (System API)](js-apis-app-ability-uiExtensionContentSession-sys.md)
+    <!--DelEnd-->
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
@@ -52,6 +61,7 @@
     - [@ohos.app.ability.wantAgent (WantAgent)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
+    <!--Del-->
     - [@ohos.abilityAccessCtrl (Application Access Control) (System API)](js-apis-abilityAccessCtrl-sys.md)
     - [@ohos.app.ability.abilityManager (AbilityManager) (System API)](js-apis-app-ability-abilityManager-sys.md)
     - [@ohos.app.ability.appManager (appManager) (System API)](js-apis-app-ability-appManager-sys.md)
@@ -61,9 +71,11 @@
     - [@ohos.app.ability.wantConstant (wantConstant) (System API)](js-apis-app-ability-wantConstant-sys.md)
     - [@ohos.app.businessAbilityRouter (Business Ability Router) (System API)](js-apis-businessAbilityRouter-sys.md)
     - [@ohos.application.uriPermissionManager (URI Permission Management) (System API)](js-apis-uripermissionmanager-sys.md)
+    <!--DelEnd-->
     - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (Default Application Management)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.overlay (overlay)](js-apis-overlay.md)
+    <!--Del-->
     - [@ohos.bundle.appControl (appControl Module) (System Interface)](js-apis-appControl-sys.md)
     - [@ohos.bundle.bundleManager (bundleManager) (System API)](js-apis-bundleManager-sys.md)
     - [@ohos.bundle.bundleMonitor (bundleMonitor) (System API)](js-apis-bundleMonitor-sys.md)
@@ -76,6 +88,7 @@
     - [@ohos.bundle.overlay (overlay) (System API)](js-apis-overlay-sys.md)
     - [@ohos.distributedMissionManager (Distributed Mission Management) (System API)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (Privacy Management) (System API)](js-apis-privacyManager-sys.md)
+    <!--DelEnd-->
   - Dependent Elements and Definitions
     - ability
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
@@ -101,14 +114,20 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
+      - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      <!--Del-->
+      - [AbilityFirstFrameStateData (System API)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
+      - [AbilityFirstFrameStateObserver (System API)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
       - [AbilityForegroundStateObserver (System API)](js-apis-inner-application-abilityForegroundStateObserver-sys)
       - [AbilityRunningInfo (System API)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData (System API)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver (System API)](js-apis-inner-application-appForegroundStateObserver-sys.md)
+      - [ApplicationContext (System API)](js-apis-inner-application-applicationContext-sys.md)
+      - [AutoFillPopupConfig (System API)](js-apis-inner-application-autoFillPopupConfig-sys.md)
       - [ApplicationStateObserver (System API)](js-apis-inner-application-applicationStateObserver-sys.md)
       - [AppStateData (System API)](js-apis-inner-application-appStateData-sys.md)
       - [AutoFillExtensionContext (System API)](js-apis-inner-application-autoFillExtensionContext-sys.md)
@@ -135,6 +154,8 @@
       - [UIAbilityContext (System API)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext (System API)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData (System API)](js-apis-inner-application-viewData-sys.md)
+      - [AutoFillRect (System API)](js-apis-inner-application-autoFillRect-sys.md)
+      <!--DelEnd-->
     - bundleManager
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
       - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
@@ -144,6 +165,8 @@
       - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
+      - [Skill](js-apis-bundleManager-skill.md)
+      <!--Del-->
       - [AppProvisionInfo (System API)](js-apis-bundleManager-AppProvisionInfo-sys.md)
       - [BundlePackInfo (System API)](js-apis-bundleManager-BundlePackInfo-sys.md)
       - [BundleResourceInfo (System API)](js-apis-bundleManager-BundleResourceInfo-sys.md)
@@ -156,6 +179,7 @@
       - [remoteAbilityInfo (System API)](js-apis-bundleManager-remoteAbilityInfo-sys.md)
       - [SharedBundleInfo (System API)](js-apis-bundleManager-sharedBundleInfo-sys.md)
       - [shortcutInfo (System API)](js-apis-bundleManager-shortcutInfo-sys.md)
+      <!--DelEnd-->
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
@@ -173,15 +197,19 @@
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
     - [@ohos.application.Want (Want)](js-apis-application-want.md)
     - [@ohos.wantAgent (WantAgent)](js-apis-wantAgent.md)
+    <!--Del-->
     - [@ohos.ability.wantConstant (wantConstant) (System API)](js-apis-ability-wantConstant-sys.md)
     - [@ohos.application.abilityManager (AbilityManager) (System API)](js-apis-application-abilityManager-sys.md)
     - [@ohos.application.appManager (appManager) (System API)](js-apis-application-appManager-sys.md)
     - [@ohos.application.missionManager (missionManager) (System API)](js-apis-application-missionManager-sys.md)
     - [@ohos.wantAgent (WantAgent) (System API)](js-apis-wantAgent-sys.md)
+    <!--DelEnd-->
     - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
+    <!--Del-->
     - [@ohos.bundle (Bundle) (System API)](js-apis-Bundle-sys.md)
     - [@ohos.bundle.innerBundleManager (innerBundleManager) (System API)](js-apis-Bundle-InnerBundleManager-sys.md)
     - [@ohos.distributedBundle (Distributed Bundle Management) (System API)](js-apis-Bundle-distributedBundle-sys.md)
+    <!--DelEnd-->
     - [@system.package (Bundle Management)](js-apis-system-package.md)
     - bundle
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
@@ -191,22 +219,25 @@
       - [elementName](js-apis-bundle-ElementName.md)
       - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
       - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      <!--Del-->
       - [bundleInstaller (System API)](js-apis-bundle-BundleInstaller-sys.md)
       - [bundleStatusCallback (System API)](js-apis-Bundle-BundleStatusCallback-sys.md)
       - [launcherAbilityInfo (System API)](js-apis-bundle-LauncherAbilityInfo-sys.md)
       - [PermissionDef (System API)](js-apis-bundle-PermissionDef-sys.md)
       - [remoteAbilityInfo (System API)](js-apis-bundle-remoteAbilityInfo-sys.md)
       - [shortcutInfo (System API)](js-apis-bundle-ShortcutInfo-sys.md)
+      <!--DelEnd-->
 - C APIs
   - Modules
     - [Bundle](_bundle.md)
+    - [ChildProcess](c-apis-ability-childprocess.md)
   - Header Files
     - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_child_process.h](native__child__process_8h.md)
   - Structs
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - Result Codes
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)
-  - [zlib Error Codes](errorcode-zlib.md)
   - [Access Control Error Codes](errorcode-access-token.md)

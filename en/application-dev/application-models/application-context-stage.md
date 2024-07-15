@@ -23,7 +23,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -35,11 +35,11 @@
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-     import Want from '@ohos.app.ability.Want';
-     export default class MyService extends ServiceExtensionAbility {
+     import type Want from '@ohos.app.ability.Want';
+     export default class ServiceExtAbility extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -50,7 +50,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate(): void {
          let abilityStageContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -63,7 +63,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
-         ...
+         //...
        }
      }
      ```
@@ -76,7 +76,7 @@ This topic describes how to use the context in the following scenarios:
 
 - [Obtaining Application File Paths](#obtaining-application-file-paths)
 - [Obtaining and Modifying Encryption Levels](#obtaining-and-modifying-encryption-levels)
-- [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
+- [Obtaining the Context of Other Modules in the Current Application](#obtaining-the-context-of-other-modules-in-the-current-application)
 - [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
 
 
@@ -97,6 +97,7 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
+  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data|
 
   The sample code is as follows:
 
@@ -110,30 +111,40 @@ The application file paths obtained by the preceding contexts are different.
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -149,6 +160,7 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
+  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data/**\<module-name>**|
 
   The sample code is as follows:
 
@@ -162,29 +174,39 @@ The application file paths obtained by the preceding contexts are different.
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -238,142 +260,92 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    ...
-    Button()
-      .onClick(() => {
-        // Before storing common information, switch the encryption level to EL1.
-        if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-          promptAction.showToast({
-            message: $r('app.string.SwitchToEL1')
-          });
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // Before storing common information, switch the encryption level to EL1.
+            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
+              this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL1')
+              });
+            }
+            // Store common information.
+          })
         }
-        // Store common information.
-      })
-    
-    ...
-
-    Button()
-      .onClick(() => {
-        // Before storing sensitive information, switch the encryption level to EL2.
-        if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-          promptAction.showToast({
-            message: $r('app.string.SwitchToEL2')
-          });
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // Before storing sensitive information, switch the encryption level to EL2.
+            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
+              this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL2')
+              });
+            }
+            // Store sensitive information.
+          })
         }
-        // Store sensitive information.
-      })
-    
-    ...
+        //...
+      }
+      //...
+    }
+    //...
   }
 }
 ```
 
 
-### Creating Context of Another Application or Module
+### Obtaining the Context of Other Modules in the Current Application
 
-The base class **Context** provides [createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context-sys.md#contextcreatebundlecontext), [createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining application file paths](#obtaining-application-development-paths) of other modules.
+Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+  
+  ```ts
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_Context {
+    private context = getContext(this) as common.UIAbilityContext;
 
-- Call **createBundleContext(bundleName:string)** to create the context of another application.
-  > **NOTE**
-  >
-  > To obtain the context of another application:
-  >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
-  >
-  > - This is a system API and cannot be called by third-party applications.
-  
-  For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
     build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let bundleContext: Context = this.context.createBundleContext(bundleName2);
-          let label2: string = bundleContext.applicationInfo.label;
-          if (bundleContext && label2 !== null) {
-            promptAction.showToast({
-              message: ('Context obtained.')
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              let moduleContext: Context = this.context.createModuleContext(moduleName2);
+              if (moduleContext !== null) {
+                promptAction.showToast({
+                  message: ('Context obtained.')
+                });
+              }
+            })
           }
-        })
-    }
-  }
-  ```
-  
-- Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
-  > **NOTE**
-  >
-  > To obtain the context of a specified module of another application:
-  >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
-  >
-  > - This is a system API and cannot be called by third-party applications.
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let moduleName2: string  = 'entry';
-          let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('Context obtained.')
-            });
-          }
-        })
-    }
-  }
-  ```
-  
-- Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let moduleName2: string = 'entry';
-          let moduleContext: Context = this.context.createModuleContext(moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('Context obtained.')
-            });
-          }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -389,6 +361,7 @@ In the DFX statistics scenario of an application, if you need to collect statist
 ```ts
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
@@ -447,18 +420,30 @@ export default class LifecycleAbility extends UIAbility {
     };
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
+    try {
     // Register the application lifecycle callback.
-    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+      this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+    };
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-
-  ...
+  //...
 
   onDestroy() : void {
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
-    // Deregister the application lifecycle callback.
-    applicationContext.off('abilityLifecycle', this.lifecycleId);
+    try {
+      // Deregister the application lifecycle callback.
+      applicationContext.off('abilityLifecycle', this.lifecycleId);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+    };
+
   }
 };
 ```

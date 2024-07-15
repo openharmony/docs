@@ -27,7 +27,7 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 | 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的EmbeddedUIExtensionAbility。 |
-| type                  | [EmbeddedType](#embeddedtype)                              | 是   | 提供方的类型。                       |
+| type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype)                              | 是   | 提供方的类型。                       |
 
 ## 属性
 
@@ -81,13 +81,6 @@ onError(callback: ErrorCallback)
 > - 提供方EmbeddedUIExtensionAbility异常退出。
 > - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
 
-## EmbeddedType
-枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
-
-| 名称                  | 值 | 说明                                                |
-| --------------------- | - | ---------------------------------------------------- |
-| EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
-
 ## TerminationInfo
 
 用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
@@ -105,7 +98,7 @@ onError(callback: ErrorCallback)
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -124,7 +117,7 @@ onError(callback: ErrorCallback)
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;
@@ -140,9 +133,7 @@ onError(callback: ErrorCallback)
 - EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
@@ -181,7 +172,7 @@ onError(callback: ErrorCallback)
 - EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
 
   let storage = LocalStorage.getShared()
 

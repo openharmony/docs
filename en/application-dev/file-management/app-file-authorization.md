@@ -48,9 +48,9 @@ Request the permissions for accessing the **Download**, **Documents**, or **Desk
 
 ## Persisting a Temporary Permission Obtained by FilePicker
 
-Use FilePicker to select a file or folder, and persist the temporary permission for your application. If the application restarts, the permission needs to be activated. You can use [ohos.fileshare](../reference/apis/js-apis-fileShare.md) to persist and activate permissions on files or folders based on their URI.
+Use FilePicker to select a file or folder, and persist the temporary permission for your application. If the application restarts, the permission needs to be activated. You can use [ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md) to persist and activate permissions on files or folders based on their URI.
 
-1. Use **select()** or **save()** of FilePicker to select or save a file. The file URI is returned. Because the user is involved in selecting or saving the file that the application can access, the application can access the file without any system permission. That is, the application has temporary permission to access the file.
+1. Use [select](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of the **picker** module to select a file. In this case, the application obtains the temporary permission to access the file.
 
    Example:
 
@@ -277,12 +277,43 @@ function getFullDirectoryUriExample01() {
   }
 }
 ```
+## Obtaining a User Directory
 
-## Obtaining a User Directory or a Directory of the Internal or External Storage (for System Applications Only)
+Use [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md) APIs to obtain the environment paths to the **Download**, **Desktop**, and **Document** directories of a user.
+
+> **NOTE**<br>Before using the APIs of the **environment** module, ensure that the device has SystemCapability.FileManagement.File.Environment.FolderObtain.
+
+The following sample code demonstrates how the file manager obtains user directories.
+
+```ts
+function getUserDirExample() {
+  if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
+    console.error('this api is not supported on this device');
+    return;
+  }
+  try {
+    // Obtain the Download directory.
+    const downloadPath = environment.getUserDownloadDir();
+    console.info(`success to getUserDownloadDir: ${downloadPath}`);
+    // Obtain the Document directory.
+    const documentsPath = environment.getUserDocumentDir();
+    console.info(`success to getUserDocumentDir: ${documentsPath}`);
+    // Obtain the Desktop directory.
+    const desktopPath = environment.getUserDesktopDir();
+    console.info(`success to getUserDesktopDir: ${desktopPath}`);
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`failed to get user dir, because: ${JSON.stringify(err)}`);
+  }
+}
+```
+
+<!--Del-->
+## Obtaining the Directory of a Built-in Card or External Card
 
 A common application can obtain the following user directories: **Download**, **Desktop**, and **Document**. Only the **Files** application can obtain the root directory of an external card and the built-in card directory in the sandbox directory of the current user using the [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md) APIs.
 
-The following sample code demonstrates how to obtain these directories.
+The following sample code demonstrates how the file manager obtains the directory of a built-in card and the directory of an external card.
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -290,12 +321,6 @@ import environment from '@ohos.file.environment';
 
 function getDirectoryExample01() {
   try {
-    // Obtain the Download directory.
-    let downloadPath = environment.getUserDownloadDir();
-    // Obtain the Desktop directory.
-    let desktopPath = environment.getUserDesktopDir();
-    // Obtain the Document directory.
-    let documentPath = environment.getUserDocumentDir();
     // Obtain the root directory of an external card.
     let externalStoragePath = environment.getExternalStorageDir();
     // Obtain the built-in card directory in the application sandbox directory of the current user.
@@ -306,3 +331,4 @@ function getDirectoryExample01() {
   }
 }
 ```
+<!--DelEnd-->

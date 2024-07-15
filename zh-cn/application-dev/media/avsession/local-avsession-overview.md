@@ -33,7 +33,7 @@
 实际上，AVSessionManager与AVSession、AVSessionController对象不同，并不是一个具体的对象，它是媒体会话的根命名域。在实际编程过程中，可以通过如下方式引入：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
 根命名域中的所有方法都可以作为AVSessionManager的方法。
@@ -48,7 +48,7 @@ async function createSession() {
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
-
+<!--Del-->
 例如，媒体会话控制方通过AVSessionManager创建媒体会话控制器的示例如下所示：
 
 ```ts
@@ -64,5 +64,6 @@ async function createController() {
   }
 }
 ```
+<!--DelEnd-->
 
 更多关于AVSessionManager的方法，可以参考[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。

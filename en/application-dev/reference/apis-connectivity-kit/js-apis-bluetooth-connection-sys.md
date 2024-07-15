@@ -33,7 +33,7 @@ Pairs a trusted device whose address is obtained in a non-Bluetooth scan mode (s
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 | transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | Yes   | Device type, for example, a classic Bluetooth device or a Bluetooth low energy (BLE) device.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -132,7 +132,7 @@ Cancels a paired device.
 | Name     | Type    | Mandatory  | Description                                   |
 | -------- | ------ | ---- | ------------------------------------- |
 | deviceId | string | Yes   | Address of the device to cancel, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -219,7 +219,7 @@ Cancels the pairing of a device. This API uses an asynchronous callback to retur
 | Name     | Type    | Mandatory  | Description                                   |
 | -------- | ------ | ---- | ------------------------------------- |
 | deviceId | string | Yes   | Address of the device to cancel, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -305,7 +305,7 @@ Obtains the profile UUIDs of the local device. This API uses an asynchronous cal
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant-sys.md#profileuuids)&gt;&gt; | Yes   | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant-sys.md#profileuuids)&gt;&gt; | Yes   | Callback used to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -392,7 +392,7 @@ Obtains the profile UUIDs of a remote Bluetooth device. This API uses an asynchr
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant-sys.md#profileuuids)&gt;&gt; | Yes   | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant-sys.md#profileuuids)&gt;&gt; | Yes   | Callback used to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -486,7 +486,7 @@ Connects all profiles allowed for a remote device. This API uses an asynchronous
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -591,7 +591,7 @@ Disconnects all connected profiles for a remote device.
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. This API uses an asynchronous callback to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. This API uses an asynchronous callback to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -740,8 +740,8 @@ Subscribes to the Bluetooth device discovery result.
 
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered. |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | Yes   | Callback invoked to return information about the discovered devices. You need to create the callback and register it here. |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | Yes   | Callback used to return information about the discovered devices. You need to create the callback and register it here.   |
 
 **Error codes**
 
@@ -755,7 +755,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let onReceiveEvent: (data: Array<DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -782,8 +782,8 @@ Unsubscribes from the Bluetooth device discovery result.
 
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered. |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event type. |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **discoveryResult**. |
 
 **Error codes**
 
@@ -797,7 +797,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let onReceiveEvent: (data: Array<DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -897,8 +897,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 import { BusinessError } from '@ohos.base';
 //promise
 try {
-    connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: conection.DeviceType) => {
-        console.info('getRemoteDeviceType success, DeviceType:' JSON.stringify(data));
+    connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {
+        console.info('getRemoteDeviceType success, DeviceType:' + JSON.stringify(data));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -947,9 +947,9 @@ Represents information about the discovered device.
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId<sup>12+</sup> | string      | Yes   | No   | ID of the discovered device.<br>This is a system API.         |
-| rssi<sup>12+</sup>     | number      | Yes   | No   | RSSI of the discovered device.<br>This is a system API. |
-| deviceName<sup>12+</sup>     | string      | Yes   | No   | Name of the discovered device.<br>This is a system API. |
-| deviceClass<sup>12+</sup>     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.<br>This is a system API. |
+| rssi<sup>12+</sup>     | number      | Yes   | No   | RSSI of the discovered device.<br>This is a system API.  |
+| deviceName<sup>12+</sup>     | string      | Yes   | No   | Name of the discovered device.<br>This is a system API.  |
+| deviceClass<sup>12+</sup>     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.<br>This is a system API.  |
 
 
 ## DeviceType<sup>12+</sup>
@@ -970,3 +970,14 @@ Enumerates the custom types of a remote Bluetooth device.
 | DEVICE_TYPE_WATCH<sup>12+</sup>     | 5 | Watch.<br>This is a system API. |
 | DEVICE_TYPE_SPEAKER<sup>12+</sup>     | 6 | Speaker.<br>This is a system API. |
 | DEVICE_TYPE_OTHERS<sup>12+</sup>     | 7 | Other device.<br>This is a system API. |
+
+
+## BatteryInfo<sup>12+</sup>
+
+Represents the battery information.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string | Yes   | No   | MAC address of the remote device.<br>This is a system API.|

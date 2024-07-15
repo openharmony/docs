@@ -14,6 +14,10 @@
 
 ContainerSpan()
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 仅支持以下属性:
@@ -23,6 +27,8 @@ ContainerSpan()
 textBackgroundStyle(style: TextBackgroundStyle)
 
 设置文本背景样式。子组件在不设置该属性时，将继承此属性值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,6 +40,8 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 ## TextBackgroundStyle对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称   | 参数类型                                                                 | 必填 | 描述         |
 | ------ | ------------------------------------------------------------------------ | ---- | ------------ |
 | color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
@@ -44,8 +52,6 @@ textBackgroundStyle(style: TextBackgroundStyle)
 不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-
-### 示例1
 
 ```ts
 // xxx.ets

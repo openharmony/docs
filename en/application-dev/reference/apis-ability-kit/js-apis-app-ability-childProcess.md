@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 ```
 
 ## ChildProcess.onStart
@@ -24,7 +24,7 @@ Entrypoint method of the child process. This callback is triggered when the chil
 
 **Example**
 ```ts
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {

@@ -10,24 +10,24 @@ The local time of different countries and regions varies according to their long
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Create a **TimeZone** object and implement functions such as calculating the offset between a fixed time zone and the actual time zone and obtaining and traversing the time zone list.
    ```ts
    // Obtain the time zone of Brazil.
-   let timezone = I18n.getTimeZone("America/Sao_Paulo"); // Pass in a specific time zone to create a TimeZone object.
+   let timezone = i18n.getTimeZone("America/Sao_Paulo"); // Pass in a specific time zone to create a TimeZone object.
    let timezoneId = timezone.getID();// America/Sao_Paulo
    
    // Obtain the TimeZone object corresponding to the city ID.
-   let aucklandTimezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
+   let aucklandTimezone = i18n.TimeZone.getTimezoneFromCity("Auckland");
    let aucklandTzId = aucklandTimezone.getID(); // Pacific/Auckland
    
    // Localized time zone name
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // Brasilia Standard Time
    
    // Localized city name
-   let cityDisplayName = I18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // Auckland (New Zealand)
+   let cityDisplayName = i18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // Auckland (New Zealand)
    
    // Fixed offset of the time zone
    let rawOffset = timezone.getRawOffset(); // -10800000
@@ -36,10 +36,10 @@ The local time of different countries and regions varies according to their long
    let offset = timezone.getOffset(1234567890);// -10800000
    
    // List of time zone IDs supported by the system
-   let ids = I18n.TimeZone.getAvailableIDs(); // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
+   let ids = i18n.TimeZone.getAvailableIDs(); // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
    
    // List of time zone city IDs supported by the system
-   let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
+   let cityIdArray = i18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // Traverse the list of time zone city IDs.
    let timezoneList: Array<object> = []; // Time zone list displayed to the user
    class Item {
@@ -50,8 +50,8 @@ The local time of different countries and regions varies according to their long
    }
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // TimeZone object corresponding to the city ID
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // Localized city name
+       let timezone = i18n.TimeZone.getTimezoneFromCity(cityId); // TimeZone object corresponding to the city ID
+       let cityDisplayName = i18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // Localized city name
        let timestamp = (new Date()).getTime()
        let item : Item = {
            cityDisplayName : cityDisplayName,
@@ -63,7 +63,7 @@ The local time of different countries and regions varies according to their long
     }
    
    // TimeZone object array corresponding to the specified geographical coordinates
-   let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
+   let timezoneArray = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
    for (let i =0;i < timezoneArray.length; i++) {
        let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
    }
@@ -73,23 +73,24 @@ The local time of different countries and regions varies according to their long
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
-   import Intl from '@ohos.intl';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Add a time zone to the preferred time zone list of the application.
    ```ts
-   let appPreferredTimeZoneList = [] // Preferred time zone list of the application
+   let timezone1 = i18n.getTimeZone("America/Sao_Paulo");
+   let timezone2 = i18n.getTimeZone();
+   let appPreferredTimeZoneList: Array<i18n.TimeZone> = [] // Application preferred time zone list
    appPreferredTimeZoneList.push(timezone1);
    appPreferredTimeZoneList.push(timezone2);
    ```
 
 3. Traverse the preferred time zone list of the application to obtain the time of each time zone.
    ```ts
-   let locale = I18n.System.getSystemLocale();
+   let locale = i18n.System.getSystemLocale();
    for (let i = 0 ; i < appPreferredTimeZoneList.length ; i++) {
-       let timezone = appPreferredTimeZoneList[i];
-       let calendar = I18n.getCalendar(locale);
+       let timezone = appPreferredTimeZoneList[i].getID();
+       let calendar = i18n.getCalendar(locale);
        calendar.setTimeZone(timezone); // Set the time zone of the Calendar object.
        // Obtain the year, month, day, hour, minute, and second.
        let year = calendar.get("year"); 

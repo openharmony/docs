@@ -9,6 +9,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 ### 权限申请
 
 如果应用创建的AudioHapticPlayer需要触发振动，则需要校验应用是否拥有该权限：`ohos.permission.VIBRATE`。
+
 1. [声明权限](../../security/AccessToken/declare-permissions.md)。
 2. [向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -17,9 +18,8 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 1. 获取音振管理器实例，并注册音频及振动资源，资源支持情况可以查看[AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager)。
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 

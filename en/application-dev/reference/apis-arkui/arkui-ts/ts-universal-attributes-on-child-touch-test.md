@@ -8,7 +8,7 @@ When handling a touch event, ArkUI performs a touch test on the touch point and 
 
 ## onChildTouchTest
 
-onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
+onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 Called to specify how to perform the touch test on the children of this component.
 
@@ -22,9 +22,9 @@ Called to specify how to perform the touch test on the children of this componen
 
 **Return value**
 
-| Type                               | Description                      |
-| ----------------------------------- | -------------------------- |
-| [TouchTestInfo](#touchtestinfo) | How the touch test is performed on the child components.|
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 >**NOTE**
 >The array of child components contains only components for which **id** is set.

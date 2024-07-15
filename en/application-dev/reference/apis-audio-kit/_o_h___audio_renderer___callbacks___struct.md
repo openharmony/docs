@@ -42,7 +42,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnError)(OH_AudioR
 
 Defines a function pointer to the callback function used to process audio playback errors.
 
-**Since**: 10
 
 
 ### OH_AudioRenderer_OnInterruptEvent
@@ -55,8 +54,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnInterruptEvent)(
 
 Defines a function pointer to the callback function used to process audio playback interruption events.
 
-**Since**: 10
-
 
 ### OH_AudioRenderer_OnStreamEvent
 
@@ -67,8 +64,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnStreamEvent)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to process audio playback stream events.
-
-**Since**: 10
 
 
 ### OH_AudioRenderer_OnWriteData

@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## 常量
@@ -27,7 +27,7 @@ import audio from '@ohos.multimedia.audio';
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
@@ -49,7 +49,7 @@ getAudioManager(): AudioManager
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioManager = audio.getAudioManager();
 ```
@@ -72,7 +72,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -124,8 +124,8 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -170,12 +170,12 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 | 参数名   | 类型                                            | 必填 | 说明             |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#audiocaptureroptions8)  | 是   | 配置音频采集器。 |
-| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 回调函数。当获取音频采集器成功，err为undefined，data为获取到的音频采集器对象；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | Callback对象，成功将返回音频采集器对象，异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -224,15 +224,15 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **返回值：**
 
-| 类型                                      | 说明           |
-| ----------------------------------------- | -------------- |
-| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，返回音频采集器对象。 |
+| 类型                                      | 说明                   |
+| ----------------------------------------- |----------------------|
+| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，成功将返回音频采集器对象，异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -279,6 +279,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 | 名称                         | 值      | 说明       |
@@ -302,6 +304,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备角色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称          |  值    | 说明           |
@@ -312,6 +316,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## DeviceType
 
 枚举，设备类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -326,6 +332,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
 | MIC                  | 15     | 麦克风。                                                  |
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
+| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## CommunicationDeviceType<sup>9+</sup>
@@ -430,6 +438,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，音频编码类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 | 名称                  |  值    | 说明      |
@@ -500,7 +510,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 枚举，音频内容类型。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)替代。
+> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)声明音频流使用类型即可。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -521,22 +531,22 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                                      |  值    | 说明                                                                                                                                          |
 | ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
-| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                                                                                                                                       |
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                                                                                                                                         |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                                                                                                                                       | 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                                                                                                                                       |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                                                                                                                                         |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                                                                                                                                       |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                                                                          |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                                                                                                                                         |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                                                                                                                                         |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                                                                                                                                        |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                                                                                                                                      |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                                                                                                                                       |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                                                                                                                                       |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                                                                                                                                         |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。                                                                                                                                         |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                       |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                   |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
 
 ## AudioState<sup>8+</sup>
 
@@ -557,6 +567,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioEffectMode<sup>10+</sup>
 
 枚举，音效模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -581,6 +593,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，中断类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                 |  值     | 说明                   |
@@ -590,29 +604,43 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## InterruptForceType<sup>9+</sup>
 
-枚举，强制打断类型。
+枚举，音频打断类型。
+
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过[InterruptHint](#interrupthint)获取。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称            |  值    | 说明                                 |
 | --------------- | ------ | ------------------------------------ |
-| INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
-| INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
+| INTERRUPT_FORCE | 0      | 强制打断类型，即具体操作已由系统强制执行。   |
+| INTERRUPT_SHARE | 1      | 共享打断类型，即系统不执行具体操作，通过[InterruptHint](#interrupthint)提示并建议应用操作，应用可自行决策下一步处理方式。 |
 
 ## InterruptHint
 
 枚举，中断提示。
 
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示根据焦点策略，当前需要对音频流的具体操作（如暂停、调整音量等）。
+
+可以结合InterruptEvent中的[InterruptForceType](#interruptforcetype9)信息，判断该操作是否已由系统强制执行。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
-| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                     |
-| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复。                               |
-| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停。                               |
-| INTERRUPT_HINT_STOP                | 3      | 提示音频停止。                               |
-| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
-| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量恢复。                               |
+| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                      |
+| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。<br>此操作无法由系统强制执行，其对应的[InterruptForceType](#interruptforcetype9)一定为INTERRUPT_SHARE类型。 |
+| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停，暂时失去音频焦点。<br>后续待焦点可用时，会出现INTERRUPT_HINT_RESUME事件。  |
+| INTERRUPT_HINT_STOP                | 3      | 提示音频停止，彻底失去音频焦点。                |
+| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避开始，音频降低音量播放，而不会停止。 |
+| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量躲避结束，音频恢复正常音量。            |
 
 ## AudioStreamInfo<sup>8+</sup>
 
@@ -626,7 +654,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
-| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局。     |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局，默认值为0x0。 |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -636,9 +664,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
+| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为CONTENT_TYPE_UNKNOWN。同时，[ContentType](#contenttypedeprecated)废弃，建议直接使用[StreamUsage](#streamusage)声明音频流使用类型即可。 |
+| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -664,6 +692,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## InterruptEvent<sup>9+</sup>
 
 播放中断时，应用接收的中断事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -723,6 +753,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，流设备变更原因。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
@@ -735,6 +767,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioStreamDeviceChangeInfo<sup>11+</sup>
 
 流设备变更时，应用接收的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -762,7 +796,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -784,25 +818,31 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup>
+## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup>
+## CaptureFilterOptions<sup>(deprecated)</sup>
 
 待录制的播放音频流的筛选信息。
 
-**需要权限：**
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
+
+**需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，具体请参考以下说明。
 
 - 在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。
 
@@ -855,7 +895,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessError) => {
   if (err) {
@@ -925,7 +965,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioParameter('key_example', (err: BusinessError, value: string) => {
   if (err) {
@@ -986,7 +1026,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
   if (err) {
@@ -1014,7 +1054,7 @@ getAudioScene\(\): Promise<AudioScene\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioScene().then((value: audio.AudioScene) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
@@ -1040,7 +1080,7 @@ getAudioSceneSync\(\): AudioScene
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: audio.AudioScene = audioManager.getAudioSceneSync();
@@ -1068,7 +1108,7 @@ getVolumeManager(): AudioVolumeManager
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager();
 ```
@@ -1090,7 +1130,7 @@ getStreamManager(): AudioStreamManager
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager();
 ```
@@ -1112,7 +1152,7 @@ getRoutingManager(): AudioRoutingManager
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
 ```
@@ -1137,13 +1177,13 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
@@ -1174,7 +1214,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **返回值：**
 
@@ -1206,12 +1246,12 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1243,7 +1283,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回音量大小。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -1274,7 +1314,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1337,7 +1377,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1401,7 +1441,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
@@ -1466,7 +1506,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1529,7 +1569,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1596,7 +1636,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -1663,7 +1703,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
@@ -1719,7 +1759,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -1783,7 +1823,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
@@ -1848,7 +1888,7 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1913,7 +1953,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
@@ -1979,7 +2019,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
@@ -2094,7 +2134,7 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
@@ -2135,7 +2175,7 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
@@ -2172,7 +2212,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
@@ -2208,7 +2248,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
@@ -2244,12 +2284,13 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioVolumeGroupManager: audio.AudioVolumeGroupManager = audioVolumeManager.getVolumeGroupManagerSync(audio.DEFAULT_VOLUME_GROUP_ID);
@@ -2281,7 +2322,8 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2291,6 +2333,36 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
 });
+```
+
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.off('volumeChange');
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -2310,12 +2382,12 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2344,7 +2416,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回音量大小。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **示例：**
 
@@ -2372,7 +2444,7 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| number | 返回音量大小。 |
+| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **错误码：**
 
@@ -2380,12 +2452,13 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2414,7 +2487,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2479,12 +2552,13 @@ getMinVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getMinVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2513,7 +2587,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2578,12 +2652,13 @@ getMaxVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getMaxVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2612,7 +2687,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -2677,12 +2752,13 @@ isMuteSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioVolumeGroupManager.isMuteSync(audio.AudioVolumeType.MEDIA);
@@ -2710,7 +2786,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
@@ -2760,7 +2836,7 @@ getRingerModeSync(): AudioRingMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: audio.AudioRingMode = audioVolumeGroupManager.getRingerModeSync();
@@ -2792,7 +2868,8 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2826,7 +2903,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
@@ -2888,7 +2965,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
@@ -2938,7 +3015,7 @@ isMicrophoneMuteSync(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioVolumeGroupManager.isMicrophoneMuteSync();
@@ -2972,7 +3049,8 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3026,13 +3104,14 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err: BusinessError, dB: number) => {
   if (err) {
@@ -3070,13 +3149,14 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value: number) => {
   console.info(`Success to get the volume DB. ${value}`);
@@ -3113,12 +3193,13 @@ getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getSystemVolumeInDbSync(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER);
@@ -3133,7 +3214,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3155,38 +3236,36 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let inputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let capturerInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  capturerFlags : 0 }
-
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
-  (desc) => {
-    inputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
-  console.info(`mic volatileume amplitude is: ${value}`);
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("get outputDeviceId error" + JSON.stringify(err));
+})
 ```
 
 ### getMaxAmplitudeForOutputDevice<sup>12+</sup>
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3208,32 +3287,29 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let outputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let rendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0 }
-
-audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
-  (desc) => {
-    outputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-
-audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
-  console.info(`speaker volatileume amplitude is: ${value}`);
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
+
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+})
 ```
 
 ## AudioStreamManager<sup>9+</sup>
@@ -3257,7 +3333,7 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
@@ -3304,7 +3380,7 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getCurrentAudioRendererInfoArray(){
   await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
@@ -3350,7 +3426,7 @@ getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray = audioStreamManager.getCurrentAudioRendererInfoArraySync();
@@ -3397,7 +3473,7 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
@@ -3442,7 +3518,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getCurrentAudioCapturerInfoArray(){
   await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
@@ -3486,7 +3562,7 @@ getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray = audioStreamManager.getCurrentAudioCapturerInfoArraySync();
@@ -3535,7 +3611,8 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3582,7 +3659,8 @@ off(type: 'audioRendererChange'): void
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3612,7 +3690,8 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3657,7 +3736,8 @@ off(type: 'audioCapturerChange'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3685,7 +3765,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
 if (err) {
@@ -3750,12 +3830,13 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioStreamManager.isActiveSync(audio.AudioVolumeType.MEDIA);
@@ -3787,12 +3868,13 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
@@ -3831,12 +3913,13 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC).then((audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
@@ -3872,12 +3955,13 @@ getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioEffectInfoArray: audio.AudioEffectInfoArray = audioStreamManager.getAudioEffectInfoArraySync(audio.StreamUsage.STREAM_USAGE_MUSIC);
@@ -3910,7 +3994,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -3975,12 +4059,13 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
@@ -4013,7 +4098,8 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4047,7 +4133,8 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4076,7 +4163,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
@@ -4136,7 +4223,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: Async
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -4201,12 +4288,13 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioRoutingManager.isCommunicationDeviceActiveSync(audio.CommunicationDeviceType.SPEAKER);
@@ -4238,13 +4326,14 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 | 错误码ID | 错误信息                                           |
 | ------- |--------------------------------------------------|
-| 6800101 | Input parameter value error. Return by callback. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback. |
 | 6800301 | System error. Return by callback.                |
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -4287,14 +4376,15 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 错误码ID | 错误信息                                          |
 | ------- |-------------------------------------------------|
-| 6800101 | Input parameter value error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 | 6800301 | System error. Return by promise.                |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -4335,13 +4425,14 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -4379,12 +4470,13 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -4417,7 +4509,8 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4446,13 +4539,14 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
-| 6800301 | System error. Return by callback.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
+| 6800301 | System error. Return by callback. |
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
@@ -4494,14 +4588,15 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
-| 6800301 | System error. Return by promise.            |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
@@ -4541,13 +4636,14 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
@@ -4585,12 +4681,13 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
@@ -4623,7 +4720,8 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4652,7 +4750,7 @@ audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
@@ -4702,7 +4800,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
@@ -4736,9 +4834,13 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
@@ -4756,7 +4858,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
@@ -4775,6 +4877,36 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
   }
 });
 ```
+## AudioDataCallbackResult<sup>12+</sup>
+
+枚举，表示音频数据回调的结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                 | 值      | 说明         |
+| ---------------------| --------| ----------------- |
+| INVALID  | -1 | 表示该回调数据无效。      |
+| VALID      | 0 | 表示该回调数据有效。     |
+
+## AudioRendererWriteDataCallback<sup>12+</sup>
+
+type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
+
+回调函数类型，用于音频渲染器的数据写入。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名          | 类型      |必填   | 说明         |
+| :--------------| :--------| :----- | :------------ |
+| data           | ArrayBuffer  | 是 | 待写入缓冲区的数据。 |
+
+**返回值：** 
+
+| 类型                                                           | 说明 |
+|--------------------------------------------------------------| ------- |
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -4791,7 +4923,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let state: audio.AudioState = audioRenderer.state;
 ```
@@ -4813,7 +4945,7 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
@@ -4840,7 +4972,7 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
@@ -4869,7 +5001,7 @@ getRendererInfoSync(): AudioRendererInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
@@ -4899,7 +5031,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
@@ -4927,7 +5059,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
@@ -4957,7 +5089,7 @@ getStreamInfoSync(): AudioStreamInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamInfo: audio.AudioStreamInfo = audioRenderer.getStreamInfoSync();
@@ -4988,7 +5120,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`Renderer GetStreamId: ${streamId}`);
@@ -5012,7 +5144,7 @@ getAudioStreamId(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioStreamId().then((streamId: number) => {
   console.info(`Renderer getAudioStreamId: ${streamId}`);
@@ -5038,7 +5170,7 @@ getAudioStreamIdSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamId: number = audioRenderer.getAudioStreamIdSync();
@@ -5070,12 +5202,13 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
   if (err) {
@@ -5112,12 +5245,13 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
   console.info('setAudioEffectMode SUCCESS');
@@ -5143,7 +5277,7 @@ getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
   if (err) {
@@ -5171,7 +5305,7 @@ getAudioEffectMode(): Promise\<AudioEffectMode>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
   console.info(`getAudioEffectMode: ${effectMode}`);
@@ -5192,12 +5326,12 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | Callback对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.start((err: BusinessError) => {
   if (err) {
@@ -5220,12 +5354,12 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.start().then(() => {
   console.info('Renderer started');
@@ -5251,7 +5385,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.pause((err: BusinessError) => {
   if (err) {
@@ -5279,7 +5413,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.pause().then(() => {
   console.info('Renderer paused');
@@ -5305,7 +5439,7 @@ drain(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.drain((err: BusinessError) => {
   if (err) {
@@ -5333,7 +5467,7 @@ drain(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.drain().then(() => {
   console.info('Renderer drained successfully');
@@ -5367,7 +5501,7 @@ flush(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.flush().then(() => {
   console.info('Renderer flushed successfully');
@@ -5393,7 +5527,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.stop((err: BusinessError) => {
   if (err) {
@@ -5421,7 +5555,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.stop().then(() => {
   console.info('Renderer stopped successfully');
@@ -5447,7 +5581,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.release((err: BusinessError) => {
   if (err) {
@@ -5475,7 +5609,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.release().then(() => {
   console.info('Renderer released successfully');
@@ -5505,8 +5639,8 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let bufferSize: number;
 class Options {
@@ -5519,8 +5653,8 @@ audioRenderer.getBufferSize().then((data: number)=> {
   console.info(`Buffer size: ${bufferSize}`);
   let path = getContext().cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.stat(filePath).then(async (stat: fs.Stat) => {
+  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+  fileIo.stat(filePath).then(async (stat: fileIo.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
     for (let i = 0;i < len; i++) {
@@ -5528,7 +5662,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
         offset: i * bufferSize,
         length: bufferSize
       }
-      let readsize: number = await fs.read(file.fd, buf, options)
+      let readsize: number = await fileIo.read(file.fd, buf, options)
       let writeSize: number = await new Promise((resolve,reject)=>{
         audioRenderer.write(buf,(err: BusinessError, writeSize: number)=>{
           if(err){
@@ -5573,8 +5707,8 @@ write(buffer: ArrayBuffer): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let bufferSize: number;
 class Options {
@@ -5587,8 +5721,8 @@ audioRenderer.getBufferSize().then((data: number) => {
   console.info(`BufferSize: ${bufferSize}`);
   let path = getContext().cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.stat(filePath).then(async (stat: fs.Stat) => {
+  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+  fileIo.stat(filePath).then(async (stat: fileIo.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
     for (let i = 0;i < len; i++) {
@@ -5596,7 +5730,7 @@ audioRenderer.getBufferSize().then((data: number) => {
         offset: i * bufferSize,
         length: bufferSize
       }
-      let readsize: number = await fs.read(file.fd, buf, options)
+      let readsize: number = await fileIo.read(file.fd, buf, options)
       try{
         let writeSize: number = await audioRenderer.write(buf);
       } catch(err) {
@@ -5627,7 +5761,7 @@ getAudioTime(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -5651,7 +5785,7 @@ getAudioTime(): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioTime().then((timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -5677,7 +5811,7 @@ getAudioTimeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
@@ -5705,7 +5839,7 @@ getBufferSize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
 audioRenderer.getBufferSize((err: BusinessError, data: number) => {
@@ -5735,7 +5869,7 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
 audioRenderer.getBufferSize().then((data: number) => {
@@ -5763,7 +5897,7 @@ getBufferSizeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
 try {
@@ -5796,7 +5930,7 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -5833,7 +5967,7 @@ setRenderRate(rate: AudioRendererRate): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
   console.info('setRenderRate SUCCESS');
@@ -5854,7 +5988,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
 
 **错误码：**
 
@@ -5862,7 +5996,8 @@ setSpeed(speed: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -5890,7 +6025,7 @@ getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
@@ -5917,7 +6052,7 @@ getRenderRate(): Promise\<AudioRendererRate>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
@@ -5946,7 +6081,7 @@ getRenderRateSync(): AudioRendererRate
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let renderRate: audio.AudioRendererRate = audioRenderer.getRenderRateSync();
@@ -6000,7 +6135,7 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(() => {
@@ -6027,7 +6162,7 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
@@ -6058,12 +6193,13 @@ setInterruptModeSync(mode: InterruptMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   audioRenderer.setInterruptModeSync(0);
@@ -6097,7 +6233,7 @@ setVolume(volume: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setVolume(0.5).then(() => {
   console.info('setVolume Success!');
@@ -6123,7 +6259,7 @@ setVolume(volume: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setVolume(0.5, (err: BusinessError) => {
   if(err){
@@ -6150,7 +6286,7 @@ getVolume(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getVolume();
@@ -6178,7 +6314,7 @@ getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
   if (err) {
@@ -6205,7 +6341,7 @@ getMinStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMinStreamVolume().then((value: number) => {
   console.info(`Get min stream volume Success! ${value}`);
@@ -6231,7 +6367,7 @@ getMinStreamVolumeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getMinStreamVolumeSync();
@@ -6259,7 +6395,7 @@ getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
   if (err) {
@@ -6286,7 +6422,7 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMaxStreamVolume().then((value: number) => {
   console.info(`Get max stream volume Success! ${value}`);
@@ -6312,7 +6448,7 @@ getMaxStreamVolumeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getMaxStreamVolumeSync();
@@ -6340,7 +6476,7 @@ getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => {
   if (err) {
@@ -6367,7 +6503,7 @@ getUnderflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getUnderflowCount().then((value: number) => {
   console.info(`Get underflow count Success! ${value}`);
@@ -6393,7 +6529,7 @@ getUnderflowCountSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getUnderflowCountSync();
@@ -6421,7 +6557,7 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -6457,7 +6593,7 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescriptors) => {
   for (let i = 0; i < deviceInfo.length; i++) {
@@ -6492,7 +6628,7 @@ getCurrentOutputDevicesSync(): AudioDeviceDescriptors
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let deviceInfo: audio.AudioDeviceDescriptors = audioRenderer.getCurrentOutputDevicesSync();
@@ -6531,7 +6667,8 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 | 6800103 | Operation not permit at current state.    |
 
 **示例：**
@@ -6563,8 +6700,8 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
-| 401 | Input parameter type or number mismatch.    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6576,13 +6713,57 @@ audioRenderer.setVolumeWithRamp(volume, duration);
 console.info(`setVolumeWithRamp: ${volume}`);
 ```
 
+### setSilentModeAndMixWithOthers<sup>12+</sup>
+
+setSilentModeAndMixWithOthers(on: boolean): void
+
+设置静音并发播放模式。
+
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| on | boolean | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+audioRenderer.setSilentModeAndMixWithOthers(true);
+```
+
+### getSilentModeAndMixWithOthers<sup>12+</sup>
+
+getSilentModeAndMixWithOthers(): boolean
+
+获取静音并发播放模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| boolean | 返回静音并发播放模式状态，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+let on = audioRenderer.getSilentModeAndMixWithOthers();
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件，使用callback方式返回结果。
+监听音频中断事件（焦点变化），使用callback方式返回结果。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioRenderer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -6599,12 +6780,13 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量
@@ -6612,8 +6794,12 @@ onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
           // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -6640,34 +6826,16 @@ async function onAudioInterrupt(){
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
           // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
           console.info('Resume force paused renderer or ignore');
           // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
           break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停渲染
-          console.info('Choose to pause or ignore');
-          // 若选择暂停渲染，需在此处主动执行暂停渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止渲染
-          console.info('Choose to stop or ignore');
-          // 若选择停止渲染，需在此处主动执行停止渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 建议应用降低音量渲染
-          console.info('Choose to duck or ignore');
-          // 若选择降低音量渲染，需在此处主动执行降低音量渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 建议应用恢复正常音量渲染
-          console.info('Choose to unduck or ignore');
-          // 若选择恢复正常音量渲染，需在此处主动执行恢复正常音量渲染的若干操作
-          break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }
@@ -6817,7 +6985,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6850,7 +7019,8 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6883,7 +7053,8 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6917,7 +7088,8 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6932,51 +7104,61 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 
 ### on('writeData')<sup>11+</sup>
 
-on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
+on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
-订阅监听音频数据写入回调，使用callback方式返回结果。
+订阅监听音频数据写入回调，使用 callback 方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                         |
-| :------- |:-----------------------| :--- |:---------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。 |
-| callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回待写入的数据缓冲区。            |
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。        |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {fileIo} from '@kit.CoreFileKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
+let bufferSize: number = 0;
+let path = getContext().cacheDir;
+// 确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  //确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
+  };
+
+  try {
+    fileIo.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.INVALID;
   }
-  fs.readSync(file.fd, buffer, options);
-  bufferSize += buffer.byteLength;
-}
+};
 
 audioRenderer.on('writeData', writeDataCallback);
 audioRenderer.start().then(() => {
@@ -6988,26 +7170,27 @@ audioRenderer.start().then(() => {
 
 ### off('writeData')<sup>11+</sup>
 
-off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
+off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
-取消订阅监听音频数据写入回调，使用callback方式返回结果。
+取消订阅监听音频数据写入回调，使用 callback 方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                                         |
-| :------- |:-----------------------| :--- |:-------------------------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。                 |
-| callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回待写入的数据缓冲区。                            |
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7032,7 +7215,7 @@ audioRenderer.off('writeData', (data: ArrayBuffer) => {
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let state: audio.AudioState = audioCapturer.state;
 ```
@@ -7054,7 +7237,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerInfo) => {
   if (err) {
@@ -7085,7 +7268,7 @@ getCapturerInfo(): Promise<AudioCapturerInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) => {
   if (audioParamsGet != undefined) {
@@ -7118,7 +7301,7 @@ getCapturerInfoSync(): AudioCapturerInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioParamsGet: audio.AudioCapturerInfo = audioCapturer.getCapturerInfoSync();
@@ -7147,7 +7330,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   if (err) {
@@ -7179,7 +7362,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
   console.info('getStreamInfo:');
@@ -7209,7 +7392,7 @@ getStreamInfoSync(): AudioStreamInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioParamsGet: audio.AudioStreamInfo = audioCapturer.getStreamInfoSync();
@@ -7240,7 +7423,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`audioCapturer GetStreamId: ${streamId}`);
@@ -7264,7 +7447,7 @@ getAudioStreamId(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioStreamId().then((streamId: number) => {
   console.info(`audioCapturer getAudioStreamId: ${streamId}`);
@@ -7290,7 +7473,7 @@ getAudioStreamIdSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamId: number = audioCapturer.getAudioStreamIdSync();
@@ -7313,12 +7496,12 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback<void\> | 是   | Callback对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start((err: BusinessError) => {
   if (err) {
@@ -7342,12 +7525,12 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
@@ -7379,7 +7562,7 @@ stop(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop((err: BusinessError) => {
   if (err) {
@@ -7408,7 +7591,7 @@ stop(): Promise<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop().then(() => {
   console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
@@ -7438,7 +7621,7 @@ release(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.release((err: BusinessError) => {
   if (err) {
@@ -7467,7 +7650,7 @@ release(): Promise<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
@@ -7500,7 +7683,7 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
@@ -7543,7 +7726,7 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
@@ -7577,7 +7760,7 @@ getAudioTime(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -7601,7 +7784,7 @@ getAudioTime(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioTime().then((audioTime: number) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
@@ -7627,7 +7810,7 @@ getAudioTimeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioTime: number = audioCapturer.getAudioTimeSync();
@@ -7655,7 +7838,7 @@ getBufferSize(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
   if (!err) {
@@ -7686,7 +7869,7 @@ getBufferSize(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
@@ -7714,7 +7897,7 @@ getBufferSizeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
 try {
@@ -7795,9 +7978,11 @@ if (info.deviceDescriptors[0].encodingTypes) {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件，使用callback方式返回结果。
+监听音频中断事件（焦点变化），使用callback方式返回结果。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioCapturer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -7814,20 +7999,25 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isCapturing: boolean; // 标识符，表示是否正在采集
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioCapturer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频采集，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
           // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -7844,24 +8034,16 @@ async function onAudioInterrupt(){
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
           // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
           console.info('Resume force paused renderer or ignore');
           // 若选择继续采集，需在此处主动执行开始采集的若干操作
           break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停采集
-          console.info('Choose to pause or ignore');
-          // 若选择暂停采集，需在此处主动执行暂停采集的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止采集
-          console.info('Choose to stop or ignore');
-          // 若选择停止采集，需在此处主动执行停止采集的若干操作
-          break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }
@@ -7889,7 +8071,8 @@ off(type: 'audioInterrupt'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7918,7 +8101,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7950,7 +8134,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7979,7 +8164,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8012,7 +8198,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8161,29 +8348,31 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
+let bufferSize: number = 0;
+let path = getContext().cacheDir;
+// 确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.writeSync(file.fd, buffer, options);
+  fileIo.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
 audioCapturer.on('readData', readDataCallback);
@@ -8217,7 +8406,8 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8244,7 +8434,7 @@ getOverflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getOverflowCount().then((value: number) => {
   console.info(`Get overflow count Success! ${value}`);
@@ -8270,7 +8460,7 @@ getOverflowCountSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioCapturer.getOverflowCountSync();

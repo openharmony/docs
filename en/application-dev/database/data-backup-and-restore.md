@@ -5,9 +5,9 @@
 
 You may need to restore a database in any of the following cases:
 
-An important operation being performed by an application is interrupted.
+- An important operation being performed by an application is interrupted.
 
-The database is unavailable due to data loss or corruption, or dirty data.
+- The database is unavailable due to data loss or corruption, or dirty data.
 
 
 Both KV stores and RDB stores support database backup and restore. In addition, KV stores allow you to delete database backups to release local storage space.
@@ -27,8 +27,8 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
-   import { BusinessError } from '@ohos.base';
+   import { distributedKVStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager;
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
@@ -95,9 +95,9 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 3. Use **backup()** to back up the KV store.
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.backup(file, (err) => {
+     kvStore.backup(backupFile, (err) => {
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
@@ -130,9 +130,9 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 5. Use **restore()** to restore the KV store.
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.restore(file, (err) => {
+     kvStore.restore(backupFile, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
@@ -169,8 +169,8 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
 1. Use **getRdbStore()** to create an RDB store.
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
-   import { BusinessError } from '@ohos.base';
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -195,24 +195,35 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
 2. Use **insert()** to insert data to the RDB store.
      
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   import { ValuesBucket } from '@kit.ArkData';
 
-   let key1 = 'NAME';
-   let key2 = 'AGE';
-   let key3 = 'SALARY';
-   let key4 = 'CODES';
    let value1 = 'Rose';
-   let value2 = 22;
-   let value3 = 200.5;
+   let value2 = 18;
+   let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+
+   // You can use either of the following:
+   const valueBucket1: ValuesBucket = {
+     'NAME': value1,
+     'AGE': value2,
+     'SALARY': value3,
+     'CODES': value4,
    };
+   const valueBucket2: ValuesBucket = {
+     NAME: value1,
+     AGE: value2,
+     SALARY: value3,
+     CODES: value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME": value1,
+     "AGE": value2,
+     "SALARY": value3,
+     "CODES": value4,
+   };
+
    if(store != undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
        if (err) {
          console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
          return;

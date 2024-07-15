@@ -41,13 +41,13 @@ To use DevTools for frontend page debugging, perform the following steps:
 3. Connect your device to a PC, and configure port mapping on the PC as follows:
 
    ```
-   // Search for the domain socket name required for DevTools. The name is related to the process ID. After the application being debugged is restarted, repeat this step to complete port forwarding.
+   // Search for the browser process ID required for DevTools. After the application being debugged is restarted, repeat this step to complete port forwarding.
    hdc shell 
-   cat /proc/net/unix | grep devtools
+   ps -ef | grep "Application bundle name"
    exit
    ```
    ```
-   // Configure port mapping. Replace [pid] with the actual process ID.
+   // Configure port mapping. Replace [pid] with the actual browser process ID.
    hdc fport tcp:9222 localabstract:webview_devtools_remote_[pid]
    // View port mapping.
    hdc fport ls
@@ -55,10 +55,12 @@ To use DevTools for frontend page debugging, perform the following steps:
    ```
    Example:
    hdc shell
-   cat /proc/net/unix | grep devtools
-   // Display webview_devtools_remote_3458.
+   ps -ef | grep "myapp"
+   // Display the browser and render processes.
+   20020131     45151   681 3 16:39:05 ?     00:00:04 com.example.myapplication
+   1000010      45221   780 4 16:39:05 ?     00:00:05 com.example.myapplication
    exit
-   hdc fport tcp:9222 localabstract:webview_devtools_remote_3458
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_45151
    hdc fport ls
    ```
 
@@ -73,79 +75,3 @@ To use DevTools for frontend page debugging, perform the following steps:
      **Figure 2** Adding port numbers 
 
      ![debug-effect](figures/debug-domains.png)
-
-6. If you are using a Windows PC, you can run debugging simply with a .bat script containing the following information. Specifically, open the target application, and then execute the script.
-
-   ```
-   @echo off
-   setlocal enabledelayedexpansion
-
-   :: Initialize port number and PID list
-   set PORT=9222
-   set PID_LIST=
-
-   :: Get the list of all forwarded ports and PIDs
-   for /f "tokens=2,5 delims=:_" %%a in ('hdc fport ls') do (
-       if %%a gtr !PORT! (
-           set PORT=%%a
-       )
-       for /f "tokens=1 delims= " %%c in ("%%b") do (
-           set PID_LIST=!PID_LIST! %%c
-       )
-   )
-
-   :: Increment port number for next application
-   set temp_PORT=!PORT!
-   set /a temp_PORT+=1  
-   set PORT=!temp_PORT! 
-
-   :: Get the domain socket name of devtools
-   for /f "tokens=*" %%a in ('hdc shell "cat /proc/net/unix | grep devtools"') do (
-       set SOCKET_NAME=%%a
-
-       :: Extract process ID
-       for /f "delims=_ tokens=4" %%b in ("!SOCKET_NAME!") do set PID=%%b
- 
-       :: Check if PID already has a mapping
-       echo !PID_LIST! | findstr /C:" !PID! " >nul
-       if errorlevel 1 (
-           :: Add mapping
-           hdc fport tcp:!PORT! localabstract:webview_devtools_remote_!PID!
-           if errorlevel 1 (
-               echo Error: Failed to add mapping.
-               pause
-               exit /b
-           )
-
-           :: Add PID to list and increment port number for next application 
-           set PID_LIST=!PID_LIST! !PID!
-           set temp_PORT=!PORT!
-           set /a temp_PORT+=1  
-           set PORT=!temp_PORT! 
-       )
-   )
-
-   :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
-   if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
-       pause
-       exit /b
-   )
-
-   :: Check mapping
-   hdc fport ls
-
-   echo.
-   echo Script executed successfully. Press any key to exit...
-   pause >nul
-
-   :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
-
-   :: If Edge is not available, then open the page in Chrome
-   if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
-   )
-
-   endlocal
-   ```

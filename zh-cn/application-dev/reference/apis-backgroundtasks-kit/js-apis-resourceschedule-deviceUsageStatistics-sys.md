@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import usageStatistics from '@ohos.resourceschedule.usageStatistics'
+import { usageStatistics } from '@kit.BackgroundTasksKit'
 ```
 
 ## usageStatistics.isIdleState
@@ -33,10 +33,13 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                     |
-| ---------- | ----------------------------     |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -45,7 +48,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
@@ -80,10 +83,13 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                     |
-| ---------- | ----------------------------     |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -93,7 +99,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
@@ -125,10 +131,13 @@ isIdleStateSync(bundleName: string): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                     |
-| ---------- | ----------------------------     |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -156,10 +165,14 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -171,7 +184,7 @@ queryAppGroup(): Promise&lt;number&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryAppGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
@@ -196,10 +209,14 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -211,7 +228,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
   if(err) {
@@ -238,10 +255,14 @@ queryAppGroupSync(): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -280,10 +301,14 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -296,7 +321,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 ```javascript
 //有bundleName的promise
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
@@ -325,10 +350,14 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -340,7 +369,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
@@ -376,10 +405,14 @@ queryAppGroupSync(bundleName: string): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -419,10 +452,14 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -433,7 +470,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
@@ -465,10 +502,14 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -479,7 +520,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
@@ -513,10 +554,14 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -527,7 +572,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
   if (err) {
@@ -564,10 +609,14 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -578,7 +627,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatistics.BundleStatsMap) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
@@ -609,10 +658,14 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -623,7 +676,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
   if (err) {
@@ -664,10 +717,14 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -678,7 +735,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: Array<usageStatistics.BundleStatsInfo>) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
@@ -711,10 +768,14 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -725,7 +786,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
@@ -765,10 +826,14 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -779,7 +844,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
@@ -810,10 +875,14 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -824,7 +893,7 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
@@ -862,10 +931,14 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -876,7 +949,7 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
@@ -914,10 +987,14 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -928,7 +1005,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
@@ -958,10 +1035,14 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -972,7 +1053,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
@@ -1009,10 +1090,14 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1023,7 +1108,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
@@ -1053,10 +1138,14 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1067,7 +1156,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
@@ -1099,10 +1188,14 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1114,7 +1207,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 ```ts
 // 无maxNum参数调用方式
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
@@ -1159,7 +1252,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
@@ -1198,10 +1291,14 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1212,7 +1309,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
@@ -1240,14 +1337,18 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | 是    |  使用记录的条数，取值范围为[1，1000]。 |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1258,7 +1359,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
@@ -1297,10 +1398,14 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1311,7 +1416,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
@@ -1347,10 +1452,14 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1361,7 +1470,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
@@ -1398,10 +1507,14 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1411,7 +1524,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.unregisterAppGroupCallBack().then( () => {
   console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
@@ -1438,10 +1551,14 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1451,7 +1568,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
   if(err) {

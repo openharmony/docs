@@ -16,6 +16,10 @@
 
 TextInput(value?: TextInputOptions)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 |类型|必填|说明|
@@ -23,6 +27,11 @@ TextInput(value?: TextInputOptions)
 | value | [TextInputOptions](#textinputoptions对象说明) | 否  | TextInput组件参数。 |
 
 ## TextInputOptions对象说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名                     | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
@@ -39,6 +48,8 @@ type(value: InputType)
 
 设置输入框类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,6 +63,8 @@ type(value: InputType)
 contentType(value: ContentType)
 
 设置自动填充类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +80,8 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -80,6 +95,8 @@ placeholderColor(value: ResourceColor)
 placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +112,8 @@ enterKeyType(value: EnterKeyType)
 
 设置输入法回车键类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -108,6 +127,8 @@ enterKeyType(value: EnterKeyType)
 caretColor(value: ResourceColor)
 
 设置输入框光标颜色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,6 +147,8 @@ maxLength(value: number)
 
 设置文本的最大输入字符数。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -141,6 +164,8 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,6 +184,8 @@ copyOption(value: CopyOptions)
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -173,6 +200,8 @@ showPasswordIcon(value: boolean)
 
 设置当密码输入模式时，输入框末尾的图标是否显示。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -186,6 +215,8 @@ showPasswordIcon(value: boolean)
 style(value: TextInputStyle &nbsp;|&nbsp;TextContentStyle)
 
 设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -205,6 +236,8 @@ textAlign(value: TextAlign)
 
 可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -219,6 +252,8 @@ selectedBackgroundColor(value: ResourceColor)
 
 设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -227,14 +262,13 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   从API version 12开始，如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### caretStyle<sup>10+</sup>
 
 caretStyle(value: CaretStyle)
 
 设置光标风格。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -242,13 +276,15 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### caretPosition<sup>10+</sup>
 
 caretPosition(value: number)
 
 设置光标位置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -264,6 +300,8 @@ showUnit(value: CustomBuilder)
 
 设置控件作为文本框单位。需搭配showUnderline使用，当[showUnderline](#showunderline10)为true时生效。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -274,11 +312,13 @@ showUnit(value: CustomBuilder)
 
 ### showError<sup>10+</sup>
 
-showError(value?: string | undefined)
+showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -286,13 +326,15 @@ showError(value?: string | undefined)
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>从API version 12开始，value支持Resource类型。 |
 
 ### showUnderline<sup>10+</sup>
 
 showUnderline(value: boolean)
 
 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp，下划线只支持InputType.Normal类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -320,6 +362,8 @@ passwordIcon(value: PasswordIcon)
 
 设置当密码输入模式时，输入框末尾的图标。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -336,6 +380,8 @@ enableKeyboardOnFocus(value: boolean)
 
 从API version 10开始，获焦默认绑定输入法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -349,6 +395,8 @@ enableKeyboardOnFocus(value: boolean)
 selectionMenuHidden(value: boolean)
 
 设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -364,6 +412,8 @@ barState(value: BarState)
 
 设置内联输入风格编辑态时滚动条的显示模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -377,6 +427,8 @@ barState(value: BarState)
 maxLines(value: number)
 
 设置内联输入风格编辑态时文本可显示的最大行数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -408,16 +460,18 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                        | 必填 | 说明                             |
-| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+| 参数名                | 类型                                        | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。                             |
 
 ### enableAutoFill<sup>11+</sup>
 
 enableAutoFill(value: boolean)
 
 设置是否启用自动填充。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -433,6 +487,8 @@ passwordRules(value: string)
 
 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -447,6 +503,8 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 设置右侧清除按钮样式。不支持内联模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -460,6 +518,8 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 selectAll(value: boolean)
 
 设置当初始状态，是否全选文本。不支持内联模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -477,9 +537,11 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
-当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
-TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
+内联模式和密码模式下字符计数器不显示。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -489,10 +551,6 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | 是   | 是否显示计数器。 |
 | options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
-
->  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
->   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### lineHeight<sup>12+</sup>
 
@@ -512,7 +570,7 @@ lineHeight(value: number | string | Resource)
 
 decoration(value: TextDecorationOptions)
 
-设置文本装饰线样式及其颜色。
+设置文本装饰线类型样式及其颜色。密码模式不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -520,7 +578,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -560,11 +618,12 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 >  **说明：**
->  type类型为InputType.Password密码模式时，暂时不支持fontFeature设置文本样式。
+>  type属性中InputType枚举为Password、NEW_PASSWORD和NUMBER_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
 
 ### wordBreak<sup>12+</sup>
 
@@ -588,25 +647,22 @@ wordBreak(value: WordBreak)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。
+设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
-当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
-
-**卡片能力：** 该接口支持在ArkTS卡片中使用。
+当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                          | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>Inline模式下默认值：TextOverflow.Ellipsis，否则为TextOverflow.Clip                     |
+| 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
 
 >  **说明：**  
->   TextInput组件 InLine模式下支持TextOverflow.CLIP、TextOverflow.ELLIPSIS，其余模式下只支持显示TextOverflow.Clip
->   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 Inline模式下显示为TextOverflow.Ellipsis，否则显示为TextOverflow.Clip
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
 
 ### textIndent<sup>12+</sup>
 
@@ -618,62 +674,193 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                  | 必填 | 说明                         |
+| ------ | ------------------------------------ | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 首行文本缩进。<br/>默认值：0 |
 
-## CaretStyle<sup>10+</sup>对象说明
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### heightAdaptivePolicy<sup>12+</sup>
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+组件设置为内联输入风格时，设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
+
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，与TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST效果一样。
+
+组件设置为非内联输入风格时，设置文本自适应高度(TextHeightAdaptivePolicy)的三种方式效果一样，即在minFontSize和maxFontSize的范围内缩小字体以显示更多文本。
+
+>  **说明：**
+>
+>  组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
+### showPassword<sup>12+</sup>
+
+showPassword(visible: boolean)
+
+设置密码的显隐状态。
+
+需组合密码模式才能生效，非密码输入模式不生效。
+
+由于小眼睛图标内置更新密码模式的状态，建议在[onSecurityStateChange](#onsecuritystatechange12)上增加状态同步。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
+
+### lineBreakStrategy<sup>12+</sup>
+
+lineBreakStrategy(strategy: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
+
+### editMenuOptions<sup>12+</sup>
+
+editMenuOptions(editMenu: EditMenuOptions)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+
+>  **说明：**    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
+>
+>   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
 ## InputType枚举说明
 
-| 名称                                 | 描述                                       |
-| ---------------------------------- | ---------------------------------------- |
-| Normal                             | 基本输入模式，无特殊限制。                            |
-| Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| Email                              | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
-| Number                             | 纯数字输入模式。                                 |
-| PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。      |
-| USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
-| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
-| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。 |
-| NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                          | 描述                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Email                         | 邮箱地址输入模式。<br/>支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| USER_NAME<sup>11+</sup>       | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
 自动填充类型。
 
-| 名称                | 值   | 描述                                                         |
-| ------------------- | ---- | ------------------------------------------------------------ |
-| USER_NAME           | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| PASSWORD            | 1    | 【密码】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| NEW_PASSWORD        | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
-| FULL_STREET_ADDRESS | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
-| HOUSE_NUMBER        | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
-| DISTRICT_ADDRESS    | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
-| CITY_ADDRESS        | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
-| PROVINCE_ADDRESS    | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
-| COUNTRY_ADDRESS     | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
-| PERSON_FULL_NAME    | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
-| PERSON_LAST_NAME    | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
-| PERSON_FIRST_NAME   | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
-| PHONE_NUMBER        | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
-| PHONE_COUNTRY_CODE  | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
-| FULL_PHONE_NUMBER   | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
-| EMAIL_ADDRESS       | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
-| BANK_CARD_NUMBER    | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
-| ID_CARD_NUMBER      | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                       | 值   | 描述                                                         |
+| -------------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
+| PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
+| NEW_PASSWORD               | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS        | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER               | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS           | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS               | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS           | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS            | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。 |
+| EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+| NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
+| DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
+| FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 描述                                       |
 | ------- | ---------------------------------------- |
@@ -682,10 +869,33 @@ textIndent(value: Dimension)
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称         | 类型                                       | 必填   | 描述                        |
 | ---------- | ---------------------------------------- | ---- | ------------------------- |
-| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+
+## InsertValue<sup>12+</sup>对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 |
 
 ## 事件
 
@@ -705,6 +915,8 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 3、键盘快捷键Ctrl+v。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -715,9 +927,11 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void))
 
 按下输入法回车键触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -750,6 +964,8 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -763,6 +979,8 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -778,6 +996,8 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -791,6 +1011,8 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -807,6 +1029,8 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 文本选择的位置发生变化时，触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -822,6 +1046,8 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -831,9 +1057,83 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
+### onSecurityStateChange<sup>12+</sup>
+
+onSecurityStateChange(callback: Callback\<boolean>)
+
+密码显隐状态切换时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| callback | Callback\<boolean> | 是   | 回调函数。|
+
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+在输入完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+在删除完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
 ## TextInputController<sup>8+</sup>
 
-TextInput组件的控制器。
+TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 ```
@@ -844,6 +1144,10 @@ controller: TextInputController = new TextInputController()
 caretPosition(value:&nbsp;number): void
 
 设置输入光标的位置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -856,37 +1160,25 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 
 设置文本选择区域并高亮显示。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名            | 参数类型   | 必填   | 参数描述                      |
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是    | 文本选择区域结束位置。               |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+| selectionEnd   | number | 是    | 文本选择区域结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
+
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
->  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 >
-
-## SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ### stopEditing<sup>10+</sup>
 
@@ -894,63 +1186,16 @@ stopEditing(): void
 
 退出编辑态。
 
-### getTextContentRect<sup>10+</sup>
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-getTextContentRect(): [RectResult](#rectresult10)
-
-获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
-
-**返回值：**
-
-| 类型                          | 说明                  |
-| --------------------------- | ------------------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
-
-> **说明：**
->
-> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
-> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
-
-### RectResult<sup>10+</sup>
-
-位置和大小，单位均为像素。
-
-| 参数     | 类型     | 描述       |
-| ------ | ------ | -------- |
-| x      | number | 水平方向横坐标。 |
-| y      | number | 竖直方向纵坐标。 |
-| width  | number | 内容宽度大小。  |
-| height | number | 内容高度大小。  |
-
-
-### getTextContentLineCount<sup>10+</sup>
-
-getTextContentLineCount(): number
-
-获取已编辑文本内容的行数。
-
-**返回值：**
-
-| 类型     | 说明         |
-| ------ | ---------- |
-| number | 已编辑文本内容行数。 |
-### getCaretOffset<sup>11+</sup>
-
-getCaretOffset(): CaretOffset
-
-返回当前光标所在位置信息。
-
-**返回值：**
-
-| 类型                                | 说明          |
-| --------------------------------- | ----------- |
-| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
-
-> **说明：**
->
-> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## CaretOffset<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名   | 类型     | 描述             |
 | ----- | ------ | -------------- |
 | index | number | 光标所在位置的索引值。    |
@@ -959,12 +1204,28 @@ getCaretOffset(): CaretOffset
 
 ## InputCounterOptions<sup>11+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名              | 类型    | 描述                                                         |
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+
 ## UnderlineColor<sup>12+</sup>对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名  | 类型                                                         | 必填 | 描述                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -976,6 +1237,8 @@ getCaretOffset(): CaretOffset
 ## KeyboardOptions<sup>12+</sup>
 
 设置自定义键盘是否支持避让功能。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型              | 必填   | 描述                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
@@ -992,6 +1255,7 @@ getCaretOffset(): CaretOffset
 struct TextInputExample {
   @State text: string = ''
   @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  @State passwordState: boolean = false
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -1031,6 +1295,12 @@ struct TextInputExample {
         .type(InputType.Password)
         .maxLength(9)
         .showPasswordIcon(true)
+        .showPassword(this.passwordState)
+        .onSecurityStateChange(((isShowPassword: boolean) => {
+          // 更新密码显示状态
+          console.info('isShowPassword',isShowPassword)
+          this.passwordState = isShowPassword
+        }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
         .width('95%')
@@ -1160,7 +1430,7 @@ struct TextInputExample {
     Column() {
       TextInput({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
 }
@@ -1237,14 +1507,14 @@ struct TextInputExample {
 
 ### 示例6
 本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+
 ```ts
 @Entry
 @Component
 struct phone_example {
   @State submitValue: string = ''
-  @State text : string = ''
-
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+  @State text: string = ''
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
 
   isEmpty(str?: string): boolean {
     return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
@@ -1274,42 +1544,37 @@ struct phone_example {
 
   build() {
     Column() {
-        Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
-            .onChange((number: string) => {
-              let teleNumberNoSpace: string = this.removeSpace(number);
-              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+      Row() {
+        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+          .onChange((number: string) => {
+            let teleNumberNoSpace: string = this.removeSpace(number);
+            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              this.text = teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(number)) {
+              if (teleNumberNoSpace.length <= 3) {
                 this.text = teleNumberNoSpace;
-              } else if (this.checkNeedNumberSpace(number)) {
-                if (teleNumberNoSpace.length <= 3) {
-                  this.text = teleNumberNoSpace;
-                } else {
-                  let split1: string = teleNumberNoSpace.substring(0, 3);
-                  let split2: string = teleNumberNoSpace.substring(3);
-                  this.text = split1 + ' ' + split2;
-                  if (teleNumberNoSpace.length > 7) {
-                    split2 = teleNumberNoSpace.substring(3, 7);
-                    let split3: string = teleNumberNoSpace.substring(7);
-                    this.text = split1 + ' ' + split2 + ' ' + split3;
-                  }
-                }
-              } else if (teleNumberNoSpace.length > 8) {
-                let split4 = teleNumberNoSpace.substring(0, 8);
-                let split5 = teleNumberNoSpace.substring(8);
-                this.text = split4 + ' ' + split5;
               } else {
-                this.text = number;
+                let split1: string = teleNumberNoSpace.substring(0, 3);
+                let split2: string = teleNumberNoSpace.substring(3);
+                this.text = split1 + ' ' + split2;
+                if (teleNumberNoSpace.length > 7) {
+                  split2 = teleNumberNoSpace.substring(3, 7);
+                  let split3: string = teleNumberNoSpace.substring(7);
+                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                }
               }
-            })
-        }
+            } else {
+              this.text = number;
+            }
+          })
+      }
     }
     .width('100%')
     .height("100%")
   }
 }
-
 ```
-![phone_example](figures/phone_number.jpeg)
+![phone_example](figures/phone_number.PNG)
 
 ### 示例7
 
@@ -1341,7 +1606,7 @@ struct Index {
 
 
 ### 示例8
-示例展示设置不同wordBreak属性的TextArea样式。
+示例展示设置不同wordBreak属性的TextInput样式。
 
 ```ts
 // xxx.ets
@@ -1418,12 +1683,12 @@ struct TextInputExample {
         TextInput({text: 'LineThrough, Red'})
           .border({ width: 1 }).padding(5).margin(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red'})
+        TextInput({text: 'Overline, Red, DASHED'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        TextInput({text: 'Underline, Red'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
+        TextInput({text: 'Underline, Red, WAVY'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')
@@ -1527,4 +1792,215 @@ struct Input {
 }
 ```
 
-![CustomTextInputType](figures/Custom_Text_Input.gif)
+![CustomTextInputType](figures/textInputCustomKeyboard.gif)
+
+### 示例12
+
+该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+
+```ts
+@Entry
+@Component
+struct TextInputExample {
+  build() {
+    Row() {
+      Column() {
+        Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+        TextInput({text: 'This is the text without the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![TextInputAdaptFont](figures/textinput_adapt_font.png)
+
+### 示例13
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+```ts
+@Entry
+@Component
+struct TextExample1 {
+  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.GREEDY)
+      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
+      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
+
+### 示例14
+
+该实例展示输入框支持插入和删除回调。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State insertValue: string = ""
+  @State deleteValue: string = ""
+  @State insertOffset: number = 0
+  @State deleteOffset: number = 0
+  @State deleteDirection: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "TextInput支持插入回调文本" })
+          .height(60)
+          .onWillInsert((info: InsertValue) => {
+            this.insertValue = info.insertValue
+            return true;
+          })
+          .onDidInsert((info: InsertValue) => {
+            this.insertOffset = info.insertOffset
+          })
+
+        Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
+
+        TextInput({ text: "TextInput支持删除回调文本b" })
+          .height(60)
+          .onWillDelete((info: DeleteValue) => {
+            this.deleteValue = info.deleteValue
+            info.direction
+            return true;
+          })
+          .onDidDelete((info: DeleteValue) => {
+            this.deleteOffset = info.deleteOffset
+            this.deleteDirection = info.direction
+          })
+
+        Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
+        Text("deleteDirection:" + (this.deleteDirection == 0 ? "BACKWARD" : "FORWARD")).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
+
+### 示例15
+
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = 'TextInput editMenuOptions'
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    menuItems.forEach((value, index) => {
+      value.icon = $r('app.media.startIcon')
+      if (value.id.equals(TextMenuItemId.COPY)) {
+        value.content = "复制change"
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        value.content = "全选change"
+      }
+    })
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('custom1'),
+    }
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.startIcon'),
+    }
+    menuItems.push(item1)
+    menuItems.unshift(item2)
+    return menuItems
+  }
+
+  build() {
+    Column() {
+      TextInput({ text: this.text })
+        .width('95%')
+        .height(50)
+        .editMenuOptions({
+          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+              console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.COPY)) {
+              console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+              console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+              return false;
+            }
+            return false;
+          }
+        })
+        .margin({ top: 100 })
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)

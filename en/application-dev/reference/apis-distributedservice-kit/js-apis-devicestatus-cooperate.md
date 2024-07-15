@@ -30,6 +30,16 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -63,6 +73,15 @@ Prepares for screen hopping. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+
 **Example**
 
 ```ts
@@ -93,6 +112,16 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -126,6 +155,15 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 | Parameters               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
 
 **Example**
 
@@ -168,6 +206,9 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Operation failed. |
 
 **Example**
@@ -218,6 +259,9 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Operation failed. |
 
 **Example**
@@ -255,6 +299,16 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | isUnchained | boolean                   | Yes  | Whether to disable the cross-device link. The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -295,6 +349,15 @@ Stops screen hopping. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+
 **Example**
 
 ```ts
@@ -328,6 +391,16 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | networkId | string                       | Yes  | Descriptor of the target device for screen hopping.                                    |
 | callback  | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -369,6 +442,16 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -391,7 +474,7 @@ try {
 
 on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
-Enables listening for screen hopping status change events.
+Registers a listener for screen hopping status change events.
 
 **Required permissions**: ohos.permission.COOPERATE_MANAGER
 
@@ -401,8 +484,18 @@ Enables listening for screen hopping status change events.
 
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is **cooperateMessage**.  |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the result.|
+| type     | string                                                | Yes  | Event type, which is **'cooperateMessage'**.  |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the screen hopping status.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -424,7 +517,7 @@ try {
 
 off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void;
 
-Disables listening for screen hopping status change events.
+Unregisters the listener for screen hopping status change events.
 
 **Required permissions**: ohos.permission.COOPERATE_MANAGER
 
@@ -434,8 +527,18 @@ Disables listening for screen hopping status change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is **cooperate**.                               |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| type     | string                                                | Yes  | Event type, which is **'cooperate'**.                               |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperate'** of this application.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -472,6 +575,115 @@ try {
 ```
 
 
+## on('cooperateMouse')<sup>12+</sup>
+
+on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocation&gt;): void;
+
+Registers a listener for the mouse cursor position of a device.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                | Yes  | Event type, which is **'cooperateMouse'**.  |
+| networkId| string                                                | Yes  | Descriptor of the target device.  |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | Yes  | Callback used to return the mouse cursor position of the specified device.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**Example**
+
+```ts
+function callback(data: cooperate.MouseLocation) {
+  console.log('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
+    data.displayWidth + 'displayHeight:' + data.displayHeight );
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callback);
+} catch (error) {
+  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
+
+## off('cooperateMouse')<sup>12+</sup>
+
+off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocation&gt;): void;
+
+Unregisters the listener for the mouse cursor position of a device.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | Yes  | Event type, which is **'cooperateMouse'**.                               |
+| networkId| string                                                | Yes  | Descriptor of the target device.  |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperateMouse'** of this application.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**Example**
+
+```ts
+// Unregister a single callback.
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+  return false;
+}
+function callbackOff(data: cooperate.MouseLocation) {
+  console.log('Unregister mouse location listener');
+  return false;
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId, callbackOff);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```ts
+// Unregister all callbacks.
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
 
 ## CooperateMessage<sup>11+</sup>
 
@@ -486,7 +698,7 @@ Defines a screen hopping status change event.
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
 Screen hopping status.
 
@@ -503,6 +715,20 @@ Screen hopping status.
 | COOPERATE_DEACTIVATE_FAIL   | number | Yes  | No  | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
 
+
+
+## MouseLocation<sup>12+</sup>
+
+Represents the mouse cursor position.
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| Name          | Type          | Readable| Writable| Description                    |
+| ---------     | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | Yes  | No  | X coordinate of the mouse device.|
+| displayY      | number         | Yes  | No  | Y coordinate of the mouse device.|
+| displayWidth  | number         | Yes  | No  | Width of the screen where the cursor is located.|
+| displayHeight | number         | Yes  | No  | Height of the screen where the cursor is located.|
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>
@@ -522,6 +748,14 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 | Name   | Type     | Mandatory | Description   |
 | -------- | ------------------------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -558,7 +792,13 @@ Prepares for screen hopping. This API uses a promise to return the result.
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise that returns no value.|
 
+**Error codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -592,6 +832,14 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 | Name  | Type                     | Mandatory| Description                                      |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -627,6 +875,14 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 | Parameters               | Description                                         |
 | ------------------- | --------------------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -672,6 +928,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -726,6 +983,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -765,7 +1023,13 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | isUnchained | boolean | Yes| Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
 | callback     | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -848,6 +1112,14 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 | networkId | string                       |  Yes   | Descriptor of the target device for screen hopping.            |
 | callback             | AsyncCallback&lt;boolean&gt; |  Yes   | Callback used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -884,7 +1156,13 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 | --------   | ---------  | ----  | ----------------------------    |
 | networkId | string     |  Yes   | Descriptor of the target device for screen hopping.           |
 
+**Error codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Return value**
 
@@ -916,7 +1194,7 @@ try {
 
 on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateMsg }&gt;): void;
 
-Enables listening for screen hopping status change events.
+Registers a listener for screen hopping status change events.
 
 > **NOTE**
 >
@@ -928,10 +1206,16 @@ Enables listening for screen hopping status change events.
 
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
+| type                 | string                                                          |  Yes | Event type, which is **'cooperate'**.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the screen hopping status.|
 
+**Error codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -953,7 +1237,7 @@ try {
 
 off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
-Disables listening for screen hopping status change events.
+Unregisters the listener for screen hopping status change events.
 
 > **NOTE**
 >
@@ -965,10 +1249,16 @@ Disables listening for screen hopping status change events.
 
 | Name               | Type                                                             | Mandatory   | Description                          |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  Yes   | Event type. The value is **cooperate**.|
-| callback             | AsyncCallback&lt;void&gt; |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| type                 | string                                                           |  Yes   | Event type, which is **'cooperate'**.|
+| callback             | AsyncCallback&lt;void&gt; |  No | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperate'** of this application.|
 
+**Error codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
