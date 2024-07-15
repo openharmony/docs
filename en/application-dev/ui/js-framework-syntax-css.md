@@ -1,6 +1,6 @@
 # CSS
 
-Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/arkui-js/js-components-common-styles.md).
+Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/apis-arkui/arkui-js/js-components-common-styles.md).
 
 ## Size Unit
 

@@ -26,7 +26,9 @@ Callback\<T> {
 
 开发者在使用时，可自定义data的类型，回调将返回对应类型的信息。
 
-**系统能力**：SystemCapability.Base
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型 | 必填 | 说明                       |
 | ---- | ---- | ---- | -------------------------- |
@@ -44,7 +46,9 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 回调返回的信息为[BusinessError](#businesserror)类型的信息。
 
-**系统能力**：SystemCapability.Base
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 **参数：**
 
@@ -66,7 +70,9 @@ AsyncCallback\<T, E = void> {
 
 异步返回值的类型由开发者自定义，回调将返回对应类型的信息。
 
-**系统能力**：SystemCapability.Base
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型                                                         | 必填 | 说明                         |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
@@ -84,7 +90,9 @@ data?: T;
 
 错误参数。
 
-**系统能力**：SystemCapability.Base
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型   | 必填 | 说明                                                       |
 | ---- | ------ | ---- | ---------------------------------------------------------- |

@@ -11,7 +11,7 @@
 
 ## 子组件
 
-仅可包含子组件[TabContent](ts-container-tabcontent.md)。
+不支持自定义组件作为子组件， 仅可包含子组件[TabContent](ts-container-tabcontent.md)， 以及渲染控制类型[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)和[ForEach](../../../quick-start/arkts-rendering-control-foreach.md), 并且if/else和ForEach下也仅支持TabContent, 不支持自定义组件。
 
 >  **说明：**
 >
@@ -22,6 +22,10 @@
 
 Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名         | 参数类型                              | 必填   | 参数描述                                     |
@@ -31,6 +35,12 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
+
+Tabs页签位置枚举。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述                                       |
 | ----- | ---------------------------------------- |
@@ -48,19 +58,23 @@ vertical(value: boolean)
 
 设置是否为纵向Tab。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否为纵向Tab。<br/>默认值：false，横向Tabs，为true时纵向Tabs。<br/>当横向Tabs设置height为auto时，Tabs组件高度自适应子组件高度。<br/>当纵向Tabs设置width为auto时，Tabs组件宽度自适应子组件宽度。 |
+| value  | boolean | 是   | 是否为纵向Tab。<br/>默认值：false，横向Tabs，为true时纵向Tabs。<br/>当横向Tabs设置height为auto时，Tabs组件高度自适应子组件高度，即为tabBar高度+divider线宽+TabContent高度+上下padding值+上下border宽度。<br/>当纵向Tabs设置width为auto时，Tabs组件宽度自适应子组件宽度，即为tabBar宽度+divider线宽+TabContent宽度+左右padding值+左右border宽度。<br/>尽量保持每一个页面中的子组件尺寸大小一致，避免滑动页面时出现页面切换动画跳动现象。 |
 
 ### scrollable
 
 scrollable(value: boolean)
 
 设置是否可以通过滑动页面进行页面切换。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,6 +89,8 @@ scrollable(value: boolean)
 barMode(value: BarMode, options?: ScrollableBarModeOptions)
 
 设置TabBar布局模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,6 +107,8 @@ barWidth(value: Length)
 
 设置TabBar的宽度值。设置为小于0或大于Tabs宽度值时，按默认值显示。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -105,19 +123,23 @@ barHeight(value: Length)
 
 设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为52vp。 |
 
 ### animationDuration
 
 animationDuration(value: number)
 
 设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,11 +149,29 @@ animationDuration(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0ms，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。 |
 
+### animationMode<sup>12+</sup>
+
+animationMode(mode: Optional\<AnimationMode\>)
+
+设置点击TabBar页签时切换TabContent的动画形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode::CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+
 ### divider<sup>10+</sup>
 
 divider(value: DividerStyle | null)
 
 设置区分TabBar和TabContent的分割线样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,6 +187,8 @@ fadingEdge(value: boolean)
 
 设置页签超过容器宽度时是否渐隐消失。建议配合barBackgroundColor属性一起使用，如果barBackgroundColor属性没有定义，会默认显示页签末端为白色的渐隐效果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -160,6 +202,8 @@ fadingEdge(value: boolean)
 barOverlap(value: boolean)
 
 设置TabBar是否背后变模糊并叠加在TabContent之上。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -175,6 +219,8 @@ barBackgroundColor(value: ResourceColor)
 
 设置TabBar的背景颜色。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -188,6 +234,8 @@ barBackgroundColor(value: ResourceColor)
 barBackgroundBlurStyle(value: BlurStyle)
 
 设置TabBar的背景模糊材质。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,6 +251,8 @@ barGridAlign(value: BarGridColumnOptions)
 
 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -211,7 +261,29 @@ barGridAlign(value: BarGridColumnOptions)
 | ------ | ------------------------------------------------------- | ---- | ---------------------------------- |
 | value  | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 是   | 以栅格化方式设置TabBar的可见区域。 |
 
+### edgeEffect<sup>12+</sup>
+
+edgeEffect(value: EdgeEffect)
+
+设置边缘回弹效果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                         |
+| ------ | --------------------------------------------- | ---- | -------------------------------------------- |
+| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+
 ## DividerStyle<sup>10+</sup>对象说明
+
+分割线样式对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -222,15 +294,27 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## BarGridColumnOptions<sup>10+</sup>对象说明
 
+TabBar栅格化方式设置的对象，包括栅格模式下的column边距和间隔，以及小、中、大屏下，页签占用的columns数量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)             | 否    | 网格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
-| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 网格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
+| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
+| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
 | sm | number            | 否    | 小屏下，页签占用的columns数量，必须是非负偶数。小屏为大于等于320vp但小于600vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | md   | number          | 否    | 中屏下，页签占用的columns数量，必须是非负偶数。中屏为大于等于600vp但小于800vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | lg   | number           | 否    | 大屏下，页签占用的columns数量，必须是非负偶数。大屏为大于等于840vp但小于1024vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 
 ## ScrollableBarModeOptions<sup>10+</sup>对象说明
+
+Scrollable模式下的TabBar的布局样式对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -239,18 +323,44 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## BarMode枚举说明
 
-| 名称         | 描述                                       |
-| ---------- | ---------------------------------------- |
-| Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
-| Fixed      | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
+TabBar布局模式枚举。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值 | 描述                                       |
+| ---------- | -- | ---------------------------------------- |
+| Scrollable | 0  | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
+| Fixed      | 1  | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
+
+## AnimationMode<sup>12+</sup>枚举说明
+
+点击TabBar页签时切换TabContent的动画形式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值  | 描述                                       |
+| ------------- | -- | ---------------------------------------- |
+| CONTENT_FIRST | 0  | 先加载目标页内容，再开始切换动画 |
+| ACTION_FIRST  | 1  | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
+| NO_ANIMATION  | 2  | 关闭默认动画 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
-| 名称         | 描述                                       |
-| ---------- | ---------------------------------------- |
-| ALWAYS_CENTER | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
-| ALWAYS_AVERAGE_SPLITE      | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
-| SPACE_BETWEEN_OR_CENTER      | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
+Scrollable模式下不滚动时的页签排布方式枚举。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 值 | 描述                                       |
+| ---------- | -- | ---------------------------------------- |
+| ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
+| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
+| SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
 ## 事件
 
@@ -272,6 +382,8 @@ Tab页签切换后触发的事件。
 
 4、通过页签处点击触发。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -286,6 +398,8 @@ onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 Tab页签点击后触发的事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -299,6 +413,8 @@ Tab页签点击后触发的事件。
 onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
 
 切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -316,6 +432,8 @@ onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
 切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -330,6 +448,8 @@ onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
 
 在页面跟手滑动过程中，逐帧触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -349,6 +469,10 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 使用说明：
 
 1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br>2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br>3、当前自定义切换动画不支持打断。<br>4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br>5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br>6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br>7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -383,6 +507,8 @@ onContentWillChange(handler: (currentIndex: number, comingIndex: number) => bool
 
 5、TabBar页签获焦后，通过键盘左右方向键等切换新页面时触发。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -403,17 +529,35 @@ onContentWillChange(handler: (currentIndex: number, comingIndex: number) => bool
 
 Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一个TabsController控制多个Tabs组件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### 导入对象
 
 ```ts
 let controller: TabsController = new TabsController()
 ```
 
+### constructor
+
+constructor()
+
+TabsController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### changeIndex
 
-changeIndex(value: number): void
+changeIndex(value: number)
 
 控制Tabs切换到指定页签。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -421,6 +565,33 @@ changeIndex(value: number): void
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，取默认值0。 |
 
+### preloadItems<sup>12+</sup>
+
+preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
+
+控制Tabs预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| Promise\<void> | 预加载完成后触发的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)错误码。
+
+| 错误码ID   | 错误信息                                      |
+| --------   | -------------------------------------------- |
+| 401 | Parameter invalid. Possible causes: 1. The type of the parameter is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## 示例
 
@@ -1012,153 +1183,83 @@ struct TabsExample6 {
 
 ```ts
 // xxx.ets
+interface itemType {
+  text: string,
+  backgroundColor: Color
+}
+
 @Entry
 @Component
 struct TabsCustomAnimationExample {
-  @State useCustomAnimation: boolean = true
-  @State tabContent0Scale: number = 1.0
-  @State tabContent1Scale: number = 1.0
-  @State tabContent0Opacity: number = 1.0
-  @State tabContent1Opacity: number = 1.0
-  @State tabContent2Opacity: number = 1.0
-  tabsController: TabsController = new TabsController()
-  private firstTimeout: number = 3000
-  private secondTimeout: number = 5000
-  private first2secondDuration: number = 3000
-  private second2thirdDuration: number = 5000
-  private first2thirdDuration: number = 2000
-  private baseCustomAnimation: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {
-    if ((from === 0 && to === 1) || (from === 1 && to === 0)) {
-      // 缩放动画
-      let firstCustomTransition = {
-        timeout: this.firstTimeout,
-        transition: (proxy: TabContentTransitionProxy) => {
-          if (proxy.from === 0 && proxy.to === 1) {
-            this.tabContent0Scale = 1.0
-            this.tabContent1Scale = 0.5
-          } else {
-            this.tabContent0Scale = 0.5
-            this.tabContent1Scale = 1.0
-          }
+  @State data: itemType[] = [
+    {
+      text: 'Red',
+      backgroundColor: Color.Red
+    },
+    {
+      text: 'Yellow',
+      backgroundColor: Color.Yellow
+    },
+    {
+      text: 'Blue',
+      backgroundColor: Color.Blue
+    }]
+  @State opacityList: number[] = []
+  @State scaleList: number[] = []
 
-          animateTo({
-            duration: this.first2secondDuration,
-            onFinish: () => {
-              proxy.finishTransition()
-            }
-          }, () => {
-            if (proxy.from === 0 && proxy.to === 1) {
-              this.tabContent0Scale = 0.5
-              this.tabContent1Scale = 1.0
-            } else {
-              this.tabContent0Scale = 1.0
-              this.tabContent1Scale = 0.5
-            }
-          })
-        }
-      } as TabContentAnimatedTransition;
-      return firstCustomTransition;
-    } else {
-      // 透明度动画
-      let secondCustomTransition = {
-        timeout: this.secondTimeout,
-        transition: (proxy: TabContentTransitionProxy) => {
-          if ((proxy.from === 1 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 1)) {
-            if (proxy.from === 1 && proxy.to === 2) {
-              this.tabContent1Opacity = 1.0
-              this.tabContent2Opacity = 0.5
-            } else {
-              this.tabContent1Opacity = 0.5
-              this.tabContent2Opacity = 1.0
-            }
-            animateTo({
-              duration: this.second2thirdDuration,
-              onFinish: () => {
-                proxy.finishTransition()
-              }
-            }, () => {
-              if (proxy.from === 1 && proxy.to === 2) {
-                this.tabContent1Opacity = 0.5
-                this.tabContent2Opacity = 1.0
-              } else {
-                this.tabContent1Opacity = 1.0
-                this.tabContent2Opacity = 0.5
-              }
-            })
-          } else if ((proxy.from === 0 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 0)) {
-            if (proxy.from === 0 && proxy.to === 2) {
-              this.tabContent0Opacity = 1.0
-              this.tabContent2Opacity = 0.5
-            } else {
-              this.tabContent0Opacity = 0.5
-              this.tabContent2Opacity = 1.0
-            }
-            animateTo({
-              duration: this.first2thirdDuration,
-              onFinish: () => {
-                proxy.finishTransition()
-              }
-            }, () => {
-              if (proxy.from === 0 && proxy.to === 2) {
-                this.tabContent0Opacity = 0.5
-                this.tabContent2Opacity = 1.0
-              } else {
-                this.tabContent0Opacity = 1.0
-                this.tabContent2Opacity = 0.5
-              }
-            })
+  private durationList: number[] = []
+  private timeoutList: number[] = []
+  private customContentTransition: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {
+    let tabContentAnimatedTransition = {
+      timeout: this.timeoutList[from],
+      transition: (proxy: TabContentTransitionProxy) => {
+        this.scaleList[from] = 1.0
+        this.scaleList[to] = 0.5
+        this.opacityList[from] = 1.0
+        this.opacityList[to] = 0.5
+        animateTo({
+          duration: this.durationList[from],
+          onFinish: () => {
+            proxy.finishTransition()
           }
-        }
-      } as TabContentAnimatedTransition;
-      return secondCustomTransition;
+        }, () => {
+          this.scaleList[from] = 0.5
+          this.scaleList[to] = 1.0
+          this.opacityList[from] = 0.5
+          this.opacityList[to] = 1.0
+        })
+      }
+    } as TabContentAnimatedTransition
+    return tabContentAnimatedTransition
+  }
+
+  aboutToAppear(): void {
+    let duration = 1000
+    let timeout = 1000
+    for (let i = 1; i <= this.data.length; i++) {
+      this.opacityList.push(1.0)
+      this.scaleList.push(1.0)
+      this.durationList.push(duration * i)
+      this.timeoutList.push(timeout * i)
     }
   }
 
   build() {
     Column() {
-      Tabs({ controller: this.tabsController }) {
-        TabContent() {
-          Text("Red")
-        }
-        .tabBar("Red")
-        .scale({ x: this.tabContent0Scale, y: this.tabContent0Scale })
-        .backgroundColor(Color.Red)
-        .opacity(this.tabContent0Opacity)
-        .width(100)
-        .height(100)
-
-        TabContent() {
-          Text("Yellow")
-        }
-        .tabBar("Yellow")
-        .scale({ x: this.tabContent1Scale, y: this.tabContent1Scale })
-        .backgroundColor(Color.Yellow)
-        .opacity(this.tabContent1Opacity)
-        .width(200)
-        .height(200)
-
-        TabContent() {
-          Text("Blue")
-        }
-        .tabBar("Blue")
-        .backgroundColor(Color.Blue)
-        .opacity(this.tabContent2Opacity)
-        .width(300)
-        .height(300)
-
+      Tabs() {
+        ForEach(this.data, (item: itemType, index: number) => {
+          TabContent() {}
+          .tabBar(item.text)
+          .backgroundColor(item.backgroundColor)
+          // 自定义动画变化透明度、缩放页面等
+          .opacity(this.opacityList[index])
+          .scale({ x: this.scaleList[index], y: this.scaleList[index] })
+        })
       }
       .backgroundColor(0xf1f3f5)
       .width('100%')
       .height(500)
-      .margin({ top: 5 })
-      .customContentTransition(this.useCustomAnimation ? this.baseCustomAnimation : undefined)
-      .barMode(BarMode.Scrollable)
-      .onChange((index: number) => {
-        console.info("onChange index: " + index)
-      })
-      .onTabBarClick((index: number) => {
-        console.info("onTabBarClick index: " + index)
-      })
+      .customContentTransition(this.customContentTransition)
     }
   }
 }
@@ -1251,6 +1352,8 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
+import { ComponentUtils } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct TabsExample {
@@ -1259,6 +1362,7 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
+  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils()
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1341,14 +1445,8 @@ struct TabsExample {
   }
 
   private getTextInfo(index: number): Record<string, number> {
-    let strJson = getInspectorByKey(index.toString())
-    try {
-      let obj: Record<string, string> = JSON.parse(strJson)
-      let rectInfo: number[][] = JSON.parse('[' + obj.$rect + ']')
-      return { 'left': px2vp(rectInfo[0][0]), 'width': px2vp(rectInfo[1][0] - rectInfo[0][0]) }
-    } catch (error) {
-      return { 'left': 0, 'width': 0 }
-    }
+    let rectangle = this.componentUtils.getRectangleById(index.toString())
+    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
@@ -1385,3 +1483,80 @@ struct TabsExample {
 ```
 
 ![tabs10](figures/tabs10.gif)
+
+### 示例10
+
+本示例通过preloadItems接口实现了预加载指定子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct TabsPreloadItems {
+  @State currentIndex: number = 1
+  private tabsController: TabsController = new TabsController()
+
+  build() {
+    Column() {
+      Tabs({ index: this.currentIndex, controller: this.tabsController }) {
+        TabContent() {
+          MyComponent({ color: '#00CB87' })
+        }.tabBar(SubTabBarStyle.of('green'))
+
+        TabContent() {
+          MyComponent({ color: '#007DFF' })
+        }.tabBar(SubTabBarStyle.of('blue'))
+
+        TabContent() {
+          MyComponent({ color: '#FFBF00' })
+        }.tabBar(SubTabBarStyle.of('yellow'))
+
+        TabContent() {
+          MyComponent({ color: '#E67C92' })
+        }.tabBar(SubTabBarStyle.of('pink'))
+      }
+      .width(360)
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+
+      Button('preload items: [0, 2, 3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载第0、2、3个子节点，提高滑动或点击切换至这些节点时的性能
+          this.tabsController.preloadItems([0, 2, 3])
+            .then(() => {
+              console.info('preloadItems success.')
+            })
+            .catch((error: BusinessError) => {
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+            })
+        })
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color)
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
+  }
+}
+```

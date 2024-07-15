@@ -18,9 +18,11 @@ Supported
 
 Flex(value?: FlexOptions)
 
-Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../ui/arkts-layout-development-flex-layout.md).
+Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -36,6 +38,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                   |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                  |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-row **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
+| space<sup>12+</sup>          | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions12) | No  | {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | Space of all child components on the main axis or cross axis of the **\<Flex>** component.<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 
 ## Example
 
@@ -115,7 +118,7 @@ struct FlexExample2 {
     Column() {
       Column({ space: 5 }) {
         Text('Wrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Flex({ wrap: FlexWrap.Wrap }) { // The child components are arranged in multiple lines, and they may overflow.
+        Flex({ wrap: FlexWrap.Wrap }) { // The child components are arranged in multiple lines.
           Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
           Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
           Text('3').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -125,7 +128,7 @@ struct FlexExample2 {
         .backgroundColor(0xAFEEEE)
 
         Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Flex({ wrap: FlexWrap.NoWrap }) { // The child components are arranged in a single line, and they cannot overflow.
+        Flex({ wrap: FlexWrap.NoWrap }) { // The child components are arranged in a single line.
           Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
           Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
           Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
@@ -316,3 +319,52 @@ struct FlexExample5 {
 ```
 
 ![en-us_image_0000001174422906](figures/en-us_image_0000001174422906.PNG)
+
+### Example 6
+
+```ts
+import {LengthMetrics} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct FlexExample2 {
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Text('Wrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ wrap: FlexWrap.Wrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in multiple lines.
+          Text('1').width('40%').height(50).backgroundColor(0xF5DEB3)
+          Text('2').width('40%').height(50).backgroundColor(0xD2B48C)
+          Text('3').width('40%').height(50).backgroundColor(0xD2B48C)
+        }
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ wrap: FlexWrap.NoWrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in a single line.
+          Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
+          Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
+          Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
+        }
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('WrapReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ wrap: FlexWrap.WrapReverse, direction:FlexDirection.Row, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are reversely arranged in multiple lines.
+          Text('1').width('40%').height(50).backgroundColor(0xF5DEB3)
+          Text('2').width('40%').height(50).backgroundColor(0xD2B48C)
+          Text('3').width('40%').height(50).backgroundColor(0xD2B48C)
+        }
+        .width('90%')
+        .height(120)
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+}
+```
+
+![en-us_image_0000001174422907](figures/en-us_image_0000001174422907.PNG)

@@ -12,7 +12,7 @@
 | \@Concurrent并发装饰器 | 说明                                                                                       |
 | --------------------- | ------------------------------------------------------------------------------------------ |
 | 装饰器参数             | 无。                                                                                       |
-| 使用场景               | 仅支持在Stage模型的工程中使用。                                                              |
+| 使用场景               | 仅支持在Stage模型的工程中使用。仅支持在.ets文件中使用。                                        |
 | 装饰的函数类型         | 允许标注async函数或普通函数。禁止标注generator、箭头函数、method。不支持类成员函数或者匿名函数。  |
 | 装饰的函数内的变量类型  | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。                               |
 | 装饰的函数内的返回值类型  | 支持的类型请查[序列化支持类型](serialization-support-types.md)。    |
@@ -24,7 +24,7 @@
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
@@ -184,7 +184,7 @@ task3 catch e: testPromiseError2 Error msg
 
 ## 装饰器使用示例
   ```ts
-  import taskpool from '@ohos.taskpool';
+  import { taskpool } from '@kit.ArkTS';
   
   @Concurrent
   function add(num1: number, num2: number): number {

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import picker from '@ohos.multimedia.cameraPicker';
+import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
 ## pick
@@ -17,6 +17,8 @@ import picker from '@ohos.multimedia.cameraPicker';
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
 拉起相机选择器，根据媒体类型进入相应的模式。操作结束通过Promise形式获取结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -38,10 +40,10 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 **示例：**
 
 ```ts
-import picker from '@ohos.multimedia.cameraPicker';
-import camera from '@ohos.multimedia.camera';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { cameraPicker as picker } from '@kit.CameraKit';
+import { camera } from '@kit.CameraKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let mContext = getContext(this) as common.Context;
 
 async function demo() {
@@ -63,6 +65,8 @@ async function demo() {
 
 枚举，相机选择器的媒体类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称             | 值    | 说明     |
@@ -75,18 +79,22 @@ async function demo() {
 
 相机选择器的配置信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
-| cameraPosition       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 否    | 保存配置信息的uri。|
+| cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
+| saveUri        | string                            | 否    | 保存配置信息的uri（录像暂不支持传入自定义的uri）。|
 | videoDuration  | number                            | 否    | 录制的最大时长。|
 
 
 ## PickerResult
 
 相机选择器的处理结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

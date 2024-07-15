@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key management and cryptography operations, provided for applications. Applications can call these functions to import or generate keys.
+Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key management and cryptography operations, provided for applications. Applications can call the HUKS functions to import or generate keys.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -38,6 +38,7 @@ Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key ma
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_UpdateSession](#oh_huks_updatesession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | Adds and processes data by segment for a key operation, and outputs the processed data. |
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | Finishes a key session. |
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | Aborts a key session. |
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_ListAliases](#oh_huks_listaliases) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*\*outData) | Lists key aliases. |
 
 
 ## Function Description
@@ -49,7 +50,6 @@ Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key ma
 struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Aborts a key session.
 
 **Since**: 9
@@ -80,7 +80,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_CertChain * certChain )
 ```
 **Description**
-
 Obtains the certificate chain of a key.
 
 **Since**: 11
@@ -109,11 +108,10 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlia
 ```
 
 **Description**
-
 Obtains the certificate chain of a key.
 
 **Required permissions**
-ohos.permission.ATTEST_KEY
+ohos.permission.ATTEST_KEY (for system applications only)
 
 **Since**: 9
 
@@ -136,7 +134,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Deletes a key.
 
 **Since**: 9
@@ -159,7 +156,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_ExportPublicKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * key )
 ```
 **Description**
-
 Exports a public key.
 
 **Since**: 9
@@ -183,7 +179,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_FinishSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
 ```
 **Description**
-
 Finishes a key session.
 
 **Since**: 9
@@ -216,7 +211,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_GenerateKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
 ```
 **Description**
-
 Generates a key.
 
 **Since**: 9
@@ -240,7 +234,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_GetKeyItemParamSet (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
 ```
 **Description**
-
 Obtains the properties of a key.
 
 **Since**: 9
@@ -264,7 +257,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_GetSdkVersion (struct OH_Huks_Blob * sdkVersion)
 ```
 **Description**
-
 Obtains the current HUKS SDK version.
 
 **Since**: 9
@@ -286,7 +278,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_ImportKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * key )
 ```
 **Description**
-
 Imports a key in plaintext.
 
 **Since**: 9
@@ -310,7 +301,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_Blob * wrappingKeyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * wrappedKeyData )
 ```
 **Description**
-
 Imports a key in ciphertext.
 
 **Since**: 9
@@ -335,7 +325,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * handle, struct OH_Huks_Blob * token )
 ```
 **Description**
-
 Initializes a key session. This function returns a handle (mandatory) and a challenge value (optional).
 
 **Since**: 9
@@ -368,7 +357,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if 
 struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Checks whether a key exists.
 
 **Since**: 9
@@ -389,13 +377,34 @@ Returns [OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md#oh_h
 Returns other errors in other cases.
 
 
+### OH_Huks_ListAliases()
+
+```
+struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
+```
+**Description**
+Lists key aliases.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| paramSet | Pointer to the parameters for listing the key aliases. By default, this parameter is a null pointer. |
+| outData | pointer to the key aliases obtained. |
+
+**Returns**
+
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+
+
 ### OH_Huks_UpdateSession()
 
 ```
 struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
 ```
 **Description**
-
 Adds and processes data by segment for a key operation, and outputs the processed data.
 
 **Since**: 9

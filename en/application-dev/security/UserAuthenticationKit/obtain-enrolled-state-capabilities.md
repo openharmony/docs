@@ -10,7 +10,7 @@ For details about the parameters, return values, and error codes, see [getEnroll
 
 | API| Description| 
 | -------- | -------- |
-| getEnrolledState(authType : UserAuthType): EnrolledStated | Obtains information about the enrolled credentials based on the specified authentication type.| 
+| getEnrolledState(authType : UserAuthType): EnrolledState | Obtains the status of the enrolled credentials based on the specified authentication type.| 
 
 
 ## How to Develop
@@ -22,8 +22,8 @@ For details about the parameters, return values, and error codes, see [getEnroll
 Example: Obtain information about the credentials enrolled for facial authentication.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);

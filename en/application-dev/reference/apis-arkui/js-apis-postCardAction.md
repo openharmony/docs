@@ -28,12 +28,12 @@ Description of the action parameter
 | bundleName | string | No| Name of the target bundle when **action** is **"router"** or **"call"**.|
 | moduleName | string | No| Name of the target module when **action** is **"router"** or **"call"**.|
 | abilityName | string | No| Name of the target UIAbility when **action** is **"router"** or **"call"**.|
-| uri<sup>11+</sup> | string   | No  | URI of the target UIAbility when **action** is **"router"** or **"call"**. If both **uri** and **abilityName** are set, **abilityName** takes precedence.|
+| uri<sup>11+</sup> | string   | No  | URI of the target UIAbility when **action** is **"router"**. If both **uri** and **abilityName** are set, **abilityName** takes precedence.|
 | params | Object | No| Additional parameters carried in the current action. The value is a key-value pair in JSON format.|
 
 >**NOTE**
 >
->When **action** is **"router"** or **"call"**, **'method'** of the string type must be passed to **params** to trigger the corresponding method in the UIAbility.
+>When **action** is **"call"**, a string value of **method** must be passed to **params** to trigger the corresponding method in the UIAbility.
 
 **Example**
 

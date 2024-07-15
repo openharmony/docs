@@ -1,6 +1,6 @@
 # @ohos.app.ability.common (Context) (System API)
 
-The **Common** module provides all level-2 module APIs for developers to export.
+You can use this module to reference the ability public module class.
 
 > **NOTE**
 > 
@@ -13,9 +13,9 @@ The **Common** module provides all level-2 module APIs for developers to export.
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 **Example**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;

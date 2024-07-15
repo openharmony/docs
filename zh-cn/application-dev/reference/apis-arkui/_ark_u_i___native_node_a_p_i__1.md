@@ -24,16 +24,16 @@ Node模块相关接口需要在主线程上调用。
 | void(\* [disposeNode](#disposenode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 销毁组件指针指向的组件对象。  | 
 | int32_t(\* [addChild](#addchild) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child) | 将组件挂载到某个父节点之下。  | 
 | int32_t(\* [removeChild](#removechild) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child) | 将组件从父节点中移除。  | 
-| int32_t(\* [insertChildAfter](#insertchildafter) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之后。  | 
-| int32_t(\* [insertChildBefore](#insertchildbefore) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之前。  | 
-| int32_t(\* [insertChildAt](#insertchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, int32_t position) | 将组件挂载到某个父节点之下，挂载位置由**position**指定。  | 
+| int32_t(\* [insertChildAfter](#insertchildafter) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在sibling节点之后。  | 
+| int32_t(\* [insertChildBefore](#insertchildbefore) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在sibling节点之前。  | 
+| int32_t(\* [insertChildAt](#insertchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, int32_t position) | 将组件挂载到某个父节点之下，挂载位置由position指定。  | 
 | int32_t(\* [setAttribute](#setattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*item) | 属性设置函数。  | 
 | const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*(\* [getAttribute](#getattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute) | 属性获取函数。  | 
 | int32_t(\* [resetAttribute](#resetattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute) | 重置属性函数。  | 
 | int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t targetId, void \*userData) | 注册节点事件函数。  | 
 | void(\* [unregisterNodeEvent](#unregisternodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType) | 反注册节点事件函数。  | 
-| void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 注册事件回调统一入口函数。  | 
-|  void(\* unregisterNodeEventReceiver )() | 反注册事件回调统一入口函数。  | 
+| void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event)) | 注册事件回调统一入口函数。  | 
+|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册事件回调统一入口函数。  | 
 | void(\* [markDirty](#markdirty) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeDirtyFlag](_ark_u_i___native_module.md#arkui_nodedirtyflag) dirtyFlag) | 强制标记当前节点需要重新测算，布局或者绘制。  | 
 | uint32_t(\* [getTotalChildCount](#gettotalchildcount) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取子节点的个数。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getChildAt](#getchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t position) | 获取子节点。  | 
@@ -51,13 +51,15 @@ Node模块相关接口需要在主线程上调用。
 | [ArkUI_IntOffset](_ark_u_i___int_offset.md)(\* [getLayoutPosition](#getlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取组件布局完成后的位置。  | 
 | int32_t(\* [measureNode](#measurenode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 对特定组件进行测算，可以通过getMeasuredSize接口获取测算后的大小。  | 
 | int32_t(\* [layoutNode](#layoutnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | 对特定组件进行布局并传递该组件相对父组件的期望位置。  | 
-| int32_t(\* [addNodeEventReceiver](#addnodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上添加组件事件回调函数，用于接受该组件产生的组件事件。  | 
-| int32_t(\* [removeNodeEventReceiver](#removenodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上删除注册的组件事件回调函数。  | 
+| int32_t(\* [addNodeEventReceiver](#addnodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event)) | 在组件上添加组件事件回调函数，用于接受该组件产生的组件事件。  | 
+| int32_t(\* [removeNodeEventReceiver](#removenodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event)) | 在组件上删除注册的组件事件回调函数。  | 
 | int32_t(\* [addNodeCustomEventReceiver](#addnodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。  | 
 | int32_t(\* [removeNodeCustomEventReceiver](#removenodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 在组件上删除注册的自定义事件回调函数。  | 
 | int32_t(\* [setUserData](#setuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData) | 在组件上保存自定义数据。  | 
 | void \*(\* [getUserData](#getuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取在组件上保存的自定义数据。  | 
-| int32_t(\* [setDimensionMode](#setdimensionmode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_DimensionMode](_ark_u_i___native_module.md#arkui_dimensionmode) mode) | 指定组件的单位。  | 
+| int32_t(\* [setLengthMetricUnit](#setlengthmetricunit) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 指定组件的单位。  | 
+| [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getParent](#getparent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取父节点。  | 
+| int32_t(\* [removeAllChildren](#removeallchildren) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent) | 从父组件上卸载所有子节点。  | 
 
 
 ## 结构体成员变量说明
@@ -81,7 +83,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addChild) (ArkUI_NodeHandle parent, ArkUI_NodeH
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### addNodeCustomEventReceiver
@@ -108,7 +110,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addNodeCustomEventReceiver) (ArkUI_NodeHandle n
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### addNodeEventReceiver
@@ -135,7 +137,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addNodeEventReceiver) (ArkUI_NodeHandle node, v
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### createNode
@@ -318,6 +320,26 @@ ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::getNextSibling) (ArkUI_NodeHandle node
 返回组件的指针，如果没有返回NULL
 
 
+### getParent
+
+```
+ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::getParent) (ArkUI_NodeHandle node)
+```
+**描述：**
+
+获取父节点。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点对象。  | 
+
+**返回：**
+
+返回组件的指针，如果没有返回NULL
+
+
 ### getPreviousSibling
 
 ```
@@ -355,7 +377,7 @@ uint32_t(* ArkUI_NativeNodeAPI_1::getTotalChildCount) (ArkUI_NodeHandle node)
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+子节点的个数, 如果没有返回0。
 
 
 ### getUserData
@@ -385,7 +407,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置在**sibling**节点之后。
+将组件挂载到某个父节点之下，挂载位置在sibling节点之后。
 
 **参数:**
 
@@ -397,7 +419,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### insertChildAt
@@ -407,7 +429,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置由**position**指定。
+将组件挂载到某个父节点之下，挂载位置由position指定。
 
 **参数:**
 
@@ -419,7 +441,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### insertChildBefore
@@ -429,7 +451,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置在**sibling**节点之前。
+将组件挂载到某个父节点之下，挂载位置在sibling节点之前。
 
 **参数:**
 
@@ -441,7 +463,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### layoutNode
@@ -463,7 +485,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::layoutNode) (ArkUI_NodeHandle node, int32_t pos
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### markDirty
@@ -503,7 +525,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::measureNode) (ArkUI_NodeHandle node, ArkUI_Layo
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### registerNodeCustomEvent
@@ -521,7 +543,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeCustomEvent) (ArkUI_NodeHandle node
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeCustomEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数[ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) 中携带回来。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数[ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) 中携带回来。  | 
+
+**返回：**
+
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeCustomEventReceiver
@@ -548,16 +575,6 @@ ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册
 | eventReceiver | 事件回调统一入口函数。  | 
 
 
-### unregisterNodeEventReceiver
-
-```
-void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
-```
-**描述：**
-
-反注册事件回调统一入口函数。
-
-
 ### registerNodeEvent
 
 ```
@@ -573,7 +590,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数[ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) 中携带回来。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数**rkUI_NodeEvent** 中携带回来。  | 
+
+**返回：**
+
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### registerNodeEventReceiver
@@ -600,6 +622,43 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | eventReceiver | 事件回调统一入口函数。  | 
 
 
+### removeAllChildren
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::removeAllChildren) (ArkUI_NodeHandle parent)
+```
+**描述：**
+
+从父组件上卸载所有子节点。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| parent | 目标节点对象。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
+
+### unregisterNodeEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+```
+**描述：**
+
+反注册事件回调统一入口函数。
+
+### unregisterNodeEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+```
+**描述：**
+
+反注册事件回调统一入口函数。
+
 ### removeChild
 
 ```
@@ -618,7 +677,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeChild) (ArkUI_NodeHandle parent, ArkUI_No
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### removeNodeCustomEventReceiver
@@ -639,7 +698,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeNodeCustomEventReceiver) (ArkUI_NodeHandl
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### removeNodeEventReceiver
@@ -660,7 +719,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeNodeEventReceiver) (ArkUI_NodeHandle node
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### resetAttribute
@@ -681,7 +740,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::resetAttribute) (ArkUI_NodeHandle node, ArkUI_N
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### setAttribute
@@ -703,28 +762,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
-
-
-### setDimensionMode
-
-```
-int32_t(* ArkUI_NativeNodeAPI_1::setDimensionMode) (ArkUI_NodeHandle node, ArkUI_DimensionMode mode)
-```
-**描述：**
-
-指定组件的单位。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 用于指定单位的组件。  | 
-| mode | 单位类型[ArkUI_DimensionMode](_ark_u_i___native_module.md#arkui_dimensionmode)，默认为 ARKUI_DIMENSION_MODE_VP。  | 
-
-**返回：**
-
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### setLayoutPosition
@@ -746,7 +784,28 @@ int32_t(* ArkUI_NativeNodeAPI_1::setLayoutPosition) (ArkUI_NodeHandle node, int3
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### setLengthMetricUnit
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::setLengthMetricUnit) (ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit)
+```
+**描述：**
+
+指定组件的单位。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 用于指定单位的组件。  | 
+| unit | 单位类型[ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit)，默认为 ARKUI_LENGTH_METRIC_UNIT_DEFAULT。  | 
+
+**返回：**
+
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### setMeasuredSize
@@ -768,7 +827,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setMeasuredSize) (ArkUI_NodeHandle node, int32_
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### setUserData
@@ -789,7 +848,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setUserData) (ArkUI_NodeHandle node, void *user
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### unregisterNodeCustomEvent

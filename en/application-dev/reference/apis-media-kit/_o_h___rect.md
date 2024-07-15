@@ -3,17 +3,13 @@
 
 ## Overview
 
-The **OH_Rect** struct defines the width, height, and image information of the rectangle used for screen capture.
+The OH_Rect struct describes the width, height, and image information of the rectangle used for screen capture.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,10 +19,10 @@ The **OH_Rect** struct defines the width, height, and image information of the r
 
 | Name| Description| 
 | -------- | -------- |
-| [x](#x) | int32_t<br>Defines the X coordinate of the screen capture rectangle.| 
-| [y](#y) | int32_t<br>Defines the Y coordinate of the screen capture rectangle.| 
-| [width](#width) | int32_t<br>Defines the width of the screen capture rectangle.| 
-| [height](#height) | int32_t<br>Defines the height of the screen capture rectangle.| 
+| int32_t [x](#x) | X coordinate of the screen capture rectangle.| 
+| int32_t [y](#y) | Y coordinate of the screen capture rectangle.| 
+| int32_t [width](#width) | Width of the screen capture rectangle, in px.| 
+| int32_t [height](#height) | Height of the screen capture rectangle, in px.| 
 
 
 ## Member Variable Description
@@ -40,7 +36,7 @@ int32_t OH_Rect::height
 
 **Description**
 
-Defines the height of the screen capture rectangle.
+Height of the screen capture rectangle, in px.
 
 
 ### width
@@ -51,7 +47,7 @@ int32_t OH_Rect::width
 
 **Description**
 
-Defines the width of the screen capture rectangle.
+Width of the screen capture rectangle, in px.
 
 
 ### x
@@ -62,7 +58,7 @@ int32_t OH_Rect::x
 
 **Description**
 
-Defines the X coordinate of the screen capture rectangle.
+X coordinate of the screen capture rectangle.
 
 
 ### y
@@ -73,4 +69,4 @@ int32_t OH_Rect::y
 
 **Description**
 
-Defines the Y coordinate of the screen capture rectangle.
+Y coordinate of the screen capture rectangle.

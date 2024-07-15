@@ -1,0 +1,157 @@
+# @ohos.graphics.uiEffect (Cascading Effect) (System API)
+
+The uiEffect module provides basic capabilities to apply an effect, for example, blur, pixel stretch, and brightness, to a component. Effects are classified into filters and visual effects. Effects of the same category can be cascaded in an effect instance of the corresponding category. In actual development, the blur effect can be used for background blurring, and the brightness effect can be used for screen-on display.
+
+- [Filter](#filter): applies a filter to a component.
+- [VisualEffect](#visualeffect): applies a visual effect to a component.
+
+> **NOTE**
+> 
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [ohos.graphics.uiEffect (Cascading Effect)](js-apis-uiEffect.md).
+
+## Modules to Import
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D";
+```
+## uiEffect.createBrightnessBlender
+createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
+
+Creates a **BrightnessBlender** instance, which can be used to apply the brightness effect to a component.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+**Parameters**
+| Name | Type                                             | Mandatory| Description                       |
+| ------ | ------------------------------------------------- | ---- | --------------------------- |
+| param  | [BrightnessBlenderParam](#brightnessblenderparam) | Yes  | Parameters that implement the brightness effect.|
+
+**Return value**
+
+| Type                                    | Description                    |
+| ---------------------------------------- | ----------------------- |
+| [BrightnessBlender ](#brightnessblender) | **BrightnessBlender** instance with the brightness effect.|
+
+**Example**
+
+```ts
+let blender : uiEffect.BrightnessBlender =
+  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+```
+
+## Filter
+A class that can apply a filter to a component. Before calling any API in **Filter**, you must use [createFilter](js-apis-uiEffect.md#uieffectcreatefilter) to create a **Filter** instance.
+
+### pixelStretch
+pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
+
+Applies the pixel stretch effect to the component.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+**Parameters**
+| Name        | Type                 | Mandatory| Description                      |
+| ------------- | --------------------- | ---- | ------------------------- |
+| stretchSizes  | Array\<number\>         | Yes  | Ratio based on which the pixels grow towards the top, bottom, left, and right edges. The value range is [-1, 1].<br>A positive value indicates outward stretching, and the upper, lower, left, and right edges are filled with edge pixels of the specified original image ratio. A negative value indicates inward stretching, but the image size remains unchanged:<br>The values for the four directions must be all positive or all negative.|
+| tileMode      | [TileMode](#tilemode) | Yes  | Pixel tiling mode for pixel stretch.|
+
+
+**Return value**
+
+| Type             | Description                              |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | **Filter** instance with the pixel stretch effect.|
+
+**Example**
+
+```ts
+filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
+```
+
+## TileMode
+Enumerates the pixel tiling modes.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+| Name  | Value| Description|
+| ------ | - | ---- |
+| CLAMP  | 0 | Clamp.|
+| REPEAT | 1 | Repeat.|
+| MIRROR | 2 | Mirror.|
+| DECAL  | 3 | Decal.|
+
+## VisualEffect
+A class that can apply a visual effect to a component. Before calling any API in **VisualEffect**, you must use [createEffect](js-apis-uiEffect.md#uieffectcreateeffect) to create a **VisualEffect** instance.
+
+### backgroundColorBlender
+backgroundColorBlender(blender: BrightnessBlender): VisualEffect
+
+Applies a blender to the component to change the background color of the component. The change effect is determined by the input. Currently, only the brightness blender is supported.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+**Parameters**
+| Name | Type                                     | Mandatory| Description                      |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| blender | [BrightnessBlender](#brightnessblender) | Yes  | Blender used to change the background color.|
+
+**Return value**
+
+| Type                         | Description                                              |
+| ----------------------------- | ------------------------------------------------- |
+| [VisualEffect](#visualeffect) | **VisualEffect** instance with the background color change effect.|
+
+**Example**
+
+```ts
+let blender : uiEffect.BrightnessBlender =
+  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+visualEffect.backgroundColorBlender(blender)
+```
+
+## BrightnessBlender
+A blender that can apply the brightness effect to a component. Before calling any API in **BrightnessBlender**, you must use [createBrightnessBlender](#uieffectcreatebrightnessblender) to create a **BrightnessBlender** instance.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+| Name               | Type                       | Read Only| Optional| Description                                                             |
+| ------------------- | -------------------------- | ---- | ---- | ---------------------------------------------------------------- |
+| cubicRate           | number                     | No  | No  | Third-order coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| quadraticRate       | number                     | No  | No  | Second-order coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| linearRate          | number                     | No  | No  | Linear coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| degree              | number                     | No  | No  | Grayscale adjustment ratio.<br>The value range is [-20, 20].                           |
+| saturation          | number                     | No  | No  | Reference saturation for the brightness effect.<br>The value range is [0, 20].                           |
+| positiveCoefficient | [number, number, number]   | No  | No  | RGB positive adjustment parameter based on the reference saturation.<br>The value range of each number is [-20, 20].|
+| negativeCoefficient | [number, number, number]   | No  | No  | RGB negative adjustment parameter based on the reference saturation.<br>The value range of each number is [-20, 20].|
+| fraction            | number                     | No  | No  | Blending ratio of the brightness effect.<br>The value range is [0, 1]. A value beyond the boundary will be automatically truncated during implementation. |
+
+## BrightnessBlenderParam
+Describes the parameters used for the brightness blender.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+| Name               | Type                       | Read Only| Optional| Description                                                             |
+| ------------------- | -------------------------- | ---- | ---- | ---------------------------------------------------------------- |
+| cubicRate           | number                     | No  | No  | Third-order coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| quadraticRate       | number                     | No  | No  | Second-order coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| linearRate          | number                     | No  | No  | Linear coefficient for grayscale adjustment.<br>The value range is [-20, 20].                       |
+| degree              | number                     | No  | No  | Grayscale adjustment ratio.<br>The value range is [-20, 20].                           |
+| saturation          | number                     | No  | No  | Reference saturation for the brightness effect.<br>The value range is [0, 20].                           |
+| positiveCoefficient | [number, number, number]   | No  | No  | RGB positive adjustment parameter based on the reference saturation.<br>The value range of each number is [-20, 20].|
+| negativeCoefficient | [number, number, number]   | No  | No  | RGB negative adjustment parameter based on the reference saturation.<br>The value range of each number is [-20, 20].|
+| fraction            | number                     | No  | No  | Blending ratio of the brightness effect.<br>The value range is [0, 1]. A value beyond the boundary will be automatically truncated during implementation. |

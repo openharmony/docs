@@ -9,10 +9,12 @@
 ## 导入模块
 
 ```ts
-import pasteboard from '@ohos.pasteboard';
+import { pasteboard } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -27,7 +29,11 @@ import pasteboard from '@ohos.pasteboard';
 
 ## ValueType<sup>9+</sup>
 
+type ValueType = string | image.PixelMap | Want | ArrayBuffer
+
 用于表示允许的数据字段类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -44,13 +50,15 @@ createData(mimeType: string, value: ValueType): PasteData
 
 构建一个自定义类型的剪贴板内容对象。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                                                                                                     |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------|
-| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值。 |
+| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值, mimeType长度不能超过1024字节。 |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。                                                                                               |
 
 **返回值：**
@@ -58,6 +66,14 @@ createData(mimeType: string, value: ValueType): PasteData
 | 类型 | 说明 |
 | -------- | -------- |
 | [PasteData](#pastedata) |  剪贴板内容对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例1：**
 
@@ -80,13 +96,15 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 创建一条自定义数据内容条目。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                |
 | -------- | -------- | -------- |-------------------|
-| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值。  |
+| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
 
 **返回值：**
@@ -94,6 +112,14 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 | 类型 | 说明 |
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | 一条新建的自定义数据内容条目。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;  3. Parameter verification failed. |
 
 **示例1：**
 
@@ -115,6 +141,8 @@ getSystemPasteboard(): SystemPasteboard
 
 获取系统剪贴板对象。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -133,13 +161,15 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 可粘贴数据的范围类型枚举。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称          | 值 | 说明                |
-|-------------|---|-------------------|
-| INAPP       | 0 | 表示仅允许同应用内粘贴。      |
-| LOCALDEVICE | 1 | 表示允许在此设备中任何应用内粘贴。 |
-| CROSSDEVICE | 2 | 表示允许跨设备在任何应用内粘贴。  |
+| 名称                               | 值  | 说明                                                                                  |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| INAPP                              | 0   | 表示仅允许同应用内粘贴。                                                              |
+| LOCALDEVICE                        | 1   | 表示允许在此设备中任何应用内粘贴。                                                    |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API Version 12开始废弃，无替代接口和替代方法。 |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -197,7 +227,7 @@ createWantData(want: Want): PasteData
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -319,7 +349,7 @@ createWantRecord(want: Want): PasteDataRecord
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -392,6 +422,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
 该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
@@ -408,6 +440,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。
 
 ### 属性
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -426,6 +460,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 toPlainText(): string
 
 将一个PasteData中的内容强制转换为文本内容。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -460,10 +496,18 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，当转换成功，err为undefined，data为强制转换的文本内容；否则返回错误信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err: BusinessError, data: string) => {
@@ -495,7 +539,7 @@ convertToText(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data: string) => {
@@ -519,6 +563,8 @@ getPrimaryText(): string
 
 获取首个条目的纯文本内容。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -539,6 +585,8 @@ let plainText: string = pasteData.getPrimaryText();
 getPrimaryHtml(): string
 
 获取首个条目的HTML内容。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -562,6 +610,8 @@ getPrimaryWant(): Want
 
 获取首个条目的Want对象内容。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -573,7 +623,7 @@ getPrimaryWant(): Want
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -588,6 +638,8 @@ let want: Want = pasteData.getPrimaryWant();
 getPrimaryUri(): string
 
 获取首个条目的URI内容。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -610,6 +662,8 @@ getPrimaryPixelMap(): image.PixelMap
 
 获取首个条目的PixelMap内容。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -621,7 +675,7 @@ getPrimaryPixelMap(): image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 let buffer = new ArrayBuffer(128);
 let realSize: image.Size = { height: 3, width: 5 };
@@ -643,6 +697,8 @@ image.createPixelMap(buffer, opt).then((pixelMap: image.PixelMap) => {
 addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -668,22 +724,25 @@ addRecord(mimeType: string, value: ValueType): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| mimeType | string | 是 | 自定义数据的MIME类型， 其长度不能超过1024个字节。 |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900002 | The number of record exceeds the maximum limit. |
+| 12900002 | The number of records exceeds the upper limit. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -698,6 +757,8 @@ addRecord(mimeType: string, value: ValueType): void
 getMimeTypes(): Array&lt;string&gt;
 
 获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -720,6 +781,8 @@ getPrimaryMimeType(): string
 
 获取剪贴板内容中首个条目的数据类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -740,6 +803,8 @@ let type: string = pasteData.getPrimaryMimeType();
 getProperty(): PasteDataProperty
 
 获取剪贴板内容的属性描述对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -762,6 +827,8 @@ setProperty(property: PasteDataProperty): void
 
 设置剪贴板内容的属性描述对象[PasteDataProperty](#pastedataproperty7)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -769,6 +836,14 @@ setProperty(property: PasteDataProperty): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性描述对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -833,6 +908,8 @@ getRecord(index: number): PasteDataRecord
 
 获取剪贴板内容中指定下标的条目。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -849,11 +926,12 @@ getRecord(index: number): PasteDataRecord
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -867,6 +945,8 @@ let record: pasteboard.PasteDataRecord = pasteData.getRecord(0);
 getRecordCount(): number
 
 获取剪贴板内容中条目的个数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -889,6 +969,8 @@ getTag(): string
 
 获取剪贴板内容中用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -910,6 +992,8 @@ hasType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定的MIME数据类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -924,6 +1008,14 @@ hasType(mimeType: string): boolean
 | -------- | -------- |
 | boolean | 有指定的数据类型返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -937,6 +1029,8 @@ removeRecord(index: number): void
 
 移除剪贴板内容中指定下标的条目。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -947,11 +1041,12 @@ removeRecord(index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -966,6 +1061,8 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 替换剪贴板内容中指定下标的条目。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -977,11 +1074,12 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1037,7 +1135,7 @@ addWantRecord(want: Want): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let object: Want = {
@@ -1119,6 +1217,14 @@ getRecordAt(index: number): PasteDataRecord
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1149,6 +1255,14 @@ hasMimeType(mimeType: string): boolean
 | -------- | -------- |
 | boolean | 有指定的数据类型返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1177,6 +1291,14 @@ removeRecordAt(index: number): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 成功移除返回true，失败返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1241,6 +1363,14 @@ on(type:  'update', callback: () =&gt;void ): void
 | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 |
 | callback | function | 是 | 剪贴板中内容变化时触发的用户程序的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1266,6 +1396,14 @@ off(type:  'update', callback?: () =&gt;void ): void
 | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。                              |
 | callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。如果此参数未填，表明清除本应用的所有监听回调，否则表示清除指定监听回调。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1282,6 +1420,8 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 清空系统剪贴板内容，使用callback异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1289,6 +1429,14 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当成功清空时，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1309,6 +1457,8 @@ clearData(): Promise&lt;void&gt;
 
 清空系统剪贴板内容，使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1320,7 +1470,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
@@ -1336,6 +1486,8 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪贴板，使用callback异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1347,12 +1499,13 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1374,6 +1527,8 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1390,17 +1545,18 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1419,6 +1575,8 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1429,16 +1587,17 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1458,6 +1617,8 @@ getData(): Promise&lt;PasteData&gt;
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1468,16 +1629,17 @@ getData(): Promise&lt;PasteData&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
@@ -1493,6 +1655,8 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 判断系统剪贴板中是否有内容，使用callback异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1501,10 +1665,18 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
@@ -1522,6 +1694,8 @@ hasData(): Promise&lt;boolean&gt;
 
 判断系统剪贴板中是否有内容，使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1533,7 +1707,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
@@ -1559,6 +1733,14 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当成功清空时，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1593,7 +1775,7 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
@@ -1620,10 +1802,18 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数。当读取成功，err为undefined，data为返回的系统剪贴板数据；否则返回错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1655,7 +1845,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
@@ -1682,10 +1872,18 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
@@ -1717,7 +1915,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
@@ -1744,6 +1942,14 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | data | [PasteData](#pastedata) | 是 | PasteData对象。 |
 | callback | AsyncCallback&lt;void> | 是 | 回调函数。当写入成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1784,7 +1990,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1800,6 +2006,8 @@ isRemoteData(): boolean
 
 判断剪贴板中的数据是否来自其他设备。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1814,7 +2022,7 @@ isRemoteData(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -1834,6 +2042,8 @@ getDataSource(): string
 
 获取数据来源。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1848,7 +2058,7 @@ getDataSource(): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -1868,6 +2078,8 @@ hasDataType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定类型的数据。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1884,12 +2096,12 @@ hasDataType(mimeType: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Type is not string. |
-| 12900005 | Request time out. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -1909,6 +2121,8 @@ clearDataSync(): void
 
 清空系统剪贴板内容, 此接口为同步接口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **错误码：**
@@ -1917,7 +2131,7 @@ clearDataSync(): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -1939,6 +2153,8 @@ getDataSync(): PasteData
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1949,11 +2165,12 @@ getDataSync(): PasteData
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
@@ -1973,6 +2190,8 @@ setDataSync(data: PasteData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1983,12 +2202,12 @@ setDataSync(data: PasteData): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Type of data is not PasteData. |
-| 12900005 | Request time out. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2009,6 +2228,8 @@ hasDataSync(): boolean
 
 判断系统剪贴板中是否有内容, 此接口为同步接口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -2023,7 +2244,7 @@ hasDataSync(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **示例：**
 
@@ -2035,4 +2256,190 @@ try {
 } catch (err) {
     console.error('Failed to check the PasteData. Cause:' + err.message);
 };    
+```
+
+### getUnifiedData<sup>12+</sup>
+
+getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
+
+读取系统剪贴板内容，使用Promise异步回调。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900003 | Another copy or paste operation is in progress. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getUnifiedData().then((data) => {
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+    for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${j + 1}.${text.textContent}`);
+        }
+    }
+}).catch((err: BusinessError) => {
+    console.error('Failed to get UnifiedData. Cause: ' + err.message);
+});
+```
+
+### getUnifiedDataSync<sup>12+</sup>
+
+getUnifiedDataSync(): unifiedDataChannel.UnifiedData
+
+读取系统剪贴板内容, 此接口为同步接口。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900005 | Request timed out. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
+    console.info('Succeeded in getting UnifiedData.');
+} catch (err) {
+    console.error('Failed to get UnifiedData. Cause:' + err.message);
+};   
+```
+
+### setUnifiedData<sup>12+</sup>
+
+setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
+
+将数据写入系统剪贴板，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是 | 	需要写入剪贴板中的数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 12900004 | Replication is prohibited. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+    console.info('Succeeded in setting UnifiedData.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+});
+```
+
+### setUnifiedDataSync<sup>12+</sup>
+
+setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
+
+将数据写入系统剪贴板, 此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明             |
+| ------ | ----------- | ---- | ---------------- |
+| data   | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 需要写入剪贴板中的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900005 | Request timed out. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.setUnifiedDataSync(plainTextData);
+    console.info('Succeeded in setting UnifiedData.');
+} catch (err) {
+    console.error('Failed to set UnifiedData. Cause:' + err.message);
+};  
 ```

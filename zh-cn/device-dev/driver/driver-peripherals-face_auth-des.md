@@ -98,10 +98,8 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 | 接口名称       | 功能介绍         |
 | ----------------------------------- | ---------------------------------- |
-| GetExecutorList(std::vector\<sptr\<V1_0::IExecutor>>& executorList)  | 获取V1_0版本执行器列表。 |
-| GetExecutorListV1_1(std::vector\<sptr\<V1_1::IExecutor>>& executorList)      | 获取V1_1版本执行器列表。                         |
+| GetExecutorList(std::vector\<sptr\<IAllInOneExecutor>>& allInOneExecutors) | 获取V2_0版本执行器列表。 |
 | GetExecutorInfo(ExecutorInfo& info)      | 获取执行器信息，包括执行器类型、执行器角色、认证类型、安全等级、执行器公钥等信息，用于向用户认证框架注册执行器。 |
-| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定人脸模板ID的模板信息。        |
 | OnRegisterFinish(const std::vector\<uint64_t>& templateIdList,<br/>        const std::vector\<uint8_t>& frameworkPublicKey, const std::vector\<uint8_t>& extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的人脸模板列表用于对账。 |
 | Enroll(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br/>        const sptr\<IExecutorCallback>& callbackObj) | 录入人脸模板。             |
 | Authenticate(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br/>        const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | 认证人脸模板。         |
@@ -110,7 +108,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 | Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定录入、认证、识别操作。  |
 | SendCommand(int32_t commandId, const std::vector\<uint8_t>& extraInfo,<br/>        const sptr\<IExecutorCallback>& callbackObj) | 人脸认证服务向Face_auth驱动传递参数的通用接口。              |
 | SetBufferProducer(const sptr\<BufferProducerSequenceable> &bufferProducer) | 设置预览流缓冲区。 |
-| GetProperty(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<GetPropertyType>& propertyTypes, Property& property) | 获取执行器属性信息。 |
+| GetProperty(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<int32_t>& propertyTypes, Property& property) | 获取执行器属性信息。 |
 | SetCachedTemplates(const std::vector\<uint64_t> &templateIdList) | 设置需缓存模板列表。 |
 | RegisterSaCommandCallback(const sptr\<ISaCommandCallback> &callbackObj) | 注册SA命令回调。 |
 
@@ -118,9 +116,9 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 | 接口名称                                                       | 功能介绍                 |
 | ------------------------------------------------------------ | ------------------------ |
-| IExecutorCallback::OnResult(int32_t code, const std::vector\<uint8_t>& extraInfo) | 返回操作的最终结果。     |
-| IExecutorCallback::OnTip(int32_t code, const std::vector\<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
-| ISaCommandCallback::OnSaCommands(const std::vector\<SaCommand>& commands) | 发送命令列表。 |
+| ExecutorCallbackService::OnResult(int32_t result, const std::vector\<uint8_t>& extraInfo) | 返回操作的最终结果。     |
+| ExecutorCallbackService::OnTip(int32_t tip, const std::vector\<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
+| SaCommandCallbackService::OnSaCommands(const std::vector\<SaCommand>& commands) | 发送命令列表。 |
 
 ### 开发步骤
 
@@ -151,23 +149,32 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    };
 
    // 服务接口调用响应接口
-   static int32_t FaceAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,
-       struct HdfSBuf *reply)
+   int32_t FaceAuthInterfaceDriverDispatch(
+       struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        IAM_LOGI("start");
-       auto *hdfFaceAuthInterfaceHost = CONTAINER_OF(client->device->service,
-           struct HdfFaceAuthInterfaceHost, ioService);
+       if (client == nullptr || data == nullptr || reply == nullptr || client->device == nullptr ||
+           client->device->service == nullptr) {
+           IAM_LOGE("invalid param");
+           return HDF_ERR_INVALID_PARAM;
+       }
+
+       auto *hdfFaceAuthInterfaceHost = CONTAINER_OF(client->device->service, struct HdfFaceAuthInterfaceHost, ioService);
+       if (hdfFaceAuthInterfaceHost == nullptr || hdfFaceAuthInterfaceHost->stub == nullptr) {
+           IAM_LOGE("hdfFaceAuthInterfaceHost is invalid");
+           return HDF_ERR_INVALID_PARAM;
+       }
 
        OHOS::MessageParcel *dataParcel = nullptr;
        OHOS::MessageParcel *replyParcel = nullptr;
        OHOS::MessageOption option;
 
        if (SbufToParcel(data, &dataParcel) != HDF_SUCCESS) {
-           IAM_LOGE("%{public}s:invalid data sbuf object to dispatch", __func__);
+           IAM_LOGE("invalid data sbuf object to dispatch");
            return HDF_ERR_INVALID_PARAM;
        }
        if (SbufToParcel(reply, &replyParcel) != HDF_SUCCESS) {
-           IAM_LOGE("%{public}s:invalid reply sbuf object to dispatch", __func__);
+           IAM_LOGE("invalid reply sbuf object to dispatch");
            return HDF_ERR_INVALID_PARAM;
        }
 
@@ -178,6 +185,10 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    int HdfFaceAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
        IAM_LOGI("start");
+       if (deviceObject == nullptr) {
+           IAM_LOGE("deviceObject is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        if (!HdfDeviceSetClass(deviceObject, DEVICE_CLASS_USERAUTH)) {
            IAM_LOGE("set face auth hdf class failed");
            return HDF_FAILURE;
@@ -189,9 +200,13 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    int HdfFaceAuthInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
    {
        IAM_LOGI("start");
+       if (deviceObject == nullptr) {
+           IAM_LOGE("deviceObject is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        auto *hdfFaceAuthInterfaceHost = new (std::nothrow) HdfFaceAuthInterfaceHost;
        if (hdfFaceAuthInterfaceHost == nullptr) {
-           IAM_LOGE("%{public}s: failed to create HdfFaceAuthInterfaceHost object", __func__);
+           IAM_LOGE("failed to create HdfFaceAuthInterfaceHost object");
            return HDF_FAILURE;
        }
 
@@ -201,14 +216,16 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
        auto serviceImpl = IFaceAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           IAM_LOGE("%{public}s: failed to implement service", __func__);
+           IAM_LOGE("failed to get of implement service");
+           delete hdfFaceAuthInterfaceHost;
            return HDF_FAILURE;
        }
 
-       hdfFaceAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
-           IFaceAuthInterface::GetDescriptor());
+       hdfFaceAuthInterfaceHost->stub =
+           OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl, IFaceAuthInterface::GetDescriptor());
        if (hdfFaceAuthInterfaceHost->stub == nullptr) {
-           IAM_LOGE("%{public}s: failed to get stub object", __func__);
+           IAM_LOGE("failed to get stub object");
+           delete hdfFaceAuthInterfaceHost;
            return HDF_FAILURE;
        }
 
@@ -221,8 +238,15 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    void HdfFaceAuthInterfaceDriverRelease(struct HdfDeviceObject *deviceObject)
    {
        IAM_LOGI("start");
-       auto *hdfFaceAuthInterfaceHost = CONTAINER_OF(deviceObject->service,
-           struct HdfFaceAuthInterfaceHost, ioService);
+       if (deviceObject == nullptr || deviceObject->service == nullptr) {
+           IAM_LOGE("deviceObject is invalid");
+           return;
+       }
+       auto *hdfFaceAuthInterfaceHost = CONTAINER_OF(deviceObject->service, struct HdfFaceAuthInterfaceHost, ioService);
+       if (hdfFaceAuthInterfaceHost == nullptr) {
+           IAM_LOGE("hdfFaceAuthInterfaceHost is nullptr");
+           return;
+       }
        delete hdfFaceAuthInterfaceHost;
        IAM_LOGI("success");
    }
@@ -230,7 +254,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    // 注册Face_auth驱动入口数据结构体对象
    struct HdfDriverEntry g_faceAuthInterfaceDriverEntry = {
        .moduleVersion = 1,
-       .moduleName = "faceauth_interface_service",
+       .moduleName = "drivers_peripheral_face_auth",
        .Bind = HdfFaceAuthInterfaceDriverBind,
        .Init = HdfFaceAuthInterfaceDriverInit,
        .Release = HdfFaceAuthInterfaceDriverRelease,
@@ -244,10 +268,10 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
    ```c++
    // 执行器实现类
-   class ExecutorImpl : public V1_1::IExecutor {
+   class AllInOneExecutorImpl : public IAllInOneExecutor {
    public:
-       ExecutorImpl(struct ExecutorInfo executorInfo);
-       virtual ~ExecutorImpl() {}
+       AllInOneExecutorImpl(struct ExecutorInfo executorInfo);
+       virtual ~AllInOneExecutorImpl() {}
 
    private:
        struct ExecutorInfo executorInfo_; // 执行器信息
@@ -268,67 +292,33 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
        return faceAuthInterfaceService;
    }
 
-   // 获取执行器列表实现，创建执行器
-   int32_t GetExecutorListV1_1(std::vector<sptr<V1_1::IExecutor>>& executorList)
+   // 获取V2_0执行器列表实现
+   int32_t GetExecutorList(std::vector<sptr<IAllInOneExecutor>> &executorList)
    {
        IAM_LOGI("interface mock start");
-       executorList.clear();
-       struct ExecutorInfo executorInfoExample = {
-           .sensorId = SENSOR_ID,
-           .executorType = EXECUTOR_TYPE,
-           .executorRole = ExecutorRole::ALL_IN_ONE,
-           .authType = AuthType::FACE,
-           .esl = ExecutorSecureLevel::ESL0, // ExecutorSecureLevel标识执行器的安全等级，范围是ESL0~ESL3，其中ESL3标识的安全等级最高
-           .publicKey = std::vector<uint8_t>(PUBLIC_KEY_LEN, 0), // 32字节公钥，算法是Ed25519
-           .extraInfo = {},
-       };
-       auto executor = new (std::nothrow) ExecutorImpl(executorInfoExample);
-       if (executor == nullptr) {
-           IAM_LOGE("executor is nullptr");
-           return HDF_FAILURE;
+       for (auto executor : executorList_) {
+           executorList.push_back(executor);
        }
-       executorList.push_back(sptr<V1_1::IExecutor>(executor));
        IAM_LOGI("interface mock success");
        return HDF_SUCCESS;
    }
-
-   // 获取V1_0执行器列表实现，使用V1_1版本执行器实现V1_0版本执行器的功能
-   int32_t GetExecutorList(std::vector<sptr<V1_0::IExecutor>> &executorList)
-   {
-       std::vector<sptr<V1_1::IExecutor>> executorListV1_1;
-       int32_t result = GetExecutorListV1_1(executorListV1_1);
-       for (auto &executor : executorListV1_1) {
-           executorList.push_back(executor);
-       }
-       return result;
-   }
    ```
 
-3. 实现执行器每个功能接口，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/executor_impl.cpp)文件。
+3. 实现执行器每个功能接口，详细代码参见[all_in_one_executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/all_in_one_executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口
-   int32_t GetExecutorInfo(ExecutorInfo& info)
+   int32_t AllInOneExecutorImpl::GetExecutorInfo(ExecutorInfo &executorInfo)
    {
        IAM_LOGI("interface mock start");
-       info = executorInfo_;
+       executorInfo = executorInfo_;
        IAM_LOGI("get executor information success");
        return HDF_SUCCESS;
    }
 
-   // 实现获取指定模板ID的模板信息接口
-   int32_t GetTemplateInfo(uint64_t templateId, TemplateInfo& info)
-   {
-       IAM_LOGI("interface mock start");
-       static_cast<void>(templateId);
-       info = {0};
-       IAM_LOGI("get template information success");
-       return HDF_SUCCESS;
-   }
-
    // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的模板列表接口。将公钥信息保持，模板列表用于和本地的模板做对账
-   int32_t OnRegisterFinish(const std::vector<uint64_t>& templateIdList,
-       const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo)
+   int32_t AllInOneExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
+       const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(templateIdList);
@@ -339,15 +329,19 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现人脸录入接口
-   int32_t Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
-       const sptr<IExecutorCallback>& callbackObj)
+   int32_t AllInOneExecutorImpl::Enroll(
+       uint64_t scheduleId, const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
        static_cast<void>(extraInfo);
+       if (callbackObj == nullptr) {
+           IAM_LOGE("callbackObj is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        IAM_LOGI("enroll, result is %{public}d", ResultCode::OPERATION_NOT_SUPPORT);
        int32_t ret = callbackObj->OnResult(ResultCode::OPERATION_NOT_SUPPORT, {});
-       if (ret != ResultCode::SUCCESS) {
+       if (ret != HDF_SUCCESS) {
            IAM_LOGE("callback result is %{public}d", ret);
            return HDF_FAILURE;
        }
@@ -355,16 +349,20 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现人脸认证接口
-   int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,
-       const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj)
+   int32_t AllInOneExecutorImpl::Authenticate(uint64_t scheduleId, const std::vector<uint64_t> &templateIdList,
+       const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
        static_cast<void>(templateIdList);
        static_cast<void>(extraInfo);
+       if (callbackObj == nullptr) {
+           IAM_LOGE("callbackObj is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        IAM_LOGI("authenticate, result is %{public}d", ResultCode::NOT_ENROLLED);
        int32_t ret = callbackObj->OnResult(ResultCode::NOT_ENROLLED, {});
-       if (ret != ResultCode::SUCCESS) {
+       if (ret != HDF_SUCCESS) {
            IAM_LOGE("callback result is %{public}d", ret);
            return HDF_FAILURE;
        }
@@ -372,15 +370,19 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现人脸识别接口
-   int32_t Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
-       const sptr<IExecutorCallback>& callbackObj)
+   int32_t AllInOneExecutorImpl::Identify(
+       uint64_t scheduleId, const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
        static_cast<void>(extraInfo);
+       if (callbackObj == nullptr) {
+           IAM_LOGE("callbackObj is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        IAM_LOGI("identify, result is %{public}d", ResultCode::OPERATION_NOT_SUPPORT);
        int32_t ret = callbackObj->OnResult(ResultCode::OPERATION_NOT_SUPPORT, {});
-       if (ret != ResultCode::SUCCESS) {
+       if (ret != HDF_SUCCESS) {
            IAM_LOGE("callback result is %{public}d", ret);
            return HDF_FAILURE;
        }
@@ -388,7 +390,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现删除人脸模板接口
-   int32_t Delete(const std::vector<uint64_t>& templateIdList)
+   int32_t AllInOneExecutorImpl::Delete(const std::vector<uint64_t> &templateIdList)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(templateIdList);
@@ -397,7 +399,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现通过scheduleId取消指定操作接口
-   int32_t Cancel(uint64_t scheduleId)
+   int32_t AllInOneExecutorImpl::Cancel(uint64_t scheduleId)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
@@ -406,33 +408,45 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现人脸认证服务向Face_auth驱动传递参数的通用接口，当前需要实现冻结与解锁模板命令
-   int32_t SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,
-       const sptr<IExecutorCallback>& callbackObj)
+   int32_t AllInOneExecutorImpl::SendCommand(
+       int32_t commandId, const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(extraInfo);
+       if (callbackObj == nullptr) {
+           IAM_LOGE("callbackObj is nullptr");
+           return HDF_ERR_INVALID_PARAM;
+       }
        int32_t ret;
        switch (commandId) {
-           case LOCK_TEMPLATE:
-               IAM_LOGI("unlock template, result is %{public}d", ResultCode::SUCCESS);
+           case DriverCommandId::LOCK_TEMPLATE:
+               IAM_LOGI("lock template, result is %{public}d", ResultCode::SUCCESS);
                ret = callbackObj->OnResult(ResultCode::SUCCESS, {});
-               if (ret != ResultCode::SUCCESS) {
+               if (ret != HDF_SUCCESS) {
                    IAM_LOGE("callback result is %{public}d", ret);
                    return HDF_FAILURE;
                }
                break;
-           case UNLOCK_TEMPLATE:
+           case DriverCommandId::UNLOCK_TEMPLATE:
                IAM_LOGI("unlock template, result is %{public}d", ResultCode::SUCCESS);
                ret = callbackObj->OnResult(ResultCode::SUCCESS, {});
-               if (ret != ResultCode::SUCCESS) {
+               if (ret != HDF_SUCCESS) {
+                   IAM_LOGE("callback result is %{public}d", ret);
+                   return HDF_FAILURE;
+               }
+               break;
+           case DriverCommandId::INIT_ALGORITHM:
+               IAM_LOGI("init algorithm, result is %{public}d", ResultCode::SUCCESS);
+               ret = callbackObj->OnResult(ResultCode::SUCCESS, {});
+               if (ret != HDF_SUCCESS) {
                    IAM_LOGE("callback result is %{public}d", ret);
                    return HDF_FAILURE;
                }
                break;
            default:
-               IAM_LOGD("not support CommandId : %{public}d", commandId);
-               ret = callbackObj->OnResult(ResultCode::GENERAL_ERROR, {});
-               if (ret != ResultCode::SUCCESS) {
+               IAM_LOGD("not support DriverCommandId : %{public}d", commandId);
+               ret = callbackObj->OnResult(ResultCode::OPERATION_NOT_SUPPORT, {});
+               if (ret != HDF_SUCCESS) {
                    IAM_LOGE("callback result is %{public}d", ret);
                    return HDF_FAILURE;
                }
@@ -441,7 +455,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现设置预览流缓冲区接口
-   int32_t ExecutorImpl::SetBufferProducer(const sptr<BufferProducerSequenceable> &bufferProducer)
+   int32_t FaceAuthInterfaceService::SetBufferProducer(const sptr<BufferProducerSequenceable> &bufferProducer)
    {
        IAM_LOGI("interface mock start set buffer producer %{public}s",
            UserIam::Common::GetPointerNullStateString(bufferProducer.GetRefPtr()).c_str());
@@ -449,8 +463,8 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现获取执行器属性接口
-   int32_t ExecutorImpl::GetProperty(
-       const std::vector<uint64_t> &templateIdList, const std::vector<GetPropertyType> &propertyTypes, Property &property)
+   int32_t AllInOneExecutorImpl::GetProperty(
+       const std::vector<uint64_t> &templateIdList, const std::vector<int32_t> &propertyTypes, Property &property)
    {
        IAM_LOGI("interface mock start");
        property = {};
@@ -459,7 +473,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现设置需缓存模板列表接口
-   int32_t ExecutorImpl::SetCachedTemplates(const std::vector<uint64_t> &templateIdList)
+   int32_t AllInOneExecutorImpl::SetCachedTemplates(const std::vector<uint64_t> &templateIdList)
    {
        IAM_LOGI("interface mock start");
        IAM_LOGI("set cached templates success");
@@ -467,7 +481,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
 
    // 实现注册SA命令回调接口
-   int32_t ExecutorImpl::RegisterSaCommandCallback(const sptr<ISaCommandCallback> &callbackObj)
+   int32_t AllInOneExecutorImpl::RegisterSaCommandCallback(const sptr<ISaCommandCallback> &callbackObj)
    {
        IAM_LOGI("interface mock start");
        IAM_LOGI("register sa command callback success");
@@ -482,11 +496,10 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    void FaceAuthService::StartDriverManager()
    {
        IAM_LOGI("start");
-       // 此处增加或修改driver服务名字和ID，driver服务名字和ID需要全局唯一
-       const std::map<std::string, UserAuth::ServiceConfig> serviceName2Config = {
-           {"face_auth_interface_service", {1, std::make_shared<FaceAuthDriverHdi>()}},
-       };
-       UserIAM::UserAuth::IDriverManager::GetInstance().Start(serviceName2Config);
+       int32_t ret = UserAuth::IDriverManager::Start(HDI_NAME_2_CONFIG);
+       if (ret != FACE_AUTH_SUCCESS) {
+           IAM_LOGE("start driver manager failed");
+       }
    }
    ```
 

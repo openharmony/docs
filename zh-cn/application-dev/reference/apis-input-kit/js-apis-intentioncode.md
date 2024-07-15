@@ -9,14 +9,16 @@
 ## 导入模块
 
 ```js
-import IntentionCode from '@ohos.multimodalInput.intentionCode';
+import { IntentionCode } from '@kit.InputKit';
 ```
 
 ## IntentionCode
 
 意图事件枚举值。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称                               | 值   |  说明        |
 | -------------------------------- | ------ | --------------------------- |

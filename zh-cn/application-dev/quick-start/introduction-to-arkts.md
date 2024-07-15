@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
 
 ## 基本知识
 
@@ -88,6 +88,11 @@ function factorial(n: number): number {
   }
   return n * factorial(n - 1);
 }
+
+factorial(n1)  //  7.660344000000002 
+factorial(n2)  //  7.680640444893748 
+factorial(n3)  //  1 
+factorial(n4)  //  9.33262154439441e+157 
 ```
 
 #### `Boolean`类型
@@ -232,8 +237,10 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `==`     | 如果两个操作数相等，则返回true。                    |
-| `!=`     | 如果两个操作数不相等，则返回true。                |
+| `===`    | 如果两个操作数严格相等（不同类型的操作数是不相等的），则返回true。     |
+| `!==`    | 如果两个操作数严格不相等（不同类型的操作数是不相等的），则返回true。    |
+| `==`     | 如果两个操作数相等（尝试先转换不同类型的操作数，再进行比较），则返回true。 |
+| `!=`     | 如果两个操作数不相等（尝试先转换不同类型的操作数，再进行比较），则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
@@ -470,7 +477,7 @@ label: while (true) {
   switch (x) {
     case 1:
       // statements
-      break label // 中断while语句
+      break label; // 中断while语句
   }
 }
 ```
@@ -671,7 +678,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // 将函数作为参数传入
 ```
 
-### 箭头函数或Lambda函数
+### 箭头函数（又名Lambda函数）
 
 函数可以定义为箭头函数，例如：
 
@@ -694,7 +701,7 @@ let sum2 = (x: number, y: number) => x + y
 
 闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。
 
-在下例中，`z`是执行`f`时创建的`g`箭头函数实例的引用。`g`的实例维持了对它的环境的引用（变量`count`存在其中）。因此，当`z`被调用时，变量`count`仍可用。
+在下例中，`f`函数返回了一个闭包，它捕获了`count`变量，每次调用`z`，`count`的值会被保留并递增。
 
 ```typescript
 function f(): () => number {
@@ -1004,7 +1011,7 @@ interface DateInterface {
 class MyDate implements DateInterface {
   now(): string {
     // 在此实现
-    return 'now is now';
+    return 'now';
   }
 }
 ```
@@ -1387,13 +1394,13 @@ s.push(55); // 将会产生编译时错误
 
 ### 泛型约束
 
-泛型类型的类型参数可以绑定。例如，`HashMap<Key, Value>`容器中的`Key`类型参数必须具有哈希方法，即它应该是可哈希的。
+泛型类型的类型参数可以被限制只能取某些特定的值。例如，`MyHashMap<Key, Value>`这个类中的`Key`类型参数必须具有`hash`方法。
 
 ```typescript
 interface Hashable {
   hash(): number
 }
-class HasMap<Key extends Hashable, Value> {
+class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
     let h = k.hash();
     // ...其他代码...
@@ -1481,17 +1488,17 @@ if (x != null) { /* do something */ }
 
 后缀运算符`!`可用于断言其操作数为非空。
 
-应用于空值时，运算符将抛出错误。否则，值的类型将从`T | null`更改为`T`：
+应用于可空类型的值时，它的编译时类型变为非空类型。例如，类型将从`T | null`更改为`T`：
 
 ```typescript
-class C {
-  value: number | null = 1;
+class A {
+  value: number = 0;
 }
 
-let c = new C();
-let y: number;
-y = c.value + 1;  // 编译时错误：无法对可空值作做加法
-y = c.value! + 1; // ok，值为2
+function foo(a: A | null) {
+  a.value;   // 编译时错误：无法访问可空值的属性
+  a!.value;  // 编译通过，如果运行时a的值非空，可以访问到a的属性；如果运行时a的值为空，则发生运行时异常
+}
 ```
 
 ### 空值合并运算符
@@ -1540,7 +1547,7 @@ class Person {
 
 可选链可以任意长，可以包含任意数量的`?.`运算符。
 
-在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nickname`属性，则输出`spouse.nick`。否则，输出`undefined`：
+在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nick`属性，则输出`spouse.nick`。否则，输出`undefined`：
 
 ```typescript
 class Person {
@@ -1662,7 +1669,9 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+
+<!--RP1--><!--RP1End-->
 
 ### 顶层语句
 
@@ -1679,6 +1688,49 @@ function main() {
   console.log('this is the program entry');
 }
 ```
+
+## 关键字
+
+### this
+
+关键字`this`只能在类的实例方法中使用。
+
+**示例**
+
+```typescript
+class A {
+  count: string = 'a'
+  m(i: string): void {
+    this.count = i;
+  }
+}
+```
+
+使用限制：
+
+* 不支持`this`类型
+* 不支持在函数和类的静态方法中使用`this`
+
+**示例**
+
+```typescript
+class A {
+  n: number = 0
+  f1(arg1: this) {} // 编译时错误，不支持this类型
+  static f2(arg1: number) {
+    this.n = arg1;  // 编译时错误，不支持在类的静态方法中使用this
+  }
+}
+
+function foo(arg1: number) {
+  this.n = i;       // 编译时错误，不支持在函数中使用this
+}
+```
+
+关键字`this`的指向:
+
+* 调用实例方法的对象
+* 正在构造的对象
 
 ## ArkUI支持
 

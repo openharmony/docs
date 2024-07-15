@@ -8,12 +8,14 @@ The **appRecovery** module provides APIs for recovering faulty applications.
 
 ## Modules to Import
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
+import { appRecovery } from '@kit.AbilityKit';
 ```
 
 ## appRecovery.RestartFlag
 
 Enumerates the application restart flags. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,6 +30,8 @@ Enumerates the application restart flags. This enum is used as an input paramete
 
 Enumerates the scenarios for saving the application state. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
@@ -38,6 +42,8 @@ Enumerates the scenarios for saving the application state. This enum is used as 
 ## appRecovery.SaveModeFlag  
 
 Enumerates the application state saving modes. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -54,6 +60,8 @@ Enables application recovery. After this API is called, the first ability that i
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -67,17 +75,16 @@ Enables application recovery. After this API is called, the first ability that i
 **Example**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { appRecovery, AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        appRecovery.enableAppRecovery(
-            appRecovery.RestartFlag.ALWAYS_RESTART,
-            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
-            appRecovery.SaveModeFlag.SAVE_WITH_FILE
-        );
-    }
+  onCreate() {
+    appRecovery.enableAppRecovery(
+      appRecovery.RestartFlag.ALWAYS_RESTART,
+      appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
+      appRecovery.SaveModeFlag.SAVE_WITH_FILE
+    );
+  }
 }
 ```
 
@@ -85,16 +92,18 @@ export default class MyAbilityStage extends AbilityStage {
 
 restartApp(): void
 
-Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **onCreate** lifecycle callback of the ability.
+Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** property in the **want** parameter of the **onCreate** lifecycle callback of the ability.
 
 In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant10) is started. If no ability is specified, the following rules are used:
 - If the ability of the current application running in the foreground supports recovery, that ability is started.
 - If multiple abilities that support recovery is running in the foreground, only the last ability is started.
 - If no ability is running in the foreground, none of them is started.
 
-This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
+This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md). The interval between two restarts must be greater than one minute. If this API is called repeatedly within one minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -102,20 +111,20 @@ This API can be used together with the APIs of [errorManager](js-apis-app-abilit
 **Example**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.restartApp();
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.restartApp();
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -126,6 +135,8 @@ saveAppState(): boolean
 Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -138,20 +149,20 @@ Saves the application state. This API can be used together with the APIs of [err
 **Example**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.saveAppState();
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.saveAppState();
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -162,6 +173,8 @@ saveAppState(context?: UIAbilityContext): boolean
 Saves the ability state, which will be used for recovery. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -180,20 +193,20 @@ Saves the ability state, which will be used for recovery. This API can be used t
 **Example**
 
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.saveAppState(this.context);
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.saveAppState(this.context);
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -204,6 +217,8 @@ setRestartWant(want: Want): void
 Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -216,8 +231,7 @@ Sets an ability that will be recovered. The ability must be a UIAbility in the c
 **Example**
 
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import Want from '@ohos.app.ability.Want';
+import { appRecovery, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component

@@ -27,9 +27,17 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
+<!--Del-->
 ### Adjusting the System Volume (for System Applications Only)
 
-Currently, the system volume is mainly adjusted by using system APIs, which serve the physical volume button and the Settings application. When the user presses the volume button, a system API is called to adjust the system volume, including the volume for media, ringtone, or notification.
+Currently, adjusting the system volume is mainly conducted by using system APIs, which are available for the physical volume button and the Settings application. When the user presses the volume button, a system API is called to adjust the system volume, including the volume for media, ringtone, or notification.
+<!--DelEnd-->
+
+### Adjusting the System Volume Using the Volume Panel
+
+An application cannot directly adjust the system volume. However, it can invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes.
+
+To achieve this, you can use the ArkTS component **\<AVVolumePanel>** in your application. For details, see the [AVVolumePanel Reference](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md).
 
 ## Audio Stream Volume
 

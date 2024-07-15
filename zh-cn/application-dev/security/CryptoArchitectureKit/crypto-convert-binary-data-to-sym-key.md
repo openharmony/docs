@@ -19,8 +19,8 @@
 - 以使用callback方式生成3DES密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -56,8 +56,9 @@
   ```
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
+  
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -77,6 +78,7 @@
     let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
     console.info('key getEncoded hex' + encodedKey.data);
   }
+  ```
 
 
 ## 指定二进制数据转换HMAC密钥
@@ -94,8 +96,8 @@
 - 以使用await方式生成HMAC密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
     // 对称密钥长度为64字节，512比特
@@ -112,8 +114,8 @@
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
     // 对称密钥长度为64字节，512比特

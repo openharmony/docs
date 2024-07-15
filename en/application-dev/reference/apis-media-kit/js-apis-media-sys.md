@@ -10,7 +10,7 @@ The multimedia subsystem provides a set of simple and easy-to-use APIs for you t
 ## Modules to Import
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -42,7 +42,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
@@ -84,7 +84,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder().then((video: media.VideoRecorder) => {
@@ -97,6 +97,47 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error message:${error.message}`);
 });
+```
+
+## media.reportAVScreenCaptureUserChoice<sup>12+</sup>
+
+reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
+
+Reports the user selection result in the screen capture privacy dialog box to the AVScreenCapture server to determine whether to start screen capture. Screen capture starts only when the user touches a button to continue the operation.
+
+This API is called by the system application that creates the dialog box.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box.|
+| choice    | string | Yes  | User selection result. The value **false** means that the user touches a button to cancel the operation, and **true** means that the user touches a button to continue the operation.           |
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400101  | No memory. Return by promise.               |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sessionId: number = 0; // Use the ID of the session that starts the process.
+let choice: string = 'false'; // Use the user selection result.
+
+try {
+    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+} catch (error: BusinessError) {
+    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+}
 ```
 
 ## AVImageQueryOptions<sup>11+</sup>
@@ -178,14 +219,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied. Return by callback.     |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.          |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Configure the parameters based on those supported by the hardware device.
 let videoProfile: media.VideoRecorderProfile = {
@@ -251,14 +292,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201      | Permission denied. Return by promise.     |
-| 401      | Parameter error. Return by promise.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.          |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Configure the parameters based on those supported by the hardware device.
 let videoProfile: media.VideoRecorderProfile = {
@@ -324,7 +365,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 let surfaceID: string; // Surface ID passed to the external system.
@@ -371,7 +412,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 let surfaceID: string; // Surface ID passed to the external system.
@@ -414,7 +455,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.start((err: BusinessError) => {
@@ -457,7 +498,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.start().then(() => {
@@ -498,7 +539,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.pause((err: BusinessError) => {
@@ -541,7 +582,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.pause().then(() => {
@@ -580,7 +621,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.resume((err: BusinessError) => {
@@ -621,7 +662,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.resume().then(() => {
@@ -662,7 +703,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.stop((err: BusinessError) => {
@@ -705,7 +746,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.stop().then(() => {
@@ -742,7 +783,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.release((err: BusinessError) => {
@@ -781,7 +822,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.release().then(() => {
@@ -821,7 +862,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.reset((err: BusinessError) => {
@@ -863,7 +904,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.reset().then(() => {
@@ -902,7 +943,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // This event is reported when an error occurs during the retrieval of videoRecordState.
 videoRecorder.on('error', (error: BusinessError) => { // Set the 'error' event callback.

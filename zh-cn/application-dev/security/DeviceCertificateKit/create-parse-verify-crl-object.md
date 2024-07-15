@@ -8,11 +8,11 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)和[加解密算法库模块](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)。
    ```ts
-   import certFramework from '@ohos.security.cert';
-   import cryptoFramework from '@ohos.security.cryptoFramework';
+   import { cert } from '@kit.DeviceCertificateKit';
+   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
    ```
 
-2. 基于已有的CRL数据，调用[cryptoCert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509crl11)创建X509证书吊销列表的对象。
+2. 基于已有的CRL数据，调用[cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11)创建X509证书吊销列表的对象。
 
 3. 解析证书吊销列表信息。
 
@@ -24,19 +24,19 @@
 
 5. 调用[X509CRL.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify11)校验签名合法性。
 
-6. 基于已有的X509证书数据，调用[cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert)创建证书对象。
+6. 基于已有的X509证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)创建证书对象。
 
 7. 调用[X509CRL.isRevoked](../../reference/apis-device-certificate-kit/js-apis-cert.md#isrevoked11)判断X509证书是否已被吊销。
 
 8. 调用[X509CRL.getRevokedCert](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevokedcert11)获取被吊销证书对象。
 
-9.  调用[X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlentry11)获取被吊销日期。
+9.  调用[X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevocationdate11)获取被吊销日期。
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 // CRL数据，以下只是一个示例，需要根据具体业务来赋值
 let crlData = '-----BEGIN X509 CRL-----\n' +
@@ -75,15 +75,15 @@ let pubKeyData = new Uint8Array([
 // CRL示例
 function crlSample(): void {
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     // 将CRL数据从string转为Unit8Array
     data: textEncoder.encodeInto(crlData),
     // CRL格式，仅支持PEM和DER格式。在这个例子中，CRL用的是PEM格式
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   // 创建X509CRL实例
-  certFramework.createX509CRL(encodingBlob, (err, x509Crl) => {
+  cert.createX509CRL(encodingBlob, (err, x509Crl) => {
     if (err != null) {
       // 创建X509CRL实例失败
       console.error(`createX509Crl failed, errCode: ${err.code}, errMsg:${err.message} `);
@@ -126,13 +126,13 @@ function crlSample(): void {
     }
 
     // 使用certFramework的createX509Cert()方法创建一个X509Cert实例
-    let certBlob: certFramework.EncodingBlob = {
+    let certBlob: cert.EncodingBlob = {
       data: textEncoder.encodeInto(certData),
-      encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+      encodingFormat: cert.EncodingFormat.FORMAT_PEM
     };
     let revokedFlag = true;
     let serial:bigint = BigInt('0');
-    certFramework.createX509Cert(certBlob, (err, cert) => {
+    cert.createX509Cert(certBlob, (err, cert) => {
       serial = cert.getCertSerialNumber();
       if (err == null) {
         try {

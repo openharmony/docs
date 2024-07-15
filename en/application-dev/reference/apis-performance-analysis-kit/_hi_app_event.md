@@ -64,7 +64,7 @@ This function allows your application to record fault events, statistics events,
 | typedef struct ParamListNode \* [ParamList](#paramlist) | Event parameter list node. | 
 | typedef struct [HiAppEvent_Watcher](#hiappevent_watcher) [HiAppEvent_Watcher](#hiappevent_watcher) | Watcher for application events. | 
 | typedef void(\* [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive)) (const char \*domain, const struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) \*appEventGroups, uint32_t groupLen) | Callback invoked to pass event content to the caller. | 
-| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | Callback invoked if the event received by the watcher meets the conditions specified by OH_HiAppEvent_SetTriggerCondition. Specifically, if the OH_HiAppEvent_OnReceive callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again. | 
+| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | Callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again. | 
 | typedef void(\* [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake)) (const char \*const \*events, uint32_t eventLen) | Callback invoked to pass the events received by the watcher to the caller when OH_HiAppEvent_TakeWatcherData is used to obtain the events. | 
 
 
@@ -101,10 +101,10 @@ This function allows your application to record fault events, statistics events,
 | bool [OH_HiAppEvent_Configure](#oh_hiappevent_configure) (const char \*name, const char \*value) | Configures the application event logging function. | 
 | [HiAppEvent_Watcher](#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](#oh_hiappevent_createwatcher) (const char \*name) | Creates a watcher for application events. | 
 | void [OH_HiAppEvent_DestroyWatcher](#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | Destroys a created watcher. | 
-| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | Sets the conditions for triggering the OH_HiAppEvent_OnTrigger callback, including the number and size of newly received events and the timeout interval for triggering onTrigger. Ensure that at least one of the trigger conditions is set on the caller side. | 
-| int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | Sets the type of events to be listened for. | 
-| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | Sets the onTrigger callback. | 
-| int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | Sets the onReceive callback. When the listener detects the corresponding event, the onReceive callback is called. | 
+| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | Sets the conditions for triggering the **OH_HiAppEvent_OnTrigger** callback, including the number and size of newly received events and the timeout interval for triggering **onTrigger**. Ensure that at least one of the trigger conditions is set on the caller side. | 
+| int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | Sets the type of events to listen for. | 
+| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | Sets the **onTrigger** callback. | 
+| int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is called. | 
 | int [OH_HiAppEvent_TakeWatcherData](#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake) onTake) | Obtains the event saved by the watcher. | 
 | int [OH_HiAppEvent_AddWatcher](#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | Adds a watcher. Once a watcher is added, it starts to listen for system messages. | 
 | int [OH_HiAppEvent_RemoveWatcher](#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | Removes a watcher. Once a watcher is removed, it stops listening for system messages. | 
@@ -383,7 +383,7 @@ Note: The lifecycle of the object pointed by the pointer in the callback is limi
 typedef void(* OH_HiAppEvent_OnTrigger) (int row, int size)
 ```
 **Description**
-Defines the callback invoked if the event received by the watcher meets the conditions specified by OH_HiAppEvent_SetTriggerCondition. Specifically, if the OH_HiAppEvent_OnReceive callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
+Defines the callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -830,7 +830,7 @@ Adds a watcher. Once a watcher is added, it starts to listen for system messages
 
 **Returns**
 
-0 if the operation is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null.
 
 
 ### OH_HiAppEvent_ClearData()
@@ -907,7 +907,7 @@ Note: If a created watcher is no longer used, you are required to destroy it by 
 
 **Returns**
 
-Pointer to the new watcher.
+Pointer to the new watcher if the API is called successfully; **nullptr** if the **name** parameter is invalid.
 
 
 ### OH_HiAppEvent_DestroyParamList()
@@ -970,7 +970,7 @@ Note: This API only enables the watcher to stop listening for system messages. I
 
 **Returns**
 
-0 if the operation is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null; **-6** if **OH_HiAppEvent_AddWatcher** has not been called to add a watcher.
 
 
 ### OH_HiAppEvent_SetAppEventFilter()
@@ -979,7 +979,7 @@ Note: This API only enables the watcher to stop listening for system messages. I
 int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * domain, uint8_t eventTypes, const char *const * names, int namesLen )
 ```
 **Description**
-Sets the type of events to be listened for.
+Sets the type of events to listen for.
 
 This function can be called repeatedly. You can add multiple filtering conditions instead of replacing them. The watcher will receive notifications of events that meet any of the filtering conditions.
 
@@ -999,7 +999,7 @@ This function can be called repeatedly. You can add multiple filtering condition
 
 **Returns**
 
-0 if the setting is successful; a negative value otherwise.
+**0** if the API is called successfully; **-1** if the **names** parameter is invalid; **-4** if the **domain** parameter is invalid; **-5** if the pointer of an input parameter is null.
 
 
 ### OH_HiAppEvent_SetTriggerCondition()
@@ -1008,7 +1008,7 @@ This function can be called repeatedly. You can add multiple filtering condition
 int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, int size, int timeOut )
 ```
 **Description**
-Sets the conditions for triggering the OH_HiAppEvent_OnTrigger callback, including the number and size of newly received events and the timeout interval for triggering onTrigger. Ensure that at least one of the trigger conditions is set on the caller side.
+Sets the conditions for triggering the **OH_HiAppEvent_OnTrigger** callback, including the number and size of newly received events and the timeout interval for triggering **onTrigger**. Ensure that at least one of the trigger conditions is set on the caller side.
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1025,7 +1025,7 @@ Sets the conditions for triggering the OH_HiAppEvent_OnTrigger callback, includi
 
 **Returns**
 
-0 if the setting is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null.
 
 
 ### OH_HiAppEvent_SetWatcherOnReceive()
@@ -1034,7 +1034,7 @@ Sets the conditions for triggering the OH_HiAppEvent_OnTrigger callback, includi
 int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnReceive onReceive )
 ```
 **Description**
-Sets the onReceive callback. When the listener detects the corresponding event, the onReceive callback is called.
+Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is called.
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1049,7 +1049,7 @@ Sets the onReceive callback. When the listener detects the corresponding event, 
 
 **Returns**
 
-0 if the operation is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null.
 
 
 ### OH_HiAppEvent_SetWatcherOnTrigger()
@@ -1058,7 +1058,7 @@ Sets the onReceive callback. When the listener detects the corresponding event, 
 int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnTrigger onTrigger )
 ```
 **Description**
-Sets the onTrigger callback.
+Sets the **onTrigger** callback.
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1073,7 +1073,7 @@ Sets the onTrigger callback.
 
 **Returns**
 
-0 if the operation is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null.
 
 
 ### OH_HiAppEvent_TakeWatcherData()
@@ -1093,12 +1093,12 @@ Obtains the event saved by the watcher.
 | Name| Description| 
 | -------- | -------- |
 | watcher | Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher). | 
-| eventNum | Number of events. | 
+| eventNum | If the input value is less than or equal to **0**, all saved events are obtained. If the input value is greater than **0**, events are sorted by time in descending order and a specified number of saved events are obtained. | 
 | onTake | Pointer to the callback. The event information is returned through this callback. | 
 
 **Returns**
 
-0 if the operation is successful; a negative value otherwise.
+**0** if the API is called successfully; **-5** if the pointer of an input parameter is null; **-6** if **OH_HiAppEvent_AddWatcher** has not been called to add a watcher.
 
 
 ### OH_HiAppEvent_Write()

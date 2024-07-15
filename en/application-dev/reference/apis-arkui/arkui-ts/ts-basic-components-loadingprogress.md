@@ -18,7 +18,7 @@ LoadingProgress()
 
 Creates a **\<LoadingProgress>** component.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## Attributes
 
@@ -26,7 +26,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'**<br>This API can be used in ArkTS widgets since API version 9.|
 | enableLoading<sup>10+</sup> | boolean | Whether to show the loading animation.<br>Default value: **true**<br>**NOTE**<br> The component still takes up space in the layout when the loading animation is not shown.<br>Unlike the universal attribute **Visibility.Hidden**, which hides the entire component, including borders and paddings, **enableLoading=false** hides the loading animation only.|
 
 ## Events

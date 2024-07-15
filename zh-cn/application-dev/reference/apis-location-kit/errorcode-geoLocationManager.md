@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Location service is unavailable.
+The location service is unavailable.
 
 **错误描述**
 
@@ -78,44 +78,6 @@ Failed to obtain the geographical location.
 
 5.请在“日期和时间”页面勾选自动设置。
 
-## 3301201 网络不通导致网络定位失败
-
-**错误信息**
-
-Network locating failure due to internet access failure.
-
-**错误描述**
-
-网络不通导致网络定位失败。
-
-**可能原因**
-
-1.WiFi开关未开启且移动数据开关未开启。
-
-2.蜂窝或WiFi信号弱。
-
-**处理步骤** 
-
-如果处于室内环境请确保WiFi开关或移动数据开关处于开启状态，并且能上网，然后再发起定位。
-
-## 3301202 APP无后台定位权限导致定位失败
-
-**错误信息**
-
-Locating failure due to no background locating permission.
-
-**错误描述**
-
-APP无ohos.permission.LOCATION_IN_BACKGROUND权限导致定位失败。
-
-**可能原因**
-
-1.APP在后台定位且无ohos.permission.LOCATION_IN_BACKGROUND权限且未申请LOCATION类型的[长时任务](../../task-management/continuous-task.md)。
-
-**处理步骤**
-
-如果需要在后台进行定位业务，请申请LOCATION类型的[长时任务](../../task-management/continuous-task.md)。
-或者提示用户在位置信息页面设置本应用位置信息访问权限为“始终允许”。
 
 ## 3301300 逆地理编码查询失败
 
@@ -147,11 +109,12 @@ Geocoding query failed.
 
 **可能原因**
 
-数据网络比较卡顿，导致端侧的请求发送失败或者云端的结果未返回到端侧。
+1、请求参数有误，或根据参数无法查到结果。</br>
+2、数据网络比较卡顿，导致端侧的请求发送失败或者云端的结果未返回到端侧。
 
 **处理步骤**
 
-请重试地理编码查询。
+请检查请求参数或检查网络状态后重试
 
 ## 3301500 区域信息（包含国家码）查询失败
 

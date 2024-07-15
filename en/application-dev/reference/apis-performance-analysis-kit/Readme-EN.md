@@ -1,0 +1,46 @@
+# Performance Analysis Kit API Reference
+
+- ArkTS API
+  - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
+  - [@ohos.hichecker (HiChecker)](js-apis-hichecker.md)
+  - [@ohos.hidebug (HiDebug)](js-apis-hidebug.md)
+  - [@ohos.hilog (HiLog)](js-apis-hilog.md)
+  - [@ohos.hiTraceChain (Distributed Call Chain Tracing)](js-apis-hitracechain.md)
+  - [@ohos.hiTraceMeter (Performance Tracing)](js-apis-hitracemeter.md)
+  - [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiSysEvent (System Event Logging) (System API)](js-apis-hisysevent-sys.md)
+  - [@ohos.logLibrary (Log Library) (System API)](js-apis-loglibrary-sys.md)
+  - APIs No Longer Maintained
+    - [@ohos.bytrace (Performance Tracing)](js-apis-bytrace.md)
+    - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
+- C API
+  - Module
+    - [HiAppEvent](_hi_app_event.md)
+    - [HiDebug](_hi_debug.md)
+    - [HiLog](_hi_log.md)
+    - [Hitrace](_hitrace.md)
+  - Header Files
+    - [hiappevent.h](hiappevent_8h.md)
+    - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
+    - [hiappevent_event.h](hiappevent__event_8h.md)
+    - [hiappevent_param.h](hiappevent__param_8h.md)
+    - [hidebug.h](hidebug_8h.md)
+    - [hidebug_type.h](hidebug__type_8h.md)
+    - [log.h](log_8h.md)
+    - [trace.h](trace_8h.md)
+  - Structs
+    - [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md)
+    - [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md)
+    - [HiDebug_MemoryLimit](_hi_debug___memory_limit.md)
+    - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
+    - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
+    - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
+- Error Codes
+  - [FaultLogger Error Codes](errorcode-faultlogger.md)
+  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [HiDebug CPU Usage Error Codes](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  - [HiSysEvent Error Codes](errorcode-hisysevent-sys.md)
+  - [Log Library Error Codes](errorcode-loglibrary-sys.md)
+
+<!--no_check-->

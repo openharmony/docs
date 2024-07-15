@@ -4,7 +4,7 @@ The **Window** module provides basic window management capabilities, such as cre
 
 This module provides the following common window-related functions:
 
-- [Window](#window): the current window instance, which is the basic unit managed by the window manager.
+- [Window](#window): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
 
 > **NOTE**
@@ -16,7 +16,7 @@ This module provides the following common window-related functions:
 ## Modules to Import
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 ```
 
 ## WindowType<sup>7+</sup>
@@ -24,27 +24,27 @@ import window from '@ohos.window';
 
 Enumerates the window types.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name                                 | Value| Description                                                                                    |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
-| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | Status bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
-| TYPE_PANEL<sup>9+</sup>             | 4      | Notification panel.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                          |
-| TYPE_KEYGUARD<sup>9+</sup>          | 5      | Lock screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                           |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | Volume bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                          |
-| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | Navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
-| TYPE_WALLPAPER<sup>9+</sup>         | 9      | Wallpaper.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                           |
-| TYPE_DESKTOP<sup>9+</sup>           | 10      | Home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                           |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | Recent tasks screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | Dock bar on the home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                      |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
-| TYPE_POINTER<sup>9+</sup>           | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                           |
-| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                      |
-| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
-| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
-| TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
-| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | Window used for global search.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
+| TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | Status bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_PANEL<sup>9+</sup>             | 4      | Notification panel.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_KEYGUARD<sup>9+</sup>          | 5      | Lock screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | Volume bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | Navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_WALLPAPER<sup>9+</sup>         | 9      | Wallpaper.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_DESKTOP<sup>9+</sup>           | 10      | Home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | Recent tasks screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | Dock bar on the home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_POINTER<sup>9+</sup>           | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | Window used for global search.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | Stylus window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## WindowMode<sup>7+</sup>
 
@@ -128,12 +128,12 @@ Describes the scale parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                        |
-| ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
-| y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
-| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| Name  | Type| Read Only| Mandatory| Description                                        |
+| ------ | -------- | ---- | ---- | --------------------------------------------|
+| x      | number   | No  | No  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| y      | number   | No  | No  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| pivotX | number   | No  | No  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | No  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 
 ## RotateOptions<sup>9+</sup>
 
@@ -143,13 +143,13 @@ Describes the rotation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                         |
-| ------ | -------- | ---- | ---- |---------------------------------------------|
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
+| Name  | Type| Read Only| Mandatory| Description                                         |
+| ------ | -------- | ---- |---- |---------------------------------------------|
+| x      | number   | No  | No | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| y      | number   | No  | No | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| z      | number   | No  | No | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| pivotX | number   | No  | No | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | No | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -159,11 +159,11 @@ Describes the translation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Readable| Writable| Description                        |
+| Name| Type| Read Only| Mandatory| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| x    | number   | No  | No | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| y    | number   | No  | No | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| z    | number   | No  | No | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 
 
 ## window.minimizeAll<sup>9+</sup>
@@ -184,17 +184,18 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import display from '@ohos.display'
-import { BusinessError } from '@ohos.base';
+import { display } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 try {
@@ -204,16 +205,16 @@ try {
     window.minimizeAll(displayClass.id, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in minimizing all windows.');
     });
   } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -240,17 +241,18 @@ Minimizes all windows on a display. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import display from '@ohos.display'
-import { BusinessError } from '@ohos.base';
+import { display } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 try {
@@ -261,13 +263,13 @@ try {
     promise.then(() => {
       console.info('Succeeded in minimizing all windows.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -297,12 +299,12 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 window.toggleShownStateForAllAppWindows((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in toggling shown state for all app windows.');
@@ -335,13 +337,13 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = window.toggleShownStateForAllAppWindows();
 promise.then(() => {
   console.info('Succeeded in toggling shown state for all app windows.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -363,28 +365,29 @@ Sets the window layout mode. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting window layout mode.');
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -411,26 +414,27 @@ Sets the window layout mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
   promise.then(() => {
     console.info('Succeeded in setting window layout mode.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -451,6 +455,14 @@ Subscribes to the property change event of the status bar and navigation bar.
 | type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
+
 **Example**
 
 ```ts
@@ -459,7 +471,7 @@ try {
     console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -480,13 +492,31 @@ Unsubscribes from the property change event of the status bar and navigation bar
 | type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.              |
+
 **Example**
 
 ```ts
+const callback = (systemBarTintState: window.SystemBarTintState) => {
+  // ...
+}
 try {
+  window.on('systemBarTintChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+  window.off('systemBarTintChange', callback);
+  // Unregister all the callbacks that have been registered through on().
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -509,10 +539,11 @@ Subscribes to the gesture navigation status change event.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -524,7 +555,7 @@ try {
     console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -547,20 +578,31 @@ Unsubscribes from the gesture navigation status change event.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('gestureNavigationEnabledChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+  window.off('gestureNavigationEnabledChange', callback);
+  // If multiple callbacks are enabled in on(), they will all be disabled.
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -583,10 +625,12 @@ Subscribes to the watermark status change event.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -597,7 +641,7 @@ try {
     console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -620,19 +664,31 @@ Unsubscribes from the watermark status change event.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('waterMarkFlagChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+  window.off('waterMarkFlagChange', callback);
+  // Unregister all the callbacks that have been registered through on().
   window.off('waterMarkFlagChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -654,29 +710,30 @@ Enables or disables gesture navigation. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   window.setGestureNavigationEnabled(true, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting gesture navigation enabled.');
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -703,27 +760,28 @@ Enables or disables gesture navigation. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = window.setGestureNavigationEnabled(true);
   promise.then(() => {
     console.info('Succeeded in setting gesture navigation enabled.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -746,17 +804,19 @@ Sets the watermark image display status. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 let color: ArrayBuffer = new ArrayBuffer(0);
@@ -772,16 +832,16 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     window.setWaterMarkImage(pixelMap, enable, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in showing watermark image.');
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -809,17 +869,19 @@ Sets the watermark image display status. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 let color: ArrayBuffer = new ArrayBuffer(0);
@@ -836,19 +898,69 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     promise.then(() => {
       console.info('Succeeded in showing watermark image.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
+```
+
+## window.getSnapshot<sup>12+</sup>
+
+window.getSnapshot(windowId: number): Promise<image.PixelMap>
+
+Captures a window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+| Name  | Type  | Mandatory | Description        |
+| -------- | ------ | ----- | ------------ |
+| windowId | number | Yes   | Window ID. You can call [getWindowProperties](js-apis-window.md#getwindowproperties9) to obtain the window properties, in which **id** is the window ID.|
+
+**Return value**
+| Type                   | Description                           |
+| ----------------------- | ------------------------------- |
+| Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the window screenshot.|
+
+**Error codes**
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.     |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+try {
+  // This is only an example. Use getWindowProperties to obtain the window ID.
+  let windowId: number = 40;
+  let promise = window.getSnapshot(windowId);
+  promise.then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
+    pixelMap.release();
+  }).catch((err: BusinessError) =>{
+    console.error(`Failed to get snapshot. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## Window
 
-Represents the current window instance, which is the basic unit managed by the window manager.
+Represents a window instance, which is the basic unit managed by the window manager.
 
 In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md#windowcreatewindow9), or [findWindow()](js-apis-window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
@@ -879,12 +991,12 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window.');
@@ -918,13 +1030,13 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -957,12 +1069,12 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window with animation.');
@@ -998,16 +1110,15 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
-
 
 ### showWithAnimation<sup>9+</sup>
 
@@ -1038,12 +1149,12 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in showing the window with animation.');
@@ -1079,13 +1190,13 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1093,7 +1204,7 @@ promise.then(() => {
 
 setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mode of this window. This API uses an asynchronous callback to return the result.
+Sets the mode of the main window. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1108,30 +1219,48 @@ Sets the mode of this window. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  windowClass.setWindowMode(mode, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the window mode.');
-  });
-} catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        windowClass.setWindowMode(mode, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1139,7 +1268,7 @@ try {
 
 setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 
-Sets the type of this window. This API uses a promise to return the result.
+Sets the mode of the main window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1159,28 +1288,46 @@ Sets the type of this window. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  let promise = windowClass.setWindowMode(mode);
-  promise.then(() => {
-    console.info('Succeeded in setting the window mode.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        let promise = windowClass.setWindowMode(mode);
+        promise.then(() => {
+          console.info('Succeeded in setting the window mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1204,18 +1351,19 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
@@ -1248,7 +1396,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1258,13 +1406,13 @@ try {
   }, (err: BusinessError) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in binding dialog target.');
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1293,18 +1441,19 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
@@ -1341,7 +1490,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1352,10 +1501,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in binding dialog target.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1379,20 +1528,19 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dialogRequest, Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
@@ -1405,7 +1553,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1416,13 +1564,13 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       }, (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in binding dialog target.');
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
@@ -1453,20 +1601,19 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dialogRequest, Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
@@ -1479,7 +1626,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1491,10 +1638,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       promise.then(() => {
         console.info('Succeeded in binding dialog target.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
@@ -1518,10 +1665,11 @@ Wakes up the screen.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -1532,7 +1680,7 @@ let wakeUp: boolean = true;
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
-  console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to wake up the screen. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1553,10 +1701,11 @@ Sets whether to ignore this window during screen capturing or recording. This AP
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 ```ts
@@ -1564,7 +1713,7 @@ let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
 } catch (exception) {
-  console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to Skip. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1572,7 +1721,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window is forbidden to move in split-screen mode. This API uses an asynchronous callback to return the result.
+Sets whether the main window is forbidden to move in split-screen mode. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1587,30 +1736,48 @@ Sets whether this window is forbidden to move in split-screen mode. This API use
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  });
-} catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1618,7 +1785,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
-Sets whether this window is forbidden to move in split-screen mode. This API uses a promise to return the result.
+Sets whether the main window is forbidden to move in split-screen mode. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1638,28 +1805,46 @@ Sets whether this window is forbidden to move in split-screen mode. This API use
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
-  promise.then(() => {
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+        promise.then(() => {
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1681,10 +1866,11 @@ Sets the opacity for this window. This API can be used only when you [customize 
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1694,7 +1880,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
-  console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to opacity. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1716,10 +1902,11 @@ Sets the scale parameters for this window. This API can be used only when you [c
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1735,7 +1922,7 @@ let obj: window.ScaleOptions = {
 try {
   windowClass.scale(obj);
 } catch (exception) {
-  console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to scale. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1757,10 +1944,11 @@ Sets the rotation parameters for this window. This API can be used only when you
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1777,7 +1965,7 @@ let obj: window.RotateOptions = {
 try {
   windowClass.rotate(obj);
 } catch (exception) {
-  console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to rotate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1799,10 +1987,11 @@ Sets the translation parameters for this window. This API can be used only when 
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1817,11 +2006,11 @@ let obj: window.TranslateOptions = {
 try {
   windowClass.translate(obj);
 } catch (exception) {
-  console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to translate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
  getTransitionController(): TransitionController
 
@@ -1870,10 +2059,11 @@ Blurs this window.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1883,7 +2073,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1905,10 +2095,11 @@ Blurs the background of this window.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1918,7 +2109,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1940,10 +2131,11 @@ Sets the blur style for the background of this window.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1953,7 +2145,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
-  console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur style. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1978,10 +2170,11 @@ Sets the shadow for the window borders.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1991,7 +2184,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
-  console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set shadow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2013,10 +2206,11 @@ Sets the radius of the rounded corners for this window.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -2026,7 +2220,46 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
-  console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setTouchableAreas<sup>12+</sup>
+
+setTouchableAreas(rects: Array&lt;Rect&gt;): void
+
+Sets the touchable areas for this window. By default, the entire window is touchable. If a touchable area is set, touch events outside this area are transparently transmitted. The setting becomes invalid after the window rectangle changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | Yes  | Touchable areas. The maximum number of touchable areas cannot exceed 10, and each touchable area cannot exceed the window area.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |                       |
+
+**Example**
+
+```ts
+try {
+  windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
+    {left: 400, top: 100, width: 200, height:200}]);
+} catch (exception) {
+  console.error(`Failed to set touchable areas. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2048,10 +2281,11 @@ Raises the application subwindow to the top layer of the application. This API u
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2060,12 +2294,12 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in raising the window to app top.');
@@ -2090,10 +2324,11 @@ Raises the application subwindow to the top layer of the application. This API u
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2102,13 +2337,13 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.raiseToAppTop();
 promise.then(() => {
   console.info('Succeeded in raising the window to app top.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2126,7 +2361,7 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 
 | Name| Type    | Mandatory| Description                                           |
 | ------ | ------- | --- | ------------------------------------------------ |
-| enable | boolean | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
+| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
 
 **Return value**
 
@@ -2136,18 +2371,19 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display.           |
+| 1300008 | The display device is abnormal.           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enable = true;
@@ -2155,10 +2391,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting water mark flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2176,38 +2412,92 @@ Adds or deletes the watermark flag for this window. This API uses an asynchronou
 
 | Name  | Type                      | Mandatory| Description                                             |
 | -------- | ------------------------- | ---  | ----------------------------------------------- |
-| enable   | boolean                   | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
+| enable   | boolean                   | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display.           |
+| 1300008 | The display device is abnormal.           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enable: boolean = true;
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+      console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting water mark flag of window.');
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+
+### setHandwritingFlag<sup>12+</sup>
+
+setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
+
+Adds or deletes the handwriting flag for this window. After this flag is added, the window responds to stylus events but not touch events. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                                           |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let enable = true;
+  let promise = windowClass.setHandwritingFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting handwriting flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set handwriting flag of window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set handwriting flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2227,10 +2517,13 @@ Raises a subwindow above a target subwindow. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Mandatory parameters are left unspecified. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2238,18 +2531,42 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 **Example**
 
-```js
-// The windowClass must be obtained above the targetWindow.
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // The windowClass must be obtained above the targetWindow.
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        windowClass.raiseAboveTarget(targetId, (err) => {
+          if (err.code) {
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-});
+  }
+}
 ```
 
 ### raiseAboveTarget<sup>10+</sup>
@@ -2276,10 +2593,13 @@ Raises a subwindow above a target subwindow. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Mandatory parameters are left unspecified. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2287,18 +2607,43 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 **Example**
 
-```js
-// The windowClass must be obtained above the targetWindow.
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-let promise = windowClass.raiseAboveTarget(targetId);
-promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-}).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-});
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // The windowClass must be obtained above the targetWindow.
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        let promise = windowClass.raiseAboveTarget(targetId);
+        promise.then(()=> {
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -2320,10 +2665,13 @@ Generally, when a user clicks a subwindow, the subwindow is displayed on the top
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2331,15 +2679,39 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 **Example**
 
-```js
-let enabled = false;
-windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+          if (err.code) {
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in disabling the raise-by-click function.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in disabling the raise-by-click function.');
-});
+  }
+}
 ```
 
 ### setRaiseByClickEnabled<sup>10+</sup>
@@ -2368,10 +2740,13 @@ Generally, when a user clicks a subwindow, the subwindow is displayed on the top
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2379,14 +2754,38 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 **Example**
 
-```js
-let enabled = false;
-let promise = windowClass.setRaiseByClickEnabled(enabled);
-promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
-}).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-});
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setRaiseByClickEnabled(enabled);
+        promise.then(()=> {
+          console.info('Succeeded in disabling the raise-by-click function.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -2408,34 +2807,38 @@ Sets whether to enable the main window to resize itself by dragging. This API us
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         // Load content for the main window.
         windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             console.info('Succeeded in loading the content.');
         });
         // Obtain the main window.
-        let mainWindow = null;
-        
+        let mainWindow: window.Window | undefined = undefined;
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             mainWindow = data;
@@ -2445,12 +2848,12 @@ export default class EntryAbility extends UIAbility {
             // Call setResizeByDragEnabled.
             mainWindow.setResizeByDragEnabled(enabled, (err) => {
                 if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                    console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
                     return;
                 }
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
             });
-        })
+        });
     }
 };
 ```
@@ -2479,34 +2882,39 @@ Sets whether to enable the main window to resize itself by dragging. This API us
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         // Load content for the main window.
         windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             console.info('Succeeded in loading the content.');
         });
         // Obtain the main window.
-        let mainWindow = null;
-        
+        let mainWindow: window.Window | undefined = undefined;
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             mainWindow = data;
@@ -2517,10 +2925,10 @@ export default class EntryAbility extends UIAbility {
             let promise = mainWindow.setResizeByDragEnabled(enabled);
             promise.then(()=> {
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+            }).catch((err: BusinessError)=>{
+                console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
             });
-        })
+        });
     }
 };
 ```
@@ -2546,10 +2954,13 @@ A non-system floating window is a floating window created by a non-system applic
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2557,25 +2968,25 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Load the page corresponding to the main window.
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
     });
 
     // Obtain the main window.
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2585,12 +2996,12 @@ export default class EntryAbility extends UIAbility {
       // Call hideNonSystemFloatingWindows with the callback parameter.
       mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
         if (err.code) {
-          console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in hiding the non-system floating windows.');
       });
-    })
+    });
   }
 }
 ```
@@ -2621,10 +3032,13 @@ A non-system floating window is a floating window created by a non-system applic
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2632,25 +3046,26 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Load the page corresponding to the main window.
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
     });
 
     // Obtain the main window.
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2661,10 +3076,71 @@ export default class EntryAbility extends UIAbility {
       let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
       promise.then(()=> {
         console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err)=>{
-        console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+      }).catch((err: BusinessError)=>{
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
       });
-    })
+    });
+  }
+}
+```
+
+### setTopmost<sup>12+</sup>
+
+setTopmost(isTopmost: boolean): Promise&lt;void&gt;
+
+Called by the main window to place the window above all the other windows. This API uses a promise to return the result.
+
+This parameter is valid only when the main window is a floating window in 2-in-1 devices.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| isTopmost | boolean | Yes  | Whether to pin the main window on top. The value **true** means to pin the main window on top, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isTopmost: boolean = true;
+      let promise = window.setTopmost(isTopmost);
+      promise.then(() => {
+        console.info('Succeeded in setting the main window to be topmost.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
   }
 }
 ```
@@ -2695,24 +3171,89 @@ The single-frame composer is mainly used in scenarios that requires extremely lo
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
-    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
 });
+```
+
+### setTitleButtonVisible<sup>12+</sup>
+
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
+
+Shows or hides the maximize, minimize, and split-screen buttons on the title bar of the main window.
+
+This API is valid only for 2-in-1 devices and takes effect only for the title bar buttons (maximize, minimize, and split-screen) that are available in the current scenario.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                         |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isMaximizeVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it.|
+| isMinimizeVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isSplitVisible | boolean | Yes  | Whether to show the split-screen button. The value **true** means to show the button, and **false** means to hide it.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Load the page corresponding to the main window.
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // Obtain the main window.
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // Call setTitleButtonVisible to hide the maximize, minimize, and split-screen buttons on the title bar of the main window.
+          mainWindow.setTitleButtonVisible(false, false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -2736,16 +3277,24 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 | type     | [WindowType](#windowtype7) | Yes  | Window type.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type = window.WindowType.TYPE_SYSTEM_ALERT;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in setting the window type.');
@@ -2778,17 +3327,25 @@ Sets the type of this window. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type = window.WindowType.TYPE_SYSTEM_ALERT;
 let promise = windowClass.setWindowType(type);
 promise.then(() => {
   console.info('Succeeded in setting the window type.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2822,8 +3379,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -2855,18 +3412,19 @@ Sets whether to display the window of the application on the lock screen.
 
 **Error codes**
 
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
 | ID| Error Message|
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -2876,11 +3434,12 @@ export default class EntryAbility extends UIAbility {
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
-      console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
+      console.error(`Failed to show on lockscreen. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -2913,6 +3472,14 @@ Completes the transition. This API can be called only after [animateTo()](arkui-
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | isCompleted | boolean | Yes  | Whether the transition is complete. The value **true** means that the transition is complete, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
+
 **Example**
 
 ```ts
@@ -2938,7 +3505,7 @@ Completes the transition. This API can be called only after [animateTo()](arkui-
   try {
     context.completeTransition(true)
   } catch (exception) {
-    console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
+    console.error(`toWindow translate fail. Cause code: ${exception.code}, message: ${exception.message}`);
   }
   console.info('complete transition end');
 };
@@ -2946,9 +3513,33 @@ Completes the transition. This API can be called only after [animateTo()](arkui-
 
 ## TransitionController<sup>9+</sup>
 
-Implements the transition animation controller.
+Implements the transition animation controller. Before calling any API, you must create a system window. For details, see the sample code.
 
 **System API**: This is a system API.
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, // Select a system window type as required.
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
 
 ### animationForShown<sup>9+</sup>
 
@@ -2965,6 +3556,14 @@ Customizes the animation for the scenario when the window is shown.
 | Name | Type                                    | Mandatory| Description                |
 | ------- | ---------------------------------------- | ---- | -------------------- |
 | context | [TransitionContext](#transitioncontext9) | Yes  | Context of the transition animation.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **Example**
 
@@ -2984,7 +3583,7 @@ export class AnimationConfig {
     };
     windowClass.showWithAnimation(()=>{
       console.info('Show with animation success');
-    })
+    });
   }
 }
 ```
@@ -3020,9 +3619,10 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`ShowWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}`);
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
@@ -3038,6 +3638,14 @@ Customizes the animation for the scenario when the window is hidden.
 | Name | Type                                    | Mandatory| Description                |
 | ------- | ---------------------------------------- | ---- | -------------------- |
 | context | [TransitionContext](#transitioncontext9) | Yes  | Context of the transition animation.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **Example**
 
@@ -3057,7 +3665,7 @@ export class AnimationConfig {
     };
     windowClass.hideWithAnimation(()=>{
       console.info('hide with animation success');
-    })
+    });
   }
 }
 ```
@@ -3093,8 +3701,6 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
-
- <!--no_check--> 

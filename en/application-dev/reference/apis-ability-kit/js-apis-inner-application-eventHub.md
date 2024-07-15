@@ -41,6 +41,8 @@ Subscribes to an event.
 >
 >  When the callback is triggered by **emit**, the invoker is the **EventHub** object. To change the direction of **this** in **callback**, use an arrow function.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -50,7 +52,17 @@ Subscribes to an event.
 | event | string | Yes| Event name.|
 | callback | Function | Yes| Callback invoked when the event is triggered.|
 
-**Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
+**Example 1**
+
+When the callback is triggered by **emit**, the invoker is the **EventHub** object. The **EventHub** object does not have the **value** property. Therefore, the result **undefined** is returned.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -60,6 +72,32 @@ export default class EntryAbility extends UIAbility {
 
     onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onForeground() {
+        // Result
+        // eventFunc is called, value: undefined
+
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
+}
+```
+
+**Example 2**
+
+When the callback uses an arrow function, the invoker is the **EntryAbility** object. The **EntryAbility** object has the **value** property. Therefore, the result **12** is returned.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
+    onCreate() {
         // Anonymous functions can be used to subscribe to events.
         this.context.eventHub.on('myEvent', () => {
             console.log(`anonymous eventFunc is called, value: ${this.value}`);
@@ -68,7 +106,6 @@ export default class EntryAbility extends UIAbility {
 
     onForeground() {
         // Result
-        // eventFunc is called, value: undefined
         // anonymous eventFunc is called, value: 12
         this.context.eventHub.emit('myEvent');
     }
@@ -87,6 +124,8 @@ Unsubscribes from an event.
  - If **callback** is specified, this API unsubscribes from the given event with the specified callback.
  - If **callback** is not specified, this API unsubscribes from the given event with all callbacks.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -95,6 +134,14 @@ Unsubscribes from an event.
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event name.|
 | callback | Function | No| Callback for the event. If **callback** is unspecified, the given event with all callbacks is unsubscribed.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -126,6 +173,8 @@ emit(event: string, ...args: Object[]): void;
 
 Triggers an event.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -134,6 +183,14 @@ Triggers an event.
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event name.|
 | ...args | Object[] | No| Variable parameters, which are passed to the callback when the event is triggered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

@@ -34,6 +34,7 @@
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetTagValid](#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 检查参数集中的参数是否有效、是否有重复。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetValid](#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, uint32_t size) | 检查参数集大小是否有效。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CheckParamMatch](#oh_huks_checkparammatch) (const struct [OH_Huks_Param](_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](_o_h___huks___param.md) \*param) | 比较两个参数是否相同。 | 
+| void [OH_Huks_FreeKeyAliasSet](#oh_huks_freekeyaliasset) (struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*keyAliasSet) | 销毁参数集。  | 
 
 
 ## 函数说明
@@ -126,6 +127,23 @@ struct OH_Huks_Result OH_Huks_CopyParamSet (const struct OH_Huks_ParamSet * from
 **返回：**
 
 返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示复制成功，其他时为错误。
+
+
+### OH_Huks_FreeKeyAliasSet()
+
+```
+void OH_Huks_FreeKeyAliasSet (struct OH_Huks_KeyAliasSet * keyAliasSet)
+```
+**描述**
+销毁参数集。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyAliasSet | 指向要被销毁的参数集的指针地址。  | 
 
 
 ### OH_Huks_FreeParamSet()

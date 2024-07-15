@@ -6,13 +6,12 @@ UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbilit
 >
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
->  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 >  - 本模块接口为系统接口。
 
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 > **关于示例代码的说明：**
@@ -23,15 +22,12 @@ import common from '@ohos.app.ability.common';
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -49,8 +45,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -62,25 +61,21 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
-
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -113,15 +108,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -140,8 +132,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -153,25 +148,21 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, StartOptions, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
-
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -207,15 +198,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
-启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -239,8 +227,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -252,24 +243,20 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, StartOptions, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -319,8 +306,11 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -330,20 +320,17 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -352,15 +339,15 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      this.context.startServiceExtensionAbility(want)
-        .then(() => {
-          // 执行正常业务
-          console.info('startServiceExtensionAbility succeed');
-        })
-        .catch((err: BusinessError) => {
+      this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
+        if (error.code) {
           // 处理业务逻辑错误
-          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-        });
+          console.error(`startServiceExtensionAbility failed, code is ${error.code}, message is ${error.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startServiceExtensionAbility succeed');
+      });
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
@@ -389,8 +376,11 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -400,20 +390,17 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -449,7 +436,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -467,8 +455,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -478,20 +469,17 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -528,7 +516,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -545,8 +534,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -556,20 +548,17 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -616,8 +605,11 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -629,17 +621,13 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -665,7 +653,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbility
 
@@ -685,8 +673,11 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -696,17 +687,13 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -732,7 +719,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
@@ -742,7 +729,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -760,8 +747,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -771,17 +761,13 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -818,7 +804,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -835,8 +821,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -846,17 +835,13 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -889,11 +874,12 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
-将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -917,8 +903,11 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -930,19 +919,14 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -954,16 +938,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
     } catch (err) {
@@ -980,15 +965,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
-根据want和accountId启动Ability（callback形式）。
+根据want和accountId启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1006,8 +988,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1019,22 +1004,20 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1068,15 +1051,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-根据want、accountId及startOptions启动Ability（callback形式）。
+根据want、accountId及startOptions启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1095,8 +1075,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1108,23 +1091,20 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1161,15 +1141,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
-根据want、accountId和startOptions启动Ability（Promise形式）。
+根据want、accountId和startOptions启动Ability。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1187,8 +1164,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1200,23 +1180,20 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1267,19 +1244,20 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { UIAbility } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1295,10 +1273,9 @@ export default class EntryAbility extends UIAbility {
       this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
         console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
       })
-    })
-      .catch((err: BusinessError) => {
-        console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-      });
+    }).catch((err: BusinessError) => {
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 }
 ```
@@ -1328,51 +1305,51 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import image from '@ohos.multimedia.image';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let imagePixelMap: image.PixelMap;
-      let color = new ArrayBuffer(0);
-      image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      }).then((data) => {
-          imagePixelMap = data;
-          this.context.setMissionIcon(imagePixelMap)
-            .then(() => {
-              console.info('setMissionIcon succeed');
-            })
-            .catch((err: BusinessError) => {
-              console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-            });
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let imagePixelMap: image.PixelMap;
+    let color = new ArrayBuffer(0);
+    image.createPixelMap(color, {
+      size: {
+        height: 100,
+        width: 100
+      }
+    }).then((data) => {
+      imagePixelMap = data;
+      this.context.setMissionIcon(imagePixelMap)
+        .then(() => {
+          console.info('setMissionIcon succeed');
         })
         .catch((err: BusinessError) => {
-          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
         });
-    }
+    }).catch((err: BusinessError) => {
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1391,10 +1368,11 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1410,16 +1388,15 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1449,8 +1426,9 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。当开发者需要携带启动参数时可以选择此API。使用callback异步回调。仅支持在主线程调用。
+
+
 
 > **说明：**
 >
@@ -1470,10 +1448,11 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1489,17 +1468,15 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1533,8 +1510,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1553,10 +1529,11 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1572,17 +1549,15 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1616,7 +1591,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
 
 使用规则：
  - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限。
@@ -1645,8 +1620,11 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1658,25 +1636,19 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, Caller } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 系统账号的账号ID, -1表示当前激活用户
     let accountId = -1;
-
     // 指定启动的Ability
     let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
@@ -1697,11 +1669,11 @@ export default class EntryAbility extends UIAbility {
           console.log('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
-        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -1711,7 +1683,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1730,8 +1702,11 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1747,15 +1722,12 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1775,19 +1747,17 @@ export default class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -1802,8 +1772,11 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -1817,16 +1790,12 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant, StartOptions } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1835,10 +1804,9 @@ export default class EntryAbility extends UIAbility {
     localWant.bundleName = 'com.example.demo';
     localWant.moduleName = 'entry';
     localWant.abilityName = 'TestAbility';
-
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option, (err) => {
@@ -1850,14 +1818,13 @@ export default class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1882,8 +1849,11 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1899,17 +1869,13 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, AbilityConstant, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1918,10 +1884,9 @@ export default class EntryAbility extends UIAbility {
     localWant.bundleName = 'com.example.demo';
     localWant.moduleName = 'entry';
     localWant.abilityName = 'TestAbility';
-
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option)
@@ -1933,20 +1898,21 @@ export default class EntryAbility extends UIAbility {
       })
   }
 }
-
 ```
 
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
+
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1966,18 +1932,18 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -2015,13 +1981,15 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用callback异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
+
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
@@ -2035,24 +2003,24 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
-     let want: Want = {
+    let want: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'com.example.myapplication.UIExtAbility',
+      abilityName: 'UIExtAbility',
       moduleName: 'entry_test',
       parameters: {
         'bundleName': 'com.example.myapplication',
@@ -2063,15 +2031,15 @@ export default class EntryAbility extends UIAbility {
 
     try {
       this.context.requestModalUIExtension(want, (err: BusinessError) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('requestModalUIExtension succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;

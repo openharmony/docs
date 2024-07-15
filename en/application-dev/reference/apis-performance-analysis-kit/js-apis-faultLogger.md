@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```ts
-import faultLogger from '@ohos.faultLogger';
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## FaultType
@@ -40,7 +40,7 @@ Defines the data structure of the fault log information.
 | summary | string | Yes| Summary of the fault.|
 | fullLog | string | Yes| Full log text.|
 
-## faultLogger.query<sup>9+</sup>
+## FaultLogger.query<sup>9+</sup>
 
 query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
@@ -61,15 +61,17 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **Example**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
+function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
@@ -89,13 +91,13 @@ function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.Fa
     }
 }
 try {
-    faultLogger.query(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
+    FaultLogger.query(FaultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 } catch (err) {
     console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
-## faultLogger.query<sup>9+</sup>
+## FaultLogger.query<sup>9+</sup>
 
 query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
@@ -121,45 +123,47 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **Example**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getLog() {
-    try {
-        let value: Array<faultLogger.FaultLogInfo> = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
-        if (value) {
-            console.info("value length is " + value.length);
-            let len: number = value.length;
-            for (let i = 0; i < len; i++) {
-                console.info("log: " + i);
-                console.info("Log pid: " + value[i].pid);
-                console.info("Log uid: " + value[i].uid);
-                console.info("Log type: " + value[i].type);
-                console.info("Log timestamp: " + value[i].timestamp);
-                console.info("Log reason: " + value[i].reason);
-                console.info("Log module: " + value[i].module);
-                console.info("Log summary: " + value[i].summary);
-                console.info("Log text: " + value[i].fullLog);
-            }
-        }
-    } catch (err) {
-        console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
+  try {
+    let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.query(FaultLogger.FaultType.JS_CRASH);
+    if (value) {
+      console.info("value length is " + value.length);
+      let len: number = value.length;
+      for (let i = 0; i < len; i++) {
+        console.info("log: " + i);
+        console.info("Log pid: " + value[i].pid);
+        console.info("Log uid: " + value[i].uid);
+        console.info("Log type: " + value[i].type);
+        console.info("Log timestamp: " + value[i].timestamp);
+        console.info("Log reason: " + value[i].reason);
+        console.info("Log module: " + value[i].module);
+        console.info("Log summary: " + value[i].summary);
+        console.info("Log text: " + value[i].fullLog);
+      }
     }
+  } catch (err) {
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
+  }
 }
 ```
 
-## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
+## FaultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [faultLogger.query](#faultloggerquery9) instead.
+> This API is deprecated since API version 9. You are advised to use [FaultLogger.query](#faultloggerquery9).
 
 Obtains the fault information about the current process. This API uses an asynchronous callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
@@ -175,38 +179,38 @@ Obtains the fault information about the current process. This API uses an asynch
 **Example**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
-    if (error) {
-        console.info('error is ' + error);
-    } else {
-        console.info("value length is " + value.length);
-        let len: number = value.length;
-        for (let i = 0; i < len; i++) {
-            console.info("log: " + i);
-            console.info("Log pid: " + value[i].pid);
-            console.info("Log uid: " + value[i].uid);
-            console.info("Log type: " + value[i].type);
-            console.info("Log timestamp: " + value[i].timestamp);
-            console.info("Log reason: " + value[i].reason);
-            console.info("Log module: " + value[i].module);
-            console.info("Log summary: " + value[i].summary);
-            console.info("Log text: " + value[i].fullLog);
-        }
+function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
+  if (error) {
+    console.info('error is ' + error);
+  } else {
+    console.info("value length is " + value.length);
+    let len: number = value.length;
+    for (let i = 0; i < len; i++) {
+      console.info("log: " + i);
+      console.info("Log pid: " + value[i].pid);
+      console.info("Log uid: " + value[i].uid);
+      console.info("Log type: " + value[i].type);
+      console.info("Log timestamp: " + value[i].timestamp);
+      console.info("Log reason: " + value[i].reason);
+      console.info("Log module: " + value[i].module);
+      console.info("Log summary: " + value[i].summary);
+      console.info("Log text: " + value[i].fullLog);
     }
+  }
 }
-faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
+FaultLogger.querySelfFaultLog(FaultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 ```
 
-## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
+## FaultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [faultLogger.query](#faultloggerquery9-1).
+> This API is deprecated since API version 9. You are advised to use [FaultLogger.query](#faultloggerquery9-1).
 
 Obtains the fault information about the current process. This API uses a promise to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
@@ -227,24 +231,24 @@ Obtains the fault information about the current process. This API uses a promise
 **Example**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 async function getLog() {
-    let value: Array<faultLogger.FaultLogInfo> = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
-    if (value) {
-        console.info("value length is " + value.length);
-        let len: number = value.length;
-        for (let i = 0; i < len; i++) {
-            console.info("log: " + i);
-            console.info("Log pid: " + value[i].pid);
-            console.info("Log uid: " + value[i].uid);
-            console.info("Log type: " + value[i].type);
-            console.info("Log timestamp: " + value[i].timestamp);
-            console.info("Log reason: " + value[i].reason);
-            console.info("Log module: " + value[i].module);
-            console.info("Log summary: " + value[i].summary);
-            console.info("Log text: " + value[i].fullLog);
-        }
+  let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.querySelfFaultLog(FaultLogger.FaultType.JS_CRASH);
+  if (value) {
+    console.info("value length is " + value.length);
+    let len: number = value.length;
+    for (let i = 0; i < len; i++) {
+      console.info("log: " + i);
+      console.info("Log pid: " + value[i].pid);
+      console.info("Log uid: " + value[i].uid);
+      console.info("Log type: " + value[i].type);
+      console.info("Log timestamp: " + value[i].timestamp);
+      console.info("Log reason: " + value[i].reason);
+      console.info("Log module: " + value[i].module);
+      console.info("Log summary: " + value[i].summary);
+      console.info("Log text: " + value[i].fullLog);
     }
+  }
 }
 ```

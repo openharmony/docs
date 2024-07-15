@@ -120,6 +120,6 @@ hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系�
 > 1. 未配置的自定义参数键。
 > 2. 类型和定义的类型不匹配的值。
 
-样例：事件域为"ACE"，事件名称为"INTERACTION_APP_JANK"的[系统事件配置](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)中不包含"DURITION"、"DISPLAY_ANIMATOR"自定义参数，但是实际落盘的系统事件却包含此字符串类型的键值对，合法性检查模式开启的情况下，此键值对的键被红色高亮标注。
+样例：事件域为"ACE"，事件名称为"INTERACTION_APP_JANK"的<!--RP1-->[系统事件配置](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)<!--RP1End-->中不包含"DURITION"、"DISPLAY_ANIMATOR"自定义参数，但是实际落盘的系统事件却包含此字符串类型的键值对，合法性检查模式开启的情况下，此键值对的键被红色高亮标注。
 
 ![](figures/hisysevent-v.png)

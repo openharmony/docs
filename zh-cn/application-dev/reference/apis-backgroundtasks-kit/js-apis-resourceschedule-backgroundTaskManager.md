@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -40,21 +40,22 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myReason = 'test requestSuspendDelay';
 try {
@@ -88,22 +89,23 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed.  |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
@@ -138,21 +140,22 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
@@ -179,21 +182,22 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let id = 1;
   try {
@@ -224,27 +228,28 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. | 
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -315,27 +320,28 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -393,26 +399,26 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -455,26 +461,26 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -493,7 +499,7 @@ export default class EntryAbility extends UIAbility {
 
 ## backgroundTaskManager.startBackgroundRunning<sup>12+</sup>
 
-startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;void&gt;
+startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
 申请长时任务，使用promise异步回调。
 
@@ -513,73 +519,115 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let wantAgentInfo: wantAgent.WantAgentInfo = {
-            // 点击通知后，将要执行的动作列表
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            // 点击通知后，动作类型
-            actionType: wantAgent.OperationType.START_ABILITY,
-            // 使用者自定义的一个私有值
-            requestCode: 0,
-            // 点击通知后，动作执行属性
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  id: number = 0; // 保存通知id
 
-        try {
-            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-                try {
-                    let list: Array<string> = ["audioPlayback", "location"];
-                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then(() => {
-                        console.info("Operation startBackgroundRunning succeeded");
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
-            });
-        } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
+      // 点击通知后，将要执行的动作列表
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
         }
+      ],
+      // 点击通知后，动作类型
+      actionType: wantAgent.OperationType.START_ABILITY,
+      // 使用者自定义的一个私有值
+      requestCode: 0,
+      // 点击通知后，动作执行属性
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    try {
+      // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+        try {
+          let list: Array<string> = ["dataTransfer"];
+          backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+            console.info("Operation startBackgroundRunning succeeded");
+            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
+            this.id = res.notificationId;
+          }).catch((error: BusinessError) => {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+          });
+        } catch (error) {
+          console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      });
+    } catch (error) {
+      console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
+  }
+
+  updateProcess(process: Number) {
+    // 应用定义下载类通知模版
+    let downLoadTemplate: notificationManager.NotificationTemplate = {
+      name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
+      data: {
+        title: '文件下载：music.mp4', // 必填。
+        fileName: 'senTemplate', // 必填。
+        progressValue: process, // 应用更新进度值，自定义。
+      }
+    };
+    let request: notificationManager.NotificationRequest = {
+      content: {
+        // 系统实况类型，保持不变
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+        systemLiveView: {
+          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。保持不变
+          title: "test", // 应用自定义
+          text: "test", // 应用自定义
+        }
+      },
+      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
+      notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
+      template: downLoadTemplate // 应用需要设置的模版名称
+    };
+
+    try {
+      notificationManager.publish(request).then(() => {
+        console.info("publish success, id= " + this.id);
+      }).catch((err: BusinessError) => {
+        console.error(`publish fail: ${JSON.stringify(err)}`);
+      });
+    } catch (err) {
+      console.error(`publish fail: ${JSON.stringify(err)}`);
+    }
+  }
 };
 ```
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
 
-updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt;
+updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
 更新长时任务，使用promise异步回调。
 
@@ -598,31 +646,30 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -671,3 +718,15 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
+
+## ContinuousTaskNotification<sup>12+</sup>
+
+长时任务通知信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。|
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。|
+| notificationId | number | 是    | 长时任务通知 Id。|

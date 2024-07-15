@@ -294,7 +294,7 @@ LOSCFG_PLATFORM_EXC=y
 ```
 
 ### 中断适配
-要使LiteOS-M系统正常的运转起来，有两个中断服务例程必须重定向到LiteOS-M指定的ISR：HalPendSV和OsTickerHandler。而这取决于适配LiteOS-M系统时是否让LiteOS-M来接管中断向量表。
+要使LiteOS-M系统正常的运转起来，有两个中断服务线程必须重定向到LiteOS-M指定的ISR：HalPendSV和OsTickerHandler。而这取决于适配LiteOS-M系统时是否让LiteOS-M来接管中断向量表。
 ```
 /**
  * @ingroup los_config
@@ -309,14 +309,14 @@ LOSCFG_PLATFORM_EXC=y
 #endif
 ```
 
-#### 操作系统接管还是不接管中断向量
+#### 操作系统是否接管中断向量
 LiteOS接管与否可以通过配置target_config.h中的配置来实现。1接管，0不接管。
 ```
 #define LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT                 0
 ```
 
 
-如果配置为1，这时LiteOS会修改SCB->VTOR为g_hwiForm。所以需要在启动的时候通过调用LITEOS的"ArchHwiCreate"接口把芯片原先的ISRs(中断服务程序)配置到新的中断向量表g_hwiForm中去, 而PendSV和SysTicke的中断服务例程则重定向到HalPendSV和OsTickerHandler。否则芯片原先的ISRs不会响应。
+如果配置为1，这时LiteOS会修改SCB->VTOR为g_hwiForm。所以需要在启动的时候通过调用LITEOS的"ArchHwiCreate"接口把芯片原先的ISRs(中断服务程序)配置到新的中断向量表g_hwiForm中去, 而PendSV和SysTicke的中断服务线程则重定向到HalPendSV和OsTickerHandler。否则芯片原先的ISRs不会响应。
 
 如果配置为0，则使用芯片原有的中断向量表，对于CST85F01而言就是__vectors_start___(NVIC_Vectors_Init会把__isr_vector的内容拷贝过来)。但要想适配LITEOS的话，必须把PendSV和SysTick的中断服务程序重定向到HalPendSV和OsTickHandler才行，否则系统跑不起来。
 

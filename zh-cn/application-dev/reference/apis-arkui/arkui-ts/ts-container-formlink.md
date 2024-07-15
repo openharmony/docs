@@ -21,6 +21,8 @@
 
 FormLink(options: FormLinkOptions)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名       | 参数类型                            | 必填   | 参数描述   |

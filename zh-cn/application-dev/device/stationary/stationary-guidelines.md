@@ -69,8 +69,8 @@
 1. 订阅绝对静止的进入事件，1秒上报一次。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
@@ -85,8 +85,8 @@
 2. 查询绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
@@ -100,8 +100,8 @@
 3. 取消订阅绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));

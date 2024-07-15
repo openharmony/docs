@@ -9,7 +9,7 @@ The **touchEvent** module provides touchscreen events reported by a device. It i
 ## Modules to Import
 
 ```js
-import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput.touchEvent';
+import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 ```
 
 ## Action

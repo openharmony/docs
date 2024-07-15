@@ -9,7 +9,7 @@ The **deviceManager** module provides APIs for managing peripheral devices, incl
 ## Modules to Import
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDevices
@@ -44,8 +44,7 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
@@ -89,9 +88,9 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 interface DataType {
   deviceId : number;
@@ -130,7 +129,7 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 | callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| Yes| Binding result, including the device ID and remote object.|
 
@@ -144,9 +143,9 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -181,7 +180,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
@@ -200,8 +199,8 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -233,7 +232,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
@@ -252,8 +251,8 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -297,7 +296,7 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -344,8 +343,8 @@ Unbinds a peripheral device. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -373,7 +372,7 @@ Represents the peripheral device information.
 
 ## USBDevice
 
-Represents the USB device information.
+USB device information, which is inherited from [Device](#device).
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 

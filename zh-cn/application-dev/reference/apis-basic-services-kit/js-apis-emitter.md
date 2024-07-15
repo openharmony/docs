@@ -18,9 +18,11 @@ import emitter from '@ohos.events.emitter';
 
 ## emitter.on
 
-on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
+on(event: InnerEvent, callback: Callback\<EventData\>): void
 
 持续订阅指定的事件，并在接收到该事件时，执行对应的回调处理函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -46,9 +48,11 @@ emitter.on(innerEvent, () => {
 
 ## emitter.on<sup>11+</sup>
 
-on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
+on(eventId: string, callback:  Callback\<EventData\>): void
 
 持续订阅指定事件，并在接收到该事件时，执行对应的回调处理函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -56,7 +60,7 @@ on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 持续订阅的事件，不支持空字符串。                       |
+| eventId    | string                              | 是   | 持续订阅的事件。长度不超过10240字节的自定义字符串，且不可为空字符。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -68,11 +72,52 @@ emitter.on("eventId", () => {
 });
 ```
 
+## emitter.on<sup>12+</sup>
+
+on(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
+
+持续订阅指定事件，并在接收到该事件时，执行对应的回调处理函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                   |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| eventId    | string                              | 是   | 持续订阅的事件。长度不超过10240字节的自定义字符串，且不可为空字符。                       |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
+
+**示例：**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// 收到eventId为"eventId"的事件后执行回调函数
+emitter.on("eventId", callback);
+```
+
 ## emitter.once
 
-once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
+once(event: InnerEvent, callback: Callback\<EventData)\>): void
 
 单次订阅指定的事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -98,9 +143,11 @@ emitter.once(innerEvent, () => {
 
 ## emitter.once<sup>11+</sup>
 
-once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
+once(eventId: string, callback: Callback\<EventData\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -108,7 +155,7 @@ once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 单次订阅的事件，不支持空字符串。                       |
+| eventId    | string                              | 是   | 单次订阅的事件。长度不超过10240字节的自定义字符串，且不可为空字符。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -120,11 +167,52 @@ emitter.once("eventId", () => {
 });
 ```
 
+## emitter.once<sup>12+</sup>
+
+once(eventId: string, Callback\<GenericEventData<T\>\>): void
+
+单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                   |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| eventId    | string                              | 是   | 单次订阅的事件。长度不超过10240字节的自定义字符串，且不可为空字符。                       |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
+
+**示例：**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// 收到eventId为"eventId"的事件后执行回调函数
+emitter.once("eventId", callback);
+```
+
 ## emitter.off
 
 off(eventId: number): void
 
 取消针对该事件ID的订阅。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -147,13 +235,15 @@ off(eventId: string): void
 
 取消订阅指定事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: `SystemCapability.Notification.Emitter`
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明     |
 | ------- | ------ | ---- | -------- |
-| eventId | string | 是   | 事件ID，不支持空字符串。 |
+| eventId | string | 是   | 事件ID。长度不超过10240字节的自定义字符串，且不可为空字符 |
 
 **示例：**
 
@@ -164,9 +254,11 @@ emitter.off("eventId");
 
 ## emitter.off<sup>10+</sup>
 
-off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: number, callback: Callback\<EventData\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -175,7 +267,7 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 | 参数名  | 类型   | 必填 | 说明   |
 | ------- | ------ | ---- | ------ |
 | eventId | number | 是   | 事件ID。 |
-| callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | 是   | API version 10 新增取消该事件的回调处理函数。   |
+| callback | Callback\<[EventData](#eventdata)\> | 是   |取消该事件的回调处理函数。   |
 
 **示例：**
 
@@ -189,9 +281,11 @@ emitter.off(1, () => {
 
 ## emitter.off<sup>11+</sup>
 
-off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: string, callback: Callback\<EventData\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -199,7 +293,7 @@ off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| eventId  | string                              | 是   | 事件ID，不支持空字符串。                   |
+| eventId  | string                              | 是   | 事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。                   |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 取消该事件的回调处理函数。 |
 
 **示例：**
@@ -212,11 +306,53 @@ emitter.off("eventId", () => {
 });
 ```
 
+## emitter.off<sup>12+</sup>
+
+off(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
+
+取消针对该事件ID的订阅，传入可选参数callback，如果该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                       |
+| -------- | ----------------------------------- | ---- | -------------------------- |
+| eventId  | string                              | 是   | 事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。                   |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | 是   | 取消该事件的回调处理函数。 |
+
+**示例：**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// 取消eventID为"eventId"的事件回调处理函数
+// 如果该回调处理函数没有被订阅，则不做任何处理
+emitter.off("eventId", callback);
+```
+
 ## emitter.emit
 
-emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
+emit(event: InnerEvent, data?: EventData): void
 
 发送指定的事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -247,9 +383,11 @@ emitter.emit(innerEvent, eventData);
 
 ## emitter.emit<sup>11+</sup>
 
-emit(eventId: string, data?: [EventData](#eventdata)): void
+emit(eventId: string, data?: EventData): void
 
 发送指定事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -257,7 +395,7 @@ emit(eventId: string, data?: [EventData](#eventdata)): void
 
 | 参数名  | 类型                    | 必填 | 说明             |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | 是   | 发送的事件ID，不支持空字符串。   |
+| eventId | string                  | 是   | 发送的事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。   |
 | data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
 
 **示例：**
@@ -273,11 +411,13 @@ let eventData: emitter.EventData = {
 emitter.emit("eventId", eventData);
 ```
 
-## emitter.emit<sup>11+</sup>
+## emitter.emit<sup>12+</sup>
 
-emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventdata)): void
+emit(eventId: string, data?: GenericEventData<T\>): void
 
-发送指定优先级事件。
+发送指定事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -285,7 +425,46 @@ emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventd
 
 | 参数名  | 类型                    | 必填 | 说明             |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | 是   | 发送的事件ID，不支持空字符串。   |
+| eventId | string                  | 是   | 发送的事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。   |
+| data    | [GenericEventData<T\>](#genericeventdatat12) | 否   | 事件携带的数据。 |
+
+**示例：**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+class SelfEventData implements emitter.EventData {
+    data: Sample = new Sample();
+}
+
+let eventData = new SelfEventData();
+emitter.emit("eventId", eventData);
+```
+
+## emitter.emit<sup>11+</sup>
+
+emit(eventId: string, options: Options, data?: EventData): void
+
+发送指定优先级事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明             |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | 是   | 发送的事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。   |
 | options | [Options](#options11)   | 是   | 事件优先级。     |
 | data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
 
@@ -306,11 +485,57 @@ let options: emitter.Options = {
 emitter.emit("eventId", options, eventData);
 ```
 
+## emitter.emit<sup>12+</sup>
+
+emit(eventId: string, options: Options, data?: GenericEventData<T\>): void
+
+发送指定优先级事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明             |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | 是   | 发送的事件ID。长度不超过10240字节的自定义字符串，且不可为空字符。   |
+| options | [Options](#options11)   | 是   | 事件优先级。     |
+| data    | [GenericEventData<T\>](#genericeventdatat12) | 否   | 事件携带的数据。 |
+
+**示例：**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+class SelfEventData implements emitter.EventData {
+    data: Sample = new Sample();
+}
+
+let options: emitter.Options = {
+    priority: emitter.EventPriority.HIGH
+};
+
+let eventData = new SelfEventData();
+emitter.emit("eventId", options, eventData);
+```
+
 ## emitter.getListenerCount<sup>11+</sup>
 
 getListenerCount(eventId: number|string): number
 
 获取指定事件的订阅数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -330,6 +555,8 @@ let count = emitter.getListenerCount("eventId");
 
 用于表示事件被发送的优先级。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**:  `SystemCapability.Notification.Emitter`
 
 | 名称      | 值    | 说明                                                |
@@ -343,6 +570,8 @@ let count = emitter.getListenerCount("eventId");
 
 订阅或发送的事件，订阅事件时`EventPriority`不生效。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: `SystemCapability.Notification.Emitter`
 
 | 名称     | 类型                        | 可读 | 可写 | 说明                                 |
@@ -354,6 +583,8 @@ let count = emitter.getListenerCount("eventId");
 
 发送事件时传递的数据。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: `SystemCapability.Notification.Emitter`
 
 | 名称 | 类型           | 可读 | 可写 | 说明           |
@@ -364,9 +595,23 @@ let count = emitter.getListenerCount("eventId");
 
 发送事件的优先级。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**: `SystemCapability.Notification.Emitter`
 
 | 名称     | 类型                            | 可读 | 可写 | 说明           |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
 | priority | [EventPriority](#eventpriority) | 是   | 是   | 事件的优先级。 |
+
+## GenericEventData<T\><sup>12+</sup>
+
+发送事件时传递的泛型数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+| 名称     | 类型                            | 可读 | 可写 | 说明           |
+| -------- | ------------------------------- | ---- | ---- | -------------- |
+| data | 泛型类型T | 是   | 是   | 发送事件时传递的数据。 |
 

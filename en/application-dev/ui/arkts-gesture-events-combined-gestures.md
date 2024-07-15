@@ -155,7 +155,7 @@ struct Index {
 
 ## Exclusive Recognition
 
-For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture recognition mode, all registered gestures are recognized at once. One any of the gestures is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
+For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture recognition mode, all registered gestures are recognized at once. Once any of the gestures is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
 
 For example, if the tap gesture and the double-tap gesture are bound to the **\<Column>** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
 

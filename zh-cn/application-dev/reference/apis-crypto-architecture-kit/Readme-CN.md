@@ -1,4 +1,4 @@
-# Crypto Architecture Kit API参考
+# Crypto Architecture Kit（加解密算法框架服务）
 
 - ArkTS API
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)

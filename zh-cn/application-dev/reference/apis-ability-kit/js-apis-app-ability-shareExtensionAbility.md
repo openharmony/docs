@@ -15,7 +15,7 @@ ShareExtensionAbility是为开发者提供分享操作业务模板，继承自[U
 ## 导入模块
 
 ```ts
-import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -136,9 +136,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 3. ShareExtAbility.ets文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
   ```ts
-  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import Want from '@ohos.app.ability.Want';
+  import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = "[ShareExtAbility]";
 
@@ -177,7 +175,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
   }
   ```
 
-4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“shared”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
    ```json
    {
@@ -188,7 +186,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "name": "ShareExtAbility",
            "icon": "$media:icon",
            "description": "share",
-           "type": "share",
+           "type": "shared",
            "exported": true,
            "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }

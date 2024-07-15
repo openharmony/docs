@@ -10,7 +10,7 @@ formError模块提供获取卡片错误码的能力。
 ## 导入模块
 
 ```ts
-import formError from '@ohos.application.formError';
+import { formError } from '@kit.FormKit'
 ```
 
 ## 权限
@@ -47,4 +47,3 @@ import formError from '@ohos.application.formError';
 | ERR_SYSTEM_RESPONSES_FAILED        | 30    | 系统服务响应失败。   |
 | ERR_FORM_DUPLICATE_ADDED        | 31    | 重复添加卡片。   |
 | ERR_IN_RECOVERY    | 36    | 卡片数据覆盖失败。   |
-

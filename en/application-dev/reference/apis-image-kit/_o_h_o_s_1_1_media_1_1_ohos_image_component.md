@@ -50,6 +50,12 @@ int32_t OhosImageComponent::componentType
 
 Type of the pixel data.
 
+| Value| Description|
+| ------ | ----------------------- |
+| 1 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y, luminance information|
+| 2 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_U, chrominance component.|
+| 3 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_V, chrominance component.|
+| 4 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG, JPEG format.|
 
 ### pixelStride
 

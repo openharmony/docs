@@ -32,7 +32,7 @@ The logs are displayed by the bundle name, fault, and time.
 
 ### Collecting Logs by Using faultLogger APIs
 
-The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis/js-apis-faultLogger.md).
+The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md).
 
 
 ## appfreeze Detection
@@ -150,7 +150,7 @@ The following example shows the memory usage information of the process.
 
 ### Specific Information in the Log Body (Application Main Thread Timeout)
 
-According to [Application Main Thread Timeout] (#application-main-thread-timeout), the log in which **Reason** is **THREAD\_BLOCK\_6S** consists of two parts: THREAD\_BLOCK\_3S and THREAD\_BLOCK\_6S. By comparing the two parts, you can determine whether the appfreeze is due to a suspension or an excess number of tasks.
+According to [Application Main Thread Timeout](#application-main-thread-timeout), the log in which **Reason** is **THREAD\_BLOCK\_6S** consists of two parts: THREAD\_BLOCK\_3S and THREAD\_BLOCK\_6S. By comparing the two parts, you can determine whether the appfreeze is due to a suspension or an excess number of tasks.
 
 THREAD\_BLOCK\_3S is followed by THREAD\_BLOCK\_6S in the log. You can use the **EVENTNAME** field to search for the locations of the two events in the log.
 
@@ -187,7 +187,7 @@ For a lifecycle switching timeout, **Reason** can be **LIFECYCLE\_TIMEOUT** or *
 
 MSG indicates the lifecycle that encounters a timeout.
 
-In this example, **LIFECYCLE\_TIMEOUT** indicates that the timeout occurs during switching of the ability to the background, and **APP\_LIFECYCLE\_TIMEOUT** indicates that the timeout occurs in the application termination phase. You can locate related HiLog logs according to the timeout duration described in [Lifecycle Switching Timeout] (#lifecycle-switching-timeout). 
+In this example, **LIFECYCLE\_TIMEOUT** indicates that the timeout occurs during switching of the ability to the background, and **APP\_LIFECYCLE\_TIMEOUT** indicates that the timeout occurs in the application termination phase. You can locate related HiLog logs according to the timeout duration described in [Lifecycle Switching Timeout](#lifecycle-switching-timeout). 
 
 LIFECYCLE_TIMEOUT:
 

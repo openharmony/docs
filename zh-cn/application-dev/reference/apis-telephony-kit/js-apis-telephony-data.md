@@ -1,6 +1,6 @@
 # @ohos.telephony.data (蜂窝数据)
 
-蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
+蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
 >**说明：**
 >
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 ## data.getDefaultCellularDataSlotId
@@ -29,8 +29,8 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
     if(err){
@@ -58,8 +58,8 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId().then((data: number) => {
     console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -85,7 +85,7 @@ getDefaultCellularDataSlotIdSync(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -108,8 +108,8 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
     if(err){
@@ -137,8 +137,8 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
     console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
@@ -164,8 +164,8 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
     if(err){
@@ -193,8 +193,8 @@ getCellularDataState(): Promise\<DataConnectState\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
     console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
@@ -226,17 +226,17 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
     if(err){
@@ -270,21 +270,62 @@ isCellularDataEnabled(): Promise\<boolean\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled().then((data: boolean) => {
     console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## data.isCellularDataEnabledSync<sup>12+</sup>
+
+isCellularDataEnabledSync(): boolean
+
+检查蜂窝数据业务是否启用，调用此API返回结果。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 用来返回检查蜂窝数据业务是否启用。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 8300002  | Service connection failed. |
+| 8300003  | System internal error.     |
+| 8300999  | Unknown error.             |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let isEnabled: boolean = data.isCellularDataEnabledSync();
+    console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
+} catch (err: BusinessError) {
+    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(err)}`);  
+}
 ```
 
 ## data.isCellularDataRoamingEnabled
@@ -311,17 +352,17 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
     if(err){
@@ -361,17 +402,17 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
     console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -380,6 +421,55 @@ data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
 });
 ```
 
+## data.isCellularDataRoamingEnabledSync<sup>12+</sup>
+
+isCellularDataRoamingEnabledSync(slotId: number): boolean
+
+检查蜂窝数据业务是否启用漫游，调用此API返回结果。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 用来返回检查蜂窝数据业务是否启用漫游。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Service connection failed.                                   |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error.                                               |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = data.isCellularDataRoamingEnabledSync(slotId);
+    console.log(`isCellularDataRoamingEnabledSync success : ${isEnabled}`);
+} catch (err: BusinessError) {
+    console.error(`isCellularDataRoamingEnabledSync fail : err->${JSON.stringify(err)}`);  
+}
+```
 
 ## data.getDefaultCellularDataSimId<sup>10+</sup>
 
@@ -398,7 +488,7 @@ getDefaultCellularDataSimId(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```

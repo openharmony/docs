@@ -1,6 +1,6 @@
 # Generating an Asymmetric Key Pair Based on Key Parameters
 
-This topic uses RSA and ECC as an example to describe how to generate an asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
+This topic walks you through on how to generate an RSA, an ECC, and an SM2 asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
 
 The **KeyPair** object created can be used for subsequent operations, such as encryption and decryption. The obtained key parameter properties can be used for key storage and transfer.
 
@@ -27,7 +27,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Example: Generate an RSA public key based on key parameters (using callback-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -72,16 +72,16 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     let rsaPubKeySpec = genRsa2048PubKeySpec();
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
     rsaGeneratorSpec.generatePubKey((error, key) => {
+      if (error) {
+        console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
+      }
       let pubKey = key;
       let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
       let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
       if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-        AlertDialog.show({ message: 'error pub key big number' });
+        console.error('error pub key big number');
       } else {
         console.info('n, e in the pubKey are same as the spec.');
-      }
-      if (error) {
-        console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
       }
     });
   }
@@ -89,7 +89,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Synchronously return the result ([generatePubKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkeysync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -139,7 +139,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
         let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
         let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
         if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-          AlertDialog.show({ message: 'error pub key big number' });
+          console.error('error pub key big number');
         } else {
           console.info('n, e in the pubKey are same as the spec.');
         }
@@ -170,8 +170,8 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 - Example: Generate an ECC key pair based on key parameters (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Print bigint information.
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -274,7 +274,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
     if (typeof bnValue === 'string') {
@@ -387,7 +387,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Example: Generate an SM2 key based on the elliptic curve name (using promise-based APIs)
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -415,7 +415,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');

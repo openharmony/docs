@@ -12,19 +12,32 @@ Not supported
 
 ## APIs
 
-Canvas(context?: CanvasRenderingContext2D)
+Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext)
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory  | Description                                    |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | For details, see **CanvasRenderingContext2D**. A **CanvasRenderingContext2D** object cannot be shared by multiple **Canvas** objects.|
+| Name | Type                                                    | Mandatory| Description                                                    |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) \| [DrawingRenderingContext<sup>12+</sup>](ts-drawingrenderingcontext.md) | No  | 2D rendering context for a canvas.<br>**CanvasRenderingContext2D**: Canvases cannot share one **CanvasRenderingContext2D** object. For details, see [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md). **DrawingRenderingContext**: Canvases cannot share one **DrawingRenderingContext** object. For details, see [DrawingRenderingContext](ts-drawingrenderingcontext.md).|
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+### enableAnalyzer<sup>12+</sup>
+
+Specifies whether to enable the AI image analyzer. This attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12) in [context](ts-canvasrenderingcontext2d.md).
+This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable  | boolean | Yes  | Whether to enable the AI image analyzer. The value **true** means to enable the AI image analyzer.<br>Default value: **false**|
 
 ## Events
 
@@ -32,9 +45,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                        | Description                                      |
 | -------------------------- | ---------------------------------------- |
-| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>The **onAreaChange** event is triggered after the **onReady** event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
 **Example**
+
+This example describes how to use the methods in **CanvasRenderingContext2D** for drawing on a canvas.
 
 ```ts
 // xxx.ets
@@ -60,3 +75,31 @@ struct CanvasExample {
 }
 ```
   ![en-us_image_0000001194032666](figures/en-us_image_0000001194032666.png)
+
+
+This example describes how to use the methods in **DrawingRenderingContext** for drawing on a canvas.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CanvasExample {
+  private context: DrawingRenderingContext = new DrawingRenderingContext()
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.context.canvas.drawCircle(200, 200, 100)
+          this.context.invalidate()
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+  ![en-us_image_0000001194032666](figures/canvas_drawingRenderingContext.png)

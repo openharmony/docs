@@ -7,7 +7,6 @@ Provides APIs related to MindSpore Lite model inference.
 
 **Since**: 9
 
-
 ## Summary
 
 
@@ -64,6 +63,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | Defines training optimization levels.|
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | Defines quantization types.|
 | [NNRTDeviceDesc](#nnrtdevicedesc) | Defines NNRt device information, including the device ID and device name.|
+| [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) | Handle of the memory allocator.|
 
 
 ### Enums
@@ -112,18 +112,18 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs) (size_t \*num) | Obtains the descriptions of all NNRt devices in the system.|
 | [OH_AI_GetElementOfNNRTDeviceDescs](#oh_ai_getelementofnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*descs, size_t index) | Obtains the pointer to an element in the NNRt device description array.|
 | [OH_AI_DestroyAllNNRTDeviceDescs](#oh_ai_destroyallnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*\*desc) | Destroys the NNRt device description array obtained by [OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs).|
-| [OH_AI_GetDeviceIdFromNNRTDeviceDesc](#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | Obtains the NNRt device ID from the specified NNRt device description. Note that this ID is valid only for NNRt devices.|
+| [OH_AI_GetDeviceIdFromNNRTDeviceDesc](#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRtDeviceDesc](#nnrtdevicedesc) \*desc) | Obtains the NNRt device ID from the specified NNRt device description. Note that this ID is valid only for NNRt devices.|
 | [OH_AI_GetNameFromNNRTDeviceDesc](#oh_ai_getnamefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | Obtains the NNRt device name from the specified NNRt device description.|
-| [OH_AI_GetTypeFromNNRTDeviceDesc](#oh_ai_gettypefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | Obtains the NNRt device type from the specified NNRt device description.|
+| [OH_AI_GetTypeFromNNRtDeviceDesc](#oh_ai_gettypefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | Obtains the NNRt device type from the specified NNRt device description.|
 | [OH_AI_CreateNNRTDeviceInfoByName](#oh_ai_creatennrtdeviceinfobyname) (const char \*name) | Searches for the NNRt device with the specified name and creates the NNRt device information based on the information about the first found NNRt device.|
 | [OH_AI_CreateNNRTDeviceInfoByType](#oh_ai_creatennrtdeviceinfobytype) ([OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) type) | Searches for the NNRt device with the specified type and creates the NNRt device information based on the information about the first found NNRt device.|
-| [OH_AI_DeviceInfoSetDeviceId](#oh_ai_deviceinfosetdeviceid) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, size_t device_id) | Sets the ID of an NNRt device. This function is available only for NNRt devices.|
-| [OH_AI_DeviceInfoGetDeviceId](#oh_ai_deviceinfogetdeviceid) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the ID of an NNRt device. This function is available only for NNRt devices.|
-| [OH_AI_DeviceInfoSetPerformanceMode](#oh_ai_deviceinfosetperformancemode) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_PerformanceMode](#oh_ai_performancemode) mode) | Sets the performance mode of an NNRt device. This function is available only for NNRt devices.|
-| [OH_AI_DeviceInfoGetPerformanceMode](#oh_ai_deviceinfogetperformancemode) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the performance mode of an NNRt device. This function is available only for NNRt devices.|
+| [OH_AI_DeviceInfoSetDeviceId](#oh_ai_deviceinfosetdeviceid) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, size_t device_id) | Sets the NNRt device ID. This function is available only for NNRt devices.|
+| [OH_AI_DeviceInfoGetDeviceId](#oh_ai_deviceinfogetdeviceid) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the NNRt device ID. This function is available only for NNRt devices.|
+| [OH_AI_DeviceInfoSetPerformanceMode](#oh_ai_deviceinfosetperformancemode) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_PerformanceMode](#oh_ai_performancemode) mode) | Sets the NNRt performance mode. This function is available only for NNRt devices.|
+| [OH_AI_DeviceInfoGetPerformanceMode](#oh_ai_deviceinfogetperformancemode) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the NNRt performance mode. This function is available only for NNRt devices.|
 | [OH_AI_DeviceInfoSetPriority](#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](#oh_ai_priority) priority) | Sets the priority of an NNRt task. This function is available only for NNRt devices.|
 | [OH_AI_DeviceInfoGetPriority](#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the priority of an NNRt task. This function is available only for NNRt devices.|
-| [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt device information.|
+| [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.|
 | [OH_AI_ModelCreate](#oh_ai_modelcreate) () | Creates a model object.|
 | [OH_AI_ModelDestroy](#oh_ai_modeldestroy) ([OH_AI_ModelHandle](#oh_ai_modelhandle) \*model) | Destroys a model object.|
 | [OH_AI_ModelBuild](#oh_ai_modelbuild) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | Loads and builds a MindSpore model from the memory buffer.|
@@ -170,6 +170,8 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_TensorGetElementNum](#oh_ai_tensorgetelementnum) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of tensor elements.|
 | [OH_AI_TensorGetDataSize](#oh_ai_tensorgetdatasize) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of bytes of the tensor data.|
 | [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | Sets the tensor as the user data. This function allows you to reuse user data as the model input, which helps to reduce data copy by one time. > **NOTE**<br>The user data is type of external data for the tensor and is not automatically released when the tensor is destroyed. The caller needs to release the data separately. In addition, the caller must ensure that the user data is valid during use of the tensor.|
+| [OH_AI_TensorGetAllocator](#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains a memory allocator. The allocator is responsible for allocating memory for tensors.|
+| [OH_AI_TensorSetAllocator](#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) allocator) | Sets the memory allocator.  The allocator is responsible for allocating memory for tensors.|
 
 
 ## Macro Description
@@ -199,15 +201,26 @@ typedef struct NNRTDeviceDesc NNRTDeviceDesc
 
 **Description**
 
-Defines the NNRt device information, including the device ID and device name.
+Defines NNRt device information, including the device ID and device name.
 
 **Since**: 10
 
+### OH_AI_AllocatorHandle
+
+```
+typedef void *OH_AI_AllocatorHandle
+```
+
+**Description**
+
+Handle of the memory allocator.
+
+**Since**: 12
 
 ### OH_AI_CallBackParam
 
 ```
-typedef struct OH_AI_CallBackParamOH_AI_CallBackParam
+typedef struct OH_AI_CallBackParam OH_AI_CallBackParam
 ```
 
 **Description**
@@ -233,7 +246,7 @@ Defines the pointer to the MindSpore context.
 ### OH_AI_DataType
 
 ```
-typedef enum OH_AI_DataTypeOH_AI_DataType
+typedef enum OH_AI_DataType OH_AI_DataType
 ```
 
 **Description**
@@ -259,7 +272,7 @@ Defines the pointer to the MindSpore device information.
 ### OH_AI_DeviceType
 
 ```
-typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
+typedef enum OH_AI_DeviceType OH_AI_DeviceType
 ```
 
 **Description**
@@ -272,7 +285,7 @@ Defines the supported device types.
 ### OH_AI_Format
 
 ```
-typedef enum OH_AI_FormatOH_AI_Format
+typedef enum OH_AI_Format OH_AI_Format
 ```
 
 **Description**
@@ -313,7 +326,7 @@ Defines the pointer to a model object.
 ### OH_AI_ModelType
 
 ```
-typedef enum OH_AI_ModelTypeOH_AI_ModelType
+typedef enum OH_AI_ModelType OH_AI_ModelType
 ```
 
 **Description**
@@ -326,12 +339,12 @@ Defines model file types.
 ### OH_AI_NNRTDeviceType
 
 ```
-typedef enum OH_AI_NNRTDeviceTypeOH_AI_NNRTDeviceType
+typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 ```
 
 **Description**
 
-Defines NNRt device types.
+Defines the NNRt device types.
 
 **Since**: 10
 
@@ -339,7 +352,7 @@ Defines NNRt device types.
 ### OH_AI_PerformanceMode
 
 ```
-typedef enum OH_AI_PerformanceModeOH_AI_PerformanceMode
+typedef enum OH_AI_PerformanceMode OH_AI_PerformanceMode
 ```
 
 **Description**
@@ -352,7 +365,7 @@ Defines performance modes of the NNRt device.
 ### OH_AI_Priority
 
 ```
-typedef enum OH_AI_PriorityOH_AI_Priority
+typedef enum OH_AI_Priority OH_AI_Priority
 ```
 
 **Description**
@@ -365,7 +378,7 @@ Defines NNRt inference task priorities.
 ### OH_AI_Status
 
 ```
-typedef enum OH_AI_StatusOH_AI_Status
+typedef enum OH_AI_Status OH_AI_Status
 ```
 
 **Description**
@@ -391,7 +404,7 @@ Defines the handle of a tensor object.
 ### OH_AI_TensorHandleArray
 
 ```
-typedef struct OH_AI_TensorHandleArrayOH_AI_TensorHandleArray
+typedef struct OH_AI_TensorHandleArray OH_AI_TensorHandleArray
 ```
 
 **Description**
@@ -488,11 +501,11 @@ Defines the supported device types.
 
 | Value| Description|
 | -------- | -------- |
-| OH_AI_DEVICETYPE_CPU | Device type: CPU|
-| OH_AI_DEVICETYPE_GPU | Device type: GPU|
-| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU|
-| OH_AI_DEVICETYPE_NNRT | Device type: NNRt<br>OHOS device range: [60, 80)|
-| OH_AI_DEVICETYPE_INVALID | Invalid device type|
+| OH_AI_DEVICETYPE_CPU | CPU.|
+| OH_AI_DEVICETYPE_GPU | GPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.|
+| OH_AI_DEVICETYPE_KIRIN_NPU | Kirin NPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.<br>To use KIRIN_NPU, set **OH_AI_DEVICETYPE_NNRT**.|
+| OH_AI_DEVICETYPE_NNRT | NNRt, a cross-chip inference and computing runtime oriented to the AI field.<br>OHOS device range: [60, 80)|
+| OH_AI_DEVICETYPE_INVALID | Invalid device type.|
 
 
 ### OH_AI_Format
@@ -554,7 +567,7 @@ enum OH_AI_NNRTDeviceType
 
 **Description**
 
-Defines NNRt device types.
+Defines the NNRt device types.
 
 **Since**: 10
 
@@ -942,7 +955,7 @@ Searches for the NNRt device with the specified name and creates the NNRt device
 
 | Name| Description|
 | -------- | -------- |
-| name | Name of the NNRt device.|
+| name | Name of the target NNRt device.|
 
 **Returns**
 
@@ -999,7 +1012,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 **Description**
 
-Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt device information.
+Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.
 
 >**NOTE**<br>Key value pairs currently supported include {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"}, and {"QuantParam": "YourQuantConfig"}. Replace the actual value as required.
 
@@ -1069,7 +1082,7 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId (const OH_AI_DeviceInfoHandle devic
 
 **Description**
 
-Obtains the ID of an NNRt device. This function is available only for NNRt devices.
+Obtains the NNRt device ID. This function is available only for NNRt devices.
 
 **Since**: 10
 
@@ -1161,7 +1174,7 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode (const OH_AI_
 
 **Description**
 
-Obtains the performance mode of an NNRt device. This function is available only for NNRt devices.
+Obtains the NNRt performance mode. This function is available only for NNRt devices.
 
 **Since**: 10
 
@@ -1253,7 +1266,7 @@ OH_AI_API void OH_AI_DeviceInfoSetDeviceId (OH_AI_DeviceInfoHandle device_info, 
 
 **Description**
 
-Sets the ID of an NNRt device. This function is available only for NNRt devices.
+Sets the NNRt device ID. This function is available only for NNRt devices.
 
 **Since**: 10
 
@@ -1313,7 +1326,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode (OH_AI_DeviceInfoHandle device
 
 **Description**
 
-Sets the performance mode of an NNRt device. This function is available only for NNRt devices.
+Sets the NNRt performance mode. This function is available only for NNRt devices.
 
 **Since**: 10
 
@@ -2066,6 +2079,28 @@ Creates a tensor object.
 
 Handle of a tensor object.
 
+### OH_AI_TensorGetAllocator()
+
+```
+OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor)
+```
+
+**Description**
+
+Obtains a memory allocator. The allocator is responsible for allocating memory for tensors.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| tensor | Handle of the tensor object.|
+
+**Returns**
+
+Handle of the memory allocator.
+
 
 ### OH_AI_TensorDestroy()
 
@@ -2269,6 +2304,29 @@ Obtains the tensor shape.
 **Returns**
 
 Shape array.
+
+### OH_AI_TensorSetAllocator()
+
+```
+OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator)
+```
+
+**Description**
+
+Sets the memory allocator. The allocator is responsible for allocating memory for tensors.
+
+**Since**: 12
+
+**Parameters**
+
+| Name     | Description                |
+| --------- | -------------------- |
+| tensor    | Handle of the tensor object.      |
+| allocator | Handle of the memory allocator.|
+
+**Returns**
+
+Execution status code. The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_TensorSetData()

@@ -369,7 +369,7 @@ struct Index {
 
 **解决措施**
 
-setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在2in1上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
 
 **参考链接**
 
@@ -407,3 +407,56 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
 1. 进程模型：1个主进程、多个render进程。
 2. 渲染机制：web自渲染。
 
+
+## 系统目前是否支持Webrtc的功能？规格是什么？
+
+**解决措施**
+
+1. WebView支持Webrtc的P-P功能以及音视频流功能。
+2. 非WebView场景，系统不直接提供Webrtc，但会提供技术支持，比如支持三方gn+ninja交叉编译方式适配Webrtc（RR-30030985），包含以下两点：
+   * sdk支持gn+ninja交叉编译方式
+   * 提供编译样例指导
+
+
+## Webview如何设置mixcontent策略，用以解决http与https混合加载的问题？
+
+**解决措施**
+
+Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
+
+**参考链接**
+
+[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+
+
+## WebView除了设置缓存，还有什么方式可以提升渲染速度吗？
+
+**解决措施**
+
+使用prepareForPageLoad接口开启预解析。
+
+**参考链接**
+
+[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+
+
+## 如何预创建Web组件？如何回收web组件复用？
+
+**解决措施**
+
+通过ArkUI提供的组件动态上下树能力，实现Web组件预创建、回收复用，使用指南见参考链接。
+
+**参考链接**
+
+[动态创建Web组件](../web/web-page-loading-with-web-components.md#动态创建web组件)
+
+
+## 目前OpenHarmony是否有提供类似其他系统的JavaScript引擎能力?
+
+**解决措施**
+
+目前已支持，详情请见参考链接。
+
+**参考链接**
+
+[JSVM](../reference/common/_j_s_v_m.md)

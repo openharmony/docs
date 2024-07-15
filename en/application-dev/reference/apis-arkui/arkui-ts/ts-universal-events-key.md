@@ -8,7 +8,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 
 ## onKeyEvent
 
-onKeyEvent(event: (event: KeyEvent) => void)
+onKeyEvent(event: (event: KeyEvent) => void): T
 
 Triggered when a key event occurs.
 
@@ -20,6 +20,11 @@ Triggered when a key event occurs.
 | ------ | ----------------------------- | ---- | ------------------ |
 | event  | [KeyEvent](#keyevent) | Yes  | **KeyEvent** object.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## KeyEvent
 

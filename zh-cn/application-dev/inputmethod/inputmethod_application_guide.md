@@ -41,7 +41,7 @@
    在InputMethodService.ts文件中，增加导入InputMethodExtensionAbility的依赖包，自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调。
 
    ```ts
-   import Want from '@ohos.app.ability.Want';
+   import { Want } from '@kit.AbilityKit';
    import keyboardController from './model/KeyboardController';
    import { InputMethodExtensionAbility } from '@kit.IMEKit';
    
@@ -61,8 +61,8 @@
 2. KeyboardController.ts文件。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import display from '@ohos.display';
+   import { common } from '@kit.AbilityKit';
+   import { display } from '@kit.ArkUI';
    import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
@@ -136,7 +136,6 @@
      private registerListener(): void
      {
        this.registerInputListener(); // 注册对输入法框架服务的监听
-       ...
        // 注册隐藏键盘事件监听等
      }
    
@@ -339,7 +338,25 @@
 
 ## 验证方法
 
-1. 使用hdc命令，拉起选择输入法弹窗应用：`hdc shell aa start ability -a InputMethod -b com.ohos.inputmethodchoosedialog`
+1. 在应用中通过接口拉起输入法切换列表弹窗。
+
+  ```ts
+  import { inputMethod } from '@kit.IMEKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+   
+  let inputMethodSetting = inputMethod.getSetting();
+  try {
+    inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
+      if (err) {
+        console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.log('Succeeded in showing optionalInputMethods.');
+    });
+  } catch (err) {
+    console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+  }
+  ```
 
 2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
 
@@ -362,4 +379,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 
+- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 

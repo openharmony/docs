@@ -10,24 +10,24 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 开发实例，包括获取特定时区、计算固定和实际时区偏移量、获取和遍历时区列表等。
    ```ts
    // 获取巴西时区
-   let timezone = I18n.getTimeZone("America/Sao_Paulo"); // 传入特定时区，创建时区类
+   let timezone = i18n.getTimeZone("America/Sao_Paulo"); // 传入特定时区，创建时区类
    let timezoneId = timezone.getID();// America/Sao_Paulo
    
    // 获取城市Id对应的时区对象
-   let aucklandTimezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
+   let aucklandTimezone = i18n.TimeZone.getTimezoneFromCity("Auckland");
    let aucklandTzId = aucklandTimezone.getID(); // Pacific/Auckland
    
    // 时区的本地化名称
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
    
    // 本地化城市名称
-   let cityDisplayName = I18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // 奥克兰（新西兰）
+   let cityDisplayName = i18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // 奥克兰 (新西兰)
    
    // 时区的固定偏移量
    let rawOffset = timezone.getRawOffset(); // -10800000
@@ -36,10 +36,10 @@
    let offset = timezone.getOffset(1234567890);// -10800000
    
    // 系统支持的时区Id列表
-   let ids = I18n.TimeZone.getAvailableIDs(); // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
+   let ids = i18n.TimeZone.getAvailableIDs(); // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
    
    // 系统支持的时区城市Id列表
-   let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
+   let cityIdArray = i18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // 遍历时区城市Id列表
    let timezoneList: Array<object> = [];  // 呈现给用户的时区列表
    class Item {
@@ -50,8 +50,8 @@
    }
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // 本地化城市名称
+       let timezone = i18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
+       let cityDisplayName = i18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // 本地化城市名称
        let timestamp = (new Date()).getTime()
        let item : Item = {
            cityDisplayName : cityDisplayName,
@@ -63,7 +63,7 @@
     }
    
    // 指定地理坐标所在的时区对象数组
-   let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
+   let timezoneArray = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
    for (let i =0;i < timezoneArray.length; i++) {
        let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
    }
@@ -73,23 +73,24 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
-   import Intl from '@ohos.intl';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 选择时区列表中的时区放入应用偏好时区列表中。
    ```ts
-   let appPreferredTimeZoneList = [] // 应用偏好时区列表
+   let timezone1 = i18n.getTimeZone("America/Sao_Paulo");
+   let timezone2 = i18n.getTimeZone();
+   let appPreferredTimeZoneList: Array<i18n.TimeZone> = [] // 应用偏好时区列表
    appPreferredTimeZoneList.push(timezone1);
    appPreferredTimeZoneList.push(timezone2);
    ```
 
 3. 遍历应用偏好时区列表，获取各时区时间。
    ```ts
-   let locale = I18n.System.getSystemLocale();
+   let locale = i18n.System.getSystemLocale();
    for (let i = 0 ; i < appPreferredTimeZoneList.length ; i++) {
-       let timezone = appPreferredTimeZoneList[i];
-       let calendar = I18n.getCalendar(locale);
+       let timezone = appPreferredTimeZoneList[i].getID();
+       let calendar = i18n.getCalendar(locale);
        calendar.setTimeZone(timezone); //设置日历对象的时区
        //获取年月日时分秒
        let year = calendar.get("year"); 

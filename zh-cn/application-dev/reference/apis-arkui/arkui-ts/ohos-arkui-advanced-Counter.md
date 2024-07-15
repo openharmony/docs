@@ -9,7 +9,7 @@ Counter是用于精确调节数值的组件。
 ## 导入模块
 
 ```
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, CounterOptions, DateData } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -24,6 +24,8 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 **装饰器类型：**@Component
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数**：
@@ -36,11 +38,14 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 CounterOptions定义Counter的类型及具体式样参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。 |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
@@ -58,6 +63,8 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 CounterType指定Counter的类型，如列表型Counter。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 说明                        |
@@ -70,6 +77,8 @@ CounterType指定Counter的类型，如列表型Counter。
 ## CommonOptions
 
 CommonOptions定义Counter的共通属性和事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,7 +94,9 @@ CommonOptions定义Counter的共通属性和事件。
 
 InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)
+继承于[CommonOptions ](#commonoptions)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,7 +112,9 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 
 NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的属性和事件。
 
-继承于[InlineStyleOptions](#inlinestyleoptions)
+继承于[InlineStyleOptions](#inlinestyleoptions)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,7 +130,9 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 
 DateStyleOptions定义Date style（日期内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)
+继承于[CommonOptions ](#commonoptions)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,6 +147,8 @@ DateStyleOptions定义Date style（日期内联型Counter）的属性和事件�
 
 DateData定义Date通用属性和方法，如年、月、日。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型   | 说明                         |
@@ -139,14 +156,45 @@ DateData定义Date通用属性和方法，如年、月、日。
 | year       | number | 设置日期内联型初始年份。     |
 | month      | number | 设置日期内联型初始月份。     |
 | day        | number | 设置日期内联型初始日。       |
-| toString() | string | 以字符串格式返回当前日期值。 |
+
+### constructor
+
+constructor(year: number, month: number, day: number)
+
+DateData的构造函数。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 说明 |
+| ---------- | ------ | ---------------------------- |
+| year       | number | 设置日期内联型初始年份。     |
+| month      | number | 设置日期内联型初始月份。     |
+| day        | number | 设置日期内联型初始日。       |
+
+### toString
+
+toString(): string
+
+以字符串格式返回当前日期值。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 当前日期值。 |
 
 ## 示例   
 
 ### 示例1
 
 ```ts
-import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -154,15 +202,16 @@ struct ListCounterExample {
   build() {
     Column() {
       //列表型Counter
-      CounterComponent({ options: {
-        type: CounterType.LIST,
-        numberOptions: {
-          label: "价格",
-          min: 0,
-          value: 5,
-          max: 10,
+      CounterComponent({
+        options: {
+          type: CounterType.LIST,
+          numberOptions: {
+            label: "价格",
+            min: 0,
+            value: 5,
+            max: 10
+          }
         }
-      }
       })
     }
   }
@@ -172,7 +221,7 @@ struct ListCounterExample {
 ![listcounter](figures/listcounter.gif)
 ### 示例2
 ```ts
-import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -180,16 +229,17 @@ struct CompactCounterExample {
   build() {
     Column() {
       //紧凑型Counter
-      CounterComponent({ options: {
-        type: CounterType.COMPACT,
-        numberOptions: {
-          label: "数量",
-          value: 10,
-          min: 0,
-          max: 100,
-          step: 10
+      CounterComponent({
+        options: {
+          type: CounterType.COMPACT,
+          numberOptions: {
+            label: "数量",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 10
+          }
         }
-      }
       })
     }
   }
@@ -198,7 +248,7 @@ struct CompactCounterExample {
 ![compactcounter](figures/compactcounter.gif)
 ### 示例3
 ```ts
-import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -206,19 +256,21 @@ struct NumberStyleExample {
   build() {
     Column() {
       //数值内联型Counter
-      CounterComponent({ options: {
-        type: CounterType.INLINE,
-        inlineOptions: {
-          value: 100,
-          min: 10,
-          step: 2,
-          max: 1000,
-          textWidth: 100,
-          onChange: (value: number) => {
-            console.log("onDateChange Date: " + value.toString());
+      CounterComponent({
+        options: {
+          type: CounterType.INLINE,
+          inlineOptions: {
+            value: 100,
+            min: 10,
+            step: 2,
+            max: 1000,
+            textWidth: 100,
+            onChange: (value: number) => {
+              console.log("onDateChange Date: " + value.toString());
+            }
           }
-        } }
-       })
+        }
+      })
     }
   }
 }
@@ -226,24 +278,112 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4
 ```ts
-import {CounterType, CounterComponent, DateData} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct DataStyleExample {
   build() {
     Column() {
       //日期内联型counter
-      CounterComponent({ options: {
-        type: CounterType.INLINE_DATE,
-        dateOptions: {
-          year: 2016,
-          onDateChange: (date: DateData) => {
-            console.log("onDateChange Date: " + date.toString());
+      CounterComponent({
+        options: {
+          type: CounterType.INLINE_DATE,
+          dateOptions: {
+            year: 2016,
+            onDateChange: (date: DateData) => {
+              console.log("onDateChange Date: " + date.toString());
+            }
           }
-        } }
-       })
+        }
+      })
     }
   }
 }
 ```
 ![datestyle](figures/datestyle.gif)
+
+### 示例5
+列表型、紧凑型、数字内联型、日期内联型Counter布局镜像展示
+
+```ts
+// xxx.ets
+import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct CounterPage {
+  @State currentDirection: Direction = Direction.Auto
+
+  build() {
+    Column({}) {
+
+      //列表型Counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.LIST,
+          numberOptions: {
+            label: "价格",
+            min: 0,
+            value: 5,
+            max: 10,
+          }
+        }
+      })
+        .width('80%')
+
+      //数值型Counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.COMPACT,
+          numberOptions: {
+            label: "数量",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 10
+          }
+        }
+      }).margin({ top: 20 })
+
+      //数值内联型Counter
+      CounterComponent({
+        options: {
+          type: CounterType.INLINE,
+          direction: this.currentDirection,
+          inlineOptions: {
+            value: 100,
+            min: 10,
+            step: 2,
+            max: 1000,
+            textWidth: 100,
+            onChange: (value: number) => {
+              console.log("onDateChange Date: " + value.toString());
+            }
+          }
+        }
+      }).margin({ top: 20 })
+      //日期内联型counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.INLINE_DATE,
+          dateOptions: {
+            year: 2024,
+            onDateChange: (date: DateData) => {
+              console.log("onDateChange Date: " + date.toString());
+            }
+          }
+        }
+      }).margin({ top: 20 })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![datestyle](figures/counter_direction.png)

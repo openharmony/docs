@@ -9,7 +9,7 @@ The **FormBindingData** module provides APIs for widget data binding. You can us
 ## Modules to Import
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
+import { formBindingData } from '@kit.FormKit';
 ```
 
 
@@ -18,6 +18,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 Defines the subscription information about the widget update by proxy.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -31,6 +33,8 @@ Defines the subscription information about the widget update by proxy.
 
 Describes a **FormBindingData** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 | Name| Type| Mandatory| Description|
@@ -43,6 +47,8 @@ Describes a **FormBindingData** object.
 createFormBindingData(obj?: Object | string): FormBindingData
 
 Creates a **FormBindingData** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -59,16 +65,24 @@ Creates a **FormBindingData** object.
 | ----------------------------------- | --------------------------------------- |
 | [FormBindingData](#formbindingdata) | **FormBindingData** object created based on the passed data.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed |
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
 
 **Example**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import fs from '@ohos.file.fs';
-import Base from '@ohos.base';
+import { formBindingData } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 try {
-  let fd = fs.openSync('/path/to/form.png');
+  let fd = fileIo.openSync('/path/to/form.png');
   let formImagesParam: Record<string, object> = {
     'image': fd
   };
@@ -79,8 +93,8 @@ try {
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  let code = (error as Base.BusinessError).code;
-  let message = (error as Base.BusinessError).message;
+  let code = (error as BusinessError).code;
+  let message = (error as BusinessError).message;
   console.error(`catch error, code: ${code}, message: ${message}`);
 }
 ```

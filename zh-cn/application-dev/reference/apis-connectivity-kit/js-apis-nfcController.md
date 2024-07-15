@@ -9,7 +9,7 @@
 ## **导入模块**
 
 ```js
-import controller from '@ohos.nfc.controller';
+import { nfcController } from '@kit.ConnectivityKit';
 ```
 
 ## NfcState
@@ -17,6 +17,8 @@ import controller from '@ohos.nfc.controller';
 定义不同的NFC状态值。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -66,7 +68,7 @@ openNfc(): boolean
 
 enableNfc(): void
 
-打开NFC开关。
+打开NFC开关，该接口只能被系统应用调用。
 
 **需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
@@ -78,6 +80,8 @@ enableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.closeNfc<sup>(deprecated)</sup>
@@ -103,7 +107,7 @@ closeNfc(): boolean
 
 disableNfc(): void
 
-关闭NFC开关。
+关闭NFC开关，该接口只能被系统应用调用。
 
 **需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
@@ -115,6 +119,8 @@ disableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.isNfcOpen
@@ -125,7 +131,7 @@ isNfcOpen(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -141,7 +147,7 @@ getNfcState(): [NfcState](#nfcstate)
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -151,13 +157,13 @@ getNfcState(): [NfcState](#nfcstate)
 
 ## controller.on('nfcStateChange')
 
-on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
+on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 注册NFC开关状态事件，通过Callback方式获取NFC状态的变化通知。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数**
   
@@ -168,13 +174,13 @@ on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 ## controller.off('nfcStateChange')
 
-off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
+off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 取消NFC开关状态事件的注册，取消后NFC状态变化时，就不会再收到Callback的通知。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数**
 
@@ -186,41 +192,41 @@ off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 **示例**
 
 ```js
-import controller from '@ohos.nfc.controller';
+import { nfcController } from '@kit.ConnectivityKit';
 
 // register callback to receive the nfc state changed notification
-controller.on("nfcStateChange", (nfcState : number)=> {
-  console.log("controller on callback nfcState: " + nfcState);
+nfcController.on("nfcStateChange", (nfcState : number)=> {
+  console.log("nfcController on callback nfcState: " + nfcState);
 });
 
 // open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
-if (!controller.isNfcOpen()) {
-  let ret = controller.openNfc();
-  console.log("controller openNfc ret: " + ret);
+if (!nfcController.isNfcOpen()) {
+  let ret: boolean = nfcController.openNfc();
+  console.log("nfcController openNfc ret: " + ret);
 }
 
 // from api9, use 'enableNfc' to open nfc.
 try {
-  controller.enableNfc();
-  console.log("controller enableNfc success");
-} catch (busiError) {
-  console.error("controller enableNfc busiError: " + busiError);
+  nfcController.enableNfc();
+  console.log("nfcController enableNfc success");
+} catch (businessError) {
+  console.error("nfcController enableNfc businessError: " + businessError);
 }
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
-if (controller.isNfcOpen()) {
-  let ret = controller.closeNfc();
+if (nfcController.isNfcOpen()) {
+  let ret: boolean = nfcController.closeNfc();
   console.log("controller closeNfc ret: " + ret);
 }
 
 // from api9, use 'disableNfc' to close nfc.
 try {
-  controller.disableNfc();
-  console.log("controller disableNfc success");
-} catch (busiError) {
-  console.error("controller disableNfc busiError: " + busiError);
+  nfcController.disableNfc();
+  console.log("nfcController disableNfc success");
+} catch (businessError) {
+  console.error("nfcController disableNfc businessError: " + businessError);
 }
 
 // unregister callback
-controller.off("nfcStateChange");
+nfcController.off("nfcStateChange");
 ```

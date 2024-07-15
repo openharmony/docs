@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-扩展外设管理主要提供的功能有：查询扩展外设列表、绑定和解绑查询到的设备。
+扩展外设管理主要提供的功能有：查询扩展外设列表、绑定查询到的设备、解绑已绑定的设备、查询扩展外设详细信息和查询扩展外设驱动详细信息。
 
 扩展外设管理开放能力如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
 
@@ -24,6 +24,14 @@
 | unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                 | 解绑设备。                                                                              |
 | unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                       | 解绑设备的Promise形式。                                                                              |
 
+扩展外设管理系统接口如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)。
+
+**表2** 扩展外设管理系统接口
+
+| 接口名                                                                          | 描述              |
+|------------------------------------------------------------------------------|-----------------|
+| queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;  | 查询扩展外设详细信息列表。   |
+| queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt; | 查询扩展外设驱动详细信息列表。 |
 
 ## 开发步骤
 
@@ -33,8 +41,8 @@
 1. 查询设备列表。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let matchDevice: deviceManager.USBDevice | null = null;
     try {
@@ -60,9 +68,9 @@
 2. 绑定相应的设备。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
-    import rpc from '@ohos.rpc';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { rpc } from '@kit.IPCKit';
 
     interface DataType {
       deviceId : number;
@@ -95,8 +103,8 @@
 3. 绑定成功后使用设备驱动能力。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import rpc from '@ohos.rpc';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { rpc } from '@kit.IPCKit';
 
     let option: rpc.MessageOption = new rpc.MessageOption();
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
@@ -120,8 +128,8 @@
 4. 设备使用完成，解绑设备。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
@@ -140,3 +148,39 @@
       console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
     }
     ```
+
+系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
+
+1. 查询扩展外设详细信息列表。
+   ```ts
+   import { deviceManager } from '@kit.DriverDevelopmentKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   try {
+      // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+      let deviceInfos : Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
+      for (let item of deviceInfos) {
+         console.info(`Device id is ${item.deviceId}`)
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to query device info. Code is ${err.code}, message is ${err.message}`);
+    }
+   ```
+
+2. 查询扩展外设驱动详细信息列表。
+   ```ts
+   import { deviceManager } from '@kit.DriverDevelopmentKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   try {
+      // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
+      let driverInfos : Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo("driver-12345");
+      for (let item of driverInfos) {
+         console.info(`driver name is ${item.driverName}`)
+      }
+   } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to query driver info. Code is ${err.code}, message is ${err.message}`);
+   }
+   ```

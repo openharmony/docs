@@ -31,9 +31,11 @@ The application then performs an operation, for example, changing the display of
 
 If an application needs to obtain the change information about all audio streams, it can use **AudioStreamManager** to read or listen for the changes of all audio streams.
 
+<!--Del-->
 > **NOTE**
 > 
 > The audio stream change information marked as the system API can be viewed only by system applications.
+<!--DelEnd-->
 
 The figure below shows the call relationship of audio stream management.
 

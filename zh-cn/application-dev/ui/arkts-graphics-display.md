@@ -38,7 +38,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
-  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount、setImageRawDataCacheSize、setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)。
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
@@ -76,8 +76,8 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   1. 调用接口获取图库的照片url。
       ```ts
-      import picker from '@ohos.file.picker';
-      import { BusinessError } from '@ohos.base';
+      import { picker } from '@kit.CoreFileKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
       @Entry
       @Component
@@ -129,7 +129,7 @@ Image支持加载存档图、多媒体像素图两种类型。
       Image('file://media/Photos/5')
       .width(200)
       ```
-  
+
 - base64
 
   路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
@@ -153,10 +153,9 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
    1. 引用网络权限与媒体库权限。
        ```ts
-       import http from '@ohos.net.http';
-       import ResponseCode from '@ohos.net.http';
-       import image from '@ohos.multimedia.image';
-       import { BusinessError } from '@ohos.base';
+       import { http } from '@kit.NetworkKit';
+       import { image } from '@kit.ImageKit';
+       import { BusinessError } from '@kit.BasicServicesKit';
        ```
    2. 填写网络图片地址。
        ```ts
@@ -164,7 +163,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        http.createHttp().request("https://www.example.com/xxx.png",
          (error: BusinessError, data: http.HttpResponse) => {
            if (error) {
-             console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
+             console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
              OutData = data
            }
@@ -174,7 +173,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
-       if (ResponseCode.ResponseCode.OK === code) {
+       if (http.ResponseCode.ResponseCode.OK === code) {
          let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
          let imageSource: image.ImageSource = image.createImageSource(imageData);
        
@@ -297,9 +296,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .objectFit(ImageFit.Fill)
             .margin(15)
-              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)

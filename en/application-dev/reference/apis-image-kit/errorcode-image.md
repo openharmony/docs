@@ -9,7 +9,7 @@
 
 **Error Message**
 
-Resource Unavailable.
+Resource unavailable.
 
 **Possible Cause**
 
@@ -41,7 +41,7 @@ Check the image and follow the instructions to decode it.
 
 **Error Message**
 
-Rpc error.
+RPC error.
 
 **Possible Cause**
 
@@ -167,7 +167,7 @@ Correct the parameters or user another image.
 
 **Error Message**
 
-Image get data abnormal.
+Failed to get the image data.
 
 **Possible Cause**
 
@@ -255,7 +255,7 @@ Check the operation procedure or use another image.
 
 **Error Message**
 
-The image source data incomplete.
+The image source data is incomplete.
 
 **Possible Cause**
 
@@ -283,7 +283,7 @@ Use an image in a matched format.
 
 **Error Message**
 
-Image unknown format.
+Unknown image format.
 
 **Possible Cause**
 
@@ -341,7 +341,7 @@ Ensure that the image is read or use another image.
 
 **Error Message**
 
-Failed to register plugin.
+Failed to register the plugin.
 
 **Possible Cause**
 
@@ -356,7 +356,7 @@ Correct the input data or use another image.
 
 **Error Message**
 
-Failed to create plugin.
+Failed to create the plugin.
 
 **Possible Cause**
 
@@ -386,7 +386,7 @@ Correct the input data or use another image.
 
 **Error Message**
 
-Image addition pixel mapping failed.
+Failed to add the pixel mappings.
 
 **Possible Cause**
 
@@ -415,7 +415,7 @@ Use another decoding mode.
 
 **Error Message**
 
-Decoding image header abnormal.
+Failed to decode the image header.
 
 **Possible Cause**
 
@@ -430,7 +430,7 @@ Correct the image data or use another image.
 
 **Error Message**
 
-Image decoding exif support.
+The image does not support EXIF decoding.
 
 **Possible Cause**
 
@@ -483,11 +483,39 @@ The image attribute is missing.
 
 Correct the image data or use another image.
 
+## 62980137 Invalid Image Operation
+
+**Error Message**
+
+Invalid media operation.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
+
+## 62980149 Invalid Image Parameter
+
+**Error Message**
+
+Invalid MIME type for the image source.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
+
 ## 62980246 Failure in Reading the Pixel Map
 
 **Error Message**
 
-Failed to read pixel map.
+Failed to read the pixel map.
 
 **Possible Cause**
 
@@ -502,7 +530,7 @@ Re-create the pixel map or change the read permission.
 
 **Error Message**
 
-Writing to pixel mapping failed.
+Failed to write the pixel map.
 
 **Possible Cause**
 

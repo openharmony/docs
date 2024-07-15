@@ -10,7 +10,7 @@ The Network Sharing module allows you to share your device's Internet connection
 ## Modules to Import
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 ```
 
 ## sharing.isSharingSupported
@@ -37,15 +37,15 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -77,15 +77,15 @@ Checks whether network sharing is supported. This API uses a promise to return t
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharingSupported()
@@ -121,15 +121,15 @@ Checks whether network sharing is in progress. This API uses an asynchronous cal
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -161,15 +161,15 @@ Checks whether network sharing is in progress. This API uses a promise to return
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharing()
@@ -208,19 +208,19 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -260,19 +260,19 @@ Starts network sharing of a specified type. This API uses a promise to return th
 | 201       | Permission denied.                           |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -312,7 +312,7 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -322,8 +322,8 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -363,7 +363,7 @@ Stops network sharing of a specified type. This API uses a promise to return the
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -373,8 +373,8 @@ Stops network sharing of a specified type. This API uses a promise to return the
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -412,14 +412,14 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -452,14 +452,14 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsRxBytes()
@@ -496,14 +496,14 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -536,14 +536,14 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTxBytes()
@@ -580,14 +580,14 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -620,14 +620,14 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTotalBytes()
@@ -666,14 +666,14 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
@@ -714,14 +714,14 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing
@@ -761,14 +761,14 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
@@ -803,7 +803,7 @@ Obtains the network sharing state of the specified type. This API uses a promise
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Return value**
@@ -815,8 +815,8 @@ Obtains the network sharing state of the specified type. This API uses a promise
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -856,14 +856,14 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
@@ -904,14 +904,14 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -954,7 +954,7 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingStateChange', (data: boolean) => {
   console.log('on sharingStateChange: ' + JSON.stringify(data));
@@ -991,7 +991,7 @@ Unsubscribes from network sharing state changes. This API uses an asynchronous c
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
@@ -1028,7 +1028,7 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('interfaceSharingStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
@@ -1065,7 +1065,7 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('interfaceSharingStateChange', (data: object) => {
   console.log(JSON.stringify(data));
@@ -1102,7 +1102,7 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingUpstreamChange', (data: object) => {
   console.log('on sharingUpstreamChange:' + JSON.stringify(data));
@@ -1139,7 +1139,7 @@ Unsubscribes from upstream network changes. This API uses an asynchronous callba
 **Example**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));

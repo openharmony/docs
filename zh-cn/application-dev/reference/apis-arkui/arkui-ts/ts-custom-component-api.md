@@ -13,6 +13,8 @@ getUIContext(): UIContext
 
 获取UIContext对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -24,7 +26,7 @@ getUIContext(): UIContext
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -73,7 +75,9 @@ struct MyComponent {
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-获取NavDestinationInfo实例对象。
+查询自定义组件所属的NavDestination信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,13 +90,25 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
-@Entry
+@Component
+export struct NavDestinationExample {
+  build() {
+    NavDestination() {
+      MyComponent()
+    }
+  }
+}
+
 @Component
 struct MyComponent {
+  navDesInfo: uiObserver.NavDestinationInfo | undefined
+
   aboutToAppear() {
-    let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
+    // this指代MyComponent自定义节点，并从该节点向上查找其最近的一个类型为NavDestination的父亲节点
+    this.navDesInfo = this.queryNavDestinationInfo();
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
 
   build() {
@@ -100,3 +116,90 @@ struct MyComponent {
   }
 }
 ```
+
+## queryNavigationInfo<sup>12+</sup>
+
+queryNavigationInfo(): NavigationInfo | undefined
+
+查询自定义组件所属的Navigation信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                                       | 说明      |
+| -------------------------------------------------------------------------- | --------- |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回NavigationInfo实例对象。 |
+
+**示例：**
+
+```ts
+// index.ets
+import { uiObserver } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct MainPage {
+  pathStack: NavPathStack = new NavPathStack()
+
+  build() {
+    Navigation(this.pathStack) {
+      // ...
+    }.id("NavigationId")
+  }
+}
+
+
+@Component
+export struct PageOne {
+  pathStack: NavPathStack = new NavPathStack()
+
+  aboutToAppear() {
+    // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
+    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo()
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    if (navigationInfo !== undefined) {
+      this.pathStack = navigationInfo.pathStack
+    }
+  }
+
+  build() {
+    NavDestination() {
+      // ...
+    }.title('PageOne')
+  }
+}
+```
+
+## queryRouterPageInfo<sup>12+</sup>
+
+queryRouterPageInfo(): RouterPageInfo | undefined;
+
+获取RouterPageInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [RouterPageInfo](../js-apis-arkui-observer.md#routerpageinfo) \| undefined | 返回RouterPageInfo实例对象。 |
+
+**示例：**
+
+```ts
+import { uiObserver } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let info: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+

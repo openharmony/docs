@@ -33,7 +33,7 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) | Yes| - | Controller for the dialog box showing the input method list.|
+| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller for the dialog box showing the input method list.|
 | patternOptions | [PatternOptions](#patternoptions) | No| - | Input method pattern options (for the default input method only).|
 
 ## PatternOptions

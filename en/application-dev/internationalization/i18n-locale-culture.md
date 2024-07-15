@@ -53,7 +53,7 @@ The following uses date and time formatting as an example. For details about API
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **Locale** object. Three methods are provided:
@@ -62,16 +62,16 @@ The following uses date and time formatting as an example. For details about API
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 23);
    
    // Method 1: Create a Locale object using the locale string.
-   let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");
+   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
    
    // Method 2: Create a Locale object using the locale string and LocaleOptions.
-   let enLocale = new Intl.Locale("en", {numberingSystem: "latn"});
+   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
    
    // Method 3: Create a Locale object using the default Locale constructor.
-   let systemLocale = new Intl.Locale();
+   let systemLocale = new intl.Locale();
    ```
 
 3. Format the date and time.
@@ -79,14 +79,14 @@ The following uses date and time formatting as an example. For details about API
 
    ```ts
    // Method 1
-   let zhDateTimeFmt = new Intl.DateTimeFormat(zhLocale.toString());
+   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
    let result = zhDateTimeFmt.format(date); // result = "2023/10/23"
    
    // Method 2
-   let enDateTimeFmt = new Intl.DateTimeFormat(enLocale.toString());
+   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
    result = enDateTimeFmt.format(date); // result = "10/23/2023"
    
    // Method 3
-   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString());
+   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
    result = systemDateTimeFmt.format(date); // result = "2023/10/23" (The display effect depends on the current system environment.)
    ```

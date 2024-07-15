@@ -17,10 +17,10 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name      | Type |     Mandatory   |       Description  |
-| --------  | --------  | --------    | --------    |
-| uri?      | string    |      No   | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'. |
-| count?     | number    |      No   | Number of rows affected by the operation. |
+| Name     | Type | Read Only | Mandatory   |       Description  |
+| -------- | -------- | -------- | -------- | -------- |
+| uri      | string    | No | No   | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'. |
+| count     | number   | No | No   | Number of rows affected by the operation. |
 
 **Example**
 

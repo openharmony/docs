@@ -16,6 +16,8 @@ width(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -23,6 +25,12 @@ width(value: Length)
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | 是    | 要设置的组件宽度。<br/>单位：vp |
+
+>  **说明：**
+>
+>  - 在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
+>  
+>  - 在[AlphabetIndexer](./ts-container-alphabet-indexer.md)组件中，width设置auto表示自适应宽度最大索引项的宽度。
 
 ## height
 
@@ -34,6 +42,8 @@ height(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -44,7 +54,7 @@ height(value: Length)
 
 >  **说明：**
 >
->  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
+>  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。
 
 ## size
 
@@ -56,6 +66,8 @@ size(value: SizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -66,7 +78,7 @@ size(value: SizeOptions)
 
 ## padding
 
-padding(value: Padding | Length)
+padding(value: Padding | Length | LocalizedPadding)
 
 设置内边距属性。
 
@@ -74,17 +86,19 @@ padding(value: Padding | Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length) | 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
+| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp; [LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
 
 ## margin
 
-margin(value: margin | Length)
+margin(value: Margin | Length | LocalizedMargin)
 
 设置外边距属性。
 
@@ -92,13 +106,15 @@ margin(value: margin | Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填     | 说明                                                         |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
+| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Flex](./ts-container-flex.md)交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
 
 ## layoutWeight
 
@@ -108,13 +124,15 @@ layoutWeight(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名   | 类型                         | 必填      | 说明                                       |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在Row/Column/Flex布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 ## constraintSize
 
@@ -126,6 +144,8 @@ constraintSize(value: ConstraintSizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -134,22 +154,25 @@ constraintSize(value: ConstraintSizeOptions)
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
 
-**constraintSize取值对width/height影响** 
+**constraintSize(minWidth/maxWidth/minHeight/maxHeight)取值对width/height影响** 
 
 | 缺省值                                      | 结果                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| /                                        | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height)) |
-| maxWidth/maxHeight                       | max(minWidth/minHeight, width/height)    |
-| minWidth/minHeight                       | min(maxWidth/maxHeight, width/height)    |
-| width/height                             | maxWidth/maxHeight > minWidth/minHeight时使用组件自身布局逻辑，<br/>结果在maxWidth/maxHeight与minWidth/minHeight之间。<br/> 其他情况结果为max(minWidth/minHeight, maxWidth/maxHeight)。 |
-| maxWidth/maxHeight && width/height       | minWidth/minHeight                       |
-| minWidth/minHeight && width/height       | 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight     |
-| maxWidth/maxHeight && minWidth/minHeight | width/height，根据其他布局属性可能拉伸或者压缩。           |
-| maxWidth/maxHeight && minWidth/minHeight && width/height | 使用父容器传递的布局限制进行布局。                        |
+| \ | width=MAX(minWidth,MIN(maxWidth,width))<br/>height=MAX(minHeight,MIN(maxHeight,height)) |
+| maxWidth、maxHeight | width=MAX(minWidth,width)<br/>height=MAX(minHeight,height) |
+| minWidth、minHeight | width=MIN(maxWidth,width)<br/>height=MIN(maxHeight,height) |
+| width、height | 若minWidth<maxWidth，组件自身布局逻辑生效，width取值范围为[minWidth,maxWidth]；否则，width=MAX(minWidth,maxWidth)。<br/>若minHeight<maxHeight，组件自身布局逻辑生效，height取值范围为[minHeight,maxHeight]；否则，height=MAX(minHeight,maxHeight)。 |
+| width与maxWidth、height与maxHeight | width=minWidth<br/>height=minHeight |
+| width与minWidth、height与minHeight | 组件自身布局逻辑生效，width取值约束为不大于maxWidth。<br/>组件自身布局逻辑生效，height取值约束为不大于maxHeight。 |
+| minWidth与maxWidth、minHeight与maxHeight | width以所设值为基础，根据其他布局属性发生可能的拉伸或者压缩。<br/>height以所设值为基础，根据其他布局属性发生可能的拉伸或者压缩。|
+| width与minWidth与maxWidth | 使用父容器传递的布局限制进行布局。 |
+| height与minHeight与maxHeight | 使用父容器传递的布局限制进行布局。 |
 
 ## SizeOptions对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -160,6 +183,8 @@ constraintSize(value: ConstraintSizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | minWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小宽度。 |
@@ -169,9 +194,10 @@ constraintSize(value: ConstraintSizeOptions)
 
 >  **说明：**
 >
->  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
+>  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
 
 ## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -221,6 +247,7 @@ struct SizeExample {
         .backgroundColor(0xFFFAF0)
         .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
+        // width和height设置百分比时，以父容器的width和height作为基础值。
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }
@@ -228,3 +255,50 @@ struct SizeExample {
 ```
 
 ![size](figures/size.png)
+
+### 示例2
+```ts
+// xxx.ets
+// padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
+
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SizeExample {
+  build() {
+    Column({ space: 10 }) {
+      Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        // 宽度80 ,高度80 ,上下开始结束的外边距40、20、30、10(蓝色区域），上下开始结束的内边距分别为5、15、10、20（白色区域）
+        Row() {
+          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding({
+          top: LengthMetrics.vp(5),
+          bottom: LengthMetrics.vp(15),
+          start: LengthMetrics.vp(10),
+          end: LengthMetrics.vp(20)
+        })
+        .margin({
+          top: LengthMetrics.vp(40),
+          bottom: LengthMetrics.vp(20),
+          start: LengthMetrics.vp(30),
+          end: LengthMetrics.vp(10)
+        })
+        .backgroundColor(Color.White)
+      }.backgroundColor(Color.Blue)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+从左至右显示语言示例图
+
+![size](figures/size-ltr.png)
+
+从右至左显示语言示例图
+
+![size](figures/size-rtl.png)

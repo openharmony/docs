@@ -9,7 +9,7 @@ hilog日志系统，使应用/服务可以按照指定级别、标识和格式�
 ## 导入模块
 
 ```js
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hilog.isLoggable
@@ -17,6 +17,8 @@ import hilog from '@ohos.hilog';
 isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 在打印日志前调用该接口，用于检查指定领域标识、日志标识和级别的日志是否可以打印。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -44,6 +46,8 @@ hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 
 日志级别。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
 | 名称  |   值   | 说明                                                         |
@@ -61,6 +65,8 @@ debug(domain: number, tag: string, format: string, ...args: any[]) : void
 打印DEBUG级别的日志。
 
 DEBUG级别的日志在正式发布版本中默认不被打印，只有在调试版本或打开调试开关的情况下才会打印。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -93,6 +99,8 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印INFO级别的日志。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
 **参数：**
@@ -123,6 +131,8 @@ hilog.info(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印WARN级别的日志。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -155,6 +165,8 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印ERROR级别的日志。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
 **参数：**
@@ -185,6 +197,8 @@ hilog.error(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印FATAL级别的日志。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 

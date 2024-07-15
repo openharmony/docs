@@ -1,4 +1,4 @@
-# webRTC拉起摄像头和麦克风
+# 使用WebRTC进行Web视频会议
 
 Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发者在使用该功能时，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
 
@@ -10,17 +10,17 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
+  import { webview } from '@kit.ArkWeb';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController()
 
     aboutToAppear() {
       // 配置Web开启调试模式
-      web_webview.WebviewController.setWebDebuggingAccess(true);
+      webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then(data => {
@@ -32,9 +32,9 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发�
             }
           })
           if (hasPermissions1) {
-            console.info("hasPermissions1")
+            console.info("hasPermissions1");
           } else {
-            console.info(" not hasPermissions1")
+            console.info(" not hasPermissions1");
           }
         }).catch(() => {
         return;
@@ -52,17 +52,17 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发�
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.request.deny()
+                    event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.request.grant(event.request.getAccessibleResource())
+                    event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  event.request.deny()
+                  event.request.deny();
                 }
               })
             }

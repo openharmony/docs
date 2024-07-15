@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
 ```
 
 
@@ -29,6 +29,8 @@ import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
 SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: ()&nbsp;=&gt;&nbsp;void })
 
 **装饰器类型：**@Component
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +50,8 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 ## 示例
 
 ```ts
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

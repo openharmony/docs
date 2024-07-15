@@ -6,7 +6,7 @@ In a multi-language environment, time zones may be addressed by users in differe
 
 ## How to Develop
 
-For details about how to use related APIs, see [getDisplayName](../reference/apis/js-apis-i18n.md#getdisplayname8). The development procedure is as follows:
+For details about how to use related APIs, see [getDisplayName](../reference/apis-localization-kit/js-apis-i18n.md#getdisplayname8). The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts

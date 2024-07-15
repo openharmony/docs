@@ -224,7 +224,7 @@ import print from '@ohos.print';
 | -------- | -------- | -------- |
 | E_PRINT_NONE | 0 | 表示没有错误 |
 | E_PRINT_NO_PERMISSION | 201 | 表示没有许可 |
-| E_PRINT_INVALID_PARAMETER | 401 | 表示无效的参数|
+| E_PRINT_INVALID_PARAMETER | 401 | 表示无效的参数 |
 | E_PRINT_GENERIC_FAILURE | 13100001 | 表示一般打印失败 |
 | E_PRINT_RPC_FAILURE | 13100002 | 表示RPC失败 |
 | E_PRINT_SERVER_FAILURE | 13100003 | 表示打印服务失败 |
@@ -232,6 +232,20 @@ import print from '@ohos.print';
 | E_PRINT_INVALID_PRINTER | 13100005 | 表示打印机无效 |
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | 表示打印任务无效 |
 | E_PRINT_FILE_IO | 13100007 | 表示文件输入/输出错误 |
+
+## ApplicationEvent<sup>12+</sup>
+
+打印应用事件的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| APPLICATION_CREATED | 0 | 表示打印应用被拉起的事件 |
+| APPLICATION_CLOSED_FOR_STARTED | 1 | 表示由于点击打印而关于打印应用的事件 |
+| APPLICATION_CLOSED_FOR_CANCELED | 2 | 表示由于点击取消而关闭打印应用的事件 |
 
 ## PrinterExtensionInfo
 
@@ -267,6 +281,15 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -298,6 +321,15 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 | **类型** | **说明** |
 | -------- | -------- |
 | Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -331,6 +363,16 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback
 | extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -360,10 +402,25 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
+
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
 | Promise&lt;void&gt; | 加载特定的打印机扩展并开始发现打印机完成结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -397,6 +454,15 @@ stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步停止发现具有特定打印机扩展的打印机之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -429,6 +495,15 @@ stopDiscoverPrinter(): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 停止发现具有特定打印机扩展的打印机完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -459,6 +534,16 @@ connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 打印机ID |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步连接特定打印机之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -498,6 +583,16 @@ connectPrinter(printerId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 连接特定打印机完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -529,6 +624,16 @@ disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 打印机ID |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步断开特定打印机的连接之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -568,6 +673,16 @@ disconnectPrinter(printerId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 断开特定打印机的连接完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -599,6 +714,16 @@ queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): 
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 打印机ID |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步查询打印机能力之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -638,6 +763,16 @@ queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 查询打印机能力完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -669,6 +804,16 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | jobInfo | PrintJob | 是 | 打印任务信息 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步开始打印任务之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -724,6 +869,16 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 开始打印任务完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -772,6 +927,16 @@ cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 | jobId | string | 是 | 打印任务ID |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步取消已发送到打印机的打印任务之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -810,6 +975,16 @@ cancelPrintJob(jobId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 取消已发送到打印机的打印任务完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -841,6 +1016,16 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 | -------- | -------- | -------- | -------- |
 | jobInfo | PrintJob | 是 | 打印任务信息 |
 | callback | Callback&lt;number&gt; | 是 | 请求预览打印数据之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -892,6 +1077,16 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 | -------- | -------- |
 | Promise&lt;number&gt; | 请求预览打印数据完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -940,6 +1135,16 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 | type | 'printerStateChange' | 是 | 表示打印机状态改变 |
 | callback | (state: PrinterState, info: PrinterInfo) => void | 是 | 打印机状态改变之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -974,6 +1179,16 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 | type | 'printerStateChange' | 是 | 表示打印机状态改变 |
 | callback | Callback&lt;boolean&gt; | 否 | 打印机状态改变之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1001,6 +1216,16 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变 |
 | callback | (state: PrintJobState, job: PrintJob) => void | 是 | 打印任务状态改变之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1030,6 +1255,16 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变 |
 | callback | Callback&lt;boolean&gt; | 否 | 打印任务状态改变之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1057,6 +1292,16 @@ on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void)
 | -------- | -------- | -------- | -------- |
 | type | 'extInfoChange' | 是 | 表示打印扩展信息改变 |
 | callback | (extensionId: string, info: string) => void | 是 | 打印扩展信息改变之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1086,6 +1331,16 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 | type | 'extInfoChange' | 是 | 表示打印扩展信息改变 |
 | callback | Callback&lt;boolean&gt; | 否 | 打印任务扩展信息改变之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1113,6 +1368,16 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步添加打印机之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1160,6 +1425,16 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 添加打印机完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1200,6 +1475,16 @@ removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | printerIds | Array&lt;string&gt; | 是 | 表示需移除的打印机列表 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步移除打印机之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1238,6 +1523,16 @@ removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 移除打印机完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1269,6 +1564,16 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 | -------- | -------- | -------- | -------- |
 | printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机信息之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1316,6 +1621,16 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 更新打印机完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1357,6 +1672,16 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 | state | PrinterState | 是 | 表示打印机状态 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1397,6 +1722,16 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 更新打印机状态完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1431,6 +1766,16 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | state | PrintJobState | 是 | 表示打印任务状态 |
 | subState | PrintJobSubState | 是 | 表示打印任务子状态 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1474,6 +1819,16 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | -------- | -------- |
 | Promise&lt;void&gt; | 更新打印任务状态完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1507,6 +1862,16 @@ updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | info | string | 是 | 表示打印扩展变更信息 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印扩展状态之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1546,6 +1911,16 @@ updateExtensionInfo(info: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 更新打印扩展状态完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1579,6 +1954,15 @@ queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步查询所有打印任务之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -1615,6 +1999,15 @@ queryAllPrintJobs(): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 查询所有打印任务完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -1644,6 +2037,15 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -1677,6 +2079,15 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 | -------- | -------- |
 | Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -1707,6 +2118,16 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID |
 | callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1746,6 +2167,16 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 | -------- | -------- |
 | Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1779,6 +2210,16 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 | printAttributes | PrintAttributes | 是 | 表示打印参数 |
 | fd | number | 是 | 表示打印文件描述符 |
 | onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1845,6 +2286,16 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 | type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步将spooler关闭信息通知打印服务之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1884,6 +2335,16 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 | -------- | -------- |
 | Promise&lt;void&gt; | 将spooler关闭信息通知打印服务后的完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1895,5 +2356,137 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
     console.log('notifyPrintService data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('notifyPrintService error : ' + JSON.stringify(error));
+})
+```
+
+## getAddedPrinters<sup>12+</sup>
+
+getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
+
+获取cups已添加打印机列表，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+print.getAddedPrinters().then((printers: string[]) => {
+    console.log('getAddedPrinters success ' + JSON.stringify(printers));
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('failed to getAddedPrinters bacause ' + JSON.stringify(error));
+})
+```
+
+## getPrinterInfoById<sup>12+</sup>
+
+getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
+
+根据打印机id获取打印机信息，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerId | string | 是 | 表示打印机ID |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;PrinterInfo&gt; | 根据打印机id获取打印机信息后的完成结果回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = '1';
+print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
+    console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
+}).catch((error: BusinessError) => {
+    console.log('getPrinterInfoById error : ' + JSON.stringify(error));
+})
+```
+
+## notifyPrintServiceEvent<sup>12+</sup>
+
+notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
+
+将打印应用相关事件通知打印服务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| event | ApplicationEvent | 是 | 表示打印应用事件 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 将打印应用相关事件通知打印服务后的完成结果回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
+print.notifyPrintServiceEvent(event).then((data : void) => {
+    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
 ```

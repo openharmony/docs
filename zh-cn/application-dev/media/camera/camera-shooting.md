@@ -9,11 +9,11 @@
 1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
 
    ```ts
-   import image from '@ohos.multimedia.image';
-   import camera from '@ohos.multimedia.camera';
-   import fs from '@ohos.file.fs';
-   import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { image } from '@kit.ImageKit';
+   import { camera } from '@kit.CameraKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建拍照输出流。
@@ -45,11 +45,11 @@
    let context = getContext(this);
 
    async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-     let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-     let options: PhotoAccessHelper.CreateOptions = {
+     let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     let options: photoAccessHelper.CreateOptions = {
        title: Date.now().toString()
      };
-     let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
+     let photoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg', options);
      //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
      let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
      await fs.write(file.fd, buffer);
@@ -191,6 +191,9 @@
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info(`photo capture started, captureId : ${captureStartInfo.captureId}`);
     });
   }
@@ -201,6 +204,9 @@
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
     });

@@ -14,23 +14,24 @@ This topic describes how to obtain properties of a key. Before the operation, en
 3. You can find the key properties in the **properties** field in the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object.
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1. Set the key alias. */
 let keyAlias = 'keyAlias';
 /* Leave options empty. */
 let emptyOptions: huks.HuksOptions = {
-    properties: []
+  properties: []
 };
 try {
-    /* 2. Obtain key properties. */
-    huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: getKeyItemProperties failed` + error);
-        } else {
-            console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
-        }
-    });
+  /* 2. Obtain key properties. */
+  huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
+    if (error) {
+      console.error(`callback: getKeyItemProperties failed, ` + JSON.stringify(error));
+    } else {
+      console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
+    }
+  });
 } catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid` + error);
+  console.error(`callback: getKeyItemProperties input arg invalid, ` + JSON.stringify(error));
 }
 ```

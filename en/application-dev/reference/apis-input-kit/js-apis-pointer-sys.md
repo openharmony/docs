@@ -11,7 +11,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerSpeed
@@ -28,8 +28,17 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -61,13 +70,22 @@ Sets the moving speed of the mouse pointer. This API uses a promise to return th
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Screen Hopping Error Codes](../apis-distributedservice-kit/errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -95,7 +113,16 @@ Sets the moving speed of the mouse pointer. This API returns the result synchron
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -123,6 +150,15 @@ Obtains the moving speed of the mouse pointer. This API uses an asynchronous cal
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **Example**
 
@@ -184,6 +220,15 @@ Obtains the moving speed of the mouse pointer. This API returns the result synch
 | --------------------- | ------------------- |
 | number | Moving speed of the mouse pointer.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -211,6 +256,15 @@ Sets the status of the mouse hover scroll switch. This API uses an asynchronous 
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state    | boolean                    | Yes   | Status of the mouse hover scroll switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -250,6 +304,15 @@ Sets the status of the mouse hover scroll switch. This API uses a promise to ret
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -277,6 +340,15 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -306,6 +378,15 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 | --------------------- | ------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -334,6 +415,15 @@ Sets the primary button of the mouse. This API uses an asynchronous callback to 
 | -------- | ------------------------- | ----  | ------------------------------------- |
 | primary  | [PrimaryButton](js-apis-pointer.md#primarybutton10)   | Yes   | ID of the primary mouse button.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -373,6 +463,15 @@ Sets the primary button of the mouse. This API uses a promise to return the resu
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -400,6 +499,15 @@ Obtains the primary button of the mouse. This API uses an asynchronous callback 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -429,6 +537,15 @@ Obtains the primary button of the mouse. This API uses a promise to return the r
 | --------------------- | ------------------- |
 | Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -457,6 +574,15 @@ Sets the number of mouse scroll rows. This API uses an asynchronous callback to 
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | rows     | number                    | Yes   | Number of mouse scroll rows. The value ranges from 1 to 100. The default value is **3**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -496,6 +622,15 @@ Sets the number of mouse scroll rows. This API uses a promise to return the resu
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -523,6 +658,15 @@ Obtains the number of mouse scroll rows. This API uses an asynchronous callback 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -552,6 +696,15 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -580,6 +733,15 @@ Sets the scroll switch of the touchpad. This API uses an asynchronous callback t
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state | boolean | Yes   | Scroll switch status. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -619,6 +781,15 @@ Sets the scroll switch of the touchpad. This API uses a promise to return the re
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -646,6 +817,15 @@ Obtains the scroll switch status of the touchpad. This API uses an asynchronous 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -675,6 +855,15 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -703,6 +892,15 @@ Sets the scroll direction of the touchpad. This API uses an asynchronous callbac
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state | boolean | Yes   | Scroll direction of the touchpad.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -742,6 +940,15 @@ Sets the scroll direction of the touchpad. This API uses a promise to return the
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -769,6 +976,15 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -798,6 +1014,15 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -826,6 +1051,15 @@ Sets the tap switch of the touchpad. This API uses an asynchronous callback to r
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state | boolean | Yes   |Tap switch status of the touchpad The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -865,6 +1099,15 @@ Sets the tap switch of the touchpad. This API uses a promise to return the resul
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -892,6 +1135,15 @@ Obtains the tap switch status of the touchpad. This API uses an asynchronous cal
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -921,6 +1173,15 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -947,8 +1208,17 @@ Sets the mouse pointer moving speed of the touchpad. This API uses an asynchrono
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
+| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -980,13 +1250,22 @@ Sets the mouse pointer moving speed of the touchpad. This API uses a promise to 
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
+| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**.   |
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1016,6 +1295,15 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses an asynchr
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<number> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1043,6 +1331,15 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses a promise 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<number> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1072,6 +1369,15 @@ Sets the pinch switch of the touchpad. This API uses an asynchronous callback to
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state | boolean | Yes   |Pinch switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1111,6 +1417,15 @@ Sets the pinch switch of the touchpad. This API uses a promise to return the res
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1138,6 +1453,15 @@ Obtains the pinch switch status of the touchpad. This API uses an asynchronous c
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1167,6 +1491,15 @@ Obtains the pinch switch status of the touchpad. This API uses a promise to retu
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1195,6 +1528,15 @@ Sets the multi-finger swipe switch of the touchpad. This API uses an asynchronou
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state | boolean | Yes   |Swipe switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1234,6 +1576,15 @@ Sets the swipe switch of the touchpad. This API uses a promise to return the res
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1261,6 +1612,15 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses an a
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1290,6 +1650,15 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1318,6 +1687,15 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1357,6 +1735,15 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1384,6 +1771,15 @@ Obtains the shortcut menu type of the touchpad. This API uses an asynchronous ca
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[RightClickType](js-apis-pointer.md#rightclicktype10)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1413,6 +1809,15 @@ Obtains the shortcut menu type of the touchpad. This API uses a promise to retur
 | --------------------- | ------------------- |
 | Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1441,6 +1846,15 @@ Sets the pointer size. This API uses an asynchronous callback to return the resu
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | size     | number                    | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1480,6 +1894,15 @@ Sets the pointer size. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1508,6 +1931,15 @@ Sets the pointer size. This API returns the result synchronously.
 | ----- | ------ | ---- | ----------------------------------- |
 | size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1534,6 +1966,15 @@ Obtains the pointer size. This API uses an asynchronous callback to return the r
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1563,6 +2004,15 @@ Obtains the pointer size. This API uses a promise to return the result.
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1590,6 +2040,15 @@ Obtains the pointer size. This API returns the result synchronously.
 | Name                   | Description                 |
 | --------------------- | ------------------- |
 | number | Pointer size. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
 
 **Example**
 
@@ -1622,6 +2081,15 @@ Sets the pointer color. This API uses an asynchronous callback to return the res
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | color     | number                    | Yes   | Pointer color. The default value is **black** (0x000000).  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1665,6 +2133,15 @@ Sets the pointer color. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1697,6 +2174,15 @@ Sets the pointer color. This API returns the result synchronously.
 | ----- | ------ | ---- | ----------------------------------- |
 | color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1723,6 +2209,15 @@ Obtains the pointer color. This API uses an asynchronous callback to return the 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1752,6 +2247,15 @@ Obtains the pointer color. This API uses a promise to return the result.
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1779,6 +2283,15 @@ Obtains the pointer color. This API returns the result synchronously.
 | Name                   | Description                 |
 | --------------------- | ------------------- |
 | number | Pointer color.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
 
 **Example**
 

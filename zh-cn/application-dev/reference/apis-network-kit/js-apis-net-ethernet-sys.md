@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>
@@ -40,7 +40,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -50,8 +50,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -104,7 +104,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 |Failed to connect to the service. |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -114,8 +114,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -162,15 +162,15 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
@@ -218,15 +218,15 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
@@ -267,15 +267,15 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
@@ -318,15 +318,15 @@ isIfaceActive(iface: string): Promise\<number>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
@@ -359,14 +359,14 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
@@ -404,14 +404,14 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
@@ -453,7 +453,7 @@ on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
@@ -490,7 +490,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<InterfaceStateInfo\>): vo
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.off('interfaceStateChange');
 ```

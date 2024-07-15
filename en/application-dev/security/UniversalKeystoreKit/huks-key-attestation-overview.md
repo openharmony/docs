@@ -23,22 +23,24 @@ The key attestation process is as follows:
 
 3. The certificate chain is sent to a trusted server. The server parses the certificate chain and verifies the certificate chain validity and whether a single certificate is revoked.
 
+<!--RP1-->
 Currently, the system provides two key attestation modes.
 - Anonymous key attestation: This type of attestation will not disclose the device information, and the caller does not require any permission. Anonymous key attestation is available to all applications. To protect user device information, third-party applications can use anonymous attestation only.
 - Non-anonymous key attestation: The device information of the caller can be viewed, and the caller must have the ohos.permission.ATTEST_KEY permission.
-
+<!--RP1End-->
 
 ## Supported Algorithms
 
 The following table lists the supported key attestation specifications.
-
+<!--Del-->
 The key management service specifications include mandatory specifications and optional specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
+<!--DelEnd-->
 
-| Algorithm| Description| API Level| Mandatory| 
+| Algorithm| Description| API Level| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
-| RSA | The padding mode can be PSS or PKCS1_V1_5.| 8+ | Yes| 
-| ECC | - | 8+ | Yes| 
-| X25519 | Only non-anonymous APIs are supported.| 8+ | Yes| 
-| SM2 | - | 8+ | Yes| 
+| RSA | The padding mode can be PSS or PKCS1_V1_5.| 8+ | Yes|
+| ECC | - | 8+ | Yes|
+| X25519 | Only non-anonymous APIs are supported.| 8+ | Yes|
+| SM2 | - | 8+ | Yes|

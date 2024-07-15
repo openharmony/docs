@@ -14,14 +14,14 @@ If an error occurs in any of the preceding processes, the client will receive a 
 ## Modules to Import
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 ```
 
 ## Examples
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -62,12 +62,12 @@ ws.connect(defaultIpAddress, {
   header:{
       name1: 'value1',
       name2: 'value2',
-      name2: 'value3'
+      name3: 'value3'
   },
   proxy: {
       host: '192.168.0.150',
       port: 8888,
-      excludeList: []
+      exclusionList: []
   },
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {
@@ -92,6 +92,8 @@ createWebSocket(): WebSocket
 
 Creates a WebSocket connection. You can use this API to create or close a WebSocket connection, send data over it, or enable or disable listening for the **open**, **close**, **message**, and **error** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Return value**
@@ -103,7 +105,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 **Example**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -120,6 +122,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -140,8 +144,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://";
@@ -165,6 +169,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -185,17 +191,21 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -214,6 +224,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -240,7 +252,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -259,6 +271,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 Sends data through a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -279,13 +293,25 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -295,6 +321,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
+
 ### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer): Promise\<boolean\>
@@ -302,6 +332,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 Sends data through a WebSocket connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -327,12 +359,25 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -342,6 +387,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
+
 ### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
@@ -349,6 +398,8 @@ close(callback: AsyncCallback\<boolean\>): void
 Closes a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -368,8 +419,8 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
@@ -388,6 +439,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -408,8 +461,8 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 
@@ -435,6 +488,8 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -459,7 +514,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketCloseOptions | undefined;
@@ -481,6 +536,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 Enables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -493,8 +550,8 @@ Enables listening for the **open** events of a WebSocket connection. This API us
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError, Callback } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let ws= webSocket.createWebSocket();
 class OutValue {
@@ -515,6 +572,8 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -527,8 +586,8 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 class OutValue {
@@ -552,6 +611,8 @@ Enables listening for the **message** events of a WebSocket connection. This API
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -564,8 +625,8 @@ Enables listening for the **message** events of a WebSocket connection. This API
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
@@ -583,6 +644,8 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -595,7 +658,7 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('message');
@@ -606,6 +669,8 @@ ws.off('message');
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 Enables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -619,8 +684,8 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
@@ -637,6 +702,8 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -649,7 +716,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('close');
@@ -660,6 +727,8 @@ ws.off('close');
 on(type: 'error', callback: ErrorCallback): void
 
 Enables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -673,8 +742,8 @@ Enables listening for the **error** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
@@ -691,6 +760,8 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -703,7 +774,8 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
@@ -726,7 +798,7 @@ Enables listening for the **dataEnd** events of a WebSocket connection. This API
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
@@ -755,7 +827,8 @@ Disables listening for the **dataEnd** events of a WebSocket connection. This AP
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
@@ -778,7 +851,7 @@ Registers an observer for HTTP Response Header events. This API uses an asynchro
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
@@ -807,7 +880,8 @@ Unregisters the observer for HTTP Response Header events. This API uses an async
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```
@@ -820,7 +894,7 @@ Defines the optional parameters carried in the request for establishing a WebSoc
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.|
+| header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | caPath<sup>11+</sup> | string | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No  | Client certificate.|
 | proxy<sup>12+</sup> | ProxyConfiguration | No| Proxy configuration. By default, the system network proxy is used.|
@@ -842,7 +916,7 @@ Defines the client certificate type.
 
 Represents the HTTP proxy configuration.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetStack
 
 | Name   | Type  | Mandatory| Description                     |
 | ------ | ------ | --- |------------------------- |
@@ -853,6 +927,8 @@ Represents the HTTP proxy configuration.
 ## WebSocketCloseOptions
 
 Defines the optional parameters carried in the request for closing a WebSocket connection.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -865,6 +941,8 @@ Defines the optional parameters carried in the request for closing a WebSocket c
 
 Represents the result obtained from the **close** event reported when the WebSocket connection is closed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name| Type  | Mandatory| Description                                                        |
@@ -873,16 +951,17 @@ Represents the result obtained from the **close** event reported when the WebSoc
 | reason | string | Yes  | Error cause for closing the connection.|
 
 ## ResponseHeaders<sup>12+</sup>
+type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 Enumerates the response headers sent by the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Type  | Mandatory| Description                                                        |
-| ------ | ---- | ------------------------------------------------------------ |
-| [k:string]:string | No  | The header data type is key-value pair.|
-| string[] | No  | The header data type is string.|
-| undefined | No  | The header data type is **undefined**.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [k:string]:string | The header data type is key-value pair.|
+| string[]  | The header data type is string.|
+| undefined | The header data type is **undefined**.|
 
 ## Result Codes for Connection Closing
 

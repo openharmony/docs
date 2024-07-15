@@ -8,3 +8,4 @@
   - [Canceling User Authentication](cancel-authentication.md)
   - [Applying Custom Authentication](apply-custom-authentication.md)
   - [Obtaining Enrolled Credential Information](obtain-enrolled-state-capabilities.md)
+  - [Using Embedded User Identity Authentication Icons](user-auth-icon.md)

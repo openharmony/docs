@@ -227,7 +227,7 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | ProfileId | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
@@ -931,9 +931,8 @@ sppCloseClientSocket(socket: number): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填   | 说明            |
+| 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------------- |
-| 参数名    | 类型     | 必填   | 说明            |
 | socket | number | 是    | 客户端socket的id。 |
 
 **示例：**
@@ -2555,7 +2554,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 import { BusinessError } from '@ohos.base';
-// callkback 模式
+// callback 模式
 function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
       let services : Array<bluetooth.GattService> = gattServices;

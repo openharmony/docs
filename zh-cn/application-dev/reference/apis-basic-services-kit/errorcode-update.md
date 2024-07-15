@@ -8,7 +8,7 @@
 
 **错误信息**
 
-BusinessError 11500104: IPC error.
+IPC error.
 
 **错误描述**
 

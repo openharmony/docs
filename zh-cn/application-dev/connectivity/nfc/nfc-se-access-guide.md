@@ -28,13 +28,16 @@
 3. 访问安全单元，实现数据的读取或写入。
    
 ```ts
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-let seService : secureElement.SEService;
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+
+let seService : omapi.SEService;
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -50,7 +53,7 @@ export default class EntryAbility extends UIAbility {
 
     // get the service
     try {
-      seService = secureElement.newSEService("serviceState", (state) => {
+      seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
       });
     } catch (error) {
@@ -103,7 +106,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // transmit data
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
       seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-If the resId invalid.
+Invalid resource ID.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ If the resId invalid.
 
 **错误信息**
 
-If the resource not found by resId.
+No matching resource is found based on the resource ID.
 
 **错误描述**
 
@@ -46,7 +46,7 @@ If the resource not found by resId.
 
 **错误信息**
 
-If the resName invalid.
+Invalid resource name.
 
 **错误描述**
 
@@ -64,7 +64,7 @@ If the resName invalid.
 
 **错误信息**
 
-If the resource not found by resName.
+No matching resource is found based on the resource name.
 
 **错误描述**
 
@@ -84,7 +84,7 @@ If the resource not found by resName.
 
 **错误信息**
 
-If the resource not found by path.
+Invalid relative path.
 
 **错误描述**
 
@@ -102,7 +102,7 @@ If the resource not found by path.
 
 **错误信息**
 
-If the resource re-ref too much.
+The resource is referenced cyclically.
 
 **错误描述**
 
@@ -120,7 +120,7 @@ If the resource re-ref too much.
 
 **错误信息**
 
-If the resource obtained by resId formatting error.
+Failed to format the resource obtained based on the resource ID.
 
 **错误描述**
 
@@ -142,7 +142,7 @@ resId获取的字符串资源格式化失败。
 
 **错误信息**
 
-If the resource obtained by resName formatting error.
+Failed to format the resource obtained based on the resource Name.
 
 **错误描述**
 
@@ -164,7 +164,7 @@ resName获取的字符串资源格式化失败。
 
 **错误信息**
 
-If application can't access system resource.
+Failed to access the system resource.
 
 **错误描述**
 
@@ -182,7 +182,7 @@ If application can't access system resource.
 
 **错误信息**
 
-If the overlay path is invalid.
+Invalid overlay path.
 
 **错误描述**
 

@@ -13,8 +13,9 @@ This module provides the following functions:
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
 > **NOTE**
- > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
- > - The APIs of this module are used in [automated test scripts](../../application-test/arkxtest-guidelines.md).
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
+> - The APIs of this module do not support concurrent calls.
 
 
 ## Modules to Import
@@ -26,6 +27,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## MatchPattern
 
 Enumerates the match patterns supported for component attributes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -39,6 +42,8 @@ Enumerates the match patterns supported for component attributes.
 ## ResizeDirection<sup>9+</sup>
 
 Enumerates the directions in which a window can be resized.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -57,6 +62,8 @@ Enumerates the directions in which a window can be resized.
 
 Provides the coordinates of a point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 | Name| Type  | Readable| Writable| Description            |
@@ -67,6 +74,8 @@ Provides the coordinates of a point.
 ## Rect<sup>9+</sup>
 
 Provides bounds information of a component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -81,6 +90,8 @@ Provides bounds information of a component.
 
 Enumerates the window modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 | Name      | Value  | Description      |
@@ -94,6 +105,8 @@ Enumerates the window modes.
 
 Describes the display rotation of the device.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 | Name        | Value  | Description                                    |
@@ -106,6 +119,8 @@ Describes the display rotation of the device.
 ## WindowFilter<sup>9+</sup>
 
 Provides the flag attributes of this window.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -121,6 +136,8 @@ Provides the flag attributes of this window.
 
 Describes the direction of a UI operation such as fling.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 | Name | Value  | Description  |
@@ -134,6 +151,8 @@ Describes the direction of a UI operation such as fling.
 
 Describes the injected simulated mouse button.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 | Name               | Value  | Description        |
@@ -145,6 +164,8 @@ Describes the injected simulated mouse button.
 ## UIElementInfo<sup>10+</sup>
 
 Provides information about the UI event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -161,7 +182,9 @@ Since API version 9, the UiTest framework provides a wide range of UI component 
 The APIs provided by the **On** class exhibit the following features:
 
 - Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+
 - Provide multiple match patterns for component attributes.
+
 - Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
@@ -176,6 +199,8 @@ ON.text('123').type('Button');
 text(txt: string, pattern?: MatchPattern): On
 
 Specifies the text attribute of the target component. Multiple match patterns are supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -192,6 +217,14 @@ Specifies the text attribute of the target component. Multiple match patterns ar
 | ---------- | ---------------------------------- |
 | [On](#on9) | **On** object that matches the text attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -204,6 +237,8 @@ let on:On = ON.text('123'); // Use the static constructor ON to create an On obj
 id(id: string): On
 
 Specifies the ID attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -219,6 +254,14 @@ Specifies the ID attribute of the target component.
 | ---------- | -------------------------------- |
 | [On](#on9) | **On** object that matches the ID attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -232,6 +275,8 @@ let on:On = ON.id('123'); // Use the static constructor ON to create an On objec
 type(tp: string): On
 
 Specifies the type attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -247,6 +292,14 @@ Specifies the type attribute of the target component.
 | ---------- | ---------------------------------------- |
 | [On](#on9) | **On** object that matches the type attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -260,6 +313,8 @@ let on:On = ON.type('Button'); // Use the static constructor ON to create an On 
 clickable(b?: boolean): On
 
 Specifies the clickable attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -275,6 +330,14 @@ Specifies the clickable attribute of the target component.
 | ---------- | ------------------------------------------ |
 | [On](#on9) | **On** object that matches the clickable attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -287,6 +350,8 @@ let on:On = ON.clickable(true); // Use the static constructor ON to create an On
 longClickable(b?: boolean): On
 
 Specifies the long-clickable attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -302,6 +367,14 @@ Specifies the long-clickable attribute of the target component.
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | **On** object that matches the long-clickable attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -315,6 +388,8 @@ let on:On = ON.longClickable(true); // Use the static constructor ON to create a
 scrollable(b?: boolean): On
 
 Specifies the scrollable attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -330,6 +405,14 @@ Specifies the scrollable attribute of the target component.
 | ---------- | ------------------------------------------ |
 | [On](#on9) | **On** object that matches the scrollable attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -342,6 +425,8 @@ let on:On = ON.scrollable(true); // Use the static constructor ON to create an O
 enabled(b?: boolean): On
 
 Specifies the enabled attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -356,6 +441,14 @@ Specifies the enabled attribute of the target component.
 | Type      | Description                                    |
 | ---------- | ---------------------------------------- |
 | [On](#on9) | **On** object that matches the enabled attribute of the target component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -384,6 +477,14 @@ Specifies the focused attribute of the target component.
 | ---------- | ---------------------------------------- |
 | [On](#on9) | **On** object that matches the focused attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -396,6 +497,8 @@ let on:On = ON.focused(true); // Use the static constructor ON to create an On o
 selected(b?: boolean): On
 
 Specifies the selected attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -411,6 +514,14 @@ Specifies the selected attribute of the target component.
 | ---------- | ------------------------------------------ |
 | [On](#on9) | **On** object that matches the selected attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -423,6 +534,8 @@ let on:On = ON.selected(true); // Use the static constructor ON to create an On 
 checked(b?: boolean): On
 
 Specifies the checked attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -438,6 +551,14 @@ Specifies the checked attribute of the target component.
 | ---------- | ------------------------------------------ |
 | [On](#on9) | **On** object that matches the checked attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -450,6 +571,8 @@ let on:On = ON.checked(true); // Use the static constructor ON to create an On o
 checkable(b?: boolean): On
 
 Specifies the checkable attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -465,6 +588,14 @@ Specifies the checkable attribute of the target component.
 | ---------- | -------------------------------------------- |
 | [On](#on9) | **On** object that matches the checkable attribute of the target component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -477,6 +608,8 @@ let on:On = ON.checkable(true); // Use the static constructor ON to create an On
 isBefore(on: On): On
 
 Specifies that the target component is located before the given attribute component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -491,6 +624,14 @@ Specifies that the target component is located before the given attribute compon
 | Type      | Description                                                |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | **On** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -507,6 +648,8 @@ isAfter(on: On): On
 
 Specifies that the target component is located after the given attribute component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -520,6 +663,14 @@ Specifies that the target component is located after the given attribute compone
 | Type      | Description                                                |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | **On** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -536,6 +687,8 @@ within(on: On): On
 
 Specifies that the target component is located within the given attribute component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -549,6 +702,14 @@ Specifies that the target component is located within the given attribute compon
 | Type      | Description                                              |
 | ---------- | -------------------------------------------------- |
 | [On](#on9) | **On** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -564,6 +725,8 @@ inWindow(bundleName: string): On;
 
 Specifies that the target component is located within the given application window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -578,6 +741,14 @@ Specifies that the target component is located within the given application wind
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | **On** object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -590,6 +761,8 @@ let on:On = ON.inWindow('com.uitestScene.acts'); // Use the static constructor O
 description(val: string, pattern?: MatchPattern): On
 
 Specifies the description of the target component. Multiple match patterns are supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -606,6 +779,14 @@ Specifies the description of the target component. Multiple match patterns are s
 | ---------- | ----------------------------------------- |
 | [On](#on9) | **On** object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -616,6 +797,7 @@ let on:On = ON.description('123'); // Use the static constructor ON to create an
 ## Component<sup>9+</sup>
 
 Represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### click<sup>9+</sup>
@@ -623,6 +805,8 @@ All APIs provided in this class use a promise to return the result and must be i
 click(): Promise\<void>
 
 Clicks this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -652,6 +836,8 @@ doubleClick(): Promise\<void>
 
 Double-clicks this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -680,6 +866,8 @@ longClick(): Promise\<void>
 
 Long-clicks this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -707,6 +895,8 @@ async function demo() {
 getId(): Promise\<string>
 
 Obtains the ID of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -742,6 +932,8 @@ getText(): Promise\<string>
 
 Obtains the text information of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -775,6 +967,8 @@ async function demo() {
 getType(): Promise\<string>
 
 Obtains the type of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -810,6 +1004,8 @@ getBounds(): Promise\<Rect>
 
 Obtains the bounds of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -844,6 +1040,8 @@ getBoundsCenter(): Promise\<Point>
 
 Obtains the information about the center of the bounding box around this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -877,6 +1075,8 @@ async function demo() {
 isClickable(): Promise\<boolean>
 
 Obtains the clickable status of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -916,6 +1116,8 @@ isLongClickable(): Promise\<boolean>
 
 Obtains the long-clickable status of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -953,6 +1155,8 @@ async function demo() {
 isChecked(): Promise\<boolean>
 
 Obtains the checked status of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -992,6 +1196,8 @@ isCheckable(): Promise\<boolean>
 
 Obtains the checkable status of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -1029,6 +1235,8 @@ async function demo() {
 isScrollable(): Promise\<boolean>
 
 Obtains the scrollable status of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1069,6 +1277,8 @@ isEnabled(): Promise\<boolean>
 
 Obtains the enabled status of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -1106,6 +1316,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 Obtains the focused status of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1145,6 +1357,8 @@ isSelected(): Promise\<boolean>
 
 Obtains the selected status of this component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -1183,6 +1397,8 @@ inputText(text: string): Promise\<void>
 
 Enters text into this component (available for text boxes).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1193,12 +1409,13 @@ Enters text into this component (available for text boxes).
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1216,6 +1433,8 @@ async function demo() {
 clearText(): Promise\<void>
 
 Clears text in this component. This API is applicable to text boxes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1244,6 +1463,8 @@ scrollSearch(on: On): Promise\<Component>
 
 Scrolls on this component to search for the target component. This API is applicable to components that support scrolling.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1260,12 +1481,13 @@ Scrolls on this component to search for the target component. This API is applic
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1284,6 +1506,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 Scrolls to the top of this component. This API is applicable to components that support scrolling.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1294,12 +1518,13 @@ Scrolls to the top of this component. This API is applicable to components that 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -1318,6 +1543,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 Scrolls to the bottom of this component. This API is applicable to components that support scrolling.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1328,12 +1555,13 @@ Scrolls to the bottom of this component. This API is applicable to components th
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -1352,6 +1580,8 @@ dragTo(target: Component): Promise\<void>
 
 Drags this component to the target component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1362,12 +1592,13 @@ Drags this component to the target component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1387,22 +1618,25 @@ pinchOut(scale: number): Promise\<void>
 
 Pinches a component to scale it up to the specified ratio.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | Yes  | Scale factor.|
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | Yes  | Scale factor, which is a value greater than 1.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1421,22 +1655,25 @@ pinchIn(scale: number): Promise\<void>
 
 Pinches a component to scale it down to the specified ratio.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | Yes  | Scale factor.|
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | Yes  | Scale factor, which is a value ranging from 0 to 1.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1455,6 +1692,8 @@ getDescription(): Promise\<string>
 
 Obtains the description of this component. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -1465,12 +1704,12 @@ Obtains the description of this component. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.      |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 17000004 | if the component is invisible or destroyed.                  |
 
 **Example**
 
@@ -1493,6 +1732,8 @@ All APIs provided by this class, except **Driver.create()**, use a promise to re
 static create(): Driver
 
 Creates a **Driver** object and returns the object created. This API is a static API.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1525,21 +1766,24 @@ delayMs(duration: number): Promise\<void>
 
 Delays this **Driver** object within the specified duration.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | Yes  | Duration of time, in ms.|
+| Name  | Type  | Mandatory| Description                           |
+| -------- | ------ | ---- | ------------------------------- |
+| duration | number | Yes  | Duration of time, in ms. The value must be greater than or equal to 0.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1557,6 +1801,8 @@ findComponent(on: On): Promise\<Component>
 
 Searches this **Driver** object for the target component that matches the given attributes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1573,11 +1819,12 @@ Searches this **Driver** object for the target component that matches the given 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1595,6 +1842,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 Searches this **Driver** object for all components that match the given attributes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1611,11 +1860,12 @@ Searches this **Driver** object for all components that match the given attribut
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1633,6 +1883,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 Searches for the window that matches the specified attributes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1649,11 +1901,12 @@ Searches for the window that matches the specified attributes.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1671,14 +1924,16 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 Searches this **Driver** object for the target component that matches the given attributes within the specified duration.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description                            |
-| ------ | ---------- | ---- | -------------------------------- |
-| On     | [On](#on9) | Yes  | Attributes of the target component.            |
-| time   | number     | Yes  | Duration for searching for the target component, in ms.|
+| Name| Type      | Mandatory| Description                                     |
+| ------ | ---------- | ---- | ----------------------------------------- |
+| On     | [On](#on9) | Yes  | Attributes of the target component.                     |
+| time   | number     | Yes  | Duration for searching for the target component, in ms. The value must be greater than or equal to 0.|
 
 **Return value**
 
@@ -1688,11 +1943,12 @@ Searches this **Driver** object for the target component that matches the given 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1710,6 +1966,8 @@ assertComponentExist(on: On): Promise\<void>
 
 Asserts that a component that matches the given attributes exists on the current page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1720,12 +1978,13 @@ Asserts that a component that matches the given attributes exists on the current
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000003 | if the assertion failed.    |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1742,6 +2001,8 @@ async function demo() {
 pressBack(): Promise\<void>
 
 Presses the Back button on this **Driver** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1769,6 +2030,8 @@ triggerKey(keyCode: number): Promise\<void>
 
 Triggers the key of this **Driver** object that matches the given key code.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1779,11 +2042,12 @@ Triggers the key of this **Driver** object that matches the given key code.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1801,6 +2065,8 @@ triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 Triggers a key combination based on the specified key values. For example, if the value of **Key** is (2072, 2019), the **Driver** object finds and clicks the key combination that matches the value, for example, **Ctrl+C**.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -1813,11 +2079,12 @@ Triggers a key combination based on the specified key values. For example, if th
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1836,22 +2103,25 @@ click(x: number, y: number): Promise\<void>
 
 Clicks a specific point of this **Driver** object based on the given coordinates.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| Name| Type  | Mandatory| Description                                           |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1869,22 +2139,25 @@ doubleClick(x: number, y: number): Promise\<void>
 
 Double-clicks a specific point of this **Driver** object based on the given coordinates.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| Name| Type  | Mandatory| Description                                           |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1902,22 +2175,25 @@ longClick(x: number, y: number): Promise\<void>
 
 Long-clicks a specific point of this **Driver** object based on the given coordinates.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| Name| Type  | Mandatory| Description                                           |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1935,25 +2211,28 @@ swipe(startx: number, starty: number, endx: number, endy: number, speed?: number
 
 Swipes on this **Driver** object from the given start point to the given end point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X coordinate of the start point.                      |
-| starty | number | Yes  | Y coordinate of the start point.                      |
-| endx   | number | Yes  | X coordinate of the end point.                      |
-| endy   | number | Yes  | Y coordinate of the end point.                      |
+| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.             |
+| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
+| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
+| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
 | speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1971,25 +2250,28 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Drags this **Driver** object from the given start point to the given end point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X coordinate of the start point.                      |
-| starty | number | Yes  | Y coordinate of the start point.                      |
-| endx   | number | Yes  | X coordinate of the end point.                      |
-| endy   | number | Yes  | Y coordinate of the end point.                      |
+| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.             |
+| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
+| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
+| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
 | speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2007,13 +2289,15 @@ screenCap(savePath: string): Promise\<boolean>
 
 Captures the current screen of this **Driver** object and saves it as a PNG image to the given save path.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description          |
-| -------- | ------ | ---- | -------------- |
-| savePath | string | Yes  | File save path.|
+| Name  | Type  | Mandatory| Description                                      |
+| -------- | ------ | ---- | ------------------------------------------ |
+| savePath | string | Yes  | File save path. The path must be the sandbox path of the current application.|
 
 **Return value**
 
@@ -2023,11 +2307,12 @@ Captures the current screen of this **Driver** object and saves it as a PNG imag
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2043,7 +2328,9 @@ async function demo() {
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
-Sets the display rotation of the device.
+Sets the display rotation of the current scene. It applies to rotatable scenarios.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2055,11 +2342,12 @@ Sets the display rotation of the device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2076,6 +2364,8 @@ async function demo() {
 getDisplayRotation(): Promise\<DisplayRotation>
 
 Obtains the display rotation of the current device.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2109,6 +2399,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 Enables or disables display rotation.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2119,11 +2411,12 @@ Enables or disables display rotation.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2140,6 +2433,8 @@ async function demo() {
 getDisplaySize(): Promise\<Point>
 
 Obtains the display size of the current device.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2174,6 +2469,8 @@ getDisplayDensity(): Promise\<Point>
 
 Obtains the display density of the current device.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -2206,6 +2503,8 @@ wakeUpDisplay(): Promise\<void>
 
 Wakes up the device display.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -2231,6 +2530,8 @@ async function demo() {
 pressHome(): Promise\<void>
 
 Returns to the home screen.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2258,14 +2559,16 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 Checks whether all components on the current page are idle.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | Yes  | Idle time threshold, in milliseconds. If the duration for which a component remains inactive reaches this threshold, it is considered as idle.|
-| timeout  | number | Yes  | Maximum idle waiting time, in milliseconds.                            |
+| idleTime | number | Yes  | Idle time threshold, in ms. If the duration for which a component remains inactive reaches this threshold, it is considered as idle. The value must be greater than or equal to 0.|
+| timeout  | number | Yes  | Maximum idle waiting time, in ms. The value must be greater than or equal to 0.                   |
 
 **Return value**
 
@@ -2275,11 +2578,12 @@ Checks whether all components on the current page are idle.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2297,6 +2601,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 Simulates a fling operation on the screen.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2310,11 +2616,12 @@ Simulates a fling operation on the screen.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2331,6 +2638,8 @@ async function demo() {
 injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
 Injects a multi-touch operation to the device.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2349,11 +2658,12 @@ Injects a multi-touch operation to the device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2361,13 +2671,17 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2377,6 +2691,8 @@ async function demo() {
 fling(direction: UiDirection, speed: number): Promise\<void>;
 
 Simulates a fling operation on the screen, in the specified direction and speed.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2389,11 +2705,12 @@ Simulates a fling operation on the screen, in the specified direction and speed.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2411,14 +2728,16 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 Captures the specified area of the current screen and saves the captured screenshot as a PNG image to the specified path.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name  | Type          | Mandatory| Description                  |
-| -------- | -------------- | ---- | ---------------------- |
-| savePath | string         | Yes  | File save path.        |
-| rect     | [Rect](#rect9) | No  | Area of the screen to capture. The default value is the entire screen.|
+| Name  | Type          | Mandatory| Description                                      |
+| -------- | -------------- | ---- | ------------------------------------------ |
+| savePath | string         | Yes  | File save path. The path must be the sandbox path of the current application.|
+| rect     | [Rect](#rect9) | No  | Area of the screen to capture. The default value is the entire screen.                    |
 
 **Return value**
 
@@ -2428,11 +2747,12 @@ Captures the specified area of the current screen and saves the captured screens
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2450,6 +2770,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 Injects a mouse click at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with the mouse click.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2463,11 +2785,12 @@ Injects a mouse click at the specified coordinates, with the optional key or key
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2485,6 +2808,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 Injects a mouse scroll action at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with mouse scrolling.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2499,11 +2824,12 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2523,6 +2849,8 @@ Moves the cursor to the target point.
 
 **System capability**: SystemCapability.Test.UiTest
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type            | Mandatory| Description          |
@@ -2531,11 +2859,12 @@ Moves the cursor to the target point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2552,6 +2881,8 @@ async function demo() {
 createUIEventObserver(): UIEventObserver;
 
 Creates a UI event listener.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2585,6 +2916,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 Injects a mouse scroll action at the specified coordinates. You can specify the key or key combination to work with the action, as well as the scroll speed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2600,11 +2933,12 @@ Injects a mouse scroll action at the specified coordinates. You can specify the 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2622,6 +2956,8 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 Injects a double-click action at the specified coordinates, with the optional key or key combination. For example, if the value of **key** is **2072**, the **Ctrl** button is pressed with the double-click.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2635,11 +2971,12 @@ Injects a double-click action at the specified coordinates, with the optional ke
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2657,6 +2994,8 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 Injects a long-click action of the mouse device at the specified coordinates, with the optional key or key combination. For example, if the value of **Key** is **2072**, the **Ctrl** button is long-clicked with the mouse device.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2670,11 +3009,12 @@ Injects a long-click action of the mouse device at the specified coordinates, wi
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2692,6 +3032,8 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 Moves the mouse pointer from the start point to the end point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2704,11 +3046,12 @@ Moves the mouse pointer from the start point to the end point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2726,6 +3069,8 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 Drags the mouse pointer from the start point to the end point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2738,11 +3083,12 @@ Drags the mouse pointer from the start point to the end point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2760,6 +3106,8 @@ inputText(p: Point, text: string): Promise\<void>
 
 Enters text at the specified point.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2771,11 +3119,12 @@ Enters text at the specified point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                        |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2799,6 +3148,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 Creates a **PointerMatrix** object and returns the object created. This API is a static API.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -2813,6 +3164,14 @@ Creates a **PointerMatrix** object and returns the object created. This API is a
 | Type                            | Description                         |
 | -------------------------------- | ----------------------------- |
 | [PointerMatrix](#pointermatrix9) | **PointerMatrix** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -2829,34 +3188,49 @@ setPoint(finger: number, step: number, point: Point): void
 
 Sets the coordinates for the action corresponding to the specified finger and step in the **PointerMatrix** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description            |
-| ------ | ---------------- | ---- | ---------------- |
-| finger | number           | Yes  | Sequence number of the finger.    |
-| step   | number           | Yes  | Sequence number of the step.    |
-| point  | [Point](#point9) | Yes  | Coordinates of the action.|
+| Name| Type            | Mandatory| Description                                                      |
+| ------ | ---------------- | ---- | ---------------------------------------------------------- |
+| finger | number           | Yes  | Sequence number of the finger.                                              |
+| step   | number           | Yes  | Sequence number of the step.                                              |
+| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points be within the range of 10 to 80 pixels.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
 }
 ```
 
 ## UiWindow<sup>9+</sup>
 
 The **UiWindow** class represents a window on the UI and provides APIs for obtaining window attributes, dragging a window, and adjusting the window size.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### getBundleName<sup>9+</sup>
@@ -2864,6 +3238,8 @@ All APIs provided in this class use a promise to return the result and must be i
 getBundleName(): Promise\<string>
 
 Obtains the bundle name of the application to which this window belongs.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2900,6 +3276,8 @@ getBounds(): Promise\<Rect>
 
 Obtains the bounds information of this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -2933,6 +3311,8 @@ async function demo() {
 getTitle(): Promise\<string>
 
 Obtains the title of this window.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2968,6 +3348,8 @@ getWindowMode(): Promise\<WindowMode>
 
 Obtains the window mode of this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -3002,6 +3384,8 @@ isFocused(): Promise\<boolean>
 
 Checks whether this window is in focused state.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Return value**
@@ -3034,7 +3418,7 @@ async function demo() {
 
 isActived(): Promise\<boolean>
 
-Checks whether this window is active.
+Checks whether this window is active. This API uses a promise to return the result.
 
 This API is supported since API version 9 and deprecated since API version 11. You are advised to use [isActive<sup>11+</sup>](#isactive11) instead.
 
@@ -3072,6 +3456,8 @@ focus(): Promise\<void>
 
 Moves the focus to this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -3100,24 +3486,27 @@ moveTo(x: number, y: number): Promise\<void>
 
 Moves this window to the target point. This API is applicable to moveable windows.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| Name| Type  | Mandatory| Description                                           |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -3136,6 +3525,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 Resizes this window based on the specified width, height, and resize direction. This API is applicable to resizable windows.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -3148,13 +3539,14 @@ Resizes this window based on the specified width, height, and resize direction. 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -3172,6 +3564,8 @@ async function demo() {
 split(): Promise\<void>
 
 Switches the window to split-screen mode. This API is applicable to windows that support screen splitting.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3202,6 +3596,8 @@ maximize(): Promise\<void>
 
 Maximizes this window. This API is applicable to windows that can be maximized.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -3230,6 +3626,8 @@ async function demo() {
 minimize(): Promise\<void>
 
 Minimizes this window. This API is applicable to windows that can be minimized.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3260,6 +3658,8 @@ resume(): Promise\<void>
 
 Restores this window to the previous window mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -3289,6 +3689,8 @@ close(): Promise\<void>
 
 Closes this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
@@ -3317,6 +3719,8 @@ async function demo() {
 isActive(): Promise\<boolean>
 
 Checks whether this window is active.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3356,6 +3760,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 Subscribes to events of the toast component. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -3364,6 +3770,14 @@ Subscribes to events of the toast component. This API uses a callback to return 
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
 | type     | string                                       | Yes  | Event type. The value is fixed at **'toastShow'**.|
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | Yes  | Callback used to return the result.         |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -3387,6 +3801,8 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 Subscribes to events of the dialog component. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
@@ -3395,6 +3811,14 @@ Subscribes to events of the dialog component. This API uses a callback to return
 | -------- | -------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                       | Yes  | Event type. The value is fixed at **'dialogShow'**.|
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | Yes  | Callback used to return the result.          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -3419,7 +3843,9 @@ The UiTest framework provides a wide range of UI component feature description A
 The APIs provided by the **By** class exhibit the following features:
 
 - Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+
 - Provide multiple match patterns for component attributes.
+
 - Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.

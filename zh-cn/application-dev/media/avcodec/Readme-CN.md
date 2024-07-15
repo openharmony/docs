@@ -6,6 +6,7 @@
   - [音频编码](audio-encoding.md)
   - [音频解码](audio-decoding.md)
   - [视频编码](video-encoding.md)
+  - [时域可分层视频编码](video-encoding-temporal-scalability.md)
   - [视频解码](video-decoding.md)
 - 文件解析封装
   - [音视频封装](audio-video-muxer.md)

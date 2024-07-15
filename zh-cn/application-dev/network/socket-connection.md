@@ -108,15 +108,15 @@ UDP 与 TCP 流程大体类似，下面以 TCP 为例：
 7. Socket 连接使用完毕后，主动关闭。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // 创建一个TCPSocket连接，返回一个TCPSocket对象。
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -153,29 +153,27 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   tcpConnect.address = ipAddress;
   tcpConnect.timeout = 6000;
 
-  tcp.connect(tcpConnect, (err: BusinessError) => {
-    if (err) {
-      console.log('connect fail');
-      return;
-    }
+  tcp.connect(tcpConnect).then(() => {
     console.log('connect success');
-    // 发送数据
-    let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
-    tcpSendOptions.data = 'Hello, server!';
-    tcp.send(tcpSendOptions, (err: BusinessError) => {
-      if (err) {
-        console.log('send fail');
-        return;
-      }
+    let tcpSendOptions: socket.TCPSendOptions = {
+      data: 'Hello, server!'
+    }
+    tcp.send(tcpSendOptions).then(() => {
       console.log('send success');
-    })
+    }).catch((err: BusinessError) => {
+      console.log('send fail');
+    });
+  }).catch((err: BusinessError) => {
+    console.log('connect fail');
   });
 });
 
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
 setTimeout(() => {
-  tcp.close((err: BusinessError) => {
-    console.log('close socket.');
+  tcp.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
   });
   tcp.off('message');
   tcp.off('connect');
@@ -199,21 +197,20 @@ setTimeout(() => {
 8. 取消 TCPSocketConnection 和 TCPSocketServer 相关事件的订阅。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
-let tcpServer = socket.constructTCPSocketServerInstance();
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 // 绑定本地IP地址和端口，进行监听
 
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 4651;
-tcpServer.listen(ipAddress, (err: BusinessError) => {
-  if (err) {
-    console.log("listen fail");
-    return;
-  }
-  console.log("listen success");
+tcpServer.listen(ipAddress).then(() => {
+  console.log('listen success');
+}).catch((err: BusinessError) => {
+  console.log('listen fail');
 });
 
 class SocketInfo {
@@ -243,21 +240,17 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
   // 向客户端发送数据
   let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
   tcpSendOptions.data = 'Hello, client!';
-  client.send(tcpSendOptions, (err: BusinessError) => {
-    if (err) {
-      console.log("send fail");
-      return;
-    }
-    console.log("send success");
+  client.send(tcpSendOptions).then(() => {
+    console.log('send success');
+  }).catch((err: Object) => {
+    console.error('send fail: ' + JSON.stringify(err));
   });
 
   // 关闭与客户端的连接
-  client.close((err: BusinessError) => {
-    if (err) {
-      console.log("close fail");
-      return;
-    }
-    console.log("close success");
+  client.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
   });
 
   // 取消TCPSocketConnection相关的事件订阅
@@ -292,9 +285,10 @@ setTimeout(() => {
 7. 退出多播组。
 
 ```ts
-import socket from '@ohos.net.socket'
+import { socket } from '@kit.NetworkKit';
+
 // 创建Multicast对象
-let multicast = socket.constructMulticastSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 
 let addr : socket.NetAddress = {
   address: '239.255.0.1',
@@ -303,13 +297,12 @@ let addr : socket.NetAddress = {
 }
 
 // 加入多播组
-multicast.addMembership(addr, (err: Object) => {
-  if (err) {
-    console.info('add err: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('add ok');
-})
+// addMembership() 方法不支持静态调用，需要创建动态变量调用
+multicast.addMembership(addr).then(() => {
+  console.log('addMembership success');
+}).catch((err: Object) => {
+  console.log('addMembership fail');
+});
 
 // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
 class SocketInfo {
@@ -327,25 +320,21 @@ multicast.on('message', (data: SocketInfo) => {
 })
 
 // 发送数据
-multicast.send({ data:'Hello12345', address: addr }, (err: Object) => {
-  if (err) {
-    console.info('发送失败: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('发送成功');
-})
+multicast.send({ data:'Hello12345', address: addr }).then(() => {
+  console.log('send success');
+}).catch((err: Object) => {
+  console.log('send fail, ' + JSON.stringify(err));
+});
 
 // 关闭消息的监听
 multicast.off('message')
 
 // 退出多播组
-multicast.dropMembership(addr, (err: Object) => {
-  if (err) {
-    console.info('drop err ' + JSON.stringify(err));
-    return;
-  }
-  console.info('drop ok');
-})
+multicast.dropMembership(addr).then(() => {
+  console.log('drop membership success');
+}).catch((err: Object) => {
+  console.log('drop membership fail');
+});
 ```
 
 ## 应用通过 LocalSocket 进行数据传输
@@ -365,15 +354,15 @@ multicast.dropMembership(addr, (err: Object) => {
 6. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
-let client = socket.constructLocalSocketInstance();
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total receive: ' + JSON.stringify(value));
   console.log('message information: ' + messageView);
@@ -387,10 +376,11 @@ client.on('close', () => {
 
 // 传入指定的本地套接字路径，连接服务端。
 let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 let sendOpt: socket.LocalSendOptions = {
@@ -443,9 +433,10 @@ client.close().then(() => {
 9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
-let server = socket.constructLocalSocketServerInstance();
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // 创建并绑定本地套接字文件testSocket，进行监听
 let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -458,22 +449,22 @@ server.listen(listenAddr).then(() => {
 });
 
 // 订阅LocalSocketServer的connect事件
-server.on("connect", (connection: socket.LocalSocketConnection) => {
+server.on('connect', (connection: socket.LocalSocketConnection) => {
   // 订阅LocalSocketConnection相关的事件
-  connection.on("error", (err) => {
+  connection.on('error', (err: Object) => {
     console.log("on error success");
   });
   connection.on('message', (value: socket.LocalSocketMessageInfo) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
-      messageView = String.fromCharCode(uintArray[i]);
+      messageView += String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
     console.log('message information: ' + messageView);
   });
 
-  connection.on('error', (err) => {
+  connection.on('error', (err: Object) => {
     console.log("err:" + JSON.stringify(err));
   })
 
@@ -525,15 +516,15 @@ server.off('error');
 7. TLSSocket 连接使用完毕后，主动关闭。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsTwoWay = socket.constructTLSSocketInstance();
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
 // 订阅TLS Socket相关的订阅事件
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
@@ -584,8 +575,10 @@ tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
 tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 
 // 建立连接
-tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
-  console.error("connect function");
+tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
 });
 
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
@@ -601,7 +594,7 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 
 // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 
 // 订阅TLS Socket相关的订阅事件
 tlsTwoWay.on('message', (value: SocketInfo) => {
@@ -643,8 +636,10 @@ tlsOneWayConnectOptions.address = ipAddress;
 tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
 
 // 建立连接
-tlsOneWay.connect(tlsOneWayConnectOptions, () => {
-  console.error("connect function");
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
 });
 
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
@@ -683,26 +678,33 @@ tlsTwoWay.close((err: BusinessError) => {
 8. 取消订阅 TLSSocketConnection 以及 TLSSocketServer 的相关事件。
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
+
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {

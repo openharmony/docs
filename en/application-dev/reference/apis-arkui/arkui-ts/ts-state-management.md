@@ -21,7 +21,7 @@ The meanings of T and S in this topic are as follows:
 ## AppStorage
 
 
-For details about how to use AppStorage on the UI, see [AppStorage: Application-wide UI State Storage](../../quick-start/arkts-appstorage.md).
+For details about how to use AppStorage on the UI, see [AppStorage: Application-wide UI State Storage](../../../quick-start/arkts-appstorage.md).
 
 
 ### link<sup>10+</sup>
@@ -770,7 +770,7 @@ let res: number = AppStorage.Size(); // 1
 ## LocalStorage<sup>9+</sup>
 
 
-For details about how to use LocalStorage on the UI, see [LocalStorage: UI State Storage](../../quick-start/arkts-localstorage.md).
+For details about how to use LocalStorage on the UI, see [LocalStorage: UI State Storage](../../../quick-start/arkts-localstorage.md).
 
 
 ### constructor<sup>9+</sup>
@@ -781,7 +781,7 @@ Creates a **LocalStorage** instance and initializes it using the attributes and 
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -806,7 +806,7 @@ Obtains the **LocalStorage** instance shared by the current stage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -819,7 +819,7 @@ Obtains the **LocalStorage** instance shared by the current stage.
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
 **Example**
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
@@ -830,7 +830,7 @@ Checks whether the attribute with the specified attribute name exists in LocalSt
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -862,7 +862,7 @@ Obtains the attribute with the specified attribute name in LocalStorage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -894,7 +894,7 @@ Sets a value for the attribute with the specified attribute name in LocalStorage
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -930,7 +930,7 @@ If the new value is the same as the existing value of the attribute with the spe
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -970,7 +970,7 @@ If the given attribute does not exist in LocalStorage, **undefined** is returned
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1004,7 +1004,7 @@ Works in a way similar to the **link** API. If the given attribute exists in Loc
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1038,7 +1038,7 @@ Establishes one-way data binding with the given attribute in this **LocalStorage
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1072,7 +1072,7 @@ Works in a way similar to the **prop** API. If the given attribute exists in Loc
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1108,7 +1108,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1144,7 +1144,7 @@ Obtains all attribute names in LocalStorage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1170,7 +1170,7 @@ Obtains the number of attributes in LocalStorage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1198,7 +1198,7 @@ For details about the subscriber, see [delete](#delete9).
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1226,7 +1226,7 @@ Obtains the **LocalStorage** instance shared by the current stage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 >
 > This API is deprecated since API version 10. You are advised to use [getShared10+](#getshared10) instead.
 
@@ -1257,7 +1257,7 @@ Obtains attribute data synchronized from AppStorage or LocalStorage.
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1283,7 +1283,7 @@ Sets the attribute data synchronized from AppStorage or LocalStorage. The value 
 
 > **NOTE**
 >
-> Since API version 9, this API is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1322,7 +1322,7 @@ link.aboutToBeDeleted();
 ## PersistentStorage
 
 
-For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../quick-start/arkts-persiststorage.md).
+For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../../quick-start/arkts-persiststorage.md).
 
 ### PersistPropsOptions
 
@@ -1365,7 +1365,7 @@ According to the preceding initialization process, if AppStorage contains the ma
 **Example**
 
 
-For details about how to use persistProp, see [Accessing PersistentStorage Initialized Attribute from AppStorage](../../quick-start/arkts-persiststorage.md#accessing-persistentstorage-initialized-attribute-from-appstorage).
+For details about how to use persistProp, see [Accessing PersistentStorage Initialized Attribute from AppStorage](../../../quick-start/arkts-persiststorage.md#accessing-persistentstorage-initialized-attribute-from-appstorage).
 
 
 ### deleteProp<sup>10+</sup>
@@ -1544,7 +1544,7 @@ let keys: Array<string> = PersistentStorage.Keys();
 ## Environment
 
 
-For details about how to use Environment, see [Environment: Device Environment Query](../../quick-start/arkts-environment.md).
+For details about how to use Environment, see [Environment: Device Environment Query](../../../quick-start/arkts-environment.md).
 
 ### EnvPropsOptions
 
@@ -1586,7 +1586,7 @@ It is incorrect to use AppStorage to read environment variables without invoking
 **Example**
 
 
-For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../quick-start/arkts-environment.md#accessing-environment-parameters-from-ui).
+For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../../quick-start/arkts-environment.md#accessing-environment-parameters-from-ui).
 
 
 ### envProps<sup>10+</sup>

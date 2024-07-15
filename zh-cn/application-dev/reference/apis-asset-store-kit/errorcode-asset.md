@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The ASSET Service is unavailable.
+The ASSET service is unavailable.
 
 **可能原因**
 
@@ -22,7 +22,7 @@ The ASSET Service is unavailable.
 
 **错误信息**
 
-The queried Asset can not be found.
+The asset is not found.
 
 **可能原因**
 
@@ -38,7 +38,7 @@ The queried Asset can not be found.
 
 **错误信息**
 
-The Asset already exists.
+The asset already exists.
 
 **可能原因**
 
@@ -55,7 +55,7 @@ The Asset already exists.
 
 **错误信息**
 
-The access to Asset is denied.
+Access to the asset is denied.
 
 **可能原因**
 
@@ -73,7 +73,7 @@ The access to Asset is denied.
 
 **错误信息**
 
-The screen lock status mismatches.
+The screen lock status does not match.
 
 **可能原因**
 
@@ -103,7 +103,7 @@ Insufficient memory.
 
 **错误信息**
 
-The Asset is corrupted.
+The asset is corrupted.
 
 **可能原因**
 
@@ -117,21 +117,23 @@ The Asset is corrupted.
 
 **错误信息**
 
-The database operation is failed.
+The database operation failed.
 
 **可能原因**
 
-数据库访问异常。
+1. 用户尚未调用过add接口，进行asset数据库的创建，此时数据库还没创建出来，直接查询，会有该报错。
+2. 数据库访问异常。
 
 **处理步骤**
 
-查看错误信息，排查数据库异常原因。
+1. 用户先调用add接口，将asset数据库创建出来之后再进行查询。
+2. 查看错误信息，排查数据库异常原因。
 
 ## 24000009 算法库操作失败
 
 **错误信息**
 
-The cryptography operation is failed.
+The cryptography operation failed.
 
 **可能原因**
 
@@ -145,7 +147,7 @@ The cryptography operation is failed.
 
 **错误信息**
 
-IPC communication is failed.
+IPC failed.
 
 **可能原因**
 
@@ -159,7 +161,7 @@ IPC communication is failed.
 
 **错误信息**
 
-The operation of calling Bundle Manager Service is failed.
+Calling the Bundle Manager service failed.
 
 **可能原因**
 
@@ -173,7 +175,7 @@ The operation of calling Bundle Manager Service is failed.
 
 **错误信息**
 
-The operation of calling OS Account Service is failed.
+Calling the OS Account service failed.
 
 **可能原因**
 
@@ -187,7 +189,7 @@ The operation of calling OS Account Service is failed.
 
 **错误信息**
 
-The operation of calling Access Token Service is failed.
+Calling the Access Token service failed.
 
 **可能原因**
 
@@ -201,7 +203,7 @@ The operation of calling Access Token Service is failed.
 
 **错误信息**
 
-The operation of file is failed.
+The file operation failed.
 
 **可能原因**
 
@@ -216,7 +218,7 @@ The operation of file is failed.
 
 **错误信息**
 
-The operation of getting system time is failed.
+Getting the system time failed.
 
 **可能原因**
 

@@ -9,7 +9,7 @@ The **inputEvent** module provides the basic events reported by the device.
 ## Modules to Import
 
 ```js
-import InputEvent from '@ohos.multimodalInput.inputEvent';
+import { InputEvent } from '@kit.InputKit';
 ```
 
 ## InputEvent 

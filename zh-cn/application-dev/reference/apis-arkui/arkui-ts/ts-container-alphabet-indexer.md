@@ -16,6 +16,8 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -25,6 +27,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 ## 属性
 
+[width](ts-universal-attributes-size.md#width)属性设置"auto"时表示自适应宽度，宽度会随索引项最大宽度变化。
+
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### color
@@ -32,6 +36,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 color(value: ResourceColor)
 
 设置文字颜色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +53,8 @@ selectedColor(value: ResourceColor)
 
 设置选中项文字颜色。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -60,6 +68,8 @@ selectedColor(value: ResourceColor)
 popupColor(value: ResourceColor)
 
 设置提示弹窗文字颜色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,6 +85,8 @@ selectedBackgroundColor(value: ResourceColor)
 
 设置选中项背景颜色。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -88,6 +100,8 @@ selectedBackgroundColor(value: ResourceColor)
 popupBackground(value: ResourceColor)
 
 设置提示弹窗背景色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -103,6 +117,8 @@ usingPopup(value: boolean)
 
 设置是否使用提示弹窗。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -116,6 +132,8 @@ usingPopup(value: boolean)
 selectedFont(value: Font)
 
 设置选中项文字样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -131,6 +149,8 @@ popupFont(value: Font)
 
 设置提示弹窗字体样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -144,6 +164,8 @@ popupFont(value: Font)
 font(value: Font)
 
 设置字母索引条默认字体样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,6 +181,8 @@ itemSize(value: string&nbsp;|&nbsp;number)
 
 设置字母索引条字母区域大小。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -173,13 +197,15 @@ alignStyle(value: IndexerAlign, offset?: Length)
 
 设置字母索引条弹框的对齐样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名               | 类型                                  | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。 |
+| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.END。 |
 | offset<sup>10+</sup> | [Length](ts-types.md#length)          | 否   | 提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
 
 ### selected<sup>8+</sup>
@@ -189,6 +215,8 @@ selected(index: number)
 设置选中项索引值。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,6 +232,8 @@ popupPosition(value: Position)
 
 设置弹出窗口相对于索引器条上边框中点的位置。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -217,6 +247,8 @@ popupPosition(value: Position)
 popupSelectedColor(value: ResourceColor)
 
 设置提示弹窗非字母部分选中文字色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -232,6 +264,8 @@ popupUnselectedColor(value: ResourceColor)
 
 设置提示弹窗非字母部分未选中文字色。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -246,6 +280,8 @@ popupItemFont(value: Font)
 
 设置提示弹窗非字母部分字体样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -259,6 +295,8 @@ popupItemFont(value: Font)
 popupItemBackgroundColor(value: ResourceColor)
 
 设置提示弹窗非字母部分背景色。 
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -278,19 +316,23 @@ autoCollapse(value: boolean)
 
 如果字符串首字符不为“#”。当所有字符数 $\leq$ 9时，选择全显示模式。当9 < 所有字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。当所有字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false。<br />API version 12及之后：true。 |
 
 ### popupItemBorderRadius<sup>12+</sup>   
 
 popupItemBorderRadius(value: number)
 
 设置提示弹窗索引项背板圆角半径。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,6 +348,8 @@ itemBorderRadius(value: number)
 
 设置索引项背板圆角半径。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -319,6 +363,8 @@ itemBorderRadius(value: number)
 popupBackgroundBlurStyle(value: BlurStyle)
 
 设置提示弹窗的背景模糊材质。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -334,20 +380,34 @@ popupTitleBackground(value: ResourceColor)
 
 设置提示弹窗首个索引项背板颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                                     |
-| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：#0c182431。 |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：<br/>提示弹窗只有一个索引项：#00FFFFFF。<br/>提示弹窗有多个索引项：#0c182431。 |
+
+### enableHapticFeedback<sup>12+</sup>
+
+enableHapticFeedback(enable: boolean)
+
+| 参数名         | 类型                                                  | 必填 | 说明                         |
+|-------------|-----------------------------------------------------|----|----------------------------|
+| enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
 | Left | 弹框显示在索引条右侧。 |
 | Right | 弹框显示在索引条左侧。 |
+| START<sup>12+</sup> | 在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。 |
+| END<sup>12+</sup> | 在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。 |
 
 ## 事件
 
@@ -375,6 +435,8 @@ onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 索引条选中回调，返回值为当前选中索引。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -389,19 +451,29 @@ onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;
 
 选中字母索引后，请求索引提示弹窗显示内容回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+| index  | number | 是   | 当前选中的索引 |
+
+**返回值：** 
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| Array&lt;string&gt; | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
 
 ### onPopupSelect<sup>8+</sup>
 
 onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 字母索引提示弹窗字符串列表选中回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -600,7 +672,7 @@ struct AlphabetIndexerSample {
               .selectedFont({ size: 16, weight: FontWeight.Bolder })// 选中项字体样式
               .popupFont({ size: 30, weight: FontWeight.Bolder })// 弹出框内容的字体样式
               .itemSize(28)// 每一项的尺寸大小
-              .alignStyle(IndexerAlign.Right)// 弹出框在索引条右侧弹出
+              .alignStyle(IndexerAlign.Right)// 弹出框在索引条左侧弹出
               .popupTitleBackground("#D2B48C") // 弹出框首个索引项背板颜色
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)

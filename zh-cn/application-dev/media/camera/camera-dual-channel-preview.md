@@ -1,5 +1,7 @@
 # 双路预览(ArkTS)
 
+双路预览，即应用可同时使用两路预览流，一路用于在屏幕上显示，一路用于图像处理等其他操作，提升处理效率。
+
 相机应用通过控制相机，实现图像显示（预览）、照片保存（拍照）、视频录制（录像）等基础操作。相机开发模型为Surface模型，即应用通过Surface进行数据传递，通过ImageReceiver的surface获取拍照流的数据、通过XComponent的surface获取预览流的数据。
 
 如果要实现双路预览，即将拍照流改为预览流，将拍照流中的surface改为预览流的surface，通过ImageReceiver的surface创建previewOutput，其余流程与拍照流和预览流一致。
@@ -24,7 +26,7 @@
    创建双路预览流的SurfaceId，除XComponent组件的SurfaceId外，还需要使用ImageReceiver组件创建生成的SurfaceId，需要使用image模块提供的接口。
 
    ```ts
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    ```
 2. 创建ImageReceiver对象。
    ```ts
@@ -52,44 +54,16 @@
 
 4. 创建XComponent组件Surface。
 
-   可参考[相机预览指导文档](camera-preview.md)。
-
-   ```ets
-   //xxx.ets
-   // 创建XComponentController
-   @Component
-   struct XComponentPage {
-     // 创建XComponentController
-     mXComponentController: XComponentController = new XComponentController;
-
-     build() {
-       Flex() {
-         // 创建XComponent
-         XComponent({
-           id: '',
-           type: 'surface',
-           libraryname: '',
-           controller: this.mXComponentController
-         })
-           .onLoad(() => {
-             // 设置Surface宽高（1920*1080），预览尺寸设置参考前面 previewProfilesArray 获取的当前设备所支持的预览分辨率大小去设置
-             this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-             // 获取Surface ID
-             let surfaceId: string = this.mXComponentController.getXComponentSurfaceId();
-           })
-           .width('1920px')
-           .height('1080px')
-       }
-     }
-   }
-   ```
+   XComponent组件为预览流提供的Surface（获取surfaceId请参考[getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)方法），而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+   > **说明：**
+   > 预览流与录像输出流的分辨率的宽高比要保持一致，如果设置XComponent组件中的Surface显示区域宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
 
 5. 实现双路预览。
 
    将步骤2、3生成的两路SurfaceId通过[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
+   import { camera } from '@kit.CameraKit';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
      // 获取支持的相机设备对象
@@ -154,7 +128,7 @@
    通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/js-apis-image.md)。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    function onImageArrival(receiver: image.ImageReceiver): void {
      receiver.on('imageArrival', () => {

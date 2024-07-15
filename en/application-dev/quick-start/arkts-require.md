@@ -8,11 +8,13 @@
 >
 > Validation for \@Prop and \@BuilderParam decorated variables is supported since API version 11.
 >
-> Validation for regular variables is supported since API version 12.
+> Validation for regular variables and \@State or \@Provide decorated variables is supported since API version 12.
+> This decorator can be used in atomic services since API version 11.
+
 
 ## Overview
 
-When \@Require is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam, the variable must be passed as the input parameter in to the constructor of a custom component.
+When \@Require is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in a custom component, the variable must be passed from the parent component during construction of the custom component.
 
 ## Constraints
 
@@ -38,14 +40,14 @@ struct Index {
   build() {
     Row() {
       Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initbuildTest: this.buildTest })
+        buildTest: this.buildTest, initBuildTest: this.buildTest })
     }
   }
 }
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -55,7 +57,7 @@ struct Child {
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
   @Require @Prop message: string;
 
@@ -65,7 +67,7 @@ struct Child {
         .fontSize(30)
       Text(this.message)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
       this.buildTest();
     }
     .width('100%')
@@ -100,7 +102,7 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -110,14 +112,14 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
 
   build() {
     Column() {
       Text(this.initMessage)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
     }
   }
 }

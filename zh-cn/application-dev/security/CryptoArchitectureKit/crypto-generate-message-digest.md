@@ -46,25 +46,43 @@
 
 4. 调用[Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
 
-以使用await方式单次传入数据，获取摘要计算结果为例：
+- 以使用await方式单次传入数据，获取摘要计算结果为例：
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
-async function doMd() {
-  let mdAlgName = 'SHA256'; // 摘要算法名
-  let message = 'mdTestMessgae'; // 待摘要的数据
-  let md = cryptoFramework.createMd(mdAlgName);
-  // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
-  await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
-  let mdResult = await md.digest();
-  console.info('Md result:' + mdResult.data);
-  let mdLen = md.getMdLength();
-  console.info("md len: " + mdLen);
-}
-```
+  async function doMd() {
+    let mdAlgName = 'SHA256'; // 摘要算法名
+    let message = 'mdTestMessgae'; // 待摘要的数据
+    let md = cryptoFramework.createMd(mdAlgName);
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
+    let mdResult = await md.digest();
+    console.info('Md result:' + mdResult.data);
+    let mdLen = md.getMdLength();
+    console.info("md len: " + mdLen);
+  }
+  ```
 
+- 以使用同步方式单次传入数据，获取摘要计算结果为例：
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function doMdBySync() {
+    let mdAlgName = 'SHA256'; // 摘要算法名
+    let message = 'mdTestMessgae'; // 待摘要的数据
+    let md = cryptoFramework.createMd(mdAlgName);
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
+    let mdResult = md.digestSync();
+    console.info('[Sync]:Md result:' + mdResult.data);
+    let mdLen = md.getMdLength();
+    console.info("md len: " + mdLen);
+  }
+  ```
 
 ### 分段摘要算法
 
@@ -76,27 +94,52 @@ async function doMd() {
 
 4. 调用[Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
 
-以使用await方式分段传入数据，获取摘要计算结果为例：
+- 以使用await方式分段传入数据，获取摘要计算结果为例：
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
-async function doLoopMd() {
-  let mdAlgName = "SHA256"; // 摘要算法名
-  let md = cryptoFramework.createMd(mdAlgName);
-  // 假设信息总共43字节，根据utf-8解码后，也是43字节
-  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-  let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-  let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
-  for (let i = 0; i < messageData.length; i += updateLength) {
-    let updateMessage = messageData.subarray(i, i + updateLength);
-    let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-    await md.update(updateMessageBlob);
+  async function doLoopMd() {
+    let mdAlgName = "SHA256"; // 摘要算法名
+    let md = cryptoFramework.createMd(mdAlgName);
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
+    let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    for (let i = 0; i < messageData.length; i += updateLength) {
+      let updateMessage = messageData.subarray(i, i + updateLength);
+      let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
+      await md.update(updateMessageBlob);
+    }
+    let mdOutput = await md.digest();
+    console.info("md result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("md len: " + mdLen);
   }
-  let mdOutput = await md.digest();
-  console.info("md result: " + mdOutput.data);
-  let mdLen = md.getMdLength();
-  console.info("md len: " + mdLen);
-}
-```
+  ```
+
+- 以使用同步方式分段传入数据，获取摘要计算结果为例：
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function doLoopMdBySync() {
+    let mdAlgName = "SHA256"; // 摘要算法名
+    let md = cryptoFramework.createMd(mdAlgName);
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
+    let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    for (let i = 0; i < messageData.length; i += updateLength) {
+      let updateMessage = messageData.subarray(i, i + updateLength);
+      let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
+      md.updateSync(updateMessageBlob);
+    }
+    let mdOutput = md.digestSync();
+    console.info("[Sync]:md result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("md len: " + mdLen);
+  }
+  ```

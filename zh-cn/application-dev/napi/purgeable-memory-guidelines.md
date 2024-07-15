@@ -122,4 +122,6 @@ OpenHarmony提供Purgeable Memory内存管理机制，开发者可以使用相�
     ```c++
     // 销毁对象
     OH_PurgeableMemory_Destroy(pPurgmem);
+    // 置空指针防止UAF
+    pPurgmem = nullptr;
     ```

@@ -6,8 +6,12 @@
 
 | 封装格式 | 视频编解码类型        | 音频编解码类型   | 封面类型       |
 | -------- | --------------------- | ---------------- | -------------- |
-| mp4      | AVC（H.264）          | AAC、MPEG（MP3） | jpeg、png、bmp |
-| m4a      |                       | AAC              | jpeg、png、bmp |
+| mp4      | AVC（H.264）<!--RP1--><!--RP1End-->    | AAC、MPEG（MP3） | jpeg、png、bmp |
+| m4a      | -                     | AAC              | jpeg、png、bmp |
+| mp3      | -                     | MPEG（MP3）      | -              |
+<!--RP2--><!--RP2End-->
+
+<!--RP3--><!--RP3End-->
 
 **适用场景**
 
@@ -49,6 +53,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
    ```
 
 2. 调用OH_AVMuxer_Create()创建封装器实例对象。

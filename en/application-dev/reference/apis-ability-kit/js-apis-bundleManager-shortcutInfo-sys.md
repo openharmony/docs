@@ -21,6 +21,7 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 | targetBundle              | string | Yes  | No  | Target bundle name of the shortcut.|
 | targetModule              | string | Yes  | No  | Target module name of the shortcut. |
 | targetAbility             | string | Yes  | No  | Target ability name of the shortcut.|
+| parameters<sup>12+</sup>  | Array\<[ParameterItem](#parameteritem12)> | Yes  | No  | Custom data in the shortcut configuration.|
 
 ## ShortcutInfo
 
@@ -39,5 +40,16 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 | label                   | string                                     | Yes  | No  | Label of the shortcut.             |
 | labelId    | number                                     | Yes  | No  | ID of the shortcut label.          |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.       |
+
+## ParameterItem<sup>12+</sup>
+
+Describes the custom data in the shortcut configuration.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Name         | Type   | Read Only| Mandatory| Description                  |
+| ------------- | ------ | ---- | ---- | ---------------------- |
+| key           | string | Yes  | Yes  | Key of the custom data.      |
+| value         | string | Yes  | Yes  | Value of the custom data.|
 
 <!--no_check-->

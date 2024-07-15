@@ -6,14 +6,19 @@
   - Requesting Application Permissions
     - [Workflow for Using Permissions](determine-application-mode.md)
     - [Declaring Permissions](declare-permissions.md)
-    - [Declaring Permissions in ACL](declare-permissions-in-acl.md)
     - [Requesting User Authorization](request-user-authorization.md)
+    - [Requesting User Authorization Again](request-user-authorization-second.md)
+    - [Requesting One-Time User Authorization](one-time-authorization.md)
+    <!--Del-->
+    - [Requesting Restricted Permissions](declare-permissions-in-acl.md)
+    <!--DelEnd-->
   - Application Permissions
     - [Permissions for All Applications](permissions-for-all.md)
+    <!--Del-->
     - [Permissions for System Applications](permissions-for-system-apps.md)
+    <!--DelEnd-->
     - [Permissions for MDM Applications](permissions-for-mdm-apps.md)
   - [Application Permission Groups](app-permission-group-list.md)
-- [Using System Pickers](use-picker.md)
 - Using Security Components
   - [Security Component Overview](security-component-overview.md)
   - [Using \<PasteButton>](pastebutton.md)

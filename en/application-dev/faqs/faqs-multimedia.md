@@ -191,7 +191,7 @@ Currently, WMV is not supported. The supported formats are AAC, MPEG (MP3), FLAC
 
 **References**
 
-The formats supported by **SoundPool** are the same as those supported by the bottom layer. For details about the supported formats, see [Audio Decoding](../media/audio-decoding.md).
+The formats supported by **SoundPool** are the same as those supported by the bottom layer. For details about the supported formats, see [Audio Decoding](../media/avcodec/audio-decoding.md).
 
 ## How do I read the preview image of the camera? (API version 10)
 
@@ -207,7 +207,7 @@ You can call **ImageReceiver.readLatestImage** to obtain the preview image of th
 
 **Solution**
 
-Audio-related listening of the system is implemented in **AudioStreamManager**. You can call **on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void** to listen for audio capturer changes.
+Audio-related listening of the system is implemented in **AudioStreamManager**. You can call **on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfoArray>): void** to listen for audio capturer changes.
 
 **References**
 
@@ -227,7 +227,7 @@ The embedded 3A processing is automatically enabled for the audio stream with th
 
 **Solution**
 
-To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the **OHAudio** module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/using-ohaudio-for-recording.md).
+To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the **OHAudio** module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/audio/using-ohaudio-for-recording.md).
 
 **References**
 
@@ -241,8 +241,8 @@ Currently, the AVPlayer supports HTTP, HTTPS, and HLS for real-time video stream
 
 **References**
 
-- [Media Kit](../media/media-kit-intro.md)
-- [AVPlayer](../media/using-avplayer-for-playback.md)
+- [Media Kit](../media/media/media-kit-intro.md)
+- [AVPlayer](../media/media/using-avplayer-for-playback.md)
 
 ## How do I enable the AVPlayer to play in the background? (API version 10)
 
@@ -252,7 +252,7 @@ To continue background playback, the application must request a continuous task 
 
 **References**
 
-[Accessing AVSession](../media/avsession-access-scene.md)
+[Accessing AVSession](../media/avsession/avsession-access-scene.md)
 
 ## Why can't a third-party application create albums? (API version 10)
 

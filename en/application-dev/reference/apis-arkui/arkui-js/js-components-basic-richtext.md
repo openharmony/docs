@@ -16,17 +16,17 @@ None
 
 ## Attributes
 
-Only the **id**, **style**, and **class** attributes in [Universal Attributes](../arkui-js/js-components-common-attributes.md) are supported.
+Only the **id**, **style**, and **class** attributes in [Universal Attributes](js-components-common-attributes.md) are supported.
 
 
 ## Styles
 
-Only the **display** and **visibility** styles in [Universal Styles](../arkui-js/js-components-common-styles.md) are supported.
+Only the **display** and **visibility** styles in [Universal Styles](js-components-common-styles.md) are supported.
 
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 | Name| Parameter| Description|
 | -------- | -------- | -------- |

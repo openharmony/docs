@@ -420,14 +420,14 @@ function f(shouldInitialize: boolean) {
 console.log(f(true))  // b
 console.log(f(false)) // undefined
 
-let upper_let = 0
+let upperLet = 0
 {
-  var scoped_var = 0
-  let scoped_let = 0
-  upper_let = 5
+  var scopedVar = 0
+  let scopedLet = 0
+  upperLet = 5
 }
-scoped_var = 5 // Visible
-scoped_let = 5 // Compile-time error
+scopedVar = 5 // Visible
+scopedLet = 5 // Compile-time error
 ```
 
 **ArkTS**
@@ -444,14 +444,14 @@ function f(shouldInitialize: boolean): string {
 console.log(f(true));  // b
 console.log(f(false)); // a
 
-let upper_let = 0
-let scoped_var = 0
+let upperLet = 0
+let scopedVar = 0
 {
-  let scoped_let = 0
-  upper_let = 5
+  let scopedLet = 0
+  upperLet = 5
 }
-scoped_var = 5
-scoped_let = 5 // Compile-time error
+scopedVar = 5
+scopedLet = 5 // Compile-time error
 ```
 
 ### Recipe: Use Explicit Types Instead of `any` or `unknown`
@@ -504,7 +504,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(6))
+  console.log(fn.description + ' returned ' + fn(''))
 }
 ```
 
@@ -522,7 +522,7 @@ class DescribableFunction {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(6))
+  console.log(fn.description + ' returned ' + fn.invoke(''))
 }
 
 doSomething(new DescribableFunction())
@@ -1226,16 +1226,16 @@ class Point {
   y: number = 0
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o
 }
 
 // Structural typing is used to deduce that p is Point.
 let p = {x: 5, y: 10}
-id_x_y(p)
+getPoint(p)
 
 // A literal can be contextually (i.e., implicitly) typed as Point.
-id_x_y({x: 5, y: 10})
+getPoint({x: 5, y: 10})
 ```
 
 **ArkTS**
@@ -1249,16 +1249,16 @@ class Point {
     // Since there is no other Point constructors, constructor() is automatically added by compiler.
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o
 }
 
 // Explicit type is required for literal initialization.
 let p: Point = {x: 5, y: 10}
-id_x_y(p)
+getPoint(p)
 
-// id_x_y expects Point explicitly. A new instance of Point is initialized with the literal.
-id_x_y({x: 5, y: 10})
+// getPoint expects Point explicitly. A new instance of Point is initialized with the literal.
+getPoint({x: 5, y: 10})
 ```
 
 **See also**
@@ -1357,32 +1357,6 @@ let f = function (s: string) {
 let f = (s: string) => {
   console.log(s)
 }
-```
-
-### Recipe: Use Generic Functions Instead of Generic Arrow Functions
-
-**Rule:** `arkts-no-generic-lambdas`
-
-**Severity: error**
-
-ArkTS does not support generic arrow functions. Use normal generic functions instead.
-
-**TypeScript**
-
-```typescript
-let generic_arrow_func = <T extends String> (x: T) => { return x }
-
-generic_arrow_func('string')
-```
-
-**ArkTS**
-
-```typescript
-function generic_func<T extends String>(x: T): T {
-  return x
-}
-
-generic_func<String>('string')
 ```
 
 ### Recipe: Class Literals Are Not Supported
@@ -2764,26 +2738,6 @@ namespace A {
 
 // Initialization function should be called to execute statements.
 A.init()
-```
-
-### Recipe: `import default as ...` Is Not Supported
-
-**Rule:** `arkts-no-import-default-as`
-
-**Severity: error**
-
-ArkTS does not support the `import default as ...` syntax. Use explicit `import ... from ...` instead.
-
-**TypeScript**
-
-```typescript
-import { default as d } from 'mod'
-```
-
-**ArkTS**
-
-```typescript
-import d from 'mod'
 ```
 
 ### Recipe: `require` and `import` Assignment Are Not Supported

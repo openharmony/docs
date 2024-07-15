@@ -40,7 +40,7 @@
 开发者通过订阅卷设备相关的广播事件来感知外置存储的插入，通过广播传递的信息获取卷设备信息后可以对卷设备进行查询以及管理操作。
 
 1. 获取权限。
-   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 订阅广播事件。
    需订阅的事件如下：
@@ -53,7 +53,7 @@
 
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
+   import { volumeManager } from '@kit.CoreFileKit';
    import { BusinessError } from '@ohos.base';
 
    let subscriber: CommonEvent.CommonEventSubscriber;
