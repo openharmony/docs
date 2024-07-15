@@ -1625,7 +1625,7 @@ SymbolSpan样式选项。
 
 ## PasteEventCallback<sup>12+</sup>
 
-完成粘贴前，触发回调。
+完成粘贴前，触发回调。<br/>
 type PasteEventCallback = (event?: PasteEvent) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
