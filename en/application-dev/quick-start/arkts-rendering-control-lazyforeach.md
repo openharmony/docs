@@ -10,8 +10,8 @@
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // Data source to iterate over.
-    itemGenerator: (item: any, index?: number) => void,  // Child component generation function.
-    keyGenerator?: (item: any, index?: number) => string // Key generation function.
+    itemGenerator: (item: Object, index: number) => void,  // Child component generation function.
+    keyGenerator?: (item: Object, index: number) => string // Key generation function.
 ): void
 ```
 
@@ -21,8 +21,8 @@ LazyForEach(
 | Name       | Type                                              | Mandatory| Description                                                    |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource)                    | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
-| itemGenerator | (item: any, index?:number) =&gt; void | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
-| keyGenerator  | (item: any, index?:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
+| itemGenerator | (item: Object, index:number) =&gt; void  | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
+| keyGenerator  | (item: Object, index:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
 
 ## IDataSource
 
@@ -31,16 +31,16 @@ interface IDataSource {
     totalCount(): number; // Obtain the total number of data items.
     getData(index: number): Object; // Obtain the data item that matches the specified index.
     registerDataChangeListener(listener: DataChangeListener): void; // Register a data change listener.
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
+    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister the data change listener.
 }
 ```
 
 | Declaration                                                    | Parameter Type                                         | Description                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount(): number                                    | -                                                 | Obtains the total number of data items.                                             |
-| getData(index: number): any                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
+| getData(index: number): Object                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
 | registerDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
-| unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
+| unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Unregisters the listener for data changes.<br>**listener**: listener for data changes.        |
 
 ## DataChangeListener
 
@@ -55,6 +55,7 @@ interface DataChangeListener {
     onDataMove(from: number, to: number): void; // Invoked after data is moved.
     onDataDelete(index: number): void; // Invoked after data is deleted.
     onDataChange(index: number): void; // Invoked after data is changed.
+    onDatasetChange(dataOperations: DataOperation[]): void; // Invoked after data is processed in batches.
 }
 ```
 
@@ -69,7 +70,105 @@ interface DataChangeListener {
 | onDataMoved(from: number, to: number): void<sup>(deprecated)</sup> | from: number,<br>to: number | Invoked when data is moved.<br>This API is deprecated since API version 8. You are advised to use **onDataMove** instead.<br>**from**: original position of data; **to**: target position of data.<br>Data is swapped between the **from** and **to** positions.<br>**NOTE**<br>The ID must remain unchanged before and after data movement. If the ID changes, APIs for deleting and adding data must be called.|
 | onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | Invoked when data is deleted from the position indicated by the specified index. LazyForEach will update the displayed content accordingly.<br>This API is deprecated since API version 8. You are advised to use **onDataDelete** instead.<br>**index**: index of the position where data is deleted.|
 | onDataChanged(index: number): void<sup>(deprecated)</sup> | number                                 | Invoked when data in the position indicated by the specified index is changed.<br>This API is deprecated since API version 8. You are advised to use **onDataChange** instead.<br>**index**: listener for data changes.|
+| onDatasetChange(dataOperations: DataOperation[]): void<sup>12+</sup> | DataOperation[]                        | Invoked when data is processed in batches.<br>This API cannot be used together with the preceding APIs.<br>**DataOperation**: data processing operation.|
 
+## DataOperation
+
+```ts
+type DataOperation =
+  	DataAddOperation |          // Add data.
+	DataDeleteOperation |       // Delete data.
+	DataChangeOperation |       // Change data.
+	DataMoveOperation |         // Move data.
+	DataExchangeOperation |     // Exchange data.
+	DataReloadOperation         // Reload all data.
+```
+
+### DataAddOperation
+
+```ts
+interface DataAddOperation {
+  type: DataOperationType.ADD,     // Data operation type of adding.
+  index: number,                   // Index at which to insert data.
+  count?: number,                  // Number of entries to insert. The default value is 1.
+  key?: string | Array<string>     // Keys to assign to the inserted data.
+}
+```
+
+### DataDeleteOperation
+
+```ts
+interface DataDeleteOperation {
+  type: DataOperationType.DELETE, // Data operation type of deletion.
+  index: number,                   // Index at which to start deleting data.
+  count?: number                   // Number of entries to delete. The default value is 1.
+}
+```
+
+### DataChangeOperation
+
+```ts
+interface DataChangeOperation {
+  type: DataOperationType.CHANGE, // Data operation type of change.
+  index: number,                   // Index at which to change data.
+  key?: string                     // New keys to assign to the changed data. By default, the original keys are used.
+}
+```
+
+### DataMoveOperation
+
+```ts
+interface MoveIndex {
+  from: number;                    // Original position.
+  to: number;                      // Destination position.
+}
+
+interface DataMoveOperation {
+  type: DataOperationType.MOVE,    // Data operation type of movement.
+  index: MoveIndex,
+  key?: string                     // New keys to assign to the moved data. By default, the original keys are used.
+}
+```
+
+### DataExchangeOperation
+
+```ts
+interface ExchangeIndex {
+  start: number;                   // First position for exchange.
+  end: number;                     // Second position for exchange.
+}
+interface ExchangeKey {
+  start: string;                   // New key to assign to the data in the first position for exchange. By default, the original key is used.
+  end: string;                     // New key to assign to the data in the second position for exchange. By default, the original key is used.
+}
+
+interface DataExchangeOperation {
+  type: DataOperationType.EXCHANGE,  // Data operation type of exchange.
+  index: ExchangeIndex,
+  key?: ExchangeKey
+}
+```
+
+### DataReloadOperation
+
+```ts
+interface DataReloadOperation {     // If onDatasetChange contains the DataOperationType.RELOAD operation, other operations do not take effect. The framework calls the key generator to compare keys.
+  type: DataOperationType.RELOAD    // Data operation type of reloading.
+}
+```
+
+### DataOperationType
+
+```ts
+declare enum DataOperationType {
+  ADD = 'add',                      // Add data.
+  DELETE = 'delete',                // Delete data.
+  CHANGE = 'change',                // Change data.
+  MOVE = 'move',                    // Move data.
+  EXCHANGE = 'exchange',            // Exchange data.
+  RELOAD = 'reload'                 // Reload data.
+}
+```
 
 ## Constraints
 
@@ -77,7 +176,7 @@ interface DataChangeListener {
 - **LazyForEach** must create one and only one child component in each iteration.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.
-- The ID generation function must generate a unique value for each piece of data. If the IDs are the same, the framework ignores the UI components with the same key value. As a result, these UI components cannot be displayed in the parent container.
+- The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must be updated using a **DataChangeListener** object. When the first parameter **dataSource** uses a state variable, a state variable change does not trigger the UI update of **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
 
@@ -85,7 +184,7 @@ interface DataChangeListener {
 
 During **LazyForEach** rendering, the system generates a unique, persistent key for each item to identify the owing component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
+**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: Object, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
 
 ## Component Creation Rules
 
@@ -334,7 +433,7 @@ struct MyComponent {
 }
  ```
 
-The figure below shows the effect. You can see that **Hello 0** is incorrectly rendered as **Hello 13** during the swiping.
+The figure below shows the effect.
 
 **Figure 2** LazyForEach rendering when keys are the same 
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)
@@ -382,6 +481,7 @@ class BasicDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
+      // Method 2: listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
     })
   }
 
@@ -516,6 +616,7 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
+      // Method 2: listener.onDatasetChange([{type: DataOperationType.DELETE, index: index}]);
     })
   }
 
@@ -544,7 +645,6 @@ class MyDataSource extends BasicDataSource {
 
   public pushData(data: string): void {
     this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
   }
   
   public deleteData(index: number): void {
@@ -649,6 +749,8 @@ class BasicDataSource implements IDataSource {
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
+      // Method 2: listener.onDatasetChange ()
+      //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
     })
   }
 }
@@ -671,7 +773,6 @@ class MyDataSource extends BasicDataSource {
 
   public pushData(data: string): void {
     this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
   }
   
   public deleteData(index: number): void {
@@ -713,7 +814,7 @@ struct MyComponent {
         .onClick(() => {
           this.moved.push(this.data.dataArray.indexOf(item));
           if (this.moved.length === 2) {
-          	// Click to move a child component.
+          	// Click to exchange child components.
           	this.data.moveData(this.moved[0], this.moved[1]);
             this.moved = [];
           }
@@ -776,6 +877,7 @@ class BasicDataSource implements IDataSource {
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
+      // Method 2: listener.onDatasetChange([{type: DataOperationType.CHANGE, index: index}]);
     })
   }
 
@@ -810,7 +912,6 @@ class MyDataSource extends BasicDataSource {
 
   public pushData(data: string): void {
     this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
   }
   
   public deleteData(index: number): void {
@@ -897,6 +998,7 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
+      // Method 2: listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -943,7 +1045,6 @@ class MyDataSource extends BasicDataSource {
 
   public pushData(data: string): void {
     this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
   }
   
   public deleteData(index: number): void {
@@ -1005,6 +1106,128 @@ The figure below shows the effect.
 
 **Figure 7** Changing multiple data items in LazyForEach 
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
+
+- ### Precisely Changing Data in Batches
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public operateData(): void {
+    this.dataArray.splice(3, 0, this.dataArray[1]);
+    this.dataArray.splice(1, 1);
+    let temp = this.dataArray[4];
+    this.dataArray[4] = this.dataArray[6];
+    this.dataArray[6] = temp
+    this.dataArray.splice(8, 0, 'Hello a', 'Hello b');
+    this.dataArray.splice(10, 2);
+    this.notifyDatasetChange([
+      {type: DataOperationType.MOVE, index: {from: 1, to: 3}},
+      {type: DataOperationType.EXCHANGE, index: {start: 4, end: 6}},
+      {type: DataOperationType.ADD, index: 8, count: 2},
+      {type: DataOperationType.DELETE, index: 10, count: 2}]);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 1; i <= 21; i++) {
+      this.data.pushData(`Hello ${i}`)
+    }
+  }
+
+  build() {
+    Column() {
+      Text('Move the second item to where the fourth item is located, exchange the fifth and seventh data items, add "Hello a" "Hello b" to the ninth item, and delete two items starting from the eleventh item')
+        .fontSize(10)
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .borderRadius(50)
+        .padding(5)
+        .onClick(() => {
+            this.data.operateData();
+        })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            Row() {
+              Text(item).fontSize(35)
+                .onAppear(() => {
+                  console.info("appear:" + item)
+                })
+            }.margin({ left: 10, right: 10 })
+          }
+
+        }, (item: string) => item + new Date().getTime())
+      }.cachedCount(5)
+    }
+  }
+}
+```
+
+The **onDatasetChange** API notifies **LazyForEach** of the operations to be performed at once. In the preceding example, **LazyForEach** adds, deletes, moves, and exchanges data at the same time.
+
+Pay attention to the following when using the **onDatasetChange** API:
+
+1. The **onDatasetChange** API cannot be used together with other data operation APIs.
+2. The data corresponding to the specified indexes is sourced from the original array before the data operation.
+3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
+4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
+5. If the API contains the **RELOAD** operation, other operations do not take effect.
+
+**Figure 8** Changing multiple data items in LazyForEach 
+
+![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)
 
 - ### Changing Data Subproperties
 
@@ -1141,7 +1364,7 @@ struct ChildComponent {
 
 When the child component of **LazyForEach** is clicked, **item.message** is changed. As re-rendering depends on the listening of the @ObjectLink decorated member variable of **ChildComponent** on its subproperties. In this case, the framework only re-renders **Text(this.data.message)** and does not rebuild the entire **ListItem** child component.
 
-**Figure 8** Changing data subproperties in LazyForEach 
+**Figure 9** Changing data subproperties in LazyForEach 
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
 ## FAQs
@@ -1266,7 +1489,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   }
   ```
 
-  **Figure 9** Unexpected data deletion by LazyForEach 
+  **Figure 11** Unexpected data deletion by LazyForEach 
   ![LazyForEach-Render-Not-Expected](./figures/LazyForEach-Render-Not-Expected.gif)
 
   When child components are clicked to be deleted, there may be cases where the deleted child component is not the one clicked. If this is the case, the indexes of data items are not updated correctly. In normal cases, after a child component is deleted, all data items following the data item of the child component should have their index decreased by 1. If these data items still use the original indexes, the indexes in **itemGenerator** do not change, resulting in the unexpected rendering result.
@@ -1399,7 +1622,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
 
   After a data item is deleted, the **reloadData** method is called to rebuild the subsequent data items to update the indexes.
 
-  **Figure 10** Fixing unexpected data deletion 
+  **Figure 12** Fixing unexpected data deletion 
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
 - ### Image Flickering During Re-renders
@@ -1534,7 +1757,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   }
   ```
 
-  **Figure 11** Unwanted image flickering with LazyForEach 
+  **Figure 13** Unwanted image flickering with LazyForEach 
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
   In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, flickering occurs. To address this issue, use @ObjectLink and @Observed so that only the **\<Text>** component that uses the **item.message** property is re-rendered.
@@ -1674,7 +1897,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   }
   ```
 
-  **Figure 12** Fixing unwanted image flickering 
+  **Figure 14** Fixing unwanted image flickering 
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 - ### UI Not Re-rendered When @ObjectLink Property Is Changed
@@ -1797,7 +2020,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
           .onClick(() => {
             item.message.message += '0';
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
@@ -1816,7 +2039,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   }
   ```
 
-  **Figure 13** UI not re-rendered when @ObjectLink property is changed 
+  **Figure 15** UI not re-rendered when @ObjectLink property is changed 
   ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
   
   The member variable decorated by @ObjectLink can observe only changes of its sub-properties, not changes of nested properties. Therefore, to instruct a component to re-render, we need to change the component sub-properties. For details, see [\@Observed and \@ObjectLink Decorators](./arkts-observed-and-objectlink.md).
@@ -1941,7 +2164,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
           .onClick(() => {
             item.message = new NestedString(item.message.message + '0');
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
@@ -1960,5 +2183,5 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   }
   ```
   
-  **Figure 14** Fixing the UI-not-re-rendered issue 
+  **Figure 16** Fixing the UI-not-re-rendered issue 
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)

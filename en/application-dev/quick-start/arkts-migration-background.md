@@ -97,7 +97,7 @@ buddy.getName()?.length; // Builds ok, no runtime error
 
 ## Program Performance
 
-To ensure correctness of the program, dynamically languages have to check actual types of objects when the program actually runs. Back to our example, JavaScript does not allow to read a property from `undefined`. But the only way to check if some value is `undefined` is to perform a runtime check, that all JavaScript engines do: if the value is not `undefined`, the property is read, otherwise an exception is thrown. Modern engines can optimize such checks greatly, but these checks cannot be eliminated completely, which leads to code slowdown. Since the standard TypeScript compiles to JavaScript, the code written in TypeScript has exactly the same issues as described above. ArkTS addresses this problem. Since static typing is enforced, ArkTS compiles the program not to JavaScript, but to some special execution format called bytecode, which is faster to execute and easier to optimize even further.
+To ensure correctness of the program, dynamically languages have to check actual types of objects when the program actually runs. Back to our example, JavaScript does not allow to read a property from `undefined`. But the only way to check if some value is `undefined` is to perform a runtime check, that all JavaScript engines do: if the value is not `undefined`, the property is read, otherwise an exception is thrown. Modern engines can optimize such checks greatly, but these checks cannot be eliminated completely, which leads to code slowdown. Since the standard TypeScript compiles to JavaScript, the code written in TypeScript has exactly the same issues as described above. ArkTS addresses this problem. Since static typing is enforced, ArkTS compiles the program not to JavaScript, but to ARK bytecode, which is faster to execute and easier to optimize even further.
 
 
 **Null Safety**
@@ -146,3 +146,24 @@ notify(null, undefined) // Compile-time error
 In TypeScript such behavior can be turned on by a special compiler flag called `strictNullChecks`. But since the standard TypeScript is compiled to JavaScript, which does not have such feature, “strict null checks” work only in compile-time, for better type checking. However, ArkTS considers null-safety a very
 important feature from both stability and performance points of view. That’s why it is enforced in the language and the example above always produces
 compile-time errors. In exchange, we give our running engine much more information and guarantees about possible type values, which helps better optimize performance.
+
+## .ets Code Compatibility
+
+Prior to API version 10, ArkTS (.ets file) completely adopted the syntax of standard TS. Since API version 10, the ArkTS syntax rules are clearly defined based on the preceding design considerations. In addition, the SDK adds the ArkTS syntax validation for .ets files to the compilation process, and prompts you to adapt to the new ArkTS syntax through warnings or errors.
+
+Syntax issues are classified as warning or error, depending on the **compatibleSdkVersion** of the project:
+
+  - In compatible mode, where the value of **compatibleSdkVersion** is greater than or equal to 10, syntax issues are reported as errors and will block the compilation process. The compilation can be successful only after the ArkTS syntax is fully adapted.
+  - In compatible mode, where the value of **compatibleSdkVersion** is smaller than 10, syntax issues are reported as warnings and will not block the compilation process.
+
+
+## Constraints on TS/JS Compatibility
+
+On API version 11, the TypeScript version in OpenHarmony SDK is 4.9.5, and the target field is es2017. In the application, developers can use the syntax of ECMA2017+ for TS/JS development.
+
+**Application Environment Restrictions**
+
+1. Force the use of strict mode (use strict)
+2. Prohibit the use of `eval()`
+3. Prohibit the use of `with() {}`
+4. Prohibit creating functions with strings as code
