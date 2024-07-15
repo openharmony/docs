@@ -1,7 +1,7 @@
 
-# @ohos.atomicservice.AtomicServiceNavigation (导航根视图容器组件)
+# @ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)
 
-AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
+AtomicServiceNavigation高级组件，为原子化服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -13,7 +13,6 @@ AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般
 从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)进行页面路由。
 ## AtomicServiceNavigation
 
-```
 AtomicServiceNavigation({
     navPathStack?: NavPathStack,
     navigationContent: Callback<void> ,
@@ -28,9 +27,8 @@ AtomicServiceNavigation({
     stateChangeCallback?: Callback<boolean>,
     modeChangeCallback?: Callback<NavigationMode>
 })
-```
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **装饰器类型：**@Component
 
@@ -55,7 +53,9 @@ AtomicServiceNavigation({
 
 ## TitleOptions类型说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
@@ -65,8 +65,10 @@ AtomicServiceNavigation({
 
 ## NavDestinationBuilder类型说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+    
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
 | name | string | 是 | NavDestination页面名称。 |
@@ -74,7 +76,7 @@ AtomicServiceNavigation({
 
 ## 示例
 
-```
+```ts
 //index. ets
 import { AtomicServiceNavigation, NavDestinationBuilder } from '@ohos.atomicservice.AtomicServiceNavigation';
 import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@ohos.atomicservice.AtomicServiceTabs';
@@ -201,4 +203,4 @@ export struct PageTwo {
 }
 ```
 
-![](figures/AtomicServiceNavigationDemo01.gif)
+![](figures/AtomicServiceNavigationDemo01.png)
