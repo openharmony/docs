@@ -3733,8 +3733,6 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 **示例：**
 
 ```ts
-import { http } from '@kit.NetworkKit';
-
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
   // 根据assetId获取对应的DRM url
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
