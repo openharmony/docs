@@ -23,13 +23,13 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 ## InterstitialDialogAction
 
 InterstitialDialogAction {
-    private uiContext;
-    private contentNode;
-    private dialogParam;
-    private bottomOffsetType?;
-    constructor(dialogOptions: DialogOptions);
-    openDialog(): void;
-    closeDialog(): void;
+    uiContext: UIContext,
+    contentNode: ComponentContent\<object\>,
+    dialogParam: DialogParams,
+    bottomOffsetType?: BottomOffset,
+    constructor: (dialogOptions: DialogOptions),
+    openDialog(): Callback\<void\>,
+    closeDialog(): Callback\<void\>,
 }
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -41,7 +41,7 @@ InterstitialDialogAction {
 | 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| contentNode | ComponentContent\<object\> | 是 | 组件节点对象。 |
+| contentNode | [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md)\<object\> | 是 | 组件节点对象。 |
 | dialogParam | [DialogParams](#DialogParams类型说明) | 是 | 设置弹框的一些属性。 |
 | bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值：[BottomOffset](#BottomOffset枚举说明).OFFSET_FOR_BAR。 |
 | constructor | (dialogOptions: [DialogOptions](#DialogOptions类型说明)) | 是 | InterstitialDialogAction类的构造方法。 |
@@ -129,10 +129,10 @@ InterstitialDialogAction {
 
 ### 示例1
 
-为可选属性设置相应值。用两种不同参数类型分别为主标题、副标题设置颜色值。关闭按钮设置为暗色调。
-主副标题相对位置设置为主标题在副标题上方。底部距离类型设置为不存在菜单栏情况下的距离。
+为可选属性设置相应值，用两种不同参数类型分别为主标题、副标题设置颜色值，关闭按钮设置为暗色调，
+主副标题相对位置设置为主标题在副标题上方，底部距离类型设置为不存在菜单栏情况下的距离。
 
-```
+```ts
 // ../entryability/EntryAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -208,10 +208,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-```
+```ts
 // Index.ets
+import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -253,9 +254,9 @@ struct Index {
 
 ### 示例2
 
-为可选属性设置相应值。用两种不同参数类型分别为主标题。副标题设置颜色值。关闭按钮设置为亮色调。主副标题相对位置设置为主标题在副标题下方。底部距离类型设置为存在菜单栏情况下的距离。
+为可选属性设置相应值，用两种不同参数类型分别为主标题，副标题设置颜色值，关闭按钮设置为亮色调，主副标题相对位置设置为主标题在副标题下方，底部距离类型设置为存在菜单栏情况下的距离。
 
-```
+```ts
 // ../entryability/EntryAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -331,10 +332,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-```
+```ts
 // Index.ets
+import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
