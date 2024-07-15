@@ -101,7 +101,7 @@ export default function abilityTest() {
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1.编写index.ets页面代码， 作为被测示例demo。
+1.编写Index.ets页面代码， 作为被测示例demo。
 
 ```ts
 @Entry
@@ -495,8 +495,7 @@ hdc shell uitest uiInput keyEvent Back
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
 
-### 
-
+<!--Del-->
 ## 相关实例
 
 ### 单元测试脚本实例
@@ -552,6 +551,8 @@ hdc shell uitest uiInput keyEvent 2072 2038
 
 #### 模拟调整窗口大小能力实例
 介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)
+
+<!--DelEnd-->
 
 ## 常见问题
 
