@@ -1,6 +1,6 @@
-# @ohos.atomicservice.InterstitialDialogAction (弹框组件)
+# @ohos.atomicservice.InterstitialDialogAction (弹框)
 
-InterstitialDialogAction弹框在元服务中用于保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
+InterstitialDialogAction弹框在原子化服务中用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 
 > **说明：**
 >
@@ -9,7 +9,7 @@ InterstitialDialogAction弹框在元服务中用于保持当前的上下文环�
 ## 导入模块
 
 ```
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -22,7 +22,6 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## InterstitialDialogAction
 
-```
 InterstitialDialogAction {
     private uiContext;
     private contentNode;
@@ -32,11 +31,8 @@ InterstitialDialogAction {
     openDialog(): void;
     closeDialog(): void;
 }
-```
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**装饰器类型：** 无
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,16 +43,18 @@ InterstitialDialogAction {
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
 | contentNode | ComponentContent\<object\> | 是 | 组件节点对象。 |
 | dialogParam | [DialogParams](#DialogParams类型说明) | 是 | 设置弹框的一些属性。 |
-| bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值为[BottomOffset](#BottomOffset枚举说明).OFFSET_FOR_BAR。 |
+| bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值：[BottomOffset](#BottomOffset枚举说明).OFFSET_FOR_BAR。 |
 | constructor | (dialogOptions: [DialogOptions](#DialogOptions类型说明)) | 是 | InterstitialDialogAction类的构造方法。 |
 | openDialog | Callback\<void\> | 否 | 设置弹框打开的接口。 |
 | closeDialog | Callback\<void\> | 是 | 设置弹框关闭的接口。 |
 
 ## DialogParams
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-设置弹框必备的一些参数，包括弹框的特有属性以及默认关闭动作函数。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+设置弹框的特有属性以及默认关闭动作函数。
 
 | 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
@@ -65,9 +63,11 @@ InterstitialDialogAction {
 
 ## DialogOptions
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-设置弹框特有的属性，以及提供给用户自定义的点击触发动作。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+设置弹框特有的属性以及提供给用户自定义的点击触发动作。
 
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
@@ -83,33 +83,39 @@ InterstitialDialogAction {
 | onDialogClick | Callback\<void\> | 否 | 点击弹框任意位置后触发的用户自定义动作。 |
 | onDialogClose | Callback\<void\> | 否 | 点击关闭按钮后触发的用户自定义动作。|
 
-## 枚举
+## IconStyle
 
-### IconStyle枚举说明
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-枚举类型。设置关闭按钮的色调样式，默认设置关闭按钮为亮色。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+设置关闭按钮的色调样式，默认设置关闭按钮为亮色。
 
 | 名称 | 值 | 说明 |
 | - | - | - |
 | DARK | 0 | 设置关闭按钮为暗色调。 |
 | LIGHT | 1 | 设置关闭按钮为亮色调。<br>默认值。 |
 
-### TitlePosition枚举说明
+## TitlePosition
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-枚举类型。设置主副标题之间的上下相对位置，默认设置为主标题在副标题之上。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+设置主副标题之间的上下相对位置，默认设置为主标题在副标题之上。
 
 | 名称 | 值 | 说明 |
 | - | - | - |
 | TOP | 0 | 设置主标题位于副标题之上。<br>默认值。 |
 | BOTTOM | 1 | 设置副标题位于主标题之上。 |
 
-### BottomOffset枚举说明
+## BottomOffset
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-枚举类型。设置不同情景模式下弹框距离底部的距离，判断依据为是否存在菜单栏，默认显示为不存在菜单栏情况下的距离。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+设置不同情景模式下弹框距离底部的距离，判断依据为是否存在菜单栏，默认显示为不存在菜单栏情况下的距离。
 
 | 名称 | 值 | 说明 |
 | - | - | - |
@@ -123,14 +129,90 @@ InterstitialDialogAction {
 
 ### 示例1
 
-为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为暗色调；
-主副标题相对位置设置为主标题在副标题上方；底部距离类型设置为不存在菜单栏情况下的距离。
+为可选属性设置相应值。用两种不同参数类型分别为主标题、副标题设置颜色值。关闭按钮设置为暗色调。
+主副标题相对位置设置为主标题在副标题上方。底部距离类型设置为不存在菜单栏情况下的距离。
 
 ```
-// index.ets
+// ../entryability/EntryAbility
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@ohos.base';
+
+let dialogUIContext: UIContext | null = null;
+
+export function getDialogUIContext(): UIContext | null {
+  return dialogUIContext;
+}
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      dialogUIContext = windowClass.getUIContext();
+    })
+
+    //获取窗口
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      //设置窗口全屏
+      windowClass.setWindowLayoutFullScreen(false)
+    })
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
+```
+// Index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -172,13 +254,89 @@ struct Index {
 
 ### 示例2
 
-为可选属性设置相应值；用两种不同参数类型分别为主标题、副标题设置颜色值；关闭按钮设置为亮色调；主副标题相对位置设置为主标题在副标题下方；底部距离类型设置为存在菜单栏情况下的距离。
+为可选属性设置相应值。用两种不同参数类型分别为主标题。副标题设置颜色值。关闭按钮设置为亮色调。主副标题相对位置设置为主标题在副标题下方。底部距离类型设置为存在菜单栏情况下的距离。
 
 ```
-// index.ets
+// ../entryability/EntryAbility
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@ohos.base';
+
+let dialogUIContext: UIContext | null = null;
+
+export function getDialogUIContext(): UIContext | null {
+  return dialogUIContext;
+}
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      dialogUIContext = windowClass.getUIContext();
+    })
+
+    //获取窗口
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      //设置窗口全屏
+      windowClass.setWindowLayoutFullScreen(false)
+    })
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
+```
+// Index.ets
 import { UIContext } from '@ohos.arkui.UIContext';
 import { getMyUiContext } from '../entryability/EntryAbility';
-import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@ohos.atomicservice.InterstitialDialogAction';
+import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
 @Component
