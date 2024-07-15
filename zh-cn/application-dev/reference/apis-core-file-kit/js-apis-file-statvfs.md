@@ -39,7 +39,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
@@ -73,7 +73,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
@@ -149,7 +149,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
@@ -183,7 +183,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
