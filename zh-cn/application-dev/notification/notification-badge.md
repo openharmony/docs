@@ -27,8 +27,11 @@
 1. 导入NotificationManager模块。
 
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 增加角标个数。

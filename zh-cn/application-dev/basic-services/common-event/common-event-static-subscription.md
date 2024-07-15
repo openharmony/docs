@@ -21,9 +21,9 @@
    开发者可以在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)回调中实现业务逻辑。
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import type commonEventManager from '@ohos.commonEventManager';
-   
+   import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
    const TAG: string = 'StaticSubscriber';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {

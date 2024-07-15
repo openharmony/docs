@@ -18,10 +18,13 @@
 1. 导入模块。
 
    ```typescript
-   import notificationManager from '@ohos.notificationManager';
-   import wantAgent from '@ohos.app.ability.wantAgent';
-   import { WantAgent } from '@ohos.app.ability.wantAgent';
-   import Base from '@ohos.base';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { wantAgent, WantAgent } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建WantAgentInfo信息。
@@ -73,7 +76,7 @@
 
    ```typescript
    // 创建WantAgent
-   wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
+   wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data:WantAgent) => {
      if (err) {
        console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -101,7 +104,7 @@
      wantAgent: wantAgentObj,
    }
    
-   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+   notificationManager.publish(notificationRequest, (err: BusinessError) => {
      if (err) {
        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;

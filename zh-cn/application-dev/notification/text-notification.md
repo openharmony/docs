@@ -25,8 +25,12 @@
 1. 导入模块。
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 构造NotificationRequest对象，并发布通知。
@@ -44,7 +48,7 @@
           }
         }
       };
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -71,7 +75,7 @@
         }
       };
       // 发布通知
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -79,3 +83,14 @@
         console.info('Succeeded in publishing notification.');
       });
       ```
+3. 删除通知。
+
+   ```ts
+    notificationManager.cancel(1, (err: BusinessError) => {
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in cancel notification.');
+    });
+   ```
