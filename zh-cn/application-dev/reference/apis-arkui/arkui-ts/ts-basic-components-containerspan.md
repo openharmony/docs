@@ -55,5 +55,3 @@ struct Index {
   }
 }
 ```
-
-![imagespan](figures/container_span.png)
