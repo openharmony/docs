@@ -2896,9 +2896,8 @@
             - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
             - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-            - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
             <!--DelEnd-->
-            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
@@ -2964,7 +2963,7 @@
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter.md)
+          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter-sys.md)
           - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
