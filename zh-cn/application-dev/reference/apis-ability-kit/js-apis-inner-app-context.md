@@ -648,7 +648,7 @@ context.setShowOnLockScreen(show).then((data) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
@@ -676,7 +676,7 @@ context.setWakeUpScreen(wakeUp, (error) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
