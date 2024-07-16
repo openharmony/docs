@@ -8,8 +8,8 @@ You may need to use musl libc APIs when developing your app with the NDK. Howeve
 
 The use of musl libc APIs may be restricted by the following factors:
 
-1. The use of the musl libc API is restricted by the secure computing (seccomp) mechanism.
-    For details about the seccomp mechanism, see [Seccomp Policy Development](../../../device-dev/subsystems/subsys-boot-init-seccomp.md).
+1. The use of the musl libc API is restricted by the secure computing (seccomp) mechanism.<!--Del-->
+    For details about the seccomp mechanism, see [Seccomp Policy Development](../../../device-dev/subsystems/subsys-boot-init-seccomp.md).<!--DelEnd-->
 
     A common error caused by seccomp is as follows:
     - Top function is the musl function in stacktrace.
@@ -25,8 +25,8 @@ The use of musl libc APIs may be restricted by the following factors:
 
 2. The API cannot be used because it is a kernel API that is not exposed.
 
-3. The use of the musl libc API is restricted by SELinux.
-    For details about SELinux, see [OpenHarmony SELinux Overview](../../../device-dev/subsystems/subsys-security-selinux-overview.md).
+3. The use of the musl libc API is restricted by SELinux.<!--Del-->
+    For details about SELinux, see [OpenHarmony SELinux Overview](../../../device-dev/subsystems/subsys-security-selinux-overview.md).<!--DelEnd-->
 
 4. The use of the musl libc API is restricted by the sandbox mechanism. For details about the sandbox mechanism, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
 
