@@ -30,43 +30,45 @@ The PageAbility component in the FA model corresponds to the UIAbility component
    - In the stage model, page loading is triggered through **windowStage.loadContent** in the **onWindowStageCreate** callback.
 
    The following uses the task of displaying the **pages/Index** page after the ability is started as an example. In the FA model, add the following code in the **config.json** file:
-
-
-   ```json
-   "pages" : [
-       "pages/Index"
-   ]
-   ```
-
-   In the stage model, implement the following API in **MainAbility**:
-
-
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import hilog from '@ohos.hilog';
-   import window from '@ohos.window';
    
-   export default class TestAbility extends UIAbility {
-     // ...
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
-       windowStage.loadContent('testability/pages/Index', (err, data) => {
-         if (err.code) {
-           hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-           return;
-         }
-         hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
-           JSON.stringify(data) ?? '');
-       });
+   
+      ```json
+      "pages" : [
+          "pages/Index"
+      ]
+      ```
+   
+   In the stage model, implement the following API in **MainAbility**:
+   
+   
+     ```ts
+     import { UIAbility } from '@kit.AbilityKit';
+     import { hilog } from '@kit.PerformanceAnalysisKit';
+     import { window } from '@kit.ArkUI';
+   
+     export default class TestAbility extends UIAbility {
+       // ...
+       onWindowStageCreate(windowStage: window.WindowStage) {
+         hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
+         windowStage.loadContent('testability/pages/Index', (err, data) => {
+           if (err.code) {
+             hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+             return;
+           }
+           hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+             JSON.stringify(data) ?? '');
+         });
+       }
+       // ...
      }
-     // ...
-   }
-   ```
-  Then configure the page to load in the **resources/base/profile/main_pages.json** file.
-  ```json
-  {
-    "src": [
-      "pages/Index"
-    ]
-  }
-  ```
+     ```
+   
+   Then configure the page to load in the **resources/base/profile/main_pages.json** file.
+   
+     ```json
+     {
+       "src": [
+         "pages/Index"
+       ]
+     }
+     ```

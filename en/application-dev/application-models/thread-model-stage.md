@@ -21,7 +21,7 @@ For details about the operation mechanism, communication method, and usage of **
 
 > **NOTE**
 >
-> - **TaskPool** manages the number of threads that can be created and their lifecycle. A maximum of eight **Worker** threads can be created, and you need to manage their lifecycle.
+> - **TaskPool** manages the number of threads that can be created and their lifecycle. However, you need to maintain the lifecycle of [Worker](../arkts-utils/worker-introduction.md) threads.
 > - Multiple components can exist in the same thread. For example, both UIAbility and UI components exist in the main thread. In the stage model, [EventHub](#using-eventhub-for-intra-thread-communication) is used for data communication.
 > - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *\<pid>* -T command**, where *\<pid>* indicates the [process ID](process-model-stage.md) of the application.
 

@@ -4,7 +4,7 @@
 Component startup refers to the behavior of starting or connecting to an application component.
 
 
-- Start the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use **startAbility()**, **startServiceExtensionAbility()**, and **startAbilityByCall()**.
+- Start the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use **startAbility()**, **startServiceExtensionAbility()**, **startAbilityByCall()**, and **openLink()**.
 
 - Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use **connectServiceExtensionAbility()** and **createDataShareHelper()**.
 
