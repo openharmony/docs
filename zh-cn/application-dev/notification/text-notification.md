@@ -25,9 +25,9 @@
 1. 导入模块。
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
-   import hilog from '@ohos.hilog';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -48,7 +48,7 @@
           }
         }
       };
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -75,7 +75,7 @@
         }
       };
       // 发布通知
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -86,7 +86,7 @@
 3. 删除通知。
 
    ```ts
-    notificationManager.cancel(1, (err:Base.BusinessError) => {
+    notificationManager.cancel(1, (err: BusinessError) => {
       if (err) {
         hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
         return;

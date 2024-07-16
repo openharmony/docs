@@ -15,7 +15,7 @@ StaticSubscriberExtensionContext模块提供StaticSubscriberExtensionAbility具�
 ## 导入模块
 
 ```ts
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
+import { StaticSubscriberExtensionContext } from '@kit.BasicServicesKit';
 ```
 
 ## 使用说明
@@ -23,8 +23,7 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 在使用StaticSubscriberExtensionContext的功能前，需要通过StaticSubscriberExtensionAbility获取。
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
+import { StaticSubscriberExtensionAbility, StaticSubscriberExtensionContext } from '@kit.BasicServicesKit';
 ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -74,9 +73,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-import CommonEventManager from '@ohos.commonEventManager';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { commonEventManager, BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: "com.example.myapp",
@@ -84,7 +82,7 @@ let want: Want = {
 };
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+  onReceiveEvent(event: commonEventManager.CommonEventData) {
     console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
 
     try {
@@ -161,9 +159,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-import CommonEventManager from '@ohos.commonEventManager';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { commonEventManager, BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: "com.example.myapp",
@@ -171,7 +168,7 @@ let want: Want = {
 };
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+  onReceiveEvent(event: commonEventManager.CommonEventData) {
     console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
     try {
       this.context.startAbility(want)
