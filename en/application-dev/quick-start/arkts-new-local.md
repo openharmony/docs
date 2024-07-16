@@ -68,9 +68,9 @@ In the preceding code, the initialization of the **Child** component can pass in
 | Allowed variable types| Basic types, such as object, class, string, number, boolean, and enum, and built-in types such as Array, Date, Map, and Set. null, undefined, and union types.|
 | Initial value for the decorated variable| Local initialization is required. External initialization is not allowed.|
 
-## Variable Transfer
+## Variable Passing
 
-| Transfer Rules      | Description                                                     |
+| Passing Rules      | Description                                                     |
 | -------------- | --------------------------------------------------------- |
 | Initialization from the parent component| Variables decorated by \@Local can only be initialized locally.|
 | Child component initialization  | Variables decorated by \@Local can initialize variables decorated by \@Param in the child components.   |

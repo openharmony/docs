@@ -1,12 +1,12 @@
 # \@Event Decorator: Component Output
 
-To enable a child component to request the parent component to update the \@Param decorated variables, you can use the \@Event decorator.
+You can use \@Event, a variable decorator in state management V2, to enable a child component to require the parent component to update the \@Param decorated variables.
 
 >**NOTE**
 >
->The \@Event decorator is supported in custom components decorated by \@ComponentV2 since API version 12.
+>The \@Event decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features are not complete yet.
+>State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 

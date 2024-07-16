@@ -7,7 +7,7 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 >
 >The **!!** syntax is supported since API version 12.
 >
->State management V2 is still under development, and some features are not complete yet.
+>State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -24,12 +24,12 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 ## Use Scenarios
 
 ### Two-Way Binding Between Custom Components
-1. Construct the **Star** child component in the **Index** component, bind the value in the parent and child components bidirectionally, and initialize **\@Param value** and **\@Event $value** of the child component.
+1. Construct the **Star** child component in the **Index** component, bind the value in the parent and child components bidirectionally, and initialize **@Param value** and **@Event $value** of the child component.
 - The two-way binding syntactic sugar can be considered as:
 
-```
-Star({ value: this.value, $value: (val: number) => { this.value = val }})
-```
+    ```
+    Star({ value: this.value, $value: (val: number) => { this.value = val }})
+    ```
 2. Click the button in the **Index** component to change the value, and **Text** in both the parent component **Index** and child component **Star** will be updated.
 3. Click the button in the child component **Star** to invoke **this.$value(10)**, and **Text** in both the parent component **Index** and child component **Star** will be updated.
 
