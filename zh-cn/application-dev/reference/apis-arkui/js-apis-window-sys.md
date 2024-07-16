@@ -508,15 +508,12 @@ const callback = (systemBarTintState: window.SystemBarTintState) => {
 }
 try {
   window.on('systemBarTintChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+
   window.off('systemBarTintChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
