@@ -1,17 +1,17 @@
 # @ohos.bluetooth.map (Bluetooth MAP Module) (System API)
 
-The **map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
+The **bluetooth.map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.map (Bluetooth MA Module)](js-apis-bluetooth-map.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.map (Bluetooth MAP Module)](js-apis-bluetooth-map.md).
 
 
 ## Modules to Import
 
 ```js
-import map from '@ohos.bluetooth.map';
+import { map } from '@kit.ConnectivityKit';
 ```
 
 
@@ -39,15 +39,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -60,7 +64,7 @@ try {
 
 setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
-Sets the message access authorization for a device.
+Sets the message access authorization for a device. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -87,15 +91,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.setMessageAccessAuthorization('XX:XX:XX:XX:XX:XX', 0).then(() => {
@@ -110,7 +118,7 @@ try {
 
 getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
-Obtains the message access authorization of a device.
+Obtains the message access authorization of a device. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -136,15 +144,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.getMessageAccessAuthorization('XX:XX:XX:XX:XX:XX').then((authorization) => {

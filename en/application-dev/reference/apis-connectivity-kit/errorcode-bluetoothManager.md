@@ -26,7 +26,7 @@ Start the Bluetooth service.
 
 **Error Message**
 
-Bluetooth switch is off.
+Bluetooth disabled.
 
 **Description**
 
@@ -44,7 +44,7 @@ Enable Bluetooth.
 
 **Error Message**
 
-Profile is not supported.
+Profile not supported.
 
 **Description**
 
@@ -62,7 +62,7 @@ Check whether the device supports the profile. Use a profile supported by the de
 
 **Error Message**
 
-This device not connected.
+Device not connected.
 
 **Description**
 
@@ -80,7 +80,7 @@ Turn on Bluetooth again to start the pairing process.
 
 **Error Message**
 
-Max connection has reached.
+The maximum number of connections has been reached.
 
 **Description**
 
@@ -98,7 +98,7 @@ Check whether the number of paired devices reaches the threshold.
 
 **Error Message**
 
-Proxy is nullptr.
+The value of proxy is a null pointer.
 
 **Description**
 
@@ -134,7 +134,7 @@ Perform this operation again.
 
 **Error Message**
 
-IPC transmit failed.
+IPC failed.
 
 **Description**
 
