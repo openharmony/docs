@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Point** struct defines the parameters that describe a point.
+The Camera_Point struct describes the parameters related to a point.
 
 **Since**: 11
 

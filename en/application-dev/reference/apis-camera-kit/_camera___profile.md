@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Profile** struct defines the profile of the camera stream.
+The Camera_Profile struct describes the profile of a camera stream.
 
 **Since**: 11
 
