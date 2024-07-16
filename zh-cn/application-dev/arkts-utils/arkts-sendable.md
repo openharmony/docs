@@ -50,8 +50,23 @@ w.postMessage(a)
 
 
 ### Sendable class
+
+> **说明：**
+>
+> 从API version 11开始，支持在ArkTS卡片中使用Sendable class。
+
 Sendable class需同时满足以下两个规则：
 1. 当且仅当被标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-class)。
+2. 需满足Sendable约束，详情可查[Sendable使用规则](#sendable使用规则)。
+
+### Sendable function
+
+> **说明：**
+>
+> 从API version 12 Beta3开始，支持在ArkTS卡片中使用Sendable function。
+
+Sendable function需同时满足以下两个规则：
+1. 当且仅当被标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-function)。
 2. 需满足Sendable约束，详情可查[Sendable使用规则](#sendable使用规则)。
 
 ### Sendable interface
@@ -67,6 +82,7 @@ Sendable interface需同时满足以下两个规则：
 - ArkTS语言标准库中定义的AsyncLock对象（须显式引入[@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md)）。
 - 继承了[ISendable](#isendable)的interface。
 - 标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-class)的class。
+- 标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-function)的function。
 - 接入Sendable的系统对象类型（详见[Sendable系统对象](arkts-sendable-system-object-list.md)）。
 - 元素均为Sendable类型的union type数据。
 
@@ -85,10 +101,6 @@ Sendable interface需同时满足以下两个规则：
 
 
 ## \@Sendable装饰器：声明并校验Sendable class
-
-> **说明：**
->
-> 从API version 11开始，该装饰器支持在ArkTS卡片中使用。
 
 ### 装饰器说明
 | \@Sendable类装饰器         | 说明                                                                   |
@@ -119,6 +131,62 @@ class SendableTestClass {
 }
 ```
 
+## \@Sendable装饰器：声明并校验Sendable function
+
+### 装饰器说明
+| \@Sendable类装饰器         | 说明                                                                   |
+| ------------------------- | ---------------------------------------------------------------------- |
+| 装饰器参数                 | 无。                                                                   |
+| 使用场景限制               | 仅支持在Stage模型的工程中使用。仅支持在.ets文件中使用。                    |
+| 装饰的函数类型限制          | 仅支持装饰普通function和Async function类型。  |
+| 装饰的函数体限制            | 禁止使用闭包变量，定义在顶层的Sendable class和Sendable function除外。|
+| Sendable Function的限制    | 不支持增加、删除、修改属性。   |
+| 适用场景                  | 1. 在TaskPool或Worker中使用Sendable函数。<br/>2. 传输对象数据量较大的使用场景。 |
+
+
+### 装饰器使用示例
+
+```ts
+@Sendable
+type SendableFuncType = () => void;
+
+@Sendable
+class TopLevelSendableClass {
+  num: number = 1;
+  PrintNum() {
+    console.info("Top level sendable class");
+  }
+}
+
+@Sendable
+function TopLevelSendableFunction() {
+  console.info("Top level sendable function");
+}
+
+@Sendable
+function SendableTestFunction() {
+  const topClass = new TopLevelSendableClass(); // 顶层sendable class
+  topClass.PrintNum();
+  TopLevelSendableFunction(); // 顶层sendable function
+  console.info("Sendable test function");
+}
+
+@Sendable
+class SendableTestClass {
+  constructor(func: SendableFuncType) {
+    this.callback = func;
+  }
+  callback: SendableFuncType; // 顶层sendable function
+
+  CallSendableFunc() {
+    SendableTestFunction(); // 顶层sendable function
+  }
+}
+
+let sendableClass = new SendableTestClass(SendableTestFunction);
+sendableClass.callback();
+sendableClass.CallSendableFunc();
+```
 
 ## Sendable使用规则
 
@@ -378,7 +446,7 @@ let b = new B();
 
 ```
 
-### 9. Sendable class中不能使用除了@Sendable的其它装饰器
+### 9. Sendable class和Sendable function不能使用除了@Sendable的其它装饰器
 
 如果类装饰器定义在ts文件中，产生修改类的布局的行为，那么会造成运行时的错误。
 
@@ -451,6 +519,63 @@ class SendableA {
 }
 
 let a2: SendableA = new A() as SendableA;
+```
+
+### 12. 箭头函数不支持共享
+箭头函数不支持使用Sendable装饰器。
+
+**正例：**
+```ts
+@Sendable
+type SendableFuncType = () => void;
+
+@Sendable
+function SendableFunc() {
+  console.info("Sendable func");
+}
+
+@Sendable
+class SendableClass {
+  constructor(f: SendableFuncType) {
+    this.func = f;
+  }
+  func: SendableFuncType;
+}
+
+let sendableClass = new SendableClass(SendableFunc)
+```
+
+**反例：**
+```ts
+@Sendable
+type SendableFuncType = () => void;
+let func: SendableFuncType = () => {}; // 编译报错
+
+@Sendable
+class SendableClass {
+  func: SendableFuncType = () => {}; // 编译报错
+}
+```
+
+### 13. Sendable装饰器修饰类型时仅支持修饰函数类型
+Sendable装饰器修饰类型时仅支持修饰函数类型。
+
+**正例：**
+```ts
+@Sendable
+type SendableFuncType = () => void;
+```
+
+**反例：**
+```ts
+@Sendable
+type A = number; // 编译报错
+
+@Sendable
+class C {}
+
+@Sendable
+type D = C; // 编译报错
 ```
 
 ## 与TS/JS交互的规则
