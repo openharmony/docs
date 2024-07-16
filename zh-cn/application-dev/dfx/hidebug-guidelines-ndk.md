@@ -60,15 +60,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    
    static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
    {
-       double value0 = OH_HiDebug_GetSystemCpuUsage();
-       OH_LOG_INFO(LogType::LOG_APP, "GetSystemCpuUsage: %{public}lf", value0);
+       double cpuUsage = OH_HiDebug_GetSystemCpuUsage();
+       OH_LOG_INFO(LogType::LOG_APP, "GetSystemCpuUsage: %{public}f", cpuUsage);
        return 0;
    }
    ```
 
-4. 将GetSystemCpuUsage注册为ArkTS接口：
+4. 将TestHidebugNdk注册为ArkTS接口：
 
-   编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
+   编辑"napi_init.cpp"文件，将TestHidebugNdk注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
