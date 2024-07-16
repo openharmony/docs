@@ -254,7 +254,7 @@ struct Index {
       Column() {
         NodeContainer(this.textNodeController)
           .width('100%')
-          .height(100)
+          .height(200)
           .backgroundColor('#FFF0F0F0')
         Button('Update')
           .onClick(() => {
