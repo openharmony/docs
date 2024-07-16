@@ -192,7 +192,7 @@
             "description": "ExamplePhotoEditorAbility",
             "type": "photoEditor",
             "exported": true,
-            "srcEntry": "./ets/PhotoEditorUIExtAbility/ExamplePhotoEditorAbility.ets",
+            "srcEntry": "./ets/PhotoEditorExtensionAbility/PhotoEditorUIExtAbility.ets",
             "label": "$string:EntryAbility_label",
             "extensionProcessMode": "bundle"
           },
