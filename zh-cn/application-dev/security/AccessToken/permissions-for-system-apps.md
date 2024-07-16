@@ -3437,6 +3437,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+允许系统应用或系统服务上报设备激活状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
