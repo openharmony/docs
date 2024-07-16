@@ -5093,7 +5093,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
-| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听时间触发成功，err为undefined，否则为错误对象。  |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听事件触发成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
