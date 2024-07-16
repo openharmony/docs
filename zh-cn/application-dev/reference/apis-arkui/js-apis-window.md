@@ -3817,11 +3817,9 @@ export default class EntryAbility extends UIAbility {
         // ...
       }
       try {
+        // 通过on接口开启监听
         windowClass.on('windowTitleButtonRectChange', callback);
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-      try {
+        // 关闭指定callback的监听
         windowClass.off('windowTitleButtonRectChange', callback);
         // 如果通过on开启多个callback进行监听，同时关闭所有监听：
         windowClass.off('windowTitleButtonRectChange');
