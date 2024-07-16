@@ -142,17 +142,13 @@ ohos.permission.GET_WIFI_PEERS_MAC is available only for system applications.
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
-**Return value**
-
-| **Type**                                                     | **Description**    |
-| ------------------------------------------------------------ | ------------------ |
-| &lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&nbsp;&gt; | Hotspots detected. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
+
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |

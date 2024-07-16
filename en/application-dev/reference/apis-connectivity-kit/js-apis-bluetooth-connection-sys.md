@@ -939,7 +939,7 @@ Obtains the type of a remote Bluetooth device. This API uses a promise to return
 
 | Type                 | Description        |
 | ------------------- | ------------- |
-| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to returnthe device type obtained.|
+| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to return the device type obtained.|
 
 **Error codes**
 
