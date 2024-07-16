@@ -96,7 +96,7 @@ export { func2 } from './src/main/ts/test';
 ### 导出native方法
 在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出libnative.so的加法接口add为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {
