@@ -3403,7 +3403,7 @@
 
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
-触发“PSI设备激活”系统服务。
+允许系统应用或系统服务上报设备激活状态。
 
 **权限级别**：system_basic
 
