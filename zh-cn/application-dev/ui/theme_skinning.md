@@ -257,7 +257,9 @@
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
-设置局部深浅色时，需要在resources文件夹下添加dark目录，dark目录添加dark.json资源文件，深浅色模式才会生效。
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![resources_dark](figures/resources_dark.png)
 
   ```ts
     @Entry
