@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Init error. The WebviewController must be associated with a Web compoent.
+Init error. The WebviewController must be associated with a Web component.
 
 **错误描述**
 
