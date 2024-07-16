@@ -17,51 +17,53 @@ This topic walks you through on how to import an AES 256-bit key and an RSA 2048
 
 ```ts
 /* Import an AES 256-bit key in plaintext. This example uses callback-based APIs. */
-import { huks } from "@kit.UniversalKeystoreKit"
+import { huks } from '@kit.UniversalKeystoreKit'
+
 /* Key material */
 let plainTextSize32 = new Uint8Array([
-    0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca,
-    0x64, 0x0b, 0x88, 0x96, 0xe2, 0xfa, 0x77, 0xbc, 0x71, 0xe3, 0x0f, 0x0f, 0x9e, 0x3c, 0xe5, 0xf9
+  0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca,
+  0x64, 0x0b, 0x88, 0x96, 0xe2, 0xfa, 0x77, 0xbc, 0x71, 0xe3, 0x0f, 0x0f, 0x9e, 0x3c, 0xe5, 0xf9
 ]);
 /* 1. Set the key alias. */
 let keyAlias = 'AES256Alias_sample';
 /* 2. Encapsulate the key property set and key material. */
 
 let properties: Array<huks.HuksParam> = [
-    {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value:huks.HuksKeyAlg.HUKS_ALG_AES
-    },
-    {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-    },
-    {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    },
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  },
 ]
 let options: huks.HuksOptions = {
-    properties: properties,
-    inData: plainTextSize32
+  properties: properties,
+  inData: plainTextSize32
 };
 /* 3. Import the key in plaintext. */
 try {
-    huks.importKeyItem(keyAlias, options, (error, data) => {
-        if (error) {
-            console.error(`callback: importKeyItem failed` + error);
-        } else {
-            console.info(`callback: importKeyItem success`);
-        }
-    });
+  huks.importKeyItem(keyAlias, options, (error, data) => {
+    if (error) {
+      console.error(`callback: importKeyItem failed` + JSON.stringify(error));
+    } else {
+      console.info(`callback: importKeyItem success`);
+    }
+  });
 } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid` + error);
+  console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
 }
 ```
 
 ```ts
 /* Import an RSA 2048-bit key in plaintext. This example uses callback-based APIs. */
-import { huks } from "@kit.UniversalKeystoreKit"
+import { huks } from '@kit.UniversalKeystoreKit'
+
 let rsa2048KeyPairMaterial = new Uint8Array([
   0x01, 0x00, 0x00, 0x00, // Key algorithm (expressed in little-endian) huks.HuksKeyAlg.HUKS_ALG_RSA = 1
   0x00, 0x08, 0x00, 0x00, // Key size (bit): 2048
@@ -112,22 +114,22 @@ let keyAlias = 'RSA_sample';
 let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value:huks.HuksKeyAlg.HUKS_ALG_RSA
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
   },
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
   },
   {
-// This tag indicates the usage of the imported key, which cannot be changed after the import.
+    // This tag indicates the usage of the imported key, which cannot be changed after the import.
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
   },
   {
-// This tag indicates the type of the key to be imported.
+    // This tag indicates the type of the key to be imported.
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-// The value here means to import a key parit. To import a public key, set value to HUKS_KEY_TYPE_PUBLIC_KEY.
-    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR 
+    // The value here means to import a key parit. To import a public key, set value to HUKS_KEY_TYPE_PUBLIC_KEY.
+    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
   },
 ]
 let options: huks.HuksOptions = {
@@ -154,32 +156,33 @@ try {
 Use [huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```ts
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
+
 let keyAlias = 'AES256Alias_sample';
 let isKeyExist = false;
 
 let keyProperties: Array<huks.HuksParam> = [
-    {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-    }
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  }
 ]
 let huksOptions: huks.HuksOptions = {
-    properties: keyProperties, // It cannot be empty.
-    inData: new Uint8Array(new Array()) // It cannot be empty.
+  properties: keyProperties, // It cannot be empty.
+  inData: new Uint8Array(new Array()) // It cannot be empty.
 }
 try {
-    huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-            console.error(`callback: isKeyItemExist failed` + error);
-        } else {
-            if (data !== null && data.valueOf() !== null) {
-                isKeyExist = data.valueOf();
-                console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
-            }
-        }
-    });
+  huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
+    if (error) {
+      console.error(`callback: isKeyItemExist failed, ` + JSON.stringify(error));
+    } else {
+      if (data !== null && data.valueOf() !== null) {
+        isKeyExist = data.valueOf();
+        console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+      }
+    }
+  });
 } catch (error) {
-    console.error(`callback: isKeyItemExist input arg invalid` + error);
+  console.error(`callback: isKeyItemExist input arg invalid, ` + JSON.stringify(error));
 }
 ```

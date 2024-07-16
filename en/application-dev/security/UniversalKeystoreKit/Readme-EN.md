@@ -42,6 +42,9 @@
     - Development
       - [HUKS Access Control Development](huks-user-identity-authentication.md)
       - [Refined Access Control Development](huks-refined-user-identity-authentication.md)
+  - HMAC
+    - [HMAC (ArkTS)](huks-hmac-arkts.md)
+    - [HMAC (C/C++)](huks-hmac-ndk.md)
 - Key Deletion
   - [Deleting a Key (ArkTS)](huks-delete-key-arkts.md)
   - [Deleting a Key (C/C++)](huks-delete-key-ndk.md)
@@ -67,9 +70,6 @@
   - Querying Key Aliases
     - [Querying Key Aliases (ArkTS)](huks-list-aliases-arkts.md)
     - [Querying Key Aliases (C/C++)](huks-list-aliases-ndk.md)
-  - HMAC
-    - [HMAC(ArkTS)](huks-hmac-arkts.md)
-    - [HMAC(C/C++)](huks-hmac-ndk.md)
   <!--Del-->
   - [Specifying the User for Key Operations (for System Applications Only)](huks-as-user-sys.md)
   <!--DelEnd-->
