@@ -426,7 +426,7 @@ bm dump-dependencies -n com.ohos.app -m entry
     ```
     hdc shell mount -o rw,remount / 
     hdc file send install_list_capability.json /system/etc/app/install_list_capability.json 
-    hdc shell chmod 777 /system/etc/app/install_list_capability.json 
+    hdc shell chmod 644 /system/etc/app/install_list_capability.json 
     hdc shell reboot
     ```
 5. 设备重启后，重新安装新的应用即可。
