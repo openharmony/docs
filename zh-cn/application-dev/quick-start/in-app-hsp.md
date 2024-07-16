@@ -98,7 +98,7 @@ export { Log, add, minus } from './src/main/ets/utils/test';
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`liblibrary.so`的乘法接口`multi`为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {
