@@ -37,6 +37,30 @@
 
 **起始版本**：12
 
+### ohos.permission.SUBSCRIBE_SWING_ABILITY
+
+允许应用使用智慧感知订阅能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGER_SWING_MOTION
+
+允许应用使用隔空手势自适配能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MOCK_LOCATION
 
 允许应用使用模拟位置功能。
