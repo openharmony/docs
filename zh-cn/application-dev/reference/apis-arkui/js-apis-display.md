@@ -167,7 +167,7 @@ let promise = display.getAllDisplayPhysicalResolution();
 promise.then((resolutionObjects) => {
   console.info('Obtaining physical resolution length: ' + resolutionObjects.length);
   for (let i = 0; i < resolutionObjects.length; i++) {
-     console.info('resolutionObjects[' + i + '].foldDisoplayMode: ' + resolutionObjects[i].foldDisplayMode);  
+     console.info('resolutionObjects[' + i + '].foldDisplayMode: ' + resolutionObjects[i].foldDisplayMode);  
      console.info('resolutionObjects[' + i + '].physicalWidth: ' + resolutionObjects[i].physicalWidth);  
      console.info('resolutionObjects[' + i + '].physicalHeight: ' + resolutionObjects[i].physicalHeight);  
   }
