@@ -9,7 +9,7 @@ The **connectedTag** module provides APIs for using active tags. You can use the
 ## Modules to Import
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 ```
 
 ## connectedTag.init
@@ -43,6 +43,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.uninit
@@ -76,6 +78,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
@@ -97,8 +101,8 @@ Reads the content of this active tag. This API uses a promise to return the resu
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
@@ -128,13 +132,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.read().then((data) => {
     console.log("connectedTag read Promise data = " + data);
@@ -162,7 +168,7 @@ Reads the content of this active tag. This API uses an asynchronous callback to 
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.readNdefTag((err, data)=> {
     if (err) {
@@ -194,12 +200,14 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.read((err, data)=> {
     if (err) {
@@ -235,8 +243,8 @@ Writes data to this active tag. This API uses a promise to return the result.
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
@@ -273,13 +281,16 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
@@ -309,7 +320,7 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
@@ -343,12 +354,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
@@ -397,7 +411,7 @@ Unregisters the NFC field strength state events.
 **Example**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 // Register the event.
 connectedTag.on("notify", (rfState : number)=> {

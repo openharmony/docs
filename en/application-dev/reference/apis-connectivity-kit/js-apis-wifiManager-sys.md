@@ -9,7 +9,7 @@ The **WLAN** module provides basic wireless local area network (WLAN) functions,
 ## Modules to Import
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 ## wifiManager.enableWifi<sup>9+</sup>
@@ -30,13 +30,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501003  | Failed for wifi is closing.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.enableWifi();
@@ -63,13 +66,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501004  | Failed for wifi is opening.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableWifi();
@@ -96,12 +102,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startScan();
@@ -134,10 +143,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = true;
@@ -171,12 +184,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
@@ -216,12 +232,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -248,14 +268,14 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
-| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br>**System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| MAC address.<br>**System API**: This is a system API.|
-| ipType | [IpType](#iptype9) | Yes| No| IP address type.<br>**System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br>**System API**: This is a system API.|
-| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| No| Proxy configuration.<br>**System API**: This is a system API.|
+| creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling WLAN.<br> **System API**: This is a system API.|
+| netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
+| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br> **System API**: This is a system API.|
+| randomMacAddr | string | Yes| No| MAC address.<br> **System API**: This is a system API.|
+| ipType | [IpType](#iptype9) | Yes| No| IP address type.<br> **System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br> **System API**: This is a system API.|
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| No| Proxy configuration.<br> **System API**: This is a system API.|
 
 ## IpType<sup>9+</sup>
 
@@ -345,12 +365,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -391,13 +415,17 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -432,12 +460,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -471,11 +503,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disconnect();
@@ -493,10 +528,10 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
-| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br>**System API**: This is a system API.|
-| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br>**System API**: This is a system API.|
-| suppState | [SuppState](#suppstate9) | Yes| No| Supplicant state.<br>**System API**: This is a system API.|
+| networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
+| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
+| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
+| suppState | [SuppState](#suppstate9) | Yes| No| Supplicant state.<br> **System API**: This is a system API.|
 
 
 
@@ -563,11 +598,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getSupportedFeatures();
@@ -603,12 +641,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | wifi is closed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getDeviceMacAddress();
@@ -637,12 +678,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reassociate();
@@ -669,12 +713,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reconnect();
@@ -711,11 +758,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let configs = wifiManager.getDeviceConfigs();
@@ -755,11 +805,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -798,11 +852,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -830,11 +888,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeAllNetwork();		
@@ -867,11 +928,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let id = 0;
@@ -905,11 +970,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let channelList = wifiManager.get5GChannelList();
@@ -936,6 +1004,8 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Return value**
@@ -946,7 +1016,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let disconnectedReason = wifiManager.getDisconnectedReason();	
@@ -970,6 +1040,18 @@ Enumerates the Wi-Fi disconnection reasons.
 | DISC_REASON_WRONG_PWD  | 1 | Incorrect password.|
 | DISC_REASON_CONNECTION_FULL  | 2 | The number of connections to the router has reached the limit.|
 
+## WifiCategory<sup>12+</sup>
+
+Represents the highest Wi-Fi category supported by a hotspot.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| DEFAULT | 1 | Default, that is, Wi-Fi types lower than Wi-Fi 6.|
+| WIFI6 | 2 | Wi-Fi 6|
+| WIFI6_PLUS | 3 | Wi-Fi 6+|
+
 ## wifiManager.startPortalCertification<sup>11+</sup>
 
 startPortalCertification(): void
@@ -988,12 +1070,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startPortalCertification();
@@ -1028,12 +1113,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// You can obtain config data by using getScanInfoList, which can be used only when WifiScanInfo.isHiLinkNetwork is true.
 	let config:wifiManager.WifiDeviceConfig = {
 		ssid : "****",
@@ -1068,12 +1156,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.factoryReset();
@@ -1099,11 +1190,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.enableHotspot();	
@@ -1130,11 +1224,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableHotspot();	
@@ -1167,11 +1264,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isHotspotDualBandSupported();
@@ -1205,11 +1305,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isHotspotActive();
@@ -1243,11 +1346,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.HotspotConfig = {
@@ -1306,11 +1413,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config = wifiManager.getHotspotConfig();
@@ -1348,11 +1458,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let stations = wifiManager.getStations();
@@ -1401,12 +1514,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1445,12 +1562,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1488,12 +1609,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let data = wifiManager.getHotspotBlockList();
@@ -1528,11 +1653,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -1570,11 +1699,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	wifiManager.getP2pGroups((err, data) => {
     if (err) {
@@ -1619,6 +1751,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.setDeviceName<sup>9+</sup>
@@ -1645,11 +1780,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let name = "****";
@@ -1685,6 +1824,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
@@ -1712,11 +1855,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-import wifi from '@ohos.wifi';
+import { wifi } from '@kit.ConnectivityKit';
 
 let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
@@ -1754,6 +1901,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
@@ -1781,11 +1932,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-import wifi from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -1824,6 +1979,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
@@ -1851,11 +2010,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
@@ -1894,6 +2057,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
@@ -1921,11 +2088,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **Example**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);

@@ -11,7 +11,7 @@ The **access** module provides APIs for enabling and disabling Bluetooth and obt
 ## Modules to Import
 
 ```js
-import access from '@ohos.bluetooth.access';
+import { access } from '@kit.ConnectivityKit';
 ```
 
 
@@ -19,7 +19,7 @@ import access from '@ohos.bluetooth.access';
 
 factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
-Restores the Bluetooth factory settings.
+Restores the Bluetooth factory settings. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -39,13 +39,17 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { AsyncCallback, BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.factoryReset((err: BusinessError) => {
         if (err) {
@@ -62,7 +66,7 @@ try {
 
 factoryReset(): Promise&lt;void&gt;
 
-Restores the Bluetooth factory settings.
+Restores the Bluetooth factory settings. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -82,13 +86,16 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { AsyncCallback, BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.factoryReset().then(() => {
         console.info("factoryReset");
@@ -123,6 +130,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -135,3 +145,5 @@ try {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
+
+

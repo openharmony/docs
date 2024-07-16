@@ -11,7 +11,7 @@ The **baseProfile** module provides APIs for using basic Bluetooth profiles.
 ## Modules to Import
 
 ```js
-import baseProfile from '@ohos.bluetooth.baseProfile';
+import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
@@ -66,6 +66,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -74,8 +76,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let retArray = a2dpSrc.getConnectedDevices();
@@ -113,6 +115,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -121,8 +126,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let ret = a2dpSrc.getConnectionState('XX:XX:XX:XX:XX:XX');
@@ -136,7 +141,7 @@ try {
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
-Subscribes to profile connection state changes.
+Subscribes to profile connection state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -149,11 +154,21 @@ Subscribes to profile connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback used to return the profile connection state change.                              |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
@@ -183,11 +198,21 @@ Unsubscribes from profile connection state changes.
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                              |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }

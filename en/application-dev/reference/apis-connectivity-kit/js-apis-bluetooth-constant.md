@@ -11,7 +11,7 @@ The **constant** module provides definitions of the constants used in Bluetooth.
 ## Modules to Import
 
 ```js
-import constant from '@ohos.bluetooth.constant';
+import { constant } from '@kit.ConnectivityKit';
 ```
 
 ## ProfileId
@@ -31,6 +31,8 @@ Enumerates profiles.
 ## ProfileConnectionState
 
 Enumerates the profile connection states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -157,3 +159,8 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | Prosthetic ankle.    |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | Generic health management device.    |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
+
+
+
+
+
