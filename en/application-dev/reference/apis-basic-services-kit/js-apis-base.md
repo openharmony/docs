@@ -4,7 +4,9 @@ The **Base** module defines the public callback types of ArkTS APIs, including t
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> - Since API version 12, the APIs of this module are supported in ArkTS widgets.
 
 ## Modules to Import
 
@@ -24,6 +26,8 @@ Defines a common callback.
 
 You can set **data** to customize the data type of the information returned by the callback.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Base
 
 | Name| Type| Mandatory| Description                      |
@@ -42,6 +46,8 @@ Defines a common callback that carries an error parameter.
 
 The information returned by the callback is of the [BusinessError](#businesserror) type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Base
 
 **Parameters**
@@ -54,7 +60,7 @@ The information returned by the callback is of the [BusinessError](#businesserro
 
 AsyncCallback\<T, E = void> {
 
-(err: BusinessError, data: T): void;
+(err: BusinessError\<E>, data: T): void;
 
 }
 
@@ -63,6 +69,8 @@ Defines a common callback that carries an error parameter and asynchronous retur
 The error parameter is of the [BusinessError](#businesserror) type.
 
 The type of the asynchronous return value is defined by the developer.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Base
 
@@ -81,6 +89,8 @@ data?: T;
 }
 
 Defines the error parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Base
 

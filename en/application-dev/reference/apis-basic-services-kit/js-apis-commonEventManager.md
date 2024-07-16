@@ -16,7 +16,7 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 A system common event is an event that is published by a system service or system application and requires specific permissions to subscribe to. To publish or subscribe to this type of event, you must follow the event-specific definitions.
 
-For details about the definitions of all system common events, see [System Common Events](./commonEventManager-definitions.md).
+For details about the enumerations of all system common events, see [System Common Events](./common_event/commonEventManager-definitions.md).
 
 ## CommonEventManager.publish
 
@@ -24,21 +24,24 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 Publishes a common event and executes an asynchronous callback after the event is published.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
 | Name    | Type                | Mandatory| Description                  |
 | -------- | -------------------- | ---- | ---------------------- |
-| event    | string               | Yes  | Name of the common event to publish.|
+| event    | string               | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).|
 | callback | AsyncCallback\<void> | Yes  | Callback to execute after the event is published.|
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
 | ID| Error Message                           |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -73,22 +76,25 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 Publishes a common event with given attributes. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
 | Name    | Type                  | Mandatory| Description                  |
 | -------- | ---------------------- | ---- | ---------------------- |
-| event    | string                 | Yes  | Name of the common event to publish. |
+| event    | string                 | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md). |
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | Yes  | Attributes of the common event to publish.|
 | callback | syncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -130,6 +136,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 Creates a subscriber. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
@@ -138,6 +146,14 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | Yes  | Subscriber information.            |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **Example**
 
@@ -176,6 +192,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 Creates a subscriber. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
@@ -188,6 +206,14 @@ Creates a subscriber. This API uses a promise to return the result.
 | Type                                                     | Description            |
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Promise used to return the subscriber object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **Example**
 
@@ -217,6 +243,8 @@ createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscr
 
 Creates a subscriber. The API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
@@ -229,6 +257,14 @@ Creates a subscriber. The API returns the result synchronously.
 | Type                                                     | Description            |
 | --------------------------------------------------------- | ---------------- |
 | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | Promise used to return the subscriber object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **Example**
 
@@ -258,6 +294,8 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 Subscribes to common events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
@@ -269,10 +307,11 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -330,6 +369,8 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 Unsubscribes from common events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
@@ -341,10 +382,11 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |

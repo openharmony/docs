@@ -12,7 +12,7 @@ The **wallpaper** module provides APIs for switching between wallpapers. Since A
 
 
 ```ts
-import wallpaper from '@ohos.wallpaper';
+import { wallpaper } from '@kit.BasicServicesKit';
 ```
 ## WallpaperResourceType<sup>10+</sup>
 
@@ -49,10 +49,20 @@ Sets a video resource as the home screen wallpaper or lock screen wallpaper. Thi
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -88,6 +98,16 @@ Sets a video resource as the home screen wallpaper or lock screen wallpaper. Thi
 | source | string | Yes| URI of an MP4 file.|
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Return value**
 
 | Type| Description|
@@ -97,7 +117,7 @@ Sets a video resource as the home screen wallpaper or lock screen wallpaper. Thi
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
@@ -131,10 +151,20 @@ Sets a specific ZIP file as the wallpaper. This API works only when **com.ohos.s
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -176,10 +206,20 @@ Sets a specific ZIP file as the wallpaper. This API works only when **com.ohos.s
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
@@ -197,7 +237,7 @@ try {
 
 on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-Subscribes to wallpaper change events.
+Subscribes to wallpaper change events. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -209,6 +249,15 @@ Subscribes to wallpaper change events.
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
 | callback | function | Yes| Callback used to return the wallpaper type and wallpaper resource type.<br>- **wallpaperType**: wallpaper type.<br>- **resourceType**: wallpaper resource type.<br>- **uri**: URI of the wallpaper resource.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -227,7 +276,7 @@ try {
 
 off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-Unsubscribes from wallpaper change events.
+Unsubscribes from wallpaper change events. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -239,6 +288,15 @@ Unsubscribes from wallpaper change events.
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
 | callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- **wallpaperType**: wallpaper type.<br>- **resourceType**: wallpaper resource type.<br>- **uri**: URI of the wallpaper resource.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -289,6 +347,15 @@ Obtains the main color information of the wallpaper of the specified type.
 | -------- | -------- |
 | Array&lt;[RgbaColor](js-apis-wallpaper.md#rgbacolordeprecated)&gt; | Promise used to return the main color information of the wallpaper.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
@@ -316,6 +383,14 @@ Obtains the minimum height of this wallpaper.
 | -------- | -------- |
 | number | Promise used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+
 **Example**
 
 ```ts
@@ -337,6 +412,14 @@ Obtains the minimum width of this wallpaper.
 | Type| Description|
 | -------- | -------- |
 | number | Promise used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
 
 **Example**
 
@@ -363,10 +446,20 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is reset, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
@@ -401,10 +494,20 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to restore.`);
@@ -433,11 +536,21 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // The source type is string.
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -495,11 +608,21 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // The source type is string.
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -547,11 +670,21 @@ Obtains the pixel map for the wallpaper of the specified type. This API only wor
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -587,11 +720,21 @@ Obtains the pixel map for the wallpaper of the specified type. This API only wor
 | -------- | -------- |
 | Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
@@ -606,7 +749,7 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.P
 
 getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
-Obtains the pixel map for the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the pixel map for the wallpaper of the specified type.
 
 > **NOTE**
 >
@@ -628,8 +771,8 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -644,7 +787,7 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: Business
 
 getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
-Obtains the pixel map for the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the pixel map for the wallpaper of the specified type.
 
 > **NOTE**
 >
@@ -671,8 +814,8 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
