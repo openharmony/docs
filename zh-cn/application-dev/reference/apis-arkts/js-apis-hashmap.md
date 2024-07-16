@@ -510,7 +510,6 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-// 不建议在forEach函数中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
@@ -518,7 +517,17 @@ hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -547,7 +556,6 @@ entries(): IterableIterator&lt;[K, V]&gt;
 **示例：**
 
 ```ts
-// 不建议在entries函数中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
@@ -559,8 +567,17 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
-
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
@@ -591,7 +608,6 @@ while(!temp.done) {
 
 **示例：**
 ```ts
-// 不建议在Symbol.iterator中使用set和remove方法，会导致死循环等不可预知的风险。
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
@@ -611,4 +627,16 @@ for (let key of keys) {
    console.log("value:" + temp.value[1]);
    temp = iter.next();
  }
+```
+
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
 ```
