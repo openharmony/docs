@@ -40,6 +40,10 @@ backdropBlur(value: number, options?: BlurOptions)
 | value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
 | options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
+>  **说明：**
+>
+>  blur和backdropBlur是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用[静态模糊接口](../../apis-arkgraphics2d/js-apis-effectKit.md#blur)。
+
 ## shadow
 
 shadow(value: ShadowOptions | ShadowStyle)
