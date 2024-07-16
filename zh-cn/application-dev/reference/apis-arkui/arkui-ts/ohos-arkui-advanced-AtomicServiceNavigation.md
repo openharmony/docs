@@ -78,8 +78,7 @@ AtomicServiceNavigation({
 
 ```ts
 // Index. ets
-import { AtomicServiceNavigation, NavDestinationBuilder } from '@kit.ArkUI';
-import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
+import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 
 @Entry
 @Component
