@@ -158,8 +158,8 @@ class MyFrontDrawModifier extends DrawModifier {
     brush.setColor({
       alpha: 255,
       red: 0,
-      green: 255,
-      blue: 0
+      green: 0,
+      blue: 255
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
