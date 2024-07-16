@@ -20,11 +20,11 @@ Cross-device migration supports the following features:
 
 - Determining whether to restore the page stack (restored by default)
 
- If an application wants to customize the page to be displayed after being migrated to the target device, you can use [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
+  If an application wants to customize the page to be displayed after being migrated to the target device, you can use [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
 
 - Determining whether to exit the application on the source device after a successful migration (application exit by default)
 
- You can use [SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
+  You can use [SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
 
   > **NOTE**
   >
@@ -44,8 +44,6 @@ Cross-device migration supports the following features:
 The following figure shows the cross-device migration process when a migration request is initiated from the migration entry of the peer device.
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration7.png)
-
-
 
 ## Constraints
 
@@ -83,9 +81,8 @@ The following figure shows the cross-device migration process when a migration r
    - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue). For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -114,22 +111,19 @@ The following figure shows the cross-device migration process when a migration r
    }
    ```
 
-3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
+3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use.
    
-
-In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
-
-![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
+   For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data. In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
+   
+   ![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
 
    - The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration.
    - You can obtain the saved data from the **want** parameter.
    - After data restoration is complete, call **restoreWindowStage()** to trigger page restoration, including page stack information.
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type Want from '@ohos.app.ability.Want';
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -144,7 +138,7 @@ In the stage model, applications with different launch types can call different 
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
          }
          // Trigger page restoration.
          this.context.restoreWindowStage(this.storage);
@@ -158,7 +152,7 @@ In the stage model, applications with different launch types can call different 
           let continueInput = '';
           if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
-            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
           }
           // Trigger page restoration. 
           this.context.restoreWindowStage(this.storage);
@@ -181,10 +175,8 @@ Call the API in the [onCreate()](../reference/apis-ability-kit/js-apis-app-abili
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -204,9 +196,8 @@ Call the API in the **onPageShow()** callback of the page to set the migration s
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -215,11 +206,12 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Component
 struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
+
   build() {
     // ...
   }
   // ...
-  onPageShow(){
+  onPageShow() {
     // When the page is displayed, set the migration state to ACTIVE.
     this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
@@ -232,10 +224,9 @@ Set the migration state in the event of a component.
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -244,6 +235,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Component
 struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
+
   build() {
     // ...
     Button() {
@@ -265,10 +257,8 @@ During UI page loading, the application on the target device may have executed t
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -308,24 +298,22 @@ Example: A UIAbility does not want automatically restored page stack information
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   // ...
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
-  onWindowStageRestore(windowStage: window.WindowStage) : void {
+  onWindowStageRestore(windowStage: window.WindowStage): void {
     // Set the page to be displayed after the migration.
     windowStage.loadContent('pages/page_migrationability/Page_MigrationAbilityThird', (err, data) => {
       if (err.code) {
@@ -344,17 +332,16 @@ Configure whether to exit the application on the source device after a successfu
 Example: A UIAbility on the source device does not exit after a successful migration.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   // ...
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
@@ -377,16 +364,16 @@ Three data migration modes are provided. You can select them as required.
 If the size of the data to migrate is less than 100 KB, you can add fields to **wantParam** for data migration. An example is as follows:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   // Save the data on the source device.
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     // Save the data to migrate in the custom field (for example, data) of wantParam.
     const continueInput = 'Data to migrate';
     wantParam['data'] = continueInput;
@@ -422,17 +409,17 @@ export default class MigrationAbility extends UIAbility {
 ```
 ### Using Distributed Data Objects for Data Migration
 
-If the size of the data to migrate is greater than 100 KB, you can use a [distributed data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md) for data migration.
+If the size of the data to migrate is greater than 100 KB, you can use a [distributed data object](../reference/apis-arkdata/js-apis-data-distributedobject.md) for data migration.
 
-1. First, create a distributed [data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject) in the **onContinue()** callback for the application on the source device, fill the data to migrate into this object, and send the generated session ID to the peer through **want**.
+1. First, create a distributed [data object](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject) in the **onContinue()** callback for the application on the source device, fill the data to migrate into this object, and send the generated session ID to the peer through **want**.
 2. During data restoration initiated by **onCreate()** or **onNewWant()**, the peer reads the session ID from **want** and restore data through the distributed object.
 
-For details, see [Cross-Device Synchronization of Distributed Data Objects](../../application-dev/database/data-sync-of-distributed-data-object.md).
+For details, see [Cross-Device Synchronization of Distributed Data Objects](../database/data-sync-of-distributed-data-object.md).
 
 ### Using Distributed Files For Data Migration
 If the size of the data to migrate is greater than 100 KB, you can also use a distributed file for data migration. Compared with distributed data objects, distributed files are more suitable when files are to be transmitted. After data is written to the distributed file path on the source device, the application started on the target device can access the file in this path after the migration.
 
-For details, see [Accessing Files Across Devices](../../application-dev/file-management/file-access-across-devices.md).
+For details, see [Accessing Files Across Devices](../file-management/file-access-across-devices.md).
 
 ## Verification Guide
 
@@ -442,7 +429,7 @@ A mission center demo is provided for you to verify the migration capability of 
 
 #### Environment Configuration
 
-[Switch to the full SDK](../../application-dev/faqs/full-sdk-switch-guide.md) in DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
+[Switch to the full SDK](../faqs/full-sdk-switch-guide.md) in DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
 
 > **NOTE**
 >
@@ -460,7 +447,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 2. Complete the signature, build, and installation.
 
-   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. ​Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
+​   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
 
    1. Choose **File > Project Structure**.
 

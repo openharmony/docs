@@ -6,7 +6,7 @@
 
 In this document, the started ServiceExtensionAbility is called the server, and the component that starts the ServiceExtensionAbility is called the client.
 
-A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. Third-party applications can call only **connectServiceExtensionAbility()** to connect to a ServiceExtensionAbility. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
+A [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. Third-party applications can call only [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to a ServiceExtensionAbility. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
 
 - **Starting**: In the case that AbilityA starts ServiceB, they are weakly associated. After AbilityA exits, ServiceB remains running.
 
@@ -14,7 +14,7 @@ A ServiceExtensionAbility can be started or connected by other components to pro
 
 Note the following:
 
-- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability) method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
+- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
 
 - Once a ServiceExtensionAbility is started by means of starting, it will not exit automatically. System applications can call the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability) method to stop it.
 
@@ -46,11 +46,11 @@ The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-
 
 - **onRequest**
 
-  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time **startServiceExtensionAbility()** method is called.
+  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method is called.
 
 - **onConnect**
 
-  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, IRemoteObject, is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls **connectServiceExtensionAbility()** method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
+  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, IRemoteObject, is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
 
 - **onDisconnect**
 
@@ -144,11 +144,10 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 3. In the **ServiceExtAbility.ets** file, import the ServiceExtensionAbility module. Customize a class that inherits from **ServiceExtensionAbility** and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the **onConnect** lifecycle callback.
 
    ```ts
-   import hilog from '@ohos.hilog';
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+   import { rpc } from '@kit.IPCKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   import type Want from '@ohos.app.ability.Want';
-   import type rpc from '@ohos.rpc';
    
    const TAG: string = '[ServiceExtAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -209,74 +208,144 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
 1. Start a new ServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
-   ```ts
-   import common from '@ohos.app.ability.common';
-   import Logger from '../utils/Logger';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
+     ```ts
+     import { common, Want } from '@kit.AbilityKit';
+     import { promptAction } from '@kit.ArkUI';
+     import { hilog } from '@kit.PerformanceAnalysisKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let want: Want = {
-     deviceId: '',
-     bundleName: 'com.samples.stagemodelabilitydevelop',
-     abilityName: 'ServiceExtAbility'
-   };
-   context.startServiceExtensionAbility(want).then(() => {
-     Logger.info('Succeeded in starting ServiceExtensionAbility.');
-     // The background service is started.
-     promptAction.showToast({
-       message: $r('app.string.SuccessfullyStartBackendService')
-     });
-   }).catch((err: BusinessError) => {
-     Logger.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-   });
-   ```
+     const TAG: string = '[Page_ServiceExtensionAbility]';
+     const DOMAIN_NUMBER: number = 0xFF00;
+   
+     @Entry
+     @Component
+     struct Page_ServiceExtensionAbility {
+       build() {
+         Column() {
+           //...
+           List({ initialIndex: 0 }) {
+             ListItem() {
+               Row() {
+                 //...
+               }
+               .onClick(() => {
+                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                 let want: Want = {
+                   deviceId: '',
+                   bundleName: 'com.samples.stagemodelabilitydevelop',
+                   abilityName: 'ServiceExtAbility'
+                 };
+                 context.startServiceExtensionAbility(want).then(() => {
+                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
+                   // The background service is started.
+                   promptAction.showToast({
+                     message: $r('app.string.SuccessfullyStartBackendService')
+                   });
+                 }).catch((err: BusinessError) => {
+                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                 });
+               })
+             }
+             //...
+           }
+           //...
+         }
+         //...
+       }
+     }
+     ```
 
 2. Stop the ServiceExtensionAbility in the system application.
 
-   ```ts
-   import common from '@ohos.app.ability.common';
-   import Logger from '../utils/Logger';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
+     ```ts
+     import { common, Want } from '@kit.AbilityKit';
+     import { promptAction } from '@kit.ArkUI';
+     import { hilog } from '@kit.PerformanceAnalysisKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let want: Want = {
-     deviceId: '',
-     bundleName: 'com.samples.stagemodelabilitydevelop',
-     abilityName: 'ServiceExtAbility'
-   };
-   context.stopServiceExtensionAbility(want).then(() => {
-     Logger.info('Succeeded in stopping ServiceExtensionAbility.');
-     promptAction.showToast({
-       message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
-     });
-   }).catch((err: BusinessError) => {
-     Logger.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-   });
-   ```
+     const TAG: string = '[Page_ServiceExtensionAbility]';
+     const DOMAIN_NUMBER: number = 0xFF00;
+   
+     @Entry
+     @Component
+     struct Page_ServiceExtensionAbility {
+       build() {
+         Column() {
+           //...
+           List({ initialIndex: 0 }) {
+             ListItem() {
+               Row() {
+                 //...
+               }
+               .onClick(() => {
+                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                 let want: Want = {
+                   deviceId: '',
+                   bundleName: 'com.samples.stagemodelabilitydevelop',
+                   abilityName: 'ServiceExtAbility'
+                 };
+                 context.stopServiceExtensionAbility(want).then(() => {
+                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
+                   promptAction.showToast({
+                     message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+                   });
+                 }).catch((err: BusinessError) => {
+                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                 });
+               })
+             }
+             //...
+           }
+           //...
+         }
+         //...
+       }
+     }
+     ```
 
 3. Enable the ServiceExtensionAbility to stop itself.
 
-   ```ts
-   import common from '@ohos.app.ability.common';
-   import Logger from '../utils/Logger';
-   import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
+     ```ts
+     import { common } from '@kit.AbilityKit';
+     import { promptAction } from '@kit.ArkUI';
+     import { hilog } from '@kit.PerformanceAnalysisKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   context.terminateSelf().then(() => {
-     Logger.info('Succeeded in terminating self.');
-     // The background service is stopped.
-     promptAction.showToast({
-       message: $r('app.string.SuccessfullyStopStartedBackendService')
-     });
-   }).catch((err: BusinessError) => {
-     Logger.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-   });
-   ```
+     const TAG: string = '[Page_ServiceExtensionAbility]';
+     const DOMAIN_NUMBER: number = 0xFF00;
+   
+     @Entry
+     @Component
+     struct Page_ServiceExtensionAbility {
+       build() {
+         Column() {
+           //...
+           List({ initialIndex: 0 }) {
+             ListItem() {
+               Row() {
+                 //...
+               }
+               .onClick(() => {
+                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                 context.terminateSelf().then(() => {
+                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
+                   // The background service is stopped.
+                   promptAction.showToast({
+                     message: $r('app.string.SuccessfullyStopStartedBackendService')
+                   });
+                 }).catch((err: BusinessError) => {
+                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+                 });
+               })
+             }
+             //...
+           }
+           //...
+         }
+         //...
+       }
+     }
+     ```
 
 > **NOTE**
 >
@@ -284,88 +353,133 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 >
 > - The background service calls the [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) method to automatically stop itself.
 > - Another component calls the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) method to stop the background service.
+> After either method is called, the system destroys the background service.
 
 ## Connecting to a Background Service
 
-Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the **Want** object passed by the caller. In this way, a persistent connection is established.
+Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the **Want** object passed by the caller. In this way, a persistent connection is established.
 
-The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
+The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
 
 - Call **connectServiceExtensionAbility()** to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Logger from '../utils/Logger';
-  import Want from '@ohos.app.ability.Want';
-  import promptAction from '@ohos.promptAction';
-  import hilog from '@ohos.hilog';
+  import { common, Want } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
-  
-  const DOMAIN_NUMBER: number = 0xFF00;
+
   const TAG: string = '[Page_ServiceExtensionAbility]';
-  
+  const DOMAIN_NUMBER: number = 0xFF00;
+
   let connectionId: number;
   let want: Want = {
     deviceId: '',
     bundleName: 'com.samples.stagemodelabilitydevelop',
     abilityName: 'ServiceExtAbility'
   };
-  
+
   let options: common.ConnectOptions = {
-    onConnect(elementName, remote): void {
-      Logger.info('onConnect callback');
+    onConnect(elementName, remote: rpc.IRemoteObject): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
       if (remote === null) {
-        Logger.info(`onConnect remote is null`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
         return;
       }
       let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // Communication is carried out by API calling, without exposing RPC details.
       serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-        Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-        Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
       })
     },
     onDisconnect(elementName): void {
-      Logger.info('onDisconnect callback');
-  },
-    onFailed(code): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
+    },
+    onFailed(code: number): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
   };
-  // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
-  connectionId = context.connectServiceExtensionAbility(want, options);
-  // The background service is connected.
-  promptAction.showToast({
-    message: $r('app.string.SuccessfullyConnectBackendService')
-  });
-  // connectionId = context.connectAbility(want, options);
-  hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
+  @Entry
+  @Component
+  struct Page_ServiceExtensionAbility {
+    build() {
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
+              connectionId = context.connectServiceExtensionAbility(want, options);
+              // The background service is connected.
+              promptAction.showToast({
+                message: $r('app.string.SuccessfullyConnectBackendService')
+              });
+              // connectionId = context.connectAbility(want, options);
+              hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
+            })
+          }
+          //...
+        }
+        //...
+      }
+      //...
+    }
+  }
   ```
 
 - Use **disconnectServiceExtensionAbility()** to disconnect from the background service.
   
   ```ts
-  import Logger from '../utils/Logger';
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
-  
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  const TAG: string = '[Page_ServiceExtensionAbility]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
   let connectionId: number;
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
-  context.disconnectServiceExtensionAbility(connectionId).then(() => {
-    Logger.info('disconnectServiceExtensionAbility success');
-    // The background service is disconnected.
-    promptAction.showToast({
-      message: $r('app.string.SuccessfullyDisconnectBackendService')
-    });
-  }).catch((error: BusinessError) => {
-    Logger.error('disconnectServiceExtensionAbility failed');
-  });
+  @Entry
+  @Component
+  struct Page_ServiceExtensionAbility {
+    build() {
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
+              context.disconnectServiceExtensionAbility(connectionId).then(() => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
+                // The background service is disconnected.
+                promptAction.showToast({
+                  message: $r('app.string.SuccessfullyDisconnectBackendService')
+                });
+              }).catch((error: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
+              });
+            })
+          }
+          //...
+        }
+        //...
+      }
+      //...
+    }
+  }
   ```
 
 ## Communication Between the Client and Server
@@ -376,34 +490,34 @@ After obtaining the [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#
 
   ```ts
   // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
+  import { common } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
-  import common from '@ohos.app.ability.common';
-  import Logger from '../utils/Logger';
-  import hilog from '@ohos.hilog';
-  
-  const DOMAIN_NUMBER: number = 0xFF00;
+
   const TAG: string = '[Page_ServiceExtensionAbility]';
-  
+  const DOMAIN_NUMBER: number = 0xFF00;
+
   let options: common.ConnectOptions = {
-    onConnect(elementName, remote): void {
-      Logger.info('onConnect callback');
+    onConnect(elementName, remote: rpc.IRemoteObject): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
       if (remote === null) {
-        Logger.info(`onConnect remote is null`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
         return;
       }
       let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // Communication is carried out by API calling, without exposing RPC details.
       serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-        Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-        Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
       })
     },
     onDisconnect(elementName): void {
-      Logger.info('onDisconnect callback');
+      hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
     },
-    onFailed(code): void {
+    onFailed(code: number): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
   };
@@ -412,46 +526,57 @@ After obtaining the [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#
 - Calling [sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9) to send messages to the server (not recommended)
 
   ```ts
-  import rpc from '@ohos.rpc';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
+  const TAG: string = '[Page_CollaborateAbility]';
+  const DOMAIN_NUMBER: number = 0xFF00;
   const REQUEST_CODE = 1;
   let options: common.ConnectOptions = {
     onConnect(elementName, remote): void {
-      console.info('onConnect callback');
+      hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
       if (remote === null) {
-        console.info(`onConnect remote is null`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
         return;
       }
-      /* Directly call the RPC interface to send messages to the server.
-       * The client needs to serialize the input parameters and deserialize the return values. The process is complex.
-       */ 
       let option = new rpc.MessageOption();
       let data = new rpc.MessageSequence();
       let reply = new rpc.MessageSequence();
-      data.writeInt(100);
-  
+
+      data.writeInt(99);
+      // You can send data to the target application for corresponding operations.
       // @param code Indicates the service request code sent by the client.
       // @param data Indicates the {@link MessageSequence} object sent by the client.
       // @param reply Indicates the response message object sent by the remote service.
       // @param options Specifies whether the operation is synchronous or asynchronous.
-      // 
       // @return Returns {@code true} if the operation is successful; returns {@code false} otherwise.
-      remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
-        let msg = reply.readInt();
-        console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
+
+      remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.RequestResult) => {
+        let errCode = reply.readInt(); // Receive the information (100) returned by the target device if the connection is successful.
+        let msg: number = 0;
+        if (errCode === 0) {
+          msg = reply.readInt();
+        }
+        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest msg:${msg}`);
+        // The background service is connected.
+        promptAction.showToast({
+          message: `sendRequest msg:${msg}`
+        });
       }).catch((error: BusinessError) => {
-        console.info('sendMessageRequest failed');
+        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
       });
     },
     onDisconnect(elementName): void {
-      console.info('onDisconnect callback')
+      hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
     },
     onFailed(code): void {
-      console.info('onFailed callback')
+      hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback');
     }
-  }
+  };
+  //...
   ```
 
 ## Client Identity Verification by the Server
@@ -463,43 +588,45 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
   Call the [getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid) method to obtain the UID of the client, and then call the [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid) method to obtain the corresponding bundle name. In this way, the client identity is verified. Note that [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid) is asynchronous, and therefore the server cannot return the verification result to the client. This verification mode applies when the client sends an asynchronous task request to the server. The sample code is as follows:
 
   ```ts
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-  import bundleManager from '@ohos.bundle.bundleManager';
+  import { bundleManager } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import IdlServiceExtStub from './idl_service_ext_stub';
-  import Logger from '../utils/Logger';
-  import rpc from '@ohos.rpc';
-  import type { BusinessError } from '@ohos.base';
-  import type { insertDataToMapCallback } from './i_idl_service_ext';
-  import type { processDataCallback } from './i_idl_service_ext';
-  
+  import type { InsertDataToMapCallback } from './i_idl_service_ext';
+  import type { ProcessDataCallback } from './i_idl_service_ext';
+
   const ERR_OK = 0;
   const ERR_DENY = -1;
   const TAG: string = "[IdlServiceExtImpl]";
-  
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  // You need to implement APIs in this type.
   export default class ServiceExtImpl extends IdlServiceExtStub {
-    processData(data: number, callback: processDataCallback): void {
-      Logger.info(TAG, `processData: ${data}`);
-  
+    processData(data: number, callback: ProcessDataCallback): void {
+      // Implement service logic.
+      hilog.info(DOMAIN_NUMBER, TAG, `processData: ${data}`);
       let callerUid = rpc.IPCSkeleton.getCallingUid();
       bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
-        Logger.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
+        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
         // Identify the bundle name of the client.
         if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // The verification fails.
-          Logger.info(TAG, 'The caller bundle is not in trustlist, reject');
+          hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // The verification is successful, and service logic is executed normally.
       }).catch((err: BusinessError) => {
-        Logger.info(TAG, 'getBundleNameByUid failed: ' + err.message);
+        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
       });
-    }
-  
-    insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
+      //...
+    };
+
+    insertDataToMap(key: string, val: number, callback: InsertDataToMapCallback): void {
       // Implement service logic.
-      Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
-    }
-  }
+    };
+  };
   ```
 
 - **Verifying the client identity based on callerTokenId**
@@ -507,23 +634,38 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
   Call the [getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/AccessToken/permissions-for-all.md) can be verified. The sample code is as follows:
 
   ```ts
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-  import bundleManager from '@ohos.bundle.bundleManager';
+  import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import IdlServiceExtStub from './idl_service_ext_stub';
-  import Logger from '../utils/Logger';
-  import rpc from '@ohos.rpc';
-  import type { BusinessError } from '@ohos.base';
-  import type { insertDataToMapCallback } from './i_idl_service_ext';
-  import type { processDataCallback } from './i_idl_service_ext';
-  
+  import type { InsertDataToMapCallback } from './i_idl_service_ext';
+  import type { ProcessDataCallback } from './i_idl_service_ext';
+
   const ERR_OK = 0;
   const ERR_DENY = -1;
-  const TAG: string = "[IdlServiceExtImpl]";
-  
+  const TAG: string = '[IdlServiceExtImpl]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  // You need to implement APIs in this type.
   export default class ServiceExtImpl extends IdlServiceExtStub {
-    processData(data: number, callback: processDataCallback): void {
-      console.info(TAG, `processData: ${data}`);
-  
+    processData(data: number, callback: ProcessDataCallback): void {
+      // Implement service logic.
+      hilog.info(DOMAIN_NUMBER, TAG, `processData: ${data}`);
+
+      let callerUid = rpc.IPCSkeleton.getCallingUid();
+      bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
+        // Identify the bundle name of the client.
+        if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // The verification fails.
+          hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
+          return;
+        }
+        // The verification is successful, and service logic is executed normally.
+      }).catch((err: BusinessError) => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+      });
+
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
       /* The permission to be verified varies depending on the service requirements.
@@ -531,19 +673,19 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
        */
       let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
-        Logger.info(TAG, `PERMISSION_DENIED`);
+        hilog.info(DOMAIN_NUMBER, TAG, 'PERMISSION_DENIED');
         callback(ERR_DENY, data); // The verification fails and an error is returned.
         return;
       }
-      Logger.info(TAG, 'verify access token success.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'verify access token success.');
       callback(ERR_OK, data + 1); // The verification is successful, and service logic is executed normally.
     };
-  
-    insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
+
+    insertDataToMap(key: string, val: number, callback: InsertDataToMapCallback): void {
       // Implement service logic.
-      Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
-    }
-  }
+    };
+  };
   ```
 
