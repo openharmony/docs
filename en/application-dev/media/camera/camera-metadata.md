@@ -10,8 +10,8 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 1. Import the modules.
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
@@ -87,6 +87,9 @@ During camera application development, you can listen for the status of metadata
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('metadata output metadataObjectsAvailable');
     });
   }

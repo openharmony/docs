@@ -1,14 +1,14 @@
-# High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)
+# Deferred Photo Delivery Sample (ArkTS)
 
-This topic provides sample code that covers the complete high-performance photographing process to help you understand the complete API calling sequence.
+This topic provides sample code that covers the complete deferred photo delivery process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Camera Photographing](camera-shooting.md).
+Before referring to the sample code, you are advised to read [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Camera Photographing](camera-shooting.md).
 
 ## Development Process
 
 After obtaining the output stream capabilities supported by the camera, create a photo stream. The development process is as follows:
 
-![deferred-photo-development-process](figures/deferred-photo-development-process.png)
+![deferred-capture-development-process](figures/deferred-capture-development-process.png)
 
 ## Sample Code
 
@@ -16,59 +16,60 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-// Flush the original image in write-file mode.
-async function savePicture(photoObj: camera.Photo): Promise<void> {
-  let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let testFileName = 'testFile' + Date.now() + '.jpg';
-  // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-  let photoAsset = await accessHelper.createAsset(testFileName);
-  const fd = await photoAsset.open('rw');
-  let buffer: ArrayBuffer | undefined = undefined;
-  photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
-    if (errCode || component === undefined) {
-      console.error('getComponent failed');
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+  onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
       return;
     }
-    if (component.byteBuffer) {
-      buffer = component.byteBuffer;
-    } else {
-      console.error('byteBuffer is null');
-      return;
-    }
-  });
-  if (buffer) {
-    await fs.write(fd, buffer);
+    console.info('on image data prepared');
   }
-  await photoAsset.close(fd);
-  await photoObj.release(); 
 }
 
-// Flush the thumbnail by calling the mediaLibrary API.
-async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
+async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaDataHandler();
+  await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+  console.info('requestImageData successfully');
+}
+
+async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
   try {
-    // Create a photoAsset.
-    let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let photoAsset = await accessHelper.createAsset(testFileName);
-    // Pass the thumbnail proxy class object to the mediaLibrary.
-    let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
-    mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-    let res = await accessHelper.applyChanges(mediaRequest);
-    console.info('saveDeferredPhoto success.');
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
   } catch (err) {
-    console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
   }
 }
 
-async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
+  // After the callback is set, call capture() of photoOutput to trigger the callback upon the receiving of a low-quality image.
+  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+    console.info('getPhotoAsset start');
+    console.info(`err: ${JSON.stringify(err)}`);
+    if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
+      console.error('getPhotoAsset failed');
+      return;
+    }
+    // Call the mediaLibrary flush API to save the low-quality image in the first phase. After the real image in the second phase is ready, the mediaLibrary proactively replaces the image flushed.
+    mediaLibSavePhoto(photoAsset);
+    // Call the mediaLibrary API to register the buffer callback to receive low-quality or high-quality images for custom processing.
+    mediaLibRequestBuffer(photoAsset);
+  });
+}
+
+async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager object.
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
@@ -78,7 +79,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
     if (err !== undefined && err.code !== 0) {
-      console.error(`cameraStatus with errorCode: ${err.code}`);
+      console.error('cameraStatus with errorCode = ' + err.code);
       return;
     }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
@@ -160,6 +161,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   previewOutput.on('error', (error: BusinessError) => {
     console.error(`Preview output error code: ${error.code}`);
   });
+
   // Create a photo output stream.
   let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
@@ -171,13 +173,17 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   if (photoOutput === undefined) {
     return;
   }
+
+  // Register the photoAssetAvailable callback.
+  setPhotoOutputCb(photoOutput);
+
   // Create a session.
   let photoSession: camera.PhotoSession | undefined = undefined;
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
+    console.error('Failed to create the session instance. errorCode = ' + err.code);
   }
   if (photoSession === undefined) {
     return;
@@ -217,47 +223,6 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
-  }
-
-  // Register a callback to listen for original images.
-  photoOutput.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
-    if (err) {
-      console.info(`photoAvailable error: ${JSON.stringify(err)}.`);
-      return;
-    }
-    savePicture(photoObj).then(() => {
-      // Release the photo object after the flushing is complete.
-      photoObj.release();
-    });
-  });
-
-  // Register a callback to listen for thumbnail proxies.
-  photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
-    if (err) {
-      console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
-      return;
-    }
-    console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-    // Obtain the pixel map of a thumbnail.
-    proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-      AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
-    });
-    // Call the mediaLibrary API to flush the thumbnail.
-    saveDeferredPhoto(proxyObj).then(() => {
-      // Release the thumbnail proxy class object after the flushing is complete.
-      proxyObj.release();
-    });
-  });
-    
-  // Check whether deferred photo delivery is supported.
-  let isSupportDeferred: boolean = photoOutput.isDeferredImageDeliverySupported(camera.DeferredDeliveryImageType.PHOTO);
-  console.info('isDeferredImageDeliverySupported res:' + isSupportDeferred);
-  if (isSupportDeferred) {
-    // Enable deferred photo delivery.
-	photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
-    // Check whether deferred photo delivery is enabled.
-    let isSupportEnabled: boolean = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
-    console.info('isDeferredImageDeliveryEnabled res:' + isSupportEnabled);
   }
 
   // Commit the session configuration.

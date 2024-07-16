@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Device** struct defines the camera device.
+The Camera_Device struct describes the camera device.
 
 **Since**: 11
 
@@ -17,7 +17,7 @@ The **Camera_Device** struct defines the camera device.
 
 | Name| Description| 
 | -------- | -------- |
-| char \* [cameraId](#cameraid) | Camera ID. | 
+| char \* [cameraId](#cameraid) | Pointer to the camera ID. | 
 | [Camera_Position](_o_h___camera.md#camera_position) [cameraPosition](#cameraposition) | Camera position. | 
 | [Camera_Type](_o_h___camera.md#camera_type) [cameraType](#cameratype) | Camera type. | 
 | [Camera_Connection](_o_h___camera.md#camera_connection) [connectionType](#connectiontype) | Camera connection type. | 

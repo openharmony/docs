@@ -7,6 +7,8 @@ The **preview_output.h** file declares the preview output concepts.
 
 **Library**: libohcamera.so
 
+**File to include**: &lt;ohcamera/preview_output.h&gt; 
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Since**: 11
@@ -21,18 +23,18 @@ The **preview_output.h** file declares the preview output concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[PreviewOutput_Callbacks](_preview_output___callbacks.md) | Defines the callbacks used for preview output. | 
+| struct&nbsp;&nbsp;[PreviewOutput_Callbacks](_preview_output___callbacks.md) | Describes the callbacks related to preview output. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) [Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) | Defines the preview output object. | 
+| typedef struct [Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) [Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) | Defines a struct for the preview output object. | 
 | typedef void(\* [OH_PreviewOutput_OnFrameStart](_o_h___camera.md#oh_previewoutput_onframestart)) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | Defines the pointer to the callback defined in the [PreviewOutput_Callbacks](_preview_output___callbacks.md) struct and used to report preview output frame start events. | 
 | typedef void(\* [OH_PreviewOutput_OnFrameEnd](_o_h___camera.md#oh_previewoutput_onframeend)) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, int32_t frameCount) | Defines the pointer to the callback defined in the [PreviewOutput_Callbacks](_preview_output___callbacks.md) struct and used to report preview output frame end events. | 
 | typedef void(\* [OH_PreviewOutput_OnError](_o_h___camera.md#oh_previewoutput_onerror)) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) errorCode) | Defines the pointer to the callback defined in the [PreviewOutput_Callbacks](_preview_output___callbacks.md) struct and used to report preview output errors. | 
-| typedef struct [PreviewOutput_Callbacks](_preview_output___callbacks.md) [PreviewOutput_Callbacks](_o_h___camera.md#previewoutput_callbacks) | Defines the callbacks used for preview output. | 
+| typedef struct [PreviewOutput_Callbacks](_preview_output___callbacks.md) [PreviewOutput_Callbacks](_o_h___camera.md#previewoutput_callbacks) | Defines a struct for the callbacks related to preview output. | 
 
 
 ### Functions
