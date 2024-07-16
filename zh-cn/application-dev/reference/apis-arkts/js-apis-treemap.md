@@ -60,7 +60,7 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 10200012 | The TreeMap's constructor cannot be directly invoked. |
 
 **示例：**
