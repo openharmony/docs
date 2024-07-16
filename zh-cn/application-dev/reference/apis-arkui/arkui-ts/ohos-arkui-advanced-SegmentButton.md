@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@kit.ArkUI';
+import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@ohos.arkui.advanced.SegmentButton'
 ```
 
 ## 子组件
@@ -527,7 +527,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@kit.ArkUI';
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
@@ -607,7 +607,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@kit.ArkUI';
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
@@ -695,7 +695,7 @@ import {
   SegmentButtonItemOptionsArray,
   SegmentButtonItemTuple,
   SegmentButtonItemOptions
-} from '@kit.ArkUI';
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
