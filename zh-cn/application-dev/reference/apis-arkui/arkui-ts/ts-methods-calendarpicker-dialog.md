@@ -54,7 +54,8 @@ CalendarPickerDialog基本使用
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date('2024-04-23')
+
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
