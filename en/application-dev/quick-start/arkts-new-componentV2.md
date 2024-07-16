@@ -1,12 +1,12 @@
 # \@ComponentV2 Decorator: Custom Component
 
-To use the capability of the state variable decorator V2 in a custom component, you can use the \@ComponentV2 decorator to decorate the custom component.
+To use the capability of the state variable decorator V2 in a custom component, you can use the \@ComponentV2 Decorator to decorate the custom component.
 
 >**NOTE**
 >
 >The \@ComponentV2 decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features are not complete yet.
+>State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 
 ## Overview
@@ -20,9 +20,9 @@ Similar to [\@Component Decorator](arkts-create-custom-components.md), the \@Com
 - A simple \@ComponentV2 decorated custom component should contain the following parts:
 
     ```ts
-    @ComponentV2   // Decorator
+    @ComponentV2 // Decorator
     struct Index { // Data declared by the struct
-      build() {    // UI defined by build
+      build() { // UI defined by build
       }
     }
     ```

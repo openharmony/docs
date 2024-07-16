@@ -1,12 +1,12 @@
 # \@Event Decorator: Component Output
 
-To enable a child component to request the parent component to update the \@Param decorated variables, you can use the \@Event decorator.
+You can use \@Event, a variable decorator in state management V2, to enable a child component to require the parent component to update the \@Param decorated variables.
 
 >**NOTE**
 >
->The \@Event decorator is supported in custom components decorated by \@ComponentV2 since API version 12.
+>The \@Event decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features are not complete yet.
+>State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -89,13 +89,59 @@ struct Child {
       Text(`${this.title}`)
       Button("change to Title Two")
         .onClick(() => {
-          this.changeFactory(2)
+          this.changeFactory(2);
         })
       Button("change to Title One")
         .onClick(() => {
-          this.changeFactory(1)
+          this.changeFactory(1);
         })
     }
   }
 }
 ````
+
+Note that using \@Event to change the value of the parent component takes effect immediately. However, the process of synchronizing the change from the parent component to the child component is asynchronous. That is, after the method of \@Event is called, the value of the child component does not change immediately. This is because \@Event passes the actual change capability of the child component value to the parent component for processing. After the parent component determines how to process the value, the final value is synchronized back to the child component before rendering.
+
+```ts
+@ComponentV2
+struct Child {
+  @Param index: number = 0;
+  @Event changeIndex: (val: number) => void;
+
+  build() {
+    Column() {
+      Text(`Child index: ${this.index}`)
+        .onClick(() => {
+          this.changeIndex(20);
+          console.log(`after changeIndex ${this.index}`);
+        })
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local index: number = 0;
+
+  build() {
+  	Column() {
+  	  Child({
+  	    index: this.index,
+  	    changeIndex: (val: number) => {
+  	      this.index = val;
+          console.log(`in changeIndex ${this.index}`);
+  	    }
+  	  })
+  	}
+  }
+}
+```
+
+In the preceding example, clicking the text triggers the \@Event function event to change the value of the child component. The printed log is as follows:
+
+```
+in changeIndex 20
+after changeIndex 0
+```
+
+This indicates that after **changeIndex** is called, the **index** in the parent component has changed, but the one in the child component has not changed yet.

@@ -19,6 +19,7 @@ The \@Once decorator accepts values passed in only during variable initializatio
 - \@Once must be used with \@Param. Using it independently or with other decorators is not allowed.
 - \@Once does not affect the observation capability of \@Param. Only changes in data source are intercepted.
 - The sequence of the variables decorated by \@Once and \@Param does not affect the actual features.
+- When \@Once and \@Param are used together, you can change the value of \@Param variables locally.
 
 ## Rules of Use
 
@@ -86,6 +87,65 @@ struct CompB {
         })
       CompA({ onceParam: this.message })
   	}
+  }
+}
+```
+
+### Changing the \@Param Variables Locally
+
+When \@Once is used together with \@Param, the constraint that \@Param cannot be changed locally can be removed, and this change triggers UI re-rendering. In this case, using \@Param and \@Once is equivalent to using \@Local. The difference is that \@Param and \@Once can accept the external initialization passed in.
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Once onceParamNum: number = 0;
+  @Param @Once @Require onceParamInfo: Info;
+
+  build() {
+    Column() {
+      Text(`Child onceParamNum: ${this.onceParamNum}`)
+      Text(`Child onceParamInfo: ${this.onceParamInfo.name}`)
+      Button("changeOnceParamNum")
+        .onClick(() => {
+          this.onceParamNum++;
+        })
+      Button("changeParamInfo")
+        .onClick(() => {
+          this.onceParamInfo = new Info("Cindy");
+        })
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local localNum: number = 10;
+  @Local localInfo: Info = new Info("Tom");
+
+  build() {
+    Column() {
+      Text(`Parent localNum: ${this.localNum}`)
+      Text(`Parent localInfo: ${this.localInfo.name}`)
+      Button("changeLocalNum")
+        .onClick(() => {
+          this.localNum++;
+        })
+      Button("changeLocalInfo")
+        .onClick(() => {
+          this.localInfo = new Info("Cindy");
+        })
+      Child({
+        onceParamNum: this.localNum,
+        onceParamInfo: this.localInfo
+      })
+    }
   }
 }
 ```
