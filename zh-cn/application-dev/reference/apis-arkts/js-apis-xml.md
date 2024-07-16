@@ -23,6 +23,10 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 XmlSerializer的构造函数。
 
+> **说明：**
+>
+> buffer是一个用户根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中务必确保所设置的缓存区足够大，使其可以容纳生成文本的所有内容。
+
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -54,6 +58,10 @@ let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 setAttributes(name: string, value: string): void
 
 写入元素的属性和属性值。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -94,6 +102,10 @@ console.log(result.trim()); // <note importance="high"/>
 addEmptyElement(name: string): void
 
 写入一个空元素。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -154,7 +166,13 @@ console.log(result.trim());
 
 startElement(name: string): void
 
-根据给定名称写入元素开始标记。调用此接口后须调用[endElement](#endelement)写入元素结束标记，以确保节点正确闭合。
+根据给定名称写入元素开始标记。
+
+> **说明：**
+>
+>- 调用该接口后须调用[endElement](#endelement)写入元素结束标记，以确保节点正确闭合。
+>
+>- 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -194,7 +212,11 @@ console.log(result.trim());
 
 endElement(): void
 
-写入元素结束标记。调用此接口前必须先调用[startElement](#startelement)接口写入元素开始标记。
+写入元素结束标记。
+
+> **说明：**
+>
+> 调用该接口前必须先调用[startElement](#startelement)接口写入元素开始标记。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -221,6 +243,10 @@ console.log(result.trim());
 setNamespace(prefix: string, namespace: string): void
 
 写入当前元素标记的命名空间。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的前缀以及对同一个元素设置多个命名空间。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
