@@ -203,4 +203,6 @@ export struct PageTwo {
 }
 ```
 
-![](figures/AtomicServiceNavigationDemo01.gif)
+![](figures/AtomicServiceNavigationDemo01.png)
+![](figures/AtomicServiceNavigationDemo02.png)
+![](figures/AtomicServiceNavigationDemo03.png)
