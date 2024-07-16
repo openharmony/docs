@@ -795,12 +795,20 @@ callbackfn的参数说明：
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
-// 不建议在forEach函数中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 lightWeightMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -829,7 +837,6 @@ entries(): IterableIterator<[K, V]>
 **示例：**
 
 ```ts
-// 不建议在entries函数中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
@@ -839,6 +846,16 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在entries中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
 }
 ```
 
@@ -906,7 +923,6 @@ let result = lightWeightMap.toString();
 **示例：**
 
 ```ts
-// 不建议在Symbol.iterator中使用使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
@@ -929,5 +945,15 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
 }
 ```
