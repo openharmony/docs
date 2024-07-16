@@ -39,17 +39,17 @@ AtomicServiceNavigation({
 | 名称 | 类型 | 必填 | 装饰器类型|描述 |
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
-| navigationContent | Callback\<void\> | 否 |  @BuilderParam | Navigation容器内容。 |
-| title | [ResourceStr](ts-types.md#resourcestr) | 否   |@Prop | 设置页面标题。|
-| titleOptions | [TitleOptions](#TitleOptions) | 否 | @Prop | 标题栏选项。|
+| navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。|
+| titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。|
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
-| mode|[NavigationMode](#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
-| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
+| mode| [NavigationMode](#navigationmode9) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
+| navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
-| modeChangeCallback | Callback\<[NavigationMode](#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
+| modeChangeCallback | Callback\<[NavigationMode](#navigationmode9)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
 ## TitleOptions
 
