@@ -77,7 +77,7 @@ AtomicServiceNavigation({
 ## 示例
 
 ```ts
-// Index. ets
+// Index.ets
 import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 
 @Entry
@@ -203,5 +203,3 @@ export struct PageTwo {
 ```
 
 ![](figures/AtomicServiceNavigationDemo01.png)
-![](figures/AtomicServiceNavigationDemo02.png)
-![](figures/AtomicServiceNavigationDemo03.png)
