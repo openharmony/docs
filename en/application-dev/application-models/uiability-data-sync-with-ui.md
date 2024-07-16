@@ -28,8 +28,6 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
    
    export default class EntryAbility extends UIAbility {
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       // Obtain the context of the UIAbility instance.
-       let context = this.context;
        // Obtain an eventHub object.
        let eventhub = this.context.eventHub;
        // Subscribe to the event.
@@ -89,7 +87,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
             ListItem() {
               Row() {
                 Row(){
-                  Text('EventHubFuncA')
+                  Text('EventHubFunc')
                     .textAlign(TextAlign.Start)
                     .fontWeight(500)
                     .margin({ top: 13, bottom: 13, left: 0, right: 8 })
@@ -106,7 +104,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
               .onClick(() => {
                 this.eventHubFunc();
                 promptAction.showToast({
-                  message: 'EventHubFuncA'
+                  message: 'EventHubFunc'
                 });
               })
             }
@@ -114,35 +112,6 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
             .backgroundColor(Color.White)
             .borderRadius(24)
             .margin({ top: 8, right: 12, left: 12 })
-
-            ListItem() {
-              Row() {
-                Row(){
-                  Text('EventHubFuncB')
-                    .textAlign(TextAlign.Start)
-                    .fontWeight(500)
-                    .margin({ top: 13, bottom: 13, left: 0, right: 8 })
-                    .fontSize(16)
-                    .width(232)
-                    .height(22)
-                    .fontColor(Color.Black)
-                }
-                .height(48)
-                .width('100%')
-                .borderRadius(24)
-                .margin({ top: 4, bottom: 4, left: 12, right: 12 })
-              }
-              .onClick(() => {
-                this.context.eventHub.off('event1');
-                promptAction.showToast({
-                  message: 'EventHubFuncB'
-                });
-              })
-            }
-            .height(56)
-            .backgroundColor(Color.White)
-            .borderRadius(24)
-            .margin({ top: 12, right: 12, left: 12 })
           }
           .height('100%')
           .backgroundColor(Color.Gray)
@@ -164,12 +133,18 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
-   // context is the AbilityContext of the UIAbility instance.
-   this.context.eventHub.off('event1');
+   import UIAbility from '@ohos.app.ability.UIAbility';
+
+   export default class EntryAbility extends UIAbility {
+     // ... 
+     onDestroy(): void {
+       this.context.eventHub.off('event1');
+     }
+   }
    ```
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
 ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbilities. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
 
- 
+<!--no_check-->
