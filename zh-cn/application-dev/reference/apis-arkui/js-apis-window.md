@@ -3748,10 +3748,6 @@ const callback = (windowStatusType: window.WindowStatusType) => {
 }
 try {
     windowClass.on('windowStatusChange', callback);
-} catch (exception) {
-    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
     windowClass.off('windowStatusChange', callback);
     // 如果通过on开启多个callback进行监听，同时关闭所有监听：
     windowClass.off('windowStatusChange');
