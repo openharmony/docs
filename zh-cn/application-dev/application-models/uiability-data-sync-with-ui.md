@@ -102,24 +102,24 @@
 
 3. 在UIAbility的注册事件回调中可以得到对应的触发事件结果，运行日志结果如下所示。
 
-   ```json
-   [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   ```
+    ```json
+    [Example].[Entry].[EntryAbility] 1. []
+    [Example].[Entry].[EntryAbility] 1. [1]
+    [Example].[Entry].[EntryAbility] 1. [2,"test"]
+    ```
    
 4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
 
-   export default class EntryAbility extends UIAbility {
-     // ... 
-     onDestroy(): void {
-       this.context.eventHub.off('event1');
-     }
-   }
-   ```
+    export default class EntryAbility extends UIAbility {
+      // ... 
+      onDestroy(): void {
+        this.context.eventHub.off('event1');
+      }
+    }
+    ```
 
 ## 使用AppStorage/LocalStorage进行数据同步
 
