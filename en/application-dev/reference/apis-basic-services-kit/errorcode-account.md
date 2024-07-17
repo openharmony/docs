@@ -45,7 +45,7 @@ Invalid parameter.
 - The domain name is empty.
 - The domain name exceeds 128 characters.
 - The domain account is empty.
-- The domain account exceeds 512 characters.
+- The domain account name exceeds 512 characters.
 - The constraint is empty.
 - The constraint exceeds 128 characters.
 - Invalid authentication or query parameters are passed in.
@@ -117,7 +117,7 @@ The device does not support multiple users.
 
 Cancel the operation.
 
-## 12300006 Account Type Not Supported
+## 12300006 Unsupported Account Type
 
 **Error Message**
 
@@ -131,21 +131,21 @@ The device does not support the account type.
 
 Create an account of the type supported by the device.
 
-## 12300007 The Number of Accounts Has Reached the Limit
+## 12300007 Account Count Reached the Limit
 
 **Error Message**
 
-The number of accounts has reached the limit.  
+The account number has reached the upper limit.  
 
 **Possible Causes**
 
-A maximum of 1,000 OS accounts or app accounts can be created.
+A maximum of 1,000 system accounts or app accounts can be created.
 
 **Solution**
 
 Delete the accounts that are no longer used, and try again.
 
-## 12300008 Account Restricted
+## 12300008 Restricted Account
 
 **Error Message**
 
@@ -288,7 +288,7 @@ No further action is required.
 
 **Error Message**
 
-The credential inputer is not found.
+The credential inputer not found.
 
 **Possible Causes**
 
@@ -316,7 +316,7 @@ Use a trust level supported by the system.
 
 **Error Message**
 
-The authentication type is not supported.
+The auth type is not supported.
 
 **Possible Causes**
 
@@ -330,7 +330,7 @@ Use an authentication type supported by the system.
 
 **Error Message**
 
-The authentication type does not exist.
+The auth type does not exist.
 
 **Possible Causes**
 
@@ -405,7 +405,7 @@ The authentication timed out.
 
 **Error Message**
 
-The authentication service does not respond.
+The auth service is busy.
 
 **Possible Causes**
 
@@ -420,7 +420,7 @@ Try again later.
 
 **Error Message**
 
-The account authentication service does not exist.
+The account authenticator service does not exist.
 
 **Possible Causes**
 
@@ -439,7 +439,7 @@ Cancel the operation or authenticate an app that supports the authentication ser
 
 **Error Message**
 
-The account authentication service works abnormally.
+The account authenticator service works abnormally.
 
 **Possible Causes**
 
@@ -484,7 +484,7 @@ Query the custom data with a key that is already defined.
 
 **Error Message**
 
-The number of custom data reaches upper limit.
+The number of custom data records reaches the upper limit.
 
 **Possible Causes**
 
@@ -498,7 +498,7 @@ Delete the custom data records that are no longer used.
 
 **Error Message**
 
-The number of token reaches upper limit.
+The number of tokens reaches the upper limit.
 
 **Possible Causes**
 
