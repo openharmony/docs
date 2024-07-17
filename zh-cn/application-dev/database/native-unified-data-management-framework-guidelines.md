@@ -104,11 +104,11 @@
 | void OH_UdmfProperty_Detroy(OH_UdmfProperty* pThis) | 销毁指向统一数据记录属性OH_UdmfProperty的指针。 |
 | const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中用户自定义标签。 |
 | int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中时间戳。 |
-| UdmfShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中支持的设备内使用范围。 |
+| Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中支持的设备内使用范围。 |
 | int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue) | 通过指定的key获取OH_UdmfProperty中整型类型的字典对象。 |
 | const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key) | 通过指定的key获取OH_UdmfProperty中字符串类型的字典对象。 |
 | int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag) | 设置OH_UdmfProperty中用户自定义标签。 |
-| int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, UdmfShareOption option) | 设置OH_UdmfProperty中时间戳。 |
+| int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option) | 设置OH_UdmfProperty中支持的设备内使用范围。 |
 | int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param) | 设置OH_UdmfProperty中整型类型的字典对象。 |
 | int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key, const char* param) | 设置OH_UdmfProperty中字符串类型的字典对象。 |
 | int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据 |
@@ -123,7 +123,7 @@
 CMakeLists.txt中添加以下lib。
 
 ```txt
-libudmf_ndk.so
+libudmf.so
 ```
 
 **头文件**
@@ -345,7 +345,7 @@ libudmf_ndk.so
         // 获取OH_UdmfRecord类型列表
         unsigned int* recordTypeIdCount = 0;
         char** typeIdsFromRecord = OH_UdmfRecord_GetTypes(records[i], recordTypeIdCount);
-        int returnStatus = UdmfErrCode::UDMF_E_OK;
+        int returnStatus = Udmf_ErrCode::UDMF_E_OK;
         for (unsigned int j = 0; j < *recordTypeIdCount; j++) {
             // 获取OH_UdmfRecord自定义类型列表
             if (strcmp(typeIdsFromRecord[j], "demo.typeId")) {
@@ -399,7 +399,7 @@ libudmf_ndk.so
     // 获取OH_UdmfProperty中时间戳
     int64_t timestamp = OH_UdmfProperty_GetTimestamp(property);
     // 获取OH_UdmfProperty中shareOption
-    UdmfShareOption shareOption = OH_UdmfProperty_GetShareOption(property);
+    Udmf_ShareOption shareOption = OH_UdmfProperty_GetShareOption(property);
     // 获取OH_UdmfProperty中整型类型键值对
     int intValue = OH_UdmfProperty_GetExtrasIntParam(property, "intKey", -1);
     // 获取OH_UdmfProperty中字符类型键值对
@@ -407,7 +407,7 @@ libudmf_ndk.so
     // 设置OH_UdmfProperty中tag
     int returnStatus = OH_UdmfProperty_SetTag(property, "tag");
     // 设置OH_UdmfProperty中shareOption
-    returnStatus = OH_UdmfProperty_SetShareOption(property, UdmfShareOption::SHARE_OPTIONS_CROSS_APP);
+    returnStatus = OH_UdmfProperty_SetShareOption(property, Udmf_ShareOption::SHARE_OPTIONS_CROSS_APP);
     // 设置OH_UdmfProperty中整型类型键值对
     returnStatus = OH_UdmfProperty_SetExtrasIntParam(property, "intKey", 100);
     // 设置OH_UdmfProperty中字符类型键值对
@@ -425,10 +425,10 @@ libudmf_ndk.so
     OH_UdmfData* data = OH_UdmfData_Create();
     // 构建数据，将数据写入数据库中
     char* key = new char[UDMF_KEY_BUFFER_LEN];
-    int returnStatus = OH_Udmf_SetUnifiedData(UdmfIntention::UDMF_INTENTION_DRAG, data, key, sizeof(key));
+    int returnStatus = OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(key));
     // 从数据库中读取数据
     OH_UdmfData* readData = OH_UdmfData_Create();
-    returnStatus = OH_Udmf_GetUnifiedData(key, UdmfIntention::UDMF_INTENTION_DRAG, data);
+    returnStatus = OH_Udmf_GetUnifiedData(key, Udmf_Intention::UDMF_INTENTION_DRAG, data);
     // 销毁指针
     delete[] key;
     OH_UdmfData_Destroy(data);
