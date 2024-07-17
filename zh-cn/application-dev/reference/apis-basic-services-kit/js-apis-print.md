@@ -464,9 +464,6 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 
 ## print
 
-> 从API version 10开始支持，从API version 12开始废弃。
-> 建议使用[print](#print11)替代。
-
 print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): void
 
 打印接口，传入文件进行打印，使用callback异步回调。
@@ -513,9 +510,6 @@ print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
 ```
 
 ## print
-
-> 从API version 10开始支持，从API version 12开始废弃。
-> 建议使用[print](#print11-1)替代。
 
 print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
