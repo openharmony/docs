@@ -75,25 +75,28 @@
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
           - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 状态管理（V2试用版）<!--arkts-state-management-v2-->
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
-        - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
-        - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
-        - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-        - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
-        - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
-        - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+        - V2所属装饰器
+          - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
+          - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
+          - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
+          - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
+          - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
+          - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)
+          - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
+          - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
+          - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
+          - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
+        - 其他状态管理
+          - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
+          - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
+          - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
+          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -309,6 +312,9 @@
       - [代码混淆](arkts-utils/source-obfuscation.md)
       - 内存管理<!--(arkts-memory-management-->
         - [GC介绍](arkts-utils/gc-introduction.md)
+      - 模块加载
+        - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
@@ -338,7 +344,7 @@
             - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
             - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
-            - [自定义绘制 (XComponent)](ui/arkts-common-components-xcomponent.md)
+            - [自定义渲染 (XComponent)](ui/arkts-common-components-xcomponent.md)
             - [Native XComponent](ui/napi-xcomponent-guidelines.md)
           - 添加气泡和菜单<!--arkts-add-popup-menu-->
             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
@@ -399,6 +405,7 @@
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
+        - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
@@ -1305,11 +1312,12 @@
   - AI<!--ai-->
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-kit-->
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
+      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
+      - 模型部署
+        - [使用MindSpore Lite进行CPU推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite进行CPU端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
-      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
-      - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -1421,6 +1429,8 @@
           - [@ohos.app.ability.autoFillManager (autoFillManager)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
           - [@ohos.app.ability.ChildProcess](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
           - [@ohos.app.ability.childProcessManager (childProcessManager)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
+          - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
+          - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (应用上下文Context)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
@@ -1436,6 +1446,7 @@
           - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
+          - [@ohos.app.ability.sendableContextManager](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
           - [@ohos.app.appstartup.StartupConfigEntry](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
           - [@ohos.app.appstartup.StartupListener](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
@@ -1530,6 +1541,7 @@
             - [ProcessRunningInfo](reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md)
             - [UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
             - [UIExtensionContext](reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)
+            - [SendableContext](reference/apis-ability-kit/js-apis-inner-application-sendableContext.md)
             <!--Del-->
             - [AbilityFirstFrameStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateData-sys.md)
             - [AbilityFirstFrameStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
@@ -1846,6 +1858,7 @@
             - [按键事件](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
             - [焦点事件](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [鼠标事件](reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
+            - [无障碍悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
             - [组件区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)
             - [组件尺寸变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-size-change-event.md)
             - [组件可见区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md)
@@ -2303,6 +2316,7 @@
           - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
         - 头文件和结构体<!--arkui-headerfile-struct-->
           - 头文件<!--arkui-headerfile-->
+            - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
             - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
             - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
             - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
@@ -2333,9 +2347,12 @@
             - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
             - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
             - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
+            - [ArkUI_RotationOptions](reference/apis-arkui/_ark_u_i___rotation_options.md)
+            - [ArkUI_ScaleOptions](reference/apis-arkui/_ark_u_i___scale_options.md)
             - [ArkUI_StringAsyncEvent](reference/apis-arkui/_ark_u_i___string_async_event.md)
             - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
             - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
+            - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
             - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
             - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
             - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
