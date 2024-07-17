@@ -15,51 +15,45 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 1. Call [eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
-   ```ts
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type window from '@ohos.window';
-   import type { Context } from '@ohos.abilityAccessCtrl';
-   import Want from '@ohos.app.ability.Want'
-   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   
-   const DOMAIN_NUMBER: number = 0xFF00;
-   const TAG: string = '[EventAbility]';
-   
-   export default class EntryAbility extends UIAbility {
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       // Obtain the context of the UIAbility instance.
-       let context = this.context;
-       // Obtain an eventHub object.
-       let eventhub = this.context.eventHub;
-       // Subscribe to the event.
-       eventhub.on('event1', this.eventFunc);
-       eventhub.on('event1', (data: string) => {
-         // Trigger the event to complete the service operation.
-       });
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-     }
-     // ... 
-     eventFunc(argOne: Context, argTwo: Context): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
-       return;
-     }
-   }
-   ```
+    ```ts
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { UIAbility, Context, Want, AbilityConstant } from '@kit.AbilityKit';
+
+    const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[EventAbility]';
+
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        // Obtain an eventHub object.
+        let eventhub = this.context.eventHub;
+        // Subscribe to the event.
+        eventhub.on('event1', this.eventFunc);
+        eventhub.on('event1', (data: string) => {
+          // Trigger the event to complete the service operation.
+        });
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+      }
+
+      // ...
+      eventFunc(argOne: Context, argTwo: Context): void {
+        hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
+        return;
+      }
+    }
+    ```
 
 2. Call [eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
 
-   ```ts
-    import common from '@ohos.app.ability.common';
-    import promptAction from '@ohos.promptAction';
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Page_EventHub {
-
       private context = getContext(this) as common.UIAbilityContext;
 
-      eventHubFunc() : void {
+      eventHubFunc(): void {
         // Trigger the event without parameters.
         this.context.eventHub.emit('event1');
         // Trigger the event with one parameter.
@@ -69,29 +63,42 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
         // You can design the parameters based on your service requirements.
       }
 
-     build() {
-       Column() {
-         // ...
-         List({ initialIndex: 0 }) {
-           ListItem() {
-             Row() {
-               // ...
-             }
-             .onClick(() => {
-               this.eventHubFunc();
-               promptAction.showToast({
-                 message: 'emit'
-               });
-             })
-           }
-           // ...
-         }
-         // ...
-       }
-       // ...
-     }
-   }
-   ```
+      build() {
+        Column() {
+          // ...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                // ...
+              }
+              .onClick(() => {
+                this.eventHubFunc();
+                promptAction.showToast({
+                  message: $r('app.string.EventHubFuncA')
+                });
+              })
+            }
+
+            // ...
+            ListItem() {
+              Row() {
+                // ...
+              }
+              .onClick(() => {
+                this.context.eventHub.off('event1');
+                promptAction.showToast({
+                  message: $r('app.string.EventHubFuncB')
+                });
+              })
+            }
+            // ...
+          }
+          // ...
+        }
+        // ...
+      }
+    }
+    ```
 
 3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
@@ -104,7 +111,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { UIAbility } from '@kit.AbilityKit';
 
    export default class EntryAbility extends UIAbility {
      // ... 
@@ -117,5 +124,3 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
 ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbilities. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
-
-<!--no_check-->
