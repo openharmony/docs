@@ -2862,6 +2862,7 @@
               - [账号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
               - [语言子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
               - [Account Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-accountkit.md)
+              - [Store Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-storekit.md)
             <!--Del-->
               - [系统公共事件定义 (系统接口)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
             <!--DelEnd-->
