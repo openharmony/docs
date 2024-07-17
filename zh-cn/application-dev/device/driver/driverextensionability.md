@@ -6,10 +6,6 @@
 [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)可以通过DriverExtensionManager被应用绑定，并根据应用的请求信息在后台处理相关事务。
 每个类型的ExtensionAbility都有自己的Context，DriverExtensionAbility通过[DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)提供相关能力。
          
-本章节将从如下场景来介绍DriverExtensionAbility的基本使用。
-
-- [DriverExtensionAbility](#driverextensionability)
-  - [开发步骤](#开发步骤)
 
 ## 开发步骤
 
