@@ -60,7 +60,7 @@
 
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
