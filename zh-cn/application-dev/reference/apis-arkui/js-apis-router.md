@@ -971,7 +971,7 @@ console.log('pages stack size = ' + size);
 
 getState(): RouterState
 
-获取当前页面的状态信息。
+获取栈顶页面的状态信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
