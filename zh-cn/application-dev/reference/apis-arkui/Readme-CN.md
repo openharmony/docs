@@ -305,7 +305,7 @@
     - [@ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
     - [@ohos.atomicservice.AtomicServiceTabs (页签容器)](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
     - [@ohos.atomicservice.AtomicServiceWeb (Web高阶组件)](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
-    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-arkui-advanced-InterstitialDialogAction.md)
+    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
   - 安全控件
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
