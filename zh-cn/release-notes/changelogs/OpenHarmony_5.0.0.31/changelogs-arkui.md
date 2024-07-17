@@ -440,17 +440,104 @@ struct FrictionExample {
 变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。<br>变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
 
 ```ts
-build() {
-  List() {
-    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
-      LazyForEach(this.arr, (item: number) => {
-        ListItem({ style: ListItemStyle.CARD }) {
-          Text("item" + item.toString())
-        }
-      })
+// Basic implementation of IDataSource to handle data listener
+abstract class BasicDataSource<T> implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+  abstract getData(index: number): T;
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
     }
-  }.backgroundColor("#DCDCDC")
-  .height("100%")
+  }
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+   const pos = this.listeners.indexOf(listener);
+   if (pos >= 0) {
+     this.listeners.splice(pos, 1)
+   }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource<T> extends BasicDataSource<T> {
+  public dataArray: T[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+  public getData(index: number): T {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: T): void {
+    this.dataArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+  public popFirstData(): void {
+    this.dataArray.shift()
+    this.notifyDataDelete(0)
+  }
+  public pushData(data: T): void {
+    this.dataArray.push(data)
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+  public popData(): void {
+    this.dataArray.pop()
+    this.notifyDataDelete(this.dataArray.length)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  arr:MyDataSource<number> = new MyDataSource<number>();
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.arr.pushData(i)
+    }
+  }
+
+  build() {
+    List() {
+      ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem({ style: ListItemStyle.CARD }) {
+            Text("item" + item.toString())
+          }
+        })
+      }
+    }.backgroundColor("#DCDCDC")
+    .height("100%")
+  }
 }
 ```
 | 变更前效果 | 变更后效果 |

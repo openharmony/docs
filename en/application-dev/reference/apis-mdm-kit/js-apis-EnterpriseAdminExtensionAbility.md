@@ -1,4 +1,4 @@
-# @ohos.enterprise.EnterpriseAdminExtensionAbility (Enterprise Management ExtensionAbility) (System API)
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
 
 The **EnterpriseAdminExtensionAbility** module provides extended enterprise device management capabilities.
 
@@ -6,16 +6,15 @@ To have the capabilities provided by this module, for example, to receive a noti
 
 > **NOTE**
 > 
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
 > - The APIs of this module can be used only in the stage model.
 > 
-> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
 ```ts
-import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility'
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit'
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -108,7 +107,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAppStart<sup>10+</sup>
+## EnterpriseAdminExtensionAbility.onAppStart
 
 onAppStart(bundleName: string): void
 
@@ -134,7 +133,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAppStop<sup>10+</sup>
+## EnterpriseAdminExtensionAbility.onAppStop
 
 onAppStop(bundleName: string): void
 
@@ -159,7 +158,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
-## EnterpriseAdminExtensionAbility.onSystemUpdate<sup>11+</sup>
+## EnterpriseAdminExtensionAbility.onSystemUpdate
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
@@ -171,14 +170,14 @@ Called to report a system update event.
 
 **Parameters**
 
-| Name             | Type                                                     | Mandatory | Description        |
-| ---------------- | ------------------------------------------------------- | --- | ---------- |
-| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager-sys.md#systemupdateinfo11) | Yes  | Information about the version update.|
+| Name          | Type                                                        | Mandatory| Description                |
+| ---------------- | ------------------------------------------------------------ | ---- | -------------------- |
+| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager.md#systemupdateinfo) | Yes  | Information about the version update.|
 
 **Example**
 
 ```ts
-import systemManager from '@ohos.enterprise.systemManager';
+import { systemManager } from '@kit.MDMKit';
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
@@ -186,7 +185,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onStart<sup>11+</sup>
+## EnterpriseAdminExtensionAbility.onStart
 
 onStart(): void
 

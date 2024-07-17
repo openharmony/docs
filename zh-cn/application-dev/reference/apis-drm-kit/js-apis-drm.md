@@ -952,7 +952,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
-| 24700101                 |  MAll unknown errors                  |
+| 24700101                 |  All unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -1187,7 +1187,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | mimeType  | string     | 是   | 媒体类型。                   |
 | initData  | Uint8Array     | 是   | pssh数据（未base64编码）。                   |
 | mediaKeyType| number     | 是   | 许可证类型。                   | 0表示在线，1表示离线 |
-| options  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
+| options  | [OptionsData[]](#optionsdata)     | 否   | 预留的操作数据。                   |
 
 **返回值：**
 

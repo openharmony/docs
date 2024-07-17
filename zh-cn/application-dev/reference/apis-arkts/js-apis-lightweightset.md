@@ -659,12 +659,20 @@ callbackfn的参数说明：
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
-// 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### entries
 
@@ -693,7 +701,6 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-// 不建议在entries函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
@@ -704,7 +711,16 @@ while(index < lightWeightSet.length) {
   index++;
 }
 ```
-
+```ts
+// 不建议在entries中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### [Symbol.iterator]
 
@@ -737,7 +753,6 @@ while(index < lightWeightSet.length) {
 **示例：**
 
 ```ts
-// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
@@ -754,5 +769,15 @@ let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
 }
 ```

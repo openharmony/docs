@@ -34,7 +34,6 @@
 import taskpool from '@ohos.taskpool';
 
 aboutToAppear() {
-  ...
   // 在生命周期中，使用TaskPool加载和解析网络数据
   this.requestByTaskPool();
 }
@@ -51,9 +50,9 @@ requestByTaskPool(): void {
   try {
     // 执行网络加载函数
     taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-    });
+  });
   } catch (err) {
-     logger.error(TAG, "failed, " + (err as BusinessError).toString());
+    logger.error(TAG, "failed, " + (err as BusinessError).toString());
   }
 }
 ```
@@ -71,7 +70,6 @@ requestByTaskPool(): void {
 
 ```typescript
 aboutToAppear() {
-  ...
   // 在生命周期中，使用异步处理数据，延时大小视情况确定
   setTimeout(() => {
     this.workoutResult();
@@ -107,7 +105,6 @@ preload() {
   // 启动预连接，连接地址为即将打开的网址
   webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
 }
-...
 ```
 
 #### 使用cachedCount属性实现预加载
@@ -124,7 +121,7 @@ preload() {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.log("appear:" + item)
+              console.info("appear:" + item)
             })
         }
       })
@@ -164,7 +161,7 @@ build() {
 
 #### 组件复用
 
-HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
+应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
 若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用，具体指导在[组件复用实践](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)、[组件复用总览](component-reuse-overview.md)：
 
@@ -179,7 +176,7 @@ HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树�
 class MyDataSource implements IDataSource {
   private dataArray: string[] = [];
   private listener: DataChangeListener | undefined;
-  ...
+  // ...
 }
 
 @Entry
@@ -241,7 +238,7 @@ import { IconItem } from './IconItem';
 class IconItemSource {
   image: string | Resource = ''
   text: string | Resource = ''
-  ...
+  // ...
 }
 
 @Entry
@@ -254,22 +251,21 @@ struct Index {
     this.iconItemSourceList.push(
       new IconItemSource($r('app.media.img1'), `label1`),
       new IconItemSource($r('app.media.img2'), `label2`),
-      new IconItemSource($r('app.media.img3'), `label3`),
+      new IconItemSource($r('app.media.img3'), `label3`)
     );
   }
 
   build() {
     Column() {
       // IconItem放置在grid内
-      GridRow({}) {
+      GridRow() {
         ForEach(this.iconItemSourceList, (item: IconItemSource) => {
           GridCol() {
             IconItem({ image: item.image, text: item.text })
-              .transition(
-                TransitionEffect.scale({})
-                  .animation({})
-                  .combine(TransitionEffect.rotate({})
-                  .animation({ }))
+              .transition(TransitionEffect.scale({ x: 0, y: 0 })
+                  .animation({ delay: 1000, duration: 1000 })
+                  .combine(TransitionEffect.rotate({ z: 1, angle: 180 })
+                  .animation({ duration: 1000 }))
               )
           }
         })
@@ -281,7 +277,6 @@ struct Index {
 // IconItem.ets
 @Component
 export struct IconItem {
-  ...
   build()  {
     Flex()  {
       Image(this.image)
@@ -306,7 +301,7 @@ export struct IconItem {
 build() {
   Column() {
     Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
     })
     Stack() {
       Scroll() {
@@ -530,7 +525,7 @@ struct StackExample {
   build() {
     Column() {
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -566,7 +561,7 @@ struct StackExample2 {
   build() {
     Column() { // 父容器
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -603,7 +598,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -617,7 +612,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -650,7 +645,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -664,7 +659,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -735,7 +730,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -1064,7 +1059,7 @@ struct Page {
       Button('点击打印日志')
         .onClick(() => {
           for (let i = 0; i < 10; i++) {
-            console.debug(this.message);
+            console.info(this.message);
           }
         })
     }
@@ -1085,7 +1080,7 @@ struct Page {
         .onClick(() => {
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
-            console.debug(logMessage);
+            console.info(logMessage);
           }
         })
     }
@@ -1233,6 +1228,7 @@ struct NegativeOfTrace {
   }
   build() {
     // 业务代码
+    // ...
   }
 }
 ```
@@ -1246,8 +1242,9 @@ struct PositiveOfTrace {
     // 业务代码
     // ...
   }
-   build() {
+  build() {
     // 业务代码
+    // ...
   }
 }
 ```
@@ -1314,7 +1311,7 @@ struct NegativeOfOnClick {
       .onAreaChange((oldValue: Area, newValue: Area) => {
         // 无任何代码
       })
-   }
+  }
 }
 ```
 
@@ -1328,8 +1325,8 @@ struct PositiveOfOnClick {
       .onClick(() => {
         // 业务代码
         // ...
-    })
-}
+      })
+  }
 ```
 
 ## 使用性能工具分析和定位问题

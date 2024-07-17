@@ -49,15 +49,6 @@ The **ResourceStr** type is used to represent the types that can be used by inpu
 | string                | String type.                   |
 | [Resource](#resource) | String referenced from system or application resources.|
 
-## ASTCResource<sup>12+</sup>
-
-The **ASTCResource** type is used to describe texture stitching.
-
-| Type                   | Description                       |
-| --------------------- | ------------------------- |
-| sources               | URI array, indicating the textures to be stitched.                   |
-| column                | Column size, indicating the number of textures to be stitched in each row.|
-
 ## Padding
 
 The **Padding** type is used to describe the paddings in different directions of a component.
@@ -101,10 +92,10 @@ The **Margin** type is used to describe the margins in different directions of a
 
 | Name    | Type               | Mandatory  | Description                  |
 | ------ | ----------------- | ---- | -------------------- |
-| top    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | No   | Height of the margin above the component. |
-| end    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | No   | Width of the margin on the right of the component.<br>For right-to-left scripts:<br>Width of the margin on the left of the component.|
-| bottom | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | No   | Height of the margin below the component. |
-| start  | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | No   | Width of the margin on the left of the component.<br>For right-to-left scripts:<br>Width of the margin on the right of the component.|
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Height of the margin above the component. |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Width of the margin on the right of the component.<br>For right-to-left scripts:<br>Width of the margin on the left of the component.|
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Height of the margin below the component. |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Width of the margin on the left of the component.<br>For right-to-left scripts:<br>Width of the margin on the right of the component.|
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -133,6 +124,8 @@ The **EdgeWidths** type is used to describe the edge widths in different directi
 ## BorderRadiuses<sup>9+</sup>
 
 The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Type               | Mandatory  | Description        |
 | ----------- | ----------------- | ---- | ---------- |
@@ -169,6 +162,8 @@ The **EdgeColors** type is used to describe the edge colors of a component.
 
 The **EdgeColors** type is used to describe the edge colors of a component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name    | Type                             | Mandatory  | Description      |
 | ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | No   | Color of the top edge of the component.|
@@ -180,13 +175,14 @@ The **EdgeColors** type is used to describe the edge colors of a component.
 
 The **EdgeStyles** type is used to describe the edge styles of a component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name    | Type                                      | Mandatory  | Description      |
 | ------ | ---------------------------------------- | ---- | -------- |
 | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the top edge of the component.|
 | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the right edge of the component.|
 | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the bottom edge of the component.|
 | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the left edge of the component.|
-
 
 ## Offset
 
@@ -202,6 +198,8 @@ The **Offset** type is used to describe the offset coordinates of a component in
 ## RectResult<sup>10+</sup>
 
 The **RectResult** type is used to describe the position, width, and height of a component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Type    | Description|
 | ------- | ------ | ----------------------- |
@@ -219,13 +217,15 @@ The **ResourceColor** type is used to describe the color types of resources.
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | Color enums.                                                |
-| number                              | Color in hexadecimal notation. RGB and ARGB are supported. Examples: **0xffffff** and **0xffff0000**.  |
+| number                              | Color in hexadecimal notation. RGB and ARGB are supported. Examples: **0xffffff** and **0xffff0000**. The number of input digits cannot be identified. The format is selected based on the value. For example, 0x00ffffff is parsed in RGB format.|
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.      |
 
 ## ColoringStrategy<sup>10+</sup>
 
 The **ColoringStrategy** type is used to describe the foreground and shadow colors.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description             |
 | ------ | --------------- |
@@ -255,7 +255,7 @@ The **Font** type is used to set the text style.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0**|
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
-| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.|
+| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md)) are supported.|
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.<br>Default value: **FontStyle.Normal**            |
 
 ## Area<sup>8+</sup>
@@ -348,7 +348,7 @@ The **BorderOptions** type is used to provide border information.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | No   | Border width.  |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No   | Radius of the rounded corner border.|
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| No   | Border style.  |
@@ -537,16 +537,35 @@ The **SafeAreaEdge** type is used to define the edge for expanding the safe area
 
 The **KeyboardAvoidMode** type is used to define the avoidance mode for the virtual keyboard.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name  | Description      |
 | ------ | ---------- |
 | OFFSET | Avoid the virtual keyboard through offset.|
 | RESIZE | Avoid the virtual keyboard through resizing.|
 
+## LayoutSafeAreaType<sup>12+</sup>
+
+The **LayoutSafeAreaType** type is used to describe the types of expanded safe areas in layout.
+
+| Name    | Description                                      |
+| -------- | ------------------------------------------ |
+| SYSTEM   | Default non-safe area of the system, including the status bar and navigation bar.  |
+
+## LayoutSafeAreaEdge<sup>12+</sup>
+
+The **LayoutSafeAreaEdge** type is used to define the edge for expanding the safe area.
+
+| Name  | Description      |
+| ------ | ---------- |
+| TOP    | Top edge.|
+| BOTTOM | Bottom edge.|
+
 ## TouchPoint<sup>11+</sup>
 
 The **TouchPoint** type is used to define the coordinates of the touch point.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name  | Type| Description      |
 | ------ | ----------------------| ---------- |
@@ -580,6 +599,8 @@ Proxy object returned during the execution of the custom tab switching animation
 
 The **PixelRoundPolicy** type is used to describe the rounding strategy for component pixel-level alignment.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name    | Type               | Mandatory  | Description                  |
 | ------ | ----------------- | ---- | -------------------- |
 | start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | No| Rounding for alignment with the start edge.|
@@ -589,11 +610,13 @@ The **PixelRoundPolicy** type is used to describe the rounding strategy for comp
 
 ## VoidCallback<sup>12+</sup>
 
-The **VoidCallback** type is used to represent the callback: **() => void**.
+type VoidCallback: () => void;
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ## Callback<sup>12+</sup>
 
-Callback<T,V = void> = (T) => V;
+Callback<T,V = void> = (data: T) => V;
 
 The **Callback** type is used to represent the callback with parameters.
 
@@ -603,11 +626,32 @@ The **Callback** type is used to represent the callback with parameters.
 
 The **HoverCallback** type is used to represent the callback for the hover event.
 
-HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10)) => void
+type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
+
+| Name           | Type                 | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11)) => void | Callback for the hover event.|
+
+## VisibleAreaEventOptions<sup>12+</sup>
+
+The **VisibleAreaEventOptions** type is used to describe visible area changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.|
+| expectedUpdateInterval | number | No| Expected update interval, in milliseconds. You can set it as appropriate. Default value: **1000**|
+
+## VisibleAreaChangeCallback<sup>12+</sup>
+
+The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.
+
+type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10)) => void | Callback for the hover event.|
+| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.<br>- **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -625,6 +669,7 @@ The **StyledStringValue** type is used to set the style for an attribute string.
 | ParagraphStyle | Text paragraph style.|
 | ImageAttachment | Image style.|
 | CustomSpan | Custom span style.|
+| UserDataSpan | User data span style.|
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -634,8 +679,8 @@ The **SubmitEvent** type is used to define the user submission event.
 
 | Name             | Type      | Mandatory| Description                                              |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | No  | Editing status of the text box.<br> When this API is called, the text box remains in editing state.|
-| text              | string     | No  | Text in the text box.                                  |
+| keepEditableState | () => void | Yes  | Editing status of the text box.<br> When this API is called, the text box remains in editing state.|
+| text              | string     | Yes  | Text in the text box.                                  |
 
 ## EnterKeyType
 
@@ -675,3 +720,87 @@ Enumerates length units.
 | [FP](#fp10) | 2 | The **FP** type is used to represent a length in fp.|
 | [PERCENT](#percentage10) | 3 | The **Percentage** type is used to represent a length in percentage.|
 | [LPX](#lpx10) | 4 | The **LPX** type is used to represent a length in lpx.|
+
+## DividerStyleOptions<sup>12+</sup>
+
+The **DividerStyleOptions** type is used to provide the information about the divider.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type                                     | Mandatory| Description             |
+| ------ | --------------------------------------- |---|-----------------|
+| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  | No| Width of the divider.        |
+| color  | [ResourceColor](#resourcecolor) | No | Color of the divider.        |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No | Distance between the divider and the start edge of the menu.|
+| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| No | Distance between the divider and the end edge of the menu.|
+
+## TextContentControllerBase<sup>10+</sup>
+
+The **TextContentControllerBase** type is used to represent the base controller for **\<TextInput>**, **\<TextArea>**, and **\<Search>** components.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): RectResult
+
+The **getTextContentRect** type is used to obtain the position of the edited text area relative to the component and its size. The unit of the return value is pixel.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | Position of the edited text area relative to the component and its size.|
+
+> **NOTE**
+>
+> - If no text is entered, the return value contains the position information, but the size is 0.
+> - The position information is the offset of the first character relative to the editable area.
+> - For the **\<Search>** component, the returned position information is the offset of the first character relative to the search icon in the component.
+> - If there is input, the width in the return value is the fixed width of the editable area.
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+The **getTextContentLineCount** type is used to obtain the number of lines of the edited text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type | Description      |
+| ----- | -------- |
+| number| Number of lines of the edited text.|
+
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+The **getCaretOffset** type is used to obtain the position information of the caret.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                     | Description              |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11) | Position of the caret relative to the text box.|
+
+> **NOTE**
+>
+> - If this API is called when the caret position is updated in the current frame, it will not take effect.
+> - For the **\<Search>** component, the returned position information is the offset of the first character relative to the search icon in the component.
+> - If no text is entered in the **\<Search>** component, the return value contains the position information relative to the component.
+> - The location information in the return value is the location of the caret relative to the editable component.
+<!--no_check-->

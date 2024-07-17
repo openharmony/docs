@@ -41,6 +41,8 @@ parse(text: string, reviver?: Transformer): Object | null
 
 用于解析JSON字符串生成对应ArkTS对象或null。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -77,6 +79,8 @@ let obj = JSON.parse(jsonText);
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
 该方法将一个ArkTS对象或数组转换为JSON字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -120,6 +124,8 @@ let str1 = JSON.stringify(obj, ["name"]);
 stringify(value: Object, replacer?: Transformer, space?: string | number): string
 
 该方法将一个ArkTS对象或数组转换为JSON字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -171,6 +177,8 @@ has(obj: object, property: string): boolean
 
 检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -208,6 +216,8 @@ let rst = JSON.has(obj, "name");
 remove(obj: object, property: string): void
 
 从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

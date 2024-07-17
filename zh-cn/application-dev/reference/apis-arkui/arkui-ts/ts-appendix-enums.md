@@ -39,6 +39,16 @@
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
+| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。 |
+| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。 |
+| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。 |
+| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。 |
+| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。 |
+| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。 |
+| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。 |
+| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。 |
+| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。 |
+
 
 ## BorderStyle
 
@@ -650,7 +660,7 @@
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
+| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。采用非DEFAULT方式较耗时。    |
 | AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
@@ -825,7 +835,7 @@ Nullable\<T> {
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 

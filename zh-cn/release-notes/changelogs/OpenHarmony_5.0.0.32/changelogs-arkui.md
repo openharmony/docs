@@ -1,4 +1,4 @@
-## cl.arkui.1 UIExtensionComponent以及CreateModalUIExtension增加使用约束
+## cl.arkui.1 UIExtensionComponent增加使用约束
 
 **访问级别**
 
@@ -6,17 +6,17 @@
 
 **变更原因**
 
-UIExtensionComponent以及CreateModalUIExtension增加使用约束。
+变更前文档中UIExtensionComponent为系统接口，但在实现中并未做系统应用访问校验。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 UIExtensionComponent增加系统应用访问校验。
 
-CreateModalUIExtension增加禁止其他组件遮挡的校验逻辑。
+**起始API Level**
 
-CreateModalUIExtension更改默认行为为防不安全窗口遮挡，且不允许取消防遮挡。
+10
 
 **变更发生版本**
 
@@ -24,13 +24,11 @@ CreateModalUIExtension更改默认行为为防不安全窗口遮挡，且不允�
 
 **变更的接口/组件**
 
-UIExtensionComponent以及CreateModalUIExtension。
+UIExtensionComponent组件。
 
 **适配指导**
 
 使用UIExtensionComponent的必须为系统应用。
-
-CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 ## cl.arkui.2 DatePickerDialog显示时间时分割线延长
 
@@ -241,7 +239,7 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.6 hideNonSecureWindows接口行为变更
+## cl.arkui.6 CreateModalUIExtension默认行为变更
 
 **访问级别**
 
@@ -249,23 +247,25 @@ struct ListExample {
 
 **变更原因**
 
-不安全窗口类型扩展以及CreateModalUIExtension防不安全窗口遮挡行为变更。
+CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡，造成安全风险。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
+CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
+
+CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示。
 
 | 变更前 | 变更后 |
 | --- | --- |
-| <br>非系统全局悬浮窗 <br>宿主创建的非系统子窗 | <br>非系统全局悬浮窗 <br>宿主创建的非系统子窗 <br>宿主创建的非系统Dialog窗口 |
+| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
 
+hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
-CreateModalUIExtension防不安全遮挡行为变更，变更前后行为如下表所示
 | 变更前 | 变更后 |
 | --- | --- |
-| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
+| 非系统全局悬浮窗<br>宿主创建的非系统子窗 | 非系统全局悬浮窗<br>宿主创建的非系统子窗<br>宿主创建的非系统Dialog窗口 |
 
 **起始API Level**
 
@@ -277,11 +277,11 @@ CreateModalUIExtension防不安全遮挡行为变更，变更前后行为如下�
 
 **变更的接口/组件**
 
-hideNonSecureWindows接口。
+CreateModalUIExtension和hideNonSecureWindows接口。
 
 **适配指导**
 
-接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
@@ -332,7 +332,7 @@ AlphabetIndexer组件
 
 **变更影响**
 
-该变更为非兼容性变更，仅涉及UI显示效果，UI显示效果仅在元服务生效。
+该变更为不兼容性变更，仅涉及UI显示效果，UI显示效果仅在元服务生效。
 
 API version 11及以前：bindMenu，AlertDialog，CustomDialog，bindPopup，bindSheet，bindContentCover等弹框层级都在AppBar之上。蒙层会覆盖AppBar。
 
@@ -402,7 +402,7 @@ struct Example {
     }
     build() {
         Column() {
-            RichEditor({controller： new RichEditorController()})
+            RichEditor({controller: new RichEditorController()})
                 // 变更前
                 .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
 
@@ -413,3 +413,298 @@ struct Example {
         }
     }
 }
+```
+
+## cl.arkui.10 文本计算接口fontSize参数默认单位实现修正
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+fontSize参数在文档描述中number类型默认单位是fp，实际实现是vp。
+
+**变更影响**
+
+系统设置显示和亮度下字体大小使用标准字体，该变更为兼容变更，变更前后文本计算接口返回结果相同。
+
+系统设置显示和亮度下字体大小使用特大字体，该变更为不兼容变更。
+
+变更前：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度小于实际文本显示所需宽度。
+
+变更后：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度等于实际文本显示所需宽度。
+
+**起始API Level**
+
+measureText:9，measureTextSize:10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+measureText和measureTextSize接口。
+
+**适配指导**
+
+若在Text组件上，fontSize设置的是vp类型字号，则在measureText测算接口将fontSize的number类型参数改为string类型，传入vp类型字号参数。
+```
+import { MeasureText } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  @State text: string = "Hello world"
+  //变更前
+  @State textWidth: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: 24
+  })
+  //变更后
+  @State textWidth2: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: '24vp'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        //被计算文本
+        Text(this.text).fontSize('24vp')
+        Text(`The width of '24vp Hello World': ${this.textWidth}`)
+        Text(`The another width of '24vp Hello World': ${this.textWidth2}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+若在Text组件上，fontSize设置的是fp类型字号则无需适配，测算接口fontSize参数传入number类型数值和Text组件上使用的字号单位是一致的。
+
+## cl.arkui.11 光标默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：光标小圆圈默认直径为20vp。
+
+变更后：光标小圆圈默认直径为16vp。
+
+变更前后对比效果，如下表所示
+| 变更前 | 变更后 |
+| --- | --- |
+|![caretsquare_before](figures/caretsquareradius_before.PNG) |![caretsquare_after](figures/caretsquareradius_after.PNG)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+涉及光标的组件：TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.12 高级组件SelectionMenu默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：自定义文本选择菜单点击“更多”后展开菜单会显示内置的置灰项分享翻译搜索。
+
+变更后：自定义文本选择菜单点击“更多”后展开菜单去除内置的置灰项分享翻译搜索。
+
+变更前后对比效果，如下表所示：
+
+| 变更前 | 变更后 |
+| --- | --- |
+|![selectionmenu_before](figures/selectionmenumoreclicked_before.png) |![selectionmenu_after](figures/selectionmenumoreclecked_after.png)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+高级组件SelectionMenu。
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.13 Svg根节点视窗外图片内容裁剪
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以符合Svg标准。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+```
+<svg width="100" height="100" viewBox="0 0 300 300" version="1.1">
+    <defs>
+        <circle id = "circleId" cx="100" cy="50" r="40"  fill="red"/>
+    </defs>
+    <polygon points="220,100 300,210 170,250 123,234" style="fill:#cccccc;stroke:#000000;stroke-width:1"/>
+    <use href="#circleId" x = "300" y= "150" width="50" height="50"/>
+</svg>
+```
+| 变更前 | 变更后 |
+|---------|---------|
+| 绘制内容超出根节点视窗区域会显示 | 绘制内容超出根节点视窗区域不显示 |
+| ![SvgContentBefore](figures/SvgContentBefore.png) | ![SvgContentAfter](figures/SvgContentAfter.png) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32 版本开始。
+
+**变更的接口/组件**
+
+涉及的组件：Image、ImageSpan、Canvas。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用显示效果产生影响。
+
+## cl.arkui.14 子窗显示的toast不响应返回事件
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+toast显示期间默认不响应返回事件，当前场景不符合规范。
+
+变更前：toast会响应返回手势，toast消失。
+
+变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+默认行为变更，无需适配，后续不支持通过返回手势退出toast。
+
+## cl.arkui.15 带按钮的气泡样式变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+popup的按钮文本过长时，布局显示异常。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 按钮文本的最大行数没有限制，按钮内容会相互交叉 | 最多可显示两行文本，文本逐渐缩小到9vp，仍然超长"..."省略 |
+| ![Popup_Before](figures/Popup_Before.jpeg) | ![Popup_After](figures/Popup_After.jpeg) |
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+bindPopup
+
+**适配指导**
+
+popup样式变更，无需适配。
+
+## cl.arkui.16 toast样式变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+toast文本有两行时，文本居中显示，不符合UX规范。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 文本居中显示 | 文本左对齐显示 |
+| ![Toast_Before](figures/Toast_Before.PNG) | ![Toast_After](figures/Toast_After.PNG) |
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+toast样式变更，无需适配。

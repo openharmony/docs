@@ -212,7 +212,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
-| 11400101 | the service id is invalid                                           |
+| 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **示例：**
 
@@ -500,10 +500,10 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed.Possible causes:1.The limitSize is too small 2.The parameter value is not in enum 3. The parameter type error|
-| 11400102 | Have already capture trace                                          |
-| 11400103 | Without write permission on the file                                |
-| 11400104 | The status of the trace is abnormal                                 |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error|
+| 11400102 | Capture trace already enabled.                                         |
+| 11400103 | No write permission on the file.                                |
+| 11400104 | Abnormal trace status.                                 |
 
 **示例：**
 
@@ -598,7 +598,7 @@ getSystemCpuUsage() : number
 
 | 错误码ID | 错误信息                                            |
 | ------- |-------------------------------------------------|
-| 11400104 | The status of the system cpu usage is abnormal. |
+| 11400104 | The status of the system CPU usage is abnormal. |
 
 **示例**
 ```ts
@@ -632,7 +632,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
 | 11400104 | Set limit failed due to remote exception |
 
 **示例：**
@@ -761,9 +761,9 @@ getVMRuntimeStat(item : string): number
 
 **错误码：**
 
-| 错误码ID | 错误信息                                                                                                           |
-| ------- |----------------------------------------------------------------------------------------------------------------|
-| 401 | the parameter check failed,Possible causes:1. the arg is not a string parameter. 2. the arg is unknown property. |
+| 错误码ID | 错误信息                                                                                                       |
+| ------- |------------------------------------------------------------------------------------------------------------|
+| 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
 **示例**
 
@@ -888,26 +888,21 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 说明         |
-| --------- | ------------ |
-| MAIN_THREAD  | 只采集当前应用主线程     |
-| ALL_THREADS |  采集当前应用下所有线程   |
+| 名称                         | 值 | 说明                    |
+| --------------------------- |---| ----------------------- |
+| MAIN_THREAD                 | 1 | 只采集当前应用主线程。|
+| ALL_THREADS                 | 2 | 采集当前应用下所有线程。 |
 
 ## GcStats<sup>12+</sup>
 
-用于存储GC统计信息的键值对类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+用于存储GC统计信息的键值对类型`Record<string,number>`。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 键类型          | 值类型    |
-| ------------- |--------|
-|  string | number |
-
-| GC属性名称                       | GC属性说明                    |
-|------------------------------|---------------------------|
-| ark.gc.gc-count              | 当前线程的GC次数。                |
-| ark.gc.gc-time               | 当前线程触发的GC总耗时，以ms为单位。      |
-| ark.gc.gc-bytes-allocated    | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
-| ark.gc.gc-bytes-freed        | 当前线程GC成功回收的内存，以B为单位。      |
-| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。           |
-
+| 参数名                     | 类型   | 必填 | 说明                      |
+|-------------------------| ------ | --- |------------------------- |
+| ark.gc.gc-count         | number | 是  |  当前线程的GC次数。|
+| ark.gc.gc-time          | number | 是  |  当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | number | 是  | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed   | number | 是 | 当前线程GC成功回收的内存，以B为单位。|
+| ark.gc.fullgc-longtime-count | number | 是 |  当前线程超长fullGC次数。 |

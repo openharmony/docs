@@ -6,15 +6,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 ## 接口说明
 
-| 模块        | 类名                   | 接口                                          | 接口描述                                                          |
-| ----------- | ---------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
-| application | BundleVersion          | code: number                                  | 应用版本号。                                                      |
-| application | BundleVersion          | name: string                                  | 应用版本名称。                                                    |
-| application | BackupExtensionAbility | onBackup(): void                              | 由Extension机制提供的，应由应用开发者扩展实现的触发备份前的回调。 |
-| application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | 由Extension机制提供的，应由应用开发者扩展实现的触发恢复后的回调。 |
-| application | BackupExtensionAbility | context: ExtensionContext                     | BackupExtensionAbility的上下文环境，继承自Context。               |
-
-备份恢复扩展能力API的使用指导请参见[API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)。
+备份恢复扩展能力API的接口使用指导请参见[BackupExtensionAbility API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)和[BackupExtensionContext API参考](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)。
 
 ## 约束与限制
 
@@ -45,7 +37,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                        "resource": "$profile:backup_config"
                    }
                ],
-               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup和onRestore方法。
+               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和               // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
                "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
            }      
@@ -73,14 +65,14 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
    }
    ```
 
-3. 开发者可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onBackup`和`onRestore`方法，使其达到在备份预加工应用数据或者在恢复阶段加工待恢复文件。
+3. 开发者可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onBackup/onBackupEx`和`onRestore/onRestoreEx`方法，使其达到在备份预加工应用数据或者在恢复阶段加工待恢复文件。
 
    如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
 
    下面的示例展示了一个空实现的`BackupExtension.ets`文件。
 
     ```ts
-    import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
+    import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
     import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
@@ -88,7 +80,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
       async onBackup ()   {
         hilog.info(0x0000, TAG, `onBackup ok`);
       }
-
+   
       async onRestore (bundleVersion : BundleVersion) {
         hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
@@ -98,23 +90,25 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 ### 元数据资源配置文件说明
 
-| 属性名称             | 数据类型   | 必填 | 含义                                                                                                                                                                                            |
-| -------------------- | ---------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。                                                                                                                                                                 |
+| 属性名称             | 数据类型   | 必填 | 含义                                                         |
+| -------------------- | ---------- | ---- | ------------------------------------------------------------ |
+| allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。                              |
 | includes             | 字符串数组 | 否   | 应用沙箱中需要备份的文件和目录。<br>当模式串以非/开始时，表示一个相对于根路径的相对路径。<br>当`includes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用下述代码段内容作为默认值。 |
-| excludes             | 字符串数组 | 否   | `includes`中无需备份的例外项。格式同`includes`。<br>当`excludes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用**空数组**作为默认值。                                              |
-| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)获取临时路径来进行缓存，该路径只允许在备份恢复过程中作为临时路径使用，不允许应用将该路径作为其他用途来使用。<br>当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。   |
-| restoreDeps          | 字符串     | 否   | 应用恢复时依赖其他应用数据，默认值为""，需要配置的依赖应用名称，多个应用以 **,** 分隔。                                                                                                           |
+| excludes             | 字符串数组 | 否   | `includes`中无需备份的例外项。格式同`includes`。<br>当`excludes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用**空数组**作为默认值。 |
+| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过临时路径进行缓存，临时路径可通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)获取。当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。 |
+| restoreDeps          | 字符串     | 否   | **谨慎使用**，应用恢复时依赖其他应用数据，默认值为""，需要配置依赖应用名称。当前建议无依赖项或最多1个依赖项，增加依赖风险高，依赖应用未恢复或者恢复失败都会导致本应用恢复失败。 |
+| extraInfo            | json串     | 否   | 额外信息可通过该字段传递。                                   |
 
 > **说明：**
-> 
-> **有关fullBackupOnly字段的说明**
-> - 当fullBackupOnly为false时，恢复的数据意味着会对同路径下的同名文件进行覆盖。
-> - 当fullBackupOnly为true时，恢复数据会以 **/data/storage/el2/backup/restore/** 为根目录解压数据，开发者可在OnRestore内访问数据进行最终的恢复。
 >
-> 开发者可根据自身的业务场景，选择对应的恢复数据方式。如果配置了fullBackupOnly为true，那么开发者需要在OnRestore内自行实现恢复数据的逻辑。
+> 1、**有关fullBackupOnly字段的说明**
 >
-> 举个例子：假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，数据会被解压到：**/data/storage/el2/backup/restore/data/storage/el2/base/files/A/** 目录下。
+> - 当fullBackupOnly为false时，恢复数据会以 **/** 为根目录解压数据，同路径下的同名文件会被覆盖。
+> - 当fullBackupOnly为true时，恢复数据会以临时目录为根目录解压数据，开发者需要在OnRestore/OnRestoreEx内自行实现恢复数据的逻辑，进行最终的恢复。
+>
+> 开发者可根据自身的业务场景，选择对应的恢复数据方式。以临时路径 **/data/storage/el2/base/.backup/restore/** 为例：
+>
+> 假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，如果配置了fullBackupOnly为false，数据会被解压到：**/data/storage/el2/base/files/A/ **目录下，如果配置了fullBackupOnly为true，数据会被解压到：**/data/storage/el2/base/.backup/restore/data/storage/el2/base/files/A/** 目录下。
 
 **includes默认值：**
 

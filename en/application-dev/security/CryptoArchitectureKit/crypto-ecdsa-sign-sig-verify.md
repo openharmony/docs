@@ -111,4 +111,3 @@ For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-veri
     }
   }
   ```
-
