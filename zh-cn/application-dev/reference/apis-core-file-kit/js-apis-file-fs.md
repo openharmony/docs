@@ -3964,7 +3964,7 @@ cancel(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
-import fileuri from '@ohos.file.fileuri';
+import { fileuri } from '@kit.CoreFileKit';
 let context = getContext(this) as common.UIAbilityContext; 
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
