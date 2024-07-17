@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import storageStatistics from "@ohos.file.storageStatistics";
+import  { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -39,7 +39,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
@@ -74,7 +74,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
       console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
