@@ -301,6 +301,18 @@
 
 **起始版本**：12
 
+### ohos.permission.RECEIVE_UPDATE_MESSAGE
+
+允许升级服务接收升级事件消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 允许应用管理系统本地账号。
