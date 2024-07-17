@@ -80,7 +80,7 @@
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 状态管理（V2试用版）<!--arkts-state-management-v2-->
-        - V2所属装饰器
+        - V2所属装饰器<!--arkts-v2-decorators-->
           - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
           - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
           - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
@@ -91,7 +91,7 @@
           - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
           - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
           - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - 其他状态管理
+        - 其他状态管理<!--arkts-new-other-state-mgmt-->
           - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
           - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
