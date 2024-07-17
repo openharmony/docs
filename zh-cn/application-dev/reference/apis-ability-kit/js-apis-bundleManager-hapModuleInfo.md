@@ -31,7 +31,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | codePath<sup>12+</sup>            | string                                                       | 是   | 否   | 模块的安装路径。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序内某个hapModule的本地库文件路径。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
+| nativeLibraryPath<sup>12+</sup>     | string                                                       | 是   | 否   | 应用程序内某个hapModule的本地库文件路径。                    |
 
 ## PreloadItem
 

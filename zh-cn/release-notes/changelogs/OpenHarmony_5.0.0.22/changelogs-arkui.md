@@ -453,7 +453,7 @@ const matrixArr: [number, number, number, number,
   number, number, number, number,
   number, number, number, number,
   number, number, number, number] = [
-  0.5, 0, 0, -0.001,
+  0.25, 0, 0, -0.0015,
   0, 1, 0, 0,
   0, 0, 1, 0,
   0, 0, 0, 1];
@@ -468,6 +468,7 @@ struct Tests {
       Rect()
         .fill(Color.Gray)
         .scale({
+          x: 1,
           centerX: 0,
           centerY: 0,
         })
@@ -502,7 +503,7 @@ const matrixArr: [number, number, number, number,
   number, number, number, number,
   number, number, number, number,
   number, number, number, number] = [
-  0.5, 0, 0, -0.001,
+  0.25, 0, 0, -0.0015,
   0, 1, 0, 0,
   0, 0, 1, 0,
   0, 0, 0, 1];

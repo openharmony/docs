@@ -72,7 +72,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
    下面的示例展示了一个空实现的`BackupExtension.ets`文件。
 
     ```ts
-    import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
+    import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
     import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;

@@ -1,10 +1,10 @@
-# 管理系统帐号的凭据（仅对系统应用开放）
+# 管理系统账号的凭据（仅对系统应用开放）
 
-凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统帐号的凭据。
+凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
 ## 凭据类型
 
-系统帐号支持管理以下凭据类型：
+系统账号支持管理以下凭据类型：
 
 | 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
@@ -35,7 +35,7 @@
    - ohos.permission.MANAGE_USER_IDM
    - ohos.permission.ACCESS_PIN_AUTH
 
-2. 导入系统帐号模块。
+2. 导入系统账号模块。
 
    ```ts
    import { osAccount } from '@kit.BasicServicesKit';
@@ -215,7 +215,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
 ## 更新凭据
 
-用户可以修改系统帐号的凭据。开发者可以使用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)接口完成此操作。
+用户可以修改系统账号的凭据。开发者可以使用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)接口完成此操作。
 
 具体开发实例如下：
 

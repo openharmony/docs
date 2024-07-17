@@ -19,15 +19,17 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| width | string \| number | No| 0 | Width.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| 0 | Height.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| radius | string \| number \| Array&lt;string \| number&gt; | No| 0 | Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This attribute works in a similar manner as **radiusWidth**/**radiusHeight**. When they are used together, it takes precedence over **radiusWidth**/**radiusHeight**.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| radiusWidth | string \| number | No| 0 | Width of the rounded corner.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| radiusHeight | string \| number | No| 0 | Height of the rounded corner.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value:<br>An invalid value is handled as the default value.|
+| radius | string \| number \| Array&lt;string \| number&gt; | No| Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This attribute works in a similar manner as **radiusWidth**/**radiusHeight**. When they are used together, it takes precedence over **radiusWidth**/**radiusHeight**.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| radiusWidth | string \| number | No| Width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| radiusHeight | string \| number | No| Height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -40,6 +42,8 @@ radiusWidth(value: number | string)
 Sets the width of the rounded corner. If not set, the height of the rounded corner is the same as its width. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -57,6 +61,8 @@ Height of the rounded corner. If not set, the width of the rounded corner is the
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -72,6 +78,8 @@ radius(value: number | string | Array&lt;string | number&gt;)
 Sets the radius of the rounded corner.  An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,6 +97,8 @@ Color of the fill area. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -104,6 +114,8 @@ fillOpacity(value: number | string | Resource)
 Opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -121,6 +133,8 @@ Stroke color. If this attribute is not set, the component does not have any stro
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -136,6 +150,8 @@ strokeDashArray(value: Array&lt;any&gt;)
 Stroke dashes. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,6 +169,8 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -168,6 +186,8 @@ strokeLineCap(value: LineCapStyle)
 Cap style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -185,6 +205,8 @@ Join style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -197,11 +219,13 @@ Join style of the stroke.
 
 strokeMiterLimit(value: number | string)
 
-Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter. This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.
+Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter. This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.
 
 The value must be greater than or equal to 1.0. If the value is in the [0, 1) range, the value **1.0** will be used. In other cases, the default value will be used.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,6 +243,8 @@ Stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates t
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -235,6 +261,8 @@ Stroke width. If of the string type, this parameter cannot be set in percentage.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -250,6 +278,8 @@ antiAlias(value: boolean)
 Specifies whether anti-aliasing is enabled.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

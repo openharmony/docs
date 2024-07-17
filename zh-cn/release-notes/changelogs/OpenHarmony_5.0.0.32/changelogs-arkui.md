@@ -402,7 +402,7 @@ struct Example {
     }
     build() {
         Column() {
-            RichEditor({controller： new RichEditorController()})
+            RichEditor({controller: new RichEditorController()})
                 // 变更前
                 .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
 
@@ -607,3 +607,104 @@ struct Index {
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用显示效果产生影响。
+
+## cl.arkui.14 子窗显示的toast不响应返回事件
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+toast显示期间默认不响应返回事件，当前场景不符合规范。
+
+变更前：toast会响应返回手势，toast消失。
+
+变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+默认行为变更，无需适配，后续不支持通过返回手势退出toast。
+
+## cl.arkui.15 带按钮的气泡样式变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+popup的按钮文本过长时，布局显示异常。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 按钮文本的最大行数没有限制，按钮内容会相互交叉 | 最多可显示两行文本，文本逐渐缩小到9vp，仍然超长"..."省略 |
+| ![Popup_Before](figures/Popup_Before.jpeg) | ![Popup_After](figures/Popup_After.jpeg) |
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+bindPopup
+
+**适配指导**
+
+popup样式变更，无需适配。
+
+## cl.arkui.16 toast样式变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+toast文本有两行时，文本居中显示，不符合UX规范。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 文本居中显示 | 文本左对齐显示 |
+| ![Toast_Before](figures/Toast_Before.PNG) | ![Toast_After](figures/Toast_After.PNG) |
+
+**变更影响**
+
+该变更为不兼容变更。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+toast样式变更，无需适配。

@@ -228,7 +228,7 @@ Obtains the connection status of the specified profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| profileId | ProfileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -932,9 +932,8 @@ Closes the client socket.
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description           |
+| Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------------- |
-| Name   | Type    | Mandatory  | Description           |
 | socket | number | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
 
 **Example**
@@ -1523,7 +1522,7 @@ Unsubscribes from the A2DP connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | No   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | No   | Callback to unregister.                              |
 
 **Return value**
 

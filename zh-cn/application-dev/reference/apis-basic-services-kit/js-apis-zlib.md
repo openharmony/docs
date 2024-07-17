@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```javascript
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 ```
 
 ## zlib.zipFile<sup>(deprecated)</sup>
@@ -41,8 +41,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -89,8 +88,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -140,8 +138,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -202,8 +199,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -260,8 +256,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -321,8 +316,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -376,8 +370,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -401,6 +394,8 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 获取压缩文件的原始大小，使用Promise异步返回。成功时返回压缩文件的原始大小，失败时返回错误码。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -421,7 +416,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001 | The input source file is invalid.      |
 | 900003 | The input source file is not in ZIP format or is damaged. |
 
@@ -429,8 +424,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
@@ -452,6 +446,8 @@ try {
 compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): Promise&lt;void&gt;
 
 压缩指定的多个文件，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -483,8 +479,7 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let pathDir = '';
@@ -527,7 +522,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 zlib.createChecksum().then((data) => {
   console.info('createChecksum success');
@@ -553,7 +548,7 @@ createChecksumSync():  Checksum
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 ```
@@ -596,7 +591,7 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -648,8 +643,7 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -671,7 +665,7 @@ async function demo() {
   })
   await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
     console.info('adler32Combine success', data);
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -711,8 +705,7 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -726,7 +719,7 @@ let checksum = zlib.createChecksumSync()
 
 checksum.crc32(0, arrayBufferIn).then((data) => {
   console.info('crc32 success', data);
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -766,8 +759,7 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -789,7 +781,7 @@ async function demo() {
   })
   await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
     console.info('crc32Combine success', data);
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -829,8 +821,7 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -844,7 +835,7 @@ let checksum = zlib.createChecksumSync()
 
 checksum.crc64(0, arrayBufferIn).then((data) => {
   console.info('crc64 success', data);
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -868,14 +859,13 @@ getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 
 checksum.getCrcTable().then((data) => {
   console.info('getCrcTable success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -899,14 +889,13 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 
 checksum.getCrc64Table().then((data) => {
   console.info('getCrc64Table success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -930,14 +919,13 @@ createZip(): Promise&lt;Zip&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
 zlib.createZip().then(data => {
   console.info('createZip success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -961,7 +949,7 @@ createZipSync(): Zip
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 ```
@@ -989,7 +977,7 @@ getZStream(): Promise&lt;ZStream&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1017,7 +1005,7 @@ zlibVersion(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1045,7 +1033,7 @@ zlibCompileFlags(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1090,8 +1078,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1106,7 +1093,7 @@ let zip = zlib.createZipSync();
 
 zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
   console.info('compress success:');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -1149,8 +1136,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1165,7 +1151,7 @@ let zip = zlib.createZipSync();
 
 zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
   console.info('compress2 success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -1207,8 +1193,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1221,12 +1206,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.compress(arrayBufferOut, arrayBufferIn, 12).then((data) => {
     console.info('compress success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.uncompress(arrayBufferIn, arrayBufferOut, 20).then((data) => {
     console.info('uncompress success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1269,8 +1254,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1283,12 +1267,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('compress2 success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.uncompress2(arrayBufferIn, arrayBufferOut, 20).then((data) => {
     console.info('uncompress2 success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1327,8 +1311,7 @@ compressBound(sourceLen: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1342,7 +1325,7 @@ let zip = zlib.createZipSync();
 
 zip.compressBound(str.length).then((data) => {
   console.info('compressBound success')
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -1382,8 +1365,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1397,12 +1379,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateValidate({ availableIn: 1 }, 1).then(data => {
     console.info('inflateValidate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1442,8 +1424,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1457,12 +1438,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateSyncPoint({ availableIn: 1 }).then(data => {
     console.info('inflateSyncPoint success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1504,8 +1485,7 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello, hello!';
@@ -1518,22 +1498,22 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflate({ nextIn: arrayBufferIn, availableIn: 3, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FULL_FLUSH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflate({ availableIn: 11 }, zlib.CompressFlushMode.FINISH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateEnd({}).then(data => {
     console.info('deflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   try {
@@ -1545,17 +1525,17 @@ async function demo() {
   }
   await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
     console.info('inflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateSync({ availableIn: 26 }).then(data => {
     console.info('inflateSync success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
     console.info('inflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1595,8 +1575,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1610,12 +1589,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateResetKeep({ availableIn: 1 }).then(data => {
     console.info('inflateResetKeep success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1657,8 +1636,7 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello, hello!';
@@ -1677,22 +1655,22 @@ async function demo() {
   }
   await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_BEST_COMPRESSION).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflateSetDictionary({}, dictionarybuf).then((data) => {
     console.info('deflateSetDictionary success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflate({ nextIn: arrayBufferIn, availableIn: 14, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FINISH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflateEnd({}).then(data => {
     console.info('deflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   try {
@@ -1704,17 +1682,17 @@ async function demo() {
   }
   await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
     console.info('inflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.inflateSetDictionary({}, dictionarybuf).then((data) => {
     console.info('inflateSetDictionary success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
     console.info('inflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
 }
@@ -1755,8 +1733,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1770,12 +1747,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateReset2({ availableOut: 8 }, 15).then(data => {
     console.info('inflateReset2 success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1815,8 +1792,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1830,12 +1806,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateReset({ availableIn: 1, availableOut: 8 }).then(data => {
     console.info('inflateReset success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1877,8 +1853,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1892,12 +1867,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflatePrime({ nextOut: arrayBufferOut }, 5, 2).then(data => {
     console.info('inflatePrime success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1936,8 +1911,7 @@ inflateMark(strm: ZStream): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1951,12 +1925,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
     console.info('inflateMark success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -1997,8 +1971,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -2014,7 +1987,7 @@ let zip = zlib.createZipSync();
 zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
 ).then(data => {
   console.info('inflateInit2 success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -2052,8 +2025,7 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -2069,7 +2041,7 @@ let zip = zlib.createZipSync();
 zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
   console.info('inflateInit success');
-}).catch((errData: base.BusinessError) => {
+}).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
@@ -2109,8 +2081,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2124,12 +2095,12 @@ async function demo() {
   await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
   ).then(data => {
     console.info('inflateInit2 success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateGetHeader({ availableIn: 1, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then(data => {
     console.info('inflateGetHeader success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2170,8 +2141,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2185,12 +2155,12 @@ async function demo() {
   await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
   ).then(data => {
     console.info('inflateInit2 success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
     console.info('inflateGetDictionary success:')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2230,8 +2200,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2245,17 +2214,17 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
     console.info('inflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
     console.info('inflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2295,8 +2264,7 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2310,12 +2278,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateCopy(zip).then((data) => {
     console.info('inflateCopy success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2354,8 +2322,7 @@ inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2369,12 +2336,12 @@ async function demo() {
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateCodesUsed({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 8 }).then(data => {
     console.info('inflateCodesUsed success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2504,8 +2471,7 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let readIn: (inDesc: object) => ArrayBuffer = (inDesc: object): ArrayBuffer => {
@@ -2675,8 +2641,7 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2695,33 +2660,33 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
     console.info('deflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
     console.info('inflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
     console.info('inflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -2762,8 +2727,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2782,7 +2746,7 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
 }
@@ -2827,8 +2791,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2848,7 +2811,7 @@ async function demo() {
   await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
     zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
       console.info('deflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
+    }).catch((errData: BusinessError) => {
       console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
 }
@@ -2890,8 +2853,7 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2910,12 +2872,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
 }
@@ -2955,8 +2917,7 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2975,17 +2936,17 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
     console.info('deflate success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
   await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
     console.info('deflateEnd success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3025,8 +2986,7 @@ deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3045,12 +3005,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateBound({ nextOut: arrayBufferOut }, 12).then((data) => {
     console.info('deflateBound success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3091,8 +3051,7 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3112,12 +3071,12 @@ async function demo() {
   await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
     zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
       console.info('deflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
+    }).catch((errData: BusinessError) => {
       console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
   await zip.deflateSetHeader({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then((data) => {
     console.info('deflateSetHeader success');
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
   })
 }
@@ -3157,8 +3116,7 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3177,12 +3135,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateCopy(zip).then((data) => {
     console.info('deflateCopy success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3223,8 +3181,7 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3243,12 +3200,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
     console.info('deflateSetDictionary success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3289,8 +3246,7 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3309,17 +3265,17 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
     console.info('deflateSetDictionary success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
     console.info('deflateGetDictionary success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3363,8 +3319,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3383,12 +3338,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateTune({ nextOut: arrayBufferOut }, 2, 2, 2, 2).then((data) => {
     console.info('deflateTune success:')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3428,8 +3383,7 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3448,12 +3402,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateReset({ nextOut: arrayBufferOut }).then((data) => {
     console.info('deflateReset success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3493,8 +3447,7 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3513,12 +3466,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateResetKeep({ nextOut: arrayBufferOut }).then((data) => {
     console.info('deflateResetKeep success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3558,8 +3511,7 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3578,12 +3530,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflatePending({ nextOut: arrayBufferOut }).then((data) => {
     console.info('deflatePending success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3625,8 +3577,7 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3645,12 +3596,12 @@ async function demo() {
   let zip = zlib.createZipSync()
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
     console.info('deflateParams success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3692,8 +3643,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3712,12 +3662,12 @@ async function demo() {
   let zip = zlib.createZipSync();
   await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
     console.info('deflateInit success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
   await zip.deflatePrime({ nextOut: arrayBufferOut }, 5, 2).then((data) => {
     console.info('deflatePrime success')
-  }).catch((errData: base.BusinessError) => {
+  }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
 }
@@ -3922,7 +3872,7 @@ createGZip(): Promise&lt;GZip&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 zlib.createGZip().then((data) => {
   console.info('createGZip success');
@@ -3948,7 +3898,7 @@ createGZipSync():  GZip
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let gzip = zlib.createGZipSync();
 ```
@@ -3992,8 +3942,8 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzdopenDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzdopen");
@@ -4060,8 +4010,8 @@ gzbuffer(size: number):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import zlib from '@ohos.zlib'
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { zlib } from '@kit.BasicServicesKit'
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4127,13 +4077,13 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or No such file or access mode error.           |
+| 17800002 | No such file or access mode error.                           |
 
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzopenDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzopen");
@@ -4185,8 +4135,8 @@ gzeof(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzeofDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzeof");
@@ -4249,8 +4199,8 @@ gzdirect(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzdirectDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzdirect");
@@ -4312,8 +4262,8 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzcloseDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclose");
@@ -4365,8 +4315,8 @@ gzclearerr(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzclearerrDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclearerr");
@@ -4439,8 +4389,8 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzerrorDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzerror");
@@ -4513,8 +4463,8 @@ gzgetc(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzgetcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzgetc");
@@ -4585,8 +4535,8 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzflushDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzflush");
@@ -4656,8 +4606,8 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';;
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzfwriteDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzfwrite");
@@ -4732,8 +4682,8 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzfreadDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzfread");
@@ -4804,8 +4754,8 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzclosewDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclosew");
@@ -4865,8 +4815,8 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzcloserDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzcloser");
@@ -4934,8 +4884,8 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzwriteDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzwrite");
@@ -5006,8 +4956,8 @@ gzungetc(c: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzungetcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzungetc");
@@ -5071,8 +5021,8 @@ gztell(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gztellDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gztell");
@@ -5141,8 +5091,8 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzsetparamsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzsetparams");
@@ -5212,8 +5162,8 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzseekDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzseek");
@@ -5274,8 +5224,8 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzrewindDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzrewind");
@@ -5345,8 +5295,8 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzreadDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzread");
@@ -5423,8 +5373,8 @@ gzputs(str: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzputsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzputs");
@@ -5492,8 +5442,8 @@ gzputc(char: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzputcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzputc");
@@ -5563,8 +5513,8 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzprintfDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzprintf");
@@ -5625,8 +5575,8 @@ gzoffset(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzoffsetDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzoffset");
@@ -5694,8 +5644,8 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function gzgetsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzgets");

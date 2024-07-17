@@ -22,14 +22,13 @@ Two:
 - Card management service: It is used to manage the resident agent service of cards added in the management system. It provides the interface capabilities of formProvider and formHost, manages and uses card objects, and periodically refreshes cards. <!--Del-->
 - Card rendering service: manages card rendering instances. Render instances are bound to card components on the card user. The card rendering service runs the card page code widgets.abc for rendering, and sends the rendered data to the card component corresponding to the card user. <!--DelEnd-->
 
+Three:
 3. (Verify whether the sequence numbers can be properly combined after deletion.)
 1. Use the DocumentViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--Del-->
 2. Use the AudioViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--DelEnd-->
 3. Use the PhotoViewPicker.save interface to save the file and return the URI of the saved file.
 
 **3. Delete section and subsection** 
-
-# User Album Resource Usage Guide
 
 <!--Del-->
 ## Create a user album (open to system applications only).
@@ -88,7 +87,7 @@ Four:
 
  **5. Description** 
 
-> * * Description * *
+> **NOTE:**
 >
 > Description First line
 >

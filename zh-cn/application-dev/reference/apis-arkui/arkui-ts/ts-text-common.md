@@ -167,7 +167,7 @@ equals(id: TextMenuItemId): boolean
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| content | [ResourceColor](ts-types.md#resourcecolor) | 是   | 菜单名称。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
 

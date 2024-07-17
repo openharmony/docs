@@ -40,8 +40,8 @@ To implement the switchover from a system-supported authentication type to a cus
 The following example only covers how to configure the page for switching to the custom authentication page. You need to implement the process of starting the related page based on the comments in the sample code.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
