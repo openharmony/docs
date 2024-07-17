@@ -486,3 +486,37 @@ struct XComponentExample {
 }
 ```
 
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index{
+  @State isLock: boolean = true;
+  @State xc_width: number = 500;
+  @State xc_height: number = 700;
+  myXComponentController: XComponentController = new XComponentController();
+
+  build() {
+    Flex({ direvtion: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      XComponent({
+        id: 'xComponentId',
+        type: XComponentType.SURFACE,
+        libraryname: 'nativerender',
+        controller: this.myXComponentController
+      })
+      .width(this.xc_width)
+      .height(this.xc_height)
+      .onLoad(() => {
+        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+        console.log("Surface getXComponentSurfaceRotation lock = " +
+          this.myXComponentController.getXComponentSurfaceRotation().lock);
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
