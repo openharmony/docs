@@ -55,7 +55,7 @@
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
       - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
     - Common Events
-      - [System Common Events](commonEventManager-definitions.md)
+      - [System Common Events](common_event/commonEventManager-definitions.md)
       - [Common Events of the Ability Subsystem](common_event/commonEvent-ability.md)
       - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
       - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
@@ -138,7 +138,7 @@
     - [Screen Lock Management Error Codes](errorcode-screenlock.md)
 
     <!--DelEnd-->
-  - [Print Service Error Code](errorcode-print.md)
-  - [Device Attestation Error Code](errorcode-deviceAttest.md)
+  - [Print Service Error Codes](errorcode-print.md)
+  - [Device Attestation Error Codes](errorcode-deviceAttest.md)
 
 <!--no_check-->
