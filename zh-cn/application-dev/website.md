@@ -2316,7 +2316,7 @@
           - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
         - 头文件和结构体<!--arkui-headerfile-struct-->
           - 头文件<!--arkui-headerfile-->
-            - [drag_and_drop.h](drag__and__drop_8h.md)
+            - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
             - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
             - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
             - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
