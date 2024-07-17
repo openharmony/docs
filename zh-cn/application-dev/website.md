@@ -1313,7 +1313,7 @@
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-kit-->
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
       - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
-      - 模型部署
+      - 模型部署<!--deployment-->
         - [使用MindSpore Lite进行CPU推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
         - [使用MindSpore Lite进行CPU端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
