@@ -690,7 +690,7 @@ get alpha(): number
 **示例：**
 
 ```ts
-import { ColorMetrics } from '@ohos.arkui.node';
+import { ColorMetrics } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getBlendColor(baseColor: ResourceColor):ColorMetrics {

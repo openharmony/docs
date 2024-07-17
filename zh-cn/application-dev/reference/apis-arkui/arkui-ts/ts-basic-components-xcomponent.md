@@ -417,7 +417,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {

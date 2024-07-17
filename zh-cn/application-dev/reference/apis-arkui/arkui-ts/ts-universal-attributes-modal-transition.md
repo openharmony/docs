@@ -130,7 +130,8 @@ struct ModalTransitionExample {
 
 ```ts
 // xxx.ets
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct ModalTransitionExample {

@@ -1880,8 +1880,7 @@ struct RichEditorExample {
 
 ```ts
 // xxx.ets
-import pasteboard from '@ohos.pasteboard'
-import { BusinessError } from '@ohos.base';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 export interface SelectionMenuTheme {
   imageSize: number;
@@ -2803,7 +2802,8 @@ struct Index {
 
 ```ts
 // xxx.ets
-import font from '@ohos.font'
+import { font } from '@kit.ArkUI'
+
 const canvasWidth = 1000
 const canvasHeight = 100
 const Indentation = 40
@@ -4056,8 +4056,8 @@ struct LineBreakStrategyExample {
 属性字符串使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
-import image from '@ohos.multimedia.image'
+import { LengthMetrics } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

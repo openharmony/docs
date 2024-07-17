@@ -1381,7 +1381,7 @@ struct TextAreaExample {
 lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component

@@ -487,8 +487,7 @@ struct Index {
 > - 通过onDraw方法进行的自定义绘制，绘制内容大小无法超出组件大小。
 
 ```ts
-import { DrawContext, FrameNode, NodeController, Position, Size, UIContext } from '@kit.ArkUI';
-import { LayoutConstraint } from '@ohos.arkui.node';
+import { DrawContext, FrameNode, NodeController, Position, Size, UIContext, LayoutConstraint } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
