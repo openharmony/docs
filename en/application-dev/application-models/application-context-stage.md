@@ -16,57 +16,56 @@
 - The following describes the information provided by different contexts.
   - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
-     ```ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import type Want from '@ohos.app.ability.Want';
-     export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-         let uiAbilityContext = this.context;
-         //...
-       }
-     }
-     ```
-     
+    ```ts
+    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        let uiAbilityContext = this.context;
+        //...
+      }
+    }
+    ```
+    
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
     
-     ```ts
-     import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-     import Want from '@ohos.app.ability.Want';
-     export default class MyService extends ServiceExtensionAbility {
-       onCreate(want: Want) {
-         let serviceExtensionContext = this.context;
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      onCreate(want: Want) {
+        let serviceExtensionContext = this.context;
+        //...
+      }
+    }
+    ```
   - [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md): module-level context. It provides **HapModuleInfo** and **Configuration** in addition to those provided by the base class **Context**.
     
-     ```ts
-     import AbilityStage from '@ohos.app.ability.AbilityStage';
-     export default class MyAbilityStage extends AbilityStage {
-       onCreate(): void {
-         let abilityStageContext = this.context;
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { AbilityStage } from '@kit.AbilityKit';
+
+    export default class MyAbilityStage extends AbilityStage {
+      onCreate(): void {
+        let abilityStageContext = this.context;
+        //...
+      }
+    }
+    ```
   - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
     
-     ```ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import type Want from '@ohos.app.ability.Want';
-     export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-         let applicationContext = this.context.getApplicationContext();
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        let applicationContext = this.context.getApplicationContext();
+        //...
+      }
+    }
+    ```
 
 
 ## Typical Usage Scenarios of Context
@@ -97,23 +96,23 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
-  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data|
+  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud|
 
   The sample code is as follows:
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  
+  import { common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { promptAction } from '@kit.ArkUI';
+
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
+
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
-  
+
     build() {
       //...
       Button()
@@ -151,23 +150,23 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
-  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data/**\<module-name>**|
+  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud/**\<module-name>**|
 
   The sample code is as follows:
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  
+  import { common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { promptAction } from '@kit.ArkUI';
+
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
+
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
-  
+
     build() {
       //...
       Button()
@@ -209,10 +208,7 @@ In practice, you need to select a proper encryption level based on scenario-spec
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md).
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import contextConstant from '@ohos.app.ability.contextConstant';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, contextConstant, AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -235,45 +231,29 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 ```ts
-import contextConstant from '@ohos.app.ability.contextConstant';
-import common from '@ohos.app.ability.common';
-import promptAction from '@ohos.promptAction';
+import { contextConstant, common } from '@kit.AbilityKit';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    //...
-    Button()
-      .onClick(() => {
-        // Before storing common information, switch the encryption level to EL1.
-        if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-          promptAction.showToast({
-            message: 'SwitchToEL1'
-          });
-        }
-        // Store common information.
-      })
-    
-    //...
-
-    Button()
-      .onClick(() => {
-        // Before storing sensitive information, switch the encryption level to EL2.
-        if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-          promptAction.showToast({
-            message: 'SwitchToEL2'
-          });
-        }
-        // Store sensitive information.
-      })
-    
-    //...
+    Column() {
+      //...
+      Button()
+        .onClick(() => {
+          // Before storing common information, switch the encryption level to EL1.
+          if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
+            this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
+            promptAction.showToast({
+              message: 'SwitchToEL1'
+            });
+          }
+          // Store sensitive information.
+        })
+    }
   }
 }
 ```
@@ -282,17 +262,18 @@ struct Page_Context {
 ### Obtaining the Context of Other Modules in the Current Application
 
 Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-  
+
   ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+
   let storageEventCall = new LocalStorage();
-  
+
   @Entry(storageEventCall)
   @Component
   struct Page_ContextAbility {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
       Button()
         .onClick(() => {
@@ -317,12 +298,10 @@ In the DFX statistics scenario of an application, if you need to collect statist
 
 
 ```ts
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
-import type window from '@ohos.window';
+import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import  { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[LifecycleAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -377,18 +356,28 @@ export default class LifecycleAbility extends UIAbility {
     };
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
-    // Register the application lifecycle callback.
-    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    try {
+      // Register the application lifecycle callback.
+      this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+    };
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-
   //...
-
-  onDestroy() : void {
+  onDestroy(): void {
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
-    // Deregister the application lifecycle callback.
-    applicationContext.off('abilityLifecycle', this.lifecycleId);
+    try {
+      // Deregister the application lifecycle callback.
+      applicationContext.off('abilityLifecycle', this.lifecycleId);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+    };
   }
-};
+}
 ```

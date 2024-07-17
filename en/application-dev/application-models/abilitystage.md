@@ -17,13 +17,13 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
    ```ts
-   import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type Want from '@ohos.app.ability.Want';
+   import { AbilityStage, Want } from '@kit.AbilityKit';
    
    export default class MyAbilityStage extends AbilityStage {
      onCreate(): void {
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
+
      onAcceptWant(want: Want): string {
        // Triggered only for the UIAbility with the specified launch type.
        return 'MyAbilityStage';
@@ -50,7 +50,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 - **onAcceptWant()** event callback: triggered when the UIAbility is started in [specified mode](uiability-launch-type.md#specified). For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
-- **onConfigurationUpdated()** event callback: triggered when the global system configuration changes. The global system configuration, such as the system language and theme, are defined in the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) class before project configuration.
+- **onConfigurationUpdated()** event callback: triggered when the global system configuration changes. The global system configuration, such as the system language and theme, are defined in the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) class before project configuration.
 
 - **onMemoryLevel()** event callback: triggered when the system adjusts the memory.
 
@@ -58,9 +58,8 @@ When an application is switched to the background, it is cached in the backgroun
 
 
   ```ts
-  import AbilityStage from '@ohos.app.ability.AbilityStage';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  
+  import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
+
   export default class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // Release unnecessary memory based on the change of available system memory.

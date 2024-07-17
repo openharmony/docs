@@ -14,10 +14,14 @@
 
 - **Explicit Want**: If **abilityName** and **bundleName** are specified in the **want** parameter when starting an application component, explicit Want is used.
   
-    Explicit Want is usually used to start a known target application component in the same application. The target application component is started by specifying **bundleName** of the application where the target application component is located and **abilityName** in the **Want** object. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
+    Explicit Want is usually used to start another application component in the same application. You can use the bundle name and ability name in the **Want** object to specify the target component. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
+    > **NOTE**
+    >
+    > In API version 11 and earlier versions, you can use explicit Want to start the UIAbility of another application.
+    > Since API version 12, the explicit Want launch mode is no longer supported for inter-application redirection. You must use **openLink** to start the UIAbility of another application.
   
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   let wantInfo: Want = {
     deviceId: '', // An empty deviceId indicates the local device.
@@ -32,7 +36,7 @@
   
   
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   let wantInfo: Want = {
     // Uncomment the line below if you want to implicitly query data only in the specific bundle.

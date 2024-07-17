@@ -4,13 +4,14 @@
 
 [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) is an ExtensionAbility component of the embedded UI type. It provides the capability of embedded UIs across processes.
 
-The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md). You can embed the UI provided by the EmbeddedUIExtensionAbility through the **\<EmbeddedComponent>** on the page of the UIAbility of the same application. The EmbeddedUIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. It is usually used in modular development scenarios where process isolation is required.
+The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md). Specifically, with the **\<EmbeddedComponent>**, you can embed the UI provided by the EmbeddedUIExtensionAbility into a UIAbility of the same application. The EmbeddedUIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. It is usually used in modular development scenarios where process isolation is required.
 
 > **NOTE**
 >
 > Currently, the EmbeddedUIExtensionAbility and **\<EmbeddedComponent>** are supported only on devices configured with multiple processes.
 >
 > The **\<EmbeddedComponent>** can be used only in the UIAbility, and the EmbeddedUIExtensionAbility to start must belong to the same application as the UIAbility.
+> The EmbeddedUIExtensionAbility supports the multiton pattern and inherits the process model of the UIExtensionAbility.<!--Del--> For details about the multiton pattern and process configuration of the UIExtensionAbility, see [UIExtensionAbility](uiextensionability.md).<!--DelEnd-->
 
 The EmbeddedUIExtensionAbility provides related capabilities through the [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) and [UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md). In this document, the started EmbeddedUIExtensionAbility is called the provider, and the EmbeddedComponent that starts the EmbeddedUIExtensionAbility is called the client.
 
@@ -35,76 +36,76 @@ To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio a
 
 2. Right-click the **EmbeddedUIExtAbility** directory, and choose **New > File** to create a file named **EmbeddedUIExtAbility.ts**.
 
-3. Open the **EmbeddedUIExtAbility.ts** file and import its dependencies. Customize a class that inherits from **EmbeddedUIExtensionAbility** and implements the lifecycle callbacks **onCreate**, **onSessionCreate**, and **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy**.
+3. Open the **EmbeddedUIExtAbility.ts** file and import its dependencies. Customize a class that inherits from **EmbeddedUIExtensionAbility** and implement the lifecycle callbacks **onCreate**, **onSessionCreate**, and **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy**.
 
-   ```ts
-   import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-   import Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = '[ExampleEmbeddedAbility]'
-   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-     onCreate() {
-       console.log(TAG, `onCreate`);
-     }
-   
-     onForeground() {
-       console.log(TAG, `onForeground`);
-     }
-   
-     onBackground() {
-       console.log(TAG, `onBackground`);
-     }
-   
-     onDestroy() {
-       console.log(TAG, `onDestroy`);
-     }
-   
-     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-       let param: Record<string, UIExtensionContentSession> = {
-         'session': session
-       };
-       let storage: LocalStorage = new LocalStorage(param);
-       session.loadContent('pages/extension', storage);
-     }
-   
-     onSessionDestroy(session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionDestroy`);
-     }
-   }
-   ```
+      ```ts
+      import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
+      import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+      import Want from '@ohos.app.ability.Want';
+      
+      const TAG: string = '[ExampleEmbeddedAbility]'
+      export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+        onCreate() {
+          console.log(TAG, `onCreate`);
+        }
+      
+        onForeground() {
+          console.log(TAG, `onForeground`);
+        }
+      
+        onBackground() {
+          console.log(TAG, `onBackground`);
+        }
+      
+        onDestroy() {
+          console.log(TAG, `onDestroy`);
+        }
+      
+        onSessionCreate(want: Want, session: UIExtensionContentSession) {
+          console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+          let param: Record<string, UIExtensionContentSession> = {
+            'session': session
+          };
+          let storage: LocalStorage = new LocalStorage(param);
+          session.loadContent('pages/extension', storage);
+        }
+      
+        onSessionDestroy(session: UIExtensionContentSession) {
+          console.log(TAG, `onSessionDestroy`);
+        }
+      }
+      ```
 
 4. Write the entry page file **pages/extension.ets**, which will be loaded in **onSessionCreate** of the EmbeddedUIExtensionAbility.
 
-   ```ts
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-   
-   let storage = LocalStorage.getShared()
-   
-   @Entry(storage)
-   @Component
-   struct Extension {
-     @State message: string = 'EmbeddedUIExtensionAbility Index';
-     private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-   
-     build() {
-       Column() {
-         Text(this.message)
-           .fontSize(20)
-           .fontWeight(FontWeight.Bold)
-         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
-           this.session?.terminateSelfWithResult({
-             resultCode: 1,
-             want: {
-               bundleName: "com.example.embeddeddemo",
-               abilityName: "ExampleEmbeddedAbility",
-             }});
-         })
-       }.width('100%').height('100%')
-     }
-   }
-   ```
+    ```ts
+    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    
+    let storage = LocalStorage.getShared()
+    
+    @Entry(storage)
+    @Component
+    struct Extension {
+      @State message: string = 'EmbeddedUIExtensionAbility Index';
+      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    
+      build() {
+        Column() {
+          Text(this.message)
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+          Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+            this.session?.terminateSelfWithResult({
+              resultCode: 1,
+              want: {
+                bundleName: "com.example.embeddeddemo",
+                abilityName: "ExampleEmbeddedAbility",
+              }});
+          })
+        }.width('100%').height('100%')
+      }
+    }
+    ```
 
 5. Register the EmbeddedUIExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **embeddedUI** and **srcEntry** to the code path of the EmbeddedUIExtensionAbility.
 
@@ -128,11 +129,16 @@ To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio a
 
 ## Developing the EmbeddedUIExtensionAbility Client
 
-You can load the EmbeddedUIExtensionAbility in the application through the **\<EmbeddedComponent>** on the UIAbility page. For example, add the following content to the home page file **pages/Index.ets**:
+You can load the EmbeddedUIExtensionAbility in the application through the **\<EmbeddedComponent>** on the UIAbility page. Two fields are added to **want.parameters** for the EmbeddedUIExtensionAbility: **ohos.extension.processMode.hostSpecified** and **ohos.extension.processMode.hostInstance**.
+- **ohos.extension.processMode.hostSpecified** specifies the name of the process in which the EmbeddedUIExtensionAbility that is not started for the first time runs. If this field is not configured, the EmbeddedUIExtensionAbility runs in the same process as the UIExtensionAbility. Example configuration: "ohos.extension.processMode.hostSpecified": "com.ohos.inentexecutedemo:share." 
+- **ohos.extension.processMode.hostInstance** specifies whether to start the EmbeddedUIExtensionAbility as an independent process. If **false** is passed in, the EmbeddedUIExtensionAbility is started based on the UIExtensionAbility process model. If **true** is passed in, a process is created, regardless of the process model configured for the UIExtensionAbility. Example configuration: "ohos.extension.processMode.hostInstance": "true".
+ 
+If both fields are configured, **ohos.extension.processMode.hostSpecified** takes precedence, meaning that the EmbeddedUIExtensionAbility runs in the specified process.
 
+For example, add the following content to the home page file **pages/Index.ets**:
 ```ts
-import Want from '@ohos.app.ability.Want'
-import { BusinessError } from '@ohos.base'
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -140,7 +146,10 @@ struct Index {
   @State message: string = 'Message: '
   private want: Want = {
     bundleName: "com.example.embeddeddemo",
-    abilityName: "ExampleEmbeddedAbility",
+    abilityName: "EmbeddedUIExtAbility",
+    parameters: {
+      'ohos.extension.processMode.hostInstance': 'true'
+    }
   }
 
   build() {
@@ -150,10 +159,10 @@ struct Index {
         EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
           .width('100%')
           .height('90%')
-          .onTerminated((info: TerminationInfo)=>{
+          .onTerminated((info: TerminationInfo) => {
             this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
-          .onError((error: BusinessError)=>{
+          .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;
           })
       }
@@ -163,5 +172,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 
