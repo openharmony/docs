@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../../enterprise-device-management/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
