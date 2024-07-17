@@ -16,6 +16,7 @@
 - 在\@ComponentV2装饰的自定义组件中，开发者仅可以使用全新的状态变量装饰器，包括\@Local、\@Param、\@Once、\@Event、\@Provider、\@Consumer等。
 - \@ComponentV2装饰的自定义组件暂不支持组件复用、LocalStorage等现有自定义组件的能力。
 - 无法同时使用\@ComponentV2与\@Component装饰同一个struct结构。
+- \@ComponentV2支持一个可选的boolean类型参数freezeWhenInactive，来实现[组件冻结功能](arkts-custom-components-freezeV2.md)。
 
 - 一个简单的\@ComponentV2装饰的自定义组件应具有以下部分：
 

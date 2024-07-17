@@ -13,11 +13,47 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+允许应用市场跳过loading弹框并为原子化服务提前打开窗口，并在窗口内部显示加载动效。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 允许应用打开和关闭位置信息开关。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SUBSCRIBE_SWING_ABILITY
+
+允许应用使用智慧感知订阅能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGER_SWING_MOTION
+
+允许应用使用隔空手势自适配能力。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3394,6 +3430,18 @@
 允许系统应用过滤输入事件。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+允许系统应用或系统服务上报设备激活状态。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

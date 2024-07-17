@@ -625,8 +625,8 @@ export default class EntryAbility extends UIAbility {
     let windowClassId: number = -1;
     let subWindowClassId: number = -1;
 
-    // 获取应用主窗及ID
     try {
+      // 获取应用主窗及ID
       let promise = windowStage.getMainWindow();
       promise.then((data) => {
         if (data == null) {
@@ -635,33 +635,21 @@ export default class EntryAbility extends UIAbility {
         }
         windowClass = data;
         windowClass.setUIContent("pages/Index");
-        try {
-          windowClassId = windowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        windowClassId = windowClass.getWindowProperties().id;
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
         console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
 
-    // 创建或获取子窗及ID，此时子窗口获焦
-    try {
-      let promise = windowStage.createSubWindow("testSubWindow");
-      promise.then((data) => {
+      // 创建或获取子窗及ID，此时子窗口获焦
+      let promiseSub = windowStage.createSubWindow("testSubWindow");
+      promiseSub.then((data) => {
         if (data == null) {
           console.error("Failed to obtaining the window. Cause: The data is empty");
           return;
         }
         subWindowClass = data;
-        try {
-          subWindowClassId = subWindowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        subWindowClassId = subWindowClass.getWindowProperties().id;
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
@@ -670,21 +658,17 @@ export default class EntryAbility extends UIAbility {
         subWindowClass.on("windowEvent", (windowEvent) => {
           if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
             // 切换焦点
-            try {
-              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
-              promise.then(() => {
-                console.info('Succeeded in shifting app window focus');
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (exception) {
-              console.error(`Failed to shift app window focus. Cause code: ${exception.code}, message: ${exception.message}`);
-            }
+            let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+            promise.then(() => {
+              console.info('Succeeded in shifting app window focus');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+            });
           }
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to shift app focus. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -3178,31 +3162,14 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('keyboardHeightChange', (data) => {
-          console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  windowClass.on('keyboardHeightChange', (data) => {
+    console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3232,39 +3199,19 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
+const callback = (height: number) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (height: number) => {
-        // ...
-      }
-      try {
-        windowClass.on('keyboardHeightChange', callback);
-      } catch (exception) {
-        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-      try {
-        windowClass.off('keyboardHeightChange', callback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        windowClass.off('keyboardHeightChange');
-      } catch (exception) {
-        console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+}
+try {
+  windowClass.on('keyboardHeightChange', callback);
+
+  windowClass.off('keyboardHeightChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardHeightChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3416,15 +3363,11 @@ let callback = () => {
 };
 try {
   windowClass.on('screenshot', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('screenshot', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('screenshot');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4434,7 +4377,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-允许应用窗口设置屏幕亮度值，使用callback异步回调。
+允许应用主窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -4462,20 +4405,37 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let brightness: number = 1;
-try {
-  windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the brightness.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let brightness: number = 1;
+      try {
+        windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the brightness.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -4483,7 +4443,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-允许应用窗口设置屏幕亮度值，使用Promise异步回调。
+允许应用主窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -4516,18 +4476,35 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let brightness: number = 1;
-try {
-  let promise = windowClass.setWindowBrightness(brightness);
-  promise.then(() => {
-    console.info('Succeeded in setting the brightness.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let brightness: number = 1;
+      try {
+        let promise = windowClass.setWindowBrightness(brightness);
+        promise.then(() => {
+          console.info('Succeeded in setting the brightness.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the brightness. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the brightness. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 

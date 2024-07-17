@@ -276,10 +276,10 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
-| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。 |
-| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType。|
+| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。 |
+| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。|
 | SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType，最大支持64字节。 |
-| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\** frameworkType。 |
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 |
 
 ### OHHDRMetadataKey
 

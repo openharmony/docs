@@ -77,6 +77,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
       - [组件可见区域变化事件](arkui-ts/ts-universal-component-visible-area-change-event.md)
@@ -301,7 +302,7 @@
     - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
     - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
-    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-arkui-advanced-InterstitialDialogAction.md)
+    - [@ohos.atomicservice.AtomicServiceWeb (Web高阶组件)](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
   - 安全控件
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)

@@ -125,8 +125,9 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 
 | Type | Description |
 | ------------------- | ------------------------- |
-| Promise<void> | Promise object with no return result.|
-
+| Promise&lt;void&gt; | Promise object with no return result.|
+| Promise\<void\> | Promise object with no return result.|
+| Promise\<void> | Promise object with no return result.|
 
 ## Atomic service API-apiUse the value of H1 for api-info. The value is 9.
 

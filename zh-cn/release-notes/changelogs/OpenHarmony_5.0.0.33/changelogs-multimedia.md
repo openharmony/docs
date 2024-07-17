@@ -50,7 +50,7 @@
 
 **变更影响**
 
-此变更为非兼容性变更
+此变更为不兼容变更
 
 变更前：根据API文档内容表达的是“使用canIUse("SystemCapability.ArkUI.ArkUI.Full")判断是否可以使用MovingPhotoView组件”。
 
@@ -70,4 +70,4 @@
 
 **适配指导**
 
-不需要开发者适配
+开发者需停止使用canIUse("SystemCapability.ArkUI.ArkUI.Full")判断是否可以使用MovingPhotoView组件，并使用canIUse("SystemCapability.FileManagement.PhotoAccessHelper.Core")判断是否可以使用MovingPhotoView组件

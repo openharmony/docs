@@ -11,7 +11,7 @@ The **animateToImmediately** API implements immediate delivery for [explicit ani
 
 ## animateToImmediately
 
-animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam) , event: () => void): void
+animateToImmediately(value: AnimateParam , event: () => void): void
 
 Delivers an explicit animation immediately.
 

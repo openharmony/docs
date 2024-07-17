@@ -28,9 +28,9 @@
 2. 应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { Environment } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function getUserDownloadDirExample() {
      try {
@@ -55,7 +55,7 @@
    以下示例代码演示了获取文件夹URI的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { picker } from '@kit.CoreFileKit';
 
    async function selectExample() {
@@ -76,7 +76,7 @@
    以下示例代码演示了检查持久化权限过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { picker } from '@kit.CoreFileKit';
    import { fileShare } from '@kit.CoreFileKit';
 
@@ -118,9 +118,9 @@
    以下示例代码演示了持久化授权过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileShare } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function persistPermissionExample() {
      try {
@@ -152,9 +152,9 @@
    以下示例代码演示了去除持久化授权URI的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileShare } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function revokePermissionExample() {
      try {
@@ -187,9 +187,9 @@
    以下示例代码演示了应用激活持久化授权的过程，其中参数URI为应用重启后需要激活权限的路径：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileShare } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function activatePermissionExample01() {
      try {
@@ -226,9 +226,9 @@
    以下示例代码演示了取消激活持久化权限的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { fileShare } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function deactivatePermissionExample01() {
      try {
@@ -263,7 +263,7 @@
 以下示例代码演示了获取文件父目录过程：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 function getFullDirectoryUriExample01() {
@@ -316,7 +316,7 @@ function getUserDirExample() {
 以下示例代码演示了文件管理器通过接口获取外卡目录、内卡目录：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { Environment } from '@kit.CoreFileKit';
 
 function getDirectoryExample01() {

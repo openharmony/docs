@@ -19,8 +19,8 @@
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 2. 创建文档保存选项实例。
@@ -30,8 +30,8 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选） 
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // 保存文件类型（可选） 
-   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; 
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如过选择项存在多个后缀，默认选择第一个。
+   documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
 3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。
@@ -77,9 +77,9 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import  { picker } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 
@@ -115,7 +115,7 @@
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
    ```ts
-   //这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+   //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
@@ -135,8 +135,8 @@
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 
