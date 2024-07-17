@@ -2998,11 +2998,9 @@ const callback = (size: window.Size) => {
   // ...
 }
 try {
+  // 通过on接口开启监听
   windowClass.on('windowSizeChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // 关闭指定callback的监听
   windowClass.off('windowSizeChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowSizeChange');
@@ -3121,15 +3119,12 @@ export default class EntryAbility extends UIAbility {
 	  }
 	  try {
 		windowClass.on('avoidAreaChange', callback);
-	  } catch (exception) {
-		console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-	  }
-	  try {
+	  
 		windowClass.off('avoidAreaChange', callback);
 		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
 		windowClass.off('avoidAreaChange');
 	  } catch (exception) {
-		console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+		console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 	  }
     });
   }
@@ -3518,11 +3513,9 @@ const callback = (windowEventType: window.WindowEventType) => {
   // ...
 }
 try {
+  // 通过on接口开启监听
   windowClass.on('windowEvent', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // 关闭指定callback的监听
   windowClass.off('windowEvent', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowEvent');
@@ -3602,11 +3595,9 @@ const callback = (bool: boolean) => {
   // ...
 }
 try {
+  // 通过on接口开启监听
   windowClass.on('windowVisibilityChange', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // 关闭指定callback的监听
   windowClass.off('windowVisibilityChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowVisibilityChange');
