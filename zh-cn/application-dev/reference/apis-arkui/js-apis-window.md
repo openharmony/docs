@@ -3121,15 +3121,12 @@ export default class EntryAbility extends UIAbility {
 	  }
 	  try {
 		windowClass.on('avoidAreaChange', callback);
-	  } catch (exception) {
-		console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-	  }
-	  try {
+	  
 		windowClass.off('avoidAreaChange', callback);
 		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
 		windowClass.off('avoidAreaChange');
 	  } catch (exception) {
-		console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+		console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 	  }
     });
   }
