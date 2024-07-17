@@ -1246,6 +1246,70 @@ async function example() {
 }
 ```
 
+### createAssetsForApp<sup>12+</sup>
+
+createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+调用接口代替应用创建媒体库uri列表。Uri已对appId对应的应用授权，支持应用使用uri写入图片/视频。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| bundleName | string | 是 | 需保存图片/视频文件的应用bundle name。 |
+| appName | string | 是 | 需保存图片/视频文件的应用app name。 |
+| appId | string | 是 | 需保存图片/视频文件的应用app id。 |
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](./js-apis-photoAccessHelper.md#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppDemo.');
+
+  try {
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, appId, photoCreationConfigs);
+    console.info('createAssetsForApp success, data is ' + desFileUris);
+  } catch (err) {
+    console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
