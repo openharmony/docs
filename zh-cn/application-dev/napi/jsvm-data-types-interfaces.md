@@ -956,6 +956,7 @@ JS值操作和抽象操作。
 |OH_JSVM_CoerceToNumber | 将目标值转换为 Number 类型对象 |
 |OH_JSVM_CoerceToObject | 将目标值转换为 Object 类型对象 |
 |OH_JSVM_CoerceToString | 将目标值转换为 String 类型对象 |
+|OH_JSVM_CoerceToBigInt | 将目标值转换为 BigInt 类型对象 |
 |OH_JSVM_Typeof | 返回 JavaScript 对象的类型 |
 |OH_JSVM_Instanceof | 判断一个对象是否是某个构造函数的实例 |
 |OH_JSVM_IsArray | 判断一个 JavaScript 对象是否为 Array 类型对象|
@@ -976,6 +977,7 @@ JS值操作和抽象操作。
 |OH_JSVM_IsConstructor | 此API检查传入的值是否为构造函数。 |
 |OH_JSVM_IsMap | 此API检查传入的值是否为Map。 |
 |OH_JSVM_IsSet | 此API检查传入的值是否为Set。 |
+|OH_JSVM_IsRegExp | 此API检查传入的值是否为RegExp。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
@@ -1006,6 +1008,15 @@ size_t copied = 0;
 
 OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
+```
+
+将boolean类型转换为bigint类型
+
+```c++
+JSVM_Value boolValue;
+OH_JSVM_GetBoolean(env, false, &boolValue);
+JSVM_Value bigIntValue;
+OH_JSVM_CoerceToBigInt(env, boolValue, &bigIntValue);
 ```
 
 判断两个JS值类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
@@ -1067,6 +1078,18 @@ JSVM_Value value;
 OH_JSVM_CreateSet(env, &value);
 bool isSet = false;
 OH_JSVM_IsSet(env, value, &isSet); // 这里isSet的值是true
+```
+
+判断JS值是否为RegExp类型
+
+```c++
+JSVM_Value value = nullptr;
+const char testStr[] = "ab+c";
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &value);
+JSVM_Value result = nullptr;
+OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
+bool isRegExp = false;
+OH_JSVM_IsRegExp(env, result, &isRegExp);
 ```
 
 ### JS属性操作
