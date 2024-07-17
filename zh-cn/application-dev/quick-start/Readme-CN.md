@@ -15,7 +15,7 @@
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
       - [动态import](arkts-dynamic-import.md)
-      - [懒加载import](arkts-lazy-import.md)
+      - [延迟加载（lazy import）](arkts-lazy-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
