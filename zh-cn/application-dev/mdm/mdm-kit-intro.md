@@ -8,7 +8,8 @@
 
 ## 实现原理
 
-<!--RP1-->框架层和服务层提供了enterprise_device_management部件，enterprise_device_management部件提供了设备管理应用程序框架和基本设备管理能力。设备管理应用通过EnterpriseAdminExtensionAbility来调用MDM Kit中的接口，实现管理设备的意图。<!--RP1End-->
+<!--RP1-->
+框架层和服务层提供了enterprise_device_management部件，enterprise_device_management部件提供了设备管理应用程序框架和基本设备管理能力。设备管理应用通过EnterpriseAdminExtensionAbility来调用MDM Kit中的接口，实现管理设备的意图。<!--RP1End-->
 
 ![intro_arch.png](./figures/intro_arch.png)
 

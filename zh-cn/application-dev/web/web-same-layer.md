@@ -41,6 +41,7 @@
 - 应用侧代码组件使用示例。
 
   ```ts
+  // HAP's src/main/ets/pages/Index.ets
   // 创建NodeController
   import { webview } from '@kit.ArkWeb';
   import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from "@kit.ArkUI";
@@ -90,9 +91,7 @@
       }
       if (!this.rootNode) { // rootNode 为undefined时
         this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
-        if (this.type_ === 'native/button') {
-          this.rootNode.build(wrapBuilder(ButtonBuilder), {textOne: "myButton1", textTwo : "myButton2", width : this.width_, height : this.height_});
-        } else if (this.type_ === 'native/video') {
+        if (this.type_ === 'native/video') {
           this.rootNode.build(wrapBuilder(VideoBuilder), {textOne: "myButton", width : this.width_, height : this.height_});
         } else {
           // other
@@ -130,27 +129,6 @@
   }
 
   @Component
-  struct ButtonComponent {
-    @ObjectLink params: Params
-    @State bkColor: Color = Color.Red
-
-    build() {
-      Column() {
-        Button(this.params.textOne)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
-
-        Button(this.params.textTwo)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
-      }
-      //自定义组件中的最外层容器组件宽高应该为同层标签的宽高
-      .width(this.params.width)
-      .height(this.params.height)
-    }
-  }
-
-  @Component
   struct VideoComponent {
     @ObjectLink params: Params
     @State bkColor: Color = Color.Red
@@ -161,8 +139,6 @@
     build() {
       Column() {
         Button(this.params.textOne)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
 
         XComponent({ id: 'video_player_id', type: XComponentType.SURFACE, controller: this.mXComponentController})
           .border({width: 1, color: Color.Red})
@@ -172,6 +148,8 @@
             this.player_changed = !this.player_changed;
             this.player.avPlayerLiveDemo()
           })
+          .width(300)
+          .height(200)
       }
       //自定义组件中的最外层容器组件宽高应该为同层标签的宽高
       .width(this.params.width)
@@ -180,15 +158,9 @@
   }
   // @Builder中为动态组件的具体组件内容。
   @Builder
-  function ButtonBuilder(params: Params) {
-    ButtonComponent({ params: params })
-      .backgroundColor(Color.Green)
-  }
-
-  @Builder
   function VideoBuilder(params: Params) {
     VideoComponent({ params: params })
-      .backgroundColor(Color.Green)
+      .backgroundColor(Color.Gray)
   }
 
   @Entry
@@ -268,9 +240,10 @@
   }
   ```
 
-- 应用侧代码，视频播放示例, ./PlayerDemo.ets。
+- 应用侧代码，视频播放示例。
 
   ```ts
+  // HAP's src/main/ets/pages/PlayerDemo.ets
   import { media } from '@kit.MediaKit';
   import { BusinessError } from '@ohos.base';
 
@@ -353,6 +326,7 @@
       // 创建状态机变化回调函数。
       this.setAVPlayerCallback(avPlayer);
       this.isSeek = false; // 不支持seek操作。
+      // 使用时需要自行替换视频链接
       avPlayer.url = 'https://xxx.xxx/demo.mp4';
     }
   }
@@ -361,6 +335,7 @@
 - 前端页面示例。
 
   ```html
+  <!--HAP's src/main/resources/rawfile/test.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -370,14 +345,8 @@
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=xxx?" style = "background-color:red"/>
+          <embed id="nativeVideo" type = "native/video" width="1000" height="1500" src="test" style = "background-color:red"/>
       </div>
-      <div id="bodyId1">
-          <embed id="nativeVideo" type = "native/video" width="500" height="500" src="test" style = "background-color:red"/>
-      </div>
-  </div>
-  <div id="button" width="500" height="200">
-      <p>bottom</p>
   </div>
   </body>
   </html>

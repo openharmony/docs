@@ -61,8 +61,8 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 | 错误码ID | 错误信息                                                                                                                                         |
 |-------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-| 801   | Capability not supported                                                                                                                     |
+| 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
 
 **示例：**
 
@@ -227,7 +227,7 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged'
 
 | 类型                | 说明               |
 | ------------------- | ------------------ |
-| 'hangUp             | 挂断视频通话。     |
+| 'hangUp'             | 挂断视频通话。     |
 | 'micStateChanged'   | 打开或关闭麦克风。 |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
 
@@ -273,7 +273,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 **参数：**
 
-| 名称                       | 类型           | 必填    | 说明                                |
+| 参数名                       | 类型           | 必填    | 说明                                |
 |--------------------------|--------------|--------------|-----------------------------------|
 | event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制事件类型。<br/>应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
 | status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
@@ -304,12 +304,12 @@ startPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
-| 错误码ID      | 错误信息                                                   |
+| 错误码ID    | 错误信息                                                |
 |------------|--------------------------------------------------------|
-| 1300012    | If PiP window state is abnormal.                       |
-| 1300013    | Create pip window failed.                              |
-| 1300014    | Error when load PiP window content or show PiP window. |
-| 1300015    | If window has created.                                 |
+| 1300012    | The PiP window state is abnormal.                      |
+| 1300013    | Failed to create the PiP window.                       |
+| 1300014    | PiP internal error.                                    |
+| 1300015    | Repeated PiP operation.                                |
 
 **示例：**
 
@@ -340,11 +340,11 @@ stopPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
-| 错误码ID   | 错误信息                             |
-|---------|----------------------------------|
-| 1300011 | Stop PiP window failed.          |
-| 1300012 | If PiP window state is abnormal. |
-| 1300015 | If window is stopping.           |
+| 错误码ID   | 错误信息                          |
+|---------|-----------------------------------|
+| 1300011 | Failed to destroy the PiP window. |
+| 1300012 | The PiP window state is abnormal. |
+| 1300015 | Repeated PiP operation.           |
 
 **示例：**
 
@@ -399,7 +399,7 @@ updateContentSize(width: number, height: number): void
 
 | 错误码ID | 错误信息                                                                                                        |
 |-------|-------------------------------------------------------------------------------------------------------------|
-| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 

@@ -160,7 +160,7 @@ const transform: Matrix4 = [
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 只读 | 可选 | 说明              |
+| 名称 | 类型   | 可读 | 可写 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x    | number | 否   | 否   | 向量x轴方向的值。 |
 | y    | number | 否   | 否   | 向量y轴方向的值。 |
@@ -168,6 +168,8 @@ const transform: Matrix4 = [
 ## Vector3
 
 用于表示包含x、y、z三个值的向量。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -499,6 +501,15 @@ static resource(value: Resource): LengthMetrics
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 180001   | System resources does not exist.           |
+| 180002   | The type of system resources is incorrect. |
 
 ## ColorMetrics<sup>12+</sup>
 

@@ -55,7 +55,6 @@
       - [创建自定义组件](arkts-create-custom-components.md)
       - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](arkts-page-custom-components-layout.md)
-      - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
 
     - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
@@ -95,23 +94,30 @@
         - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
         - [\@Track装饰器：class对象属性级更新](arkts-track.md)
+        - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
 
     - 状态管理（V2试用版）
-      - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
-      - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
-      - [\@Local装饰器：组件内部状态](arkts-new-local.md)
-      - [\@Param装饰器：组件外部输入](arkts-new-param.md)
-      - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
-      - [\@Event装饰器：组件输出](arkts-new-event.md)
-      - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
-      - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
-      - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
-      - [!!语法：双向绑定](arkts-new-binding.md)
-      - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
-      - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
+      - V2所属装饰器
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
+        - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
+        - [\@Local装饰器：组件内部状态](arkts-new-local.md)
+        - [\@Param装饰器：组件外部输入](arkts-new-param.md)
+        - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
+        - [\@Event装饰器：组件输出](arkts-new-event.md)
+        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
+        - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
+        - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
+        - [\@Type装饰器: 标记类属性的类型](arkts-new-type.md)
+      - 其他状态管理
+        - [AppStorageV2: 应用全局UI状态存储](arkts-new-appstoragev2.md)
+        - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
+        - [!!语法：双向绑定](arkts-new-binding.md)
+        - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
+        - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
+      
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)

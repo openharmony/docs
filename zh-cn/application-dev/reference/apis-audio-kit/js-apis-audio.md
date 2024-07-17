@@ -534,7 +534,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VOIP通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
@@ -543,10 +543,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                       |
 | STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
 | STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                   |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
 
 ## AudioState<sup>8+</sup>
 
@@ -2333,6 +2333,36 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
 });
+```
+
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.off('volumeChange');
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -4866,15 +4896,17 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
+**参数：**
+
 | 参数名          | 类型      |必填   | 说明         |
 | :--------------| :--------| :----- | :------------ |
 | data           | ArrayBuffer  | 是 | 待写入缓冲区的数据。 |
 
 **返回值：** 
 
-| 类型 | 说明 |
-| ----- | ------- |
-| AudioDataCallbackResult \| void | 如果返回 void 或 AudioRendererWriteDataCallback.VALID ，表示数据有效并将被播放；如果返回 AudioRendererWriteDataCallback.INVALID ，表示数据无效并将不会被播放。|
+| 类型                                                           | 说明 |
+|--------------------------------------------------------------| ------- |
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -5593,7 +5625,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 写入缓冲区。使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5656,7 +5688,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 写入缓冲区。使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6683,7 +6715,7 @@ console.info(`setVolumeWithRamp: ${volume}`);
 
 ### setSilentModeAndMixWithOthers<sup>12+</sup>
 
-setSilentModeAndMixWithOthers(on: bool): void
+setSilentModeAndMixWithOthers(on: boolean): void
 
 设置静音并发播放模式。
 
@@ -6695,17 +6727,7 @@ setSilentModeAndMixWithOthers(on: bool): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | bool | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permit at current state. |
+| on | boolean | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
 
 **示例：**
 
@@ -6715,7 +6737,7 @@ audioRenderer.setSilentModeAndMixWithOthers(true);
 
 ### getSilentModeAndMixWithOthers<sup>12+</sup>
 
-getSilentModeAndMixWithOthers(): bool
+getSilentModeAndMixWithOthers(): boolean
 
 获取静音并发播放模式。
 
@@ -6725,7 +6747,7 @@ getSilentModeAndMixWithOthers(): bool
 
 | 类型                                              | 说明        |
 | ------------------------------------------------- |-----------|
-| bool | 返回静音并发播放模式状态，true打开，false关闭。 |
+| boolean | 返回静音并发播放模式状态，true打开，false关闭。 |
 
 **示例：**
 
@@ -7080,102 +7102,7 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 });
 ```
 
-### on('writeData')<sup>(deprecated)</sup>
-
-on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
-
-订阅监听音频数据写入回调，使用callback方式返回结果。
-
-> **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [on('writeData')](#onwritedata12) 替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                         |
-| :------- |:-----------------------| :--- |:---------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。 |
-| callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回待写入的数据缓冲区。            |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 6800101 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
-
-let bufferSize: number = 0;
-class Options {
-  offset?: number;
-  length?: number;
-}
-
-let writeDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  //确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-  let options: Options = {
-    offset: bufferSize,
-    length: buffer.byteLength
-  }
-  fileIo.readSync(file.fd, buffer, options);
-  bufferSize += buffer.byteLength;
-}
-
-audioRenderer.on('writeData', writeDataCallback);
-audioRenderer.start().then(() =>  {
-  console.info('Renderer started');
-}).catch((err: BusinessError) => {
-  console.error(`ERROR: ${err}`);
-});
-```
-
-### off('writeData')<sup>(deprecated)</sup>
-
-off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
-
-取消订阅监听音频数据写入回调，使用callback方式返回结果。
-
-> **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [off('writeData')](#offwritedata12) 替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                                         |
-| :------- |:-----------------------| :--- |:-------------------------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。                 |
-| callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回待写入的数据缓冲区。                            |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 6800101 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-audioRenderer.off('writeData', (data: ArrayBuffer) => {
-    console.info(`write data: ${data}`);
-});
-```
-
-### on('writeData')<sup>12+</sup>
+### on('writeData')<sup>11+</sup>
 
 on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
@@ -7188,7 +7115,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
 | type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
-| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，返回待写入的数据缓冲区。          |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。        |
 
 **错误码：**
 
@@ -7205,17 +7132,17 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import {fileIo} from '@kit.CoreFileKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
-let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
-  let path = getContext().cacheDir;
-  // 确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+let bufferSize: number = 0;
+let path = getContext().cacheDir;
+// 确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
@@ -7224,9 +7151,11 @@ let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
   try {
     fileIo.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
     return audio.AudioDataCallbackResult.INVALID;
   }
 };
@@ -7239,7 +7168,7 @@ audioRenderer.start().then(() => {
 });
 ```
 
-### off('writeData')<sup>12+</sup>
+### off('writeData')<sup>11+</sup>
 
 off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
@@ -7252,7 +7181,7 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
 | type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
-| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，返回待写入的数据缓冲区。          |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。 |
 
 **错误码：**
 
@@ -7266,8 +7195,9 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 **示例：**
 
 ```ts
-// 确保writeDataCallback已经被注册
-audioRenderer.off('writeData', writeDataCallback);
+audioRenderer.off('writeData', (data: ArrayBuffer) => {
+    console.info(`write data: ${data}`);
+});
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -8427,16 +8357,17 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
+let bufferSize: number = 0;
+let path = getContext().cacheDir;
+// 确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength

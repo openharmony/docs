@@ -65,7 +65,7 @@ System service operation failed.
 
 **错误信息**
 
-Check workInfo failed.
+Check on workInfo failed.
 
 **错误描述**
 
@@ -84,7 +84,7 @@ Check workInfo failed.
 
 **错误信息**
 
-StartWork failed.
+Calling startWork failed.
 
 **错误描述**
 

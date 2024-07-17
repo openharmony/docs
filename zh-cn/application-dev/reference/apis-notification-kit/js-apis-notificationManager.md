@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
+import { notificationManager } from '@kit.NotificationKit';
 ```
 
 ## notificationManager.publish
@@ -33,27 +33,27 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                          |
+| 1600007  | The notification does not exist.                     |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                                 |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //publish回调
-let publishCallback = (err: Base.BusinessError): void => {
+let publishCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -101,24 +101,24 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                          |
+| 1600007  | The notification does not exist.                     |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                                 |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通知Request对象
 let notificationRequest: notificationManager.NotificationRequest = {
@@ -134,7 +134,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
 };
 notificationManager.publish(notificationRequest).then(() => {
 	console.info("publish success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 
@@ -165,16 +165,16 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancel回调
-let cancelCallback = (err: Base.BusinessError): void => {
+let cancelCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -214,17 +214,17 @@ cancel(id: number, label?: string): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancel(0).then(() => {
 	console.info("cancel success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -253,16 +253,16 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancel回调
-let cancelCallback = (err: Base.BusinessError): void => {
+let cancelCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -289,7 +289,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **参数：**
 
@@ -300,10 +300,10 @@ cancelAll(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancel回调
-let cancelAllCallback = (err: Base.BusinessError): void => {
+let cancelAllCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -336,16 +336,16 @@ cancelAll(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancelAll().then(() => {
 	console.info("cancelAll success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAll fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -374,16 +374,16 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addslot回调
-let addSlotCallBack = (err: Base.BusinessError): void => {
+let addSlotCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -422,17 +422,17 @@ addSlot(type: SlotType): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -461,15 +461,15 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // getSlot回调
-let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
+let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
     if (err) {
         console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -509,18 +509,18 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
     console.info("getSlot success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -549,15 +549,15 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // getSlots回调
-let getSlotsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
+let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
   if (err) {
     console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -590,16 +590,16 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlots fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -628,15 +628,15 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // removeSlot回调
-let removeSlotCallback = (err: Base.BusinessError): void => {
+let removeSlotCallback = (err: BusinessError): void => {
   if (err) {
     console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -676,17 +676,17 @@ removeSlot(slotType: SlotType): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`removeSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -714,14 +714,14 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeAllSlotsCallback = (err: Base.BusinessError): void => {
+let removeAllSlotsCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -754,16 +754,16 @@ removeAllSlots(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`removeAllSlots fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -788,21 +788,21 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -833,23 +833,23 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isNotificationEnabled().then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -913,19 +913,19 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
 	console.info("setBadgeNumber success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -954,15 +954,15 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setBadgeNumberCallback = (err: Base.BusinessError): void => {
+let setBadgeNumberCallback = (err: BusinessError): void => {
     if (err) {
         console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
@@ -996,14 +996,14 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number): void => {
+let getActiveNotificationCountCallback = (err: BusinessError, data: number): void => {
     if (err) {
         console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1037,16 +1037,16 @@ getActiveNotificationCount(): Promise\<number\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1074,14 +1074,14 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
+let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1114,16 +1114,16 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1152,14 +1152,14 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let cancelGroupCallback = (err: Base.BusinessError): void => {
+let cancelGroupCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1201,17 +1201,17 @@ cancelGroup(groupName: string): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelGroup fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1240,15 +1240,15 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let templateName: string = 'process';
-let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void => {
+let isSupportTemplateCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1287,26 +1287,30 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let templateName: string = 'process';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isSupportTemplate fail: ${JSON.stringify(err)}`);
 });
 ```
 
-## notificationManager.requestEnableNotification
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 应用请求通知使能。使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1325,16 +1329,16 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
+let requestEnableNotificationCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1344,11 +1348,15 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
-## notificationManager.requestEnableNotification
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
 
 requestEnableNotification(): Promise\<void\>
 
 应用请求通知使能。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10-1)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1367,18 +1375,18 @@ requestEnableNotification(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1409,27 +1417,37 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
-      if (err) {
-        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-      } else {
-        console.info("requestEnableNotification success");
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-    };
-    notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let requestEnableNotificationCallback = (err: BusinessError): void => {
+        if (err) {
+            console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+            console.info("requestEnableNotification success");
+        }
+      };
+      notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+    });
   }
 }
 ```
@@ -1465,23 +1483,33 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    notificationManager.requestEnableNotification(this.context).then(() => {
-      console.info("requestEnableNotification success");
-    }).catch((err: Base.BusinessError) => {
-      console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      notificationManager.requestEnableNotification(this.context).then(() => {
+        console.info("requestEnableNotification success");
+      }).catch((err: BusinessError) => {
+        console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+      });
     });
   }
 }
@@ -1510,15 +1538,15 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isDistributedEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1551,18 +1579,18 @@ isDistributedEnabled(): Promise\<boolean>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isDistributedEnabled()
 .then((data: boolean) => {
     console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabled fail: ${JSON.stringify(err)}`);
 });
 ```

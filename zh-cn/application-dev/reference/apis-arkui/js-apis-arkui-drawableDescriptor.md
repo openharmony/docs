@@ -103,7 +103,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     }
     ```
 2. 通过PixelMapDrawableDescriptor创建LayeredDrawableDescriptor。
-    
+   
     ```ts
     import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
     import { image } from '@kit.ImageKit'
@@ -161,6 +161,8 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 getPixelMap(): image.PixelMap
 
 获取前景、背景和蒙版融合裁剪后的pixelMap。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -299,7 +301,7 @@ PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 类型    | 必填  | 说明                                    |
+| 名称      | 类型    | 必填  | 说明                                    |
 | ---------- | ------ | -----| --------------------------------------- |
 | duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。      |
 | iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放。 |

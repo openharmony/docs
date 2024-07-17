@@ -1,6 +1,6 @@
-# 管理域帐号插件
+# 管理域账号插件
 
-OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供了域帐号插件注册和注销能能力。
+OEM厂商可以采用插件方式定制化域账号管理能力，系统提供了域账号插件注册和注销能能力。
 
 ## 开发准备
 
@@ -8,13 +8,13 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
-2. 导入系统帐号模块。
+2. 导入系统账号模块。
 
    ```ts
    import { osAccount, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 获取系统帐号管理对象。
+3. 获取系统账号管理对象。
 
    ```ts
    let accountMgr = osAccount.getAccountManager()

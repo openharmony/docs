@@ -220,7 +220,7 @@ let result = lightWeightMap.hasValue(123);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-将当前LightWeightMap扩容至可以容纳指定数量元素。
+将当前LightWeightMap扩容至可以容纳指定数量元素。如果传入的容量值大于或等于当前LightWeightMap中的元素个数，将容量变更为新容量，小于则不会变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -230,7 +230,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳的数量。 |
+| minimumCapacity | number | 是 | 需要容纳的元素数量。 |
 
 **错误码：**
 
@@ -795,6 +795,7 @@ callbackfn的参数说明：
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
+// 不建议在forEach函数中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 lightWeightMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
@@ -828,6 +829,7 @@ entries(): IterableIterator<[K, V]>
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
@@ -904,6 +906,7 @@ let result = lightWeightMap.toString();
 **示例：**
 
 ```ts
+// 不建议在Symbol.iterator中使用使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);

@@ -42,6 +42,7 @@
    }
    ```
 
+<!--Del-->
 3. 设置系统语言、系统地区、系统区域。
    ```ts
    // 设置系统当前语言为 "zh"
@@ -68,3 +69,4 @@
      console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
    }
    ```
+<!--DelEnd-->

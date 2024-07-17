@@ -158,7 +158,8 @@ void callbackTest(CallbackContext* context)
         // using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            napi_handle_scope scope = nullptr; 
+            napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
                 if (work != nullptr) {
                     delete work;

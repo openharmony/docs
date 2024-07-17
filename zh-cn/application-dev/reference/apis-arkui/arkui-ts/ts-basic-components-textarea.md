@@ -258,7 +258,7 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
+配置textOverflow一起使用时，maxlines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示，内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -496,7 +496,9 @@ textIndent(value: Dimension)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。在非内联模式、内联模式下支持
+设置文本超长时的显示方式。
+
+内联模式，主动配置textoverflow才会生效按maxline截断效果，不配置时，默认不截断。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
@@ -601,22 +603,6 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 | 参数名   | 类型                                                         | 必填 | 说明                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
-
-### selectionMenuOptions<sup>12+</sup>
-
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
-
-设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 >  **说明：**
 >
@@ -885,7 +871,7 @@ stopEditing(): void
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 
 ## ContentType<sup>12+</sup>枚举说明
@@ -1543,57 +1529,3 @@ struct TextAreaExample {
 ```
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
-
-### 示例15
-
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextAreaExample {
-  @State text: string = 'This is ss01 on : 0123456789'
-  textAreaController: TextAreaController = new TextAreaController()
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'TextArea扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextArea扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextArea扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'TextArea扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
-
-  build() {
-    Column() {
-      TextArea({
-        text: this.text,
-        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
-        controller: this.textAreaController
-      })
-        .placeholderFont({ size: 16, weight: 400 })
-        .width(336)
-        .height(56)
-        .selectionMenuOptions(this.menuOptionArray)
-    }
-    .width("90%")
-    .margin("5%")
-  }
-}
-```
-
-![textAreaSelectionMenuOptions](figures/textAreaSelectionMenuOptions.png)

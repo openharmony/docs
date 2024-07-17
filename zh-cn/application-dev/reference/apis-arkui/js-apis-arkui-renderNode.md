@@ -688,7 +688,7 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为false。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
 
 **示例：**
 ```ts
@@ -873,8 +873,6 @@ struct Index {
 set position(position: Position)
 
 设置当前RenderNode的位置。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2405,6 +2403,8 @@ renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
+
+const isNodeGroup = renderNode.markNodeGroup;
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;

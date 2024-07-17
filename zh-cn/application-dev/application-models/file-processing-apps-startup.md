@@ -45,7 +45,7 @@
     // xxx.ets
     import { fileUri } from '@kit.CoreFileKit';
     import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
 2. 获取[应用文件路径](application-context-stage.md#获取应用文件路径)。
@@ -162,7 +162,7 @@
     // xxx.ets
     import fs from '@ohos.file.fs';
     import { Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

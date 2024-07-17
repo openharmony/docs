@@ -1,4 +1,4 @@
-# @ohos.file.AlbumPickerComponent（Album Picker组件）
+# @ohos.file.AlbumPickerComponent (Album Picker组件)
 
 应用可以在布局中嵌入AlbumPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的相册列表。
 
@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@kit.MediaLibraryKit';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@ohos.file.AlbumPickerComponent';
 ```
 
 ## 属性
@@ -68,7 +68,8 @@ Album Picker配置选项。
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode } from '@kit.MediaLibraryKit';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@ohos.file.AlbumPickerComponent';
+import { PickerColorMode } from '@ohos.file.PhotoPickerComponent';
 
 @Entry
 @Component

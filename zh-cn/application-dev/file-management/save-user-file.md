@@ -18,10 +18,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 2. 创建文档保存选项实例。
 
@@ -77,10 +77,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 创建音频保存选项实例。
@@ -115,7 +115,7 @@
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
    ```ts
-   //这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+   //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
@@ -134,10 +134,10 @@
 1. 导入选择器模块和文件管理模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 创建文件保存选项实例。
