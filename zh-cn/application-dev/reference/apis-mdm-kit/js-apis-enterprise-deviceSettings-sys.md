@@ -10,7 +10,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md)。
 
 ## 导入模块
 

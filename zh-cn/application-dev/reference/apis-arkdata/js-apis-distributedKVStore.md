@@ -312,7 +312,7 @@ createKVManager(config: KVManagerConfig): KVManager
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed; 3. Incorrect parameters types.  |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -410,7 +410,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
@@ -432,7 +432,7 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
-if (kvStore !== undefined) {
+if (kvStore !== null) {
      kvStore = kvStore as distributedKVStore.SingleKVStore;
        // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
        // ...
@@ -466,7 +466,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameters verification failed; 3. Parameter verification failed.|
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
 
@@ -475,7 +475,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
@@ -526,7 +526,7 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
@@ -594,7 +594,7 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
@@ -655,7 +655,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
@@ -725,7 +725,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,

@@ -573,14 +573,12 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。 |
-| MEDIUM | 1 | 任务为中优先级。 |
-| LOW | 2 | 任务为低优先级。 |
-| IDLE<sup>12+</sup> | 3 | 任务为后台任务。 |
+| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -1337,7 +1335,7 @@ function delay(args: number): number {
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(test, 1);
+let task: taskpool.Task = new taskpool.Task(delay, 1);
 task.onStartExecution(()=>{
   console.info("taskpool: onStartExecution")
 });

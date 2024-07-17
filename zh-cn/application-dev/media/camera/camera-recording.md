@@ -9,9 +9,9 @@
 1. 导入media模块。创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
      
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import camera from '@ohos.multimedia.camera';
-   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { camera } from '@kit.CameraKit';
+   import { media } from '@kit.MediaKit';
    ```
 
 2. 创建Surface。
@@ -158,7 +158,10 @@
     
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameStart', () => {
+    videoOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame started');
     });
   }
@@ -168,7 +171,10 @@
     
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameEnd', () => {
+    videoOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame ended');
     });
   }

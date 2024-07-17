@@ -1,4 +1,4 @@
-# PixelMap Operation
+# Using PixelMap for PixelMap Operations
 
 To process a certain area in an image, you can perform PixelMap operations, which are usually used to beautify the image.
 
@@ -15,9 +15,9 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
 1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
 
 2. Obtain information from the **PixelMap** object.
-     
+
    ```ts
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    // Obtain the total number of bytes of this PixelMap object.
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // Obtain the number of bytes per row of this PixelMap object.p
@@ -27,9 +27,9 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
    ```
 
 3. Read and modify the pixel data of the target area, and write the modified data back to the original image.
-     
+
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    // Scenario 1: Read the pixel data of the entire image and write the modified data to an array buffer.
    const readBuffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(readBuffer).then(() => {

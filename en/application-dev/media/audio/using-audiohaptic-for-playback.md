@@ -100,9 +100,3 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
      console.error(`Failed to unregistere source ${err}`);
    });
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop audio-haptic effect:
-
-- [Audio-Haptic (ArkTS, API version 11)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)

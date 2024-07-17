@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import picker from '@ohos.multimedia.cameraPicker';
+import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
 ## pick
@@ -40,10 +40,10 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 **示例：**
 
 ```ts
-import picker from '@ohos.multimedia.cameraPicker';
-import camera from '@ohos.multimedia.camera';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { cameraPicker as picker } from '@kit.CameraKit';
+import { camera } from '@kit.CameraKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let mContext = getContext(this) as common.Context;
 
 async function demo() {

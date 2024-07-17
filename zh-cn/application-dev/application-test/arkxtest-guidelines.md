@@ -36,9 +36,9 @@
 
 ### 环境要求
 
-自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
+- 自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
-脚本执行需要PC连接硬件设备，如开发板等。
+- 脚本执行需要PC连接硬件设备，如<!--RP1-->开发板<!--RP1End-->等。
 
 ### 搭建环境
 
@@ -48,8 +48,10 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 ### 新建测试脚本
 
+<!--RP2-->
 1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
 2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+<!--RP2End-->
 
 ### 编写单元测试脚本
 
@@ -101,7 +103,7 @@ export default function abilityTest() {
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1.编写index.ets页面代码， 作为被测示例demo。
+1.编写Index.ets页面代码， 作为被测示例demo。
 
 ```ts
 @Entry
@@ -495,8 +497,7 @@ hdc shell uitest uiInput keyEvent Back
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
 
-### 
-
+<!--Del-->
 ## 相关实例
 
 ### 单元测试脚本实例
@@ -553,6 +554,8 @@ hdc shell uitest uiInput keyEvent 2072 2038
 #### 模拟调整窗口大小能力实例
 介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)
 
+<!--DelEnd-->
+
 ## 常见问题
 
 ### 单元测试用例常见问题
@@ -589,7 +592,7 @@ hdc shell uitest uiInput keyEvent 2072 2038
 
 **问题描述**
 
-用例执行结束，控制台提示execute time XXms错误，即用例执行超时
+用例执行结束，控制台提示execute time XXms错误，即用例执行超时。
 
 **可能原因**
 

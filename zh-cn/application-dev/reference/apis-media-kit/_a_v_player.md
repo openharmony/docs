@@ -126,7 +126,7 @@ typedef struct AVPlayerCallback AVPlayerCallback
 
 **描述**
 
-OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+OH_AVPlayer中所有回调函数指针的集合，包含[onError](#onerror)和[onInfo](#oninfo)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -197,7 +197,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| errorCode | 错误码 | 
+| errorCode | 错误码，具体请参考[Media错误码](errorcode-media.md) | 
 | errorMsg | 错误消息 | 
 
 
@@ -220,7 +220,7 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。 | 
-| type | 信息类型。具体请参见[AVPlayerOnInfoType](#avplayeroninfotype)。 | 
+| type | 信息类型。具体请参见[AVPlayerOnInfoType](#avplayeroninfotype-1)。 | 
 | extra | 其他信息，如播放文件的开始时间位置。 | 
 
 
@@ -266,26 +266,26 @@ OnInfo类型
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 
+| 枚举值 | 描述 |
 | -------- | -------- |
-| AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息。 | 
-| AV_INFO_TYPE_SPEEDDONE | 速率设置完成时返回消息。 | 
-| AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息。 | 
-| AV_INFO_TYPE_EOS | 播放完成时返回消息。 | 
-| AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息。 | 
-| AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置。 | 
-| AV_INFO_TYPE_MESSAGE | 返回播放消息。 | 
-| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息。 | 
-| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息。 | 
-| AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间。 | 
-| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率。 | 
-| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息。 | 
-| AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长。 | 
-| AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息。 | 
-| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息。 | 
-| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨信息更新时返回消息。 | 
-| AV_INFO_TYPE_SUBTITLE_UPDATE | 返回字幕信息。 | 
-| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息。 |
+| AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示seek到的位置。 |
+| AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed-1)。 |
+| AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息，extra表示比特率信息。 |
+| AV_INFO_TYPE_EOS | 播放完成时返回消息，extra表示是否设置循环播放，0表示设置循环，1表示未设置循环。|
+| AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息，extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate-1)。 |
+| AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置，extra表示当前位置。 |
+| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra表示视频首帧渲染。 |
+| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间，extra表示视频时长。 |
+| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率，此场景extra未定义。 |
+| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息，extra表示音频打断提示，具体请参见[OH_AudioInterrupt_Hint](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_hint)，应用可决定是否根据打断提示作进一步处理。 |
+| AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长，extra表示视频时长。 |
+| AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。 |
+| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_SUBTITLE_UPDATE | 字幕信息更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见[OH_AudioStream_DeviceChangeReason](../apis-audio-kit/_o_h_audio.md#oh_audiostream_devicechangereason)。 |
 
 
 ### AVPlayerSeekMode

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import camera from '@ohos.multimedia.camera';
+import { camera } from '@kit.CameraKit';
 ```
 
 ## camera.getCameraManager
@@ -44,8 +44,8 @@ getCameraManager(context: Context): CameraManager
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraManager(context: common.BaseContext): camera.CameraManager | undefined {
   let cameraManager: camera.CameraManager | undefined = undefined;
@@ -238,7 +238,7 @@ getSupportedCameras(): Array\<CameraDevice\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
   let cameras: Array<camera.CameraDevice> = [];
@@ -275,7 +275,7 @@ getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getSupportedSceneModes(cameraManager: camera.CameraManager, camera: camera.CameraDevice): Array<camera.SceneMode> {
   let modes: Array<camera.SceneMode> = [];
@@ -409,7 +409,7 @@ createCameraInput(camera: CameraDevice): CameraInput
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
   let cameraInput: camera.CameraInput | undefined = undefined;
@@ -460,7 +460,7 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
   let position: camera.CameraPosition = camera.cameraPosition;
@@ -510,7 +510,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.previewProfiles[0];
@@ -559,7 +559,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
@@ -607,7 +607,7 @@ createPhotoOutput(profile: Profile): PhotoOutput
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.PhotoOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
@@ -656,7 +656,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
   let profile: camera.VideoProfile = cameraOutputCapability.videoProfiles[0];
@@ -704,7 +704,7 @@ createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): Metadata
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): void {
   let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
@@ -747,7 +747,7 @@ createCaptureSession(): CaptureSession
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
   let captureSession: camera.CaptureSession | undefined = undefined;
@@ -793,7 +793,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function createSession(cameraManager: camera.CameraManager, mode: camera.SceneMode): camera.Session | undefined {
   let photoSession: camera.PhotoSession | undefined = undefined;
@@ -814,6 +814,10 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态回调，通过注册回调函数获取相机的状态变化。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -826,9 +830,13 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraStatus with errorCode = ' + err.code);
+    return;
+  }
   console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
   console.info(`status: ${cameraStatusInfo.status}`);
 }
@@ -964,7 +972,7 @@ setTorchMode(mode: TorchMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setTorchMode(cameraManager: camera.CameraManager, torchMode: camera.TorchMode): void {
   try {
@@ -983,6 +991,10 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 
 手电筒状态变化回调，通过注册回调函数获取手电筒状态变化。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -995,9 +1007,13 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, torchStatusInfo: camera.TorchStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`onTorchStatusChange, isTorchAvailable: ${torchStatusInfo.isTorchAvailable}, isTorchActive: ${torchStatusInfo.isTorchActive}, level: ${torchStatusInfo.torchLevel}`);
 }
 
@@ -1122,7 +1138,7 @@ open(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open((err: BusinessError) => {
@@ -1162,13 +1178,13 @@ open(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
@@ -1206,14 +1222,13 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    let err = error as BusinessError;
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
@@ -1243,7 +1258,7 @@ close(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close((err: BusinessError) => {
@@ -1281,7 +1296,7 @@ close(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close().then(() => {
@@ -1298,6 +1313,10 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1311,7 +1330,7 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Camera input error code: ${err.code}`);
@@ -1375,7 +1394,7 @@ release(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release((err: BusinessError) => {
@@ -1423,7 +1442,7 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release().then(() => {
@@ -1474,7 +1493,7 @@ start(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start((err: BusinessError) => {
@@ -1515,7 +1534,7 @@ start(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start().then(() => {
@@ -1546,7 +1565,7 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop((err: BusinessError) => {
@@ -1579,7 +1598,7 @@ stop(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop().then(() => {
@@ -1596,6 +1615,10 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听预览帧启动，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1608,7 +1631,13 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-function callback(): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info('Preview frame started');
 }
 
@@ -1646,6 +1675,10 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 监听预览帧结束，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1658,7 +1691,13 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-function callback(): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info('Preview frame ended');
 }
 
@@ -1696,6 +1735,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听预览输出的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1708,7 +1751,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(previewOutputError: BusinessError): void {
   console.error(`Preview output error code: ${previewOutputError.code}`);
@@ -1940,7 +1983,7 @@ capture(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture((err: BusinessError) => {
@@ -1979,7 +2022,7 @@ capture(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture().then(() => {
@@ -2018,7 +2061,7 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   let captureLocation: camera.Location = {
@@ -2075,7 +2118,7 @@ capture(setting: PhotoCaptureSetting): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   let captureLocation: camera.Location = {
@@ -2103,6 +2146,10 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 
 注册监听全质量图上报。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2115,10 +2162,14 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   let mainImage: image.Image = photo.main;
 }
 
@@ -2145,10 +2196,14 @@ off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   let mainImage: image.Image = photo.main;
 }
 
@@ -2163,6 +2218,10 @@ on(type: 'captureStartWithInfo', callback: AsyncCallback\<CaptureStartInfo\>): v
 
 监听拍照开始，通过注册回调函数获取[CaptureStartInfo](#capturestartinfo11)。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2175,9 +2234,13 @@ on(type: 'captureStartWithInfo', callback: AsyncCallback\<CaptureStartInfo\>): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, captureStartInfo: camera.CaptureStartInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`photo capture started, captureStartInfo : ${captureStartInfo}`);
 }
 
@@ -2204,7 +2267,7 @@ off(type: 'captureStartWithInfo', callback?: AsyncCallback\<CaptureStartInfo\>):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function unRegisterCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureStartWithInfo');
@@ -2236,7 +2299,7 @@ isMovingPhotoSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
   let isSupported: boolean = false;
@@ -2280,7 +2343,7 @@ enableMovingPhoto(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
   try {
@@ -2299,6 +2362,10 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 
 注册监听photoAsset上报。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2311,8 +2378,8 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
   if (err) {
@@ -2381,7 +2448,9 @@ on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 监听拍照开始，通过注册回调函数获取Capture ID。使用callback异步回调。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[on('captureStartWithInfo')](#oncapturestartwithinfo11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[on('captureStartWithInfo')](#oncapturestartwithinfo11)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2395,9 +2464,13 @@ on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, captureId: number): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`photo capture started, captureId : ${captureId}`);
 }
 
@@ -2413,7 +2486,9 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 注销监听拍照开始。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[off('captureStartWithInfo')](#offcapturestartwithinfo11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[off('captureStartWithInfo')](#offcapturestartwithinfo11)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2450,9 +2525,13 @@ on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, frameShutterInfo: camera.FrameShutterInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`CaptureId for frame : ${frameShutterInfo.captureId}`);
   console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 }
@@ -2491,6 +2570,10 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 
 监听拍照结束，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2503,9 +2586,13 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, captureEndInfo: camera.CaptureEndInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
   console.info(`frameCount : ${captureEndInfo.frameCount}`);
 }
@@ -2544,6 +2631,10 @@ on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): voi
 
 监听拍照曝光结束捕获，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2556,9 +2647,13 @@ on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, frameShutterEndInfo: camera.FrameShutterEndInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`CaptureId for frame : ${frameShutterEndInfo.captureId}`);
 }
 
@@ -2596,6 +2691,10 @@ on(type: 'captureReady', callback: AsyncCallback\<void\>): void
 
 监听可拍下一张，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2608,9 +2707,13 @@ on(type: 'captureReady', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function callback(): void {
+function callback(err: BusinessError): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`photo capture ready`);
 }
 
@@ -2648,6 +2751,10 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 
 监听预估的拍照时间，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2655,14 +2762,18 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
-| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。                                 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, duration: number): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`photo estimated capture duration : ${duration}`);
 }
 
@@ -2700,6 +2811,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听拍照输出发生错误，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2712,7 +2827,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Photo output error code: ${err.code}`);
@@ -2776,7 +2891,7 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 | 名称       | 类型    | 只读 | 必填 | 说明       |
 | ---------- | ------ | ---- | ---- | --------- |
 | captureId  | number | 否   | 是   | 拍照的ID。 |
-| time       | number | 否   | 是   | 拍照时间戳。    |
+| time       | number | 否   | 是   | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。    |
 
 ## CaptureEndInfo
 
@@ -2819,7 +2934,7 @@ start(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
@@ -2858,7 +2973,7 @@ start(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start().then(() => {
@@ -2886,7 +3001,7 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop((err: BusinessError) => {
@@ -2916,7 +3031,7 @@ stop(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop().then(() => {
@@ -2933,6 +3048,10 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听录像开始，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2945,7 +3064,13 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-function callback(): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info('Video frame started');
 }
 
@@ -2959,6 +3084,10 @@ function registerVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
 off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 注销监听录像开始。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2996,7 +3125,13 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-function callback(): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info('Video frame ended');
 }
 
@@ -3034,6 +3169,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听录像输出发生错误，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3046,7 +3185,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Video output error code: ${err.code}`);
@@ -3196,7 +3335,7 @@ start(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start((err: BusinessError) => {
@@ -3235,7 +3374,7 @@ start(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
@@ -3263,7 +3402,7 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop((err: BusinessError) => {
@@ -3293,7 +3432,7 @@ stop(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop().then(() => {
@@ -3310,6 +3449,10 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 
 监听检测到的metadata对象，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3322,9 +3465,13 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info('metadata output metadataObjectsAvailable');
 }
 
@@ -3362,6 +3509,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听metadata流的错误，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3374,7 +3525,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(metadataOutputError: BusinessError): void {
   console.error(`Metadata output error code: ${metadataOutputError.code}`);
@@ -3531,7 +3682,7 @@ beginConfig(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function beginConfig(session: camera.Session): void {
   try {
@@ -3570,7 +3721,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function commitConfig(session: camera.Session): void {
   session.commitConfig((err: BusinessError) => {
@@ -3609,7 +3760,7 @@ commitConfig(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function commitConfig(session: camera.Session): void {
   session.commitConfig().then(() => {
@@ -3644,7 +3795,7 @@ canAddInput(cameraInput: CameraInput): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function canAddInput(session: camera.Session, cameraInput: camera.CameraInput): void {
   let canAdd: boolean = session.canAddInput(cameraInput);
@@ -3680,7 +3831,7 @@ addInput(cameraInput: CameraInput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function addInput(session: camera.Session, cameraInput: camera.CameraInput): void {
   try {
@@ -3721,7 +3872,7 @@ removeInput(cameraInput: CameraInput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function removeInput(session: camera.Session, cameraInput: camera.CameraInput): void {
   try {
@@ -3757,7 +3908,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function canAddOutput(session: camera.Session, cameraOutput: camera.CameraOutput): void {
   let canAdd: boolean = session.canAddOutput(cameraOutput);
@@ -3793,7 +3944,7 @@ addOutput(cameraOutput: CameraOutput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function addOutput(session: camera.Session, cameraOutput: camera.CameraOutput): void {
   try {
@@ -3834,7 +3985,7 @@ removeOutput(cameraOutput: CameraOutput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function removeOutput(session: camera.Session, previewOutput: camera.PreviewOutput): void {
   try {
@@ -3874,7 +4025,7 @@ start(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startCaptureSession(session: camera.Session): void {
   session.start((err: BusinessError) => {
@@ -3914,7 +4065,7 @@ start(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startCaptureSession(session: camera.Session): void {
   session.start().then(() => {
@@ -3950,7 +4101,7 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopCaptureSession(session: camera.Session): void {
   session.stop((err: BusinessError) => {
@@ -3988,7 +4139,7 @@ stop(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopCaptureSession(session: camera.Session): void {
   session.stop().then(() => {
@@ -4024,7 +4175,7 @@ release(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releaseCaptureSession(session: camera.Session): void {
   session.release((err: BusinessError) => {
@@ -4062,7 +4213,7 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releaseCaptureSession(session: camera.Session): void {
   session.release().then(() => {
@@ -4109,7 +4260,7 @@ setFlashMode(flashMode: FlashMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFlashMode(photoSession: camera.PhotoSession): void {
   try {
@@ -4147,7 +4298,7 @@ getFlashMode(): FlashMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFlashMode(photoSession: camera.PhotoSession): camera.FlashMode | undefined {
   let flashMode: camera.FlashMode | undefined = undefined;
@@ -4191,7 +4342,7 @@ hasFlash(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function hasFlash(photoSession: camera.PhotoSession): boolean {
   let status: boolean = false;
@@ -4237,7 +4388,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isFlashModeSupported(photoSession: camera.PhotoSession): boolean {
   let status: boolean = false;
@@ -4283,7 +4434,7 @@ getExposureMode(): ExposureMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureMode(photoSession: camera.PhotoSession): camera.ExposureMode | undefined {
   let exposureMode: camera.ExposureMode | undefined = undefined;
@@ -4323,7 +4474,7 @@ setExposureMode(aeMode: ExposureMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setExposureMode(photoSession: camera.PhotoSession): void {
   try {
@@ -4361,7 +4512,7 @@ getMeteringPoint(): Point
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getMeteringPoint(photoSession: camera.PhotoSession): camera.Point | undefined {
   let exposurePoint: camera.Point | undefined = undefined;
@@ -4401,7 +4552,7 @@ setMeteringPoint(point: Point): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setMeteringPoint(photoSession: camera.PhotoSession): void {
   const point: camera.Point = {x: 1, y: 1};
@@ -4443,7 +4594,7 @@ setExposureBias(exposureBias: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setExposureBias(photoSession: camera.PhotoSession, biasRangeArray: Array<number>): void {
   if (biasRangeArray && biasRangeArray.length > 0) {
@@ -4484,7 +4635,7 @@ getExposureValue(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureValue(photoSession: camera.PhotoSession): number {
   const invalidValue: number = -1;
@@ -4535,7 +4686,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isExposureModeSupported(photoSession: camera.PhotoSession): boolean {
   let isSupported: boolean = false;
@@ -4575,7 +4726,7 @@ getExposureBiasRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
   let biasRangeArray: Array<number> = [];
@@ -4623,7 +4774,7 @@ setFocusMode(afMode: FocusMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusMode(photoSession: camera.PhotoSession): void {
   try {
@@ -4661,7 +4812,7 @@ getFocusMode(): FocusMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusMode(photoSession: camera.PhotoSession): camera.FocusMode | undefined {
   let afMode: camera.FocusMode | undefined = undefined;
@@ -4701,7 +4852,7 @@ setFocusPoint(point: Point): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusPoint(photoSession: camera.PhotoSession): void {
   const focusPoint: camera.Point = {x: 1, y: 1};
@@ -4740,7 +4891,7 @@ getFocusPoint(): Point
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusPoint(photoSession: camera.PhotoSession): camera.Point | undefined {
   let point: camera.Point | undefined = undefined;
@@ -4780,7 +4931,7 @@ getFocalLength(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocalLength(photoSession: camera.PhotoSession): number {
   const invalidValue: number = -1;
@@ -4831,7 +4982,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
   let status: boolean = false;
@@ -4897,7 +5048,7 @@ setZoomRatio(zoomRatio: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setZoomRatio(photoSession: camera.PhotoSession, zoomRatioRange: Array<number>): void {
   if (zoomRatioRange === undefined || zoomRatioRange.length <= 0) {
@@ -4940,7 +5091,7 @@ getZoomRatio(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomRatio(photoSession: camera.PhotoSession): number {
   const invalidValue: number = -1;
@@ -4982,7 +5133,7 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setSmoothZoom(sessionExtendsZoom: camera.Zoom, targetZoomRatio: number, mode: camera.SmoothZoomMode): void {
   try {
@@ -5024,7 +5175,7 @@ getZoomRatioRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomRatioRange(photoSession: camera.PhotoSession): Array<number> {
   let zoomRatioRange: Array<number> = [];
@@ -5075,7 +5226,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getActiveVideoStabilizationMode(videoSession: camera.VideoSession): camera.VideoStabilizationMode | undefined {
   let vsMode: camera.VideoStabilizationMode | undefined = undefined;
@@ -5115,7 +5266,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setVideoStabilizationMode(videoSession: camera.VideoSession): void {
   try {
@@ -5163,7 +5314,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isVideoStabilizationModeSupported(videoSession: camera.VideoSession): boolean {
   let isSupported: boolean = false;
@@ -5207,7 +5358,7 @@ beginConfig(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function beginConfig(captureSession: camera.CaptureSession): void {
   try {
@@ -5249,7 +5400,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function commitConfig(captureSession: camera.CaptureSession): void {
   captureSession.commitConfig((err: BusinessError) => {
@@ -5291,7 +5442,7 @@ commitConfig(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function commitConfig(captureSession: camera.CaptureSession): void {
   captureSession.commitConfig().then(() => {
@@ -5332,7 +5483,7 @@ addInput(cameraInput: CameraInput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function addInput(captureSession: camera.CaptureSession, cameraInput: camera.CameraInput): void {
   try {
@@ -5374,7 +5525,7 @@ removeInput(cameraInput: CameraInput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function removeInput(captureSession: camera.CaptureSession, cameraInput: camera.CameraInput): void {
   try {
@@ -5416,7 +5567,7 @@ addOutput(cameraOutput: CameraOutput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function addOutput(captureSession: camera.CaptureSession, cameraOutput: camera.CameraOutput): void {
   try {
@@ -5458,7 +5609,7 @@ removeOutput(cameraOutput: CameraOutput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function removeOutput(captureSession: camera.CaptureSession, previewOutput: camera.PreviewOutput): void {
   try {
@@ -5500,7 +5651,7 @@ start(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start((err: BusinessError) => {
@@ -5542,7 +5693,7 @@ start(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start().then(() => {
@@ -5581,7 +5732,7 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop((err: BusinessError) => {
@@ -5622,7 +5773,7 @@ stop(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop().then(() => {
@@ -5661,7 +5812,7 @@ release(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release((err: BusinessError) => {
@@ -5702,7 +5853,7 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release().then(() => {
@@ -5741,7 +5892,7 @@ hasFlash(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function hasFlash(captureSession: camera.CaptureSession): boolean {
   let status: boolean = false;
@@ -5790,7 +5941,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isFlashModeSupported(captureSession: camera.CaptureSession): boolean {
   let status: boolean = false;
@@ -5838,7 +5989,7 @@ setFlashMode(flashMode: FlashMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFlashMode(captureSession: camera.CaptureSession): void {
   try {
@@ -5879,7 +6030,7 @@ getFlashMode(): FlashMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode | undefined {
   let flashMode: camera.FlashMode | undefined = undefined;
@@ -5928,7 +6079,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isExposureModeSupported(captureSession: camera.CaptureSession): boolean {
   let isSupported: boolean = false;
@@ -5971,7 +6122,7 @@ getExposureMode(): ExposureMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureMode(captureSession: camera.CaptureSession): camera.ExposureMode | undefined {
   let exposureMode: camera.ExposureMode | undefined = undefined;
@@ -6014,7 +6165,7 @@ setExposureMode(aeMode: ExposureMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setExposureMode(captureSession: camera.CaptureSession): void {
   try {
@@ -6055,7 +6206,7 @@ getMeteringPoint(): Point
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getMeteringPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
   let exposurePoint: camera.Point | undefined = undefined;
@@ -6101,7 +6252,7 @@ setMeteringPoint(point: Point): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setMeteringPoint(captureSession: camera.CaptureSession): void {
   const point: camera.Point = {x: 1, y: 1};
@@ -6143,7 +6294,7 @@ getExposureBiasRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureBiasRange(captureSession: camera.CaptureSession): Array<number> {
   let biasRangeArray: Array<number> = [];
@@ -6188,7 +6339,7 @@ setExposureBias(exposureBias: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setExposureBias(captureSession: camera.CaptureSession, biasRangeArray: Array<number>): void {
   if (biasRangeArray && biasRangeArray.length > 0) {
@@ -6232,7 +6383,7 @@ getExposureValue(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureValue(captureSession: camera.CaptureSession): number {
   const invalidValue: number = -1;
@@ -6282,7 +6433,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isFocusModeSupported(captureSession: camera.CaptureSession): boolean {
   let status: boolean = false;
@@ -6327,7 +6478,7 @@ setFocusMode(afMode: FocusMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusMode(captureSession: camera.CaptureSession): void {
   try {
@@ -6368,7 +6519,7 @@ getFocusMode(): FocusMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusMode(captureSession: camera.CaptureSession): camera.FocusMode | undefined {
   let afMode: camera.FocusMode | undefined = undefined;
@@ -6414,7 +6565,7 @@ setFocusPoint(point: Point): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusPoint(captureSession: camera.CaptureSession): void {
   const focusPoint: camera.Point = {x: 1, y: 1};
@@ -6456,7 +6607,7 @@ getFocusPoint(): Point
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
   let point: camera.Point | undefined = undefined;
@@ -6499,7 +6650,7 @@ getFocalLength(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocalLength(captureSession: camera.CaptureSession): number {
   const invalidValue: number = -1;
@@ -6543,7 +6694,7 @@ getZoomRatioRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomRatioRange(captureSession: camera.CaptureSession): Array<number> {
   let zoomRatioRange: Array<number> = [];
@@ -6586,7 +6737,7 @@ setZoomRatio(zoomRatio: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setZoomRatio(captureSession: camera.CaptureSession, zoomRatioRange: Array<number>): void {
   if (zoomRatioRange === undefined || zoomRatioRange.length <= 0) {
@@ -6631,7 +6782,7 @@ getZoomRatio(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomRatio(captureSession: camera.CaptureSession): number {
   const invalidValue: number = -1;
@@ -6681,7 +6832,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isVideoStabilizationModeSupported(captureSession: camera.CaptureSession): boolean {
   let isSupported: boolean = false;
@@ -6724,7 +6875,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession): camera.VideoStabilizationMode | undefined {
   let vsMode: camera.VideoStabilizationMode | undefined = undefined;
@@ -6767,7 +6918,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setVideoStabilizationMode(captureSession: camera.CaptureSession): void {
   try {
@@ -6787,7 +6938,9 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('focusStateChange')](#onfocusstatechange11-1)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('focusStateChange')](#onfocusstatechange11-1)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6801,10 +6954,14 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function registerFocusStateChange(captureSession: camera.CaptureSession): void {
   captureSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`Callback Error, errorCode: ${err.code}`);
+      return;
+    }
     console.info(`Focus state: ${focusState}`);
   });
 }
@@ -6843,6 +7000,10 @@ on(type: 'error', callback: ErrorCallback): void
 监听拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 > **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+> **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('error')](#onerror11-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -6857,7 +7018,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function registerCaptureSessionError(captureSession: camera.CaptureSession): void {
   captureSession.on('error', (error: BusinessError) => {
@@ -6920,8 +7081,8 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
@@ -6946,6 +7107,27 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
+**P3广色域与HDR高动态范围成像**   
+
+应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
+当应用不主动设置色彩空间时，拍照以及录像模式默认为HDR拍摄效果。  
+在拍照模式下设置HDR高显效果可直接支持P3色域。  
+应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
+
+**录像模式：**
+
+| SDR/HRD拍摄         | CameraFormat             | ColorSpace       |
+|--------------------|--------------------------|------------------|
+| SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+
+**拍照模式：**
+
+| SDR/HRD拍摄    | ColorSpace |
+|--------------|------------|
+| SDR          | SRGB       |
+| HDR(Default) | DISPLAY_P3 |
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -6968,8 +7150,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
   if (colorSpaces === undefined || colorSpaces.length <= 0) {
@@ -7009,8 +7191,8 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace | undefined {
   let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
@@ -7036,6 +7218,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听普通拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7048,7 +7234,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Photo session error code: ${err.code}`);
@@ -7088,6 +7274,10 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7100,9 +7290,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -7140,6 +7334,10 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 
 监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7152,9 +7350,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -7198,6 +7400,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听普通录像会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7210,7 +7416,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Video session error code: ${err.code}`);
@@ -7250,6 +7456,10 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7262,9 +7472,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -7302,6 +7516,10 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 
 监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7314,9 +7532,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -7381,7 +7603,7 @@ addSecureOutput(previewOutput: PreviewOutput): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function addSecureOutput(session: camera.SecureSession, previewOutput: camera.PreviewOutput): void {
   try {
@@ -7399,6 +7621,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听安全相机会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7411,7 +7637,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Video session error code: ${err.code}`);
@@ -7451,6 +7677,10 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7463,9 +7693,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 

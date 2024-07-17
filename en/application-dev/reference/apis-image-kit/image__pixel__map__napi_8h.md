@@ -5,6 +5,10 @@
 
 The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and unlock a pixel map.
 
+**Library**: libpixelmap_ndk.z.so
+
+**File to include**: &lt;multimedia/image_framework/image_pixel_map_napi.h&gt;
+
 **Since**: 8
 
 **Deprecated from**: 8
@@ -21,7 +25,7 @@ The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
+| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
 
 
 ### Enums

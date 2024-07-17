@@ -4,9 +4,9 @@
 
 > **说明：**
 >
->本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-
+> **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
 ## 导入模块
 
 ```ts
@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class Header {
-  public contentType: string;
-
-  constructor(contentType: string) {
-    this.contentType = contentType;
-  }
-}
-
 httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
   {
@@ -46,7 +38,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
     // 开发者根据自身业务需要添加header字段
-    header: new Header('application/json'),
+    header: { 'Accept' : 'application/json' },
     readTimeout: 60000, // 可选，默认为60000ms
     connectTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
@@ -149,6 +141,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+> 若url包含中文或其他语言，需先调用encodeURL(url)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -194,10 +187,10 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -276,10 +269,10 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -386,10 +379,10 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -495,10 +488,10 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -569,10 +562,10 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -670,10 +663,10 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -1100,7 +1093,7 @@ httpRequest.off("dataSendProgress");
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。当指定其类型为Object时，最大长度为65536 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | priority<sup>9+</sup>        | number                          | 否   | http/https请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'content-Type': 'application/json'}。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
@@ -1122,7 +1115,7 @@ httpRequest.off("dataSendProgress");
 
 HTTP 请求方法。
 
-**原子化服务API：** 从API11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

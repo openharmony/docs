@@ -331,7 +331,16 @@ hashSet.forEach((value?: string, key?: string): void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 entries(): IterableIterator<[T, T]>
@@ -370,7 +379,16 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
-
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -419,5 +437,15 @@ let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value: " + temp.value);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10;i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10;i++) {
+  hashSet.remove("sparrow" + i);
 }
 ```

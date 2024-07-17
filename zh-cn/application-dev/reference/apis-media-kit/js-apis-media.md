@@ -472,6 +472,7 @@ Codec MIME类型枚举。
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
+| AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -505,8 +506,8 @@ Codec MIME类型枚举。
 | ----------------- | ---- | -------------------------------- |
 | BUFFERING_START   | 1    | 表示开始缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | BUFFERING_END     | 2    | 表示结束缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>当前版本暂不支持使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>当前版本暂不支持使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -526,6 +527,12 @@ Codec MIME类型枚举。
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
 Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
+
+> **说明：**
+>
+> 在使用AVPlayer实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+> - [on('stateChange')](#onstatechange9)：监听播放状态机AVPlayerState切换。
+> - [on('error')](#onerror9)：监听错误事件。
 
 ### 属性
 
@@ -2002,7 +2009,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 播放缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | function | 是   | 播放缓存事件回调方法。<br/>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+| callback | function | 是   | 播放缓存事件回调方法。<br/>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
 
 **示例：**
 
@@ -2414,7 +2421,7 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取,也可以通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。    |
 | offset | number | 否   | 资源偏移量，默认值为0，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -3845,11 +3852,11 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，支持范围[32000 - 500000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 8]。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。 <br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -3890,6 +3897,7 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 
 ## Location
 
@@ -4596,7 +4604,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | function | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+| callback | function | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
 
 **示例：**
 
@@ -5656,7 +5664,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 视频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | function | 是   | 视频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+| callback | function | 是   | 视频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
 
 **示例：**
 

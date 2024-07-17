@@ -327,7 +327,9 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
@@ -387,7 +389,9 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
@@ -621,8 +625,8 @@ export default class EntryAbility extends UIAbility {
     let windowClassId: number = -1;
     let subWindowClassId: number = -1;
 
-    // 获取应用主窗及ID
     try {
+      // 获取应用主窗及ID
       let promise = windowStage.getMainWindow();
       promise.then((data) => {
         if (data == null) {
@@ -631,33 +635,21 @@ export default class EntryAbility extends UIAbility {
         }
         windowClass = data;
         windowClass.setUIContent("pages/Index");
-        try {
-          windowClassId = windowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        windowClassId = windowClass.getWindowProperties().id;
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
         console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
 
-    // 创建或获取子窗及ID，此时子窗口获焦
-    try {
-      let promise = windowStage.createSubWindow("testSubWindow");
-      promise.then((data) => {
+      // 创建或获取子窗及ID，此时子窗口获焦
+      let promiseSub = windowStage.createSubWindow("testSubWindow");
+      promiseSub.then((data) => {
         if (data == null) {
           console.error("Failed to obtaining the window. Cause: The data is empty");
           return;
         }
         subWindowClass = data;
-        try {
-          subWindowClassId = subWindowClass.getWindowProperties().id;
-        } catch (exception) {
-          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        subWindowClassId = subWindowClass.getWindowProperties().id;
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
@@ -666,21 +658,17 @@ export default class EntryAbility extends UIAbility {
         subWindowClass.on("windowEvent", (windowEvent) => {
           if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
             // 切换焦点
-            try {
-              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
-              promise.then(() => {
-                console.info('Succeeded in shifting app window focus');
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (exception) {
-              console.error(`Failed to shift app window focus. Cause code: ${exception.code}, message: ${exception.message}`);
-            }
+            let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+            promise.then(() => {
+              console.info('Succeeded in shifting app window focus');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+            });
           }
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to shift app focus. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -1120,6 +1108,8 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
+
+type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 
 当前支持显示或隐藏的系统栏类型。
 
@@ -1765,7 +1755,7 @@ setImmersiveModeEnabledState(enabled: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error.                             |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service work abnormally. |
 | 1300004 | This operation is not access.                |
@@ -3410,15 +3400,11 @@ let callback = () => {
 };
 try {
   windowClass.on('screenshot', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('screenshot', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('screenshot');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

@@ -13,11 +13,47 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+允许应用市场跳过loading弹框并为原子化服务提前打开窗口，并在窗口内部显示加载动效。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 允许应用打开和关闭位置信息开关。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SUBSCRIBE_SWING_ABILITY
+
+允许应用使用智慧感知订阅能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGER_SWING_MOTION
+
+允许应用使用隔空手势自适配能力。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -173,7 +209,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -195,7 +231,7 @@
 
 ### ohos.permission.GET_DOMAIN_ACCOUNTS
 
-允许应用查询域帐号信息。
+允许应用查询域账号信息。
 
 **权限级别**：system_basic
 
@@ -267,7 +303,7 @@
 
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理系统本地帐号。
+允许应用管理系统本地账号。
 
 **权限级别**：system_basic
 
@@ -303,7 +339,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_basic
 
@@ -315,7 +351,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_core
 
@@ -925,6 +961,18 @@
 
 **起始版本**：9
 
+### ohos.permission.MICROPHONE_CONTROL
+
+允许应用进行持久化全局麦克风静音等操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.START_DLP_CRED
 
 允许系统应用或者系统服务拉起DLP凭据管理应用。
@@ -1229,7 +1277,7 @@
 
 ### ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
-允许应用查询系统分布式帐号信息。
+允许应用查询系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1241,7 +1289,7 @@
 
 ### ohos.permission.GET_LOCAL_ACCOUNTS
 
-允许应用查询系统本地帐号信息。
+允许应用查询系统本地账号信息。
 
 **权限级别**：system_basic
 
@@ -1349,7 +1397,7 @@
 
 ### ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
-允许应用管理系统分布式帐号信息。
+允许应用管理系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1855,7 +1903,7 @@
 
 ### ohos.permission.ACCESS_MCP_AUTHORIZATION
 
-允许MCP宿主应用代理其子应用进行用户帐号授权登录。
+允许MCP宿主应用代理其子应用进行用户账号授权登录。
 
 **权限级别**：system_basic
 
@@ -2851,7 +2899,7 @@
 
 ### ohos.permission.QUERY_PASSWORD_VAULT_DATA
 
-允许应用获取密码保险箱帐号数据。
+允许应用获取密码保险箱账号数据。
 
 **权限级别**：system_basic
 
@@ -2863,7 +2911,7 @@
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
-允许用户帐号往数据管理服务写入自己的登录状态。
+允许用户账号往数据管理服务写入自己的登录状态。
 
 **权限级别**：system_basic
 
@@ -3103,7 +3151,7 @@
 
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
-允许系统应用获取用户帐号的未成年使用者信息。
+允许系统应用获取用户账号的未成年使用者信息。
 
 **权限级别**：system_basic
 
@@ -3365,6 +3413,42 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_MOUSE_CURSOR
+
+允许系统应用设置鼠标光标相关状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.FILTER_INPUT_EVENT
+
+允许系统应用过滤输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+允许系统应用或系统服务上报设备激活状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -3409,7 +3493,7 @@
 
 ### ohos.permission.GET_ALL_APP_ACCOUNTS
 
-允许应用查询所有的应用帐号信息。
+允许应用查询所有的应用账号信息。
 
 **权限级别**：system_core
 
@@ -3421,7 +3505,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为帐号凭据管理应用接口。
+允许应用调用设备认证华为账号凭据管理应用接口。
 
 **权限级别**：system_basic
 

@@ -38,28 +38,27 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 3. 打开EmbeddedUIExtAbility.ts文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
     ```ts
-    import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-    import Want from '@ohos.app.ability.Want';
-    
+    import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
     const TAG: string = '[ExampleEmbeddedAbility]'
+
     export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
       onCreate() {
         console.log(TAG, `onCreate`);
       }
-    
+
       onForeground() {
         console.log(TAG, `onForeground`);
       }
-    
+
       onBackground() {
         console.log(TAG, `onBackground`);
       }
-    
+
       onDestroy() {
         console.log(TAG, `onDestroy`);
       }
-    
+
       onSessionCreate(want: Want, session: UIExtensionContentSession) {
         console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
         let param: Record<string, UIExtensionContentSession> = {
@@ -68,7 +67,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
         let storage: LocalStorage = new LocalStorage(param);
         session.loadContent('pages/extension', storage);
       }
-    
+
       onSessionDestroy(session: UIExtensionContentSession) {
         console.log(TAG, `onSessionDestroy`);
       }
@@ -78,7 +77,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 4. EmbeddedUIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets内容如下：
 
     ```ts
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { UIExtensionContentSession } from '@kit.AbilityKit';
     
     let storage = LocalStorage.getShared()
     

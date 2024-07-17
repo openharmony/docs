@@ -445,9 +445,49 @@ nodeAPI->registerNodeEventReceiver(onclick);
 
 变更后：处理传入矩阵中的透视投影变换，即支持透视投影变换。
 
+**示例：**
+示例代码
+```
+import matrix4 from '@ohos.matrix4'
+const matrixArr: [number, number, number, number,
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number] = [
+  0.25, 0, 0, -0.0015,
+  0, 1, 0, 0,
+  0, 0, 1, 0,
+  0, 0, 0, 1];
+
+let matrix = matrix4.init(matrixArr);
+
+@Entry
+@Component
+struct Tests {
+  build() {
+    Column() {
+      Rect()
+        .fill(Color.Gray)
+        .scale({
+          x: 1,
+          centerX: 0,
+          centerY: 0,
+        })
+        .width('500px')
+        .height('500px')
+        .transform(matrix)
+    }.width('100%').height('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/transform_before.png)  |  ![](figures/transform_after.png)  |
+
 **起始API Level**
 
-该特性版本为API 7,变更版本为API 12。
+该特性版本为API 7。
 
 **变更发生版本**
 
@@ -455,39 +495,19 @@ nodeAPI->registerNodeEventReceiver(onclick);
 
 **适配指导**
 
-若传入的矩阵中若是涉及到透视投影变换，即矩阵最后一列的前三个参数不为0，则会出现变更前后不一致的现象。
-
-若适配前代码如下：
-```
-const matrixArr = [
-    1, 0, 0, 2, 
-    0, 2, 0, 1, 
-    0, 0, 3, 1, 
-    0, 0, 0, 1];
-
-let matrix = matrix4.init(matrixArr);
-
-@Entry
-@Component
-struct Tests {
-    build() {
-        Column() {
-            Image($r("app.media.startIcon"))
-                .width("40%")
-                .height(100)
-                .transform(matrix)
-        }
-    }
-}
-```
+若传入的矩阵中涉及到透视投影变换，即矩阵最后一列的前三个参数不为0，则会出现变更前后不一致的现象。
 
 适配方法：传入的矩阵中若是涉及到透视投影变换，处理透视投影相关的变换，因此变换效果会发生变化，若是想保持原样，将Matrix4Transit的最后一列的前三个参数（即第4,8,12个参数）置为0即可。
 ```
-const matrixArr = [
-    1, 0, 0, 2, 
-    0, 2, 0, 1, 
-    0, 0, 3, 1, 
-    0, 0, 0, 1];
+const matrixArr: [number, number, number, number,
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number] = [
+  0.25, 0, 0, -0.0015,
+  0, 1, 0, 0,
+  0, 0, 1, 0,
+  0, 0, 0, 1];
+  
 for (let i = 3;i < 12;i += 4) {
     matrixArr[i] = 0;
 }

@@ -1,4 +1,4 @@
-# @ohos.multimedia.movingphotoview (\<MovingPhotoView> Component)
+# @ohos.multimedia.movingphotoview (\<MovingPhotoView>)
 
 The \<**MovingPhotoView**> component is used to play live photo files and control the playback status.
 
@@ -10,7 +10,7 @@ The \<**MovingPhotoView**> component is used to play live photo files and contro
 ## Modules to Import
 
 ```
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
 ```
 
 ## MovingPhotoView
@@ -181,7 +181,7 @@ Stops playback. Once started again, the playback starts from the beginning.
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 import { emitter } from '@kit.BasicServicesKit'
 import { dataSharePredicates } from '@kit.ArkData'
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
 
 const PHOTO_SELECT_EVENT_ID: number = 80001
 
@@ -314,4 +314,3 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 ![movingphotoview](figures/movingphotoview.gif)
-

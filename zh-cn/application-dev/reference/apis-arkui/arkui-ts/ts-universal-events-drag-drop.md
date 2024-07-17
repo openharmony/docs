@@ -126,7 +126,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，不包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onPreDrag<sup>12+</sup>
 

@@ -6,7 +6,7 @@
 
 ## Calendar Kit简介
 
-Calendar Kit提供日历与日程管理能力，包括日历的获取和日程的创建能力。日历管理器CalendarManager用于管理日历Calendar。日历Calendar主要包含帐户信息CalendarAccount和配置信息CalendarConfig。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+Calendar Kit提供日历与日程管理能力，包括日历的获取和日程的创建能力。日历管理器CalendarManager用于管理日历Calendar。日历Calendar主要包含账户信息CalendarAccount和配置信息CalendarConfig。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 ## 运作机制
 

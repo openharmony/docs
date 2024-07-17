@@ -301,7 +301,7 @@ let result = lightWeightSet.equal(obj);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-将当前容器扩容至可以容纳指定数量元素。
+将当前LightWeightSet扩容至可以容纳指定数量元素。如果传入的容量值大于或等于当前LightWeightSet中的元素个数，将容量变更为新容量，小于则不会变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -311,7 +311,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳数量。 |
+| minimumCapacity | number | 是 | 需要容纳的元素数量。 |
 
 **错误码：**
 
@@ -663,7 +663,16 @@ lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### entries
 
@@ -702,7 +711,16 @@ while(index < lightWeightSet.length) {
   index++;
 }
 ```
-
+```ts
+// 不建议在entries中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### [Symbol.iterator]
 
@@ -751,5 +769,15 @@ let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
 }
 ```

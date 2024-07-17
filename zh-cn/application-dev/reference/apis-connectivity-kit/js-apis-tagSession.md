@@ -292,6 +292,8 @@ getMaxTransmitSize(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -461,7 +463,7 @@ setTimeout(timeout: number): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -613,7 +615,7 @@ transmit(data: number[]): Promise<number[]>
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
@@ -678,7 +680,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |

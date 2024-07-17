@@ -14,12 +14,12 @@
 
 ## 接口说明
 
-| 名称 | 说明                                                                                                                                        |
-| -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| setUnifiedData(data: udc.UnifiedData): Promise\<void> | 将统一数据类型的数据写入系统剪贴板。 
-| setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
-| getUnifiedData(): Promise\<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
-| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口。                                                                                                                   |
+| 名称 | 说明                                                                   |
+| -------- |----------------------------------------------------------------------|
+| setUnifiedData(data: udc.UnifiedData): Promise\<void> | 将统一数据类型的数据写入系统剪贴板，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
+| setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
+| getUnifiedData(): Promise\<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。|
+| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口，在使用延迟复制粘贴功能时，不可与setUnifiedData和setUnifiedDataSync同线程调用。|
 
 ## 开发步骤
 
