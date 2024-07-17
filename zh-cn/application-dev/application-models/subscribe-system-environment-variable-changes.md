@@ -19,77 +19,90 @@
 
 1. 使用`ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)`方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
 
-  ```ts
-  import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = '[CollaborateAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[CollaborateAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  @Entry
-  @Component
-  struct Index {
-    private context = getContext(this) as common.UIAbilityContext;
-    private callbackId: number = 0; // 注册订阅系统环境变化的ID
+    @Entry
+    @Component
+    struct Index {
+      private context = getContext(this) as common.UIAbilityContext;
+      private callbackId: number = 0; // 注册订阅系统环境变化的ID
 
-    subscribeConfigurationUpdate(): void {
-      let systemLanguage: string | undefined = this.context.config.language; // 获取系统当前语言
+      subscribeConfigurationUpdate(): void {
+        let systemLanguage: string | undefined = this.context.config.language; // 获取系统当前语言
 
-      // 1.获取ApplicationContext
-      let applicationContext = this.context.getApplicationContext();
+        // 1.获取ApplicationContext
+        let applicationContext = this.context.getApplicationContext();
 
-      // 2.通过applicationContext订阅环境变量变化
-      let environmentCallback: EnvironmentCallback = {
-        onConfigurationUpdated(newConfig: Configuration) {
-          hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-          if (this.systemLanguage !== newConfig.language) {
-            hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-            systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
+        // 2.通过applicationContext订阅环境变量变化
+        let environmentCallback: EnvironmentCallback = {
+          onConfigurationUpdated(newConfig: Configuration) {
+            hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+            if (this.systemLanguage !== newConfig.language) {
+              hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+              systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
+            }
+          },
+          onMemoryLevel(level) {
+            hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
           }
-        },
-        onMemoryLevel(level) {
-          hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
         }
+        try {
+          this.callbackId = applicationContext.on('environment', environmentCallback);
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+        };
       }
-      try {
-        this.callbackId = applicationContext.on('environment', environmentCallback);
-      } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-      };
-    }
 
-    // 页面展示
-    build() {
-      //...
+      // 页面展示
+      build() {
+        //...
+      }
     }
-  }
-  ```
+    ```
 
 2. 在资源使用完成之后，可以通过调用`ApplicationContext.off(type: 'environment', callbackId: number)`方法释放相关资源。
 
-  ```ts
-  import { common } from '@kit.AbilityKit';
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct Index {
-    private context = getContext(this) as common.UIAbilityContext;
-    private callbackId: number = 0; // 注册订阅系统环境变化的ID
+    const TAG: string = '[CollaborateAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-    unsubscribeConfigurationUpdate() {
-      let applicationContext = this.context.getApplicationContext();
-      applicationContext.off('environment', this.callbackId);
+    @Entry
+    @Component
+    struct Index {
+      private context = getContext(this) as common.UIAbilityContext;
+      private callbackId: number = 0; // 注册订阅系统环境变化的ID
+
+      unsubscribeConfigurationUpdate() {
+        let applicationContext = this.context.getApplicationContext();
+        try {
+          applicationContext.off('environment', this.callbackId);
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+        }
+        ;
+
+      }
+
+      // 页面展示
+      build() {
+        //...
+      }
     }
-
-    // 页面展示
-    build() {
-      //...
-    }
-  }
-  ```
+    ```
 
 ## 在AbilityStage组件容器中订阅回调
 

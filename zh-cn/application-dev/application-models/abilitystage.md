@@ -16,32 +16,33 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
    
-   ```ts
-   import { AbilityStage, Want } from '@kit.AbilityKit';
-   
-   export default class MyAbilityStage extends AbilityStage {
-     onCreate(): void {
-       // 应用的HAP在首次加载的时，为该Module初始化操作
-     }
+    ```ts
+    import { AbilityStage, Want } from '@kit.AbilityKit';
+    
+    export default class MyAbilityStage extends AbilityStage {
+      onCreate(): void {
+        // 应用的HAP在首次加载的时，为该Module初始化操作
+      }
 
-     onAcceptWant(want: Want): string {
-       // 仅specified模式下触发
-       return 'MyAbilityStage';
-     }
-   }
-   ```
+      onAcceptWant(want: Want): string {
+        // 仅specified模式下触发
+        return 'MyAbilityStage';
+      }
+    }
+    ```
    
 4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中，通过配置 `srcEntry` 参数来指定模块对应的代码路径，以作为HAP加载的入口。
-   ```json
-   {
-     "module": {
-       "name": "entry",
-       "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
-       ...
-     }
-   }
-   ```
+
+    ```json
+    {
+      "module": {
+        "name": "entry",
+        "type": "entry",
+        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+        ...
+      }
+    }
+    ```
 
 [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)拥有[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调和[`onAcceptWant()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[`onConfigurationUpdated()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[`onMemoryLevel()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调。
 
