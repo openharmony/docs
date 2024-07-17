@@ -17,7 +17,7 @@ The instances of the following types are mentioned in this topic:
 ## **Modules to Import**
 
 ```js
-import secureElement from '@ohos.secureElement';
+import { omapi } from '@kit.ConnectivityKit';
 ```
 
 ## secureElement.ServiceState
@@ -51,21 +51,30 @@ The returned **SEService** instance is available only when **true** is returned 
 **Return value**
 
 | **Type** | **Description**  |
-| :-------- | :--------- |
+| -------- | --------- |
 | SEService | **SEService** instance created.|
+
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **Example**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 function secureElementDemo() {
     // Obtain the service.
     try {
-        seService = secureElement.newSEService("serviceState", (state) => {
+        seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
         });
     } catch (error) {
@@ -75,6 +84,45 @@ function secureElementDemo() {
         hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
         return;
     }
+}
+```
+
+## secureElement.createService<sup>12+</sup>
+
+createService(): Promise\<SEService>;
+
+Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, this API supports only the asynchronous mode.
+
+The **SEService** object is available only when [isConnected](#seserviceisconnected) returns **true**.
+
+**System capability**: SystemCapability.Communication.SecureElement
+
+**Return value**
+
+| **Type** | **Description**  |
+| :-------- | :--------- |
+| Promise\<SEService> | Primose used to return the **SEService** instance created.|
+
+**Example**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService : omapi.SEService;
+
+function secureElementDemo() {
+    omapi.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
 }
 ```
 
@@ -92,14 +140,22 @@ Obtains available SE readers, which include all the SEs on the device.
 | :------- | :--------------------- |
 | Reader[] | Available readers obtained.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
-let seReaders : secureElement.Reader[];
+let seService : omapi.SEService;
+let seReaders : omapi.Reader[];
 
 // Initialize seService before using it.
 function secureElementDemo() {
@@ -130,18 +186,27 @@ Checks whether this SE service is connected.
 | :------- | :--------------------------------------------- |
 | boolean  | Returns **true** if the SE service is connected; returns **false** otherwise.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 function secureElementDemo() {
     // Obtain the service.
     try {
-        seService = secureElement.newSEService("serviceState", (state) => {
+        seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
         });
     } catch (error) {
@@ -162,13 +227,22 @@ Releases all SE resources allocated to this SE service. After that, [isConnected
 
 **System capability**: SystemCapability.Communication.SecureElement
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 // Initialize seService before using it.
 
@@ -193,13 +267,22 @@ Obtains the version of the Open Mobile API (OMAPI) specification used.
 | -------- | -------------------------------------------------- |
 | string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 // Initialize seService before using it.
 
@@ -225,10 +308,21 @@ Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader an
 | -------- | ---------- |
 | string   | Reader name obtained.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seReaders : secureElement.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
 
 // Initialize seReaders before using it.
 
@@ -266,7 +360,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : secureElement.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
 
 // Initialize seReaders before using it.
 
@@ -305,8 +402,11 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
 
 // Initialize seReaders before using it.
 function secureElementDemo() {
@@ -342,9 +442,12 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let reader : secureElement.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
 
 // Initialize seReaders before using it.
 function secureElementDemo() {
@@ -380,12 +483,23 @@ Obtains the reader that provides this session.
 | -------- | --------------------------- |
 | Reader   | Reader instance obtained.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let reader : secureElement.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
 
 // Initialize seReaders before using it.
 function secureElementDemo() {
@@ -432,7 +546,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Initialize seSession before using it.
 
@@ -463,7 +580,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Initialize seSession before using it.
 
@@ -492,10 +612,17 @@ Checks whether this session is closed.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```Js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Initialize seSession before using it.
 
@@ -526,7 +653,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Initialize seSession before using it.
 
@@ -571,8 +701,11 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
@@ -623,8 +756,11 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
@@ -683,8 +819,11 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -737,8 +876,11 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -790,15 +932,18 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
@@ -842,15 +987,18 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
@@ -902,15 +1050,18 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -956,15 +1107,18 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -1003,11 +1157,22 @@ Obtains the session used to open this channel.
 | -------- | ----------------------------- |
 | Session  | Session instance obtained.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1026,10 +1191,21 @@ Closes this channel.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1054,10 +1230,21 @@ Checks whether this channel is a basic channel.
 | -------- | ------------------------------------------------------------ |
 | boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1083,10 +1270,21 @@ Checks whether this channel is closed.
 | -------- | --------------------------------------------- |
 | boolean  | Returns **true** if the channel is closed; returns **false** otherwise.|
 
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1116,10 +1314,17 @@ Obtains the response data including the status word of **SELECT Applet**.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1164,7 +1369,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
@@ -1208,7 +1416,10 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 

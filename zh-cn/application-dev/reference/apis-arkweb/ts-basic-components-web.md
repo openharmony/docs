@@ -70,7 +70,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-  ```
+   ```
 
 Web组件统一渲染模式。
 
@@ -89,7 +89,7 @@ Web组件统一渲染模式。
       }
     }
   }
-  ```
+   ```
 
 加载本地网页。
 
@@ -1094,7 +1094,7 @@ defaultFixedFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1127,7 +1127,7 @@ defaultFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1516,7 +1516,7 @@ pinchSmooth(isEnabled: boolean)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1789,13 +1789,13 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web基于页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT），默认为Web基于页面大小的自适应网页布局模式。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件大小基于前端页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
-> Web基于页面大小的自适应网页布局有如下限制：
-> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
-> - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> Web组件大小基于前端页面自适应布局有如下限制：
+> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - Web组件创建后不支持动态切换layoutMode模式
+> - Web组件宽高规格：分别不超过50万px。
+> - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 
 **参数：**
 
@@ -1805,6 +1805,7 @@ layoutMode(mode: WebLayoutMode)
 
 **示例：**
 
+  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1817,8 +1818,30 @@ layoutMode(mode: WebLayoutMode)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
           .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，建议指定overScrollMode为OverScrollMode.NEVER。
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+          .layoutMode(this.layoutMode)
+          .overScrollMode(this.overScrollMode)
       }
     }
   }
@@ -2181,7 +2204,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
-    
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -3088,7 +3111,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+调用此函数以处理具有“文件”输入类型的HTML表单。如果不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。如果返回true，应用可以自定义“选择文件”的响应行为。
 
 **参数：**
 
@@ -4507,7 +4530,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -5070,6 +5093,59 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 **示例：**
 
+```ts
+// EntryAbility.ets
+
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    // API12新增：开启同层渲染BFCache开关
+    let features = new webview.BackForwardCacheSupportedFeatures();
+    features.nativeEmbed = true;
+    features.mediaTakeOver = true;
+    webview.WebviewController.enableBackForwardCache(features);
+    webview.WebviewController.initializeWebEngine();
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -5083,7 +5159,8 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // 默认行为：点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使Embed标签进入BFCache。
         Button('Destroy')
         .onClick(() => {
           try {
@@ -5092,6 +5169,31 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使Embed标签离开BFCache。
+        Button('backward')
+        .onClick(() => {
+          try {
+            this.controller.backward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使Embed标签进入BFCache。
+        Button('forward')
+        .onClick(() => {
+          try {
+            this.controller.forward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+
+        // API12新增同层标签进入离开BFCache状态：非http与https协议加载的网页，Web内核不支持进入BFCache;
+        // 因此如果要测试ENTER_BFCACHE/LEAVE_BFCACHE状态，需要将index.html放到Web服务器上，使用http或者https协议加载，如：
+        // Web({ src: "http://xxxx/index.html", controller: this.controller })
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
@@ -5106,6 +5208,14 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
             // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
+            }
+            // 同层标签所在的页面进入BFCache时，会触发Enter BFCache。
+            if (event.status == NativeEmbedStatus.ENTER_BFCACHE) {
+              this.embedStatus = 'Enter BFCache';
+            }
+            // 同层标签所在的页面离开BFCache时，会触发Leave BFCache。
+            if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
+              this.embedStatus = 'Leave BFCache';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
@@ -6257,7 +6367,7 @@ confirm(userName: string, password: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的帐号密码认证。
+通知Web组件用户使用服务器缓存的账号密码认证。
 
 **返回值：**
 
@@ -7740,6 +7850,8 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | CREATE                        | 0 | Embed标签创建。   |
 | UPDATE                        | 1 | Embed标签更新。   |
 | DESTROY                       | 2 | Embed标签销毁。 |
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | Embed标签进入BFCache。   |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | Embed标签离开BFCache。 |
 
 ## NativeEmbedInfo<sup>11+</sup>
 

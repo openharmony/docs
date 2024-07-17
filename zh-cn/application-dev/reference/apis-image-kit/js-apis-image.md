@@ -112,8 +112,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | Ipc error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -2686,6 +2686,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 import { fileIo } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 const filePath: string = context.filesDir + "/test.jpg";
 let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
@@ -3674,7 +3675,6 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
@@ -3733,7 +3733,6 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
@@ -3787,7 +3786,6 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
@@ -3848,7 +3846,6 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
@@ -3895,7 +3892,6 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -3940,7 +3936,6 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
@@ -3986,7 +3981,6 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -4030,7 +4024,6 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
@@ -4162,7 +4155,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -4204,7 +4197,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -5100,7 +5093,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
-| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听时间触发成功，err为undefined，否则为错误对象。  |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听事件触发成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -5484,15 +5477,13 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。 |
-| quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
-| bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 
 ## ImagePropertyOptions<sup>11+</sup>

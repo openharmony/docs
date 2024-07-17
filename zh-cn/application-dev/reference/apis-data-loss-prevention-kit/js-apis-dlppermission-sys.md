@@ -123,7 +123,7 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的OS帐号ID，默认主用户ID：100。 |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的OS账号ID，默认主用户ID：100。 |
 | uri | string | 是 | DLP文件的URI。 |
 
 **返回值：**
@@ -177,7 +177,7 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系帐号ID，默认主用户ID：100。 |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系账号ID，默认主用户ID：100。 |
 | uri | string | 是 | DLP文件的URI。 |
 | callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | 是 | 获取应用沙箱信息的回调。 |
 
@@ -230,7 +230,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。 |
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100 |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100 |
 | appIndex | number | 是 | DLP沙箱号。 |
 
 **返回值：**
@@ -285,7 +285,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。 |
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100。 |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。 |
 | appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取卸载结果的回调。 |
 
@@ -1509,7 +1509,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 待加密明文文件的fd。 |
 | ciphertextFd | number | 是 | 目标加密文件的fd。 |
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 |
+| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
 
 **返回值：**
 
@@ -1583,7 +1583,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 待加密明文文件的fd。 |
 | ciphertextFd | number | 是 | 目标加密文件的fd。 |
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 |
+| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
@@ -1830,7 +1830,7 @@ DLP沙箱身份。
 
 ## AccountType
 
-授权帐号类型的枚举。
+授权账号类型的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1838,8 +1838,8 @@ DLP沙箱身份。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| CLOUD_ACCOUNT | 1 | 表示云帐号。 |
-| DOMAIN_ACCOUNT | 2 | 表示域帐号。 |
+| CLOUD_ACCOUNT | 1 | 表示云账号。 |
+| DOMAIN_ACCOUNT | 2 | 表示域账号。 |
 
 ## AuthUser
 
@@ -1851,8 +1851,8 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户帐号。 |
-| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户帐号类型。 |
+| authAccount | string | 否 | 是 | 表示被授权用户账号。 |
+| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
 
@@ -1866,11 +1866,11 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者帐号。 |
-| ownerAccountID | string | 否 | 是 | 表示权限设置者帐号的ID。 |
-| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者帐号类型。 |
+| ownerAccount | string | 否 | 是 | 表示权限设置者账号。 |
+| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。 |
+| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
 | authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
-| contactAccount | string | 否 | 是 | 表示联系人帐号。 |
+| contactAccount | string | 否 | 是 | 表示联系人账号。 |
 | offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |

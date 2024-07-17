@@ -5577,6 +5577,64 @@ import { socket } from '@kit.NetworkKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
+## socket.constructTLSSocketInstance<sup>12+</sup>
+
+constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
+
+将TCPSocket升级为TLSSocket，创建并返回一个TLSSocket对象。
+
+> **说明：**
+> 需要确保TCPSocket已连接，并且当前已经没有传输数据，再调用constructTLSSocketInstance升级TLSSocket。当升级成功后，无需对TCPSocket对象调用close方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名       | 类型 | 必填 | 说明                     |
+|-----------|----| ---- |------------------------|
+| tcpSocket | [TCPSocket](#tcpsocket)   | 是   | 需要进行升级的TCPSocket对象。 |
+
+**返回值:**
+
+| 类型                               | 说明                    |
+|  --------------------------------- |  ---------------------- |
+| [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                             |
+|---------|----------------------------------|
+| 401     | Parameter error.  |
+| 2300002 | System internal error.  |
+| 2303601 | Invalid socket FD.     |
+| 2303602 | Socket is not connected.  |
+
+**示例：**
+
+```ts
+import { socket } from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  timeout: 6000
+}
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // 确保TCPSocket已连接后，再升级TLSSocket
+  let tls: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+})
+```
+
 ## TLSSocket<sup>9+</sup>
 
 TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9)创建TLSSocket对象。
@@ -5586,6 +5644,9 @@ TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constr
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口。使用callback方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -5632,6 +5693,9 @@ tls.bind(bindAddr, (err: BusinessError) => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口。使用Promise方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 

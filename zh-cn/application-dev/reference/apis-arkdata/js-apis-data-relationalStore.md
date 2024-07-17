@@ -539,9 +539,10 @@ class EntryAbility extends UIAbility {
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| isReadOnly<sup>12+<sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误；如果动态库无法加载会开库失败，返回错误。<br/>动态库名需为完整路径，用于被sqlite加载，样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -948,6 +949,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
@@ -2122,27 +2124,25 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2207,27 +2207,25 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2297,7 +2295,6 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2306,19 +2303,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2386,7 +2383,6 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2395,19 +2391,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2475,7 +2471,6 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2484,19 +2479,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2559,7 +2554,6 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2574,19 +2568,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2656,7 +2650,6 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2672,19 +2665,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2752,7 +2745,6 @@ batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2768,19 +2760,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2844,7 +2836,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2852,19 +2843,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2931,7 +2922,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2939,19 +2929,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3022,7 +3012,6 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3031,19 +3020,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3113,7 +3102,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3122,19 +3110,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3204,7 +3192,6 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3213,19 +3200,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // 以下三种方式可用
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -4628,7 +4615,6 @@ beginTransaction():void
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4637,7 +4623,7 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
-  const valueBucket: ValuesBucket = {
+  const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
@@ -4752,7 +4738,6 @@ commit():void
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4761,7 +4746,7 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
-  const valueBucket: ValuesBucket = {
+  const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
@@ -4878,7 +4863,7 @@ rollBack():void
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4888,7 +4873,7 @@ let value4 = new Uint8Array([1, 2, 3]);
 if(store != undefined) {
   try {
     (store as relationalStore.RdbStore).beginTransaction()
-    const valueBucket: ValuesBucket = {
+    const valueBucket: relationalStore.ValuesBucket = {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
@@ -5475,6 +5460,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
@@ -5599,6 +5585,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
@@ -5926,18 +5913,19 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices != undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    })
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
   }
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -5960,7 +5948,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
 **错误码：**
 
@@ -5977,18 +5965,19 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver => {
-      if (devices != undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6000,13 +5989,17 @@ try {
 **示例2：type为SUBSCRIBE_TYPE_LOCAL_DETAILS**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
+  for (let i = 0; i < changeInfos.length; i++) {
+    console.info(`changeInfos = ${changeInfos[i]}`);
+  }
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
-      for (let i = 0; i < ChangeInfos.length; i++) {
-        console.info(`ChangeInfos = ${ChangeInfos[i]}`);
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, changeInfos);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6020,7 +6013,7 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 try {
-  const valueBucket: ValuesBucket = {
+  const valueBucket: relationalStore.ValuesBucket = {
     'name': value1,
     'age': value2,
     'salary': value3,
@@ -6068,11 +6061,15 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = () => {
+  console.info(`storeObserver`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
-      console.info(`storeObserver`);
-    });
+    (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6111,11 +6108,13 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
+  console.info(`progress: ${progressDetail}`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
-    });
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6155,15 +6154,17 @@ on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
+  console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
+  console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
+  console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
+  console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
+  console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('statistics', (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
-      console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
-      console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
-      console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
-      console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
-      console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
-    });
+    (store as relationalStore.RdbStore).on('statistics', sqlExecutionInfo);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6177,7 +6178,7 @@ try {
   let value3 = 100.5;
   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
-  const valueBucket: ValuesBucket = {
+  const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
@@ -6220,17 +6221,30 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```ts
-let devices: string | undefined = undefined;
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
+
+try {
+  if (store != undefined) {
+    // 此处不能使用Lambda表达式
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  }
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices != undefined){
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6253,7 +6267,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **错误码：**
 
@@ -6270,18 +6284,29 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices !=  undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6321,11 +6346,25 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = () => {
+  console.info(`storeObserver`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('storeObserver', false, (storeObserver) => {
-      console.info(`storeObserver`);
-    });
+    (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6364,11 +6403,23 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
+  console.info(`progress: ${progressDetail}`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
-    });
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;

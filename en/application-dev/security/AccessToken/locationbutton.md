@@ -34,7 +34,7 @@ The following example implements the following: After **Current Location** is ta
 
 2. Add the \<**LocationButton**> component and obtain the current location information.
    
-   The  \<**LocationButton**> component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.
+   The \<**LocationButton**> component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.
 
    When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 

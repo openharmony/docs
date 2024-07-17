@@ -26,16 +26,16 @@
 1. 获取公共目录路径。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import environment from '@ohos.file.environment';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { Environment } from '@kit.CoreFileKit';
 
     function getUserDirExample() {
         try {
-            const downloadPath = environment.getUserDownloadDir();
+            const downloadPath = Environment.getUserDownloadDir();
             console.info(`success to getUserDownloadDir: ${downloadPath}`);
-            const documentsPath = environment.getUserDocumentDir();
+            const documentsPath = Environment.getUserDocumentDir();
             console.info(`success to getUserDocumentDir: ${documentsPath}`);
-            const desktopPath = environment.getUserDesktopDir();
+            const desktopPath = Environment.getUserDesktopDir();
             console.info(`success to getUserDesktopDir: ${desktopPath}`);
         } catch (error) {
             const err: BusinessError = error as BusinessError;
@@ -47,16 +47,16 @@
 2. 以 Download 目录为例，访问 Download 目录下的文件。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import environment from '@ohos.file.environment';
-    import fs from '@ohos.file.fs';
-    import common from '@ohos.app.ability.common';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { Environment } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     function readUserDownloadDirExample() {
         // 检查是否具有 READ_WRITE_DOWNLOAD_DIRECTORY 权限，无权限则需要向用户申请授予权限。
         try {
             // 获取 Download 目录
-            const downloadPath = environment.getUserDownloadDir();
+            const downloadPath = Environment.getUserDownloadDir();
             console.info(`success to getUserDownloadDir: ${downloadPath}`);
             const context = getContext() as common.UIAbilityContext;
             const dirPath = context.filesDir;
@@ -82,15 +82,15 @@
 3. 以 Download 目录为例，保存文件到 Download 目录。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import environment from '@ohos.file.environment';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { Environment } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
 
     function writeUserDownloadDirExample() {
     // 检查是否具有 READ_WRITE_DOWNLOAD_DIRECTORY 权限，无权限则需要向用户申请授予权限。
         try {
             // 获取 Download 目录
-            const downloadPath = environment.getUserDownloadDir();
+            const downloadPath = Environment.getUserDownloadDir();
             console.info(`success to getUserDownloadDir: ${downloadPath}`);
             // 保存 temp.txt 到 Download 目录下
             const file = fs.openSync(`${downloadPath}/temp.txt`, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);

@@ -169,6 +169,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
 
 
 ### 变量
@@ -3073,6 +3075,52 @@ Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uin
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_PixelmapNative_ConvertAlphaFormat()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul);
+```
+
+**描述**
+
+将pixlemap的像素数据做预乘和非预乘之间的转换。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| srcpixelmap | 被操作的OH_PixelmapNative指针, 源pixelmap对象指针。 | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。 | 
+| isPremul | 转换方式，true为非预乘转预乘，false为预乘转非预乘。| 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PixelmapNative_CreateEmptyPixelmap()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+```
+
+**描述**
+
+利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 创建像素的属性。 | 
+| pixelmap | 被创建的OH_PixelmapNative对象指针。 |  
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ## 变量说明
 

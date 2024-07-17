@@ -8,14 +8,14 @@
 - 如果支持动态照片，可以调用相机框架提供的使能接口**使能**动态照片能力。
 - 监听照片回调，将照片存入媒体库。
 
-> **说明：**
-> 
-> - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
-> - 拍摄动态照片需要麦克风权限ohos.permission.MICROPHONE，权限申请和校验方式，请参考[开发准备](camera-preparation.md)。
-
 ## 开发步骤
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
+
+> **说明：**
+>
+> - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+> - 拍摄动态照片需要麦克风权限ohos.permission.MICROPHONE，权限申请和校验的方式请参考[开发准备](camera-preparation.md)。否则拍摄的照片没有声音。
 
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
@@ -91,7 +91,7 @@
 
    async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
      try {
-       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
        await phAccessHelper.applyChanges(assetChangeRequest);
        console.info('apply saveCameraPhoto successfully');

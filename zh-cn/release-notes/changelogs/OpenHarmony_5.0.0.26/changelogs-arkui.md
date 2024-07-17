@@ -292,3 +292,31 @@ struct Demo {
 ```
 
 ![demo](figures/ImageBitmap.png)
+
+## cl.arkui.8 ImageSpanAlignment BASELINE 效果调整
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ImageSpanAlignment BASELINE 原先显示效果与文档解释不符
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+1. ImageSpan 组件的 ImageSpanAlignment BASELINE 效果调整，将图片底部与 baseline 进行对齐
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果以达到预期。
