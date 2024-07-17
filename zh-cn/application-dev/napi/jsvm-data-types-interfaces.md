@@ -1662,16 +1662,44 @@ OH_JSVM_GetVersion(env, &versionId);
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
-|OH_JSVM_AdjustExternalMemory| 通知虚拟机系统内存不足并有选择地触发垃圾回收 |
-|OH_JSVM_MemoryPressureNotification| 创建一个延迟对象和一个JavaScript promise |
+|OH_JSVM_AdjustExternalMemory| 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
+|OH_JSVM_MemoryPressureNotification| 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。 |
 
 场景示例：
 内存管理。
 
 ```c++
-int64_t change = 1024 * 1024; // 分配1MB的内存
+// 分别在调用OH_JSVM_AdjustExternalMemory前后来查看底层虚拟机视角下外部分配的内存大小
 int64_t result;
-OH_JSVM_AdjustExternalMemory(env, change, &result);
+OH_JSVM_AdjustExternalMemory(env, 0, &result); // 假设外部分配内存的变化不变
+OH_LOG_INFO(LOG_APP, "Before AdjustExternalMemory: %{public}lld\n", result); // 得到调整前的数值
+// 调整外部分配的内存大小通知给底层虚拟机（此示例假设内存使用量增加）
+int64_t memoryIncrease = 1024 * 1024; // 增加 1 MB
+OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result); 
+OH_LOG_INFO(LOG_APP, "After AdjustExternalMemory: %{public}lld\n", result); // 得到调整后的数值
+```
+```c++
+// 打开一个Handle scope，在scope范围内申请大量内存来测试函数功能；
+// 分别在“完成申请后”、“关闭scope后”和“调用OH_JSVM_MemoryPressureNotification后”三个节点查看内存状态
+JSVM_HandleScope tmpscope;   
+OH_JSVM_OpenHandleScope(env, &tmpscope);
+for (int i = 0; i < 1000000; ++i) {
+    JSVM_Value obj;
+    OH_JSVM_CreateObject(env, &obj);
+}
+JSVM_HeapStatistics mem;
+OH_JSVM_GetHeapStatistics(vm, &mem); // 获取虚拟机堆的统计数据
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 申请完成后，内存处于最大状态
+OH_JSVM_CloseHandleScope(env, tmpscope); // 关闭Handle scope
+
+OH_JSVM_GetHeapStatistics(vm, &mem);
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 关闭scope后，GC并没有立即回收
+
+// 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收
+OH_JSVM_MemoryPressureNotification(env, JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL); // 假设内存压力处于临界状态
+
+OH_JSVM_GetHeapStatistics(vm, &mem);
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 触发垃圾回收后
 ```
 
 ### Promise操作
