@@ -1496,7 +1496,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 }
 ```
 
-### setWakeUpScreen()<sup>9+</sup>
+### setWakeUpScreen<sup>9+</sup>
 
 setWakeUpScreen(wakeUp: boolean): void
 
@@ -2796,7 +2796,7 @@ Implements a window manager, which manages each basic window unit, that is, [Win
 
 Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
 
-### disableWindowDecor()<sup>9+</sup>
+### disableWindowDecor<sup>9+</sup>
 
 disableWindowDecor(): void
 
@@ -2833,7 +2833,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setShowOnLockScreen()<sup>9+</sup>
+### setShowOnLockScreen<sup>9+</sup>
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
