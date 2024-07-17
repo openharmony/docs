@@ -100,5 +100,6 @@ dump(filePath: string): Array<string>;
 **示例：**
 
 ```js
-let result:Array<string> = jsLeakWatcher.dump("/data/local/tmp/");
+let context = getContext(this);
+let files:Array<string> = jsLeakWatcher.dump(context.filesDir);
 ```
