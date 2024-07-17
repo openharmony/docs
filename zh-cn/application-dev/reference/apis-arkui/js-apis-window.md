@@ -3280,15 +3280,11 @@ const callback = () => {
 }
 try {
   windowClass.on('touchOutside', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('touchOutside', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('touchOutside');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3432,15 +3428,11 @@ const callback = () => {
 }
 try {
   windowClass.on('dialogTargetTouch', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('dialogTargetTouch', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('dialogTargetTouch');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3679,15 +3671,11 @@ const callback = () => {
 }
 try {
   windowClass.on('noInteractionDetected', 60, callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('noInteractionDetected', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('noInteractionDetected');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
