@@ -17,7 +17,7 @@ import { jsLeakWatcher } from '@kit.PerformanceAnalysisKit';
 
 enable(isEnable: boolean): void;
 
-使能js对象泄露检测
+使能js对象泄露检测，默认关闭
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -38,7 +38,7 @@ jsLeakWatcher.enable(true);
 
 watch(obj: object, msg: string): void;
 
-注册被检测泄露的对象
+注册待检测泄露的对象
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -89,7 +89,7 @@ dump(filePath: string): Array<string>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| filePath | string | 是 | 导出信息生成的文件名 |
+| filePath | string | 是 | 导出信息生成的文件存放的路径 |
 
 **返回值：**
 
@@ -100,5 +100,5 @@ dump(filePath: string): Array<string>;
 **示例：**
 
 ```js
-let result:Array<string> = jsLeakWatcher.dump("/data/local/tmp/leakinfo.txt");
+let result:Array<string> = jsLeakWatcher.dump("/data/local/tmp/");
 ```
