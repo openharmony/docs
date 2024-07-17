@@ -6847,7 +6847,9 @@ async function onAudioInterrupt(){
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用，使用callback方式返回结果。
+订阅到达标记的事件。当渲染的帧数到达frame参数的值时，触发回调，仅调用一次，使用callback方式返回结果。
+
+举例说明，如果frame设置为100，当渲染帧数到达第100帧时，将上报信息。
 
 **系统能力:** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6856,8 +6858,8 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                      |
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。         |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -6894,7 +6896,9 @@ audioRenderer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值，使用callback方式返回结果。
+订阅到达标记的事件。每当渲染的帧数达到frame参数的值时，触发回调，即按周期上报信息。使用callback方式返回结果。
+
+举例说明，如果frame设置为10，每当渲染10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6903,8 +6907,8 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于 0。           |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -8211,7 +8215,9 @@ audioCapturer.off('audioCapturerChange');
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发，使用callback方式返回结果。
+订阅标记到达的事件。当采集的帧数达到frame参数的值时，触发回调，仅调用一次，使用callback方式返回结果。
+
+举例说明，如果frame设置为100，当采集帧数到达第100帧时，将上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8220,8 +8226,8 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                       |
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。           |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -8257,7 +8263,9 @@ audioCapturer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值，使用callback方式返回结果。
+订阅到达标记的事件。每当采集的帧数达到frame参数的值时，触发回调，即按周期上报信息。使用callback方式返回结果。
+
+举例说明，如果frame设置为10，每当采集10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8266,8 +8274,8 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | Callback\<number>         | 是   |回调函数，返回frame 参数的值。    |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。            |
+| callback | Callback\<number>         | 是   |回调函数，返回frame参数的值。    |
 
 **示例：**
 
