@@ -656,7 +656,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 **说明：**
 >
-> 从API version 12开始不再支持。建议使用window.setWakeUpScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 12开始废弃。替代接口window.setWakeUpScreen仅面向系统应用开放。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -688,7 +688,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 **说明：**
 >
-> 从API version 12开始不再支持。建议使用window.setWakeUpScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 12开始废弃。替代接口window.setWakeUpScreen仅面向系统应用开放。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
