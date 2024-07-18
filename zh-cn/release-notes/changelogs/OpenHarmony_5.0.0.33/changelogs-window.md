@@ -1,6 +1,6 @@
 # 窗口子系统变更说明
 
-## cl.window.1 SetWindowSystemBarEnable、SetSystemBarEnable行为变更
+## cl.window.1 SetWindowSystemBarEnable、SetSystemBarEnable 不在2in1设备生效行为变更
 
 **访问级别**
 
