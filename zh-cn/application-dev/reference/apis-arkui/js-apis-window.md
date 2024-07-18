@@ -3982,15 +3982,11 @@ const callback = () => {
 }
 try {
   windowClass.on('subWindowClose', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('subWindowClose', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('subWindowClose');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
