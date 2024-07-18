@@ -12,7 +12,7 @@ For details about the component reuse mechanism, see ./component-recycle-case.md
 |:--:|--|--|--|
 |**Standard**|The layouts of reused components are the same.|Standard Reuse|[Component Reuse Practice](./component-recycle.md)|
 |**finite change type**|Reused components are different, but the types are limited.|Use reuseId or create two customized components.|[Component Reuse Performance Optimization Guide](./component-recycle-case.md)|
-|**Combination**|There are many differences between reused components, but they have common subcomponents.|The reused component is changed to Builder so that internal subcomponents can be reused.|[Combined Component Reuse Guide](#combined)|
+|**Combined**|There are many differences between reused components, but they have common subcomponents.|The reused component is changed to Builder so that internal subcomponents can be reused.|[Combined Component Reuse Guide](#combined)|
 |**Global**|Components can be reused in different parent components, and @Builder is not suitable.|Use BuilderNode to customize the reuse component pool and transfer freely in the entire application.|[Reuse of Global Customized Components] (./node_custom_component_reusable_pool.md)|
 |**Nested**|The subcomponents of the reused component are different.|The nesting problem is solved by converting the nesting problem into the preceding four standard types.|/|
 |**Non-reusable**|Components differ greatly, are not regular, and subcomponents are different.|Component reuse is not recommended.|/|
@@ -186,7 +186,7 @@ struct ReusableComponent {
 
 ![limited_case.png](./figures/component_reuse_overview_limited_case.png)
 
-### Combination
+### Combined
 
 ![composition](./figures/component_reuse_overview_composition.png)
 
