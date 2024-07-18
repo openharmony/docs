@@ -81,7 +81,7 @@ import { accessibility } from '@kit.AccessibilityKit';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需配置参数setText。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
 | setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
 | common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
