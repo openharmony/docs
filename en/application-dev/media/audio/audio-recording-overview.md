@@ -8,7 +8,7 @@ The system provides a variety of APIs for you to develop audio recording applica
 
 - [OpenSL ES](using-opensl-es-for-recording.md): provides a set of standard, cross-platform native audio APIs. It supports audio input in PCM format and is suitable for recording applications that are ported from other embedded platforms or that implement audio input at the native layer.
 
-- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They are suitable for playback applications that implement audio input at the native layer.
+- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
 In addition to the preceding classes, you can also use Media Kit to implement audio playback.
 
