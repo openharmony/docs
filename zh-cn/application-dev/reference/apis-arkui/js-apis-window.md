@@ -5616,10 +5616,10 @@ setWindowDecorVisible(isVisible: boolean): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-
-windowClass.loadContent("pages/page2", (err: BusinessError) => {
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
   let errCode: number = err.code;
   if (errCode) {
     console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
@@ -5629,7 +5629,7 @@ windowClass.loadContent("pages/page2", (err: BusinessError) => {
   let isVisible = false;
   // 调用setWindowDecorVisible接口
   try {
-      windowClass.setWindowDecorVisible(isVisible);
+      windowClass?.setWindowDecorVisible(isVisible);
   } catch (exception) {
       console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
