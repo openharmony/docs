@@ -2,6 +2,8 @@
 
 In development of complex pages, precisely controlling the component render scope is especially important to speed up applications.
 
+## Associating Multiple Components with Different Attributes of the Same Object
+
 This document exemplifies why and how the component render scope may be precisely controlled. For starters, you need to understand the re-render mechanism with state management.
 
 ```ts
@@ -685,6 +687,259 @@ struct Page {
     }
     .width('100%')
     .height('100%')
+  }
+}
+```
+
+## Condition Refreshing When Multiple Components Are Associated with the Same Data
+
+When multiple components depend on different attributes of an object, if the object is directly associated, all components are refreshed when any attribute is changed. You can split and combine attributes in a class into a new class to accurately control component refreshing.
+
+If multiple components depend on the same data source and the components are updated based on the data source change, directly associating the data source causes all components to be updated each time the data source changes. To accurately control component updates, the following policies can be used:
+  1. Using the @Watch decorator: The @Watch decorator is used in the component to listen to the data source. When data changes, the service logic is executed to ensure that only the components that meet the conditions are refreshed.
+  2. Event-driven update: For complex component relationships or cross-level situations, use the Emitter custom event publishing and subscription mechanism. When the data source changes, the corresponding event is triggered. After receiving the notification, the component that subscribes to the event determines whether to update the component based on the change value.
+
+[Incorrect Usage]
+
+In the following sample code, multiple components are directly associated with the same data source, but the @Watch decorator and Emitter event-driven update are not used. As a result, redundant components are refreshed.
+
+```ts
+@Entry  
+@Component  
+struct Index {  
+  @State currentIndex: number = 0; //Subscript of the currently selected list item
+  private listData: string[] = [];
+  
+  aboutToAppear(): void {  
+    for (let i = 0; i < 10; i++) {  
+      this.listData.push(`ListItemComponent ${i}`);  
+    }  
+  }  
+  
+  build() {  
+    Row() {  
+      Column() {  
+        List() {  
+          ForEach(this.listData, (item: string, index: number) => {  
+            ListItem() {  
+              ListItemComponent({ item: item, index: index, currentIndex: this.currentIndex })  
+            }  
+          })  
+        }
+        .alignListItem(ListItemAlign.Center)
+      }  
+      .width('100%')  
+    }  
+    .height('100%')  
+  }  
+}  
+  
+@Component  
+struct ListItemComponent {  
+  @Prop item: string;
+  @Prop index: number; //Subscript of a list item
+  @Link currentIndex: number; 
+  private sizeFont: number = 50; 
+  
+  isRender(): number {  
+    console.info(`ListItemComponent ${this.index} Text is rendered`);  
+    return this.sizeFont;  
+  }  
+  
+  build() {  
+    Column() {  
+      Text(this.item)  
+        .fontSize(this.isRender())
+        // Dynamically set the text color based on the difference between the index and currentIndex of the current list item.
+        .fontColor(Math.abs(this.index - this.currentIndex) <= 1 ? Color.Red : Color.Blue)  
+        .onClick(() => {  
+          this.currentIndex = this.index;  
+        })  
+    }  
+  }  
+}
+```
+In the preceding example, after clicking Text, each ListItemComponent component assigns the index of the currently clicked list item to currentIndex. The status variable currentIndex decorated by @Link transfers the change to the parent component Index and all ListItemComponent components. Then, in all ListItemComponent components, the text color is determined based on whether the absolute value of the difference between the list item subscript index and currentIndex is less than or equal to 1. If the condition is met, the text is displayed in red. Otherwise, the text is displayed in blue.
+
+The following figure shows the running effect.
+![redundant_refresh](./figures/redundant_refresh.gif)
+
+After each click, all Text components are refreshed even if the colors of some Text components do not change. This is because the Text component in the ListItemComponent component is directly associated with currentIndex instead of the color calculated based on currentIndex.
+
+In the preceding scenario, you are advised to use the status decorator @Watch to listen to data sources. When the data source changes, the service logic is executed in the listening callback of @Watch. The component associates the callback processing result instead of directly associating the data source.
+
+[Correct Usage]
+
+The following is an optimization of the preceding example, showing how to use the @Watch decorator to implement precise refresh.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State currentIndex: number = 0; //Subscript of the currently selected list item
+  private listData: string[] = [];
+
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.listData.push (`Component ${i}`);
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        List() {
+          ForEach(this.listData, (item: string, index: number) => {
+            ListItem() {
+              ListItemComponent({ item: item, index: index, currentIndex: this.currentIndex })
+            }
+          })
+        }
+        .alignListItem(ListItemAlign.Center)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct ListItemComponent {
+  @Prop item: string;
+  @Prop index: number; //Subscript of a list item
+  @Link @Watch('onCurrentIndexUpdate') currentIndex: number;
+  @State color: Color = Math.abs(this.index - this.currentIndex) <= 1 ? Color.Red : Color.Blue;
+
+  isRender(): number {
+    console.info(`ListItemComponent ${this.index} Text is rendered`);
+    return 50;
+  }
+
+  onCurrentIndexUpdate() {
+    // Dynamically change the color value based on the difference between the index and currentIndex of the current list item.
+    this.color = Math.abs(this.index - this.currentIndex) <= 1 ? Color.Red : Color.Blue;
+  }
+
+  build() {
+    Column() {
+      Text(this.item)
+        .fontSize(this.isRender())
+        .fontColor(this.color)
+        .onClick(() => {
+          this.currentIndex = this.index;
+        })
+    }
+  }
+}
+```
+In the preceding code, the status variable currentIndex in the ListItemComponent component is decorated using @Watch, and the Text component is directly associated with the new status variable color. When currentIndex changes, the onCurrentIndexUpdate method is triggered to assign the calculation result of the expression to the status variable color. The Text component is rendered again only when the value of color changes.
+
+The following figure shows the running effect.
+
+![precise_refresh.gif](./figures/precise_refresh.gif)
+
+When the depended data source is transferred only in a parent-child or sibling component, you can refer to the preceding example to use the @State/@Link/@Watch decorator to manage the status and implement precise component refresh.
+
+If there are many component relationship levels but all components belong to the same component tree, you are advised to use @Provide/@Consume to transfer data, use the @Watch decorator to listen to data changes, and execute service logic in the listening callback. For details, see the following pseudocode.
+
+```ts
+// in ParentComponent
+@Provide @Watch('onCurrentValueUpdate') currentValue: number = 0;
+@State parentComponentResult: number = 0;
+onCurrentValueUpdate() {
+  // Execute the service logic.
+  this.parentComponentResult = X; // X indicates the value that needs to be assigned to parentComponentResult based on service logic.
+}
+Component.property(this.parentComponentResult)
+
+// in ChildComponent
+@Provide @Watch('onCurrentValueUpdate') currentValue: number = 0;
+@State childComponentResult: number = 0;
+onCurrentValueUpdate() {
+  // Execute the service logic.
+  this.childComponentResult = X; // X indicates the value that needs to be assigned to childComponentResult based on service logic.
+}
+Component.property(this.childComponentResult)
+
+// in NestedComponent
+@Provide @Watch('onCurrentValueUpdate') currentValue: number = 0;
+@State nestedComponentResult: number = 0;
+onCurrentValueUpdate() {
+  // Execute the service logic.
+  this.nestedComponentResult = X; // X indicates the value that needs to be assigned to nestedComponentResult based on service logic.
+}
+Component.property(this.nestedComponentResult)
+```
+
+When component relationships are complex or cross too many levels, you are advised to use the [Emitter] (../reference/apis-basic-services-kit/js-apis-emitter.md) customized event release and subscription mode. When the data source changes, an event is released. Components that depend on the data source obtain the data source change through event subscription to complete service logic processing, implementing precise component update.
+
+The following uses some sample codes to describe how to use the tool.
+
+The ButtonComponent component functions as an interaction component to trigger data changes. The ListItemComponent component receives data and refreshes the UI accordingly.
+
+```ts
+Column() {
+  Row() {
+    Column() {
+      ButtonComponent()
+    }
+  }
+  Column() {
+    Column() {
+      List() {
+        ForEach(this.listData, (item: string, index: number) => {
+          ListItemComponent({ myItem: item, index: index })
+        })
+      }
+      .alignListItem(ListItemAlign.Center)
+    }
+  }
+}
+```
+The relationship between the ButtonComponent and ListItemComponent components is complex. Therefore, in the Button callback of the ButtonComponent component, you can use emitter.emit to send events and subscribe to events in the ListItemComponent component. The data value is received in the callback triggered by the event. The service logic determines whether to modify the status variable color to accurately control the update of Text in the ListItemComponent component.
+
+```ts
+// in ButtonComponent
+Button (`The component text whose subscript is a multiple of ${this.value} turns red`.)
+  .onClick(() => {
+    let event: emitter.InnerEvent = {
+      eventId: 1,
+      priority: emitter.EventPriority.LOW
+    };
+    let eventData: emitter.EventData = {
+      data: {
+        value: this.value
+      }
+    };
+    // Emit the event with eventId 1 and event content eventData.
+    emitter.emit(event, eventData);
+    this.value++;
+  })
+
+```
+
+```ts
+// in ListItemComponent
+@State color: Color = Color.Black;
+aboutToAppear(): void {
+  let event: emitter.InnerEvent = {
+    eventId: 1
+  };
+  // Trigger the callback after the event with eventId 1 is received.
+  let callback = (eventData: emitter.EventData): void => {
+    if (eventData.data?.value !== 0 && this.index % eventData.data?.value === 0) {
+      this.color = Color.Red;
+    }
+  };
+  // Subscribe to the event with eventId 1.
+  emitter.on(event, callback);
+}
+build() {
+  Column() {
+    Text(this.myItem)
+      .fontSize(this.isRender())
+      .fontColor(this.color)
   }
 }
 ```
