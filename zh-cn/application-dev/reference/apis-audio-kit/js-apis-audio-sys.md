@@ -227,7 +227,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。    |
 | STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。   |
 | STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。 |
-| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>10+</sup>     | 21     | 通话辅助语音（目前仅提供给小艺使用）。<br/>此接口为系统接口。 |
+| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | 通话辅助语音。<br/>此接口为系统接口。 |
 
 ## InterruptRequestType<sup>9+</sup>
 
