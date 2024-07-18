@@ -303,7 +303,7 @@
 
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
-允许升级服务接收升级事件消息。
+允许应用、服务监听系统升级流程中的关键事件
 
 **权限级别**：system_basic
 
