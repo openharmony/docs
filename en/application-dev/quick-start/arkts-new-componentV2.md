@@ -16,6 +16,7 @@ Similar to [\@Component Decorator](arkts-create-custom-components.md), the \@Com
 - In the custom component decorated by \@ComponentV2, only new state variable decorators can be used, including \@Local, \@Param, \@Once, \@Event, \@Provider, and \@Consumer.
 - Custom components decorated by \@ComponentV2 do not support component reuse and LocalStorage.
 - \@ComponentV2 and \@Component cannot be used to decorate the same struct.
+- \@ComponentV2 can use an optional parameter **freezeWhenInactive** of the **boolean** type to implement the [component freezing](arkts-custom-components-freezeV2.md).
 
 - A simple \@ComponentV2 decorated custom component should contain the following parts:
 
