@@ -24,6 +24,8 @@ The following lifecycle callbacks are provided for a custom component decorated 
 
 - [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after a new instance of the custom component is created and before its **build** function is executed.
 
+- [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12): Invoked after the **build()** function of the custom component is executed. Do not change state variables or use functions (such as **animateTo**) in **onDidBuild**. Otherwise, unstable UI performance may result.
+
 - [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
 
@@ -44,27 +46,9 @@ Based on the preceding figure, let's look into the creation, re-rendering, and d
 
 3. If defined, the component's **aboutToAppear** callback is invoked.
 
-4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
-   1. State variable -> UI component (including **ForEach** and **if**)
-   2. UI component -> Update function for this component, which is a lambda. As a subset of the **build** function, the lambda creates one UI component and executes its attribute methods.
+4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. During initial render, the framework records the mapping between state variables and components. When a state variable changes, the framework drives the related components to update.
 
-
-   ```ts
-   build() {
-     ...
-     this.observeComponentCreation(() => {
-       Button.create();
-     })
-
-     this.observeComponentCreation(() => {
-       Text.create();
-     })
-     ...
-   }
-   ```
-
-
-When the application is started in the background, because the application process is not destroyed, only the **onPageShow** callback is invoked.
+5. If defined, the component's **onDidBuild** callback is invoked.
 
 
 ## Custom Component Re-rendering
@@ -126,6 +110,11 @@ struct MyComponent {
   }
 
   // Component lifecycle
+  onDidBuild() {
+    console.info('MyComponent onDidBuild');
+  }
+
+  // Component lifecycle
   aboutToDisappear() {
     console.info('MyComponent aboutToDisappear');
   }
@@ -160,6 +149,12 @@ struct Child {
   aboutToDisappear() {
     console.info('[lifeCycle] Child aboutToDisappear')
   }
+
+  // Component lifecycle
+  onDidBuild() {
+    console.info('[lifeCycle] Child onDidBuild');
+  }
+
   // Component lifecycle
   aboutToAppear() {
     console.info('[lifeCycle] Child aboutToAppear')
@@ -213,10 +208,10 @@ struct page {
 }
 ```
 
-In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear** and **aboutToDisappear** –  are also declared.
+In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear**, **onDidBuild**, and **aboutToDisappear** – are also declared.
 
 
-- The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> Child aboutToAppear -> Child build -> Child build execution completed -> MyComponent build execution completed -> Index onPageShow
+- The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> MyComponent onDidBuild -> Child aboutToAppear -> Child build -> Child onDidBuild -> Index onPageShow
 
 - When **delete Child** is clicked, the value of **this.showChild** linked to **if** changes to **false**. As a result, the **Child** component is deleted, and the **Child aboutToDisappear** callback is invoked.
 
@@ -231,3 +226,78 @@ In the preceding example, the **Index** page contains two custom components. One
 
 
 - When the application exits, the following callbacks are executed in order: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear.
+
+## Custom Component's Listening for Page Changes
+
+You can use the listener API in [Observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11) to listen for page changes in custom components.
+
+```ts
+// Index.ets
+import observer from '@ohos.arkui.observer';
+import router from '@ohos.router';
+import { UIObserver } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
+    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`Index onPageShow`);
+      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`Index onPageHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener);
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener);
+  }
+  build() {
+    Column() {
+      Text(`this page is ${this.queryRouterPageInfo()?.pageId}`)
+        .fontSize(25)
+      Button("push self")
+        .onClick(() => {
+          router.pushUrl({
+            url: 'pages/Index'
+          })
+        })
+      Column() {
+        SubComponent()
+      }
+    }
+  }
+}
+@Component
+struct SubComponent {
+  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
+    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`SubComponent onPageShow`);
+      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`SubComponent onPageHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener);
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener);
+  }
+  build() {
+    Column() {
+      Text(`SubComponent`)
+    }
+  }
+}
+```
