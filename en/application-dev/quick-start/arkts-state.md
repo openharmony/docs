@@ -220,7 +220,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 - Components or UI descriptions irrelevant to the state variable are not re-rendered, thereby implementing on-demand page updates.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Decorating Variables of Simple Types

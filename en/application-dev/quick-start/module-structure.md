@@ -12,7 +12,7 @@ The **module** tag contains the HAP configuration.
 | name | Class name of the HAP file. The value is a string with a maximum of 255 bytes, in the reverse domain name notation. The prefix must be the same as the **package** value specified for this module. Alternatively, the value can start with a period (.) followed by the class name.| String| Yes (initial value: left empty)|
 | description | Description of the HAP file. The value is a string with a maximum of 255 bytes. If the value exceeds the limit or needs to support multiple languages, you can use a resource index to the description.| String| Yes (initial value: left empty)|
 | supportedModes | Modes supported by the application. Currently, only the **drive** mode is defined. This attribute applies only to telematics devices.| String array| Yes (initial value: left empty)|
-|deviceType | Type of device on which the ability can run. The device types predefined in the system include **tablet**, **tv**, **car**, and **wearable**.| String array| No|
+|deviceType | <!--RP1-->Type of device on which the ability can run. The device types predefined in the system include **tablet**, **tv**, **car**, and **wearable**.<!--RP1End--> | String array| No|
 |distro | Distribution description of the HAP file.| Object| No|
 |metaData | Metadata of the HAP file.| Object| Yes (initial value: left empty)|
 | abilities | All abilities in the current module. The value is an array of objects, each of which represents an ability.| Object array| Yes (initial value: left empty)|
@@ -182,6 +182,7 @@ Example of the metadata attribute:
 
 **Table 7** Values of the deviceType attribute
 
+<!--RP2-->
 | Device Type| Value| Description|
 | -------- | -------- | -------- |
 | Tablet| tablet | - |
@@ -189,6 +190,7 @@ Example of the metadata attribute:
 | Smart watch| wearable | Watch that provides call features.|
 | Head unit| car | - |
 | Default device| default | Device that provides full access to system capabilities.|
+<!--RP2End-->
 
 ## Internal Structure of the abilities Attribute
 
@@ -257,7 +259,7 @@ Set **icon**, **label**, and **skills** under **abilities** in the **config.json
 }
 ```
 
-To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The rules for displaying the entry icon and entry label are as follows:
+To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:
 * The HAP file contains Page ability configuration.
   * The application icon on the home screen is set under **abilities** in the **config.json** file.
     * The application does not have the privilege to hide its icon from the home screen.
