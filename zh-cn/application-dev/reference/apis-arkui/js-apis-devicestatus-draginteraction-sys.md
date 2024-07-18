@@ -60,6 +60,8 @@ on(type: 'drag', callback: Callback\<DragState>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 202 | Not system application. |
@@ -95,6 +97,8 @@ off(type: 'drag', callback?: Callback\<DragState>): void
 | callback | Callback\<[DragState](#dragstate)> | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -148,6 +152,8 @@ getDataSummary(): Array\<Summary>
 | Array\<[Summary](#summary11)> | 所有拖拽对象的数据摘要，包含拖拽对象的类型和数据长度。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
