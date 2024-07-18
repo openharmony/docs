@@ -6773,7 +6773,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 设置期望帧率范围。
 
-一个页面有两个Swiper组件，其中一个设置期望帧率范围，另一个也会受到期望帧率范围影响。
+最终结果不一定是设置的帧率，会由系统能力做综合决策，尽量满足开发者的设置帧率。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
