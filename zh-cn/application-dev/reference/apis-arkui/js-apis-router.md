@@ -1049,7 +1049,7 @@ console.log('pages stack size = ' + size);
 
 getState(): RouterState
 
-获取当前页面的状态信息。
+获取栈顶页面的状态信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
