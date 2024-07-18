@@ -36,7 +36,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode)|否 | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onFinish   | ()&nbsp;=&gt;&nbsp;void      | 否 | 动画播放完成回调。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11)|否 | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | 否 | 设置动画的期望帧率。 |
+| expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | 否 | 设置动画的期望帧率。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 > **PlayMode说明：**
 >
@@ -46,6 +46,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 ## ExpectedFrameRateRange<sup>11+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|

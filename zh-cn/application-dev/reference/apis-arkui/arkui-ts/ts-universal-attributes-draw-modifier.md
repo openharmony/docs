@@ -12,6 +12,8 @@ drawModifier(modifier: DrawModifier | undefined)
 
 设置组件的自定义绘制修改器。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **组件支持范围:**
@@ -36,6 +38,8 @@ drawFront?(drawContext: DrawContext): void
 
 自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -49,6 +53,8 @@ drawFront?(drawContext: DrawContext): void
 drawContent?(drawContext: DrawContext): void
 
 自定义绘制内容的接口，若重载该方法可进行内容的自定义绘制，会替换组件原本的内容绘制函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -64,6 +70,8 @@ drawBehind?(drawContext: DrawContext): void
 
 自定义绘制背景的接口，若重载该方法则可进行背景的自定义绘制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -78,6 +86,8 @@ drawBehind?(drawContext: DrawContext): void
 invalidate(): void
 
 主动触发重绘的接口，开发者无需也无法重载，调用会触发所绑定组件的重绘。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
