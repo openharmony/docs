@@ -52,7 +52,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
     }, (err: BusinessError, data) => {
       if (err) {
-        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        console.error(`addContact callback: err->${JSON.stringify(err)}`);
         return;
       }
       console.log(`addContact callback: success data->${JSON.stringify(data)}`);
@@ -89,7 +89,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`addContact callback: err->${JSON.stringify(err)}`);
+          console.error(`addContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`addContact callback: success data->${JSON.stringify(data)}`);
@@ -220,7 +220,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`deleteContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('deleteContact success');
@@ -254,7 +254,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`deleteContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('deleteContact success');
@@ -382,7 +382,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -420,7 +420,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -468,7 +468,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -509,7 +509,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -646,7 +646,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
   let context = getContext(this) as Context;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`isLocalContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
@@ -680,7 +680,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`isLocalContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
@@ -802,7 +802,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
   let context = getContext(this) as Context;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`isMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
@@ -836,7 +836,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`isMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
@@ -958,7 +958,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
@@ -991,7 +991,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
@@ -1033,7 +1033,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
@@ -1069,7 +1069,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
@@ -1186,7 +1186,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.error(`selectContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
@@ -1252,7 +1252,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
@@ -1319,7 +1319,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
@@ -1399,7 +1399,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1433,7 +1433,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1445,7 +1445,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1479,7 +1479,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1490,7 +1490,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1518,7 +1518,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1529,7 +1529,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1561,7 +1561,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1572,7 +1572,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1598,7 +1598,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1609,7 +1609,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1646,7 +1646,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1657,7 +1657,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1688,7 +1688,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
@@ -1700,7 +1700,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-根据key查询联系人，使用Promise方式作为异步方法。
+根据key、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1712,8 +1712,8 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。           |
 
 **返回值：**
 | 类型                               | 说明                                            |
@@ -1751,7 +1751,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-根据key查询联系人，使用Promise方式作为异步方法。
+根据key、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -1766,8 +1766,8 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 | 参数名 | 类型                                    | 必填 | 说明                                   |
 | ------ | --------------------------------------- | ---- | -------------------------------------- |
 | key    | string                                  | 是   | 联系人的key值，一个联系人对应一个key。 |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                    |
 
 **返回值：**
 | 类型                               | 说明                                            |
@@ -1824,7 +1824,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -1857,7 +1857,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -1868,7 +1868,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1901,7 +1901,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -1912,7 +1912,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1939,7 +1939,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -1950,7 +1950,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据attrs查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1981,7 +1981,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -1992,7 +1992,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据attrs查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2017,7 +2017,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -2028,7 +2028,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder和attrs查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2064,7 +2064,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -2075,7 +2075,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder和attrs查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2105,7 +2105,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
@@ -2116,7 +2116,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-查询所有联系人，使用Promise方式作为异步方法。
+根据holder和attrs查询所有联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2127,8 +2127,8 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
 | 类型                                            | 说明                                                |
@@ -2166,7 +2166,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-查询所有联系人，使用Promise方式作为异步方法。
+根据holder和attrs查询所有联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -2180,8 +2180,8 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
@@ -2240,7 +2240,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2274,7 +2274,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2286,7 +2286,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2320,7 +2320,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2331,7 +2331,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2359,7 +2359,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2370,7 +2370,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2402,7 +2402,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2413,7 +2413,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2439,7 +2439,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2450,7 +2450,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2487,7 +2487,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2498,7 +2498,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2529,7 +2529,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
@@ -2540,7 +2540,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码查询联系人，使用Promise方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2552,8 +2552,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 | ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
-| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
 
@@ -2592,7 +2592,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码查询联系人，使用Promise方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -2607,8 +2607,8 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 | 参数名      | 类型                                    | 必填 | 说明                   |
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。     |
-| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
@@ -2667,7 +2667,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2701,7 +2701,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2712,7 +2712,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2746,7 +2746,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2757,7 +2757,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2785,7 +2785,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2796,7 +2796,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2828,7 +2828,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2839,7 +2839,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2865,7 +2865,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2876,7 +2876,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2913,7 +2913,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2924,7 +2924,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2955,7 +2955,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
@@ -2966,7 +2966,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email查询联系人，使用Promise方式作为异步方法。
+根据email、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2978,8 +2978,8 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email   | string                                  | 是   | 联系人的邮箱地址。                                           |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                                           |
 
 **返回值：**
 
@@ -3018,7 +3018,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email查询联系人，使用Promise方式作为异步方法。
+根据email、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3033,8 +3033,8 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | 是   | 联系人的邮箱地址。     |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
@@ -3092,7 +3092,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
@@ -3125,7 +3125,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
@@ -3136,7 +3136,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-查询联系人的所有群组，使用callback方式作为异步方法。
+根据holder查询联系人的所有群组，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3169,7 +3169,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
@@ -3180,7 +3180,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-查询联系人的所有群组，使用callback方式作为异步方法。
+根据holder查询联系人的所有群组，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -3207,7 +3207,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
@@ -3218,7 +3218,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-查询联系人的所有群组，使用Promise方式作为异步方法。
+根据holder查询联系人的所有群组，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3229,7 +3229,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人群组。                                       |
 
 **返回值：**
 
@@ -3266,7 +3266,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-查询联系人的所有群组，使用Promise方式作为异步方法。
+根据holder查询联系人的所有群组，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3280,7 +3280,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
-| holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
+| holder | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人群组。 |
 
 **返回值：**
 
@@ -3336,7 +3336,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`queryHolders callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
@@ -3369,7 +3369,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`queryHolders callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
@@ -3484,7 +3484,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
@@ -3518,7 +3518,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
@@ -3529,7 +3529,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3563,7 +3563,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
@@ -3574,7 +3574,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -3602,7 +3602,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
@@ -3613,7 +3613,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
-根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3625,7 +3625,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id      | number            | 是   | 联系人对象的id属性。                                         |
-| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                                       |
 
 **返回值：**
 
@@ -3662,7 +3662,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
-根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3677,7 +3677,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
 | id     | number            | 是   | 联系人对象的id属性。   |
-| holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
+| holder | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
 
 **返回值：**
 
