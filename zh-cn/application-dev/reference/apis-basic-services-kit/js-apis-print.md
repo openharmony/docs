@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
 ## PrintTask
@@ -43,7 +43,7 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -85,7 +85,7 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -127,7 +127,7 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -169,7 +169,7 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -211,7 +211,7 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -253,7 +253,7 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -295,7 +295,7 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -337,7 +337,7 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -386,7 +386,7 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -438,7 +438,7 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -490,12 +490,12 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
 let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
+//或者传入fd
 //let files = ['fd://1', 'fd://2'];
 print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
@@ -541,12 +541,12 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
 let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
+//或者传入fd
 //let files = ['fd://1', 'fd://2'];
 print.print(files).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
@@ -571,7 +571,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
@@ -587,12 +587,12 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
 let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
+//或者传入fd
 //let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
 print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
@@ -620,7 +620,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 
 **返回值：**
@@ -640,12 +640,12 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
 let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
+//或者传入fd
 //let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
 print.print(files, context).then((printTask: print.PrintTask) => {
@@ -693,7 +693,7 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobName : string = "jobName";
