@@ -118,7 +118,6 @@
                   Toggle({ type: ToggleType.Switch, isOn: true })
                     .margin({ right: '14fp' })
                     .alignSelf(ItemAlign.Center)
-                    .width('25%')
                 }
                 .width('100%')
                 .height('80vp')
