@@ -301,6 +301,18 @@
 
 **起始版本**：12
 
+### ohos.permission.RECEIVE_UPDATE_MESSAGE
+
+允许应用、服务监听系统升级流程中的关键事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 允许应用管理系统本地账号。
@@ -3670,18 +3682,6 @@
 **ACL使能**：false
 
 **起始版本**：11
-
-### ohos.permission.RECEIVE_UPDATE_MESSAGE
-
-允许应用、服务监听系统升级流程中的关键事件。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
