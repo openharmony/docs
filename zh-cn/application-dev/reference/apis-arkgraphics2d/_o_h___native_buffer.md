@@ -482,9 +482,9 @@ enum OH_NativeBuffer_MetadataKey
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_HDR_METADATA_TYPE | 元数据类型，其值见**OH_NativeBuffer_MetadataTyp**。 | 
-| OH_HDR_STATIC_METADATA | 静态元数据，其值见[OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)。 | 
-| OH_HDR_DYNAMIC_METADATA | 动态元数据，其值见视频流中SEI的字节流。 | 
+| OH_HDR_METADATA_TYPE | 元数据类型，其值见[OH_NativeBuffer_MetadataType](#oh_nativebuffer_metadatatype)，size为OH_NativeBuffer_MetadataType大小。 | 
+| OH_HDR_STATIC_METADATA | 静态元数据，其值见[OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)，size为OH_NativeBuffer_StaticMetadata大小。 | 
+| OH_HDR_DYNAMIC_METADATA | 动态元数据，其值见视频流中SEI的字节流，size的取值范围为1-3000。 | 
 
 
 ### OH_NativeBuffer_MetadataType
@@ -716,7 +716,7 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
@@ -873,7 +873,7 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其取值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**
