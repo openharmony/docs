@@ -25,7 +25,8 @@
 
 **变更的接口/组件**
 
-变更前后，该接口不在2in1设备上生效。
+SetWindowSystemBarEnable
+SetSystemBarEnable
 
 **适配指导**
 
