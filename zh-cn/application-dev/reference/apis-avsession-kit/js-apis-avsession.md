@@ -1273,7 +1273,7 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 | 错误码ID | 错误信息                                  |
 | -------- |---------------------------------------|
 | 6600102  | The session does not exist.           |
-| 6600109| The remote connection does not exist. |
+| 6600109| The remote connection is not established. |
 
 **示例：**
 
@@ -1312,7 +1312,7 @@ getAVCastController(): Promise\<AVCastController>
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------- |
 | 6600102  | The session does not exist.           |
-| 6600109| The remote connection does not exist. |
+| 6600109| The remote connection is not established. |
 
 **示例：**
 
