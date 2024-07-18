@@ -856,6 +856,20 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### getLayoutManager<sup>12+</sup>
+
+getLayoutManager(): LayoutManager
+
+获取布局管理器对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
+
 ## RichEditorController
 
 RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
@@ -1198,8 +1212,6 @@ getSelection(): RichEditorSelection
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
-
-
 ## RichEditorStyledStringController<sup>12+</sup>
 
 使用属性字符串构建的RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
@@ -1225,22 +1237,6 @@ getSelection(): RichEditorRange
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | [RichEditorRange](#richeditorrange) | 选中区域范围。 |
-
-### getLayoutManager<sup>12+</sup>
-
-getLayoutManager(): LayoutManager
-
-获取布局管理器对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
 
 ### setStyledString<sup>12+</sup>
 
@@ -4329,55 +4325,55 @@ editMenuOptions 使用示例，展示设置自定义菜单扩展项的文本内�
 @Component
 struct RichEditorExample {
   controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
+  options: RichEditorOptions = { controller: this.controller }
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
     console.log('menuItems size=' + menuItems.length);
-	menuItems.forEach((value, index) => {
-	  console.log('menuItem' + index + ', id=' + JSON.stringify(value));
-	  })
-	  let extensionMenuItems: Array<TextMenuItem> = [
-	  {
-      content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
-	  },
-	  {
-      content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
-	  },
-	  {
-      content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
-	  },
-	  {
-      content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
-	  }
-	 ]
-	 return menuItems.concat(extensionMenuItems)
-   }
-   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange) {
-   if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
-     console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange))
-     return true;
-   }
-   return false;
- }
+    menuItems.forEach((value, index) => {
+      console.log('menuItem' + index + ', id=' + JSON.stringify(value));
+    })
+    let extensionMenuItems: Array<TextMenuItem> = [
+      {
+        content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
+      },
+      {
+        content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
+      },
+      {
+        content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
+      },
+      {
+        content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
+      }
+    ]
+    return menuItems.concat(extensionMenuItems)
+  }
+  onMenuItemClicked(menuItem: TextMenuItem, textRange: TextRange) {
+    if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
+      console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange))
+      return true;
+    }
+    return false;
+  }
 
-   build() {
-     Row() {
-      RichEditor(this.options )
+  build() {
+    Row() {
+      RichEditor(this.options)
         .onReady(() => {
-		  this.controller.addTextSpan("RichEditor扩展")
-		})
-		.editMenuOptions({
-		  onCreateMenu: (menuItems: Array<TextMenuItem>) => {
-		  return this.onCreateMenu(menuItems)
-		},
-		onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-		return this.onMenuItemClicked(menuItem, textRange)
-		}
-	  })
-	  .height(200)
-	  .borderWidth(1)
-	  .borderColor(Color.Red)
-     }
+          this.controller.addTextSpan("RichEditor扩展")
+        })
+        .editMenuOptions({
+          onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+            return this.onCreateMenu(menuItems)
+          },
+          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            return this.onMenuItemClicked(menuItem, textRange)
+          }
+        })
+        .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+    }
   }
 }
 ```
