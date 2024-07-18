@@ -27,7 +27,7 @@
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import Environment from '@kit.CoreFileKit';
+    import { Environment } from '@kit.CoreFileKit';
 
     function getUserDirExample() {
         try {

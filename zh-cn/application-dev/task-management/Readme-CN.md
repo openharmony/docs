@@ -1,6 +1,8 @@
 # Background Tasks Kit（后台任务开发服务）
 
-- 后台任务管理
+<!--Del-->
+- 后台任务管理<!--DelEnd-->
+
   - [后台任务总体概述](background-task-overview.md)
   - [短时任务](transient-task.md)
   - [长时任务](continuous-task.md)

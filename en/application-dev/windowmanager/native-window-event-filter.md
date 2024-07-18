@@ -7,10 +7,10 @@ You can use the capability provided by the NativeWindowEventFilter module to int
 
 ## Available APIs
 
-| API| Description| 
+| API | Description | 
 | -------- | -------- |
-| OH_NativeWindowManager_RegisterKeyEventFilter (int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter); | Registers a key event filter for a window.| 
-| OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)| Unregisters the key event filter of a window.| 
+| OH_NativeWindowManager_RegisterKeyEventFilter (int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter); | Registers a key event filter for a window. | 
+| OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)| Unregisters the key event filter of a window. | 
 
 ## How to Develop
 ### Linking the Dynamic Library in the CMake Script
@@ -49,11 +49,11 @@ static bool filterFunc(Input_KeyEvent *event) {
   // return keyCode == Input_KeyCode::KEYCODE_ESCAPE;
 
   // Case 2: Implement the event filter for the number keys only when they are pressed.
-  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
   //  && action == Input_KeyEventAction::KEY_ACTION_DOWN;
   
   // Implement the event filter for the combination of the Esc key and a pressed-down number key. (Case1 || Case2).
-  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
      && action == Input_KeyEventAction::KEY_ACTION_DOWN) || (keyCode == Input_KeyCode::KEYCODE_ESCAPE);
 }
 

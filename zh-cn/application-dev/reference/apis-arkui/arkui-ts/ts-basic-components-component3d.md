@@ -179,7 +179,8 @@ struct Index {
 自定义渲染示例。 <br/>
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
 class EngineTime {
   totalTimeUs = 0;
   deltaTimeUs = 0;

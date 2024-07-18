@@ -13,7 +13,7 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint, typeNode } from "@kit.ArkUI";
+import { FrameNode, LayoutConstraint, typeNode, NodeAdapter } from "@kit.ArkUI";
 ```
 
 ## FrameNode
@@ -2216,6 +2216,307 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 typeNode.createNode(uiContext, 'XComponent');
 ```
 
+## NodeAdapter<sup>12+</sup>
+
+NodeAdapter提供FrameNode的数据懒加载能力。
+
+> **说明：**
+>
+> 入参不能为负数，入参为负数时不做处理。
+
+**示例：**
+
+请参考[NodeAdapter使用示例](#nodeadapter使用示例)。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+NodeAdapter的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前的NodeAdapter。如果是已绑定的状态，会先进行解绑操作，再释放当前的NodeAdapter。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### totalNodeCount<sup>12+</sup>
+
+set totalNodeCount(count: number)
+
+设置数据节点总数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| count | number | 是   | 数据节点总数。 |
+
+### totalNodeCount<sup>12+</sup>
+
+get totalNodeCount(): number
+
+获取数据节点总数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| number | 数据节点总数。 |
+
+### reloadAllItems<sup>12+</sup>
+
+reloadAllItems(): void
+
+重新加载全部数据操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### reloadItem<sup>12+</sup>
+
+reloadItem(start: number, count: number): void
+
+定义从索引值开始重新加载指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 重新加载的节点开始索引值。 |
+| count | number | 是   | 重新加载数据节点的数量。 |
+
+### removeItem<sup>12+</sup>
+
+removeItem(start: number, count: number): void
+
+定义从索引值开始删除指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 删除的节点开始索引值。 |
+| count | number | 是   | 删除数据节点的数量。 |
+
+### insertItem<sup>12+</sup>
+
+insertItem(start: number, count: number): void
+
+定义从索引值开始新增指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 新增的节点开始索引值。 |
+| count | number | 是   | 新增数据节点的数量。 |
+
+### moveItem<sup>12+</sup>
+
+moveItem(from: number, to: number): void
+
+定义数据移动操作。将数据从起始索引移动到结束索引。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| from | number | 是   | 数据移动起始索引值。 |
+| to | number | 是   | 数据移动结束索引值。 |
+
+### getAllAvailableItems<sup>12+</sup>
+
+getAllAvailableItems(): Array&lt;FrameNode&gt;
+
+获取所有有效数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| Array&lt;FrameNode&gt; | FrameNode数据节点集合。 |
+
+### onAttachToNode<sup>12+</sup>
+
+onAttachToNode?(target: FrameNode): void
+
+FrameNode绑定NodeAdapter时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| target | FrameNode | 是   | 绑定NodeAdapter的FrameNode节点。 |
+
+### onDetachFromNode<sup>12+</sup>
+
+onDetachFromNode?(): void
+
+解除绑定时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onGetChildId<sup>12+</sup>
+
+onGetChildId?(index: number): number
+
+节点首次加载或新节点滑入时回调。用于生成自定义的Id，需要开发者自行保证Id的唯一性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| index | number | 是   | 加载节点索引值。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| number | 返回开发者自定义生成的Id，需要开发者自行保证Id的唯一性。 |
+
+### onCreateChild<sup>12+</sup>
+
+onCreateChild?(index: number): FrameNode
+
+节点首次加载或新节点滑入时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| index | number | 是   | 加载节点索引值。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| FrameNode | 返回开发者创建的FrameNode节点。 |
+
+### onDisposeChild<sup>12+</sup>
+
+onDisposeChild?(id: number, node: FrameNode): void
+
+子节点即将销毁时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| id | number | 是   | 即将销毁的子节点id。 |
+| node | FrameNode | 是   | 即将销毁的FrameNode节点。 |
+
+### onUpdateChild<sup>12+</sup>
+
+onUpdateChild?(id: number, node: FrameNode): void
+
+重新加载的数据节点被复用时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| id | number | 是   | 复用节点索引值。 |
+| node | FrameNode | 是   | 被复用的FrameNode节点。 |
+
+### attachNodeAdapter<sup>12+</sup>
+
+static attachNodeAdapter(adapter: NodeAdapter, node: FrameNode): boolean
+
+给FrameNode绑定一个NodeAdapter。一个节点只能绑定一个NodeAdapter。已经绑定NodeAdapter的再次绑定会失败并返回false。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| adapter | [NodeAdapter](#nodeadapter12) | 是   | 定义懒加载的NodeAdapter类。 |
+| node | FrameNode | 是   | 绑定的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| boolean | 绑定结果，返回true绑定成功，false绑定失败。 |
+
+### detachNodeAdapter<sup>12+</sup>
+
+static detachNodeAdapter(node: FrameNode): void
+
+解除绑定操作，解除FrameNode节点绑定的NodeAdapter。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| node | FrameNode | 是   | 要解除绑定的FrameNode节点。 |
+
 ## 自定义具体类型节点示例
 
 以Text节点为例，创建Text类型节点。
@@ -3211,4 +3512,200 @@ struct Index {
     .height('100%')
   }
 }
+```
+## NodeAdapter使用示例
+
+```ts
+import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
+
+class MyNodeAdapter extends NodeAdapter {
+  uiContext: UIContext
+  cachePool: Array<FrameNode> = new Array();
+  changed: boolean = false
+  reloadTimes: number = 0;
+  data: Array<string> = new Array();
+  hostNode?: FrameNode
+
+  constructor(uiContext: UIContext, count: number) {
+    super();
+    this.uiContext = uiContext;
+    this.totalNodeCount = count;
+    this.loadData();
+  }
+
+  reloadData(count: number): void {
+    this.reloadTimes++;
+    NodeAdapter.attachNodeAdapter(this, this.hostNode);
+    this.totalNodeCount = count;
+    this.loadData();
+    this.reloadAllItems();
+  }
+
+  refreshData(): void {
+    let items = this.getAllAvailableItems()
+    console.log("UINodeAdapter get All items:" + items.length);
+    this.reloadAllItems();
+  }
+
+  detachData(): void {
+    NodeAdapter.detachNodeAdapter(this.hostNode);
+    this.reloadTimes = 0;
+  }
+
+  loadData(): void {
+    for (let i = 0; i < this.totalNodeCount; i++) {
+      this.data[i] = "Adapter ListItem " + i + " r:" + this.reloadTimes;
+    }
+  }
+
+  changeData(from: number, count: number): void {
+    this.changed = !this.changed;
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data[index] = "Adapter ListItem " + (this.changed ? "changed:" : "") + index + " r:" + this.reloadTimes;
+    }
+    this.reloadItem(from, count);
+  }
+
+  insertData(from: number, count: number): void {
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data.splice(index, 0, "Adapter ListItem " + from + "-" + i);
+    }
+    this.insertItem(from, count);
+    this.totalNodeCount += count;
+    console.log("UINodeAdapter after insert count:" + this.totalNodeCount);
+  }
+
+  removeData(from: number, count: number): void {
+    let arr = this.data.splice(from, count);
+    this.removeItem(from, count);
+    this.totalNodeCount -= arr.length;
+    console.log("UINodeAdapter after remove count:" + this.totalNodeCount);
+  }
+
+  moveData(from: number, to: number): void {
+    let tmp = this.data.splice(from, 1);
+    this.data.splice(to, 0, tmp[0]);
+    this.moveItem(from, to);
+  }
+
+  onAttachToNode(target: FrameNode): void {
+    console.log("UINodeAdapter onAttachToNode id:" + target.getUniqueId());
+    this.hostNode = target;
+  }
+
+  onDetachFromNode(): void {
+    console.log("UINodeAdapter onDetachFromNode");
+  }
+
+  onGetChildId(index: number): number {
+    console.log("UINodeAdapter onGetChildId:" + index);
+    return index;
+  }
+
+  onCreateChild(index: number): FrameNode {
+    console.log("UINodeAdapter onCreateChild:" + index);
+    if (this.cachePool.length > 0) {
+      let cacheNode = this.cachePool.pop();
+      if (cacheNode !== undefined) {
+        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        let text = cacheNode?.getFirstChild();
+        let textNode = text as typeNode.Text;
+        textNode?.initialize(this.data[index]).fontSize(20);
+        return cacheNode;
+      }
+    }
+    console.log("UINodeAdapter onCreateChild createNew");
+    let itemNode = typeNode.createNode(this.uiContext, "ListItem");
+    let textNode = typeNode.createNode(this.uiContext, "Text");
+    textNode.initialize(this.data[index]).fontSize(20);
+    itemNode.appendChild(textNode);
+    return itemNode;
+  }
+
+  onDisposeChild(id: number, node: FrameNode): void {
+    console.log("UINodeAdapter onDisposeChild:" + id);
+    if (this.cachePool.length < 10) {
+      if (!this.cachePool.includes(node)) {
+        console.log("UINodeAdapter caching node id:" + node.getUniqueId());
+        this.cachePool.push(node);
+      }
+    } else {
+      node.dispose();
+    }
+  }
+
+  onUpdateChild(id: number, node: FrameNode): void {
+    let index = id;
+    let text = node.getFirstChild();
+    let textNode = text as typeNode.Text;
+    textNode?.initialize(this.data[index]).fontSize(20);
+  }
+}
+
+class MyNodeAdapterController extends NodeController {
+  rootNode: FrameNode | null = null;
+  nodeAdapter: MyNodeAdapter | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    let listNode = typeNode.createNode(uiContext, "List");
+    listNode.initialize({ space: 3 }).borderWidth(2).borderColor(Color.Black);
+    this.rootNode.appendChild(listNode);
+    this.nodeAdapter = new MyNodeAdapter(uiContext, 100);
+    NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct ListNodeTest {
+  adapterController: MyNodeAdapterController = new MyNodeAdapterController();
+
+  build() {
+    Column() {
+      Text("ListNode Adapter");
+      NodeContainer(this.adapterController)
+        .width(300).height(300)
+        .borderWidth(1).borderColor(Color.Black);
+      Row() {
+        Button("Reload")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.reloadData(50);
+          })
+        Button("Change")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.changeData(5, 10)
+          })
+        Button("Insert")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.insertData(10, 10);
+          })
+      }
+
+      Row() {
+        Button("Remove")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.removeData(10, 10);
+          })
+        Button("Move")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.moveData(2, 5);
+          })
+        Button("Refresh")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.refreshData();
+          })
+        Button("Detach")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.detachData();
+          })
+      }
+    }.borderWidth(1)
+    .width("100%")
+  }
+}
+
 ```

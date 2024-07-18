@@ -26,4 +26,7 @@ The added features offered by ArkTS for the ArkUI framework include the followin
 - [Rendering control](arkts-rendering-control-overview.md): ArkTS provides rendering control. Conditional rendering can render state-specific content based on the application state. **ForEach** iteratively obtains data from the data source and creates the corresponding component during each iteration. **LazyForEach** iterates over provided data sources and creates corresponding components during each iteration.
 
 
-ArkTS will continue to evolve to accommodate changing application development and running requirements, and gradually adds more features, such as parallelism and concurrency enhancement, typed system enhancement, and distributed development paradigm.
+ArkTS is compatible with the TS and JavaScript (JS for short) ecosystem. This means that you can write new code or reuse existing code in TS and JS for development. For details about TS and JS support, see [ARK Runtime Compatibility with TS/JS](arkts-migration-background.md#ark-runtime-compatibility-with-tsjs).
+
+
+ArkTS will continue to evolve to accommodate ever-changing application development and running requirements, and gradually adds more features, such as parallelism and concurrency enhancement, typed system enhancement, and distributed development paradigm.

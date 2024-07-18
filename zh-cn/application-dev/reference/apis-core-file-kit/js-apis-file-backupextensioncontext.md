@@ -12,7 +12,7 @@ BackupExtensionContext模块提供访问特定BackupExtension的资源的能力�
 ## 导入模块
 
 ```ts
-import BackupExtensionContext from '@ohos.file.BackupExtensionContext';
+import  { BackupExtensionContext } from '@kit.CoreFileKit';
 ```
 
 ## 属性
@@ -29,8 +29,8 @@ BackupExtensionContext主要用于获取备份恢复过程中的临时路径。
 **示例：**
 
 ```ts
-import BackupExtensionAbility from '@ohos.application.BackupExtensionAbility';
-import contextConstant from '@ohos.app.ability.contextConstant';
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 export default class MyBackupExtAbility extends BackupExtensionAbility {
     async onBackup() {
