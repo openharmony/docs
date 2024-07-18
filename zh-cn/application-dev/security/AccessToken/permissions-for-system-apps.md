@@ -309,7 +309,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+**ACL使能**：false
 
 **起始版本**：12
 
