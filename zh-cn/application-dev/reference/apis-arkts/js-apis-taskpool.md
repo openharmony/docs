@@ -1789,7 +1789,7 @@ execute(task: Task): Promise\<Object>
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | The task to be added to SequenceRunner has dependent tasks.  |
+| 10200025 | A dependent task cannot be added to SequenceRunner.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
