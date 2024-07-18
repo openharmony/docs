@@ -3390,6 +3390,8 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 > 当检测到画面有变化时，分析结果将自动销毁，可重新调用本接口启动分析。
 > 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3423,6 +3425,8 @@ stopImageAnalyzer(): void
 > 
 > 在startImageAnalyzer方法未返回结果时调用本方法，会触发其错误回调。
 > 该特性依赖设备能力。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
