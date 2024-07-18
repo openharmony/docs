@@ -18,7 +18,9 @@ Indicates that the USB port state of the device has changed.
 
 When the USB port status changes, the event notification service is triggered to publish this event.
 
-APIs related to this event: **dataRole** parameter in [setPortRoles](../Readme-EN.md).
+<!--Del-->
+For details about the APIs related to this common event, see the **dataRole** parameter in [setPortRoles](../js-apis-usbManager-sys.md#usbsetportroles).
+<!--DelEnd-->
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 
@@ -29,7 +31,7 @@ Indicates that a USB device has been attached to the device functioning as a USB
 
 When a USB device is attached, the event notification service is triggered to publish this event.
 
-APIs related to this event: [USBDevice](../Readme-EN.md).
+APIs related to this event: [USBDevice](../js-apis-usbManager.md#usbdevice).
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 
@@ -40,7 +42,7 @@ Indicates that a USB device has been detached from the device functioning as a U
 
 When a USB device is deattached, the event notification service is triggered to publish this event.
 
-APIs related to this event: [USBDevice](../Readme-EN.md).
+APIs related to this event: [USBDevice](../js-apis-usbManager.md#usbdevice).
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 
