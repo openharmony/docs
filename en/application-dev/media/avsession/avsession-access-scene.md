@@ -36,7 +36,7 @@ The process for implementing AVSession access is as follows:
 Refer to the code snippet below:
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 // Start to create and activate an AVSession object.
 // Create an AVSession object.
@@ -65,8 +65,8 @@ Media playback applications must request a continuous task of the [AUDIO_PLAYBAC
 The application can call **setAVMetadata()** to set AVSession metadata to the system so that the metadata can be displayed in the controller. The metadata includes the IDs of the current media asset (assetId), previous media asset (previousAssetId), and next media asset (nextAssetId), title, author, album, writer, and duration.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setSessionInfo() {
@@ -92,8 +92,8 @@ async function setSessionInfo() {
 The controller provides the UI to show lyrics. The application only needs to set the lyrics content. The controller parses the lyrics content and displays it based on the playback progress.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -127,8 +127,8 @@ The controller displays a special type identifier for long-duration media assets
 The application notifies the system of the display tag of the media asset through the AVMetadata during the access, and the controller displays the tag when the media asset is being played.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -161,8 +161,8 @@ The application can call [setAVPlaybackState()](../../reference/apis-avsession-k
 Generally, the playback state information includes the playback state, position, speed, buffered time, loop mode, media item being played (activeItemId), custom media data (extras), and whether the media asset is favorited (isFavorite). It changes during the playback.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setSessionInfo() {
@@ -190,7 +190,8 @@ async function setSessionInfo() {
 To display a progress bar in the controller, the application must set the duration, playback state (pause or play), playback position, and playback speed. The controller displays the progress bar based on the information.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -267,38 +268,38 @@ The application can register different control commands through **on()** to impl
 
 The table below lists the control commands supported by media assets.
 
-| Control Command| Description  |
+| Control Command | Description  |
 | ------  | -------------------------|
-| play    | Plays the media.|
-| pause    | Pauses the playback.|
-| stop    | Stops the playback.|
-| playNext    | Plays the next media asset.|
-| playPrevious    | Plays the previous media asset.|
-| fastForward    | Fast-forwards.|
-| rewind    | Rewinds.|
-| playFromAssetId    | Plays a media asset with a given asset ID.|
-| seek    | Seeks to a playback position. |
-| setSpeed    | Sets the playback speed.|
-| setLoopMode    | Sets the loop mode.|
-| toggleFavorite    | Favorites or unfavorites a media asset.|
-| skipToQueueItem    | Selects an item in the playlist.|
-| handleKeyEvent    | Sets a key event.|
-| commonCommand    | Customizes a control command.|
+| play    | Plays the media. |
+| pause    | Pauses the playback. |
+| stop    | Stops the playback. |
+| playNext    | Plays the next media asset. |
+| playPrevious    | Plays the previous media asset. |
+| fastForward    | Fast-forwards. |
+| rewind    | Rewinds. |
+| playFromAssetId    | Plays a media asset with a given asset ID. |
+| seek    | Seeks to a playback position.  |
+| setSpeed    | Sets the playback speed. |
+| setLoopMode    | Sets the loop mode. |
+| toggleFavorite    | Favorites or unfavorites a media asset. |
+| skipToQueueItem    | Selects an item in the playlist. |
+| handleKeyEvent    | Sets a key event. |
+| commonCommand    | Customizes a control command. |
 
 The table below lists the control commands for calling applications.
 
-| Control Command| Description  |
+| Control Command | Description  |
 | ------  | -------------------------|
-| answer    | Answers a call.|
-| hangUp    | Ends a call.|
-| toggleCallMute    | Mutes or unmutes a call.|
+| answer    | Answers a call. |
+| hangUp    | Ends a call. |
+| toggleCallMute    | Mutes or unmutes a call. |
 
 ### Handling Unsupported Commands
 
 If the application does not support a control command supported by the system, for example, the **playPrevious** command, it can use **off()** to deregister the control command. Then the controller grays out the control page accordingly, so that users know that the control command is not supported.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -320,8 +321,8 @@ async function unregisterSessionListener() {
 The application can call APIs to set the fast-forward or rewind intervals in three different ways. It also registers the fast-forward or rewind control command to respond to user operations.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -358,8 +359,8 @@ async function unregisterSessionListener() {
 To implement favoriting, a music application must call [on('toggleFavorite')](../../reference/apis-avsession-kit/js-apis-avsession.md#ontogglefavorite10) to register the **toggleFavorite** control command.
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -393,8 +394,8 @@ Even if the application does not support the four fixed loop modes, it must repo
 Refer to the code snippet below:
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -434,7 +435,7 @@ async function setListener() {
 An application that supports progress display can further supports progress control. To support progress control, the application must respond to the **seek** control command. When users drag the progress bar in the controller, the application receives a callback. Refer to the code snippet below:
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 let context: Context = getContext(this);
 async function setListener() {
