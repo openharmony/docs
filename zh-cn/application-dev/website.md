@@ -45,7 +45,6 @@
         - [创建自定义组件](quick-start/arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
         - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
@@ -843,7 +842,7 @@
             - 开发指导<!--huks-identity-authentication-dev-->
               - [用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-user-identity-authentication.md)
               - [细粒度用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
-          - HMAC
+          - HMAC<!--huks-hmac-->
               - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
               - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
         - 密钥删除<!--huks-delete-key-->
@@ -871,9 +870,6 @@
           - 查询密钥别名集<!--huks-list-aliases-->
             - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
             - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
-          - HMAC<!--huks-hmac-->
-            - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
-            - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
           <!--Del-->
           - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
           <!--DelEnd-->
