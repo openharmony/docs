@@ -799,6 +799,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
