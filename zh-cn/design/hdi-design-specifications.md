@@ -81,9 +81,12 @@ interface IVibrator {
 ```
 
 ### 注释标签说明
-1、@since标签，标识这个IDL文件/数据结构（结构体、枚举）/函数接口 定义发布的OpenHarmony版本号（4.0/4.1/5.0）；
+1、@since标签，标识这个IDL文件/数据结构（结构体、枚举）/函数接口 定义发布的OpenHarmony版本号(4.0/4.1/5.0);
+
 如这个文件/数据结构/函数接口是4.1版本新增的，那这个文件的since标签始终都是@since 4.1;
-简单理解：since时间标识就是文件/数据结构/函数接口 出身版本
+
+简单理解：since时间标识就是文件/数据结构/函数接口 出身版本。
+
 ```cpp
 /**
  * @brief Enumerates the audio port type.
@@ -92,11 +95,17 @@ interface IVibrator {
  * @version 2.0
  */
 ```
-2、@version标签，标识这个IDL文件/数据结构（结构体、枚举）/函数接口 自身的版本号（1.0/1.1/1.2）
-version标签只标识对应接口等的版本号，不与since冲突
+
+2、@version标签，标识这个IDL文件/数据结构（结构体、枚举）/函数接口 自身的版本号(1.0/1.1/1.2);
+
+version标签只标识对应接口等的版本号，不与since冲突;
+
 比如:
-    1、enum AXXX在4.0版本时新增，则@since 4.0 @version 1.0
-    2、4.1版本enum AXXX扩展了枚举值，则该enum 注释标识为@since 4.0 @version 1.1
+
+    1、enum AXXX在4.0版本时新增，则@since 4.0 @version 1.0;
+
+    2、4.1版本enum AXXX扩展了枚举值，则该enum 注释标识为@since 4.0 @version 1.1。
+
 
 ### 接口评审与管控
 
