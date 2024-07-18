@@ -412,7 +412,10 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
 ```
 **描述**
-当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。
+当OH_AVCodec实例运行出错时，回调将用来上报具体的错误信息的函数指针。
+
+- AV_ERROR_NO_MEMORY：系统资源不足。
+- AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
