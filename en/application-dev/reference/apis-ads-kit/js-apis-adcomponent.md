@@ -29,12 +29,12 @@ Component that displays a non-full-screen ad.
 **Parameters**
 
 
-| Name| Type| Mandatory| Description| 
+| Name | Type | Mandatory | Description | 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes| Array of ad objects.| 
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.| 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.| 
-| adRenderer<sup>12+</sup> | () => void | No| Ad self-rendering.| 
+| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes | Array of ad objects. | 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes | Ad display parameters. | 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes | Ad status change callback. | 
+| adRenderer<sup>12+</sup> | () => void | No | Ad self-rendering. | 
 
 **Example**
 
@@ -50,7 +50,7 @@ export struct ShowNonFullScreenAd {
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // Whether to mute the ad. By default, the ad is not muted.
-    mute: false,
+    mute: false
   }
 
   build() {
