@@ -1,84 +1,118 @@
 # PasteButton
 
-
-The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the button, eliminating the need for a permission request dialog box.
-
+The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
 
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Not supported
 
-
 ## APIs
+
 ### PasteButton
+
 PasteButton()
 
 Creates a Paste button with an icon, text, and background.
 
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ### PasteButton
+
 PasteButton(option:PasteButtonOptions)
 
 Creates a Paste button that contains the specified elements.
+
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | No| Creates a Paste button that contains the specified elements.|
+| option | [PasteButtonOptions](#pastebuttonoptions) | No| Options for creating the Paste button.<br>Default value:<br>{<br>icon: PasteIconStyle.LINES,<br>text: PasteDescription.PASTE,<br>buttonType: ButtonType.Capsule <br>} |
 
 ## PasteButtonOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the Paste button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [PasteDescription](#pastedescription) | No| Text on the Paste button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Paste button.<br>If this parameter is not specified, there is no background.|
-
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Paste button.<br>If this parameter is not specified, there is no background.|
 
 ## Attributes
 
 This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
 
-
 ## PasteIconStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | LINES | 0 | Line style icon.|
 
-
 ## PasteDescription
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | PASTE | 0 | The text on the Paste button is **Paste**.|
 
-
 ## PasteButtonOnClickResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | SUCCESS | 0 | The Paste button is touched successfully.|
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Paste button is touched.|
 
-
 ## Events
 
 Only the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [PasteButtonOnClickResult](#pastebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. After the authorization, the pasteboard content can be read.<br>**event**: For details, see **ClickEvent**.|
+### onClick
 
+onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
+
+Called when a click event occurs.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description                  |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent) |Yes|See **ClickEvent**.|
+| result | [PasteButtonOnClickResult](#pastebuttononclickresult)| Yes| Authorization result. After the authorization, the pasteboard content can be read.|
 
 ## Example
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -86,7 +120,7 @@ struct Index {
   build() {
     Row() {
       Column({space:10}) {
-        // Create a default Paste button with an icon, text, and background.
+        // Create a default button with an icon, text, and background.
         PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult)=>{
           console.info("result " + result)
         })

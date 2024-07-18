@@ -1,6 +1,6 @@
 # Universal Error Codes
 
-## 201 Permission Denied
+## 201 Permission Verification Failed
 
 **Error Message**
 
@@ -18,7 +18,7 @@ The application calls an API without the required permission.
 
 Check the permission required to call the API and make sure the application has the permission.
 
-## 202 Permission Verification Failed for Calling a System API
+## 202 System API Permission Verification Failed
 
 **Error Message**
 
