@@ -1,6 +1,6 @@
 # @ohos.data.relationalStore (关系型数据库)
 
-关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Sendable跨线程传递。
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 该模块提供以下关系型数据库相关的常用功能：
@@ -619,9 +619,9 @@ type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets 
 | string  | 表示值类型为字符串。  |
 | boolean | 表示值类型为布尔值。 |
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
-| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
-| Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
-| Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
+| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。 |
+| Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
+| Float32Array<sup>12+</sup> | 表示值类型为浮点数组。<br/>当字段类型是Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
 | bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
@@ -2504,6 +2504,78 @@ if(store != undefined) {
     console.info(`Insert is successful, rowId = ${rowId}`);
   } catch (error) {
       console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
+  }
+}
+```
+
+### insertSync<sup>12+</sup>
+
+insertSync(table: string, values: sendableRelationalStore.ValuesBucket, conflict?: ConflictResolution):number
+
+传入Sendable数据，向目标表中插入一行数据。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                                           | 必填 | 说明                                                                            |
+| -------- | ---------------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------- |
+| table    | string                                                                                         | 是   | 指定的目标表名。                                                                |
+| values   | [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | 是   | 表示要插入到表中的可跨线程传递数据。                                            |
+| conflict | [ConflictResolution](#conflictresolution10)                                                    | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
+
+**返回值**：
+
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| number | 如果操作成功，返回行ID；否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**示例：**
+
+```ts
+import { sendableRelationalStore } from '@kit.ArkData';
+
+const valuesBucket: relationalStore.ValuesBucket = {
+  "NAME": 'hangman',
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1,2,3]),
+};
+const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
+
+if(store != undefined) {
+  try {
+    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    console.info(`Insert is successful, rowId = ${rowId}`);
+  } catch (error) {
+    console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
   }
 }
 ```
@@ -8055,6 +8127,84 @@ getRow(): ValuesBucket
 ```ts
 if(resultSet != undefined) {
   const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
+
+### getSendableRow<sup>12+</sup>
+
+getSendableRow(): sendableRelationalStore.ValuesBucket
+
+获取当前行数据的sendable形式，用于跨线程传递使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型                                                                                           | 说明                                           |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | 当前行数据的sendable形式，用于跨线程传递使用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                  |
+| ------------ | --------------------------------------------- |
+| 14800000     | Inner error.                                  |
+| 14800011     | Database corrupted.                           |
+| 14800012     | Row out of bounds.                            |
+| 14800013     | Column out of bounds.                         |
+| 14800014     | Already closed.                               |
+| 14800021     | SQLite: Generic error.                        |
+| 14800022     | SQLite: Callback routine requested an abort.  |
+| 14800023     | SQLite: Access permission denied.             |
+| 14800024     | SQLite: The database file is locked.          |
+| 14800025     | SQLite: A table in the database is locked.    |
+| 14800026     | SQLite: The database is out of memory.        |
+| 14800027     | SQLite: Attempt to write a readonly database. |
+| 14800028     | SQLite: Some kind of disk I/O error occurred. |
+| 14800029     | SQLite: The database is full.                 |
+| 14800030     | SQLite: Unable to open the database file.     |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.      |
+| 14800032     | SQLite: Abort due to constraint violation.    |
+| 14800033     | SQLite: Data type mismatch.                   |
+| 14800034     | SQLite: Library used incorrectly.             |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+import type ctx from '@ohos.app.ability.common';
+import { sendableRelationalStore } from '@kit.ArkData';
+
+@Concurrent
+async function getDataByName(name: string, context: ctx.UIAbilityContext) {
+  const STORE_CONFIG: relationalStore.StoreConfig = {
+    name: "RdbTest.db",
+    securityLevel: relationalStore.SecurityLevel.S3
+  };
+  const store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+  const predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+  predicates.equalTo("NAME", name);
+  const resultSet = store.querySync(predicates);
+
+  if (resultSet.rowCount > 0) {
+    resultSet.goToFirstRow();
+    const sendableValuesBucket = resultSet.getSendableRow();
+    return sendableValuesBucket;
+  } else {
+    return null;
+  }
+}
+
+const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
+const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+
+if (sendableValuesBucket) {
+  const columnCount = sendableValuesBucket.size;
+  const age = sendableValuesBucket.get('age');
+  const name = sendableValuesBucket.get('name');
+  console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
 }
 ```
 
