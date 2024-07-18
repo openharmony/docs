@@ -1394,8 +1394,6 @@
         - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
-      - 网络管理<!--network-management-->
-        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
       - [调试和性能分析概述](napi/debug-performance-profiling-overview.md)
       - [通过DevEco Studio调试](napi/debug-ide.md)
