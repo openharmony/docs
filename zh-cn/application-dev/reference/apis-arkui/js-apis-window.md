@@ -5894,7 +5894,7 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 应用部分界面支持横向布局时，在进入该界面时使能，使能后可支持进入横向多窗。不建议竖向布局界面使用。
 
-此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+此接口只对应用主窗口生效，且需要在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中配置preferMultiWindowOrientation属性为"landscape_auto"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5918,14 +5918,32 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let promise = windowClass.enableLandscapeMultiWindow();
-promise.then(() => {
-    console.info('Succeeded in making multi-window become landscape.');
-}).catch((err: BusinessError) => {
-    console.error(`Failed to make multi-window become landscape. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.enableLandscapeMultiWindow();
+      promise.then(() => {
+        console.info('Succeeded in making multi-window become landscape.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to make multi-window become landscape. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### disableLandscapeMultiWindow<sup>12+</sup>
@@ -5934,7 +5952,7 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 应用部分界面支持横向布局时，在退出该界面时去使能，去使能后不支持进入横向多窗。
 
-此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+此接口只对应用主窗口生效，且需要在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中配置preferMultiWindowOrientation属性为"landscape_auto"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5958,14 +5976,32 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let promise = windowClass.disableLandscapeMultiWindow();
-promise.then(() => {
-    console.info('Succeeded in making multi-window become not landscape.');
-}).catch((err: BusinessError) => {
-    console.error(`Failed to make multi-window become not landscape. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.disableLandscapeMultiWindow();
+      promise.then(() => {
+        console.info('Succeeded in making multi-window become not landscape.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to make multi-window become not landscape. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### show<sup>(deprecated)</sup>
