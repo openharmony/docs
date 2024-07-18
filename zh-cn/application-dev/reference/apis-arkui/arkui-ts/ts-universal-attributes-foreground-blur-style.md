@@ -35,7 +35,7 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。<br/>默认值：grayScale: [0,0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] |
+| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## 示例
