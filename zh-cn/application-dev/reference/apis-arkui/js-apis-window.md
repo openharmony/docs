@@ -1134,7 +1134,7 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 
 showWindow(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口，使用callback异步回调。
+显示当前窗口，使用callback异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1173,7 +1173,7 @@ windowClass.showWindow((err: BusinessError) => {
 
 showWindow(): Promise&lt;void&gt;
 
-显示当前窗口，使用Promise异步回调。
+显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1210,7 +1210,7 @@ promise.then(() => {
 
 destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
-销毁当前窗口，使用callback异步回调。
+销毁当前窗口，使用callback异步回调，仅支持系统窗口及应用子窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1250,7 +1250,7 @@ windowClass.destroyWindow((err) => {
 
 destroyWindow(): Promise&lt;void&gt;
 
-销毁当前窗口，使用Promise异步回调。
+销毁当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
