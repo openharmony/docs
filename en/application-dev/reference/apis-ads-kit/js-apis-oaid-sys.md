@@ -32,9 +32,11 @@ Resets an OAID.
 
 For details about the following error codes, see [OAID Error Codes](errorcode-oaid.md).
 
-| ID| Error Message| 
+| ID | Error Message | 
 | -------- | -------- |
-| 17300001 | System&nbsp;internal&nbsp;error. | 
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 17300001 | System internal error. |
+| 17300002 | Not in the trust list. | 
 
 **Example**
 ```
