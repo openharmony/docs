@@ -1840,7 +1840,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从api12开始，该接口不在2in1设备上生效。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6732,7 +6732,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从api12开始，该接口不在2in1设备上生效。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 > **说明：**
 >
