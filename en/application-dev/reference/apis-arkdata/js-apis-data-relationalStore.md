@@ -1,7 +1,6 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. Data of the Sendable type cannot be passed across threads.
-
+The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. It also allows sendable data to be obtained by using [ResultSet.getSendableRow](#getsendablerow12) and transferred across threads.
 The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following functionalities:
@@ -28,13 +27,15 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 If error code 14800011 is returned when this API is used to obtain an encrypted RDB store, check the value of **encrypt** in **StoreConfig**. The encrypted RDB store can be obtained successfully when **encrypt** is **true**.
 
+Currently, **getRdbStore()** does not support multi-thread concurrent operations.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                                                        |
+| Name  | Type                                          | Mandatory | Description                                                        |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | config   | [StoreConfig](#storeconfig)               | Yes  | Configuration of the RDB store.                               |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback used to return the RDB store obtained.                  |
 
@@ -42,7 +43,7 @@ If error code 14800011 is returned when this API is used to obtain an encrypted 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**  |
+| **ID** | **Error Message**  |
 |-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.     |
@@ -63,6 +64,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -121,26 +123,28 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 If error code 14800011 is returned when this API is used to obtain an encrypted RDB store, check the value of **encrypt** in **StoreConfig**. The encrypted RDB store can be obtained successfully when **encrypt** is **true**.
 
+Currently, **getRdbStore()** does not support multi-thread concurrent operations.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name | Type                            | Mandatory| Description                                                        |
+| Name | Type                            | Mandatory | Description                                                        |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 
 **Return value**
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -159,6 +163,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -217,9 +222,9 @@ After the deletion, you are advised to set the database object to null. If a cus
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                        |
+| Name  | Type                     | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                      |
 
@@ -227,7 +232,7 @@ After the deletion, you are advised to set the database object to null. If a cus
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                       |
+| **ID** | **Error Message**                       |
 |-----------|---------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.     |
@@ -237,6 +242,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -289,22 +295,22 @@ After the deletion, you are advised to set the database object to null. If a cus
 
 **Parameters**
 
-| Name | Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                                        |
+| **ID** | **Error Message**                                                                        |
 |-----------|----------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                     |
@@ -314,6 +320,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -362,9 +369,9 @@ After the deletion, you are advised to set the database object to null. If the d
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                        |
+| Name  | Type                       | Mandatory | Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | config   | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback used to return the result.                                      |
 
@@ -372,7 +379,7 @@ After the deletion, you are advised to set the database object to null. If the d
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**         |
+| **ID** | **Error Message**         |
 |-----------|----------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.        |
@@ -384,6 +391,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -431,7 +439,6 @@ class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## relationalStore.deleteRdbStore<sup>10+</sup>
@@ -446,22 +453,22 @@ After the deletion, you are advised to set the database object to null. If the d
 
 **Parameters**
 
-| Name | Type                       | Mandatory| Description                                                        |
+| Name | Type                       | Mandatory | Description                                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**            |
+| **ID** | **Error Message**            |
 |-----------|---------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported.      |
@@ -475,6 +482,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
 FA model:
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from "@kit.AbilityKit";
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -524,16 +532,17 @@ class EntryAbility extends UIAbility {
 
 Defines the RDB store configuration.
 
-| Name       | Type         | Mandatory| Description                                                     |
+| Name       | Type         | Mandatory | Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name, which is the unique identifier of the database.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| autoCleanDirtyData<sup>11+<sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| allowRebuild<sup>12+<sup> | boolean | No| Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| isReadOnly<sup>12+<sup> | boolean | No| Whether the RDB store is read-only. The default value is **false**.<br>The value **true** means the RDB store is read only.<br>The value **false** means the RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | No | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| customDir<sup>11+</sup> | string | No | Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+</sup> | boolean | No | Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| allowRebuild<sup>12+</sup> | boolean | No | Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+</sup> | boolean | No | Whether the RDB store is read-only. The default value is **false**, which means the RDB store is readable and writeable.<br>If the value is **true** (read-only), writing data to the RDB store will throw error code 801.<br>The value **false** means the RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| pluginLibs<sup>12+</sup> | Array\<string> | No | Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**: The maximum number of dynamic libraries is 16. An error will be thrown if the number of dynamic libraries exceeds 16 or any dynamic library failed to be loaded.<br>The dynamic library name must be a complete path. For example, **[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]**, where **context.bundleCodeDir** is the application sandbox path, **/libs/arm64/** indicates the subdirectory, and **libtokenizer.so** is the dynamic library name. If this parameter is left blank, dynamic libraries are not loaded by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -545,12 +554,12 @@ Enumerates the RDB store security levels. Use the enum name rather than the enum
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Value  | Description                                                        |
+| Name | Value  | Description                                                        |
 | ---- | ---- | ------------------------------------------------------------ |
-| S1   | 1    | The RDB store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, an RDB store that contains system data such as wallpapers.|
-| S2   | 2    | The RDB store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, an RDB store that contains information created by users or call records, such as audio or video clips.|
-| S3   | 3    | The RDB store security level is high. If data leakage occurs, major impact will be caused on the database. For example, an RDB store that contains information such as user fitness, health, and location data.|
-| S4   | 4    | The RDB store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, an RDB store that contains information such as authentication credentials and financial data.|
+| S1   | 1    | The RDB store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, an RDB store that contains system data such as wallpapers. |
+| S2   | 2    | The RDB store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, an RDB store that contains information created by users or call records, such as audio or video clips. |
+| S3   | 3    | The RDB store security level is high. If data leakage occurs, major impact will be caused on the database. For example, an RDB store that contains information such as user fitness, health, and location data. |
+| S4   | 4    | The RDB store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, an RDB store that contains information such as authentication credentials and financial data. |
 
 ## AssetStatus<sup>10+</sup>
 
@@ -561,11 +570,11 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 | Name                             | Value  | Description            |
 | ------------------------------- | --- | -------------- |
 | ASSET_NORMAL     | 1  | The asset is in normal status.     |
-| ASSET_INSERT | 2 | The asset is to be inserted to the cloud.|
-| ASSET_UPDATE | 3 | The asset is to be updated to the cloud.|
-| ASSET_DELETE | 4 | The asset is to be deleted from the cloud.|
+| ASSET_INSERT | 2 | The asset is to be inserted to the cloud. |
+| ASSET_UPDATE | 3 | The asset is to be updated to the cloud. |
+| ASSET_DELETE | 4 | The asset is to be deleted from the cloud. |
 | ASSET_ABNORMAL    | 5   | The asset is in abnormal status.     |
-| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device.|
+| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device. |
 
 ## Asset<sup>10+</sup>
 
@@ -579,7 +588,7 @@ Defines information about an asset (such as a document, image, and video). The a
 | uri         | string                      | Yes  | Asset URI, which is an absolute path in the system.      |
 | path        | string                      | Yes  | Application sandbox path of the asset.      |
 | createTime  | string                      | Yes  | Time when the asset was created.  |
-| modifyTime  | string                      | Yes  | Time when the asset was last modified.|
+| modifyTime  | string                      | Yes  | Time when the asset was last modified. |
 | size        | string                      | Yes  | Size of the asset.   |
 | status      | [AssetStatus](#assetstatus10) | No  | Asset status. The default value is **ASSET_NORMAL**.       |
 
@@ -608,25 +617,25 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | null<sup>10+</sup>    | Null.  |
 | number  | Number.  |
 | string  | String. |
-| boolean | Boolean.|
+| boolean | Boolean. |
 | Uint8Array<sup>10+</sup>           | Uint8 array.           |
-| Asset<sup>10+</sup>  | [Asset](#asset10).    |
-| Assets<sup>10+</sup> | [Assets](#assets10).|
-| Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.|
-| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is **bigint**, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint.|
+| Asset<sup>10+</sup>  | [Asset](#asset10).<br>If the field type is **Asset**, the type in the SQL statement for creating a table must be **ASSET**. |
+| Assets<sup>10+</sup> | [Assets](#assets10).<br>If the field type is **Assets**, the type in the SQL statement for creating a table must be **ASSETS**. |
+| Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.<br>If the field type is **Float32Array**, the type in the SQL statement for creating a table must be **floatvector(128)**. |
+| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is **bigint**, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
 
 ## ValuesBucket
 
 type ValuesBucket = Record<string, ValueType>
 
-Defines the types of the key and value in a KV pair. Data of the Sendable type cannot be passed across threads.
+Defines the types of the key and value in a KV pair. Data of the sendable type cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-| string | The key is a string.|
-| ValueType | The value type is [ValueType](#valuetype).|
+| string | The key is a string. |
+| ValueType | The value type is [ValueType](#valuetype). |
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -638,8 +647,8 @@ Enumerates the types of the primary key in a row of a database table.
 
 | Type            | Description                              |
 | ---------------- | ---------------------------------- |
-| number | The primary key is a number.|
-| string | The primary key is a string.|
+| number | The primary key is a number. |
+| string | The primary key is a string. |
 
 ## UTCTime<sup>10+</sup>
 
@@ -649,9 +658,9 @@ Represents the data type of the UTC time.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Type| Description           |
+| Type | Description           |
 | ---- | --------------- |
-| Date | UTC time.|
+| Date | UTC time. |
 
 ## ModifyTime<sup>10+</sup> 
 
@@ -663,7 +672,7 @@ Represents the data type of the primary key and modification time of a database 
 
 | Type                                                   | Description                                                        |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
-| Map<[PRIKeyType](#prikeytype10), [UTCTime](#utctime10)> | The key is the primary key of a row in the database table, and the value is the last modification time of the row in UTC format.|
+| Map<[PRIKeyType](#prikeytype10), [UTCTime](#utctime10)> | The key is the primary key of a row in the database table, and the value is the last modification time of the row in UTC format. |
 
 ## SyncMode
 
@@ -671,11 +680,11 @@ Enumerates the database sync modes. Use the enum name rather than the enum value
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | Synchronize with the data with the latest modification time.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | Synchronize data from a local device to the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | Synchronize data from the cloud to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | Synchronize with the data with the latest modification time.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | Synchronize data from a local device to the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | Synchronize data from the cloud to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## Origin<sup>11+</sup>
 
@@ -687,7 +696,7 @@ Enumerates the data sources. Use the enum name rather than the enum value.
 | -------------- | ---- | ---------------------------------- |
 | LOCAL       | 0   | Local data.     |
 | CLOUD       | 1   | Cloud data.    |
-| REMOTE      | 2   | Remote device data.|
+| REMOTE      | 2   | Remote device data. |
 
 ## Field<sup>11+</sup>
 
@@ -712,10 +721,10 @@ Enumerates the subscription types. Use the enum name rather than the enum value.
 
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | Subscribe to cloud data changes.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | Subscribe to cloud data change details.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | Subscribe to details of the local data change.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | Subscribe to cloud data changes.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | Subscribe to cloud data change details.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | Subscribe to details of the local data change.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## RebuildType<sup>12+</sup>
 
@@ -726,7 +735,7 @@ Enumerates the RDB store rebuild types. Use the enum name rather than the enum v
 | Name   | Value  | Description                                    |
 | ------- | ---- | ---------------------------------------- |
 | NONE    | 0    | The RDB store is not rebuilt.                  |
-| REBUILT | 1    | An empty RDB store is built.|
+| REBUILT | 1    | An empty RDB store is built. |
 | REPAIRED | 2    | The RDB store is repaired, with undamaged data restored. <!--RP2-->Currently, this value is available only to a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP2End-->|
 
 ## ChangeType<sup>10+</sup>
@@ -740,7 +749,7 @@ Enumerates data change types. Use the enum name rather than the enum value.
 | Name                        | Value  | Description                        |
 | -------------------------- | --- | -------------------------- |
 | DATA_CHANGE  | 0   | Data change.  |
-| ASSET_CHANGE | 1   | Asset change.|
+| ASSET_CHANGE | 1   | Asset change. |
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -748,13 +757,13 @@ Represents the detail information about the device-cloud sync process.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type                              | Mandatory| Description                                                        |
+| Name    | Type                              | Mandatory | Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | table    | string                             | Yes  | Name of the table with data changes.                                    |
 | type     | [ChangeType](#changetype10)        | Yes  | Type of the data changed, which can be data or asset.        |
-| inserted | Array\<string\> \| Array\<number\> | Yes  | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.|
-| updated  | Array\<string\> \| Array\<number\> | Yes  | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.|
-| deleted  | Array\<string\> \| Array\<number\> | Yes  | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.|
+| inserted | Array\<string\> \| Array\<number\> | Yes  | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data. |
+| updated  | Array\<string\> \| Array\<number\> | Yes  | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data. |
+| deleted  | Array\<string\> \| Array\<number\> | Yes  | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data. |
 
 ## DistributedType<sup>10+</sup>
 
@@ -773,9 +782,9 @@ Defines the configuration of the distributed mode of tables.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type   | Mandatory| Description                                                        |
+| Name    | Type   | Mandatory | Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync   | boolean | Yes  | The value **true** means both auto sync and manual sync are supported for the table. The value **false** means only manual sync is supported for the table.|
+| autoSync   | boolean | Yes  | The value **true** means both auto sync and manual sync are supported for the table. The value **false** means only manual sync is supported for the table. |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -785,12 +794,12 @@ Defines the resolution to use when a conflict occurs during data insertion or mo
 
 | Name                | Value  | Description                                                        |
 | -------------------- | ---- | ------------------------------------------------------------ |
-| ON_CONFLICT_NONE | 0 | No operation is performed.|
+| ON_CONFLICT_NONE | 0 | No operation is performed. |
 | ON_CONFLICT_ROLLBACK | 1    | Abort the SQL statement and roll back the current transaction.               |
-| ON_CONFLICT_ABORT    | 2    | Abort the current SQL statement and revert any changes made by the current SQL statement. However, the changes made by the previous SQL statement in the same transaction are retained and the transaction remains active.|
-| ON_CONFLICT_FAIL     | 3    | Abort the current SQL statement. The **FAIL** resolution does not revert previous changes made by the failed SQL statement or end the transaction.|
-| ON_CONFLICT_IGNORE   | 4    | Skip the rows that contain constraint violations and continue to process the subsequent rows of the SQL statement.|
-| ON_CONFLICT_REPLACE  | 5    | Delete pre-existing rows that cause the constraint violation before inserting or updating the current row, and continue to execute the command normally.|
+| ON_CONFLICT_ABORT    | 2    | Abort the current SQL statement and revert any changes made by the current SQL statement. However, the changes made by the previous SQL statement in the same transaction are retained and the transaction remains active. |
+| ON_CONFLICT_FAIL     | 3    | Abort the current SQL statement. The **FAIL** resolution does not revert previous changes made by the failed SQL statement or end the transaction. |
+| ON_CONFLICT_IGNORE   | 4    | Skip the rows that contain constraint violations and continue to process the subsequent rows of the SQL statement. |
+| ON_CONFLICT_REPLACE  | 5    | Delete pre-existing rows that cause the constraint violation before inserting or updating the current row, and continue to execute the command normally. |
 
 ## Progress<sup>10+</sup>
 
@@ -801,8 +810,8 @@ Enumerates the device-cloud sync progresses. Use the enum name rather than the e
 | Name            | Value  | Description                    |
 | ---------------- | ---- | ------------------------ |
 | SYNC_BEGIN       | 0    | The device-cloud sync starts.  |
-| SYNC_IN_PROGRESS | 1    | The device-cloud sync is in progress.|
-| SYNC_FINISH      | 2    | The device-cloud sync is complete.|
+| SYNC_IN_PROGRESS | 1    | The device-cloud sync is in progress. |
+| SYNC_FINISH      | 2    | The device-cloud sync is complete. |
 
 ## Statistic<sup>10+</sup>
 
@@ -810,12 +819,12 @@ Represents the device-cloud sync statistics information.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name      | Type  | Mandatory| Description                                    |
+| Name      | Type  | Mandatory | Description                                    |
 | ---------- | ------ | ---- | ---------------------------------------- |
 | total      | number | Yes  | Total number of rows to be synchronized between the device and cloud in the database table.    |
 | successful | number | Yes  | Number of rows that are successfully synchronized between the device and cloud in the database table.      |
 | failed     | number | Yes  | Number of rows that failed to be synchronized between the device and cloud in the database table.      |
-| remained   | number | Yes  | Number of rows that are not executed for device-cloud sync in the database table.|
+| remained   | number | Yes  | Number of rows that are not executed for device-cloud sync in the database table. |
 
 ## TableDetails<sup>10+</sup>
 
@@ -823,10 +832,10 @@ Represents the upload and download statistics of device-cloud sync tasks.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type                     | Mandatory| Description                                      |
+| Name    | Type                     | Mandatory | Description                                      |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
-| upload   | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud upload tasks.|
-| download | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud download tasks.|
+| upload   | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud upload tasks. |
+| download | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud download tasks. |
 
 ## ProgressCode<sup>10+</sup>
 
@@ -840,8 +849,8 @@ Enumerates the device-cloud sync states. Use the enum name rather than the enum 
 | UNKNOWN_ERROR         | 1    | An unknown error occurs during device-cloud sync.                              |
 | NETWORK_ERROR         | 2    | A network error occurs during device-cloud sync.                              |
 | CLOUD_DISABLED        | 3    | The cloud is unavailable.                                            |
-| LOCKED_BY_OTHERS      | 4    | The device-cloud sync of another device is being performed.<br>Start device-cloud sync after checking that cloud resources are not occupied by other devices.|
-| RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
+| LOCKED_BY_OTHERS      | 4    | The device-cloud sync of another device is being performed.<br>Start device-cloud sync after checking that cloud resources are not occupied by other devices. |
+| RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud. |
 | NO_SPACE_FOR_ASSET    | 6    | The remaining cloud space is less than the size of the data to be synchronized.                    |
 | BLOCKED_BY_NETWORK_STRATEGY<sup>12+</sup>    | 7    | The device-cloud sync is blocked due to the network strategy.                    |
 
@@ -851,15 +860,29 @@ Represents the statistics of the overall device-cloud sync (upload and download)
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type                                             | Mandatory| Description                                                        |
+| Name    | Type                                             | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | schedule | [Progress](#progress10)                           | Yes  | Device-cloud sync progress.                                          |
 | code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud sync state.                                    |
-| details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud sync statistics of the table.|
+| details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud sync statistics of the table. |
+
+## SqlExecutionInfo<sup>12+</sup>
+
+Represents statistics about SQL statements executed by the database.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name    | Type                                              | Read Only | Optional |Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| sql<sup>12+</sup>           | Array&lt;string&gt;            | Yes  |   No  | SQL statements executed. If the value of [batchInsert](#batchinsert) is too large, there may be multiple SQL statements.     |
+| totalTime<sup>12+</sup>      | number                        | Yes  |   No  | Total time used to execute the SQL statements, in μs.                                   |
+| waitTime<sup>12+</sup>       | number                        | Yes  |   No  | Time used to obtain the handle, in μs.                                        |
+| prepareTime<sup>12+</sup>    | number                        | Yes  |   No  | Time used to get the SQL statements ready and bind parameters, in μs.                                |
+| executeTime<sup>12+</sup>    | number                        | Yes  |   No  | Total time used to execute the SQL statements, in μs. |
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Data of the Sendable type cannot be passed across threads.
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. Data of the sendable type cannot be passed across threads. 
 
 ### constructor
 
@@ -871,15 +894,15 @@ A constructor used to create an **RdbPredicates** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| name   | string | Yes  | Database table name.|
+| name   | string | Yes  | Database table name. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -904,21 +927,21 @@ If **inDevices** is specified in **predicates** when **sync()** is called, data 
 
 **Parameters**
 
-| Name | Type               | Mandatory| Description                      |
+| Name | Type               | Mandatory | Description                      |
 | ------- | ------------------- | ---- | -------------------------- |
-| devices | Array&lt;string&gt; | Yes  | IDs of the remote devices in the same network.|
+| devices | Array&lt;string&gt; | Yes  | IDs of the remote devices in the same network. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -926,6 +949,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
@@ -950,7 +974,6 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-
 Sets an **RdbPredicates** instance to specify all remote devices to connect during the distributed database sync.
 
 
@@ -960,7 +983,7 @@ Sets an **RdbPredicates** instance to specify all remote devices to connect duri
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -973,29 +996,28 @@ predicates.inAllDevices();
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
-
 Sets an **RdbPredicates** object to match the fields in the specified column that are equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1012,29 +1034,28 @@ predicates.equalTo("NAME", "Lisa");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
 Sets an **RdbPredicates** object to match the fields in the specified column that are not equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1051,7 +1072,6 @@ predicates.notEqualTo("NAME", "Lisa");
 
 beginWrap(): RdbPredicates
 
-
 Adds a left parenthesis to the **RdbPredicates**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1060,7 +1080,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis. |
 
 **Example**
 
@@ -1086,7 +1106,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis. |
 
 **Example**
 
@@ -1112,7 +1132,7 @@ Adds the OR condition to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition. |
 
 **Example**
 
@@ -1136,7 +1156,7 @@ Adds the AND condition to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition. |
 
 **Example**
 
@@ -1158,22 +1178,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1195,22 +1215,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1232,22 +1252,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1269,21 +1289,21 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1304,21 +1324,21 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1339,22 +1359,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1376,22 +1396,22 @@ Sets an **RdbPredicates** object to locate the fields in the specified column th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | field  | string | Yes  | Column name in the database table.                                          |
-| value  | string | Yes  | Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value  | string | Yes  | Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1413,23 +1433,23 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                      |
+| Name | Type                   | Mandatory | Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
 | low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1451,23 +1471,23 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                      |
+| Name | Type                   | Mandatory | Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
 | low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1489,22 +1509,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1526,22 +1546,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1563,22 +1583,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1600,22 +1620,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                  |
+| Name | Type                   | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1637,21 +1657,21 @@ Sets an **RdbPredicates** object to sort the fields in the specified column in a
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1672,21 +1692,21 @@ Sets an **RdbPredicates** object to sort the fields in the specified column in d
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1709,7 +1729,7 @@ Sets an **RdbPredicates** object to filter out duplicate records.
 
 | Type                                | Description                          |
 | ------------------------------------ | ------------------------------ |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records. |
 
 **Example**
 
@@ -1728,21 +1748,21 @@ Sets an **RdbPredicates** object to specify the maximum number of records.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | Yes  | Maximum number of records.|
+| value  | number | Yes  | Maximum number of records. |
 
 **Return value**
 
 | Type                                | Description                                |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**              |
+| **ID** | **Error Message**              |
 | --------- |--------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1763,21 +1783,21 @@ Sets an **RdbPredicates** object to specify the start position of the returned r
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                              |
+| Name   | Type  | Mandatory | Description                              |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | Yes  | Number of rows to offset from the beginning. The value is a positive integer.|
+| rowOffset | number | Yes  | Number of rows to offset from the beginning. The value is a positive integer. |
 
 **Return value**
 
 | Type                                | Description                                |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1798,21 +1818,21 @@ Sets an **RdbPredicates** object to group rows that have the same value into sum
 
 **Parameters**
 
-| Name| Type               | Mandatory| Description                |
+| Name | Type               | Mandatory | Description                |
 | ------ | ------------------- | ---- | -------------------- |
-| fields | Array&lt;string&gt; | Yes  | Names of columns to group.|
+| fields | Array&lt;string&gt; | Yes  | Names of columns to group. |
 
 **Return value**
 
 | Type                                | Description                  |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1833,22 +1853,22 @@ Sets an **RdbPredicates** object to specify the index column.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ------ | ------ | ---- | -------------- |
-| field  | string | Yes  | Name of the index column.|
+| field  | string | Yes  | Name of the index column. |
 
 **Return value**
 
 
 | Type                                | Description                                 |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1869,22 +1889,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                                | Mandatory| Description                                   |
+| Name | Type                                | Mandatory | Description                                   |
 | ------ | ------------------------------------ | ---- | --------------------------------------- |
 | field  | string                               | Yes  | Column name in the database table.                     |
-| value  | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Array of **ValueType**s to match.|
+| value  | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Array of **ValueType**s to match. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1906,22 +1926,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type                                | Mandatory| Description                                 |
+| Name | Type                                | Mandatory | Description                                 |
 | ------ | ------------------------------------ | ---- | ------------------------------------- |
 | field  | string                               | Yes  | Column name in the database table.                   |
-| value  | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Array of **ValueType**s to match.|
+| value  | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Array of **ValueType**s to match. |
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1943,22 +1963,22 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                           | Description                      |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -1974,28 +1994,28 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are not similar to the given value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are not similar to the given value. 
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match the **RdbPredicates**. |
 
 **Return value**
 
 | Type                           | Description                      |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                                                                      |
+| **ID** | **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
@@ -2019,16 +2039,16 @@ Before using the APIs of this class, use [executeSql](#executesql) to initialize
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name        | Type           | Read Only      | Mandatory| Description                            |
+| Name        | Type           | Read Only      | Mandatory | Description                            |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | No| Yes  | RDB store version, which is an integer greater than 0.      |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes| Yes| Whether the RDB store has been rebuilt or repaired.|
+| version<sup>10+</sup>  | number | No | Yes  | RDB store version, which is an integer greater than 0.      |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes | Yes | Whether the RDB store has been rebuilt or repaired. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -2068,17 +2088,17 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                                                      |
+| Name  | Type                         | Mandatory | Description                                                      |
 | -------- | ----------------------------- | ---- | ---------------------------------------------------------- |
 | table    | string                        | Yes  | Name of the target table.                                          |
 | values   | [ValuesBucket](#valuesbucket) | Yes  | Row of data to insert.                                |
-| callback | AsyncCallback&lt;number&gt;   | Yes  | Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| callback | AsyncCallback&lt;number&gt;   | Yes  | Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2104,27 +2124,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2152,18 +2170,18 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory| Description                                                      |
+| Name  | Type                                       | Mandatory | Description                                                      |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | table    | string                                      | Yes  | Name of the target table.                                          |
 | values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.                                |
 | conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                        |
-| callback | AsyncCallback&lt;number&gt;                 | Yes  | Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| callback | AsyncCallback&lt;number&gt;                 | Yes  | Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ---------------------------------------------------- |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2189,27 +2207,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2238,22 +2254,22 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                      |
+| Name | Type                         | Mandatory | Description                      |
 | ------ | ----------------------------- | ---- | -------------------------- |
 | table  | string                        | Yes  | Name of the target table.          |
-| values | [ValuesBucket](#valuesbucket) | Yes  | Row of data to insert.|
+| values | [ValuesBucket](#valuesbucket) | Yes  | Row of data to insert. |
 
 **Return value**
 
 | Type                 | Description                                             |
 | --------------------- | ------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2279,7 +2295,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2288,19 +2303,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2326,23 +2341,23 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory| Description                      |
+| Name  | Type                                       | Mandatory | Description                      |
 | -------- | ------------------------------------------- | ---- | -------------------------- |
 | table    | string                                      | Yes  | Name of the target table.          |
-| values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.|
+| values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert. |
 | conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.        |
 
 **Return value**
 
 | Type                 | Description                                             |
 | --------------------- | ------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2368,7 +2383,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2377,19 +2391,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2415,23 +2429,23 @@ Inserts a row of data into a table. Due to the limit of the shared memory (max. 
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory| Description                                                        |
+| Name  | Type                                       | Mandatory | Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | table    | string                                      | Yes  | Name of the target table.                                            |
 | values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.                                  |
-| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**. |
 
 **Return value**
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| number | If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| number | If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -2457,7 +2471,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2466,19 +2479,19 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2495,6 +2508,78 @@ if(store != undefined) {
 }
 ```
 
+### insertSync<sup>12+</sup>
+
+insertSync(table: string, values: sendableRelationalStore.ValuesBucket, conflict?: ConflictResolution):number
+
+Inserts a row of sendable data into a table. This API returns the result synchronously. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                                                                          | Mandatory | Description                                                                           |
+| -------- | ---------------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------- |
+| table    | string                                                                                         | Yes  | Name of the target table.                                                               |
+| values   | [sendableRelationalStore.ValuesBucket](../js-apis-data-sendableRelationalStore.md#valuesbucket) | Yes  | Sendable data to Indicates that data to be inserted into a table can be transferred across threads.                                           |
+| conflict | [ConflictResolution](#conflictresolution10)                                                    | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**. |
+
+**Return value**
+
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| number | If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID** | **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**Example**
+
+```ts
+import { sendableRelationalStore } from '@kit.ArkData';
+
+const valuesBucket: relationalStore.ValuesBucket = {
+  "NAME": 'hangman',
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1,2,3]),
+};
+const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
+
+if(store != undefined) {
+  try {
+    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    console.info(`Insert is successful, rowId = ${rowId}`);
+  } catch (error) {
+    console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
+  }
+}
+```
+
 ### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
@@ -2505,17 +2590,17 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                        |
+| Name  | Type                                      | Mandatory | Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table    | string                                     | Yes  | Name of the target table.                                            |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.                                |
-| callback | AsyncCallback&lt;number&gt;                | Yes  | Callback used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| callback | AsyncCallback&lt;number&gt;                | Yes  | Callback used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2541,7 +2626,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2556,19 +2640,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2597,22 +2681,22 @@ Batch inserts data into a table. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                      | Mandatory| Description                        |
+| Name | Type                                      | Mandatory | Description                        |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | table  | string                                     | Yes  | Name of the target table.            |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert. |
 
 **Return value**
 
 | Type                 | Description                                                       |
 | --------------------- | ----------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2638,7 +2722,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2654,19 +2737,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2693,22 +2776,22 @@ Inserts a row of data into a table.
 
 **Parameters**
 
-| Name| Type                                      | Mandatory| Description                        |
+| Name | Type                                      | Mandatory | Description                        |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | table  | string                                     | Yes  | Name of the target table.            |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert. |
 
 **Return value**
 
 | Type  | Description                                          |
 | ------ | ---------------------------------------------- |
-| number | If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| number | If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -2734,7 +2817,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
@@ -2750,19 +2832,19 @@ let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
 
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
   'CODES': value8,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
@@ -2790,9 +2872,9 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                                        |
+| Name    | Type                                | Mandatory | Description                                                        |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Update conditions specified by the **RdbPredicates** object.                   |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the number of rows updated.                  |
 
@@ -2800,9 +2882,8 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
-| 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -2827,7 +2908,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2835,19 +2915,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2877,9 +2957,9 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                                        |
+| Name    | Type                                       | Mandatory | Description                                                        |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
 | conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                          |
 | callback   | AsyncCallback&lt;number&gt;                 | Yes  | Callback used to return the number of rows updated.                  |
@@ -2888,7 +2968,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -2914,7 +2994,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2922,19 +3001,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -2964,22 +3043,22 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 **Parameters**
 
-| Name      | Type                                | Mandatory| Description                                                        |
+| Name      | Type                                | Mandatory | Description                                                        |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| values       | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values       | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Update conditions specified by the **RdbPredicates** object.                   |
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3005,7 +3084,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3014,19 +3092,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3054,9 +3132,9 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                                        |
+| Name    | Type                                       | Mandatory | Description                                                        |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
 | conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                          |
 
@@ -3064,13 +3142,13 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3096,7 +3174,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3105,19 +3182,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3145,23 +3222,23 @@ Updates data in the RDB store based on the specified **RdbPredicates** instance.
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                                        |
+| Name    | Type                                       | Mandatory | Description                                                        |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [RdbPredicates](#rdbpredicates)             | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | return the number of rows updated.|
+| number | return the number of rows updated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -3187,7 +3264,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
@@ -3196,19 +3272,19 @@ let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 
 // You can use either of the following:
-const valueBucket1: ValuesBucket = {
+const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
   'CODES': value4,
 };
-const valueBucket2: ValuesBucket = {
+const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
   CODES: value4,
 };
-const valueBucket3: ValuesBucket = {
+const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
@@ -3237,16 +3313,16 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                     |
+| Name    | Type                                | Mandatory | Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data. |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the number of rows deleted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3295,21 +3371,21 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                     |
+| Name    | Type                                | Mandatory | Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data. |
 
 **Return value**
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
+| Promise&lt;number&gt; | Promise used to return the number of rows deleted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3358,21 +3434,21 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Parameters**
 
-| Name    | Type                           | Mandatory| Description                                   |
+| Name    | Type                           | Mandatory | Description                                   |
 | ---------- | ------------------------------- | ---- | --------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | return the number of rows updated.|
+| number | return the number of rows updated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -3422,16 +3498,16 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                       |
+| Name    | Type                                                        | Mandatory | Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates)                         | Yes  | Query conditions specified by the **RdbPredicates** object.                  |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3474,17 +3550,17 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                       |
+| Name    | Type                                                        | Mandatory | Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates)                         | Yes  | Query conditions specified by the **RdbPredicates** object.                  |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3527,16 +3603,16 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                            |
+| Name    | Type                                | Mandatory | Description                                            |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
-| columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
+| columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3547,7 +3623,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -3585,16 +3661,16 @@ Queries data in the RDB store based on specified **RdbPredicates** instance.
 
 **Parameters**
 
-| Name    | Type                           | Mandatory| Description                                                        |
+| Name    | Type                           | Mandatory | Description                                                        |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
-| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. This parameter is left blank by default.|
+| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. This parameter is left blank by default. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -3605,7 +3681,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                   | Description                               |
 | ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
+| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -3648,19 +3724,19 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 **Parameters**
 
-| Name    | Type                                        | Mandatory| Description                                                     |
+| Name    | Type                                        | Mandatory | Description                                                     |
 | ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
 | device     | string                                       | Yes  | ID of the remote device.                                       |
 | table      | string                                       | Yes  | Name of the target table.                                         |
 | predicates | [RdbPredicates](#rdbpredicates)              | Yes  | Query conditions specified by the **RdbPredicates** object.                |
 | columns    | Array&lt;string&gt;                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.         |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -3723,24 +3799,24 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                            |
+| Name    | Type                                | Mandatory | Description                                            |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | device     | string                               | Yes  | ID of the remote device.                  |
 | table      | string                               | Yes  | Name of the target table.                                |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.     |
-| columns    | Array&lt;string&gt;                  | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.|
+| columns    | Array&lt;string&gt;                  | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns. |
 
 **Return value**
 
 | Type                                                        | Description                                              |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -3753,7 +3829,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
@@ -3799,7 +3875,7 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
+| Name  | Type                                        | Mandatory | Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sql      | string                                       | Yes  | SQL statement to run.                                       |
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
@@ -3808,7 +3884,7 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3849,17 +3925,17 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
+| Name  | Type                                        | Mandatory | Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sql      | string                                       | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array. |
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3900,22 +3976,22 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. |
 
 **Return value**
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -3956,22 +4032,22 @@ Executes the SQL statement to query data in this RDB store.
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. This parameter is left blank by default.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. This parameter is left blank by default. |
 
 **Return value**
 
 | Type                   | Description                               |
 | ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
+| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
@@ -4017,7 +4093,7 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.                                      |
@@ -4026,7 +4102,7 @@ This API does not support query, attach, or transaction operations. To perform t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4077,17 +4153,17 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array. |
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.                                      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4138,22 +4214,22 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4192,14 +4268,13 @@ if(store != undefined) {
 }
 ```
 
-
 ### execute<sup>12+</sup>
 
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 Executes an SQL statement that contains the specified parameters. This API uses a promise to return the result.
 
-This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value is determined by the execution result.
+This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value varies, depending on the execution result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
@@ -4207,22 +4282,22 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[ValueType](#valuetype)&gt; | Promise used to return the SQL execution result.|
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise used to return the SQL execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4297,23 +4372,23 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
 | txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12). If the value is **0**, the SQL statement is executed in a separate transaction by default.                                     |
-| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete.|
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[ValueType](#valuetype)&gt; | Promise that returns **null**.|
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise that returns **null**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4370,22 +4445,22 @@ This API does not support query, attach, or transaction operations. To perform t
 
 **Parameters**
 
-| Name| Type                                | Mandatory| Description                                                        |
+| Name | Type                                | Mandatory | Description                                                        |
 | ------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql    | string                               | Yes  | SQL statement to run.                                       |
-| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. This parameter is left blank by default.|
+| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. This parameter is left blank by default. |
 
 **Return value**
 
 | Type                   | Description               |
 | ----------------------- | ------------------- |
-| [ValueType](#valuetype) | SQL execution result.|
+| [ValueType](#valuetype) | SQL execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported the sql(attach,begin,commit,rollback etc.). |
@@ -4458,18 +4533,18 @@ Obtains the last modification time of the data in a table. This API uses an asyn
 
 **Parameters**
 
-| Name     | Type                                            | Mandatory| Description                                                        |
+| Name     | Type                                            | Mandatory | Description                                                        |
 | ----------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table       | string                                           | Yes  | Name of the database table to query.                                |
 | columnName  | string                                           | Yes  | Column name of the database table to query.                                |
-| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned.|
-| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | Yes  | Callback used to return the result. If the operation is successful, the **ModifyTime** object is returned.|
+| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned. |
+| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | Yes  | Callback used to return the result. If the operation is successful, the **ModifyTime** object is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr.3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
 | 801       | Capability not supported. |
@@ -4517,23 +4592,23 @@ Obtains the last modification time of the data in a table. This API uses a promi
 
 **Parameters**
 
-| Name     | Type                         | Mandatory| Description                                                        |
+| Name     | Type                         | Mandatory | Description                                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | table       | string                        | Yes  | Name of the database table to query.                                |
 | columnName  | string                        | Yes  | Column name of the database table to query.                                |
-| primaryKeys | [PRIKeyType](#prikeytype10)[] | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned.|
+| primaryKeys | [PRIKeyType](#prikeytype10)[] | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned. |
 
 **Return value**
 
 | Type                                      | Description                                                     |
 | ------------------------------------------ | --------------------------------------------------------- |
-| Promise&lt;[ModifyTime](#modifytime10)&gt; | Promise used to return the **ModifyTime** object.|
+| Promise&lt;[ModifyTime](#modifytime10)&gt; | Promise used to return the **ModifyTime** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr.3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
 | 801       | Capability not supported. |
@@ -4586,7 +4661,7 @@ This API cannot be used in multi-process or multi-thread scenarios.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
@@ -4612,7 +4687,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4620,15 +4694,15 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
+  (store as relationalStore.RdbStore).beginTransaction();
+  const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
     'CODES': value4,
   };
-  store.insert("test", valueBucket);
-  store.commit();
+  (store as relationalStore.RdbStore).insert("test", valueBucket);
+  (store as relationalStore.RdbStore).commit();
 }
 ```
 
@@ -4649,18 +4723,18 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise used to return the transaction ID.|
+| Promise&lt;number&gt; | Promise used to return the transaction ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Failed to open database by database corrupted. |
+| 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
 | 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
@@ -4711,7 +4785,7 @@ This API cannot be used in multi-process or multi-thread scenarios.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
@@ -4736,7 +4810,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4744,15 +4817,15 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
+  (store as relationalStore.RdbStore).beginTransaction();
+  const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
     'CODES': value4,
   };
-  store.insert("test", valueBucket);
-  store.commit();
+  (store as relationalStore.RdbStore).insert("test", valueBucket);
+  (store as relationalStore.RdbStore).commit();
 }
 ```
 
@@ -4769,7 +4842,7 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12).                                       |
 
@@ -4777,13 +4850,13 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -4837,7 +4910,7 @@ This API cannot be used in multi-process or multi-thread scenarios.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
@@ -4862,7 +4935,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4871,20 +4944,20 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
   try {
-    store.beginTransaction()
-    const valueBucket: ValuesBucket = {
+    (store as relationalStore.RdbStore).beginTransaction()
+    const valueBucket: relationalStore.ValuesBucket = {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
       'CODES': value4,
     };
-    store.insert("test", valueBucket);
-    store.commit();
+    (store as relationalStore.RdbStore).insert("test", valueBucket);
+    (store as relationalStore.RdbStore).commit();
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message
     console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
+    (store as relationalStore.RdbStore).rollBack();
   }
 }
 ```
@@ -4902,7 +4975,7 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12).                                       |
 
@@ -4910,13 +4983,13 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
@@ -4967,16 +5040,16 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                    |
+| Name  | Type                     | Mandatory | Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| destName | string                    | Yes  | Name of the RDB store backup file.|
+| destName | string                    | Yes  | Name of the RDB store backup file. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
@@ -5023,21 +5096,21 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                    |
+| Name  | Type  | Mandatory | Description                    |
 | -------- | ------ | ---- | ------------------------ |
-| destName | string | Yes  | Name of the RDB store backup file.|
+| destName | string | Yes  | Name of the RDB store backup file. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -5084,16 +5157,16 @@ Restores an RDB store from a backup file. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                    |
+| Name  | Type                     | Mandatory | Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| srcName  | string                    | Yes  | Name of the RDB store backup file.|
+| srcName  | string                    | Yes  | Name of the RDB store backup file. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -5139,21 +5212,21 @@ Restores an RDB store from a backup file. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                    |
+| Name | Type  | Mandatory | Description                    |
 | ------- | ------ | ---- | ------------------------ |
-| srcName | string | Yes  | Name of the RDB store backup file.|
+| srcName | string | Yes  | Name of the RDB store backup file. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -5202,16 +5275,16 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                  |
+| Name  | Type                     | Mandatory | Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| tables   | Array&lt;string&gt;       | Yes  | Names of the distributed tables to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| tables   | Array&lt;string&gt;       | Yes  | Names of the distributed tables to set. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5244,21 +5317,21 @@ Sets distributed tables. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description                    |
+| Name | Type                    | Mandatory | Description                    |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | ArrayArray&lt;string&gt; | Yes  | Names of the distributed tables to set.|
+| tables | ArrayArray&lt;string&gt; | Yes  | Names of the distributed tables to set. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5291,9 +5364,9 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                        |
+| Name  | Type                                 | Mandatory | Description                        |
 | -------- | ------------------------------------- | ---- | ---------------------------- |
-| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set.|
+| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set. |
 | type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.            |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.      |
 
@@ -5301,7 +5374,7 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5338,15 +5411,15 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 | Name     | Type                                 | Mandatory | Description             |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | Yes  | Names of the distributed tables to set.    |
-| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.|
-| config | [DistributedConfig](#distributedconfig10) | Yes| Configuration of the distributed mode.|
-| callback | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.|
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables. |
+| config | [DistributedConfig](#distributedconfig10) | Yes | Configuration of the distributed mode. |
+| callback | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5382,23 +5455,23 @@ Sets distributed tables. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
-| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
-| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported.|
+| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**. |
+| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5438,17 +5511,17 @@ Obtains the distributed table name of a remote device based on the local table n
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                        |
+| Name  | Type                       | Mandatory | Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | device   | string                      | Yes  | ID of the remote device.                                               |
 | table    | string                      | Yes  | Local table name of the remote device.                                        |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation succeeds, the distributed table name of the remote device is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5459,6 +5532,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
@@ -5500,22 +5574,22 @@ Obtains the distributed table name of a remote device based on the local table n
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
 | device | string | Yes  | ID of the remote device.        |
-| table  | string | Yes  | Local table name of the remote device.|
+| table  | string | Yes  | Local table name of the remote device. |
 
 **Return value**
 
 | Type                 | Description                                                 |
 | --------------------- | ----------------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+| Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5562,17 +5636,17 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                                        |
+| Name    | Type                                              | Mandatory | Description                                                        |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode       | [SyncMode](#syncmode)                             | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.                              |
 | predicates | [RdbPredicates](#rdbpredicates)               | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.                                        |
-| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
+| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5583,6 +5657,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
@@ -5627,9 +5702,9 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                          |
+| Name    | Type                                | Mandatory | Description                          |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode)               | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.|
+| mode       | [SyncMode](#syncmode)               | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**. |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.          |
 
 **Return value**
@@ -5642,7 +5717,7 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5696,17 +5771,17 @@ Manually starts device-cloud sync for all distributed tables. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller.|
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------|
 | 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.     |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. 5. The callback must be a function. |
@@ -5741,22 +5816,22 @@ Manually starts device-cloud sync for all distributed tables. This API uses a pr
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
+| Name  | Type                                                 | Mandatory | Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details. |
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to send the sync result.|
+| Promise&lt;void&gt; | Promise used to send the sync result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**   |
+| **ID** | **Error Message**   |
 |-----------|------------------|
 | 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. |
@@ -5791,21 +5866,21 @@ Manually starts device-cloud sync of the specified table. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
 | tables   | string[]                                              | Yes  | Name of the table to synchronize.                                  |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller.|
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                                                                                                                                                                                 |
+| **ID** | **Error Message**                                                                                                                                                                                                                 |
 |-----------|-------|
 | 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.  |
-| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.   |
 
@@ -5839,23 +5914,23 @@ Manually starts device-cloud sync of the specified table. This API uses a promis
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
+| Name  | Type                                                 | Mandatory | Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                |
 | tables   | string[]                                              | Yes  | Name of the table to synchronize.                      |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details. |
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to send the sync result.|
+| Promise&lt;void&gt; | Promise used to send the sync result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**    |
+| **ID** | **Error Message**    |
 |-----------|---------------|
 | 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.   |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type |
@@ -5890,17 +5965,17 @@ Subscribes to data changes of specified devices. When the data of the specified 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
+| Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype)                              | Yes  | Type of data change to observe.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -5910,18 +5985,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices != undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    })
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
   }
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -5940,17 +6016,17 @@ Subscribes to data changes of specified devices. A callback is called when data 
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                       |
+| Name  | Type                               | Mandatory | Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
-| type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe.|
+| type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe. |
 | observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback used to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>- If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------------|
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -5961,18 +6037,19 @@ Example 1: **type** is **SUBSCRIBE_TYPE_REMOTE**.
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver => {
-      if (devices != undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -5984,13 +6061,17 @@ try {
 Example 2: **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**.
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
+  for (let i = 0; i < changeInfos.length; i++) {
+    console.info(`changeInfos = ${changeInfos[i]}`);
+  }
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
-      for (let i = 0; i < ChangeInfos.length; i++) {
-        console.info(`ChangeInfos = ${ChangeInfos[i]}`);
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, changeInfos);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6004,7 +6085,7 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 try {
-  const valueBucket: ValuesBucket = {
+  const valueBucket: relationalStore.ValuesBucket = {
     'name': value1,
     'age': value2,
     'salary': value3,
@@ -6031,17 +6112,17 @@ Subscribes to process events. This callback is invoked by [emit](#emit10).
 
 **Parameters**
 
-| Name      | Type           | Mandatory| Description                                                        |
+| Name      | Type           | Mandatory | Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events.|
+| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events. |
 | observer     | Callback\<void> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -6052,11 +6133,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = () => {
+  console.info(`storeObserver`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
-      console.info(`storeObserver`);
-    });
+    (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6075,16 +6160,16 @@ Subscribes to the auto sync progress. This API can be called only when device-cl
 
 **Parameters**
 
-| Name      | Type                             | Mandatory| Description                               |
+| Name      | Type                             | Mandatory | Description                               |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.|
+| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress. |
 | progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to return the auto sync progress.                            |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**   |
+| **ID** | **Error Message**   |
 |-----------|--------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
 | 801       | Capability not supported.  |
@@ -6095,16 +6180,87 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
+  console.info(`progress: ${progressDetail}`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
-    });
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
   }
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
   console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### on('statistics')<sup>12+</sup>
+
+on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
+
+Subscribes to SQL statistics.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type                             | Mandatory | Description                               |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | Yes  | Event type. The value is **statistics**, which indicates the statistics of the SQL execution time. |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | Yes  | Callback used to return the statistics about the SQL execution time in the database. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID** | **Error Message**   |
+|-----------|--------|
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 801       | Capability not supported.  |
+| 14800000  | Inner error.  |
+| 14800014  | Already closed.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
+  console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
+  console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
+  console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
+  console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
+  console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('statistics', sqlExecutionInfo);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  let value1 = "Lisa";
+  let value2 = 18;
+  let value3 = 100.5;
+  let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+  const valueBucket: relationalStore.ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
+} catch (err) {
+  console.error(`insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -6118,7 +6274,7 @@ Unsubscribes from data changes of the specified devices.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
+| Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                                                  |
@@ -6128,7 +6284,7 @@ Unsubscribes from data changes of the specified devices.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -6137,17 +6293,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let devices: string | undefined = undefined;
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
+
+try {
+  if (store != undefined) {
+    // The Lambda expression cannot be used here.
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  }
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices != undefined){
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6166,17 +6335,17 @@ Unsubscribes from data changes of this RDB store.
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                       |
+| Name  | Type                               | Mandatory | Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
 | type     | [SubscribeType](#subscribetype)     | Yes  | Type of data change to observe.                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback to unregister.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>- If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store.<br>If **observer** is not specified, this API unregisters all callbacks for data changes of the specified **type**.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No | Callback to unregister.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>- If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store.<br>If **observer** is not specified, this API unregisters all callbacks for data changes of the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**       |
+| **ID** | **Error Message**       |
 |-----------|-------------|
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -6187,18 +6356,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devices: string | undefined = undefined;
+let storeObserver = (devices: Array<string>) => {
+  if (devices != undefined) {
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+}
 
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      if (devices !=  undefined) {
-        for (let i = 0; i < devices.length; i++) {
-          console.info(`device= ${devices[i]} data changed`);
-        }
-      }
-    });
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6217,17 +6397,17 @@ Unsubscribes from process events.
 
 **Parameters**
 
-| Name      | Type           | Mandatory| Description                                                        |
+| Name      | Type           | Mandatory | Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events.|
-| observer     | Callback\<void> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events. |
+| observer     | Callback\<void> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                          |
+| **ID** | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -6238,11 +6418,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storeObserver = () => {
+  console.info(`storeObserver`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('storeObserver', false, (storeObserver) => {
-      console.info(`storeObserver`);
-    });
+    (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -6261,16 +6455,16 @@ Unsubscribes from the auto sync progress.
 
 **Parameters**
 
-| Name      | Type                             | Mandatory| Description                                                              |
+| Name      | Type                             | Mandatory | Description                                                              |
 | ------------ |---------------------------------| ---- |------------------------------------------------------------------|
 | event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.                               |
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback to unregister. If this parameter is **null** or **undefined** or not specified, this API unregisters all callbacks for the auto sync progress.|
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback to unregister. If this parameter is **null** or **undefined** or not specified, this API unregisters all callbacks for the auto sync progress. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**        |
+| **ID** | **Error Message**        |
 | ------------ |--------------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
 | 801       | Capability not supported.  |
@@ -6281,16 +6475,69 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
+  console.info(`progress: ${progressDetail}`);
+}
+
 try {
   if(store != undefined) {
-    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
-    });
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
   console.error(`Unregister failed, code is ${code},message is ${message}`);
+}
+```
+
+### off('statistics')<sup>12+</sup>
+
+off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
+
+Unsubscribes from SQL statistics.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type                             | Mandatory | Description                               |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | Yes  | Event type. The value is **'statistics'**, which indicates the statistics of the SQL execution time. |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID** | **Error Message**   |
+|-----------|--------|
+| 401       | Parameter error.  |
+| 801       | Capability not supported.  |
+| 14800000  | Inner error.  |
+| 14800014  | Already closed.     |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('statistics');
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -6304,15 +6551,15 @@ Triggers the inter-process or intra-process event listener registered in [on](#o
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | Yes  | Name of the event.|
+| event  | string | Yes  | Name of the event. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                                                                     |
+| **ID** | **Error Message**                                                                                                     |
 | --------- |---------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported.     |
@@ -6339,17 +6586,17 @@ Clears the dirty data whose cursor is smaller than the specified cursor from the
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string                        | Yes  | Name of the table in the RDB store.                            |
 | cursor    | number                        | Yes  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared.    |
-| callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback used to return the result.|
+| callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**    |
+| **ID** | **Error Message**    |
 |-----------|---------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. 4. The cursor must be valid cursor. |
 | 801       | Capability not supported. |
@@ -6396,18 +6643,18 @@ Clears all dirty data from the local device. The dirty data is the data that has
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| table     | string                        | Yes  | Name of the table in the RDB store.|
-| callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback used to return the result.|
+| table     | string                        | Yes  | Name of the table in the RDB store. |
+| callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**      |
+| **ID** | **Error Message**      |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. |
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s). 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. |
 | 801       | Capability not supported.    |
 | 14800000  | Inner error.        |
 | 14800011  | Database corrupted.   |
@@ -6452,10 +6699,10 @@ Clears the dirty data whose cursor is smaller than the specified cursor from the
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string           | Yes  | Name of the table in the RDB store.          |
-| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared.|
+| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared. |
 
 **Return value**
 | Name   | Description                                              |
@@ -6466,7 +6713,7 @@ Clears the dirty data whose cursor is smaller than the specified cursor from the
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                                                                                                                                     |
+| **ID** | **Error Message**                                                                                                                                                                     |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. 4. The cursor must be valid cursor. |
 | 801       | Capability not supported. |
@@ -6517,21 +6764,21 @@ The RDB store is attached via a database file. This API cannot be used for encry
 
 | Name       | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
-| fullPath | string | Yes  | Path of the database file to attach.|
-| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
-| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2|
+| fullPath | string | Yes  | Path of the database file to attach. |
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation. |
+| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2 |
 
 **Return value**
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores.|
+|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -6585,22 +6832,22 @@ This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB 
 
 | Name       | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
-| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store to attach.                               |
-| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
-| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2|
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation. |
+| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2 |
 
 **Return value**
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores.|
+|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
@@ -6699,20 +6946,20 @@ After all attached RDB stores are detached, the RDB is switched to the WAL mode.
 
 | Name       | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
-| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
-| waitTime | number | No  | Maximum time period (in seconds) allowed for detaching the RDB store. <br>Value range: 1 to 300<br>Default value: 2|
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation. |
+| waitTime | number | No  | Maximum time period (in seconds) allowed for detaching the RDB store. <br>Value range: 1 to 300<br>Default value: 2 |
 
 **Return value**
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-|  Promise&lt;number&gt; | Promise used to returned the number of remaining attached RDB stores.|
+|  Promise&lt;number&gt; | Promise used to return the number of remaining attached RDB stores. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**      |
+| **ID** | **Error Message**      |
 |-----------|------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.            |
@@ -6762,9 +7009,9 @@ This API cannot be used for deleted data.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                     |
+| Name    | Type                                | Mandatory | Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions for locking data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions for locking data. |
 
 **Return value**
 
@@ -6776,7 +7023,7 @@ This API cannot be used for deleted data.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                                                    |
+| **ID** | **Error Message**                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------|
 | 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                                 |
@@ -6829,7 +7076,7 @@ This API cannot be used for deleted data.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                     |
+| Name    | Type                                | Mandatory | Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions for unlocking data.|
 
@@ -6843,7 +7090,7 @@ This API cannot be used for deleted data.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -6893,16 +7140,16 @@ Due to the limit of the shared memory (max. 2 MB), a single data record cannot e
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                            |
+| Name    | Type                                | Mandatory | Description                                            |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
-| columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
+| columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -6928,7 +7175,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -6957,7 +7204,7 @@ if(store != undefined) {
 ```
 ### close<sup>12+</sup>
 
-close(): Promise<void>
+close(): Promise&lt;void&gt;
 
 Closes this RDB store. This API uses a promise to return the result.
 
@@ -6967,15 +7214,15 @@ Closes this RDB store. This API uses a promise to return the result.
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to|
+| Promise&lt;void&gt; | Promise used to |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                   |
+| **ID** | **Error Message**                                   |
 | ------------ | ----------------------------------------------- |
-| 401          | Parameter error. The store must be not nullptr. |
+| 401          | Parameter error. The store must not be nullptr. |
 | 14800000     | Inner error.                                    |
 
 **Example**
@@ -7019,7 +7266,7 @@ if(store != undefined) {
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name        | Type           | Mandatory| Description                            |
+| Name        | Type           | Mandatory | Description                            |
 | ------------ | ------------------- | ---- | -------------------------------- |
 | columnNames  | Array&lt;string&gt; | Yes  | Names of all columns in the result set.      |
 | columnCount  | number              | Yes  | Number of columns in the result set.            |
@@ -7027,7 +7274,7 @@ if(store != undefined) {
 | rowIndex     | number              | Yes  | Index of the current row in the result set.        |
 | isAtFirstRow | boolean             | Yes  | Whether the cursor is in the first row of the result set.      |
 | isAtLastRow  | boolean             | Yes  | Whether the cursor is in the last row of the result set.    |
-| isEnded      | boolean             | Yes  | Whether the cursor is after the last row of the result set.|
+| isEnded      | boolean             | Yes  | Whether the cursor is after the last row of the result set. |
 | isStarted    | boolean             | Yes  | Whether the cursor has been moved.            |
 | isClosed     | boolean             | Yes  | Whether the result set is closed.        |
 
@@ -7041,21 +7288,21 @@ Obtains the column index based on the column name.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                      |
+| Name    | Type  | Mandatory | Description                      |
 | ---------- | ------ | ---- | -------------------------- |
-| columnName | string | Yes  | Column name.|
+| columnName | string | Yes  | Column name. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | Column index obtained.|
+| number | Column index obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7099,21 +7346,21 @@ Obtains the column name based on the specified column index.
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                      |
+| Name     | Type  | Mandatory | Description                      |
 | ----------- | ------ | ---- | -------------------------- |
-| columnIndex | number | Yes  | Column index.|
+| columnIndex | number | Yes  | Column index. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| string | Column name obtained.|
+| string | Column name obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7156,21 +7403,21 @@ Moves the cursor to the row based on the specified offset.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
+| Name | Type  | Mandatory | Description                        |
 | ------ | ------ | ---- | ---------------------------- |
-| offset | number | Yes  | Offset relative to the current position.|
+| offset | number | Yes  | Offset relative to the current position. |
 
 **Return value**
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7211,21 +7458,21 @@ Moves to the specified row in the result set.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                    |
+| Name  | Type  | Mandatory | Description                    |
 | -------- | ------ | ---- | ------------------------ |
-| position | number | Yes  | Destination position to move to.|
+| position | number | Yes  | Destination position to move to. |
 
 **Return value**
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7269,13 +7516,13 @@ Moves to the first row of the result set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -7317,13 +7564,13 @@ Moves to the last row of the result set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -7365,13 +7612,13 @@ Moves to the next row in the result set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -7413,13 +7660,13 @@ Moves to the previous row in the result set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -7459,9 +7706,9 @@ Obtains the value from the specified column and current row. If the value type i
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
@@ -7473,7 +7720,7 @@ Obtains the value from the specified column and current row. If the value type i
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**    |
+| **ID** | **Error Message**    |
 |-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.      |
@@ -7515,21 +7762,21 @@ Obtains the value from the specified column and current row, and returns it in a
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type      | Description                            |
 | ---------- | -------------------------------- |
-| Uint8Array | Value obtained.|
+| Uint8Array | Value obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7570,21 +7817,21 @@ Obtains the value from the specified column and current row, and returns it in t
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| string | String obtained.|
+| string | String obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7625,21 +7872,21 @@ Obtains the value from the specified column and current row, and returns a value
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Value obtained.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
+| number | Value obtained.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble). |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7680,21 +7927,21 @@ Obtains the value from the specified column and current row, and returns a value
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| number | Returns the value obtained.|
+| number | Returns the value obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7729,7 +7976,7 @@ if(resultSet != undefined) {
 
 getAsset(columnIndex: number): Asset
 
-Obtains the value from the specified column and current row, and returns the value in [Asset](#asset10) format. <br>If the value in the column is **null**, **null** will be returned. If the value in the column is of other types, **14800000** will be returned.
+Obtains the value from the specified column and current row, and returns the value in the [Asset](#asset10) format. If the type of the value in the column is **Asset**, the value of the Asset type is returned. If the value in the column is null, **null** is returned. If the value in the column is of other types, **14800000** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7737,19 +7984,19 @@ Obtains the value from the specified column and current row, and returns the val
 
 | Name        | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type             | Description                        |
 | --------------- | -------------------------- |
-| [Asset](#asset10) | Returns the value obtained.|
+| [Asset](#asset10) | Returns the value obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7784,7 +8031,7 @@ if(resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-Obtains the value from the specified column and current row, and returns the value in [Assets](#assets10) format. <br>If the value in the column is **null**, **null** will be returned. If the value in the column is of other types, **14800000** will be returned.
+Obtains the value from the specified column and current row, and returns the value in the [Assets](#assets10) format. If the type of the value in the column is **Assets**, the value of the Assets type is returned. If the value in the column is null, **null** is returned. If the value in the column is of other types, **14800000** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7792,19 +8039,19 @@ Obtains the value from the specified column and current row, and returns the val
 
 | Name        | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-| [Assets](#assets10)| Returns the value obtained.|
+| [Assets](#assets10)| Returns the value obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7847,13 +8094,13 @@ Obtains the data in the current row.
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-| [ValuesBucket](#valuesbucket) | Data obtained.|
+| [ValuesBucket](#valuesbucket) | Data obtained. |
 
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -7883,6 +8130,84 @@ if(resultSet != undefined) {
 }
 ```
 
+### getSendableRow<sup>12+</sup>
+
+getSendableRow(): sendableRelationalStore.ValuesBucket
+
+Obtains the sendable data from the current row. The data obtained is used for cross-thread transfer.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Return value**
+
+| Type                                                                                          | Description                                          |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [sendableRelationalStore.ValuesBucket](../js-apis-data-sendableRelationalStore.md#valuesbucket) | Sendable data obtained for cross-thread transfer. |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID** | **Error Message**                                 |
+| ------------ | --------------------------------------------- |
+| 14800000     | Inner error.                                  |
+| 14800011     | Database corrupted.                           |
+| 14800012     | Row out of bounds.                            |
+| 14800013     | Column out of bounds.                         |
+| 14800014     | Already closed.                               |
+| 14800021     | SQLite: Generic error.                        |
+| 14800022     | SQLite: Callback routine requested an abort.  |
+| 14800023     | SQLite: Access permission denied.             |
+| 14800024     | SQLite: The database file is locked.          |
+| 14800025     | SQLite: A table in the database is locked.    |
+| 14800026     | SQLite: The database is out of memory.        |
+| 14800027     | SQLite: Attempt to write a readonly database. |
+| 14800028     | SQLite: Some kind of disk I/O error occurred. |
+| 14800029     | SQLite: The database is full.                 |
+| 14800030     | SQLite: Unable to open the database file.     |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.      |
+| 14800032     | SQLite: Abort due to constraint violation.    |
+| 14800033     | SQLite: Data type mismatch.                   |
+| 14800034     | SQLite: Library used incorrectly.             |
+
+**Example**
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+import type ctx from '@ohos.app.ability.common';
+import { sendableRelationalStore } from '@kit.ArkData';
+
+@Concurrent
+async function getDataByName(name: string, context: ctx.UIAbilityContext) {
+  const STORE_CONFIG: relationalStore.StoreConfig = {
+    name: "RdbTest.db",
+    securityLevel: relationalStore.SecurityLevel.S3
+  };
+  const store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+  const predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+  predicates.equalTo("NAME", name);
+  const resultSet = store.querySync(predicates);
+
+  if (resultSet.rowCount > 0) {
+    resultSet.goToFirstRow();
+    const sendableValuesBucket = resultSet.getSendableRow();
+    return sendableValuesBucket;
+  } else {
+    return null;
+  }
+}
+
+const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
+const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+
+if (sendableValuesBucket) {
+  const columnCount = sendableValuesBucket.size;
+  const age = sendableValuesBucket.get('age');
+  const name = sendableValuesBucket.get('name');
+  console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+}
+```
+
 ### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
@@ -7893,21 +8218,21 @@ Checks whether the value in the specified column is null.
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type   | Description                                                     |
 | ------- | --------------------------------------------------------- |
-| boolean | Returns **true** if the value is null; returns **false** otherwise.|
+| boolean | Returns **true** if the value is null; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------- |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
@@ -7958,7 +8283,9 @@ if(resultSet != undefined) {
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800012  | Row out of bounds. |
+
+<!--no_check-->
