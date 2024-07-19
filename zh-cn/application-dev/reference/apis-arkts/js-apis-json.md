@@ -19,6 +19,8 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 
 用于转换结果函数的类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -35,9 +37,31 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 | -------- | -------- |
 | Object \| undefined \| null | 返回修改后的对象或undefined或null。|
 
+## BigIntMode
+
+定义处理BigInt的模式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| DEFAULT   | 0 |不支持BigInt。|
+| PARSE_AS_BIGINT   | 1 |当整数小于-(2^53-1)或大于(2^53-1)时，解析为BigInt。|
+| ALWAYS_PARSE_AS_BIGINT   | 2 |所有整数都解析为BigInt。|
+
+## ParseOptions
+
+解析的选项，可定义处理BigInt的模式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型| 必填 |说明            |
+| ------ | ------ | ---- | --------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
+
 ## JSON.parse
 
-parse(text: string, reviver?: Transformer): Object | null
+parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | null
 
 用于解析JSON字符串生成对应ArkTS对象或null。
 
@@ -51,6 +75,7 @@ parse(text: string, reviver?: Transformer): Object | null
 | ------ | ------ | ---- | --------------- |
 | text   | string | 是 | 有效的JSON字符串。|
 | reviver  | [Transformer](#transformer) | 否 | 转换函数，传入该参数，可以用来修改解析生成的原始值。默认值是undefined。|
+| options   | [ParseOptions](#parseoptions) | 否 | 解析的配置，传入该参数，可以用来控制解析生成的类型。默认值是undefined。|
 
 **返回值：**
 
@@ -71,6 +96,18 @@ parse(text: string, reviver?: Transformer): Object | null
 ```ts
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
+
+let options: JSON.ParseOptions = {
+  bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
+}
+let numberText = '{"largeNumber":112233445566778899}';
+let numberObj = JSON.parse(numberText,(key: string, value: Object | undefined | null): Object | undefined | null => {
+  if(key === "largeNumber") return value;
+  return value;
+},options) as Object;
+
+console.info((numberObj as object)?.["largeNumber"]);
+// 期望输出: 112233445566778899
 ```
 
 
