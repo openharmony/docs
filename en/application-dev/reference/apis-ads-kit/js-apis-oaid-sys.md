@@ -32,7 +32,7 @@ Resets an OAID.
 
 For details about the following error codes, see [OAID Error Codes](errorcode-oaid.md).
 
-| ID| Error Message| 
+| ID | Error Message | 
 | -------- | -------- |
 | 17300001 | System&nbsp;internal&nbsp;error. | 
 
