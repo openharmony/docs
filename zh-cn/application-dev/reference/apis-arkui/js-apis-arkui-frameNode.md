@@ -3231,6 +3231,8 @@ struct TrackTest {
 }
 ```
 
+<!--code_no_check-->
+
 ```ts
 // ./track.ets
 import { FrameNode } from '@kit.ArkUI';
