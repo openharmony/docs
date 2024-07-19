@@ -913,7 +913,7 @@ ws.off('headerReceive');
 | keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
-export type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
+type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 网络代理配置信息
 
