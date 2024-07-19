@@ -150,6 +150,7 @@ getReaders(): Reader[]
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -196,6 +197,7 @@ isConnected(): boolean
 
 **示例：**
 
+
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -237,6 +239,7 @@ shutdown(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -277,6 +280,7 @@ getVersion(): string
 
 **示例：**
 
+<!--code_no_check-->
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -318,6 +322,7 @@ getName(): string
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -359,6 +364,7 @@ isSecureElementPresent(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -401,6 +407,7 @@ try {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -441,6 +448,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -493,6 +501,7 @@ getReader(): Reader
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -545,6 +554,7 @@ getATR(): number[]
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -579,6 +589,7 @@ close(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -618,6 +629,7 @@ isClosed(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```Js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -652,6 +664,7 @@ closeChannels(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -700,6 +713,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -755,6 +769,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -818,6 +833,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -875,6 +891,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -938,6 +955,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -993,6 +1011,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1056,6 +1075,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1113,6 +1133,7 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1167,6 +1188,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1201,6 +1223,7 @@ close(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1240,6 +1263,7 @@ isBasicChannel(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1280,6 +1304,7 @@ isClosed(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1320,6 +1345,7 @@ getSelectResponse(): number[]
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1368,6 +1394,7 @@ transmit(command: number[]): Promise\<number[]>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1415,6 +1442,7 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
