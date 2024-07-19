@@ -358,7 +358,6 @@ console.info(`${uriInstance1.checkHierarchical()}`); // false
 getQueryValue(key:string): string
 
 根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
-
 查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
