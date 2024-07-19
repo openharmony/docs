@@ -25,8 +25,8 @@
 1. 获取公共目录路径。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import Environment from '@kit.CoreFileKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { Environment } from '@kit.CoreFileKit';
 
     function getUserDirExample() {
         try {
@@ -46,9 +46,9 @@
 2. 以 Download 目录为例，访问 Download 目录下的文件。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     import { Environment } from '@kit.CoreFileKit';
-    import fs from '@ohos.file.fs';
+    import { fileIo as fs } from '@kit.CoreFileKit';
     import { common } from '@kit.AbilityKit';
 
     function readUserDownloadDirExample() {
@@ -81,9 +81,9 @@
 3. 以 Download 目录为例，保存文件到 Download 目录。
 
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     import { Environment } from '@kit.CoreFileKit';
-    import fs from '@ohos.file.fs';
+    import { fileIo as fs } from '@kit.CoreFileKit';
 
     function writeUserDownloadDirExample() {
     // 检查是否具有 READ_WRITE_DOWNLOAD_DIRECTORY 权限，无权限则需要向用户申请授予权限。

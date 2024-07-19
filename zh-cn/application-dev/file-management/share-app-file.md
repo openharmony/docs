@@ -63,7 +63,7 @@
    import { wantConstant } from '@kit.AbilityKit';
    import { UIAbility } from '@kit.AbilityKit';
    import { Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -130,9 +130,9 @@
 
 ```ts
 // xxx.ets
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getShareFile() {
   try {

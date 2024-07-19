@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D';
 ```
 
 ## TextAlign
@@ -356,6 +356,32 @@ struct Index {
     Column() {
       Button().onClick(() => {
         this.fun();
+      })
+    }
+  }
+}
+```
+
+### clearCaches
+
+clearCaches(): void
+
+清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button().onClick(() => {
+        text.FontCollection.getGlobalInstance().clearCaches();
       })
     }
   }

@@ -370,6 +370,10 @@ struct Page {
 
 ![properly-use-state-management-to-develope-3](figures/properly-use-state-management-to-develope-3.gif)
 
+优化前点击move按钮的脏节点更新耗时如下图：
+
+![img](figures/properly-use-state-management-to-develope-11.PNG)
+
 在上面的示例中，UIStyle定义了多个属性，并且这些属性分别被多个组件关联。当点击任意一个按钮更改其中的某些属性时，会导致所有这些关联uiStyle的组件进行刷新，虽然它们其实并不需要进行刷新（因为组件的属性都没有改变）。通过定义的一系列isRender函数，可以观察到这些组件的刷新。当点击“move”按钮进行平移动画时，由于translateY的值的多次改变，会导致每一次都存在“冗余刷新”的问题，这对应用的性能有着很大的负面影响。
 
 这是因为当前状态管理的一个刷新机制，假设定义了一个有20个属性的类，创建类的对象实例，将20个属性绑定到组件上，这时修改其中的某个属性，除了这个属性关联的组件会刷新之外，其他的19个属性关联的组件也都会刷新，即使这些属性本身并没有发生变化。
@@ -593,6 +597,10 @@ struct Page {
 ```
 
 上述代码的运行效果如下。![properly-use-state-management-to-develope-4](figures/properly-use-state-management-to-develope-4.gif)
+
+优化后点击move按钮的脏节点更新耗时如下图：
+
+![img](figures/properly-use-state-management-to-develope-12.PNG)
 
 修改后的代码将原来的大类中的十五个属性拆成了八个小类，并且在绑定的组件上也做了相应的适配。属性拆分遵循以下几点原则：
 

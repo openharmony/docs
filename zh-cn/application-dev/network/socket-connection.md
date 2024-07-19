@@ -655,6 +655,136 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 ```
 
+## 应用通过将 TCP Socket 升级为 TLS Socket 进行加密数据传输
+
+### 开发步骤
+
+客户端 TCP Socket 升级为 TLS Socket 流程：
+
+1. import 需要的 socket 模块。
+
+2. 参考[应用 TCP/UDP 协议进行通信](#应用-tcpudp-协议进行通信)，创建一个 TCPSocket 连接。
+
+3. 确保 TCPSocket 已连接后，使用该 TCPSocket 对象创建 TLSSocket 连接，返回一个 TLSSocket 对象。
+
+4. 双向认证上传客户端 CA 证书及数字证书；单向认证上传客户端 CA 证书。
+
+5. （可选）订阅 TLSSocket 相关的订阅事件。
+
+6. 发送数据。
+
+7. TLSSocket 连接使用完毕后，主动关闭。
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.on('message', (value: SocketInfo) => {
+  console.log("on message");
+  let buffer = value.message;
+  let dataView = new DataView(buffer);
+  let str = "";
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i));
+  }
+  console.log("on connect received:" + str);
+});
+tcp.on('connect', () => {
+  console.log("on connect");
+});
+
+// 绑定本地IP地址和端口。
+let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+ipAddress.address = "192.168.xxx.xxx";
+ipAddress.port = 1234;
+tcp.bind(ipAddress, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+
+  // 连接到指定的IP地址和端口。
+  ipAddress.address = "192.168.xxx.xxx";
+  ipAddress.port = 443;
+
+  let tcpConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+  tcpConnect.address = ipAddress;
+  tcpConnect.timeout = 6000;
+
+  tcp.connect(tcpConnect, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // 确保TCPSocket已连接后，将其升级为TLSSocket连接。
+  let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+  // 订阅TLSSocket相关的订阅事件。
+  tlsTwoWay.on('message', (value: SocketInfo) => {
+    console.log("tls on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("tls on connect received:" + str);
+  });
+  tlsTwoWay.on('connect', () => {
+    console.log("tls on connect");
+  });
+  tlsTwoWay.on('close', () => {
+    console.log("tls on close");
+  });
+
+  // 配置TLSSocket目的地址、证书等信息。
+  ipAddress.address = "192.168.xxx.xxx";
+  ipAddress.port = 1234;
+
+  let tlsSecureOption : socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
+  tlsSecureOption.key = "xxxx";
+  tlsSecureOption.cert = "xxxx";
+  tlsSecureOption.ca = ["xxxx"];
+  tlsSecureOption.password = "xxxx";
+  tlsSecureOption.protocols = [socket.Protocol.TLSv12];
+  tlsSecureOption.useRemoteCipherPrefer = true;
+  tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
+  tlsSecureOption.cipherSuite = "AES256-SHA256";
+
+  let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
+  tlsSecureOption.key = "xxxx";
+  tlsTwoWayConnectOption.address = ipAddress;
+  tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
+  tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
+
+  // 建立TLSSocket连接
+  tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
+    console.log("tls connect success");
+
+    // 连接使用完毕后，主动关闭。取消相关事件的订阅。
+    tlsTwoWay.close((err: BusinessError) => {
+      if (err) {
+        console.log("tls close callback error = " + err);
+      } else {
+        console.log("tls close success");
+      }
+      tlsTwoWay.off('message');
+      tlsTwoWay.off('connect');
+      tlsTwoWay.off('close');
+    });
+  });
+});
+```
+
 ## 应用通过 TLS Socket Server 进行加密数据传输
 
 ### 开发步骤

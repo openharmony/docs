@@ -198,24 +198,16 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  try {
-    window.minimizeAll(displayClass.id, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in minimizing all windows.');
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
+displayClass = display.getDefaultDisplaySync();
+window.minimizeAll(displayClass.id, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-} catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
-}
+  console.info('Succeeded in minimizing all windows.');
+});
+
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -255,22 +247,14 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(() => {
-      console.info('Succeeded in minimizing all windows.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
-} catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
-}
+let promise = window.minimizeAll(displayClass.id);
+promise.then(() => {
+  console.info('Succeeded in minimizing all windows.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
@@ -508,15 +492,12 @@ const callback = (systemBarTintState: window.SystemBarTintState) => {
 }
 try {
   window.on('systemBarTintChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+
   window.off('systemBarTintChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -594,15 +575,11 @@ const callback = (bool: boolean) => {
 }
 try {
   window.on('gestureNavigationEnabledChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   window.off('gestureNavigationEnabledChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -680,22 +657,18 @@ const callback = (bool: boolean) => {
 }
 try {
   window.on('waterMarkFlagChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   window.off('waterMarkFlagChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('waterMarkFlagChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置手势导航启用状态。使用callback异步回调。
+设置手势导航启用状态。使用callback异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -740,7 +713,7 @@ try {
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置手势导航启用状态。使用Promise异步回调。
+设置手势导航启用状态。使用Promise异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -969,7 +942,7 @@ try {
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，使用callback异步回调。
+隐藏当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1008,7 +981,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-隐藏当前窗口，使用Promise异步回调。
+隐藏当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1045,7 +1018,7 @@ promise.then(() => {
 
 hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，过程中播放动画，使用callback异步回调。
+隐藏当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1086,7 +1059,7 @@ windowClass.hideWithAnimation((err: BusinessError) => {
 
 hideWithAnimation(): Promise&lt;void&gt;
 
-隐藏当前窗口，过程中播放动画，使用Promise异步回调。
+隐藏当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1125,7 +1098,7 @@ promise.then(() => {
 
 showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口，过程中播放动画，使用callback异步回调。
+显示当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1166,7 +1139,7 @@ windowClass.showWithAnimation((err: BusinessError) => {
 
 showWithAnimation(): Promise&lt;void&gt;
 
-显示当前窗口，过程中播放动画，使用Promise异步回调。
+显示当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3539,17 +3512,13 @@ let config: window.Configuration = {
   windowType: window.WindowType.TYPE_PANEL, //根据需要自选系统窗口类型
   ctx: this.context
 };
-try {
-  let promise = window.createWindow(config);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+let promise = window.createWindow(config);
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### animationForShown<sup>9+</sup>

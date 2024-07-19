@@ -1,4 +1,4 @@
-# \@Styles Decorator: Definition of Reusable Styles
+# \@Styles Decorator: Defining Reusable Styles
 
 
 If the style of each component needs to be set separately, this will result in a large amount of repeated code during development. Though copy and paste is available, it is inefficient and error-prone. To maximize code efficiency and maintainability, the \@Styles decorator is introduced.
@@ -107,7 +107,7 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
   The framework preferentially searches for \@Styles within the current component.
 
 
-## Application Scenarios
+## Use Scenarios
 
 The following example demonstrates the usage of \@Styles inside and outside a component declaration.
 

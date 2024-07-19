@@ -128,7 +128,7 @@ Pass in the correct parameters.
 
 **Error Message**
 
-**Error Message**<br>The display device is abnormal.
+The display device is abnormal.
 
 **Description**
 

@@ -4,7 +4,7 @@
 ## 约束限制
 在entry模块的module.json5文件中的[querySchemes](../quick-start/module-configuration-file.md)字段中，最多允许配置50个URL scheme。
 ## 接口说明
-canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManager.md##bundlemanagercanopenlink12)提供的支持判断目标应用是否可访问的接口。
+canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagercanopenlink12)提供的支持判断目标应用是否可访问的接口。
 匹配规则请参考[显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)。
 ## 操作步骤
 ### 调用方操作步骤
@@ -12,7 +12,7 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 1. 在entry模块的module.json5文件中配置[querySchemes](../quick-start/module-configuration-file.md)属性，声明想要查询的URL scheme。
 
     **配置示例**
-    ~~~json
+    ```json
     {
       "module": {
         "querySchemes": [
@@ -20,13 +20,13 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
         ]
       }
     }
-    ~~~
+    ```
 
 2. 导入ohos.bundle.bundleManager模块。 
 3. 调用canOpenLink接口。
 
     **示例**
-    ~~~typescript
+    ```ts
     import { bundleManager } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -38,13 +38,13 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    ~~~
+    ```
 
 ### 目标方操作步骤
 在module.json5文件中配置[uris](../quick-start/module-configuration-file.md#skills标签)属性。
 
 **配置示例**
-~~~json
+```json
 {
   "module": {
     "abilities": [
@@ -64,4 +64,4 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
     ]
   } 
 }
-~~~
+```

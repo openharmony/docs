@@ -11,7 +11,7 @@ The **hid** module provides APIs for using the Bluetooth Human Interface Device 
 ## Modules to Import
 
 ```js
-import hid from '@ohos.bluetooth.hid';
+import { hid } from '@kit.ConnectivityKit';
 ```
 
 
@@ -29,10 +29,20 @@ Creates a **HidHostProfile** instance.
 | ----------------------------- | ---------- |
 | HidHostProfile | **HidHostProfile** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     console.info('hidHost success');

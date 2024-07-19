@@ -7521,6 +7521,14 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   exitFullscreen() {
     // 将本地播放器退出全屏播放。
   }
+
+  resumePlayer() {
+    // 重新创建本地播放器。
+  }
+
+  suspendPlayer(type: SuspendType) {
+    // 销毁本地播放器。
+  }
 }
 
 @Entry
@@ -14669,6 +14677,17 @@ handleVideoSizeChanged(width: number, height: number): void
 
 完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
 
+## SuspendType<sup>12+<sup>
+
+表示播放器的挂起类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| ENTER_BACK_FORWARD_CACHE | 0 | 页面进BFCache。 |
+| ENTER_BACKGROUND         | 1 | 页面进后台。 |
+| AUTO_CLEANUP             | 2 | 系统自动清理。 |
 
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
@@ -14826,6 +14845,36 @@ exitFullscreen(): void
 播放器退出全屏。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### resumePlayer<sup>12+<sup>
+
+resumePlayer?(): void
+
+通知应用重建应用内播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### suspendPlayer<sup>12+<sup>
+
+suspendPlayer?(type: SuspendType): void
+
+通知应用销毁应用内播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| type | [SuspendType](#suspendtype12) | 是 | 播放器挂起类型。|
 
 **示例：**
 
@@ -14991,7 +15040,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
 
-# RectEvent<sup>12+<sup>
+## RectEvent<sup>12+<sup>
 
 矩形定义。
 

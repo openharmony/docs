@@ -54,7 +54,7 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过fs
 2. 使用获取到的文件uri进行重命名操作。
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
@@ -176,7 +176,7 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过ph
 ```ts
 import { picker } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
@@ -253,7 +253,7 @@ try {
 <!--DelEnd-->
 
 ```
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';

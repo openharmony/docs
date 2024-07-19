@@ -2814,15 +2814,14 @@ setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   let res: formInfo.PublishFormResult = {code: formInfo.PublishFormErrorCode.SUCCESS, message: ''};
   formHost.setPublishFormResult(formId, res);
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```

@@ -7,6 +7,8 @@ The **video_output.h** file declares the video output concepts.
 
 **Library**: libohcamera.so
 
+**File to include**: &lt;ohcamera/video_output.h&gt; 
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Since**: 11
@@ -21,18 +23,18 @@ The **video_output.h** file declares the video output concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[VideoOutput_Callbacks](_video_output___callbacks.md) | Defines the callbacks used for video output. | 
+| struct&nbsp;&nbsp;[VideoOutput_Callbacks](_video_output___callbacks.md) | Describes the callbacks related to video output. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [Camera_VideoOutput](_o_h___camera.md#camera_videooutput) [Camera_VideoOutput](_o_h___camera.md#camera_videooutput) | Defines the video output object. | 
+| typedef struct [Camera_VideoOutput](_o_h___camera.md#camera_videooutput) [Camera_VideoOutput](_o_h___camera.md#camera_videooutput) | Defines a struct for the video output object. | 
 | typedef void(\* [OH_VideoOutput_OnFrameStart](_o_h___camera.md#oh_videooutput_onframestart)) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | Defines the pointer to the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output frame start events. | 
 | typedef void(\* [OH_VideoOutput_OnFrameEnd](_o_h___camera.md#oh_videooutput_onframeend)) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, int32_t frameCount) | Defines the pointer to the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output frame end events. | 
 | typedef void(\* [OH_VideoOutput_OnError](_o_h___camera.md#oh_videooutput_onerror)) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) errorCode) | Defines the pointer to the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output errors. | 
-| typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](_o_h___camera.md#videooutput_callbacks) | Defines the callbacks used for video output. | 
+| typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](_o_h___camera.md#videooutput_callbacks) | Defines a struct for the callbacks related to video output. | 
 
 
 ### Functions

@@ -660,7 +660,7 @@
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
+| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。采用非DEFAULT方式较耗时。    |
 | AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
@@ -820,6 +820,9 @@ Nullable\<T> {
 
 ## ForegroundEffectOptions<sup>12+</sup>
 前景效果参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
@@ -835,7 +838,7 @@ Nullable\<T> {
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
@@ -931,12 +934,16 @@ Nullable\<T> {
 
 指示如何将指定的混合模式应用于视图的内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称           | 描述                                                             |
 | ---------------| ---------------------------------------------------------------- |
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## DismissReason<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 值   | 描述                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
@@ -1018,6 +1025,8 @@ Nullable\<T> {
 ## MenuPolicy<sup>12+</sup>
 
 菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |

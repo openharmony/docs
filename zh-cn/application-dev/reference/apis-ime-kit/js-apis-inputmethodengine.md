@@ -655,7 +655,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -698,7 +698,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }

@@ -95,38 +95,38 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
-    ~~~json
+    ```json
     {
-    "abilities": [
-        {
-        "skills": [
-            {
-            "uris": [
-                {
-                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-                "host": "navigation",
-                "path": "",
-                "linkFeature": "Navigation" // 声明应用支持导航功能
-                },
-                {
-                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-                "host": "routePlan",
-                "path": "",
-                "linkFeature": "RoutePlan" // 声明应用支持路线规划功能
-                },
-                {
-                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-                "host": "search",
-                "path": "",
-                "linkFeature": "PlaceSearch" // 声明应用支持位置搜索功能
-                }
-            ]
-            }
-        ]
-        }
-    ]
+      "abilities": [
+          {
+          "skills": [
+              {
+              "uris": [
+                  {
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "host": "navigation",
+                  "path": "",
+                  "linkFeature": "Navigation" // 声明应用支持导航功能
+                  },
+                  {
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "host": "routePlan",
+                  "path": "",
+                  "linkFeature": "RoutePlan" // 声明应用支持路线规划功能
+                  },
+                  {
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "host": "search",
+                  "path": "",
+                  "linkFeature": "PlaceSearch" // 声明应用支持位置搜索功能
+                  }
+              ]
+              }
+          ]
+          }
+      ]
     }
-    ~~~
+    ```
 
 2. 解析参数并做对应处理。
 
@@ -188,6 +188,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
 ## 拉起邮件类应用扩展面板
 
 ### 调用方开发步骤
@@ -230,26 +231,26 @@ export default class EntryAbility extends UIAbility {
 ### 目标方开发步骤
 1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
-    ~~~json
+    ```json
     {
-    "abilities": [
-        {
-        "skills": [
-            {
-            "uris": [
-                {
-                "scheme": "mail", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-                "host": "mail",
-                "path": "",
-                "linkFeature": "ComposeMail" // 声明应用支持撰写邮件功能
-                }
-            ]
-            }
-        ]
-        }
-    ]
+      "abilities": [
+          {
+          "skills": [
+              {
+              "uris": [
+                  {
+                  "scheme": "mail", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "host": "mail",
+                  "path": "",
+                  "linkFeature": "ComposeMail" // 声明应用支持撰写邮件功能
+                  }
+              ]
+              }
+          ]
+          }
+      ]
     }
-    ~~~
+    ```
     
 2. 解析面板传过来的参数并做对应处理。
 

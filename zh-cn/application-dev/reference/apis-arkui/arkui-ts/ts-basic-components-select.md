@@ -470,7 +470,7 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + 图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { MenuItemModifier } from '@ohos.arkui.modifier'
+import { MenuItemModifier } from '@kit.ArkUI'
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
   modifierText: string = ""
@@ -531,7 +531,7 @@ struct SelectExample {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier'
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -577,7 +577,7 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { MenuItemModifier, SymbolGlyphModifier } from '@ohos.arkui.modifier'
+import { MenuItemModifier, SymbolGlyphModifier } from '@kit.ArkUI'
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
   modifierText: string = ""

@@ -125,8 +125,71 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 
 | Type | Description |
 | ------------------- | ------------------------- |
-| Promise<void> | Promise object with no return result.|
+| Promise&lt;void&gt; | Promise object with no return result.|
+| Promise\<void\> | Promise object with no return result.|
+| Promise\<void> | Promise object with no return result.|
 
+## test Angle brackets
+
+* one
+
+    Executing Commands `ps -s <pid> -T`
+
+* two
+
+    <strong>Blod</strong>
+
+* three
+```ts
+async function getCurrentAudioRendererInfoArray(): Promise<void> {
+    ...
+}
+```
+
+* four
+    ```ts
+    async function getCurrentAudioRendererInfoArray(): Promise<void> {
+        ...
+    }
+    ```
+
+* five
+
+```ts
+async function getCurrentAudioRendererInfoArray(): Promise<void> {
+    ...
+}
+```
+
+* six
+
+    ```ts
+    async function getCurrentAudioRendererInfoArray(): Promise<void> {
+        ...
+    }
+    ```
+
+* seven
+    1. name 1
+    ```
+    sdgfdhgdfhfgjfgj
+    ```
+
+    2. name 2
+        ```
+        sdgfdhgdfhfgjfgj
+        ```
+
+    3. name 3
+
+    ```
+    sdgfdhgdfhfgjfgj
+    ```
+    4. name 4
+
+        ```
+        sdgfdhgdfhfgjfgj
+        ```
 
 ## Atomic service API-apiUse the value of H1 for api-info. The value is 9.
 

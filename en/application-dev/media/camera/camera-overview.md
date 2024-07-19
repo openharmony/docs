@@ -2,6 +2,12 @@
 
 With the APIs provided by Camera Kit, you can develop a camera application. The application accesses and operates the camera hardware to implement basic operations, such as preview, photographing, and video recording. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
 
+## When to Use
+
+When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development. For details, see [Camera Development Preparations](camera-preparation.md).
+
+If you only need to start the system camera to take a photo or record a video, you can directly use the CameraPicker module, without applying for the camera permission. For details, see [Camera Picker](../../reference/apis-camera-kit/js-apis-cameraPicker.md).
+
 ## Development Model
 
 The camera application invokes the camera hardware to collect and process image and video data, and output images and videos. It can be used when there are multiple lenses (such as wide-angle lens, long-focus lens, and ToF lens) in various service scenarios (such as different requirements on the resolution, format, and effect).
@@ -26,3 +32,8 @@ The camera application controls the camera hardware to implement basic operation
 
 For example, in a video recording scenario, the recording service creates a video surface and provides it to the camera service for data transmission. The camera service controls the camera device to collect video data and generate a video stream. After processing the collected data at the HDI layer, the camera service transmits the video stream to the recording service through the surface. The recording service processes the video stream and saves it as a video file. Now video recording is complete.
 
+## Samples
+
+The following sample is provided to help you better understand how to develop the camera service:
+
+- [Camera and MediaLibrary (ArkTS, Full SDK, API version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)
