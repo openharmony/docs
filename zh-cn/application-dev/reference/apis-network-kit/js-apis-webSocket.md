@@ -913,16 +913,17 @@ ws.off('headerReceive');
 | keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
+type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 网络代理配置信息
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称    | 类型   | 必填 | 说明                      |
-| ------ | ------ | --- |------------------------- |
-| 'system' | string | 否  |  使用系统默认网络代理。 |
-| 'no-proxy' | string | 否  |  不使用网络代理。 |
-| HttpProxy | Object | 否  | 使用指定的网络代理。 |
+| 类型  | 说明                      |
+| ----- |------------------------- |
+| 'system' |  使用系统默认网络代理。 |
+| 'no-proxy'|  不使用网络代理。 |
+| HttpProxy | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
