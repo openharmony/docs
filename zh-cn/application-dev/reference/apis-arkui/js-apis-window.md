@@ -2709,7 +2709,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
@@ -2730,6 +2730,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -2781,7 +2782,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
@@ -2799,6 +2800,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -2856,7 +2858,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
@@ -2874,6 +2876,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -4985,7 +4988,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5045,7 +5048,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5106,7 +5109,7 @@ resetAspectRatio(): Promise&lt;void&gt;
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5163,7 +5166,7 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8287,7 +8290,7 @@ getMainWindowSync(): Window
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8525,7 +8528,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8577,7 +8580,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
