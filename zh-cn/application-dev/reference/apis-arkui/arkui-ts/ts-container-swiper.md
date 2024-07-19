@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> Swiper组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 
 ## 子组件
@@ -44,7 +46,7 @@ Swiper(controller?: SwiperController)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性，不支持[Menu控制](ts-universal-attributes-menu.md)。 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### index
 
