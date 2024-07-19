@@ -132,7 +132,7 @@
          operationMode: fileShare.OperationMode.READ_MODE,
        };
        let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-       await fileShare.persistPermission(policy);
+       await fileShare.persistPermission(policies);
        fileShare.revokePermission(policies).then(() => {
          console.info("revokePermission successfully");
        }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
