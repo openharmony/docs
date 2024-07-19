@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 ```
 
 ## dlpPermission.getDLPGatheringPolicy
@@ -45,7 +45,7 @@ getDLPGatheringPolicy(): Promise&lt;GatheringPolicyType&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -89,7 +89,7 @@ getDLPGatheringPolicy(callback: AsyncCallback&lt;GatheringPolicyType&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -147,7 +147,7 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -196,7 +196,7 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -254,7 +254,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -304,7 +304,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -357,7 +357,7 @@ on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -402,7 +402,7 @@ off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): vo
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -468,7 +468,7 @@ addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -538,7 +538,7 @@ addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -611,7 +611,7 @@ stopFuseLink(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -681,7 +681,7 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -755,7 +755,7 @@ resumeFuseLink(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -826,7 +826,7 @@ resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -908,7 +908,7 @@ replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -981,7 +981,7 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1064,7 +1064,7 @@ deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1135,7 +1135,7 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1222,7 +1222,7 @@ recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1300,7 +1300,7 @@ recoverDLPFile(plaintextFd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1378,7 +1378,7 @@ closeDLPFile(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1450,7 +1450,7 @@ closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1537,7 +1537,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1606,7 +1606,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1686,7 +1686,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1764,7 +1764,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
