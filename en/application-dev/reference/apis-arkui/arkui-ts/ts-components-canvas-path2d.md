@@ -6,21 +6,58 @@
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## APIs
 
+Path2D(unit?: LengthMetricsUnit)
+
+Constructs an empty **Path2D** object.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory | Default Value | Description |
+| ------ | -------- | ---- | ------ | ----- |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No | DEFAULT | Unit mode of the **Path2D** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).|
+
+Path2D(description: string, unit?: LengthMetricsUnit)
+
+Constructs a **Path2D** object using a path that complies with the SVG path specifications.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| ------ | -------- | ---- | ----- |
+| description | string | Yes | Path that complies with the SVG path specifications. |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No | Unit mode of the **Path2D** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## addPath
 
-addPath(path: path2D, transform?:Matrix2D): void
+addPath(path: Path2D, transform?: Matrix2D): void
 
 Adds a path to this path.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name       | Type      | Mandatory  | Default Value | Description             |
 | --------- | -------- | ---- | ---- | --------------- |
-| path      | [path2D](ts-components-canvas-path2d.md)   | Yes   | -    | Path to be added to this path. Unit: px.|
+| path      | [Path2D](ts-components-canvas-path2d.md)   | Yes   | -    | Path to be added to this path. Unit: px. |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md) | No   | null | Transformation matrix of the new path.   |
 
 
@@ -65,6 +102,10 @@ Moves the current point of the path back to the start point of the path, and dra
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Example**
 
   ```ts
@@ -107,12 +148,16 @@ Moves the current coordinate point of the path to the target point, without draw
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
-| x    | number | Yes   | 0    | X coordinate of the target point, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the target point, in vp.|
+| x    | number | Yes   | 0    | X coordinate of the target point.<br>Default unit: vp |
+| y    | number | Yes   | 0    | Y coordinate of the target point.<br>Default unit: vp |
 
 **Example**
 
@@ -156,12 +201,16 @@ Draws a straight line from the current point to the target point.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
-| x    | number | Yes   | 0    | X coordinate of the target point, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the target point, in vp.|
+| x    | number | Yes   | 0    | X coordinate of the target point.<br>Default unit: vp |
+| y    | number | Yes   | 0    | Y coordinate of the target point.<br>Default unit: vp |
 
 **Example**
 
@@ -206,16 +255,20 @@ Draws a cubic Bezier curve on the canvas.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description            |
 | ---- | ------ | ---- | ---- | -------------- |
-| cp1x | number | Yes   | 0    | X coordinate of the first parameter of the Bezier curve, in vp.|
-| cp1y | number | Yes   | 0    | Y coordinate of the first parameter of the Bezier curve, in vp.|
-| cp2x | number | Yes   | 0    | X coordinate of the second parameter of the Bezier curve, in vp.|
-| cp2y | number | Yes   | 0    | Y coordinate of the second parameter of the Bezier curve, in vp.|
-| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.   |
-| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.   |
+| cp1x | number | Yes   | 0    | X coordinate of the first parameter of the bezier curve.<br>Default unit: vp |
+| cp1y | number | Yes   | 0    | Y coordinate of the first parameter of the bezier curve.<br>Default unit: vp |
+| cp2x | number | Yes   | 0    | X coordinate of the second parameter of the bezier curve.<br>Default unit: vp |
+| cp2y | number | Yes   | 0    | Y coordinate of the second parameter of the bezier curve.<br>Default unit: vp |
+| x    | number | Yes   | 0    | X coordinate of the end point on the bezier curve.<br>Default unit: vp   |
+| y    | number | Yes   | 0    | Y coordinate of the end point on the bezier curve.<br>Default unit: vp   |
 
 **Example**
 
@@ -251,20 +304,24 @@ Draws a cubic Bezier curve on the canvas.
 
 ## quadraticCurveTo
 
-quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
+quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 Draws a quadratic curve on the canvas.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ----------- |
-| cpx  | number | Yes   | 0    | X coordinate of the Bezier curve parameter, in vp.|
-| cpy  | number | Yes   | 0    | Y coordinate of the Bezier curve parameter, in vp.|
-| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.|
+| cpx  | number | Yes   | 0    | X coordinate of the bezier curve parameter.<br>Default unit: vp |
+| cpy  | number | Yes   | 0    | Y coordinate of the bezier curve parameter.<br>Default unit: vp |
+| x    | number | Yes   | 0    | X coordinate of the end point on the bezier curve.<br>Default unit: vp |
+| y    | number | Yes   | 0    | Y coordinate of the end point on the bezier curve.<br>Default unit: vp |
 
 **Example**
 
@@ -306,16 +363,20 @@ Draws an arc on the canvas.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name              | Type     | Mandatory  | Default Value  | Description        |
 | ---------------- | ------- | ---- | ----- | ---------- |
-| x                | number  | Yes   | 0     | X coordinate of the center point of the arc, in vp.|
-| y                | number  | Yes   | 0     | Y coordinate of the center point of the arc, in vp.|
-| radius           | number  | Yes   | 0     | Radius of the arc, in vp.   |
+| x                | number  | Yes   | 0     | X coordinate of the center point of the arc.<br>Default unit: vp |
+| y                | number  | Yes   | 0     | Y coordinate of the center point of the arc.<br>Default unit: vp |
+| radius           | number  | Yes   | 0     | Radius of the arc.<br>Default unit: vp   |
 | startAngle       | number  | Yes   | 0     | Start radian of the arc.  |
 | endAngle         | number  | Yes   | 0     | End radian of the arc.  |
-| counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise.|
+| counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise. |
 
 **Example**
 
@@ -356,15 +417,19 @@ Draws an arc based on the radius and points on the arc.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name    | Type    | Mandatory  | Default Value | Description             |
 | ------ | ------ | ---- | ---- | --------------- |
-| x1     | number | Yes   | 0    | X coordinate of the first point on the arc, in vp.|
-| y1     | number | Yes   | 0    | Y coordinate of the first point on the arc, in vp.|
-| x2     | number | Yes   | 0    | X coordinate of the second point on the arc, in vp.|
-| y2     | number | Yes   | 0    | Y coordinate of the second point on the arc, in vp.|
-| radius | number | Yes   | 0    | Radius of the arc, in vp.|
+| x1     | number | Yes   | 0    | X coordinate of the first point on the arc.<br>Default unit: vp |
+| y1     | number | Yes   | 0    | Y coordinate of the first point on the arc.<br>Default unit: vp |
+| x2     | number | Yes   | 0    | X coordinate of the second point on the arc.<br>Default unit: vp |
+| y2     | number | Yes   | 0    | Y coordinate of the second point on the arc.<br>Default unit: vp |
+| radius | number | Yes   | 0    | Radius of the arc.<br>Default unit: vp |
 
 **Example**
 
@@ -405,18 +470,22 @@ Draws an ellipse in the specified rectangular region on the canvas.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name              | Type     | Mandatory  | Default Value  | Description                                      |
 | ---------------- | ------- | ---- | ----- | ---------------------------------------- |
-| x                | number  | Yes   | 0     | X coordinate of the ellipse center, in vp.|
-| y                | number  | Yes   | 0     | Y coordinate of the ellipse center, in vp.|
-| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis, in vp.|
-| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis, in vp.|
-| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse, in radians.                          |
+| x                | number  | Yes   | 0     | X coordinate of the ellipse center.<br>Default unit: vp|
+| y                | number  | Yes   | 0     | Y coordinate of the ellipse center.<br>Default unit: vp|
+| radiusX          | number  | Yes   | 0     | Radius of the ellipse on the x-axis.<br>Default unit: vp|
+| radiusY          | number  | Yes   | 0     | Radius of the ellipse on the y-axis.<br>Default unit: vp|
+| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse.<br>Unit: radian                          |
 | startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse, in radians.                       |
 | endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse, in radians.                       |
-| counterclockwise | boolean | No   | false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.|
+| counterclockwise | boolean | No   | false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise. |
 
 **Example**
 
@@ -457,14 +526,18 @@ Creates a rectangle on the canvas.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
-| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| w    | number | Yes   | 0    | Width of the rectangle, in vp.|
-| h    | number | Yes   | 0    | Height of the rectangle, in vp.|
+| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle.<br>Default unit: vp |
+| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle.<br>Default unit: vp |
+| w    | number | Yes   | 0    | Width of the rectangle.<br>Default unit: vp |
+| h    | number | Yes   | 0    | Height of the rectangle.<br>Default unit: vp |
 
 **Example**
 
