@@ -7,11 +7,11 @@ Subscribers can receive sticky common events that have been sent. If the events 
 
 ## Available APIs
 
-For details, see [Common Event](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md).
+For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md).
 
-| Name| Description|
+| API | Description |
 | -------- | -------- |
-| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | Removes a sticky common event.|
+| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | Removes a sticky common event. |
 
 
 ## How to Develop
@@ -21,28 +21,27 @@ For details, see [Common Event](../../reference/apis-basic-services-kit/js-apis-
 2. Import the module.
 
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    ```
 
-3. Call the [removeStickyCommonEvent()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10) API to remove the target sticky common event.
+3. Call the [`removeStickyCommonEvent()`](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10) method to remove the corresponding sticky common event.
 
    > **NOTE**
    >
-   > The sticky common event to be removed must have been released by the application. For details about how to release sticky common events, see [Publishing Common Events](common-event-publish.md).
+   > The sticky common event to be removed must have been released by the application. For details about how to publish sticky common events, see [Publishing Common Events](common-event-publish.md).
 
    ```ts
-   commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+   // Remove the sticky common event. Replace the event field with the actual event name.
+   commonEventManager.removeStickyCommonEvent('event', (err: BusinessError) => {
      // sticky_event indicates the name of the target sticky common event.
      if (err) {
-       Logger.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
      ...
-     Logger.info(TAG, `Succeeded in removeing sticky event.`);
+     console.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
- <!--no_check--> 

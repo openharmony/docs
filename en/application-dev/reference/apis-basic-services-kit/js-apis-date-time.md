@@ -21,7 +21,7 @@ Enumerates the types of time to obtain.
 | Name   | Value  | Description                                            |
 | ------- | ---- | ------------------------------------------------ |
 | STARTUP | 0    | Number of milliseconds elapsed since system startup, including the deep sleep time.  |
-| ACTIVE  | 1    | Number of milliseconds elapsed since system startup, excluding the deep sleep time.|
+| ACTIVE  | 1    | Number of milliseconds elapsed since system startup, excluding the deep sleep time. |
 
 ## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
@@ -33,16 +33,16 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type      | Mandatory| Description                            |
+| Name  | Type      | Mandatory | Description                            |
 | -------- | -------------- | ---- | ------------------ |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
 
 **Error codes**
 
 For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
 
-| ID| Error Message                                                             |
+| ID | Error Message                                                             |
 | -------- |-------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
@@ -75,7 +75,7 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type              | Mandatory| Description                           |
+| Name  | Type              | Mandatory | Description                           |
 | -------- | ----------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch, in milliseconds.        |
 
@@ -116,15 +116,15 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                    |
+| Name | Type   | Mandatory | Description                    |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
 | Type       | Description                              |
 | --------------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the timestamp that has elapsed since the Unix epoch.|
+| Promise&lt;number&gt; | Promise used to return the timestamp that has elapsed since the Unix epoch. |
 
 **Error codes**
 
@@ -161,10 +161,10 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description  |
+| Name  | Type                       | Mandatory | Description  |
 | -------- | ---------- | ---- | -------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time. |
 
 **Error codes**
 
@@ -203,9 +203,9 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description   |
+| Name  | Type                       | Mandatory | Description   |
 | -------- | -------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time. |
 
 **Error codes**
 
@@ -244,15 +244,15 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                             |
+| Name | Type   | Mandatory | Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
 | Type                 | Description        |
 | -------------- | -------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, excluding the deep sleep time.|
+| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, excluding the deep sleep time. |
 
 **Error codes**
 
@@ -289,9 +289,9 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description  |
+| Name  | Type                       | Mandatory | Description  |
 | -------- | --------------- | ---- | ------------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
 **Error codes**
@@ -331,7 +331,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description     |
+| Name  | Type                       | Mandatory | Description     |
 | -------- | --------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
@@ -372,15 +372,15 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                              |
+| Name | Type   | Mandatory | Description                              |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
 | Type                 | Description      |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, including the deep sleep time.|
+| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, including the deep sleep time. |
 
 **Error codes**
 
@@ -417,19 +417,20 @@ getTime(isNanoseconds?: boolean): number
 
 **Parameters**
 
-| Name       | Type   | Mandatory| Description                                                        |
+| Name       | Type   | Mandatory | Description                                                        |
 | ------------- | ------- | ---- | ------------------------------------------------------------ |
-| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**.|
+| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**. |
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Time elapsed since the Unix epoch.|
+| number | Time elapsed since the Unix epoch. |
 
 **Example**
 
 ```ts
+
 try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
@@ -448,28 +449,29 @@ Obtains the time elapsed since system startup. This API returns the result synch
 
 **Parameters**
 
-| Name       | Type                   | Mandatory| Description                                                                               |
+| Name       | Type                   | Mandatory | Description                                                                               |
 | ------------- | ----------------------- | ---- |-----------------------------------------------------------------------------------|
 | timeType      | [TimeType](#timetype10) | Yes  | Type of the time to be obtained. The value can only be `STARTUP` or `ACTIVE`.                                                 |
-| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**.|
+| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**. |
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Time elapsed since system startup.|
+| number | Time elapsed since system startup. |
 
 **Error codes**
 
 For details about the following error codes, see [Time and Time Zone Service Error Codes](errorcode-time.md).
 
-| ID| Error Message                                                                                                          |
+| ID | Error Message                                                                                                          |
 | -------- |----------------------------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
+
 try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
@@ -492,15 +494,15 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type          | Mandatory| Description                  |
+| Name  | Type          | Mandatory | Description                  |
 | -------- | -------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;Date&gt; | Yes  | Callback used to return the current system date.|
+| callback | AsyncCallback&lt;Date&gt; | Yes  | Callback used to return the current system date. |
 
 **Error codes**
 
 For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
 
-| ID| Error Message                                                |
+| ID | Error Message                                                |
 |-------|------------------------------------------------------|
 | 401   | Parameter error. Possible causes: 1.System error. |
 
@@ -539,13 +541,13 @@ Obtains the current system date. This API uses a promise to return the result.
 
 | Type               | Description                                     |
 | ------------------- | ----------------------------------------- |
-| Promise&lt;Date&gt; | Promise used to return the current system date.|
+| Promise&lt;Date&gt; | Promise used to return the current system date. |
 
 **Error codes**
 
 For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
 
-| ID| Error Message                                                |
+| ID | Error Message                                                |
 |-------|------------------------------------------------------|
 | 401   | Parameter error. Possible causes: 1.System error. |
 
@@ -576,9 +578,9 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type             | Mandatory| Description                |
+| Name  | Type             | Mandatory | Description                |
 | -------- | --------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones). |
 
 **Example**
 
@@ -611,7 +613,7 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+| Promise&lt;string&gt; | Promise used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones). |
 
 **Example**
 
@@ -642,11 +644,12 @@ Obtains the system time zone in synchronous mode.
 
 | Type  | Description                                                      |
 | ------ | ---------------------------------------------------------- |
-| string | System time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+| string | System time zone. For details, see [Supported System Time Zones](#supported-system-time-zones). |
 
 **Example**
 
 ```ts
+
 try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {

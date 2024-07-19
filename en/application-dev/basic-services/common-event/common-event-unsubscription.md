@@ -3,14 +3,14 @@
 
 ## When to Use
 
-You can call [unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required in dynamic mode.
+You can call [unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required.
 
 
 ## Available APIs
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback) | Unsubscribes from a common event.|
+| unsubscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback?:&nbsp;AsyncCallback) | Unsubscribes from a common event. |
 
 
 ## How to Develop
@@ -18,36 +18,29 @@ You can call [unsubscribe()](../../reference/apis-basic-services-kit/js-apis-com
 1. Import the **commonEventManager** module.
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    ```
 
 2. Subscribe to an event by following the procedure described in [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md).
 
-3. Call **unsubscribe** in **CommonEvent** to unsubscribe from the common event.
+3. Call the [unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) method in **CommonEvent** to unsubscribe from an event.
    
    ```ts
    // The subscriber object is created during event subscription.
    if (this.subscriber !== null) {
-     commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
+     commonEventManager.unsubscribe(this.subscriber, (err: BusinessError) => {
        if (err) {
-         Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         console.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
          promptAction.showToast({
            message: $r('app.string.unsubscribe_success_toast')
          });
-         Logger.info(TAG, `Unsubscribe success`);
+         console.info(TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })
-   } else {
-     promptAction.showToast({
-       message: $r('app.string.unsubscribe_failed_toast')
-     });
    }
    ```
- <!--no_check--> 

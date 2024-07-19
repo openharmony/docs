@@ -11,16 +11,16 @@ The **CommonEventManager** module provides common event capabilities, including 
 ## Modules to Import
 
 ```ts
-import CommonEventManager from '@ohos.commonEventManager';
+import { commonEventManager } from '@kit.BasicServicesKit';
 ```
 
 ## Support
 
 A system common event is an event that is published by a system service or system application and requires specific permissions to subscribe to. To publish or subscribe to this type of event, you must follow the event-specific definitions.
 
-For details about the definitions of all system common events, see [System Common Events](./commonEventManager-definitions.md).
+For details about the enumerations of all system common events, see [System Common Events](./common_event/commonEventManager-definitions.md).
 
-## CommonEventManager.publishAsUser<sup>
+## commonEventManager.publishAsUser<sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
@@ -32,18 +32,20 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                              |
+| Name    | Type                | Mandatory | Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| event    | string               | Yes  | Name of the common event to publish.            |
-| userId   | number               | Yes  | User ID.|
+| event    | string               | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).            |
+| userId   | number               | Yes  | User ID. |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.            |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -52,10 +54,10 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Callback for common event publication
-function publishCB(err:Base.BusinessError) {
+function publishCB(err: BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -68,14 +70,14 @@ let userId = 100;
 
 // Publish a common event.
 try {
-    CommonEventManager.publishAsUser("event", userId, publishCB);
+    commonEventManager.publishAsUser("event", userId, publishCB);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.publishAsUser
+## commonEventManager.publishAsUser
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
@@ -87,19 +89,21 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                  |
+| Name    | Type                  | Mandatory | Description                  |
 | -------- | ---------------------- | ---- | ---------------------- |
-| event    | string                 | Yes  | Name of the common event to publish. |
-| userId   | number | Yes| User ID.|
-| options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | Yes  | Attributes of the common event to publish.|
+| event    | string                 | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md). |
+| userId   | number | Yes | User ID. |
+| options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | Yes  | Attributes of the common event to publish. |
 | callback | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
 | 1500004  | not System services or System app.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -109,16 +113,16 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Attributes of a common event.
-let options:CommonEventManager.CommonEventPublishData = {
+let options:commonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
 	data: "initial data",// Result data of the common event.
 }
 
 // Callback for common event publication
-function publishCB(err:Base.BusinessError) {
+function publishCB(err: BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -131,14 +135,14 @@ let userId = 100;
 
 // Publish a common event.
 try {
-    CommonEventManager.publishAsUser("event", userId, options, publishCB);
+    commonEventManager.publishAsUser("event", userId, options, publishCB);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
@@ -152,17 +156,20 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                            |
+| Name  | Type                | Mandatory | Description                            |
 | -------- | -------------------- | ---- | -------------------------------- |
-| event    | string               | Yes  | Sticky common event to remove.      |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| event    | string               | Yes  | Sticky common event to remove. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).      |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -171,18 +178,18 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
+commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
     if (err) {
-        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 });
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string): Promise\<void>
 
@@ -196,22 +203,25 @@ Removes a sticky common event. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| event  | string | Yes  | Sticky common event to remove.|
+| event  | string | Yes  | Sticky common event to remove. For details, see [System Common Events](./common_event/commonEventManager-definitions.md). |
 
 **Return value**
 
 | Type          | Description                        |
 | -------------- | ---------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -220,16 +230,16 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`Remove sticky event AsyncCallback success`);
-}).catch ((err:Base.BusinessError) => {
-    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+    console.info(`removeStickyCommonEvent success`);
+}).catch ((err: BusinessError) => {
+    console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
@@ -243,17 +253,19 @@ Enables or disables static subscription for the current application. This API us
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled.|
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled. |
+| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -261,22 +273,22 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
+commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
     if (!err) {
-        console.info(`Set static subscriber state callback failed, err is null.`);
+        console.info(`setStaticSubscriberState failed, err is null.`);
         return;
     }
     if (err.code !== undefined && err.code != null) {
-        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Set static subscriber state callback success`);
+    console.info(`setStaticSubscriberState success`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
@@ -290,22 +302,24 @@ Enables or disables static subscription for the current application. This API us
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled.|
+| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled. |
 
 **Return value**
 
 | Type          | Description                        |
 | -------------- | ---------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Event Error Codes](./errorcode-CommonEventService.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -313,11 +327,70 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscriber state promise success`);
-}).catch ((err:Base.BusinessError) => {
-    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+commonEventManager.setStaticSubscriberState(false).then(() => {
+    console.info(`setStaticSubscriberState success`);
+}).catch ((err: BusinessError) => {
+    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
+
+## commonEventManager.setStaticSubscriberState<sup>12+</sup>
+
+setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
+
+Enables or disables the static subscription event for the current application and records the event name. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name | Type         | Mandatory | Description                                                |
+| ------ | ------------- | ---- | ---------------------------------------------------- |
+| enable | boolean       | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled.|
+| events | array<string> | No  | Name of a recorded event.                                  |
+
+**Return value**
+
+| Type          | Description                                |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
+
+| ID | Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500007  | error sending message to Common Event Service.         |
+| 1500008  | Common Event Service does not complete initialization. |
+
+**Example**
+
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
+
+let evenName: string[] = ['usual.event.SEND_DATA'];
+commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
+  try {
+    promptAction.showToast({
+      message: 'app.string.static_subscribe_enabled',
+      duration: 2000,
+    });
+  } catch (error) {
+    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
+  }
+  console.info(`setStaticSubscriberState success, state is ${true}`);
+}).catch((err: BusinessError) => {
+  console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

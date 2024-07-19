@@ -12,7 +12,7 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
@@ -23,9 +23,9 @@ Defines the filter criteria.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| bundle | string | No| Bundle name of the application.<br>**System API**: This is a system API.|
+| bundle | string | No | Bundle name of the application.<br>**System API**: This is a system API. |
 
 
 ## TaskInfo<sup>10+</sup> 
@@ -35,10 +35,10 @@ Defines the data structure of the task information for query. The fields availab
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| uid | string | No| UID of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
-| bundle | string | No| Bundle name of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
+| uid | string | No | UID of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
+| bundle | string | No | Bundle name of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
 
 
 
@@ -56,21 +56,21 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type                                          | Mandatory| Description|
+| Name | Type                                          | Mandatory | Description |
 |----------------------------------------------| -------- | -------- | -------- |
-| id | string                                       | Yes| Task ID.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+| id | string                                       | Yes | Task ID. |
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes | Callback used to return task details. |
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 
@@ -99,26 +99,26 @@ Queries a task details based on the task ID. This API uses a promise to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
+| id | string | Yes | Task ID. |
 
 **Return value**
 
 | Type                                    | Description                     |
 |----------------------------------------| ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details. |
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 
