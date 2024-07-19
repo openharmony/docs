@@ -982,7 +982,7 @@ setSupportedProcessCache(isSupported : boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | The input parameter is not a valid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801      | Capability not supported.|
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
