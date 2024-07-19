@@ -4000,3 +4000,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.DUMP_AUDIO
+
+允许应用启动音频框架dump能力，将音频数据落盘到本地
+
+**权限级别**：system_core
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：12
