@@ -131,6 +131,17 @@ unregisterSource(id: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info(`Promise returned to indicate that unregister source successfully`);
 }).catch ((err: BusinessError) => {
@@ -165,6 +176,19 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+
 let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;
 
 audioHapticManagerInstance.setAudioLatencyMode(id, latencyMode);
@@ -198,6 +222,18 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 ```ts
 import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
 
@@ -245,6 +281,17 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
 let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
@@ -432,7 +479,7 @@ on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-audioHapticPlayerInstance.on('endOfStream', async() => {
+audioHapticPlayerInstance.on('endOfStream', () => {
   console.info(`Receive the callback of endOfStream.`);
 });
 ```
@@ -481,9 +528,13 @@ import { audio } from '@kit.AudioKit';
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量
 
-audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
+audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+  // 在发生音频打断事件时，audioHapticPlayerInstance收到interruptEvent回调，此处根据其内容做相应处理。
+  // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-    // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
+    // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
         // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -509,10 +560,11 @@ audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.Inter
         break;
     }
   } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-    // 由应用进行操作，应用可以自主选择响应操作或忽略该事件
+    // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_RESUME:
         // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+        // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
         console.info('Resume force paused renderer or ignore');
         // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
         break;
