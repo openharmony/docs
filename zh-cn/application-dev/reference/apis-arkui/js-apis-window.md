@@ -3716,7 +3716,7 @@ windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，在2in1设备中，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+开启窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3757,7 +3757,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，在2in1设备中，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+关闭窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5573,7 +5573,7 @@ export default class EntryAbility extends UIAbility {
 setWindowDecorHeight(height: number): void
 
 <!--RP1-->
-设置窗口的标题栏高度，在2in1设备中，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 <!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -5615,7 +5615,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 getWindowDecorHeight(): number
 
 <!--RP2-->
-获取窗口的标题栏高度，在2in1设备中，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+获取窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 <!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
