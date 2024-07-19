@@ -131,9 +131,9 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
     let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
       // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
       let formInfo: Record<string, string | number | boolean> = {
-        formName: 'formName',
-        tempFlag: 'tempFlag',
-        updateCount: 0
+        'formName': 'formName',
+        'tempFlag': 'tempFlag',
+        'updateCount': 0
       };
       try {
         const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -177,7 +177,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
       onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
       onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
         let obj: Record<string, number> = {
-          test: 1
+          'test': 1
         };
         return obj;
       };
@@ -198,8 +198,8 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
   
         // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
         let obj: Record<string, string> = {
-          title: 'titleOnCreate',
-          detail: 'detailOnCreate'
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -212,8 +212,8 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
         // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
         hilog.info(domain, TAG, 'FormAbility onUpdate');
         let obj: Record<string, string> = {
-          title: 'titleOnUpdate',
-          detail: 'detailOnUpdate'
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
@@ -228,8 +228,8 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
       onEvent(formId: string, message: string) {
         // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
         let obj: Record<string, string> = {
-          title: 'titleOnEvent',
-          detail: 'detailOnEvent'
+          'title': 'titleOnEvent',
+          'detail': 'detailOnEvent'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
@@ -361,9 +361,9 @@ const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
+    'formName': 'formName',
+    'tempFlag': 'tempFlag',
+    'updateCount': 0
   };
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -403,8 +403,8 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
 
     // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
@@ -461,8 +461,8 @@ onUpdate(formId: string) {
   // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
   hilog.info(domain, TAG, 'FormAbility onUpdate');
   let obj: Record<string, string> = {
-    title: 'titleOnUpdate',
-    detail: 'detailOnUpdate'
+    'title': 'titleOnUpdate',
+    'detail': 'detailOnUpdate'
   };
   let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
   // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
