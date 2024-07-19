@@ -28,7 +28,7 @@
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-开发者通过引入[avplayer.h](../../reference/apis-media-kit/avplayer__base_8h.md)、[avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用音频播放相关API。
+开发者通过引入[avplayer.h](../../reference/apis-media-kit/avplayer_8h.md)、[avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用音频播放相关API。
 详细的API说明请参考[AVPlayer API](../../reference/apis-media-kit/_a_v_player.md)。
 
 1. 创建实例OH_AVPlayer_Create()，AVPlayer初始化idle状态。
