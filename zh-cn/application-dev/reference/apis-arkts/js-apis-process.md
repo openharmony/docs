@@ -411,7 +411,7 @@ isAppUid(v: number): boolean
 
 | 参数名 | 类型   | 必填 | 说明            |
 | ------ | ------ | ---- | --------------- |
-| v      | number | 是   | 应用程序的uid。 |
+| v      | number | 是   | 应用程序的uid。可通过process.uid获取 |
 
 **返回值：**
 
@@ -431,7 +431,10 @@ isAppUid(v: number): boolean
 
 ```js
 let pro = new process.ProcessManager();
-let result = pro.isAppUid(688);
+// uid通过process.uid获取
+let pres = process.uid;
+let result = pro.isAppUid(pres);
+console.log("result: " + result); // result: true
 ```
 
 
