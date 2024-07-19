@@ -5586,7 +5586,7 @@ try {
 
 setWindowDecorVisible(isVisible: boolean): void
 
-主窗口设置标题栏是否可见。
+设置窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5612,41 +5612,24 @@ setWindowDecorVisible(isVisible: boolean): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // 为主窗口加载对应的目标页面。
-    windowStage.loadContent("pages/page2", (err: BusinessError) => {
-      let errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      // 获取应用主窗口。
-      let mainWindow: window.Window | undefined = undefined;
-      windowStage.getMainWindow((err: BusinessError, data) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        mainWindow = data;
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        let isVisible = false;
-        // 调用setWindowDecorVisible接口
-        try {
-            mainWindow.setWindowDecorVisible(isVisible);
-        } catch (exception) {
-            console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    });
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
+  let errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-};
+  console.info('Succeeded in loading the content.');
+  let isVisible = false;
+  // 调用setWindowDecorVisible接口
+  try {
+      windowClass?.setWindowDecorVisible(isVisible);
+  } catch (exception) {
+      console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
 ```
 
 ### setSubWindowModal<sup>12+</sup>
