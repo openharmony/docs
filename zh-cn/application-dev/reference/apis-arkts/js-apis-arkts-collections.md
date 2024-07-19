@@ -1265,7 +1265,7 @@ let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 
 
 > **说明：**
 >
-> 本接口不支持在.ets文件中使用
+> 本接口不支持在.ets文件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1289,17 +1289,9 @@ let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 
 
 ```ts
 let array= new collections.Array<number>(1, 2, 3, 4);
-let iterArray = collections.Array[Symbol.iterator]();
-let tempArray = iterArray.next().value;
-// 使用方法一：
-for (let item of array) {
-  console.log(`value : ${item}`);
-}
 
-// 使用方法二：
-while(tempArray != undefined) {
-  console.log("value:" + tempArray);
-  tempArray = iterArray.next().value;
+for (let item of array) {
+  console.info(`value : ${item}`);
 }
 ```
 
@@ -1770,7 +1762,7 @@ myMap.set("foo", obj);
 
 > **说明：**
 >
-> 本接口不支持在.ets文件中使用
+> 本接口不支持在.ets文件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1798,20 +1790,11 @@ let map = new collections.Map<number, string>([
     [2, "three"],
     [3, "four"]
 ]);
-// 使用方法一：
+
 let keys = Array.from(map.keys());
 for (let key of keys) {
-  console.log("key:" + key);
-  console.log("value:" + map.get(key));
-}
-
-// 使用方法二：
-let iterMap = map[Symbol.iterator]();
-let tempMap = iterMap.next();
-while(!tempMap.done) {
-  console.log("key:" + tempMap.value[0]);
-  console.log("value:" + tempMap.value[1]);
-  tempMap = iterMap.next();
+  console.info("key:" + key);
+  console.info("value:" + map.get(key));
 }
 ```
 
@@ -2207,7 +2190,7 @@ mySet.add(obj);
 
 > **说明：**
 >
-> 本接口不支持在.ets文件中使用
+> 本接口不支持在.ets文件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2231,18 +2214,10 @@ mySet.add(obj);
 
 ```ts
 let set = new collections.Set<number>([1, 2, 3, 4, 5]);
-let iterSet = set[Symbol.iterator]();
-let tempSet = iterSet.next();
-// 使用方法一：
-let val: Array<string> = Array.from(set.values())
-for (let item of val) {
-  console.log("value: " + item);
-}
 
-// 使用方法二：
-while(!tempSet.done) {
-  console.log("value: " + tempSet.value);
-  tempSet = iterSet.next();
+let val: Array<number> = Array.from(set.values())
+for (let item of val) {
+  console.info("value: " + item);
 }
 ```
 
@@ -2414,10 +2389,10 @@ ArkTS TypedArray排序函数类型。
 
 ## collections.TypedArray
 
-一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array以及Uint8ClampedArray。
+一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array、Uint8ClampedArray以及Float32Array。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
-- TypedArray: 指上述7种具体的ArkTS TypedArray。
+- TypedArray: 指上述8种具体的ArkTS TypedArray。
 
 ### 属性
 
@@ -2460,6 +2435,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array();
 let int32Array: collections.Int32Array = new collections.Int32Array();
 let uint32Array: collections.Uint32Array = new collections.Uint32Array();
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray();
+let float32Array: collections.Float32Array = new collections.Float32Array();
 ```
 
 ### constructor
@@ -2497,6 +2473,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 let int32Array: collections.Int32Array = new collections.Int32Array(12);
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(12);
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(12);
+let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ```
 
 ### constructor
@@ -3593,13 +3570,13 @@ for (const value of iterator) {
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
 
 > **说明：**
 >
-> 本接口不支持在.ets文件中使用
+> 本接口不支持在.ets文件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3623,17 +3600,9 @@ for (const value of iterator) {
 
 ```ts
 let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
-let iterTypedArray = int32Array[Symbol.iterator]();
-let tempTypedArray = iterTypedArray.next();
-// 使用方法一：
-for (let item of int32Array) {
-  console.log(`value : ${item}`);
-}
 
-// 使用方法二：
-while(!tempTypedArray.done) {
-    console.log("value: " + tempTypedArray.value);
-    tempTypedArray = iterTypedArray.next();
+for (let item of int32Array) {
+  console.info(`value : ${item}`);
 }
 ```
 
