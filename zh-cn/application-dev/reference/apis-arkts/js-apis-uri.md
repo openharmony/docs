@@ -43,17 +43,24 @@ import { uri } from '@kit.ArkTS';
 
 **命名形式：**
 
-标准uri定义由以下三个部分组成
-[scheme:]scheme-specific-part[#fragment]
-- scheme: 协议名，根据需要填写。例如http、https、ftp、datashare、dataability等。
-- scheme-specific-part: URI的特定解码方案特定部分，由[//][authority][path][?query]组成，根据需要填写。
+标准uri定义主要由以下三个部分组成：
+[scheme:]scheme-specific-part[#fragment]。
+
+将URI格式细化一些则可分为：
+[scheme:][//authority][path][?query][#fragment]。
+
+将URI格式进一步细化可分为：
+[scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
+
+- scheme: 协议名，与scheme-specific-part以：进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
+- scheme-specific-part: URI的特定解码方案特定部分，位于[scheme:]和[#fragment]之间由[//][authority][path][?query]组成，此部分以/开头的为分层URI，不以/开头的为不透明URI，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
-        - userinfo: 用户信息，根据需要填写。
+        - userinfo: 用户信息，与host通过@进行分隔，根据需要填写。
         - host: 服务器的主机名部分，当authority存在时，此项必填。
-        - port: 服务器端口，根据需要填写。
-    - path: 路径信息，根据需要填写。
-    - query: 查询部分，根据需要填写。
-- fragment: 片段部分，根据需要填写。
+        - port: 服务器端口，默认值为-1。根据需要填写。
+    - path: 路径信息，位于host与query之间以 / 进行分割，根据需要填写。
+    - query: 查询部分，位于path和fragment之间，以 ? 开头的键值对格式，以&分割键值对，以=分割键值，根据需要填写。
+- fragment: 片段部分，以#与scheme-specific-part进行分隔，根据需要填写。
 
 **URI示例：**
 
@@ -110,6 +117,17 @@ console.info(result6.encodedQuery) // foo=1&bar=2
 console.info(result6.encodedFragment) // fragment
 console.info(result6.encodedAuthority) // username:my+name@host:8080
 console.info(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+
+let result7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
+console.log(result7.scheme) // www.abc.com
+console.log(result7.host) // null
+console.log(result7.port) // -1
+console.log(result7.path) // null
+console.log(result7.query) // null
+console.log(result7.authority) // null
+console.log(result7.fragment) // qwer=da
+console.log(result7.ssp) // 8080/directory/file?ab=pppppp
+console.log(result7.checkIsAbsolute()) // true
 ```
 
 ### constructor
@@ -152,9 +170,9 @@ new uri.URI('https://username:password@host:8080');
 
 toString(): string
 
-**系统能力：** SystemCapability.Utils.Lang
+将URI转化为编码后的字符串。
 
-返回适用于URI中的查询字符串。
+**系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -162,13 +180,13 @@ toString(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回网址的字符串序列化。 |
+| string | 返回URI的字符串序列化。 |
 
 **示例：**
 
 ```ts
-const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result1 = result.toString();
+const result = new uri.URI('https://username:password@host:8080/directory/file?ab=pppppp#qwer da');
+let result1 = result.toString(); // https://username:password@host:8080/directory/file?ab=pppppp#qwer%20da
 ```
 
 ### equalsTo<sup>9+</sup>
@@ -206,7 +224,7 @@ equalsTo(other: URI): boolean
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = uriInstance.equalsTo(uriInstance1);
+let result = uriInstance.equalsTo(uriInstance1); // true
 ```
 
 ### checkIsAbsolute
@@ -264,7 +282,7 @@ console.info(uriInstance1.path); // /path/path2/path3
 
 checkRelative(): boolean
 
-判断此URI是否为相对URI，相对URI指的是不包括协议部分的URI。
+判断此URI是否为相对URI，相对URI指的是不包含协议(scheme)部分的URI。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -289,7 +307,7 @@ console.info(`${uriInstance1.checkRelative()}`); // true
 
 checkOpaque(): boolean
 
-判断此URI的方案特定部分是否以“/”开头，不以“/”开头的URI为不透明的URI。
+判断此URI是否为不透明URI，方案特定部分不以“/”开头的URI为不透明的URI。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -314,7 +332,7 @@ console.info(`${uriInstance1.checkOpaque()}`); // true
 
 checkHierarchical(): boolean
 
-判断此URI的方案特定部分是否以“/”开头，以“/”开头的URI为分层的URI。相对URI也是分层的。
+判断此URI是否为分层URI，方案特定部分以“/”开头的URI为分层的URI。相对URI也是分层的。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -339,7 +357,9 @@ console.info(`${uriInstance1.checkHierarchical()}`); // false
 
 getQueryValue(key:string): string
 
-根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值。
+根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -370,6 +390,8 @@ getQueryValue(key:string): string
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
 console.info(uriInstance.getQueryValue("param1")); // value1
+let uriInstance1 = new uri.URI('htps://www.zyy.ss?sa%3D=po%7E');
+console.info(uriInstance1.getQueryValue('sa=')) // po~
 ```
 
 ### addQueryValue<sup>12+</sup>
@@ -415,7 +437,7 @@ console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 
 addSegment(pathSegment:string): URI
 
-对给定的字段进行编码并将其追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
+对给定的字段进行编码并将其追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -453,7 +475,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 addEncodedSegment(pathSegment:string): URI
 
-通过将已编码的字段追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
+通过将已编码的字段追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -491,7 +513,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 getQueryNames(): string[]
 
-获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，不同的参数之间使用与号“&”分隔。
+获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -515,7 +537,9 @@ console.info(Array.from(paramNames).toString()); // param1,param2
 
 getQueryValues(key:string): string[]
 
-获取此URI中查询参数的所有值。
+获取此URI中查询参数的所有指定键对应值的集合。若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -525,13 +549,13 @@ getQueryValues(key:string): string[]
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| key    | string | 是   | 此URI查询参数的名称。 |
+| key    | string | 是   | 指定键的名称。 |
 
 **返回值：**
 
 | 类型     | 说明                                |
 | -------- | ----------------------------------- |
-| string[] | 返回此URI中查询参数的所有值。 |
+| string[] | 返回此URI中查询参数内所有指定键对应值的集合。 |
 
 **错误码：**
 
@@ -729,5 +753,5 @@ equals(other: URI): boolean
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-uriInstance.equals(uriInstance1);
+uriInstance.equals(uriInstance1); // true
 ```
