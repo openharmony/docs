@@ -402,7 +402,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其取值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**
@@ -455,7 +455,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
