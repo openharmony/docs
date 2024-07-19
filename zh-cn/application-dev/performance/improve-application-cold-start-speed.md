@@ -18,7 +18,7 @@
 
 ### 设置合适分辨率的startWindowIcon
 
-如果启动页图标分辨率过大，解码耗时会影响应用的启动速度，建议启动页图标分辨率不超过256像素*256像素，如下所示：
+该优化场景仅支持rk3568开发板。如果启动页图标分辨率过大，解码耗时会影响应用的启动速度，建议启动页图标分辨率不超过256像素*256像素，如下所示：
 
 ```json
     "abilities": [
@@ -45,14 +45,14 @@
     ]
 ```
 
-下面使用[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具，对使用优化前的启动页图标（4096像素\*4096像素）及使用优化后的启动页图标（144像素\*144像素）的启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
+下面使用[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具，对使用优化前的启动页图标（4096像素\*4096像素）及使用优化后的启动页图标（144像素\*144像素）的启动性能进行对比分析。分析阶段的起点为点击应用图标打开应用时触发的触摸事件（即`ProcessTouchEvent`的结束点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
 
-对比数据如下：
+对比数据如下（性能耗时数据因设备版本而异，以实测为准）：
 
-|                        | 阶段开始(秒)   | 阶段结束(秒)   | 阶段时长(秒) |
-| ---------------------- | -------------- | -------------- | ------------ |
-| 使用优化前的启动页图标 | 5419.484537973 | 5420.327775266 | 0.843237293  |
-| 使用优化后的启动页图标 | 4186.436835246 | 4186.908777335 | 0.471942089  |
+|                        | 阶段时长（ms） |
+| ---------------------- | -------------- |
+| 使用优化前的启动页图标 |      998.6     |
+| 使用优化后的启动页图标 |      722.5     |
 
 可见阶段时长已缩短，故设置合适分辨率的startWindowIcon对缩短应用进程创建&初始化阶段耗时是有效的。
 
@@ -62,49 +62,42 @@
 
 ### 减少import的模块
 
-应用代码执行前，应用程序必须找到并加载import的所有模块，应用程序加载的每个额外的第三方框架或者模块都会增加启动时间，耗时长短取决于加载的第三方框架或者模块的数量和大小。推荐开发者尽可能使用系统提供的模块，按需加载，来缩短应用程序的启动耗时。
+应用代码执行前，应用程序必须找到并加载import的所有模块。应用程序启动时会因加载并使用的每个额外第三方框架或模块而增加启动耗时，耗时长短取决于加载的第三方框架或者模块的数量和大小。推荐开发者尽可能使用系统提供的模块，按需加载，来缩短应用程序的启动耗时。
 
 以下为示例代码：
 
 ```ts
 // 优化减少import的模块
-// import ability from '@ohos.ability.ability';
-// import dataUriUtils from '@ohos.ability.dataUriUtils';
-// import errorCode from '@ohos.ability.errorCode';
-// import featureAbility from '@ohos.ability.featureAbility';
-// import particleAbility from '@ohos.ability.particleAbility';
-// import wantConstant from '@ohos.ability.wantConstant';
-// import common from '@ohos.app.ability.common';
-// import Configuration from '@ohos.app.ability.Configuration';
-// import contextConstant from '@ohos.app.ability.contextConstant';
-// import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
-// import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-// import GesturePath from '@ohos.accessibility.GesturePath';
-// import GesturePoint from '@ohos.accessibility.GesturePoint';
-// import distributedAccount from '@ohos.account.distributedAccount';
-// import osAccount from '@ohos.account.osAccount';
+// import { particleAbility, featureAbility, wantConstant } from '@kit.AbilityKit';
+// import { FormExtensionAbility } from '@kit.FormKit';
+// import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+// import { distributedAccount, BusinessError, osAccount } from '@kit.BasicServicesKit';
+// import { webview } from '@kit.ArkWeb';
 
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import logger from '../common/Logger';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
-  // ...
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    ...
+    // webview.WebviewController.initializeWebEngine();
+    ...
+  }
+  ...
 }
 ```
 
-下面使用[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具，对优化import的模块前（模块数量20个）及优化import的模块后（模块数量5个）的启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
+需要说明，这里为了方便对比该阶段导入模块和不导入模块的性能差异，用一个@ohos.web.webview模块进行对比，这里假设@ohos.web.webview模块并非该阶段必须导入的模块。而在实际业务场景中，由于webview初始化时间较长，如果放到页面跳转时再导入该模块进行使用，有可能会劣化页面跳转的完成时延。因此，模块是否能在该阶段进行优化还需要结合具体业务场景进行评估。
 
-对比数据如下：
+下面使用DevEco Studio内置的Profiler中的启动分析工具Launch，对优化import的模块前（导入@ohos.web.webview模块）及优化import的模块后（不导入@ohos.web.webview模块）的启动性能进行对比分析。下面是Launch工具抓取的UI Ability Launching（加载UI Ability）和UI Ability OnForeground（应用进入前台）耗时，对比数据如下（性能耗时数据因设备型号版本而异，以实测为准）：
 
-|                    | 阶段开始(秒)   | 阶段结束(秒)   | 阶段时长(秒) |
-| ------------------ | -------------- | -------------- | ------------ |
-| 优化import的模块前 | 3042.259391282 | 3046.385614613 | 4.126223331  |
-| 优化import的模块后 | 4186.436835246 | 4186.908777335 | 0.471942089  |
+|                    | UI Ability Launching阶段时长（ms）   | UI Ability OnForeground阶段时长（ms）   |
+| ------------------ | ------------------------------------ | --------------------------------------- |
+| 优化import的模块前 |                   26                 |                  277                    |
+| 优化import的模块后 |                   10                 |                  53                     |
 
-可见阶段时长已缩短，故减少import的模块对缩短Application&Ability初始化阶段耗时是有效的。
+可见阶段时长已缩短，故减少import的模块对缩短Application&Ability初始化阶段耗时是有效的。这里建议该阶段应减少应用启动时非必要的import模块，按需加载模块，缩短应用程序的启动耗时。
 
 ## 3、缩短AbilityStage生命周期阶段耗时
 
@@ -176,25 +169,25 @@ const DELAYED_TIME = 1000;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    logger.info('Ability onCreate');
+    hilog.info(0x0000, 'testTag', 'Ability onCreate');
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
   }
 
   onDestroy(): void {
-    logger.info('Ability onDestroy');
+    hilog.info(0x0000, 'testTag', 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    logger.info('Ability onWindowStageCreate');
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        logger.error('Failed to load the content. Cause: ' + JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: ' + JSON.stringify(err) ?? '');
         return;
       }
-      logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: ' + JSON.stringify(data) ?? '');
     });
 
     // 耗时操作
@@ -203,18 +196,18 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    logger.info('Ability onWindowStageDestroy');
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    logger.info('Ability onForeground');
+    hilog.info(0x0000, 'testTag', 'Ability onForeground');
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
   }
 
   onBackground(): void {
-    logger.info('Ability onBackground');
+    hilog.info(0x0000, 'testTag', 'Ability onBackground');
   }
 
   computeTask(): void {
