@@ -6,8 +6,8 @@ For details about how to use the APIs, see [Application Event Logging](../refere
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events. |
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
 
 ## How to Develop
 
@@ -67,12 +67,12 @@ The following describes how to subscribe to the main thread jank event, which is
 
 3. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
    ```ts
-     Button("timeOut500")
+     Button("timeOut350")
      .fontSize(50)
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 500){
+         while (Date.now() - t <= 350){
          
          }
      })
@@ -80,7 +80,7 @@ The following describes how to subscribe to the main thread jank event, which is
 
 4. **If the nolog version is used and the developer mode is disabled**, the main thread checker will collect tracing data when a task times out. 
 
-5. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut500** button twice consecutively to trigger a main thread jank event.
+5. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
 
 6. After the main thread jank event is reported, the system calls **onReceive()**. You can view the following event information in the **Log** window.
 
@@ -103,11 +103,11 @@ The following describes how to subscribe to the main thread jank event, which is
 
    The sampling stack of the main thread jank event is similar to the trace result. The differences are as follows:
    
-   Stack: <br>
-   external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_yyyyMMDDHHmmss_xxxx.txt"]. <br>*xxxx* indicates the process ID.
+   Stack:
+   external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_yyyyMMDDHHmmss_xxxx.txt"]. *xxxx* indicates the process ID.
    
-   Trace: <br>
-   external_log=[""/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_unix timestamp_xxxx.trace"].  <br>*xxxx* indicates the process ID.
+   Trace:
+   external_log=[""/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_unix timestamp_xxxx.trace"]. *xxxx* indicates the process ID.
 
 ## Main Thread Jank Event Time Specifications
 1. Begin time
@@ -118,17 +118,17 @@ The following describes how to subscribe to the main thread jank event, which is
 
 2. Stack capture time
 
-    When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 155 ms (1  ≤  number of check times  ≤  2). There are three cases:
+    When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 155 ms (1 ≤ number of check times ≤ 2). There are three cases:
 
-    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
+    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends.  
     
       ![Stack capture time example 1](figures/dump-stack1.PNG)
 
-    (2) If a jank event is detected during the second check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
+    (2) If a jank event is detected during the second check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends.  
     
       ![Stack capture time example 2](figures/dump-stack2.PNG)
 
-    (3) If no jank event is detected in the two checks, the check ends.
+    (3) If no jank event is detected in the two checks, the check ends. 
 
       ![Stack capture time example 3](figures/dump-stack3.PNG)
 
@@ -152,18 +152,18 @@ The following describes how to subscribe to the main thread jank event, which is
    
    The information of the reported event is described as follows:
 
-   |   Type |   Description  |
-   | -------------- | ------------------------------------- |
-   | BUNDLE_VERSION | App version number.                            |
-   | BUNDLE_NAME    | App process name.                            |
-   | BEGIN_TIME     | Begin timestamp of the main thread jank event.               |
-   | END_TIME       | End timestamp of the main thread jank event.               |
-   | EXTERNAL_LOG   | Stack file storage path.                        |
-   | STACK          | Stack content.                             |
-   | JANK_LEVEL     | Flag (**0**: stack sampling; **1**: trace sampling).        |
-   | THREAD_NAME    | Thread name.                               |
-   | FOREGROUND     | Whether the app is in the foreground.                        |
-   | LOG_TIME       | Log timestamp.                            |
+    |   Type |   Description  |
+    | -------------- | ------------------------------------- |
+    | BUNDLE_VERSION | App version number.                            |
+    | BUNDLE_NAME    | App process name.                            |
+    | BEGIN_TIME     | Begin timestamp of the main thread jank event.               |
+    | END_TIME       | End timestamp of the main thread jank event.               |
+    | EXTERNAL_LOG   | Stack file storage path.                        |
+    | STACK          | Stack content.                             |
+    | JANK_LEVEL     | Flag (**0**: stack sampling; **1**: trace sampling).        |
+    | THREAD_NAME    | Thread name.                               |
+    | FOREGROUND     | Whether the app is in the foreground.                        |
+    | LOG_TIME       | Log timestamp.                            |
 
 2. Log aging
 
@@ -180,25 +180,25 @@ The following describes how to subscribe to the main thread jank event, which is
             9 #02 pc 000090a9 /system/bin/appspawn(main+396)(55679d09bcdea35bb1e0d4e1d9a3e58f)
                 9 #03 pc 0000ab5d /system/bin/appspawn(AppSpawnRun+100)(55679d09bcdea35bb1e0d4e1d9a3e58f)
                     9 #04 pc 0000e7f1 /system/lib/chipset-pub-sdk/libbegetutil.z.so(RunLoop_+200)(52ace27d827ad482439bf32cc75bb17b)
-                    ...
+                    ......
                                             9 #21 pc 00107aec /system/lib/ld-musl-aarch64.so.1(__pthread_cond_timedwait+628)(add9e521e4eaf5cb009d4260f3b69ccd)
     1 #00 pc 00032e67 /system/lib/platformsdk/libmmi-util.z.so(OHOS::MMI::UDSSocket::OnReadPackets(OHOS::MMI::CircleStreamBuffer&, std::__h::function<void (OHOS::MMI::NetPacket&)>)+158)(99e56bc765f9208f7b7ba8b268886a59)
         1 #01 pc 0000312e5 /system/lib/platformsdk/libmmi-client.z.so(OHOS::MMI::ClientMsgHandler::OnMsgHandler(OHOS::MMI::UDSClient const&, OHOS::MMI::NetPacket&)+340)(66ac85e964777ae89f0c26c339093cd1)
             1 #02 pc 0003016b /system/lib/platformsdk/libmmi-client.z.so(OHOS::MMI::ClientMsgHandler::OnPointerEvent(OHOS::MMI::UDSClient const&, OHOS::MMI::NetPacket&)+1222)(66ac85e964777ae89f0c26c339093cd1)
                 1 #03 pc 0003b96b /system/lib/platformsdk/libmmi-client.z.so(OHOS::MMI::InputManagerImpl::OnPointerEvent(std::__h::shared_ptr<OHOS::MMI::PointerEvent>)+1370)(66ac85e964777ae89f0c26c339093cd1)
                     1 #04 pc 00095903 /system/lib/platformsdk/libwm.z.so(OHOS::Rosen::InputEventListener::OnInputEvent(std::__h::shared_ptr<OHOS::MMI::PointerEvent>) const+478)(9c40c5f416d6f830435126998fbcad42)
-                    ...
+                    ......
                                             1 #21 pc 003f5c55 /system/lib/platformsdk/libark_jsruntime.so(4e6a2651ec80a7f639233f414d6486fe)
                                                 1 #22 at anonymous (/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/Index.js:67:17)
                                                     1 #23 at wait2 (/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/Index.js:16:12)
-                                                    ...
+                                                    ......
    ```
 
    Each stack capture records 16 KB call stack information of the main thread for stack unwinding. Therefore, each stack capture result contains a maximum of 16 KB invocation information of the process for 10 times. The captured data is displayed in a tree view, with repeated stack frames aggregated and different call layers distinguished by line indentation.  If the stack fails to be captured (for example, the main thread is blocked in the kernel or signals are masked), the content of the **/proc/self/wchan** file is output.
    
    In the result, each row indicates a piece of stack information. The meaning of a row of stack frame information can be interpreted as follows.
 
-   Native frame:
+   Native frame: 
 
    ```text
     9 #02 pc 000090a9 /system/bin/appspawn(main+396)(55679d09bcdea35bb1e0d4e1d9a3e58f)
@@ -213,7 +213,7 @@ The following describes how to subscribe to the main thread jank event, which is
     6 indicates the MD5 value of the .so file.
    ```
 
-   JS frame:
+   JS frame: 
 
    ```text
     1 #23 at wait2 (/entry/build/default/cache/default/XXX/entry/src/main/ets/pages/Index.js:16:12)
@@ -222,7 +222,7 @@ The following describes how to subscribe to the main thread jank event, which is
 
     1 indicates the number of times that the frame is sampled. The maximum value is the sampling times.
     2 indicates the invoking level of the frame, which is the same as that of the native frame.
-    3 indicates the name of the called function, which is wait2.
+    3 indicates the name of the called function, which is **wait2**.
     4 indicates the path, file, row number, and column number of the called function.
    ```
 

@@ -8,8 +8,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 | API                                                      | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher)| Removes a watcher to unsubscribe from application events.|
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events. |
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from application events. |
 
 ## How to Develop
 
@@ -160,12 +160,12 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
    ```typescript
-      Button("timeOut500")
+      Button("timeOut350")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .onClick(() => {
           let t = Date.now();
-          while (Date.now() - t <= 500){
+          while (Date.now() - t <= 350){
           
           }
       })
@@ -173,7 +173,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 8. If the nolog version is used and the developer mode is disabled, the main thread checker will collect tracing data when a task times out.
 
-9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut500** button twice consecutively to trigger a main thread jank event.
+9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event. **The UID of the same application triggers the main thread jank event only once a day.**
 
 10. After the main thread jank event is reported, you can view the following event information in the **Log** window.
 
