@@ -790,7 +790,7 @@ arrayList.increaseCapacityTo(8);
 
 trimToCurrentLength(): void
 
-把容量限制为当前的length大小。
+释放ArrayList中预留的空间，把容量调整为当前的元素个数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
