@@ -2688,9 +2688,8 @@
         - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-        - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
         <!--DelEnd-->
-        - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+        - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
     - C API<!--basic-services-c-->
       - 模块<!--basic-services-module-->
         - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
