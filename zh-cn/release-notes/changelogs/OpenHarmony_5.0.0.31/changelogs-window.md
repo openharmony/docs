@@ -27,6 +27,7 @@
 从OpenHarmony SDK 5.0.0.31开始。
 
 **变更的接口/组件**
+
 @ohos.window.d.ts
 
 setWindowSystemBarEnable
