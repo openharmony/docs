@@ -688,6 +688,7 @@
             - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
             - [声明权限](security/AccessToken/declare-permissions.md)
             - [向用户申请授权](security/AccessToken/request-user-authorization.md)
+            - [二次向用户申请授权](security/AccessToken/request-user-authorization-second.md)
             - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
             <!--Del-->
             - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
