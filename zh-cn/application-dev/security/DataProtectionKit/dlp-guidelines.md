@@ -1,4 +1,4 @@
-# Data Loss Prevention Kit开发指导
+# 数据防泄漏服务开发指导
 
 DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
 
@@ -47,10 +47,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 ## 开发步骤
 
-1. 引入[dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)模块。
+1. 引入[dlpPermission](../../reference/apis-data-protection-kit/js-apis-dlppermission.md)模块。
 
    ```ts
-   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { dlpPermission } from '@kit.DataProtectionKit';
    ```
 
 2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
@@ -132,7 +132,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 6. 判断当前打开文件是否是DLP文件。
 
    ```ts
-   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { dlpPermission } from '@kit.DataProtectionKit';
    import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -241,7 +241,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
 
     ```ts
-    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { dlpPermission } from '@kit.DataProtectionKit';
     import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -264,7 +264,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 14. 查询当前系统是否提供DLP特性。
     ```ts
-    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     dlpPermission.isDLPFeatureProvided().then((res) => {
