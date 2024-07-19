@@ -81,6 +81,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | -------- | ----------------- |
 | 201 | Permission denied. |
 | 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
 
@@ -474,7 +475,7 @@ try {
 
 on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
-Registers a listener for screen hopping status change events.
+Enables listening for screen hopping status change events.
 
 **Required permissions**: ohos.permission.COOPERATE_MANAGER
 
@@ -484,8 +485,8 @@ Registers a listener for screen hopping status change events.
 
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                                | Yes  | Event type, which is **'cooperateMessage'**.  |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the screen hopping status.|
+| type     | string                                                | Yes  | Event type. The value is **cooperateMessage**.  |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -517,7 +518,7 @@ try {
 
 off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void;
 
-Unregisters the listener for screen hopping status change events.
+Disables listening for screen hopping status change events.
 
 **Required permissions**: ohos.permission.COOPERATE_MANAGER
 
@@ -527,8 +528,8 @@ Unregisters the listener for screen hopping status change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type, which is **'cooperate'**.                               |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperate'** of this application.|
+| type     | string                                                | Yes  | Event type. The value is **cooperate**.                               |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 **Error codes**
 
@@ -591,7 +592,7 @@ Registers a listener for the mouse cursor position of a device.
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                | Yes  | Event type, which is **'cooperateMouse'**.  |
 | networkId| string                                                | Yes  | Descriptor of the target device.  |
-| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | Yes  | Callback used to return the mouse cursor position of the specified device.|
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | Yes  | Callback used to return the mouse cursor position of the device.|
 
 **Error codes**
 
@@ -636,7 +637,7 @@ Unregisters the listener for the mouse cursor position of a device.
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type, which is **'cooperateMouse'**.                               |
 | networkId| string                                                | Yes  | Descriptor of the target device.  |
-| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperateMouse'** of this application.|
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 **Error codes**
 
@@ -697,24 +698,39 @@ Defines a screen hopping status change event.
 | state     | CooperateState | Yes  | No  | Screen hopping status.        |
 
 
+## MouseLocation<sup>12+</sup>
 
-## CooperateState<sup>10+</sup>
+Defines the mouse pointer position for screen hopping.
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| Name          | Type           | Readable| Writable| Description                          |
+| ---------      | -------------- | ---- | ---- | ------------------------       |
+| displayX       | number         | Yes  | No  | Position of the mouse pointer on the X coordinate of the screen.|
+| displayY       | number         | Yes  | No  | Position of the mouse pointer on the Y coordinate of the screen.|
+| displayWidth   | number         | Yes  | No  | Screen width.                     |
+| displayHeight  | number         | Yes  | No  | Screen height.                     |
+
+
+
+## CooperateState<sup>11+</sup>
 
 Screen hopping status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| Name                          | Type  | Readable| Writable| Description                  |
+| Name                          | Type   | Readable| Writable| Description                  |
 | ------------------------------ | ------ | ---- | ---- | ---------------------- |
 | COOPERATE_PREPARE              | number | Yes  | No  | The preparation for screen hopping is finished.    |
 | COOPERATE_UNPREPARE            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
 | COOPERATE_ACTIVATE             | number | Yes  | No  | Screen hopping starts.    |
 | COOPERATE_ACTIVATE_SUCCESS     | number | Yes  | No  | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAIL     | number | Yes  | No  | Starting screen hopping fails.|
+| COOPERATE_ACTIVATE_FAIL        | number | Yes  | No  | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS   | number | Yes  | No  | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAIL   | number | Yes  | No  | Stopping screen hopping fails.|
+| COOPERATE_DEACTIVATE_FAIL      | number | Yes  | No  | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
-
+| COOPERATE_ACTIVATE_FAILURE     | number | Yes  | No  | Screen hopping fails to start.|
+| COOPERATE_DEACTIVATE_FAILURE   | number | Yes  | No  | Screen hopping fails to stop.|
 
 
 ## MouseLocation<sup>12+</sup>
@@ -725,10 +741,10 @@ Represents the mouse cursor position.
 
 | Name          | Type          | Readable| Writable| Description                    |
 | ---------     | -------------- | ---- | ---- | ------------------------ |
-| displayX      | number         | Yes  | No  | X coordinate of the mouse device.|
-| displayY      | number         | Yes  | No  | Y coordinate of the mouse device.|
-| displayWidth  | number         | Yes  | No  | Width of the screen where the cursor is located.|
-| displayHeight | number         | Yes  | No  | Height of the screen where the cursor is located.|
+| displayX      | number         | Yes  | No  | X coordinate of the mouse cursor.|
+| displayY      | number         | Yes  | No  | Y coordinate of the mouse cursor.|
+| displayWidth  | number         | Yes  | No  | Width of the screen where the mouse cursor is located.|
+| displayHeight | number         | Yes  | No  | Height of the screen where the mouse cursor is located.|
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>
@@ -739,7 +755,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.prepareCooperate](#cooperatepreparecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -755,6 +771,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -782,7 +799,7 @@ Prepares for screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.prepareCooperate](#cooperatepreparecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -825,7 +842,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -839,6 +856,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -866,7 +884,7 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -882,6 +900,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -909,7 +928,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.activateCooperate](#cooperateactivatecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -928,6 +947,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.|
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -957,7 +977,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.activateCooperate](#cooperateactivatecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -983,6 +1003,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.   |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -1012,7 +1033,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1029,6 +1050,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -1056,7 +1078,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1074,8 +1096,13 @@ Stops screen hopping. This API uses a promise to return the result.
 | --------             | ----------------------------   |
 | Promise&lt;void&gt; |  Promise that returns no value.     |
 
+**Error Codes**
 
+For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
 
+| ID| Error Message         |
+| -------- | ----------------- |
+| 202 | Not system application. |
 **Example**
 
 ```ts
@@ -1101,7 +1128,7 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperategetcooperateswitchstate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1146,7 +1173,7 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1194,11 +1221,11 @@ try {
 
 on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateMsg }&gt;): void;
 
-Registers a listener for screen hopping status change events.
+Enables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [on('cooperateMessage')](#oncooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [on('cooperateMessage')](#oncooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1206,8 +1233,8 @@ Registers a listener for screen hopping status change events.
 
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  Yes | Event type, which is **'cooperate'**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the screen hopping status.|
+| type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 **Error codes**
 
@@ -1237,11 +1264,11 @@ try {
 
 off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
-Unregisters the listener for screen hopping status change events.
+Disables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [off('cooperateMessage')](#offcooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [off('cooperateMessage')](#offcooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1249,8 +1276,8 @@ Unregisters the listener for screen hopping status change events.
 
 | Name               | Type                                                             | Mandatory   | Description                          |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  Yes   | Event type, which is **'cooperate'**.|
-| callback             | AsyncCallback&lt;void&gt; |  No | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for **'cooperate'** of this application.|
+| type                 | string                                                           |  Yes   | Event type. The value is **cooperate**.|
+| callback             | AsyncCallback&lt;void&gt; |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 **Error codes**
 
@@ -1301,7 +1328,7 @@ Represents a screen hopping message notification.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [CooperateMessage](#cooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [CooperateMessage](#cooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
