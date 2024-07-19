@@ -44,11 +44,13 @@ import { uri } from '@kit.ArkTS';
 **命名形式：**
 
 标准uri定义主要由以下三个部分组成：
-[scheme:]scheme-specific-part[#fragment]
+[scheme:]scheme-specific-part[#fragment]。
+
 将URI格式细化一些则可分为：
-[scheme:][//authority][path][?query][#fragment]
+[scheme:][//authority][path][?query][#fragment]。
+
 将URI格式进一步细化可分为：
-[scheme:][//[user-info@]host[:port]][path][?query][#fragment]
+[scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
 
 - scheme: 协议名，与scheme-specific-part以：进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
 - scheme-specific-part: URI的特定解码方案特定部分，位于[scheme:]和[#fragment]之间由[//][authority][path][?query]组成，此部分以/开头的为分层URI，不以/开头的为不透明URI，根据需要填写。
@@ -168,9 +170,9 @@ new uri.URI('https://username:password@host:8080');
 
 toString(): string
 
-**系统能力：** SystemCapability.Utils.Lang
-
 将URI转化为编码后的字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -355,7 +357,7 @@ console.info(`${uriInstance1.checkHierarchical()}`); // false
 
 getQueryValue(key:string): string
 
-根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值,若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
 查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
@@ -535,6 +537,7 @@ console.info(Array.from(paramNames).toString()); // param1,param2
 getQueryValues(key:string): string[]
 
 获取此URI中查询参数的所有指定键对应值的集合。若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
 查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
@@ -545,7 +548,7 @@ getQueryValues(key:string): string[]
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| key    | string | 是   | 指定键值对的名称。 |
+| key    | string | 是   | 指定键的名称。 |
 
 **返回值：**
 
