@@ -8,7 +8,7 @@
 
 **变更原因**
 
-在2in1设备下，全屏状态下的由系统布局约束，无需再调用接口去控制状态栏的显示和隐藏。
+在2in1设备下，全屏状态下的状态栏显示控制由系统布局约束，无需再调用接口去控制状态栏的显示和隐藏。即设置的setWindowSystemBarEnable、setSystemBarEnable在2in1设备上不生效。
 ![Alt text](figures/window_layout.png)
 
 **变更影响**
