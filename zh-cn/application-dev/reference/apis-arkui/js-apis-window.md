@@ -3716,7 +3716,7 @@ windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+开启窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3742,39 +3742,22 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-          console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    windowClass?.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
     });
+  } catch (exception) {
+    console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### off('windowTitleButtonRectChange')<sup>11+</sup>
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+关闭窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3800,38 +3783,21 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (titleButtonRect: window.TitleButtonRect) => {
-        // ...
-      }
-      try {
-        // 通过on接口开启监听
-        windowClass.on('windowTitleButtonRectChange', callback);
-        // 关闭指定callback的监听
-        windowClass.off('windowTitleButtonRectChange', callback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        windowClass.off('windowTitleButtonRectChange');
-      } catch (exception) {
-        console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+	const callback = (titleButtonRect: window.TitleButtonRect) => {
+		// ...
+	}
+  try {
+    // 通过on接口开启监听
+    windowClass?.on('windowTitleButtonRectChange', callback);
+    // 关闭指定callback的监听
+    windowClass?.off('windowTitleButtonRectChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass?.off('windowTitleButtonRectChange');
+  } catch (exception) {
+    console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### on('windowRectChange')<sup>12+</sup>
@@ -5606,7 +5572,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-<!--RP1-->设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP1End-->
+<!--RP1-->
+设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+<!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5631,38 +5599,24 @@ setWindowDecorHeight(height: number): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let height: number = 50;
-      try {
-        windowClass.setWindowDecorHeight(height);
-      } catch (exception) {
-        console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  let height: number = 50;
+  try {
+    windowClass?.setWindowDecorHeight(height);
+    console.info(`Succeeded in setting the height of window decor: ${height}`);
+  } catch (exception) {
+    console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
-<!--RP2-->获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP2End-->
+<!--RP2-->
+获取窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+<!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5686,30 +5640,14 @@ getWindowDecorHeight(): number
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        let height = windowClass.getWindowDecorHeight();
-      } catch (exception) {
-        console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let height = windowClass?.getWindowDecorHeight();
+    console.info(`Succeeded in getting the height of window decor: ${height}`);
+  } catch (exception) {
+    console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### getTitleButtonRect<sup>11+</sup>
