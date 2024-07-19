@@ -860,9 +860,7 @@ get commonAttribute(): CommonAttribute
 
 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
 
-仅可以修改通过命令式方式创建的节点的属性。
-
-不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或lambda表达式的属性，且不支持事件和手势。
+仅可以修改自定义节点的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -876,7 +874,9 @@ get commonAttribute(): CommonAttribute
 
 > **说明：**
 >
-> FrameNode的基础属性支持范围和效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+> FrameNode的效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+>
+> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)。
 
 **示例：**
 
