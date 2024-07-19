@@ -451,8 +451,6 @@ layoutSync(width: number): void
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 paragraph.layoutSync(100);
 ```
 
@@ -475,9 +473,6 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
-
 const color: ArrayBuffer = new ArrayBuffer(160000);
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
 let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -505,9 +500,6 @@ paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset
 **示例：**
 
 ```ts
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
-
 const color: ArrayBuffer = new ArrayBuffer(160000);
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
 let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -534,8 +526,6 @@ getMaxWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
 let maxWidth = paragraph.getMaxWidth();
 ```
 
@@ -556,8 +546,6 @@ getHeight(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
 let height = paragraph.getHeight();
 ```
 
@@ -578,8 +566,6 @@ getLongestLine(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
 let longestLine = paragraph.getLongestLine();
 ```
 
@@ -600,8 +586,6 @@ getMinIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
 let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 ```
 
@@ -622,8 +606,6 @@ getMaxIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 ```
 
@@ -644,8 +626,6 @@ getAlphabeticBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let alphabeticBaseline = paragraph.getAlphabeticBaseline();
 ```
 
@@ -666,8 +646,6 @@ getIdeographicBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let ideographicBaseline = paragraph.getIdeographicBaseline();
 ```
 
@@ -696,8 +674,6 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let range: text.Range = { start: 0, end: 1};
 let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
 ```
@@ -719,8 +695,6 @@ getRectsForPlaceholders(): Array\<TextBox>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let placeholderRects = paragraph.getRectsForPlaceholders();
 ```
 
@@ -748,8 +722,6 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 ```
 
@@ -776,8 +748,6 @@ getWordBoundary(offset: number): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let wordRange = paragraph.getWordBoundary(0);
 ```
 
@@ -798,8 +768,6 @@ getLineCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let lineCount = paragraph.getLineCount();
 ```
 
@@ -826,8 +794,6 @@ getLineHeight(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let lineHeight = paragraph.getLineHeight(0);
 ```
 
@@ -854,8 +820,6 @@ getLineWidth(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let lineWidth = paragraph.getLineWidth(0);
 ```
 
@@ -876,8 +840,6 @@ didExceedMaxLines(): boolean
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let didExceed = paragraph.didExceedMaxLines();
 ```
 
@@ -898,8 +860,6 @@ getTextLines(): Array\<TextLine>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
 let lines = paragraph.getTextLines();
 ```
 
@@ -927,19 +887,6 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-let myTextStyle: text.TextStyle = {
-  color: { alpha: 255, red: 255, green: 0, blue: 0 },
-  fontSize: 33,
-};
-let myParagraphStyle: text.ParagraphStyle = {
-  textStyle: myTextStyle,
-  align: 3,
-};
-let fontCollection = new text.FontCollection();
-let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-let paragraph = ParagraphGraphBuilder.build();
 let rang = paragraph.getActualTextRange(0, true);
 ```
 
@@ -961,19 +908,6 @@ getLineMetrics(): Array\<LineMetrics>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-let myTextStyle: text.TextStyle = {
-  color: { alpha: 255, red: 255, green: 0, blue: 0 },
-  fontSize: 33,
-};
-let myParagraphStyle: text.ParagraphStyle = {
-  textStyle: myTextStyle,
-  align: 3,
-};
-let fontCollection = new text.FontCollection();
-let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-let paragraph = ParagraphGraphBuilder.build();
 let arrLineMetrc =  paragraph.getLineMetrics();
 ```
 
@@ -1000,19 +934,6 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-let myTextStyle: text.TextStyle = {
-  color: { alpha: 255, red: 255, green: 0, blue: 0 },
-  fontSize: 33,
-};
-let myParagraphStyle: text.ParagraphStyle = {
-  textStyle: myTextStyle,
-  align: 3,
-};
-let fontCollection = new text.FontCollection();
-let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-let paragraph = ParagraphGraphBuilder.build();
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
@@ -1375,9 +1296,7 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
 function Text() {
