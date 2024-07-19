@@ -105,7 +105,7 @@ ArkUI_GroupGestureMode枚举类，用于声明该组合手势的类型。顺序�
 
 ### 顺序识别
 
-顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，所有的手势识别失败。顺序识别手势组仅有最后一个手势可以响应GESTURE_EVENT_ACTION_END。
+顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应GESTURE_EVENT_ACTION_END。
 
 以顺序识别长按和滑动手势为例：
 

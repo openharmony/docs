@@ -5,7 +5,7 @@
 
 
 ```ts
-TapGesture(value?:{count?:number; fingers?:number})
+TapGesture(value?:{count?:number, fingers?:number})
 ```
 
 
@@ -53,7 +53,7 @@ TapGesture(value?:{count?:number; fingers?:number})
 
 
 ```ts
-LongPressGesture(value?:{fingers?:number; repeat?:boolean; duration?:number})
+LongPressGesture(value?:{fingers?:number, repeat?:boolean, duration?:number})
 ```
 
 
@@ -113,7 +113,7 @@ struct Index {
 
 
 ```ts
-PanGesture(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
+PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
 ```
 
 
@@ -191,7 +191,7 @@ struct Index {
 
 
 ```ts
-PinchGesture(value?:{fingers?:number; distance?:number})
+PinchGesture(value?:{fingers?:number, distance?:number})
 ```
 
 
@@ -261,7 +261,7 @@ struct Index {
 
 
 ```ts
-RotationGesture(value?:{fingers?:number; angle?:number})
+RotationGesture(value?:{fingers?:number, angle?:number})
 ```
 
 
@@ -329,7 +329,7 @@ struct Index {
 
 
 ```ts
-SwipeGesture(value?:{fingers?:number; direction?:SwipeDirection; speed?:number})
+SwipeGesture(value?:{fingers?:number, direction?:SwipeDirection, speed?:number})
 ```
 
 
