@@ -14904,7 +14904,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 **示例：**
 
 ```ts
-// xxx.ts
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -14964,7 +14964,7 @@ struct Index {
           options.timeToLive = 10;
           this.controller.setBackForwardCacheOptions(options);
         })
-        Button("BackWard").onClick((event: ClickEvent) => {
+        Button("Backward").onClick((event: ClickEvent) => {
           this.controller.backward();
         })
         Button("Forward").onClick((event: ClickEvent) => {

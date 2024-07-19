@@ -1,17 +1,15 @@
-# web前进后退缓存
+# Web前进后退缓存
 
-使能前进后退缓存，在前进后退的场景达到秒开的效果。
+开启Web组件的前进后退缓存功能，在前进后退的场景达到秒开的效果。
 
 ## 开启前进后退缓存
 
-可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enableBackForwardCache12)来开启web组件使用前进后退缓存的功能。
+可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启web组件使用前进后退缓存的功能。
 
 需要在[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化内核之前调用。
 
-  下面的示例是开启webview前进缓存的功能。
-
 ```ts
-// xxx.ts
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -29,11 +27,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## 设置前进后退缓存可以缓存的页面数量和页面留存的时间
+## 设置缓存的页面数量和页面留存的时间
 
-可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setBackForwardCacheOptions12)来设置每一个web示例前进后退缓存的策略。
+可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)来设置每一个web示例前进后退缓存的策略。
 
-在下面的示例中，设置web组件前进后退缓存可以缓存的最大数量为10，每个页面在前进后退缓存中停留300s。
+在下面的示例中，设置web组件可以缓存的最大数量为10，每个页面在前进后退缓存中停留300s。
   
 ```ts
 // xxx.ts
@@ -53,7 +51,7 @@ struct Index {
           options.timeToLive = 300;
           this.controller.setBackForwardCacheOptions(options);
         })
-        Button("BackWard").onClick((event: ClickEvent) => {
+        Button("Backward").onClick((event: ClickEvent) => {
           this.controller.backward();
         })
         Button("Forward").onClick((event: ClickEvent) => {
