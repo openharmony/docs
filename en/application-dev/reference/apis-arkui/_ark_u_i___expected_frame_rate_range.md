@@ -15,7 +15,7 @@ Defines the expected frame rate range of the animation.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | uint32_t [min](#min) | Expected minimum frame rate. | 
 | uint32_t [max](#max) | Expected maximum frame rate. | 

@@ -2,7 +2,7 @@
 
 The **\<Canvas>** component can be used to customize drawings.
 
-> **NOTE**
+> **NOTE** 
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -16,11 +16,15 @@ Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type                                                    | Mandatory| Description                                                    |
+| Name | Type   | Mandatory | Description  |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) \| [DrawingRenderingContext<sup>12+</sup>](ts-drawingrenderingcontext.md) | No  | 2D rendering context for a canvas.<br>**CanvasRenderingContext2D**: Canvases cannot share one **CanvasRenderingContext2D** object. For details, see [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md). **DrawingRenderingContext**: Canvases cannot share one **DrawingRenderingContext** object. For details, see [DrawingRenderingContext](ts-drawingrenderingcontext.md).|
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) \| [DrawingRenderingContext<sup>12+</sup>](ts-drawingrenderingcontext.md) | No  | 2D rendering context for a canvas.<br>**CanvasRenderingContext2D**: Canvases cannot share one **CanvasRenderingContext2D** object. For details, see [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md). **DrawingRenderingContext**: Canvases cannot share one **DrawingRenderingContext** object. For details, see [DrawingRenderingContext](ts-drawingrenderingcontext.md). |
 
 ## Attributes
 
@@ -29,23 +33,29 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 ### enableAnalyzer<sup>12+</sup>
 
 Specifies whether to enable the AI image analyzer. This attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12) in [context](ts-canvasrenderingcontext2d.md).
-This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
+This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md#overlay) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | Yes  | Whether to enable the AI image analyzer. The value **true** means to enable the AI image analyzer.<br>Default value: **false**|
+| enable  | boolean | Yes  | Whether to enable the AI image analyzer. The value **true** means to enable the AI image analyzer.<br>Default value: **false** |
 
 ## Events
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                        | Description                                      |
 | -------------------------- | ---------------------------------------- |
-| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>The **onAreaChange** event is triggered after the **onReady** event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>The **onAreaChange** event is triggered after the **onReady** event. |
 
 **Example**
 

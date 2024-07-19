@@ -14,37 +14,49 @@ attributeModifier(modifier: AttributeModifier\<T>)
 
 Creates an attribute modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need a custom class to implement the **AttributeModifier** API.|
+| modifier | [AttributeModifier\<T>](#attributemodifiert) | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need a custom class to implement the **AttributeModifier** API. |
 
 ## AttributeModifier\<T>
 
 You need a custom class to implement the **AttributeModifier** API.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
 Applies the style of a component in the normal state.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ### applyPressedAttribute
 applyPressedAttribute(instance: T) : void
 
 Applies the style of a component in the pressed state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### applyFocusedAttribute
 applyFocusedAttribute(instance: T) : void
 
 Applies the style of a component in the focused state.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ### applyDisabledAttribute
 applyDisabledAttribute(instance: T) : void
 
 Applies the style of a component in the disabled state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
@@ -52,6 +64,8 @@ applySelectedAttribute(instance: T) : void
 Applies the style of a component in the selected state.
 
 In the preceding APIs, **instance** indicates the component type. You can customize these APIs and use them with the **if/else **syntax.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -61,18 +75,18 @@ In the preceding APIs, **instance** indicates the component type. You can custom
 
 **Value range of the instance parameter**
 
-AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, CalendarPickerAttribute, CanvasAttribute, CheckboxAttribute, CheckboxGroupAttribute, CircleAttribute, ColumnAttribute, ColumnSplitAttribute, ShapeAttribute, CommonAttribute, CounterAttribute, DataPanelAttribute, DatePickerAttribute, DividerAttribute, EffectComponentAttribute, EllipseAttribute, FlexAttribute, FlowItemAttribute, FormComponentAttribute, FormLinkAttribute, GaugeAttribute, GridAttribute, GridColAttribute, ColumnAttribute, GridItemAttribute, GridRowAttribute, HyperlinkAttribute, ImageAttribute, ImageAnimatorAttribute, ImageSpanAttribute, LineAttribute, ListAttribute, ListItemAttribute, ListItemGroupAttribute, LoadingProgressAttribute, MarqueeAttribute, MenuAttribute, MenuItemAttribute, MenuItemGroupAttribute, NavDestinationAttribute, NavigationAttribute, NavigatorAttribute, NavRouterAttribute, PanelAttribute, PathAttribute, PatternLockAttribute, PluginComponentAttribute, PolygonAttribute, PolylineAttribute, ProgressAttribute, QRCodeAttribute, RadioAttribute, RatingAttribute, RectAttribute, RefreshAttribute, RelativeContainerAttribute, RemoteWindowAttribute, RichEditorAttribute, RichTextAttribute, RowAttribute, RowSplitAttribute, ScrollAttribute, ScrollBarAttribute, SearchAttribute, SelectAttribute, ShapeAttribute, SideBarContainerAttribute, SliderAttribute, SpanAttribute, StackAttribute, StepperAttribute, StepperItemAttribute, SwiperAttribute, TabContentAttribute, TabsAttribute, TextAttribute, TextAreaAttribute, TextClockAttribute, TextInputAttribute, TextPickerAttribute, TextTimerAttribute, TimePickerAttribute, ToggleAttribute, UIExtensionComponentAttribute, VideoAttribute, WaterFlowAttribute, WebAttribute, XComponentAttribute
+AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, CalendarPickerAttribute, CanvasAttribute, CheckboxAttribute, CheckboxGroupAttribute, CircleAttribute, ColumnAttribute, ColumnSplitAttribute, ShapeAttribute, CommonAttribute, CounterAttribute, DataPanelAttribute, DatePickerAttribute, DividerAttribute, EllipseAttribute, FlexAttribute, FlowItemAttribute, FormLinkAttribute, GaugeAttribute, GridAttribute, GridColAttribute, ColumnAttribute, GridItemAttribute, GridRowAttribute, HyperlinkAttribute, ImageAttribute, ImageAnimatorAttribute, ImageSpanAttribute, LineAttribute, ListAttribute, ListItemAttribute, ListItemGroupAttribute, LoadingProgressAttribute, MarqueeAttribute, MenuAttribute, MenuItemAttribute, MenuItemGroupAttribute, NavDestinationAttribute, NavigationAttribute, NavigatorAttribute, NavRouterAttribute, PanelAttribute, PathAttribute, PatternLockAttribute, PolygonAttribute, PolylineAttribute, ProgressAttribute, QRCodeAttribute, RadioAttribute, RatingAttribute, RectAttribute, RefreshAttribute, RelativeContainerAttribute, RichEditorAttribute, RichTextAttribute, RowAttribute, RowSplitAttribute, ScrollAttribute, ScrollBarAttribute, SearchAttribute, SelectAttribute, ShapeAttribute, SideBarContainerAttribute, SliderAttribute, SpanAttribute, StackAttribute, StepperAttribute, StepperItemAttribute, SwiperAttribute, SymbolGlyphAttribute, TabContentAttribute, TabsAttribute, TextAttribute, TextAreaAttribute, TextClockAttribute, TextInputAttribute, TextPickerAttribute, TextTimerAttribute, TimePickerAttribute, ToggleAttribute, VideoAttribute, WaterFlowAttribute, WebAttribute, XComponentAttribute<!--Del-->, EffectComponentAttribute, FormComponentAttribute, PluginComponentAttribute, RemoteWindowAttribute, UIExtensionComponentAttribute<!--DelEnd-->
 
 **Supported attributes**
 
 Attributes whose input parameters are [CustomBuilder](ts-types.md#custombuilder8) or lamda expressions are not supported. In addition, gestures are not supported. Only the following events are supported: **onClick**, **onTouch**, **onAppear**, **onDisAppear**, **onMouse**, **onHover**, **onKeyEvent**, **onBlur**, **onFocus**, **onAreaChange**, **onSizeChange**, and **onGestureJudgeBegin**. Deprecated attributes are not supported. When an attribute not supported is used, the exception "Method not implemented " is thrown.
 ## Custom Modifier
-Custom modifiers can be used in building components and configuring attributes since API version 12. Through the custom modifiers, you can call the attribute and style APIs of encapsulated components.
+Custom modifiers can be used in building components and configuring attributes since API version 12. Through the custom modifiers, you can call the attribute and style APIs of encapsulated components. 
 
 **Supported custom modifiers** 
 
-CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifier, SideBarContainerModifier, BlankModifier, DividerModifier, GridColModifier, GridRowModifier, NavDestinationModifier, NavigatorModifier, StackModifier, NavigationModifier, NavRouterModifier, StepperItemModifier, TabsModifier, GridModifier, GridItemModifier, ListModifier, ListItemModifier, ListItemGroupModifier, ScrollModifier, SwiperModifier, WaterFlowModifier, ButtonModifier, CounterModifier, TextPickerModifier, TimePickerModifier, ToggleModifier, CalendarPickerModifier, CheckboxModifier, CheckboxGroupModifier, DatePickerModifier, RadioModifier, RatingModifier, SelectModifier, SliderModifier, PatternLockModifier, SpanModifier, RichEditorModifier, SearchModifier, TextAreaModifier, TextModifier, TextInputModifier, ImageSpanModifier, ImageAnimatorModifier, ImageModifier, VideoModifier, DataPanelModifier, GaugeModifier, LodingProgressModifier, MarqueeModifier, ProgressModifier, QRCodeModifier, TextClockModifier, TextTimerModifier, LineModifier, PathModifier, PolygonModifier, PolylineModifier, RectModifier, ShapeModifier, AlphabetIndexerModifier, FormComponentModifier, HyperlinkModifier, MenuModifier, MenuItemModifier, PanelModifier. 
-**CommonModifier** can be used for unexposed components.
+CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifier, SideBarContainerModifier, BlankModifier, DividerModifier, GridColModifier, GridRowModifier, NavDestinationModifier, NavigatorModifier, StackModifier, NavigationModifier, NavRouterModifier, StepperItemModifier, TabsModifier, GridModifier, GridItemModifier, ListModifier, ListItemModifier, ListItemGroupModifier, ScrollModifier, SwiperModifier, WaterFlowModifier, ButtonModifier, CounterModifier, TextPickerModifier, TimePickerModifier, ToggleModifier, CalendarPickerModifier, CheckboxModifier, CheckboxGroupModifier, DatePickerModifier, RadioModifier, RatingModifier, SelectModifier, SliderModifier, PatternLockModifier, SpanModifier, RichEditorModifier, RefreshModifier, SearchModifier, TextAreaModifier, TextModifier, TextInputModifier, ImageSpanModifier, ImageAnimatorModifier, ImageModifier, VideoModifier, DataPanelModifier, GaugeModifier, LoadingProgressModifier, MarqueeModifier, ProgressModifier, QRCodeModifier, TextClockModifier, TextTimerModifier, LineModifier, PathModifier, PolygonModifier, PolylineModifier, RectModifier, ShapeModifier, AlphabetIndexerModifier, FormComponentModifier, HyperlinkModifier, MenuModifier, MenuItemModifier, PanelModifier, SymbolGlyphModifier 
+**CommonModifier** can be used for unexposed components. 
 
 **Precautions**
 1. When a custom modifier is applied to a component, the corresponding attribute of the component takes effect. 
@@ -202,7 +216,7 @@ struct Index {
 ```
 ![attributeModifier2](figures/attributeModifier2.gif)  
 ### Example 3
-In this example, the custom modifier sets the **width** and **height** attributes, and the **borderStyle** and **borderWidth** attributes are set through a button click. In this case, all the four attributes take effect when the button is clicked.
+In this example, the custom modifier sets the **width** and **height** attributes, and the **borderStyle** and **borderWidth** attributes are set through a button click. In this case, all the four attributes take effect when the button is clicked. 
 ```ts
 import {CommonModifier} from "@ohos.arkui.modifier"
 
