@@ -20,36 +20,36 @@
 
 ## 能力对标
 
-| 业务场景                         | Navigation                                                                                  | Router                   |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| 一多能力                                   | 支持，Auto模式自适应单栏跟双栏显示                                                                        | 不支持                                 |
-| 跳转指定页面                               | pushPath & pushDestination                                                                                | pushUrl & pushNameRoute               |
-| 跳转HSP中页面                              | 支持                                                                                  | 支持            |
-| 跳转HAR中页面                              | 支持                                                                                | 支持   |
-| 跳转传参                                   | 支持                                                                                                      | 支持                                   |
-| 获取指定页面参数                           | 支持                                                                                                      | 不支持                                 |
-| 传参类型                                   | 传参为对象形式                                                                    | 传参为对象形式，对象中暂不支持方法变量 |
-| 跳转结果回调                               | 支持                                                                                                      | 支持                                   |
-| 跳转单例页面                               | 不支持                                                                                                  | 支持             |
-| 页面返回                                   | 支持                                                                                                       | 支持                                   |
-| 页面返回传参                               | 支持                                                                                                      | 支持                                   |
-| 返回指定路由                               | 支持                                                                                    | 支持                                 |
-| 页面返回弹窗                               | 支持，通过路由拦截实现                                                                                    | showAlertBeforeBackPage                |
-| 路由替换                                   | replacePath & replacePathByName                                                                           | replaceUrl & replaceNameRoute         |
-| 路由栈清理                                 | clear                                                                                                     | clear                                  |
-| 清理指定路由                               | removeByIndexes & removeByName                                                                            | 不支持                                 |
-| 转场动画                                   | 支持                                                                                                      | 支持                                   |
-| 自定义转场动画                             | 支持                                                                                                      | 支持，动画类型受限                     |
-| 屏蔽转场动画                               | 支持全局和单次 | 支持 设置pageTransition方法duration为0                   |
-| geometryTransition共享元素动画             | 支持（NavDestination之间共享）                                                                            | 不支持                                 |
-| 页面生命周期监听                           | UIObserver.on('navDestinationUpdate')                                                                     | UIObserver.on('routerPageUpdate')      |
-| 获取页面栈对象                             | 支持                                                                                                      | 不支持                                 |
-| 路由拦截                                   | 支持通过setInercption做路由拦截                                                                           | 不支持                                 |
-| 路由栈信息查询                             |  支持        | getState() & getLength()               |
-| 路由栈move操作                             | moveToTop & moveIndexToTop                                                                                | 不支持                                 |
-| 沉浸式页面                                 | 支持                                                                                                      | 不支持，需通过window配置                                           |
-| 设置页面标题栏（titlebar）和工具栏（toolbar） | 支持                                                                                                      | 不支持                                 |
-| 模态嵌套路由                               | 支持                                                                                                      | 不支持                                 |
+| 业务场景                                      | Navigation                            | Router                                 |
+| --------------------------------------------- | ------------------------------------- | -------------------------------------- |
+| 一多能力                                      | 支持，Auto模式自适应单栏跟双栏显示    | 不支持                                 |
+| 跳转指定页面                                  | pushPath & pushDestination            | pushUrl & pushNameRoute                |
+| 跳转HSP中页面                                 | 支持                                  | 支持                                   |
+| 跳转HAR中页面                                 | 支持                                  | 支持                                   |
+| 跳转传参                                      | 支持                                  | 支持                                   |
+| 获取指定页面参数                              | 支持                                  | 不支持                                 |
+| 传参类型                                      | 传参为对象形式                        | 传参为对象形式，对象中暂不支持方法变量 |
+| 跳转结果回调                                  | 支持                                  | 支持                                   |
+| 跳转单例页面                                  | 支持                                  | 支持                                   |
+| 页面返回                                      | 支持                                  | 支持                                   |
+| 页面返回传参                                  | 支持                                  | 支持                                   |
+| 返回指定路由                                  | 支持                                  | 支持                                   |
+| 页面返回弹窗                                  | 支持，通过路由拦截实现                | showAlertBeforeBackPage                |
+| 路由替换                                      | replacePath & replacePathByName       | replaceUrl & replaceNameRoute          |
+| 路由栈清理                                    | clear                                 | clear                                  |
+| 清理指定路由                                  | removeByIndexes & removeByName        | 不支持                                 |
+| 转场动画                                      | 支持                                  | 支持                                   |
+| 自定义转场动画                                | 支持                                  | 支持，动画类型受限                     |
+| 屏蔽转场动画                                  | 支持全局和单次                        | 支持 设置pageTransition方法duration为0 |
+| geometryTransition共享元素动画                | 支持（NavDestination之间共享）        | 不支持                                 |
+| 页面生命周期监听                              | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
+| 获取页面栈对象                                | 支持                                  | 不支持                                 |
+| 路由拦截                                      | 支持通过setInercption做路由拦截       | 不支持                                 |
+| 路由栈信息查询                                | 支持                                  | getState() & getLength()               |
+| 路由栈move操作                                | moveToTop & moveIndexToTop            | 不支持                                 |
+| 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置               |
+| 设置页面标题栏（titlebar）和工具栏（toolbar） | 支持                                  | 不支持                                 |
+| 模态嵌套路由                                  | 支持                                  | 不支持                                 |
 
 
 
@@ -71,7 +71,7 @@ Router路由的页面是一个`@Entry`修饰的Component，每一个页面都需
 }
 ```
 
-以下为Router页面的示例：
+以下为Router页面的示例。
 
 ```ts
 // index.ets
@@ -96,7 +96,7 @@ struct Index {
 
 而基于Navigation的路由页面分为导航页和子页，导航页又叫Navbar，是Navigation包含的子组件，子页是NavDestination包含的子组件。
 
-以下为Navigation导航页的示例：
+以下为Navigation导航页的示例。
 
 ```ts
 // index.ets
@@ -121,7 +121,7 @@ struct Index {
   }
 }
 ```
-以下为Navigation子页的示例：
+以下为Navigation子页的示例。
 
 ```ts
 // PageOne.ets
@@ -154,7 +154,7 @@ export struct PageOne {
 }
 ```
 
-每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由配置](arkts-navigation-navigation.md#系统路由表)）：
+每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由配置](arkts-navigation-navigation.md#系统路由表)）。
 
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
@@ -175,7 +175,7 @@ export struct PageOne {
 
 ### 路由操作
 
-Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`：
+Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`。
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -199,7 +199,7 @@ let size = router.getLength()
 let pageState = router.getState()
 ```
 
-Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中：
+Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
 
 ```ts
 @Entry
@@ -256,7 +256,7 @@ this.pathStack.getIndexByName("pageOne")
 
 Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
 
-**方式一**：通过`@Provide`和`@Consume`传递给子页面（有耦合，不推荐）；
+**方式一**：通过`@Provide`和`@Consume`传递给子页面（有耦合，不推荐）。
 
 ```ts
 // Navigation根容器
@@ -290,7 +290,7 @@ export struct PageOne {
 }
 ```
 
-**方式二**：子页面通过`OnReady`回调获取；
+**方式二**：子页面通过`OnReady`回调获取。
 
 ```ts
 @Component
@@ -308,7 +308,7 @@ export struct PageOne {
 }
 ```
 
-**方式三**： 通过全局的`AppStorage`接口设置获取；
+**方式三**： 通过全局的`AppStorage`接口设置获取。
 
 ```ts
 @Entry
@@ -345,7 +345,7 @@ export struct PageOne {
 }
 ```
 
-**方式四**：通过自定义组件查询接口获取（参考[自定义组件方法](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)）；
+**方式四**：通过自定义组件查询接口获取（参考[自定义组件方法](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)）。
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';
@@ -399,7 +399,7 @@ onPageHide(): void {
 ![image](figures/router_page_lifecycle.png)
 
 Navigation作为路由容器，其生命周期承载在NavDestination组件上，以组件事件的形式开放。
-具体生命周期描述请参考：[Navigation生命周期](arkts-navigation-navigation.md#页面生命周期)
+具体生命周期描述请参考[Navigation生命周期](arkts-navigation-navigation.md#页面生命周期)。
 
 ```ts
 @Component
@@ -439,137 +439,134 @@ struct PageOne {
 
 Router和Navigation都提供了系统的转场动画也提供了自定义转场的能力。
 
-其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考：
-[Router自定义转场动画](arkts-page-transition-animation.md)
+其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考[Router自定义转场动画](arkts-page-transition-animation.md)。
 
-Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考如下指导：
-[Navigation自定义转场动画](arkts-navigation-navigation.md#自定义转场)（注意：Dialog类型的页面当前没有转场动画）
+Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考[Navigation自定义转场动画](arkts-navigation-navigation.md#自定义转场)。（注意：Dialog类型的页面当前没有转场动画）
 
 ### 共享元素转场
 
 页面和页面之间跳转的时候需要进行共享元素过渡动画，Router可以通过通用属性`sharedTransition`来实现共享元素转场，具体可以参考如下链接：
-[Router共享元素转场动画](../reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)
+[Router共享元素转场动画](../reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)。
 
-Navigation也提供了共享元素一镜到底的转场能力，需要配合`geometryTransition`属性，在子页面（NavDestination）之间切换时，可以实现共享元素转场，具体可以参考如下指导：[Navigation共享元素转场动画](arkts-navigation-navigation.md#共享元素转场)
+Navigation也提供了共享元素一镜到底的转场能力，需要配合`geometryTransition`属性，在子页面（NavDestination）之间切换时，可以实现共享元素转场，具体可参考[Navigation共享元素转场动画](arkts-navigation-navigation.md#共享元素转场)。
 
 ### 跨包路由
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
+1. 在想要跳转到的共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名。
 
-```ts
-// library/src/main/ets/pages/Index.ets
-// library为新建共享包自定义的名字
-@Entry({ routeName: 'myPage' })
-@Component
-export struct MyComponent {
-  build() {
-    Row() {
-      Column() {
-        Text('Library Page')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
+   ```ts
+   // library/src/main/ets/pages/Index.ets
+   // library为新建共享包自定义的名字
+   @Entry({ routeName: 'myPage' })
+   @Component
+   export struct MyComponent {
+     build() {
+       Row() {
+         Column() {
+           Text('Library Page')
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
-2. 配置成功后需要在跳转的页面中引入命名路由的页面并跳转：
+2. 配置成功后需要在跳转的页面中引入命名路由的页面并跳转。
 
-```ts
-import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text('Hello World')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .margin({ top: 20 })
-        .backgroundColor('#ccc')
-        .onClick(() => { // 点击跳转到其他共享包中的页面
-          try {
-            router.pushNamedRoute({
-              name: 'myPage',
-              params: {
-                data1: 'message',
-                data2: {
-                  data3: [123, 456, 789]
-                }
-              }
-            })
-          } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
-            console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+   ```ts
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
+   
+   @Entry
+   @Component
+   struct Index {
+     build() {
+       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+         Text('Hello World')
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold)
+           .margin({ top: 20 })
+           .backgroundColor('#ccc')
+           .onClick(() => { // 点击跳转到其他共享包中的页面
+             try {
+               router.pushNamedRoute({
+                 name: 'myPage',
+                 params: {
+                   data1: 'message',
+                   data2: {
+                     data3: [123, 456, 789]
+                   }
+                 }
+               })
+             } catch (err) {
+               let message = (err as BusinessError).message
+               let code = (err as BusinessError).code
+               console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+             }
+           })
+       }
+       .width('100%')
+       .height('100%')
+     }
+   }
+   ```
 
 Navigation作为路由组件，默认支持跨包跳转。
 
-1. 从HSP（HAR）中完成自定义组件（需要跳转的目标页面）开发，将自定义组件申明为export；
+1. 从HSP（HAR）中完成自定义组件（需要跳转的目标页面）开发，将自定义组件申明为export。
 
-```ts
-@Component
-export struct PageInHSP {
-  build() {
-    NavDestination() {
-        ...
-    }
-  }
-}
-```
+   ```ts
+   @Component
+   export struct PageInHSP {
+     build() {
+       NavDestination() {
+           ...
+       }
+     }
+   }
+   ```
 
-2. 在HSP（HAR）的index.ets中导出组件
+2. 在HSP（HAR）的index.ets中导出组件。
 
-```ts
-export { PageInHSP } from "./src/main/ets/pages/PageInHSP"
-```
+   ```ts
+   export { PageInHSP } from "./src/main/ets/pages/PageInHSP"
+   ```
 
 3. 配置好HSP（HAR）的项目依赖后，在mainPage中导入自定义组件，并添加到pageMap中，即可正常调用。
 
-```ts
-// 1.导入跨包的路由页面
-import { PageInHSP } from 'library/src/main/ets/pages/PageInHSP'
-
-@Entry
-@Component
-struct mainPage {
- pageStack: NavPathStack = new NavPathStack()
-
- @Builder pageMap(name: string) {
-   if (name === 'PageInHSP') {
-	 // 2.定义路由映射表
-	 PageInHSP()
+   ```
+   // 1.导入跨包的路由页面
+   import { PageInHSP } from 'library/src/main/ets/pages/PageInHSP'
+   
+   @Entry
+   @Component
+   struct mainPage {
+    pageStack: NavPathStack = new NavPathStack()
+   
+    @Builder pageMap(name: string) {
+      if (name === 'PageInHSP') {
+   	 // 2.定义路由映射表
+   	 PageInHSP()
+      }
+    }
+    build() {
+      Navigation(this.pageStack) {
+   	 Button("Push HSP Page")
+   	   .onClick(() => {
+   		  // 3.跳转到Hsp中的页面
+   		  this.pageStack.pushPath({ name: "PageInHSP"});
+   	 })
+      }
+      .navDestination(this.pageMap)
+    }
    }
- }
- build() {
-   Navigation(this.pageStack) {
-	 Button("Push HSP Page")
-	   .onClick(() => {
-		  // 3.跳转到Hsp中的页面
-		  this.pageStack.pushPath({ name: "PageInHSP"});
-	 })
-   }
-   .navDestination(this.pageMap)
- }
-}
-
-```
+   ```
 
 以上是通过**静态依赖**的形式完成了跨包的路由，在大型的项目中一般跨模块的开发需要解耦，那就需要依赖动态路由的能力。
 
@@ -593,20 +590,20 @@ struct mainPage {
 
 **Navigation实现动态路由有如下两种实现方案：**
 
-****方案一：** 自定义路由表**
+**方案一：** 自定义路由表
 
-基本实现跟上述Router动态路由类似
+基本实现跟上述Router动态路由类似。
 1. 开发者自定义路由管理模块，各个提供路由页面的模块均依赖此模块；
-2. 构建Navigation组件时，将NavPactStack注入路由管理模块，路由管理模块对NavPactStack进行封装，对外提供路由能力；
+2. 构建Navigation组件时，将NavPathStack注入路由管理模块，路由管理模块对NavPathStack进行封装，对外提供路由能力；
 3. 各个路由页面不再提供组件，转为提供@build封装的构建函数，并再通过WrappedBuilder封装后，实现全局封装；
 4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块。
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
 具体的构建过程，可以参考[Navigation动态路由示例](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)。
 
-****方案二：** 系统路由表**
+**方案二：** 系统路由表
 
-从API version 12版本开始，Navigation支持系统跨模块的路由表方案，整体设计是将路由表方案下沉到系统中管理，即在需要路由的各个业务模块（HSP/HAR）中独立配置`router_map.json`文件，在触发路由跳转时，应用只需要通过`NavPactStack`进行路由跳转，此时系统会自动完成路由模块的动态加载、组件构建，并完成路由跳转功能，从而实现了开发层面的模块解耦。
+从API version 12版本开始，Navigation支持系统跨模块的路由表方案，整体设计是将路由表方案下沉到系统中管理，即在需要路由的各个业务模块（HSP/HAR）中独立配置`router_map.json`文件，在触发路由跳转时，应用只需要通过`NavPathStack`进行路由跳转，此时系统会自动完成路由模块的动态加载、组件构建，并完成路由跳转功能，从而实现了开发层面的模块解耦。
 具体可参考文档：[Navigation系统路由](arkts-navigation-navigation.md#系统路由表)
 
 ### 生命周期监听
@@ -663,14 +660,14 @@ export default class EntryAbility extends UIAbility {
 
 Router可以通过[queryRouterPageInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#queryrouterpageinfo12)接口查询当前自定义组件所在的Page页面的信息，其返回值包含如下几个属性，其中pageId是页面的唯一标识符：
 
-| 名称         | 类型                                                                                                                                                                                                                                                                                            | 必填 | 说明                                         |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------- |
-| context      | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息 |
-| index        | number                                                                                                                                                                                                                                                                                          | 是   | routerPage在栈中的位置。       |
-| name         | string                                                                                                                                                                                                                                                                                          | 是   | routerPage页面的名称。         |
-| path         | string                                                                                                                                                                                                                                                                                          | 是   | routerPage页面的路径。         |
-| state        | RouterPageState                                                                                                                                           | 是   | routerPage页面的状态           |
-| pageId<sup>12+</sup> | string                                                                                                                                                                                                                                                                                          | 是   | routerPage页面的唯一标识       |
+| 名称                 | 类型                        | 必填 | 说明                           |
+| -------------------- | --------------------------- | ---- | ------------------------------ |
+| context              | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息 |
+| index                | number                      | 是   | routerPage在栈中的位置。       |
+| name                 | string                      | 是   | routerPage页面的名称。         |
+| path                 | string                      | 是   | routerPage页面的路径。         |
+| state                | RouterPageState             | 是   | routerPage页面的状态           |
+| pageId<sup>12+</sup> | string                      | 是   | routerPage页面的唯一标识       |
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';
@@ -690,14 +687,14 @@ struct MyComponent {
 
 Navigation也可以通过[queryNavDestinationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavdestinationinfo)接口查询当前自定义组件所在的NavDestination的信息，其返回值包含如下几个属性，其中navDestinationId是页面的唯一标识符：
 
-| 名称                   | 类型                                                                                                                                                        | 必填 | 说明                                                                                                                |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| navigationId           | ResourceStr                  | 是   | 包含NavDestination组件的Navigation组件的id。|
-| name                   | ResourceStr                     | 是   | NavDestination组件的名称。           |
-| state                  | NavDestinationState | 是   | NavDestination组件的状态。               |
-| index<sup>12+<sup>            | number                                                                                                                                                      | 是   | NavDestination在页面栈中的索引。                                                                                    |
-| param<sup>12+<sup>            | Object                                                                                                                                                      | 否   | NavDestination组件的参数。                                                                                          |
-| navDestinationId<sup>12+<sup> | string                                                                                                                                                      | 是   | NavDestination组件的唯一标识ID。                                                                                    |
+| 名称                          | 类型                | 必填 | 说明                                         |
+| ----------------------------- | ------------------- | ---- | -------------------------------------------- |
+| navigationId                  | ResourceStr         | 是   | 包含NavDestination组件的Navigation组件的id。 |
+| name                          | ResourceStr         | 是   | NavDestination组件的名称。                   |
+| state                         | NavDestinationState | 是   | NavDestination组件的状态。                   |
+| index<sup>12+<sup>            | number              | 是   | NavDestination在页面栈中的索引。             |
+| param<sup>12+<sup>            | Object              | 否   | NavDestination组件的参数。                   |
+| navDestinationId<sup>12+<sup> | string              | 是   | NavDestination组件的唯一标识ID。             |
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';

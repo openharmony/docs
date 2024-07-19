@@ -103,6 +103,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
           OH_PixelmapNative *resPixMap = nullptr;
+
+          //ops参数支持传如nullptr, 当不需要设置解码参数时，不用创建
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {

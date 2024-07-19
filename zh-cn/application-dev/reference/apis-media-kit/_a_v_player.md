@@ -274,17 +274,17 @@ OnInfo类型
 | AV_INFO_TYPE_EOS | 播放完成时返回消息，extra表示是否设置循环播放，0表示设置循环，1表示未设置循环。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息，extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate-1)。 |
 | AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置，extra表示当前位置。 |
-| AV_INFO_TYPE_MESSAGE | 返回播放消息，extra默认为1，表示视频首帧渲染。 |
-| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，extra默认为0，无明显含义。 |
-| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，extra默认为0，无明显含义。 |
+| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra表示视频首帧渲染。 |
+| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间，extra表示视频时长。 |
-| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率，extra默认为0，无明显含义。 |
+| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率，此场景extra未定义。 |
 | AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息，extra表示音频打断提示，具体请参见[OH_AudioInterrupt_Hint](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_hint)，应用可决定是否根据打断提示作进一步处理。 |
 | AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长，extra表示视频时长。 |
 | AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。 |
-| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息，extra默认为0，无明显含义。 |
-| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨信息更新时返回消息，extra无明显含义。 |
-| AV_INFO_TYPE_SUBTITLE_UPDATE | 返回字幕信息，extra默认为0，无明显含义。 |
+| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_SUBTITLE_UPDATE | 字幕信息更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见[OH_AudioStream_DeviceChangeReason](../apis-audio-kit/_o_h_audio.md#oh_audiostream_devicechangereason)。 |
 
 

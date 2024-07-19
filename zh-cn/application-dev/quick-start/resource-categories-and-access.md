@@ -314,19 +314,19 @@ string资源配置attr属性示例如下：
     .width(300)
   ```
 
-- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
+- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext().resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
 ### 跨HAP/HSP包应用资源
 
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
 - 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 

@@ -45,7 +45,6 @@
         - [创建自定义组件](quick-start/arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
         - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
@@ -75,25 +74,28 @@
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
           - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 状态管理（V2试用版）<!--arkts-state-management-v2-->
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
-        - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
-        - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
-        - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-        - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
-        - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
-        - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+        - V2所属装饰器<!--arkts-v2-decorators-->
+          - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
+          - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
+          - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
+          - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
+          - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
+          - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
+          - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
+          - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
+          - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
+          - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
+        - 其他状态管理<!--arkts-new-other-state-mgmt-->
+          - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
+          - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
+          - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
+          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -864,9 +866,6 @@
           - 查询密钥别名集<!--huks-list-aliases-->
             - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
             - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
-          - HMAC<!--huks-hmac-->
-            - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
-            - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
           <!--Del-->
           - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
           <!--DelEnd-->
@@ -1305,11 +1304,12 @@
   - AI<!--ai-->
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-kit-->
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
+      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
+      - 模型部署<!--deployment-->
+        - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
-      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
-      - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -2864,6 +2864,7 @@
               - [账号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
               - [语言子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
               - [Account Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-accountkit.md)
+              - [Store Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-storekit.md)
             <!--Del-->
               - [系统公共事件定义 (系统接口)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
             <!--DelEnd-->
@@ -2896,9 +2897,8 @@
             - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
             - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-            - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
             <!--DelEnd-->
-            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)

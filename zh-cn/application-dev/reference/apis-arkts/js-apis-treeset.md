@@ -56,7 +56,7 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 10200012 | The TreeSet's constructor cannot be directly invoked. |
 
 **示例：**
@@ -569,7 +569,6 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-// 不建议在forEach函数中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
@@ -577,7 +576,16 @@ treeSet.forEach((value ?: string, key ?: string) :void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -606,7 +614,6 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-// 不建议在entries函数中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
@@ -617,7 +624,16 @@ while(!t.done) {
   t = it.next()
 }
 ```
-
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -650,7 +666,6 @@ while(!t.done) {
 **示例：**
 
 ```ts
-// 不建议在Symbol.iterator中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
@@ -665,5 +680,15 @@ let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
 }
 ```

@@ -112,8 +112,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | Ipc error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -5093,7 +5093,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
-| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听时间触发成功，err为undefined，否则为错误对象。  |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听事件触发成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 ```
 
 ## 使用说明
@@ -59,7 +59,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
@@ -92,7 +92,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
@@ -165,7 +165,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath).then((res: boolean) => {
     if (res) {
@@ -202,7 +202,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
@@ -247,7 +247,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   try {
     let res = fs.accessSync(filePath);
@@ -292,7 +292,7 @@ close(file: number | File): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
@@ -326,7 +326,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file, (err: BusinessError) => {
@@ -398,8 +398,8 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
@@ -451,7 +451,7 @@ copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
@@ -500,8 +500,8 @@ copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallb
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
@@ -560,7 +560,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0).then(() => {
@@ -596,7 +596,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0, (err: BusinessError) => {
@@ -633,7 +633,7 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
@@ -705,7 +705,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -740,12 +740,12 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ConflictFiles } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fileIo.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
@@ -783,12 +783,12 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ConflictFiles } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fileIo.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
+  fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
@@ -824,7 +824,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -903,7 +903,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
@@ -949,7 +949,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
@@ -990,7 +990,7 @@ mkdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
     console.info("mkdir succeed");
@@ -1029,7 +1029,7 @@ mkdir(path: string, recursion: boolean): Promise\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true).then(() => {
     console.info("mkdir succeed");
@@ -1062,7 +1062,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
@@ -1098,7 +1098,7 @@ mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true, (err: BusinessError) => {
     if (err) {
@@ -1194,7 +1194,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
@@ -1232,7 +1232,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
@@ -1268,7 +1268,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, (err: BusinessError, file: fs.File) => {
     if (err) {
@@ -1347,7 +1347,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { buffer } from '@kit.ArkTS';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
@@ -1389,7 +1389,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCall
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { buffer } from '@kit.ArkTS';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
@@ -1473,7 +1473,7 @@ rmdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
     console.info("rmdir succeed");
@@ -1506,7 +1506,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
@@ -1573,7 +1573,7 @@ unlink(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath).then(() => {
     console.info("remove file succeed");
@@ -1606,7 +1606,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
@@ -1676,7 +1676,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let str: string = "hello, world";
@@ -1715,7 +1715,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions, callback
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let str: string = "hello, world";
@@ -1798,7 +1798,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let len: number = 5;
   fs.truncate(filePath, len).then(() => {
@@ -1833,7 +1833,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let len: number = 5;
   fs.truncate(filePath, len, (err: BusinessError) => {
@@ -1902,13 +1902,13 @@ readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, Options } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
   };
-  fileIo.readLines(filePath, options).then((readerIterator: fileIo.ReaderIterator) => {
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
     for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
       console.info("content: " + it.value);
     }
@@ -1940,13 +1940,13 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, Options } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
   };
-  fileIo.readLines(filePath, options, (err: BusinessError, readerIterator: fileIo.ReaderIterator) => {
+  fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
       console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1985,12 +1985,12 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
 **示例：**
 
   ```ts
-  import { fileIo, Options } from '@kit.CoreFileKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
   };
-  let readerIterator = fileIo.readLinesSync(filePath, options);
+  let readerIterator = fs.readLinesSync(filePath, options);
   for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
     console.info("content: " + it.value);
   }
@@ -2021,13 +2021,13 @@ next(): ReaderIteratorResult
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, Options } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
   };
-  fileIo.readLines(filePath, options).then((readerIterator: fileIo.ReaderIterator) => {
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
     for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
       console.info("content: " + it.value);
     }
@@ -2077,7 +2077,7 @@ readText(filePath: string, options?: ReadTextOptions): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
@@ -2111,17 +2111,17 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ReadTextOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let readTextOption: ReadTextOptions = {
       offset: 1,
       length: 0,
       encoding: 'utf-8'
   };
-  let stat = fileIo.statSync(filePath);
+  let stat = fs.statSync(filePath);
   readTextOption.length = stat.size;
-  fileIo.readText(filePath, readTextOption, (err: BusinessError, str: string) => {
+  fs.readText(filePath, readTextOption, (err: BusinessError, str: string) => {
     if (err) {
       console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2160,16 +2160,16 @@ readTextSync(filePath: string, options?: ReadTextOptions): string
 **示例：**
 
   ```ts
-  import { fileIo, ReadTextOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let readTextOptions: ReadTextOptions = {
     offset: 1,
     length: 0,
     encoding: 'utf-8'
   };
-  let stat = fileIo.statSync(filePath);
+  let stat = fs.statSync(filePath);
   readTextOptions.length = stat.size;
-  let str = fileIo.readTextSync(filePath, readTextOptions);
+  let str = fs.readTextSync(filePath, readTextOptions);
   console.info("readText succeed:" + str);
   ```
 
@@ -2200,7 +2200,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("lstat succeed, the size of file is " + stat.size);
@@ -2231,7 +2231,7 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
@@ -2307,7 +2307,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
@@ -2345,7 +2345,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err: BusinessError) => {
@@ -2416,7 +2416,7 @@ fsync(fd: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
@@ -2450,7 +2450,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd, (err: BusinessError) => {
@@ -2518,7 +2518,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdatasync(file.fd).then(() => {
@@ -2552,7 +2552,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdatasync (file.fd, (err: BusinessError) => {
@@ -2620,7 +2620,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
@@ -2653,7 +2653,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err: BusinessError) => {
@@ -2722,8 +2722,8 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, Filter, ListFileOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2733,7 +2733,7 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
       fileSizeOver: 1024
     }
   }
-  fileIo.listFile(pathDir, listFileOption).then((filenames: Array<string>) => {
+  fs.listFile(pathDir, listFileOption).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
@@ -2768,8 +2768,8 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, Filter, ListFileOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2779,7 +2779,7 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
       fileSizeOver: 1024
     }
   };
-  fileIo.listFile(pathDir, listFileOption, (err: BusinessError, filenames: Array<string>) => {
+  fs.listFile(pathDir, listFileOption, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2822,7 +2822,7 @@ listFileSync(path: string, options?: ListFileOptions): string[]
 **示例：**
 
   ```ts
-  import { fileIo, Filter, ListFileOptions} from '@kit.CoreFileKit';
+  import { fileIo as fs, Filter, ListFileOptions} from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2832,7 +2832,7 @@ listFileSync(path: string, options?: ListFileOptions): string[]
       fileSizeOver: 1024
     }
   };
-  let filenames = fileIo.listFileSync(pathDir, listFileOption);
+  let filenames = fs.listFileSync(pathDir, listFileOption);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
@@ -2906,7 +2906,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2944,12 +2944,12 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ConflictFiles } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fileIo.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
@@ -2990,12 +2990,12 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ConflictFiles } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fileIo.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
+  fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
@@ -3034,13 +3034,13 @@ moveDirSync(src: string, dest: string, mode?: number): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-import { fileIo, ConflictFiles } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
 // move directory from srcPath to destPath
 let srcPath = pathDir + "/srcDir/";
 let destPath = pathDir + "/destDir/";
 try {
-  fileIo.moveDirSync(srcPath, destPath, 1);
+  fs.moveDirSync(srcPath, destPath, 1);
   console.info("move directory succeed");
 } catch (error) {
   let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
@@ -3086,7 +3086,7 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
@@ -3123,7 +3123,7 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
@@ -3161,7 +3161,7 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, (err: BusinessError) => {
@@ -3232,7 +3232,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
     console.info("mkdtemp succeed:" + dir);
   }).catch((err: BusinessError) => {
@@ -3262,7 +3262,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
       console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
@@ -3357,7 +3357,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
@@ -3391,7 +3391,7 @@ createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAcc
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
@@ -3427,7 +3427,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
@@ -3468,7 +3468,7 @@ createRandomAccessFile(file: string | File, mode?: number, options?: RandomAcces
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let filePath = pathDir + "/test.txt";
 fs.createRandomAccessFile(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE, { start: 10, end: 100 })
   .then((randomAccessFile: fs.RandomAccessFile) => {
@@ -3579,7 +3579,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "a+").then((stream: fs.Stream) => {
     stream.closeSync();
@@ -3613,7 +3613,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
@@ -3688,7 +3688,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
@@ -3724,7 +3724,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
@@ -3886,10 +3886,10 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 **示例：**
 
   ```ts
-  import { fileIo, WatchEvent } from '@kit.CoreFileKit';
+  import { fileIo as fs, WatchEvent } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  let watcher = fileIo.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -3897,8 +3897,8 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
     }
   });
   watcher.start();
-  fileIo.writeSync(file.fd, 'test');
-  fileIo.closeSync(file);
+  fs.writeSync(file.fd, 'test');
+  fs.closeSync(file);
   watcher.stop();
   ```
 
@@ -3962,9 +3962,9 @@ cancel(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import fileuri from '@ohos.file.fileuri';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileuri } from '@kit.CoreFileKit';
 let context = getContext(this) as common.UIAbilityContext; 
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
@@ -4281,7 +4281,7 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close().then(() => {
@@ -4312,7 +4312,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close((err: BusinessError) => {
@@ -4365,7 +4365,7 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush().then(() => {
@@ -4397,7 +4397,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush((err: BusinessError) => {
@@ -4459,10 +4459,10 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath, "r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   let writeOption: WriteOptions = {
     offset: 5,
     length: 5,
@@ -4499,10 +4499,10 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath, "r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   let writeOption: WriteOptions = {
     offset: 5,
     length: 5,
@@ -4548,9 +4548,9 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 **示例：**
 
   ```ts
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath,"r+");
+  let stream = fs.createStreamSync(filePath,"r+");
   let writeOption: WriteOptions = {
     offset: 5,
     length: 5,
@@ -4588,11 +4588,11 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { buffer } from '@kit.ArkTS';
-  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath, "r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
   let readOption: ReadOptions = {
     offset: 5,
@@ -4631,11 +4631,11 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { buffer } from '@kit.ArkTS';
-  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath, "r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
   let readOption: ReadOptions = {
     offset: 5,
@@ -4681,9 +4681,9 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 **示例：**
 
   ```ts
-  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let stream = fileIo.createStreamSync(filePath, "r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   let readOption: ReadOptions = {
     offset: 5,
     length: 5
@@ -4728,7 +4728,7 @@ getParent(): string
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   console.info('The parent path is: ' + file.getParent());
@@ -4762,7 +4762,7 @@ lock(exclusive?: boolean): Promise\<void>
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
@@ -4796,7 +4796,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err: BusinessError) => {
@@ -4968,11 +4968,11 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
-  let randomAccessFile = fileIo.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {
     offset: 1,
@@ -4986,7 +4986,7 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
-    fileIo.closeSync(file);
+    fs.closeSync(file);
   });
 
   ```
@@ -5014,11 +5014,11 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
-  let randomAccessFile = fileIo.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {
     offset: 1,
@@ -5035,7 +5035,7 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
       }
     }
     randomAccessFile.close();
-    fileIo.closeSync(file);
+    fs.closeSync(file);
   });
   ```
 
@@ -5067,9 +5067,9 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 **示例：**
 
   ```ts
-  import { fileIo, WriteOptions } from '@kit.CoreFileKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let randomAccessFile = fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let writeOption: WriteOptions = {
     offset: 5,
     length: 5,
@@ -5107,11 +5107,11 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
-  let randomAccessFile = fileIo.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let readOption: ReadOptions = {
     offset: 1,
@@ -5124,7 +5124,7 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
-    fileIo.closeSync(file);
+    fs.closeSync(file);
   });
   ```
 
@@ -5151,11 +5151,11 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
-  let randomAccessFile = fileIo.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(file);
   let length: number = 20;
   let readOption: ReadOptions = {
     offset: 1,
@@ -5171,7 +5171,7 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
       }
     }
     randomAccessFile.close();
-    fileIo.closeSync(file);
+    fs.closeSync(file);
   });
   ```
 

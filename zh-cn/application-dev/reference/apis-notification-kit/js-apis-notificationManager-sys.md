@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
+import { notificationManager } from '@kit.NotificationKit';
 ```
 
 ## notificationManager.publish
@@ -60,10 +60,10 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // publish回调
-let publishCallback = (err: Base.BusinessError): void => {
+let publishCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -138,7 +138,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
@@ -156,7 +156,7 @@ let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -197,10 +197,10 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addslot回调
-let addSlotCallBack = (err: Base.BusinessError): void => {
+let addSlotCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -255,7 +255,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -263,7 +263,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -304,10 +304,10 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addSlots回调
-let addSlotsCallBack = (err: Base.BusinessError): void => {
+let addSlotsCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -366,7 +366,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -378,7 +378,7 @@ notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -421,9 +421,9 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -478,14 +478,14 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -523,7 +523,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
     console.info("Enable bundle data is" + JSON.stringify(data));
@@ -531,7 +531,7 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable uid is " + JSON.stringify(element.uid));
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
 })
 ```
@@ -572,9 +572,9 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -630,14 +630,14 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -678,9 +678,9 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -734,13 +734,13 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -782,9 +782,9 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let displayBadgeCallback = (err: Base.BusinessError): void => {
+let displayBadgeCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -839,14 +839,14 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`displayBadge fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -887,9 +887,9 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean): void => {
+let isBadgeDisplayedCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -943,7 +943,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -951,7 +951,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -998,7 +998,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1008,7 +1008,7 @@ let slotFlags: number = 1;
 
 notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 	console.info("setSlotFlagsByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1050,9 +1050,9 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setSlotByBundleCallback = (err: Base.BusinessError): void => {
+let setSlotByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1110,7 +1110,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1122,7 +1122,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1168,14 +1168,14 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1216,9 +1216,9 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
+let getSlotsByBundleCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
         console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1272,7 +1272,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1280,7 +1280,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1321,9 +1321,9 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
+let getSlotNumByBundleCallback = (err: BusinessError, data: number): void => {
     if (err) {
         console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1379,7 +1379,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1387,7 +1387,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1427,9 +1427,9 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
+let getAllActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1474,11 +1474,11 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1516,8 +1516,8 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1531,7 +1531,7 @@ let filter: notificationManager.NotificationFilter = {
     notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+let getActiveNotificationByFilterCallback = (err: BusinessError, data: notificationManager.NotificationRequest): void => {
     if (err) {
         console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1579,8 +1579,8 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1596,7 +1596,7 @@ let filter: notificationManager.NotificationFilter = {
 }
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1638,9 +1638,9 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
+let removeGroupByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1696,14 +1696,14 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
 let groupName: string = "GroupName";
 
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1744,9 +1744,9 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1805,7 +1805,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1814,7 +1814,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
 };
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1858,9 +1858,9 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1922,7 +1922,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1934,7 +1934,7 @@ let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1975,9 +1975,9 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2023,11 +2023,11 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
   console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2070,9 +2070,9 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2127,13 +2127,13 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2173,9 +2173,9 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean): void => {
+let isSupportDoNotDisturbModeCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2220,11 +2220,11 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2265,9 +2265,9 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2319,12 +2319,12 @@ setDistributedEnable(enable: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2367,9 +2367,9 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2428,7 +2428,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -2436,7 +2436,7 @@ let bundle: notificationManager.BundleOption = {
 let enable: boolean = true;
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2478,9 +2478,9 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean): void => {
+let isDistributedEnabledByBundleCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2535,14 +2535,14 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2582,9 +2582,9 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType): void => {
+let getDeviceRemindTypeCallback = (err: BusinessError, data: notificationManager.DeviceRemindType): void => {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2628,11 +2628,11 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2680,10 +2680,10 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //publishAsBundle回调
-let callback = (err: Base.BusinessError): void => {
+let callback = (err: BusinessError): void => {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2757,7 +2757,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
@@ -2777,7 +2777,7 @@ let request: notificationManager.NotificationRequest = {
 };
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2829,7 +2829,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包信息
 let representativeBundle: notificationManager.BundleOption = {
@@ -2849,7 +2849,7 @@ let request: notificationManager.NotificationRequest = {
 };
 notificationManager.publishAsBundle(representativeBundle, request).then(() => {
 	console.info("publishAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2893,10 +2893,10 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancelAsBundle
-let cancelAsBundleCallback = (err: Base.BusinessError): void => {
+let cancelAsBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2954,7 +2954,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
@@ -2962,7 +2962,7 @@ let representativeBundle: string = "com.example.demo";
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3014,14 +3014,14 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let representativeBundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
 notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3067,7 +3067,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName"
@@ -3075,7 +3075,7 @@ let bundle: notificationManager.BundleOption = {
 let id: number = 1;
 notificationManager.cancel(bundle, id).then(() => {
   console.info("cancel success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3119,10 +3119,10 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3176,9 +3176,9 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3233,7 +3233,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
 notificationManager.setNotificationEnableSlot(
@@ -3241,7 +3241,7 @@ notificationManager.setNotificationEnableSlot(
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
-    }).catch((err: Base.BusinessError) => {
+    }).catch((err: BusinessError) => {
         console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
     });
 ```
@@ -3283,10 +3283,10 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // isNotificationSlotEnabledCallback
-let isNotificationSlotEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationSlotEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3342,13 +3342,13 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3391,11 +3391,11 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let enable: boolean = true;
-let setSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3448,13 +3448,13 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3496,10 +3496,10 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
-let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
+let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3551,12 +3551,12 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3593,7 +3593,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
@@ -3608,7 +3608,7 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 try{
     notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
-    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3648,7 +3648,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   notificationManager.on('checkNotification',{
@@ -3660,7 +3660,7 @@ try{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
 } catch (error) {
-  console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3696,12 +3696,12 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3749,7 +3749,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 包信息
 let bundle: notificationManager.BundleOption = {
@@ -3763,7 +3763,7 @@ let buttonOptions: notificationManager.ButtonOptions = {
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -3807,7 +3807,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
     console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
@@ -3817,7 +3817,7 @@ let subscriber: notificationManager.SystemLiveViewSubscriber  = {
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -3866,7 +3866,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -3876,7 +3876,7 @@ let enable: boolean = true;
 let deviceType: string = "phone";
 notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
     console.info("setDistributedEnabledByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3924,7 +3924,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -3933,7 +3933,7 @@ let bundle: notificationManager.BundleOption = {
 let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3981,13 +3981,13 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceType: string = "phone";
 let enable: boolean = true;
 notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
     console.info("setSmartReminderEnabled success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -4034,12 +4034,12 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceType: string = "phone";
 notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
     console.info("isSmartReminderEnabled success， data:" + data);
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -4085,7 +4085,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: 'com.example.bundleName',
@@ -4094,7 +4094,7 @@ let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
     console.info('setBadgeNumberByBundle success');
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -4142,7 +4142,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -4152,7 +4152,7 @@ let slotType = notificationManager.SlotType.LIVE_VIEW;
 
 notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
 	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -4337,7 +4337,7 @@ addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprof
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let trustlist: Array<notificationManager.BundleOption> = [
   {
@@ -4359,7 +4359,7 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 
 notificationManager.addDoNotDisturbProfile(templates).then(() => {
   console.info("addDoNotDisturbProfile success.");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -4405,7 +4405,7 @@ removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbp
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let templates: Array<notificationManager.DoNotDisturbProfile> = [
   {
@@ -4415,7 +4415,7 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 ]
 notificationManager.removeDoNotDisturbProfile(templates).then(() => {
   console.info("removeDoNotDisturbProfile success.");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -4470,11 +4470,11 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
   console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
 });
 ```

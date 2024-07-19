@@ -3810,7 +3810,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
+| number | 资源ID值对应的数值。integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
 
 **错误码：**
 
@@ -3850,6 +3850,10 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+> **说明**
+>
+> 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
@@ -3866,7 +3870,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -3918,7 +3922,7 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 

@@ -19,10 +19,10 @@
 1. 导入NotificationManager模块。
 
     ```ts
-    import notificationManager from '@ohos.notificationManager';
-    import Base from '@ohos.base';
-    import hilog from '@ohos.hilog';
-    import common from '@ohos.app.ability.common';
+    import { notificationManager } from '@kit.NotificationKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { common } from '@kit.AbilityKit';
 
     const TAG: string = '[PublishOperation]';
     const DOMAIN_NUMBER: number = 0xFF00;

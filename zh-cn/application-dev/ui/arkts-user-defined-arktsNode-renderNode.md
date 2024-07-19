@@ -22,7 +22,7 @@ RenderNode提供了节点的增、删、查、改的能力，能够修改节点�
 
 ## 设置和获取渲染相关属性
 
-RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask。
+RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask，markNodeGroup。
 
 > **说明：**
 > 
@@ -145,7 +145,7 @@ struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
-    Row() {
+    Column() {
       NodeContainer(this.myNodeController)
         .width('100%')
       Button('Invalidate')

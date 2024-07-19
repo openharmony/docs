@@ -41,7 +41,7 @@ getStorageDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   Environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
@@ -77,7 +77,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   Environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -115,7 +115,7 @@ getUserDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   Environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
@@ -151,7 +151,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   Environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -193,7 +193,7 @@ getExternalStorageDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getExternalStorageDirExample() {
   try {
     let path = Environment.getExternalStorageDir();
@@ -236,7 +236,7 @@ getUserHomeDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserHomeDirExample() {
   try {
     let path = Environment.getUserHomeDir();

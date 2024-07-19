@@ -243,7 +243,7 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

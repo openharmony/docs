@@ -27,8 +27,8 @@
 1. 导入NotificationManager模块。
 
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import hilog from '@ohos.hilog';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;

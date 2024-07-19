@@ -29,7 +29,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 ## 属性
 
-[通用属性](ts-universal-attributes-size.md)方法支持尺寸设置、背景设置、边框设置。
+属性继承自[BaseSpan](ts-basic-components-span.md#basespan)，通用属性方法支持[尺寸设置](ts-universal-attributes-size.md#尺寸设置)、[背景设置](ts-universal-attributes-background.md#背景设置)、[边框设置](ts-universal-attributes-border.md#边框设置)
 
 ### alt<sup>12+</sup>
 
@@ -76,36 +76,6 @@ objectFit(value: ImageFit)
 | 参数名 | 类型                                      | 必填 | 说明                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的缩放类型。<br/>默认值：ImageFit.Cover |
-
-### textBackgroundStyle<sup>11+</sup>
-
-textBackgroundStyle(style: TextBackgroundStyle)
-
-设置图片的背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
-
-### baselineOffset<sup>12+</sup>
-
-baselineOffset(value: LengthMetrics)
-
-设置ImageSpan基线的偏移量。此属性与父组件的baselineOffset是共存的。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置ImageSpan基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>设置为非0时会导致设置verticalAlign失效。 |
 
 ## ImageSpanAlignment
 
