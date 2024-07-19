@@ -35,8 +35,7 @@
 
 1.若开发者在变更前引用了string库函数，且未手动引入string库头文件依赖raw_file.h头文件，可以通过引入#include 解决。
 
-2.变更后则需要适配新的接口，调用新接口 OH_ResourceManager_GetRawFileDescriptorData 获取rawfile文件描述符来读取rawfile文件内容
-调用新接口 OH_ResourceManager_ReleaseRawFileDescriptorData 来释放已获取到的rawfile文件描述符
+2.变更后则需要适配新的接口，调用新接口 OH_ResourceManager_GetRawFileDescriptorData 获取rawfile文件描述符来读取rawfile文件内容，调用新接口 OH_ResourceManager_ReleaseRawFileDescriptorData 来释放已获取到的rawfile文件描述符
 
 ## cl.golbal.2 ohresmgr模块接口废弃
 
