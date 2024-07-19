@@ -10,38 +10,38 @@
 
 Enumerates the states of the **AVCastPicker** component.
 
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| STATE_APPEARING    | 0    | The component is displayed.|
-| STATE_DISAPPEARING    | 1    | The component disappears.|
+| STATE_APPEARING    | 0    | The component is displayed. |
+| STATE_DISAPPEARING    | 1    | The component disappears. |
 
 ## AVCastPickerStyle<sup>12+</sup>
 
 Enumerates the styles of the **AVCastPicker** component.
 
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| STYLE_PANEL    | 0    | Panel style.|
-| STYLE_MENU    | 1    | Menu style.|
+| STYLE_PANEL    | 0    | Panel style. |
+| STYLE_MENU    | 1    | Menu style. |
 
 ## AVCastPickerColorMode<sup>12+</sup>
 
 Enumerates the color modes of the **AVCastPicker** component.
 
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| AUTO    | 0    | Follows the system mode.|
-| DARK    | 1    | Dark mode.|
-| LIGHT    | 1    | Light mode.|
+| AUTO    | 0    | Follows the system mode. |
+| DARK    | 1    | Dark mode. |
+| LIGHT    | 2    | Light mode. |
