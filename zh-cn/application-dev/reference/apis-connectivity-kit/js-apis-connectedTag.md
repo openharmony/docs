@@ -18,6 +18,9 @@ init(): boolean
 
 初始化有源标签芯片。
 
+> **说明：**
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
+
 **需要权限**：ohos.permission.NFC_TAG
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
