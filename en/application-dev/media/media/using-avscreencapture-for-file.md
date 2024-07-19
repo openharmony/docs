@@ -133,6 +133,22 @@ Refer to the sample code below to implement captured file storage using **AVScre
 #include "string"
 #include "unistd.h"
 
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // Process the state change.
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // Process the screen capture interruption caused by incoming calls.
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // Process the state change.
+    }
+    (void)userData;
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
@@ -165,7 +181,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_AudioInfo audioInfo = {
-        .micCapInfo = micCapInfo, 
+        .micCapInfo = micCapInfo,
+        .innerCapInfo = innerCapInfo,
         .audioEncInfo = audioEncInfo
     };
 
@@ -191,6 +208,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     config.recorderInfo = recorderInfo;
+
+    // Set a callback to respond to state changes.
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
     // Initialize AVScreenCapture.
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
