@@ -42,7 +42,7 @@ static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| AbstractProperty&lt;T&gt; \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -77,7 +77,7 @@ static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 
 | 类型                      | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ |
-| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
 
 **示例：**
 
@@ -112,7 +112,7 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -147,7 +147,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 描述                                       |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -177,7 +177,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -213,7 +213,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 描述                                      |
 | ----------------------------------- | --------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例。 |
 
 **示例：**
 ```ts
@@ -505,7 +505,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 描述                                       |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -569,7 +569,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 
 | 类型                                  | 描述                                      |
 | ----------------------------------- | --------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例。 |
 
 **示例：**
 ```ts
@@ -1073,7 +1073,7 @@ ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| AbstractProperty&lt;T&gt; \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -1109,7 +1109,7 @@ setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 | 类型                      | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ |
-| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
 
 **示例：**
 
@@ -1146,7 +1146,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -1185,7 +1185,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -1218,7 +1218,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -1257,7 +1257,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 | 类型                                | 描述                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。 |
 
 **示例：**
 
