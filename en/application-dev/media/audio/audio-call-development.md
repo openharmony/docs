@@ -11,13 +11,18 @@ The sample code below demonstrates the basic process of using the AudioRenderer 
 This process is similar to the process of [using AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md). The key differences lie in the **audioRendererInfo** parameter and audio data source. In the **audioRendererInfo** parameter used for audio calling, **content** must be set to **CONTENT_TYPE_SPEECH**, and **usage** must be set to **STREAM_USAGE_VOICE_COMMUNICATION**.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // The process is similar to the process of using AudioRenderer to develop audio playback. The key differences lie in the audioRendererInfo parameter and audio data source.
+class Options {
+  offset?: number;
+  length?: number;
+}
 let context = getContext(this);
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
@@ -27,7 +32,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
   // Set the parameters related to the call scenario.
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication.
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: VoIP call.
   rendererFlags: 0 // AudioRenderer flag. The default value is 0.
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -38,14 +43,14 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let path = getContext().cacheDir;
 // Ensure that the resource exists in the path.
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.readSync(file.fd, buffer, options);
+  fileIo.readSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
 
@@ -113,7 +118,7 @@ async function pause() {
 // Stop rendering.
 async function stop() {
   if (renderModel !== undefined) {
-    // Rendering can be stopped only when the AudioRenderer is in the STATE_RUNNING or STATE_PAUSED state.
+    // The AudioRenderer can be stopped only when it is in the STATE_RUNNING or STATE_PAUSED state.
     if (renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING && renderModel.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
@@ -152,13 +157,18 @@ This process is similar to the process of [using AudioCapturer to develop audio 
 You must request the **ohos.permission.MICROPHONE** permission for all recording tasks. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this);
 const TAG = 'VoiceCallDemoForAudioCapturer';
+class Options {
+  offset?: number;
+  length?: number;
+}
 // The process is similar to the process of using AudioCapturer to develop audio recording. The key differences lie in the audioCapturerInfo parameter and audio data stream direction.
+let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // Sampling rate.
@@ -178,14 +188,14 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.writeSync(file.fd, buffer, options);
+  fileIo.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
 
