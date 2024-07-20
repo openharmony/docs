@@ -511,3 +511,261 @@ During the transmission of a shared list, an ArrayBuffer is a parameter of both 
 **Solution**
 
 Ensure that an ArrayBuffer is set as either a transfer list or clone list. If you are not sure, capture exceptions.
+
+## 10200030 Lock Does Not Exist
+
+**Error Message**
+
+No such lock.
+
+**Description**
+
+The requested lock does not exist.
+
+**Possible Causes**
+
+An asynchronous lock function uses an incorrect lock name.
+
+**Solution**
+
+Ensure that the correct lock name is used when the API is called.
+
+## 10200031 Calling lockAsync Timed Out
+
+**Error Message**
+
+Timeout exceeded.
+
+**Description**
+
+The [lockAsync](js-apis-arkts-utils.md#lockasync) API fails to acquire a lock within the specified period.
+
+**Possible Causes**
+
+A deadlock occurs somewhere.
+
+**Solution**
+
+Check whether a circular dependency exists between locks. Add the **catch** statement to the [lockAsync](js-apis-arkts-utils.md#lockasync) call to catch error information, which contains information about existing asynchronous lock instances and possible deadlock warnings.
+
+## 10200201 Concurrent Modification Error
+
+**Error Message**
+
+Concurrent modification error.
+
+**Description**
+
+An error occurs during concurrent modification.
+
+**Possible Causes**
+
+A non-concurrent-safe container provided by **collections** is used, and the result generated when multiple concurrent instances simultaneously modify the container is undefined.
+
+**Solution**
+
+Use asynchronous locks in non-concurrent-safe containers provided by **collections**.
+
+## 10200034 No Callback Function Is Registered for a Listening Task
+
+**Error Message**
+
+The executed task does not support the registration of listeners.
+
+**Description**
+
+The task does not support listener registration.
+
+**Possible Causes**
+
+The callback function is not registered or is registered after the task is executed.
+
+**Solution**
+
+Ensure that the callback function is registered before the task is executed.
+
+## 10200035 doWrite Is Not Implemented
+
+**Error Message**
+
+The doWrite method has not been implemented.
+
+**Description**
+
+The **doWrite** API is not implemented.
+
+**Possible Causes**
+
+The code inherits from the **Writable** class, but does not implement the [doWrite](js-apis-stream.md#dowrite) API.
+
+**Solution**
+
+Implement the **doWrite** API in the inherited class.
+
+## 10200036 Write Operation Is Still Performed After the Stream Ends
+
+**Error Message**
+
+The stream has been ended.
+
+**Description**
+
+The write operation is still performed after the stream ends.
+
+**Possible Causes**
+
+Data is written after the [end](js-apis-stream.md#end) API is called.
+
+**Solution**
+
+Adjust the sequence in which the APIs are called to ensure that no write operation is performed after [end](js-apis-stream.md#end).
+
+## 10200037 Callback Is Invoked Multiple Times
+
+**Error Message**
+
+The callback is invoked multiple times consecutively.
+
+**Description**
+
+The callback is invoked multiple times.
+
+**Possible Causes**
+
+In the [doWrite](js-apis-stream.md#dowrite) implementation code, the callback is invoked multiple times for one write operation.
+
+**Solution**
+
+Check the implementation of [doWrite](js-apis-stream.md#dowrite) and exclude the situation where the callback is invoked multiple times for one write operation.
+
+## 10200038 doRead Is Not Implemented
+
+**Error Message**
+
+The doRead method has not been implemented.
+
+**Description**
+
+The **doRead** API is not implemented.
+
+**Possible Causes**
+
+The code inherits from the **Readable** class, but does not implement the [doRead](js-apis-stream.md#doread) API.
+
+**Solution**
+
+Implement the **doRead** API in the inherited class.
+
+## 10200039 doTransform Is Not Implemented
+
+**Error Message**
+
+The doTransform method has not been implemented for a class that inherits from Transform.
+
+**Description**
+
+The **doTransform** API is not implemented.
+
+**Possible Causes**
+
+The code inherits from the **Transform** class, but does not implement the [doTransform](js-apis-stream.md#dotransform) API.
+
+**Solution**
+
+Implement the **doTransform** API in the inherited class.
+
+## 10200050 Concurrent Task That Has Been Executed Cannot Be Executed Periodically
+
+**Error Message**
+
+The concurrent task has been executed and cannot be executed periodically.
+
+**Description**
+
+The concurrent task that has been executed cannot be executed periodically.
+
+**Possible Causes**
+
+The task has been executed before [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12) is called.
+
+**Solution**
+
+Before calling the API, ensure that the task is not executed. If you are not sure, capture exceptions.
+
+## 10200051 Periodic Task Cannot Be Executed Again
+
+**Error Message**
+
+The periodic task cannot be executed again.
+
+**Description**
+
+A periodic task cannot be executed again.
+
+**Possible Causes**
+
+[execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), or [execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) is called again to execute a periodic call.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
+
+## 10200052 Periodic Task Cannot Have Dependencies
+
+**Error Message**
+
+The periodic task cannot have a dependency.
+
+**Description**
+
+A periodic task cannot have dependencies.
+
+**Possible Causes**
+
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
+
+## 10200060 Precision Limit Is Exceeded
+
+**Error Message**
+
+Precision limit exceeded.
+
+**Description**
+
+A **Decimal** function is incorrectly used.
+
+**Possible Causes**
+
+The precision of the function provided by **Decimal** exceeds the limit. This error code may be thrown by the following functions: [pow](js-apis-arkts-decimal.md#pow), [exp](js-apis-arkts-decimal.md#exp), [log](js-apis-arkts-decimal.md#log), [ln](js-apis-arkts-decimal.md#ln), [acos](js-apis-arkts-decimal.md#acos), [asin](js-apis-arkts-decimal.md#asin), [atan](js-apis-arkts-decimal.md#atan), [acosh](js-apis-arkts-decimal.md#acosh), [asinh](js-apis-arkts-decimal.md#asinh), [atanh](js-apis-arkts-decimal.md#atanh), [log2](js-apis-arkts-decimal.md#log2), [log10](js-apis-arkts-decimal.md#log10), and [atan2](js-apis-arkts-decimal.md#atan2).
+
+**Solution**
+
+Use [Decimal.set](js-apis-arkts-decimal.md#set) to set a valid precision.
+
+Example: Decimal.set({precision: 10})
+
+## 10200061 Encryption Method Is Unavailable
+
+**Error Message**
+
+crypto unavailable.
+
+**Description**
+
+A **Decimal** function is incorrectly used.
+
+**Possible Causes**
+
+When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or the [Decimal.random](js-apis-arkts-decimal.md#random) function is used, the encryption method fails to be used.
+
+**Solution**
+
+Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
+
+Example: Decimal.set({crypto: false})
+
+ <!--no_check--> 

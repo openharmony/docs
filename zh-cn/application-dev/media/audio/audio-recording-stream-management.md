@@ -48,8 +48,8 @@
      在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();

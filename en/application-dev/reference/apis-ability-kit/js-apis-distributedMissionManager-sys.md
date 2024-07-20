@@ -11,7 +11,7 @@ The **distributedMissionManager** module implements mission management across de
 ## Modules to Import
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager';
+import { distributedMissionManager } from '@kit.AbilityKit';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -32,11 +32,20 @@ Registers a mission status listener. This API uses an asynchronous callback to r
 | options   | [MissionCallback](#missioncallback)     | Yes   | Callback to register.|
 | callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is registered, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
@@ -93,11 +102,20 @@ Registers a mission status listener. This API uses a promise to return the resul
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
@@ -146,11 +164,20 @@ Unregisters a mission status listener. This API uses an asynchronous callback to
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.   |
 | callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is unregistered, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.unRegisterMissionListener(
@@ -189,11 +216,20 @@ Unregisters a mission status listener. This API uses a promise to return the res
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; |Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
@@ -223,11 +259,20 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
 | parameter | [MissionParameter](#missionparameter) | Yes   | Parameters required for synchronization.    |
 | callback  | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result. If the synchronization is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.startSyncRemoteMissions(
@@ -270,11 +315,20 @@ Starts to synchronize the remote mission list. This API uses a promise to return
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.startSyncRemoteMissions(
@@ -310,11 +364,20 @@ Stops synchronizing the remote mission list. This API uses an asynchronous callb
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Parameters required for synchronization.    |
 | callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the synchronization is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.stopSyncRemoteMissions(
@@ -355,11 +418,20 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.stopSyncRemoteMissions(
@@ -395,10 +467,12 @@ Continues a mission on a remote device, with the mission ID specified. This API 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](./errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -409,8 +483,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](./err
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Implement a callback function.
   function onContinueDone(resultCode: number): void {
@@ -463,10 +537,12 @@ Continues a mission on a remote device, with the mission ID specified. This API 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](./errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -477,8 +553,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](./err
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Implement a callback function.
   function onContinueDone(resultCode: number): void {
@@ -522,10 +598,12 @@ Continues a mission on a remote device, with the bundle name specified. This API
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](./errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
 | 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
@@ -536,8 +614,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](./err
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.continueMission(
@@ -583,10 +661,12 @@ Continues a mission on a remote device, with the bundle name specified. This API
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](./errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
 | 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
@@ -597,8 +677,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](./err
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
       distributedMissionManager.continueMission(
@@ -635,10 +715,19 @@ Subscribes to continuation state change events of the current mission.
 | type | string  | Yes   | Event type. The value **'continueStateChange'** indicates the continuation state change event of the current mission.    |
 | callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | Yes   | Callback used to return the continuation state and information of the current mission.   |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { distributedMissionManager } from '@kit.AbilityKit';
 
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
@@ -647,7 +736,7 @@ Subscribes to continuation state change events of the current mission.
   } catch (error) {
     console.error("continueStateChange err: " + JSON.stringify(error));
   }
-```
+  ```
 
 ## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
 
@@ -666,10 +755,19 @@ Unsubscribes from continuation state change events of the current mission.
 | type | string  | Yes   | Event type. The value **'continueStateChange'** indicates the continuation state change event of the current mission.    |
 | callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | No   | Callback used for unsubscription.<br>If the callback is unspecified, all subscriptions to the specified event are canceled.   |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { distributedMissionManager } from '@kit.AbilityKit';
 
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
@@ -678,7 +776,7 @@ Unsubscribes from continuation state change events of the current mission.
   } catch (err) {
     console.error("continueStateChange err: " + JSON.stringify(err));
   }
-```
+  ```
 
 ## MissionCallback
 
@@ -741,5 +839,3 @@ Defines the information about the callback that is triggered for mission continu
 | -------- | ------ | ---- | ---- | ----------- |
 | state | [ContinueState](#continuestate10)   | Yes   | No   |   Continuation state of the mission.|
 | info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo-sys.md) | Yes   | No   |   Continuation information of the mission.|
-
- <!--no_check--> 

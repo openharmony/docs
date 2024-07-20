@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## LoopObserver.onLoopTimeOut
@@ -18,7 +18,7 @@ onLoopTimeOut?(timeout: number): void
 
 将在js运行时应用主线程处理事件超时的回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -31,12 +31,13 @@ onLoopTimeOut?(timeout: number): void
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
-    onLoopTimeOut(timeout: number) {
-        console.log('Duration timeout: ' + timeout);
-    }
+  onLoopTimeOut(timeout: number) {
+    console.log('Duration timeout: ' + timeout);
+  }
 };
+
 errorManager.on("loopObserver", 1, observer);
 ```

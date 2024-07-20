@@ -9,8 +9,8 @@
 
 ## 导入模块
 
-```
-import JSON from '@ohos.util.json';
+```ts
+import { JSON } from '@kit.ArkTS';
 ```
 
 ## Transformer
@@ -18,6 +18,8 @@ import JSON from '@ohos.util.json';
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
 用于转换结果函数的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -35,11 +37,35 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 | -------- | -------- |
 | Object \| undefined \| null | 返回修改后的对象或undefined或null。|
 
+## BigIntMode
+
+定义处理BigInt的模式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| DEFAULT   | 0 |不支持BigInt。|
+| PARSE_AS_BIGINT   | 1 |当整数小于-(2^53-1)或大于(2^53-1)时，解析为BigInt。|
+| ALWAYS_PARSE_AS_BIGINT   | 2 |所有整数都解析为BigInt。|
+
+## ParseOptions
+
+解析的选项，可定义处理BigInt的模式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型| 必填 |说明            |
+| ------ | ------ | ---- | --------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
+
 ## JSON.parse
 
-parse(text: string, reviver?: Transformer): Object | null
+parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | null
 
 用于解析JSON字符串生成对应ArkTS对象或null。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -49,6 +75,7 @@ parse(text: string, reviver?: Transformer): Object | null
 | ------ | ------ | ---- | --------------- |
 | text   | string | 是 | 有效的JSON字符串。|
 | reviver  | [Transformer](#transformer) | 否 | 转换函数，传入该参数，可以用来修改解析生成的原始值。默认值是undefined。|
+| options   | [ParseOptions](#parseoptions) | 否 | 解析的配置，传入该参数，可以用来控制解析生成的类型。默认值是undefined。|
 
 **返回值：**
 
@@ -56,13 +83,31 @@ parse(text: string, reviver?: Transformer): Object | null
 | -------- | -------- |
 | Object \| null | 返回ArkTS对象或null。当入参是null时，返回null。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import JSON from '@ohos.util.json';
-
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
+
+let options: JSON.ParseOptions = {
+  bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
+}
+let numberText = '{"largeNumber":112233445566778899}';
+let numberObj = JSON.parse(numberText,(key: string, value: Object | undefined | null): Object | undefined | null => {
+  if(key === "largeNumber") return value;
+  return value;
+},options) as Object;
+
+console.info((numberObj as object)?.["largeNumber"]);
+// 期望输出: 112233445566778899
 ```
 
 
@@ -71,6 +116,8 @@ let obj = JSON.parse(jsonText);
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
 该方法将一个ArkTS对象或数组转换为JSON字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -87,6 +134,14 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -107,6 +162,8 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 
 该方法将一个ArkTS对象或数组转换为JSON字符串。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -122,6 +179,14 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -147,7 +212,9 @@ let str2 = JSON.stringify(obj, replacer);
 
 has(obj: object, property: string): boolean
 
-检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -164,10 +231,17 @@ has(obj: object, property: string): boolean
 | -------- | -------- |
 | boolean | 返回ArkTS对象是否包含某种属性结果，true表示包含，false表示不包含。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.has(obj, "name");
@@ -178,7 +252,9 @@ let rst = JSON.has(obj, "name");
 
 remove(obj: object, property: string): void
 
-从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -189,10 +265,17 @@ remove(obj: object, property: string): void
 | obj | object | 是 | ArkTS对象。|
 | property | string | 是 | 属性名。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.remove(obj, "name");

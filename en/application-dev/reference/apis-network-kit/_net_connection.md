@@ -66,7 +66,7 @@ Provides the C APIs of the network connection module for network management.
 | Name| Description| 
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br>NETCONN_NET_CAPABILITY_MMS = 0,<br>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br>NETCONN_NET_CAPABILITY_INTERNET = 12,<br>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br>NETCONN_NET_CAPABILITY_VALIDATED = 16<br>} | Network capability set.| 
-| [NetConn_NetBearerType](#netconn_netbearertype) {<br>NETCONN_BEARER_CELLULAR = 0,<br>NETCONN_BEARER_WIFI = 1,<br>NETCONN_BEARER_ETHERNET = 3<br>} | Network carrier type.| 
+| [NetConn_NetBearerType](#netconn_netbearertype) {<br>NETCONN_BEARER_CELLULAR = 0,<br>NETCONN_BEARER_WIFI = 1,<br>NETCONN_BEARER_ETHERNET = 3<br>NETCONN_BEARER_VPN = 4<br>} | Network carrier type.|
 
 
 ### Functions
@@ -84,6 +84,7 @@ Provides the C APIs of the network connection module for network management.
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | Obtains all activated data networks.| 
 | [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.| 
 | [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | Unregisters a custom DNS resolver.| 
+| [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | Binds a socket to the specified network.|
 
 
 ## Type Description
@@ -243,11 +244,12 @@ Network carrier type.
 
 **Since**: 11
 
-| Value| Description| 
-| -------- | -------- |
-| NETCONN_BEARER_CELLULAR | Cellular network.| 
-| NETCONN_BEARER_WIFI | Wi-Fi.| 
-| NETCONN_BEARER_ETHERNET | Ethernet.| 
+|         Value         |         Description           |
+| ------------------------| ----------------------- |
+| NETCONN_BEARER_CELLULAR | Cellular network.             |
+| NETCONN_BEARER_WIFI     | Wi-Fi.                 |
+| NETCONN_BEARER_ETHERNET | Ethernet.             |
+| NETCONN_BEARER_VPN      | Virtual private network.<br>**Since**: 12|
 
 
 ### NetConn_NetCap
@@ -675,3 +677,35 @@ Unregisters a custom DNS resolver.
 **Required permissions**:
 
 ohos.permission.INTERNET
+
+
+### OH_NetConn_BindSocket()
+
+```
+int32_t OH_NetConn_BindSocket (int32_t socketFd, NetConn_NetHandle * netHandle)
+```
+
+**Description**
+
+Binds a socket to the specified network.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| socketFd | File descriptor of the socket created by the user.|
+| netHandle | Network ID.|
+
+**Returns**
+
+**0**: success.
+
+**401**: parameter error.
+
+**2100002**: failed to connect to the service.
+
+**2100003**: internal error.

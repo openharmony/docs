@@ -31,7 +31,7 @@
 | ---------------- | ------------------------|
 | onDragStart | 支持拖出的组件产生拖出动作时触发。<br>该回调可以感知拖拽行为的发起，开发者可通过在 onDragStart 方法中设置拖拽所传递的数据以及自定义拖拽背板图。推荐开发者使用pixelmap的方式返回背板图，不推荐使用customBuilder的方式，会有额外的性能开销。|
 | onDragEnter | 当拖拽活动的拖拽点进入组件范围内时触发，只有该组件监听了[onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)事件时，此回调才会被触发。|
-| onDragMove| 拖拽点在组件范围内移动时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>在此过程中可通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)中的setResult方法影响系统部分场景下的外观<br>1. 设置DragResult.DROP\_ENABLED；<br>2. 设置DragResult.DROP\_DISABLED。|
+| onDragMove| 拖拽点在组件范围内移动时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>在此过程中可通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)中的setResult方法影响系统部分场景下的外观<br>1. 设置DragResult.DROP\_ENABLED；<br>2. 设置DragResult.DROP\_DISABLED。|
 | onDragLeave | 拖拽点离开组件范围时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>针对以下两种情况默认不会发送onDragLeave事件：<br>1. 父组件移动到子组件；<br>2. 目标组件与当前组件布局有重叠；<br>API version 12开始可通过[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
 | onDrop | 当用户在组件范围内释放时触发，需在此回调中通过DragEvent中的setResult方法设置拖拽结果，否则在拖出方组件的onDragEnd方法中通过getRresult方法只能拿到默认的处理结果DragResult.DRAG\_FAILED。<br>该回调也是开发者干预系统默认拖入处理行为的地方，系统会优先执行开发者的onDrop回调，通过在回调中执行setResult方法来告知系统该如何处理所拖拽的数据；<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理；<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理；<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理；<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，同设置DragResult.DRAG\_FAILED；|
 | onDragEnd | 当用户释放拖拽时，拖拽活动结束，发起拖出动作的组件会触发该回调。|
@@ -61,17 +61,16 @@
 * 设置draggable属性为true，并设置onDragStart回调，回调中可以通过UDMF设置拖拽的数据，并返回自定义拖拽背板图；
 
     ```ts
-    import UDC from '@ohos.data.unifiedDataChannel';
-    import UTD from '@ohos.data.uniformTypeDescriptor';
+    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
     Image($r('app.media.app_icon'))
         .width(100)
         .height(100)
         .draggable(true)
         .onDragStart((event) => {
-            let data: UDC.Image = new UDC.Image();
+            let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
             data.imageUri = 'common/pic/img.png';
-            let unifiedData = new UDC.UnifiedData(data);
+            let unifiedData = new unifiedDataChannel.UnifiedData(data);
             event.setData(unifiedData);
 
             let dragItemInfo: DragItemInfo = {
@@ -130,9 +129,8 @@
 3. 如果开发者要严格触发[onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)事件，可以通过[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法设置。
 
     ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import { UIContext } from '@ohos.arkui.UIContext';
+    import { UIAbility } from '@kit.AbilityKit';
+    import { window, UIContext } from '@kit.ArkUI';
 
     export default class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -158,7 +156,7 @@
 * 可以通过设置[allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)定义接收的数据类型影响角标显示，当拖拽数据是定义允许落入的数据类型时，显示COPY角标；当拖拽数据不在定义允许落入的数据类型范围时，显示FORBIDDEN角标；未设置allowDrop时，显示MOVE角标。如下代码表示只接收UnifiedData中定义的HYPERLINK和PLAIN\_TEXT类型的数据，其他数据类型将禁止落入；
 
     ```ts
-    .allowDrop([UTD.UniformDataType.HYPERLINK, UTD.UniformDataType.PLAIN_TEXT])
+    .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK, uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
     ```
 
 * 此外在实现onDrop回调的情况下还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP\_ENABLED，并设置[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)为COPY或MOVE控制角标显示。如下代码将移动时的角标强制设置为MOVE；
@@ -178,11 +176,11 @@
     .onDrop((dragEvent?: DragEvent) => {
         // 获取拖拽数据
         this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-        let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+        let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
         let rect: Rectangle = event.getPreviewRect();
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
-        this.targetImage = (records[0] as UDC.Image).imageUri;
+        this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
         this.imgState = Visibility.None；
         // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
         event.setResult(DragResult.DRAG_SUCCESSFUL);
@@ -198,7 +196,7 @@
          if (!data) {
            return false;
          }
-         let records: Array<UDC.UnifiedRecord> = data.getRecords();
+         let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
          if (!records || records.length <= 0) {
            return false;
          }
@@ -223,7 +221,7 @@
 6. 拖拽发起方可以通过设置onDragEnd回调感知拖拽结果
 
     ```ts
-    import promptAction from '@ohos.promptAction';
+    import { promptAction } from '@kit.ArkUI';
 
     .onDragEnd((event) => {
         // onDragEnd里取到的result值在接收方onDrop设置
@@ -349,12 +347,10 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
 ### 通用拖拽适配案例
 
 ```ts
-import UDC from '@ohos.data.unifiedDataChannel';
-import UTD from '@ohos.data.uniformTypeDescriptor';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image'
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction, componentSnapshot } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -381,7 +377,7 @@ struct Index {
       if (!data) {
         return false;
       }
-      let records: Array<UDC.UnifiedRecord> = data.getRecords();
+      let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
       if (!records || records.length <= 0) {
         return false;
       }
@@ -440,9 +436,9 @@ struct Index {
               promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
             }))
             .onDragStart((event) => {
-              let data: UDC.Image = new UDC.Image();
+              let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
               data.imageUri = 'common/pic/img.png';
-              let unifiedData = new UDC.UnifiedData(data);
+              let unifiedData = new unifiedDataChannel.UnifiedData(data);
               event.setData(unifiedData);
 
               let dragItemInfo: DragItemInfo = {
@@ -483,15 +479,15 @@ struct Index {
               event.setResult(DragResult.DROP_ENABLED)
               event.dragBehavior = DragBehavior.MOVE
             })
-            .allowDrop([UTD.UniformDataType.IMAGE])
+            .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
             .onDrop((dragEvent?: DragEvent) => {
               // 获取拖拽数据
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-                let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+                let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
                 let rect: Rectangle = event.getPreviewRect();
                 this.imageWidth = Number(rect.width);
                 this.imageHeight = Number(rect.height);
-                this.targetImage = (records[0] as UDC.Image).imageUri;
+                this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
                 this.imgState = Visibility.None;
                 // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
                 event.setResult(DragResult.DRAG_SUCCESSFUL);
@@ -511,8 +507,8 @@ struct Index {
 ### 多选拖拽适配案例
 
 ```ts
-import componentSnapshot from "@ohos.arkui.componentSnapshot";
-import image from '@ohos.multimedia.image'
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component

@@ -14,16 +14,31 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Size
 
-Returns the width and height of the component, in vp.
+Returns the width and height of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type  | Readable| Writable| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | Yes  | Yes  | Width of the component, in vp.|
-| height | number | Yes  | Yes  | Height of the component, in vp.|
+| width  | number | Yes  | Yes  | Width of the component.|
+| height | number | Yes  | Yes  | Height of the component.|
 
 ## Position
+
+Sets or returns the position of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type  | Readable| Writable| Description                    |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| x    | number | Yes  | Yes  | Horizontal position.|
+| y    | number | Yes  | Yes  | Vertical position.|
+
+## PositionT<sup>12+</sup>
 
 Sets or returns the position of the component.
 
@@ -38,6 +53,8 @@ Sets or returns the position of the component.
 
 Sets or returns the size and position of the component, in vp.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type  | Readable| Writable| Description                    |
@@ -51,6 +68,8 @@ Sets or returns the size and position of the component, in vp.
 
 Sets the pivot of the component. As the rotation or scaling center of the component, the pivot affects the rotation and scaling effects.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type  | Readable| Writable| Description                                                               |
@@ -61,6 +80,8 @@ Sets the pivot of the component. As the rotation or scaling center of the compon
 ## Scale
 
 Sets the scale factor of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,6 +94,8 @@ Sets the scale factor of the component.
 
 Sets the translation amount of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type  | Readable| Writable| Description                        |
@@ -83,6 +106,8 @@ Sets the translation amount of the component.
 ## Rotation
 
 Sets the rotation angle of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,12 +121,14 @@ Sets the rotation angle of the component.
 
 Sets the offset of the component or effect.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type  | Readable| Writable| Description                       |
 | ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | Yes  | Yes  | Offset along the y-axis, in px.|
-| y    | number | Yes  | Yes  | Offset along the y-axis, in px.|
+| x    | number | Yes  | Yes  | Offset along the y-axis, in vp.|
+| y    | number | Yes  | Yes  | Offset along the y-axis, in vp.|
 
 ## Matrix4
 
@@ -115,11 +142,15 @@ const transform: Matrix4 = [
 ]
 ```
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Vector2
 
 Defines a vector that contains the x and y coordinate values.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,6 +169,8 @@ get size(): Size
 
 Obtains the width and height of the canvas.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -151,6 +184,8 @@ Obtains the width and height of the canvas.
 get canvas(): Canvas
 
 Obtains the canvas used for drawing.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -206,9 +241,7 @@ struct Index {
 }
 ```
 
-## Edges<sup>12+</sup>
-
-Edges\<T>
+## Edges\<T><sup>12+</sup>
 
 Describes the edges.
 
@@ -221,9 +254,132 @@ Describes the edges.
 | right  | T    | Yes  | Yes  | Right edge.|
 | bottom | T    | Yes  | Yes  | Bottom edge.|
 
-## Corners<sup>12+</sup>
+## LengthUnit<sup>12+</sup>
 
-Corners\<T>
+Enumerates length units.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| [PX](arkui-ts/ts-types.md#px10) | 0 | Length in px.|
+| [VP](arkui-ts/ts-types.md#vp10) | 1 | Length in vp.|
+| [FP](arkui-ts/ts-types.md#fp10) | 2 | Length in fp.|
+| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | Length in percentage.|
+| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | Length in lpx.|
+
+## SizeT<sup>12+</sup>
+
+SizeT\<T>
+
+Sets the width and height attributes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type| Readable| Writable| Description            |
+| ------ | ---- | ---- | ---- | ---------------- |
+| width   | T    | Yes  | Yes  | Width.|
+| height    | T    | Yes  | Yes  | Height.|
+
+## LengthMetrics<sup>12+</sup>
+
+Sets the metrics of length.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Attributes**
+
+| Name  | Type| Readable| Writable| Description            |
+| ------------ | ---------------------------------------- | ---- | ---- | ------ |
+| value       | number | Yes  | Yes  | Value of the length attribute.  |
+| unit | [LengthUnit](#lengthunit12)                                   | Yes  | Yes  | Unit of the length attribute. The default value is vp.|
+
+### constructor<sup>12+</sup>
+
+constructor(value: number, unit?: LengthUnit)
+
+Constructor used to create a **LengthMetrics** instance.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+| unit   | [LengthUnit](#lengthunit12) | No  | Unit of the length attribute.|
+
+### px<sup>12+</sup>
+
+px(value: number): void
+
+Creates a length attribute in px.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+
+### vp<sup>12+</sup>
+
+vp(value: number): void
+
+Creates a length attribute in vp.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+
+### fp<sup>12+</sup>
+
+fp(value: number): void
+
+Creates a length attribute in fp.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+
+### percent<sup>12+</sup>
+
+percent(value: number): void
+
+Creates a length attribute in percentage.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+
+### lpx<sup>12+</sup>
+
+lpx(value: number): void
+
+Creates a length attribute in lpx.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | Yes  | Value of the length attribute.|
+
+## Corners\<T><sup>12+</sup>
 
 Describes the four corners.
 
@@ -238,7 +394,7 @@ Describes the four corners.
 
 ## CornerRadius<sup>12+</sup>
 
-Sets the radius for the four corners of the [Corners](#corners12)[\<Vector2>](#vector2) type.
+Sets the radius for the four corners of the [Corners](#cornerst12)[\<Vector2>](#vector2) type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,7 +407,7 @@ Sets the radius for the four corners of the [Corners](#corners12)[\<Vector2>](#v
 
 ## BorderRadiuses<sup>12+</sup>
 
-Sets the radius for the four corners of the [Corners\<number>](#corners12) type.
+Sets the radius for the four corners of the [Corners\<number>](#cornerst12) type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -771,7 +927,7 @@ struct Index {
 
 ## edgeColors<sup>12+</sup>
 
-function edgeColors(all: number): Edges\<number>
+edgeColors(all: number): Edges\<number>
 
 Generates an **edgeColors** object with the specified edge color for all edges.
 
@@ -787,7 +943,7 @@ Generates an **edgeColors** object with the specified edge color for all edges.
 
 | Type                    | Description                                  |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | **edgeColors** object whose edge colors are all at the specified value.|
+| [Edges\<number>](#edgest12) | **edgeColors** object whose edge colors are all at the specified value.|
 
 **Example**
 
@@ -831,7 +987,7 @@ struct Index {
 
 ## edgeWidths<sup>12+</sup>
 
-function edgeWidths(all: number): Edges\<number>
+edgeWidths(all: number): Edges\<number>
 
 Generates an **edgeWidths** object with the specified edge width for all edges.
 
@@ -847,7 +1003,7 @@ Generates an **edgeWidths** object with the specified edge width for all edges.
 
 | Type                    | Description                                  |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | **edgeWidths** object whose edge widths are all at the specified value.|
+| [Edges\<number>](#edgest12) | **edgeWidths** object whose edge widths are all at the specified value.|
 
 **Example**
 
@@ -891,7 +1047,7 @@ struct Index {
 
 ## borderStyles<sup>12+</sup>
 
-function borderStyles(all: BorderStyle): Edges\<BorderStyle>
+borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 Generates a **borderStyles** object with the specified border style color for all borders.
 
@@ -907,7 +1063,7 @@ Generates a **borderStyles** object with the specified border style color for al
 
 | Type                                                                       | Description                                  |
 | --------------------------------------------------------------------------- | -------------------------------------- |
-| [Edges](#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | **borderStyles** object whose borders are all in the specified style.|
+| [Edges](#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | **borderStyles** object whose borders are all in the specified style.|
 
 **Example**
 
@@ -952,7 +1108,7 @@ struct Index {
 
 ## borderRadiuses<sup>12+</sup>
 
-function borderRadiuses(all: number): BorderRadiuses
+borderRadiuses(all: number): BorderRadiuses
 
 Generates a **borderRadiuses** object with the specified radius for all border corners.
 
@@ -1008,3 +1164,4 @@ struct Index {
   }
 }
 ```
+<!--no_check-->

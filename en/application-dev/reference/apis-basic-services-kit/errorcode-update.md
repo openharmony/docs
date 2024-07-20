@@ -8,7 +8,7 @@
 
 **Error Message**
 
-BusinessError 11500104: IPC error.
+IPC error.
 
 **Description**
 

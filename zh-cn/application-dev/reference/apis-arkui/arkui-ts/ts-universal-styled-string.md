@@ -14,14 +14,22 @@
 
 ## StyledString
 
-StyledString(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
+constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
-| styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。<br/>styledValue入参合法时，styledKey传入undefined时，此时样式不生效。 |
+| styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。 |
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  |   类型   |   只读   |   可选   |   说明   |
+| ------ | ------ | ------ | ------ | -------------- |
+| length | number |  是   | 否   | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的长度按1计算。 |
 
 ### getString
 
@@ -36,20 +44,6 @@ getString(): string
 | 类型              |说明       |
 | ------- | --------------------------------- | 
 | string | 属性字符串文本内容。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的结果用空格表示。 |
-
-### length
-
-readonly length: number
-
-获取属性字符串字符的长度。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型              |说明       |
-| ------- | --------------------------------- | 
-| number | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的长度按1计算。 |
 
 ### equals
 
@@ -650,13 +644,15 @@ constructor(value: ImageAttachmentInterface)
 
 自定义绘制Span，仅提供基类，具体实现由开发者定义。
 
+自定义绘制Span拖拽显示的缩略图为空白。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onMeasure
 
 获取自定义绘制Span的尺寸大小。
 
-onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
+abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -676,7 +672,7 @@ onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 绘制自定义绘制Span。
 
-onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
+abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -684,7 +680,7 @@ onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
 ## CustomSpanMeasureInfo对象说明
@@ -732,6 +728,10 @@ onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 否    | 获取属性字符串文本段落的断行规则。 |
 | leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 否    | 获取属性字符串文本段落的缩进。 |
 
+>  **说明：**
+>
+>  属性字符串的maxLines和overflow仅在Text中生效，建议在组件侧设置。
+
 ### constructor
 
 constructor(value?: ParagraphStyleInterface)
@@ -754,6 +754,16 @@ constructor(value?: ParagraphStyleInterface)
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
+
+## UserDataSpan
+
+支持存储自定义扩展信息，用于存储和获取用户数据，仅提供基类，具体实现由开发者定义。
+
+扩展信息不影响实际显示效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## 示例
 
@@ -930,7 +940,7 @@ struct styled_string_demo1 {
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1018,7 +1028,7 @@ struct styled_string_demo2 {
 
 ```ts
 // xxx.ets
-import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1204,8 +1214,8 @@ struct styled_string_demo3 {
 
 ```ts
 // xxx.ets
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1290,7 +1300,6 @@ struct styled_string_demo4 {
           .onClick(() => {
             this.mutableStr.replaceString(2, 5, "789")
             this.controller.setStyledString(this.mutableStr)
-            this.mutableStr
           })
 
         Button('Image之Get')
@@ -1333,7 +1342,7 @@ struct styled_string_demo4 {
 属性字符串LineHeightStyle、ParagraphStyle使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 const canvasWidth = 1000
 const canvasHeight = 100
 class LeadingMarginCreator {
@@ -1480,9 +1489,9 @@ struct Index {
 
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node';
+import { drawing } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
   constructor(word: string, width: number, height: number) {

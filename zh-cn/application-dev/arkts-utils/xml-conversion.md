@@ -19,7 +19,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 1. 引入模块。
 
    ```ts
-   import convertxml from '@ohos.convertxml';
+   import { convertxml } from '@kit.ArkTS';
    ```
 
 2. 输入待转换的XML，设置转换选项。

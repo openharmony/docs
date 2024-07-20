@@ -75,9 +75,8 @@ The following sample code is used to start the test page to check whether the pa
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -110,13 +109,7 @@ export default function abilityTest() {
 
 To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. For details about the available APIs, see [@ohos.UiTest](../../application-dev/reference/apis-test-kit/js-apis-uitest.md).<br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
-1. Import the dependency.
-
-```ts
-import { Driver, ON } from '@ohos.UiTest'
-```
-
-2. Write the code for the **index.ets** page.
+1. Write the demo code in the **index.ets**file.
 
 ```ts
 @Entry
@@ -146,14 +139,13 @@ struct Index {
 }
 ```
 
-3. Write test code.
+2. Write test code in the .test.ets file under **ohosTest** > **ets** > **test**.
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON } from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
+// Import the test dependencies.
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -237,7 +229,7 @@ The table below lists the keywords in **aa** test commands.
 
 The framework supports multiple test case execution modes, which are triggered by the key-value pair following the **-s** keyword. The table below lists the available keys and values.
 
-| Key    | Description                                                | Value                                                | Example                             |
+| Name    | Description                                                | Value                                              | Example                             |
 | ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
 | unittest     | **OpenHarmonyTestRunner** object used for test case execution. | **OpenHarmonyTestRunner** or custom runner name.                 | - s unittest OpenHarmonyTestRunner        |
 | class        | Test suite or test case to be executed.                                  | {describeName}#{itName}, {describeName}                     | -s class attributeTest#testAttributeIt    |
@@ -248,78 +240,80 @@ The framework supports multiple test case execution modes, which are triggered b
 | random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small       |
 | stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
 
+Parameter configuration and commands are based on the stage model.
 1. Open the CLI.
 2. Run the **aa test** commands.
+
 
 Example 1: Execute all test cases.
 
 ```shell  
- hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
+ hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner
 ```
 
 Example 2: Execute cases in the specified test suites, separated by commas (,).
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
 ```
 
 Example 3: Execute specified cases in the specified test suites, separated by commas (,).
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
 ```
 
 Example 4: Execute all test cases except the specified ones, separated by commas (,).
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
 ```
 
 Example 5: Execute specified test cases, separated by commas (,).
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
 ```
 
 Example 6: Set the timeout interval for executing a test case.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
 ```
 
 Example 7: Enable break-on-error mode.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
 ```
 
 Example 8: Execute test cases of the specified type.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s testType function
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s testType function
 ```
 
 Example 9: Execute test cases at the specified level.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s level 0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s level 0
 ```
 
 Example 10: Execute test cases with the specified size.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s size small
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s size small
 ```
 
 Example 11: Execute test cases for a specified number of times.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s stress 1000
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s stress 1000
 ```
 
 **Viewing the Test Result**
@@ -401,8 +395,8 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the
 {
 	"ABILITY": "com.ohos.launcher.MainAbility", // Foreground application page.
 	"BUNDLE": "com.ohos.launcher", // Application.
-	"CENTER_X": "", // X-coordinate of the center of the pinch gesture.
-	"CENTER_Y": "", // Y-coordinate of the center of the pinch gesture.
+	"CENTER_X": "", // Reserved field.
+	"CENTER_Y": "", // Reserved field.
 	"EVENT_TYPE": "pointer", //  
 	"LENGTH": "0", // Total length.
 	"OP_TYPE": "click", // Event type. Currently, click, double-click, long-press, drag, pinch, swipe, and fling types are supported.
@@ -438,15 +432,15 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the
 ## Injecting Simulated UI Operations in Shell Command Mode
 Supported operation types: click, double-click, long press, fling, swipe, drag, text input, and key event.
 
-| Key      | Description                                 | Value                                                                                                                                                                                             | Example                                                                                 |
+| Name      | Description                                 | Value                                                                                                                                                                                                               | Example                                                                                 |
 |-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | click       | Simulates a click.                                 | point_x (X coordinate of the click point. Mandatory.)<br> point_y (Y coordinate of the click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput click point_x point_y                                      |
 | doubleClick | Simulates a double-click.                                 | point_x (X coordinate of the double-click point. Mandatory.)<br> point_y (Y coordinate of the double-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput doubleClick point_x point_y                                |
 | longClick   | Simulates a long-click.                                 | point_x (X coordinate of the long-click point. Mandatory.)<br> point_y (Y coordinate of the long-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput longClick point_x point_y                                  |
 | fling       | Simulates a fling.                                 | from_x (X coordinate of the fling start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the fling end point. Mandatory.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)| hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
-| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
-| drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
-| dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)                                                                                                                                 | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
+| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Unit: px/s. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
+| drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Unit: px/s. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
+| dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Unit: px. Optional.)                                                                                                                                 | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
 | inputText       | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                | hdc shell uitest uiInput input point_x point_y text                                 |
 | keyEvent    | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.| keyID (ID of a physical key. Mandatory.)<br> keyID2 (ID of a physical key. Optional.)                                                                                                                                                  | hdc shell uitest uiInput keyEvent keyID                                             |
 
@@ -464,15 +458,15 @@ Example 3: Perform a long-click.
 ```
 Example 4: Perform a fling.
 ```shell  
-hdc shell uitest uiInput fling 0 0 200 200 500 
+hdc shell uitest uiInput fling 10 10 200 200 500 
 ```
 Example 5: Perform a swipe.
 ```shell  
-hdc shell uitest uiInput swipe 0 0 200 200 500 
+hdc shell uitest uiInput swipe 10 10 200 200 500 
 ```
 Example 6: Perform a drag and drop.
 ```shell  
-hdc shell uitest uiInput drag 0 0 100 100 500 
+hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
 Example 7: Perform a fling-left.
 ```shell  
@@ -498,11 +492,11 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 Example 12: Return to the home screen.
 ```shell  
-hdc shell uitest uiInput keyEvent home
+hdc shell uitest uiInput keyEvent Home
 ```
 Example 13: Return to the previous page.
 ```shell  
-hdc shell uitest uiInput keyEvent back
+hdc shell uitest uiInput keyEvent Back
 ```
 Example 14: Perform a key combination to copy and paste text.
 ```shell  

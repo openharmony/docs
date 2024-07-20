@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import InputEvent from '@ohos.multimodalInput.inputEvent';
+import { InputEvent } from '@kit.InputKit';
 ```
 
 ## InputEvent 

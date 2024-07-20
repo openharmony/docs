@@ -8,7 +8,7 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
-   import { cert } from '@kit.DeviceCertificatekit';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
 2. 解析证书扩展域段数据，调用[cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10)创建证书扩展域段对象。
@@ -19,7 +19,7 @@
 4. 调用[CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10)，判断证书是否为CA证书。
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 

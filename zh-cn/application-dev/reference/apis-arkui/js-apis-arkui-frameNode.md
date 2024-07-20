@@ -13,7 +13,7 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint, typeNode, NodeAdapter } from "@kit.ArkUI";
 ```
 
 ## FrameNode
@@ -24,7 +24,7 @@ constructor(uiContext: UIContext)
 
 FrameNode的构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,7 +32,7 @@ FrameNode的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 
 ### getRenderNode
 
@@ -40,7 +40,7 @@ getRenderNode(): RenderNode | null
 
 获取FrameNode中持有的RenderNode。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +53,7 @@ getRenderNode(): RenderNode | null
 **示例：**
 
 ```ts
-import { NodeController, FrameNode } from '@ohos.arkui.node';
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -89,6 +89,8 @@ isModifiable(): boolean
 
 判断当前节点是否可修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -105,7 +107,9 @@ isModifiable(): boolean
 
 appendChild(node: FrameNode): void
 
-在FrameNode最后一个子节点后添加新的子节点。当前FramNode如果不可修改，抛出异常信息。
+在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,7 +133,9 @@ appendChild(node: FrameNode): void
 
 insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
-在FrameNode指定子节点之后添加新的子节点。当前FramNode如果不可修改，抛出异常信息。
+在FrameNode指定子节点之后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -154,7 +160,9 @@ insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 removeChild(node: FrameNode): void
 
-从FrameNode中删除指定的子节点。当前FramNode如果不可修改，抛出异常信息。
+从FrameNode中删除指定的子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +186,9 @@ removeChild(node: FrameNode): void
 
 clearChildren(): void
 
-清除当前FrameNode的所有子节点。当前FramNode如果不可修改，抛出异常信息。
+清除当前FrameNode的所有子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -197,6 +207,8 @@ clearChildren(): void
 getChild(index: number): FrameNode | null
 
 获取当前节点指定位置的子节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -221,6 +233,8 @@ getFirstChild(): FrameNode | null
 
 获取当前FrameNode的第一个子节点
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -238,6 +252,8 @@ getFirstChild(): FrameNode | null
 getNextSibling(): FrameNode | null
 
 获取当前FrameNode的下一个同级节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -257,6 +273,8 @@ getPreviousSibling(): FrameNode | null
 
 获取当前FrameNode的上一个同级节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -274,6 +292,8 @@ getPreviousSibling(): FrameNode | null
 getParent(): FrameNode | null;
 
 获取当前FrameNode的父节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -294,6 +314,8 @@ getParent(): FrameNode | null;
 
 获取当前FrameNode的子节点数量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -311,6 +333,8 @@ getParent(): FrameNode | null;
   getPositionToWindow(): Position
 
 获取FrameNode相对于窗口的位置偏移。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -331,6 +355,8 @@ getPositionToParent(): Position
 
 获取FrameNode相对于父组件的位置偏移。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -348,6 +374,8 @@ getPositionToParent(): Position
   getPositionToScreen(): Position
 
 获取FrameNode相对于屏幕的位置偏移。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -368,6 +396,8 @@ getPositionToParentWithTransform(): Position
 
 获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -386,6 +416,8 @@ getPositionToWindowWithTransform(): Position
 
 获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -403,6 +435,8 @@ getPositionToWindowWithTransform(): Position
 getPositionToScreenWithTransform(): Position
 
 获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -423,6 +457,8 @@ getMeasuredSize(): Size
 
 获取FrameNode测量后的大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -442,6 +478,8 @@ getLayoutPosition(): Position
 
 获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -459,6 +497,8 @@ getLayoutPosition(): Position
 getUserConfigBorderWidth(): Edges\<LengthMetrics\>
 
 获取用户设置的边框宽度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -478,6 +518,8 @@ getUserConfigPadding(): Edges\<LengthMetrics\>
 
 获取用户设置的内边距。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -495,6 +537,8 @@ getUserConfigPadding(): Edges\<LengthMetrics\>
 getUserConfigMargin(): Edges\<LengthMetrics\>
 
 获取用户设置的外边距。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -514,13 +558,15 @@ getUserConfigSize(): SizeT\<LengthMetrics\>
 
 获取用户设置的宽高。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
-| 类型                                                           | 说明                                                                  |
-| -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| [SizeT](./js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
 
 **示例：**
 
@@ -532,13 +578,15 @@ getId(): string
 
 获取用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| string | 用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)） |
+| string | 用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)）。 |
 
 **示例：**
 
@@ -550,13 +598,15 @@ getUniqueId(): number
 
 获取系统分配的唯一标识的节点UniqueID。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| number | 系统分配的唯一标识的节点UniqueID |
+| number | 系统分配的唯一标识的节点UniqueID。 |
 
 **示例：**
 
@@ -567,6 +617,8 @@ getUniqueId(): number
 getNodeType(): string
 
 获取节点的类型。内置组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -586,6 +638,8 @@ getOpacity(): number
 
 获取节点的不透明度，最小值为0，最大值为1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -603,6 +657,8 @@ getOpacity(): number
 isVisible(): boolean
 
 获取节点是否可见。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -622,6 +678,8 @@ isClipToFrame(): boolean
 
 获取节点是否是剪裁到组件区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -639,6 +697,8 @@ isClipToFrame(): boolean
 isAttached(): boolean
 
 获取节点是否被挂载到主节点树上。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -658,6 +718,8 @@ getInspectorInfo(): Object
 
 获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -675,6 +737,8 @@ getInspectorInfo(): Object
 getCustomProperty(name: string): Object | undefined
 
 通过名称获取组件的自定义属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -700,12 +764,14 @@ dispose(): void
 
 立即释放当前FrameNode。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
 
 @Component
 struct TestComponent {
@@ -793,9 +859,9 @@ get commonAttribute(): CommonAttribute
 
 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
 
-仅可以修改通过命令式方式创建的节点的属性。
+仅可以修改自定义节点的属性。
 
-不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -805,8 +871,11 @@ get commonAttribute(): CommonAttribute
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
 
-**说明：**
-FrameNode的基础属性支持范围和效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+> **说明：**
+>
+> FrameNode的效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+>
+> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)。
 
 **示例：**
 
@@ -818,6 +887,10 @@ get commonEvent(): UICommonEvent
 
 获取FrameNode中持有的UICommonEvent对象，用于设置基础事件。设置的基础事件与声明式定义的事件平行，参与事件竞争；设置的基础事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
+LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点需要重新设置事件回调才能保证监听事件正常响应。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -828,13 +901,15 @@ get commonEvent(): UICommonEvent
 
 **示例：**
 
-请参考[基础事件示例](#基础事件示例)。
+请参考[基础事件示例](#基础事件示例)和[LazyForEach场景基础事件使用示例](#lazyforeach场景基础事件使用示例)。
 
 ### onDraw<sup>12+</sup>
 
 onDraw?(context: DrawContext): void
 
 FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -854,6 +929,8 @@ onMeasure(constraint: LayoutConstraint): void
 
 FrameNode的自定义测量方法，该方法会重写默认测量方法，在FrameNode进行测量时被调用，测量FrameNode及其内容的大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -868,9 +945,11 @@ FrameNode的自定义测量方法，该方法会重写默认测量方法，在Fr
 
 ### LayoutConstraint<sup>12+</sup>
 
-LayoutConstraint
-
 描述组件的布局约束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
@@ -878,13 +957,13 @@ LayoutConstraint
 | minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
 | percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### onLayout<sup>12+</sup>
 
 onLayout(position: Position): void
 
 FrameNode的自定义布局方法，该方法会重写默认布局方法，在FrameNode进行布局时被调用，为FrameNode及其子节点指定位置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -904,6 +983,8 @@ setMeasuredSize(size: Size): void
 
 设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -921,6 +1002,8 @@ setMeasuredSize(size: Size): void
 setLayoutPosition(position: Position): void
 
 设置FrameNode的布局后的位置，默认单位PX。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -940,6 +1023,8 @@ measure(constraint: LayoutConstraint): void
 
 调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -957,6 +1042,8 @@ measure(constraint: LayoutConstraint): void
 layout(position: Position): void
 
 调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -976,6 +1063,8 @@ setNeedsLayout(): void
 
 该方法会将FrameNode标记为需要布局的状态，下一帧将会进行重新布局。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -988,16 +1077,1492 @@ invalidate(): void
 
 该方法会触发FrameNode自绘制内容的重新渲染。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### addComponentContent<sup>12+</sup>
+
+addComponentContent\<T>(content: ComponentContent\<T>): void
+
+支持添加ComponentContent类型的组件内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
+
+```ts
+import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
+
+@Builder
+function buildText() {
+  Column() {
+    Text('hello')
+      .width(50)
+      .height(50)
+      .backgroundColor(Color.Yellow)
+  }
+}
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute.width(300).height(300).backgroundColor(Color.Red)
+    let col = typeNode.createNode(uiContext, "Column")
+    col.initialize({ space: 10 })
+    node.appendChild(col)
+    let row4 = typeNode.createNode(uiContext, "Row")
+    row4.attribute.width(200)
+      .height(200)
+      .borderWidth(1)
+      .borderColor(Color.Black)
+      .backgroundColor(Color.Green)
+    let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
+    row4.addComponentContent(component)
+    col.appendChild(row4)
+    return node
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
+```
+
+### disposeTree<sup>12+</sup>
+
+disposeTree(): void
+
+下树并递归释放当前节点为根的子树。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from '@kit.ArkUI';
+
+@Component
+struct TestComponent {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent2));
+
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+      NodeContainer(this.myNodeController)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent2 {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent3));
+  private myNodeController2: MyNodeController = new MyNodeController(wrapBuilder(buildComponent4));
+
+  build() {
+    Column() {
+      Text('This is a BuilderNode 2.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+      NodeContainer(this.myNodeController)
+      NodeContainer(this.myNodeController2)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 2 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 2 aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent3 {
+  build() {
+    Column() {
+      Text('This is a BuilderNode 3.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 3 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 3 aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent4 {
+  build() {
+    Column() {
+      Text('This is a BuilderNode 4.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 4 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 4 aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+@Builder
+function buildComponent2() {
+  TestComponent2()
+}
+
+@Builder
+function buildComponent3() {
+  TestComponent3()
+}
+
+@Builder
+function buildComponent4() {
+  TestComponent4()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+  private wrappedBuilder: WrappedBuilder<[]>;
+
+  constructor(builder: WrappedBuilder<[]>) {
+    super();
+    this.wrappedBuilder = builder;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(this.wrappedBuilder);
+
+    return this.builderNode.getFrameNode();
+  }
+
+  dispose() {
+    if (this.builderNode !== null) {
+      this.builderNode.getFrameNode()?.disposeTree()
+    }
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent));
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.dispose();
+        })
+        .width('100%')
+      Button('BuilderNode rebuild')
+        .onClick(() => {
+          this.myNodeController.rebuild();
+        })
+        .width('100%')
+    }
+  }
+}
+```
 
 **示例：**
 
 请参考[节点自定义示例](#节点自定义示例)。
 
+## TypedFrameNode<sup>12+</sup>
+
+TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
+
+### initialize<sup>12+</sup>
+
+initialize: C
+
+该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### attribute<sup>12+</sup>
+
+attribute(): T
+
+该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## typeNode<sup>12+</sup>
+
+typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
+
+**示例：**
+
+请参考[自定义具体类型节点示例](#自定义具体类型节点示例)。
+
+### Text<sup>12+</sup>
+type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
+
+Text类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextInterface, TextAttribute&gt; | 提供Text类型FrameNode节点。<br/>**说明：**<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Text组件的属性设置对象。 |
+
+### createNode('Text')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Text'): Text
+
+创建Text类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Text' | 是 | 创建Text类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Text](#text12) | Text类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Text');
+```
+
+### Column<sup>12+</sup>
+type Column = TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt;
+
+Column类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Column组件的属性设置对象。 |
+
+### createNode('Column')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Column'): Column
+
+创建Column类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Column' | 是 | 创建Column类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Column](#column12) | Column类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Column');
+```
+### Row<sup>12+</sup>
+type Row = TypedFrameNode&lt;RowInterface, RowAttribute&gt;
+
+Row类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RowInterface, RowAttribute&gt; | 提供Row类型FrameNode节点。<br/>**说明：**<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Row组件的属性设置对象。 |
+
+### createNode('Row')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Row'): Row
+
+创建Row类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Row' | 是 | 创建Row类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Row](#row12) | Row类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Row');
+```
+### Stack<sup>12+</sup>
+type Stack = TypedFrameNode&lt;StackInterface, StackAttribute&gt;
+
+Stack类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;StackInterface, StackAttribute&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Stack组件的属性设置对象。 |
+
+### createNode('Stack')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Stack'): Stack
+
+创建Stack类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Stack' | 是 | 创建Stack类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Stack](#stack12) | Stack类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Stack');
+```
+### GridRow<sup>12+</sup>
+type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
+
+GridRow类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
+
+### createNode('GridRow')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'GridRow'): GridRow
+
+创建GridRow类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'GridRow' | 是 | 创建GridRow类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [GridRow](#gridrow12) | GridRow类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'GridRow');
+```
+### GridCol<sup>12+</sup>
+type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
+
+GridCol类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
+
+### createNode('GridCol')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'GridCol'): GridCol
+
+创建GridCol类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'GridCol' | 是 | 创建GridCol类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [GridCol](#gridcol12) | GridCol类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'GridCol');
+```
+### Flex<sup>12+</sup>
+type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
+
+Flex类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
+
+### createNode('Flex')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Flex'): Flex
+
+创建Flex类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Flex' | 是 | 创建Flex类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Flex](#flex12) | Flex类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Flex');
+```
+### Swiper<sup>12+</sup>
+type Swiper = TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt;
+
+Swiper类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
+
+### createNode('Swiper')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Swiper'): Swiper
+
+创建Swiper类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Swiper' | 是 | 创建Swiper类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Swiper](#swiper12) | Swiper类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Swiper');
+```
+### Progress<sup>12+</sup>
+type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
+
+Progress类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
+
+### createNode('Progress')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Progress'): Progress
+
+创建Progress类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Progress' | 是 | 创建Progress类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Progress](#progress12) | Progress类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Progress');
+```
+### Scroll<sup>12+</sup>
+type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
+
+Scroll类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
+
+### createNode('Scroll')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Scroll'): Scroll
+
+创建Scroll类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Scroll' | 是 | 创建Scroll类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Scroll](#scroll12) | Scroll类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Scroll');
+```
+### RelativeContainer<sup>12+</sup>
+type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt;
+
+RelativeContainer类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
+
+### createNode('RelativeContainer')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
+
+创建RelativeContainer类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'RelativeContainer' | 是 | 创建RelativeContainer类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [RelativeContainer](#relativecontainer12) | RelativeContainer类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'RelativeContainer');
+```
+### Divider<sup>12+</sup>
+type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
+
+Divider类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
+
+### createNode('Divider')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Divider'): Divider
+
+创建Divider类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Divider' | 是 | 创建Divider类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Divider](#divider12) | Divider类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Divider');
+```
+### LoadingProgress<sup>12+</sup>
+type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
+
+LoadingProgress类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
+
+### createNode('LoadingProgress')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
+
+创建LoadingProgress类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'LoadingProgress' | 是 | 创建LoadingProgress类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [LoadingProgress](#loadingprogress12) | LoadingProgress类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'LoadingProgress');
+```
+### Search<sup>12+</sup>
+type Search = TypedFrameNode&lt;SearchInterface, SearchAttribute&gt;
+
+Search类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
+
+### createNode('Search')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Search'): Search
+
+创建Search类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Search' | 是 | 创建Search类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Search](#search12) | Search类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Search');
+```
+### Blank<sup>12+</sup>
+type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
+
+Blank类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
+
+### createNode('Blank')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Blank'): Blank;
+
+创建Blank类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Blank' | 是 | 创建Blank类型的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Blank](#blank12) | Blank类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Blank');
+```
+### Image<sup>12+</sup>
+type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
+
+Image类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
+
+### createNode('Image')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Image'): Image
+
+创建Image类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Image' | 是 | 创建Image类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Image](#image12) | Image类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Image');
+```
+### List<sup>12+</sup>
+type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
+
+List类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
+
+### createNode('List')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'List'): List
+
+创建List类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'List' | 是 | 创建List类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [List](#list12) | List类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'List');
+```
+### ListItem<sup>12+</sup>
+type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
+
+ListItem类型的FrameNode节点类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItem组件的属性设置对象。 |
+
+### createNode('ListItem')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'ListItem'): ListItem
+
+创建ListItem类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [ListItem](#listitem12) | ListItem类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'ListItem');
+```
+
+### TextInput<sup>12+</sup>
+type TextInput = TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt;
+
+TextInput类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回TextInput组件的属性设置对象。 |
+
+### createNode('TextInput')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'TextInput'): TextInput
+
+创建TextInput类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextInput' | 是 | 创建TextInput类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextInput](#textinput12) | TextInput类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextInput');
+```
+
+### Button<sup>12+</sup>
+type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
+
+Button类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。 |
+
+### createNode('Button')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Button'): Button
+
+创建Button类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Button' | 是 | 创建Button类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Button](#button12) | Button类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Button');
+```
+
+### ListItemGroup<sup>12+</sup>
+type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt;
+
+ListItemGroup类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
+
+### createNode('ListItemGroup')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
+
+创建ListItemGroup类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'ListItemGroup' | 是 | 创建ListItemGroup类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [ListItemGroup](#listitemgroup12) | ListItemGroup类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'ListItemGroup');
+```
+
+### WaterFlow<sup>12+</sup>
+type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
+
+WaterFlow类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt; | 提供WaterFlow类型FrameNode节点。<br/>**说明：**<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回WaterFlow组件的属性设置对象。 |
+
+### createNode('WaterFlow')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
+
+创建WaterFlow类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'WaterFlow' | 是 | 创建WaterFlow类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [WaterFlow](#waterflow12) | WaterFlow类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'WaterFlow');
+```
+
+### FlowItem<sup>12+</sup>
+type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
+
+FlowItem类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回FlowItem组件的属性设置对象。 |
+
+### createNode('FlowItem')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
+
+创建FlowItem类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'FlowItem' | 是 | 创建FlowItem类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [FlowItem](#flowitem12) | FlowItem类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'FlowItem');
+```
+
+### XComponent<sup>12+</sup>
+type XComponent = TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt;
+
+XComponent类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt; | 提供XComponent类型FrameNode节点。<br/>**说明：**<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回XComponent组件的属性设置对象。 |
+
+### createNode('XComponent')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'XComponent'): XComponent
+
+创建XComponent类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'XComponent');
+```
+
+## NodeAdapter<sup>12+</sup>
+
+NodeAdapter提供FrameNode的数据懒加载能力。
+
+> **说明：**
+>
+> 入参不能为负数，入参为负数时不做处理。
+
+**示例：**
+
+请参考[NodeAdapter使用示例](#nodeadapter使用示例)。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+NodeAdapter的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前的NodeAdapter。如果是已绑定的状态，会先进行解绑操作，再释放当前的NodeAdapter。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### totalNodeCount<sup>12+</sup>
+
+set totalNodeCount(count: number)
+
+设置数据节点总数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| count | number | 是   | 数据节点总数。 |
+
+### totalNodeCount<sup>12+</sup>
+
+get totalNodeCount(): number
+
+获取数据节点总数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| number | 数据节点总数。 |
+
+### reloadAllItems<sup>12+</sup>
+
+reloadAllItems(): void
+
+重新加载全部数据操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### reloadItem<sup>12+</sup>
+
+reloadItem(start: number, count: number): void
+
+定义从索引值开始重新加载指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 重新加载的节点开始索引值。 |
+| count | number | 是   | 重新加载数据节点的数量。 |
+
+### removeItem<sup>12+</sup>
+
+removeItem(start: number, count: number): void
+
+定义从索引值开始删除指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 删除的节点开始索引值。 |
+| count | number | 是   | 删除数据节点的数量。 |
+
+### insertItem<sup>12+</sup>
+
+insertItem(start: number, count: number): void
+
+定义从索引值开始新增指定数量的节点数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| start | number | 是   | 新增的节点开始索引值。 |
+| count | number | 是   | 新增数据节点的数量。 |
+
+### moveItem<sup>12+</sup>
+
+moveItem(from: number, to: number): void
+
+定义数据移动操作。将数据从起始索引移动到结束索引。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| from | number | 是   | 数据移动起始索引值。 |
+| to | number | 是   | 数据移动结束索引值。 |
+
+### getAllAvailableItems<sup>12+</sup>
+
+getAllAvailableItems(): Array&lt;FrameNode&gt;
+
+获取所有有效数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| Array&lt;FrameNode&gt; | FrameNode数据节点集合。 |
+
+### onAttachToNode<sup>12+</sup>
+
+onAttachToNode?(target: FrameNode): void
+
+FrameNode绑定NodeAdapter时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| target | FrameNode | 是   | 绑定NodeAdapter的FrameNode节点。 |
+
+### onDetachFromNode<sup>12+</sup>
+
+onDetachFromNode?(): void
+
+解除绑定时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onGetChildId<sup>12+</sup>
+
+onGetChildId?(index: number): number
+
+节点首次加载或新节点滑入时回调。用于生成自定义的Id，需要开发者自行保证Id的唯一性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| index | number | 是   | 加载节点索引值。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| number | 返回开发者自定义生成的Id，需要开发者自行保证Id的唯一性。 |
+
+### onCreateChild<sup>12+</sup>
+
+onCreateChild?(index: number): FrameNode
+
+节点首次加载或新节点滑入时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| index | number | 是   | 加载节点索引值。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| FrameNode | 返回开发者创建的FrameNode节点。 |
+
+### onDisposeChild<sup>12+</sup>
+
+onDisposeChild?(id: number, node: FrameNode): void
+
+子节点即将销毁时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| id | number | 是   | 即将销毁的子节点id。 |
+| node | FrameNode | 是   | 即将销毁的FrameNode节点。 |
+
+### onUpdateChild<sup>12+</sup>
+
+onUpdateChild?(id: number, node: FrameNode): void
+
+重新加载的数据节点被复用时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| id | number | 是   | 复用节点索引值。 |
+| node | FrameNode | 是   | 被复用的FrameNode节点。 |
+
+### attachNodeAdapter<sup>12+</sup>
+
+static attachNodeAdapter(adapter: NodeAdapter, node: FrameNode): boolean
+
+给FrameNode绑定一个NodeAdapter。一个节点只能绑定一个NodeAdapter。已经绑定NodeAdapter的再次绑定会失败并返回false。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| adapter | [NodeAdapter](#nodeadapter12) | 是   | 定义懒加载的NodeAdapter类。 |
+| node | FrameNode | 是   | 绑定的FrameNode节点。 |
+
+**返回值：**
+
+| 类型                     | 说明                 |
+| ----------------- | ------------ |
+| boolean | 绑定结果，返回true绑定成功，false绑定失败。 |
+
+### detachNodeAdapter<sup>12+</sup>
+
+static detachNodeAdapter(node: FrameNode): void
+
+解除绑定操作，解除FrameNode节点绑定的NodeAdapter。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| node | FrameNode | 是   | 要解除绑定的FrameNode节点。 |
+
+## 自定义具体类型节点示例
+
+以Text节点为例，创建Text类型节点。
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute.width(100)
+      .height(50)
+      .borderColor(Color.Gray)
+      .borderWidth(1)
+      .margin({ left: 10 });
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%').height('100%').margin({ top: 5 });
+    node.appendChild(col);
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize("Hello").fontColor(Color.Blue).fontSize(14);
+    col.appendChild(text);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
+```
+
+![FrameNodeTextTest](figures/FrameNodeTextTest.png)
+
 ## 节点操作示例
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node"
-import { BusinessError } from '@ohos.base';
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const TEST_TAG : string = "FrameNode"
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
@@ -1089,32 +2654,32 @@ class MyNodeController extends NodeController {
   }
   getPositionToWindow()
   {
-    let positionToWindow = this.frameNode?.getPositionToWindow();
+    let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToParent();
+    let positionToParent = this.rootNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
   getPositionToScreen()
   {
-    let positionToScreen = this.frameNode?.getPositionToScreen();
+    let positionToScreen = this.rootNode?.getPositionToScreen();
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
   getPositionToWindowWithTransform()
   {
-    let positionToWindowWithTransform = this.frameNode?.getPositionToWindowWithTransform();
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
   getPositionToParentWithTransform()
   {
-    let positionToParentWithTransform = this.frameNode?.getPositionToParentWithTransform();
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
   getPositionToScreenWithTransform()
   {
-    let positionToScreenWithTransform = this.frameNode?.getPositionToScreenWithTransform();
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
   getMeasuredSize()
@@ -1186,11 +2751,6 @@ class MyNodeController extends NodeController {
   {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
-  }
-  getCustomProperty()
-  {
-    let customProperty = this.frameNode?.getCustomProperty();
-    console.log(TEST_TAG + customProperty);
   }
 
   throwError()
@@ -1365,8 +2925,30 @@ struct Index {
       Button("getCustomProperty")
         .width(300)
         .onClick(()=>{
-          this.myNodeController.getCustomProperty();
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("Test_Button") || null;
+            if (node) {
+              for (let i = 1; i < 4; i++) {
+                const key = 'customProperty' + i;
+                const property = node.getCustomProperty(key);
+                console.log(TEST_TAG + key, JSON.stringify(property));
+              }
+            }
+          }
         })
+        .id('Test_Button')
+        .customProperty('customProperty1', {
+          'number': 10,
+          'string': 'this is a string',
+          'bool': true,
+          'object': {
+            'name': 'name',
+            'value': 100
+          }
+        })
+        .customProperty('customProperty2', {})
+        .customProperty('customProperty2', undefined)
       Button("throwError")
         .width(300)
         .onClick(()=>{
@@ -1388,11 +2970,9 @@ struct Index {
   }
 }
 ```
-
 ## 基础事件示例
-
 ```ts
-import { FrameNode, NodeController } from '@ohos.arkui.node'
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
@@ -1498,12 +3078,334 @@ struct Index {
 }
 ```
 
+
+## LazyForEach场景基础事件使用示例
+```ts
+// index.ets
+import {Track, TrackManager, TrackNode} from "./track"
+
+@Builder
+function page1() {
+  Column() {
+    Text("Page1")
+    PageList().height("90%")
+    Button("DumpMessage")
+      .onClick(() => {
+        TrackManager.get().dump()
+      })
+
+  }.width("100%").height("100%")
+}
+
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Component
+struct PageList {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 100; i++) {
+      this.data.pushData(`Hello ${i}`)
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: string, index: number) => {
+        ListItem() {
+          // 通过TrackNode对组件进行封装埋点
+          TrackNode({track: new Track().tag("xxx"+ item).id(index + 30000)}) {
+            Row() {
+              Text(item).fontSize(30)
+                .onClick(() => {
+                })
+            }.margin({ left: 10, right: 10 })
+          }
+        }
+      }, (item: string) => item)
+    }.cachedCount(5)
+  }
+}
+
+
+@Entry
+@Component
+struct TrackTest {
+  pageInfos: NavPathStack = new NavPathStack()
+  build() {
+    Row() {
+      TrackNode({ track: new Track().tag("root").id(10000)}) {
+        page1()
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    TrackManager.get().startListenClick(this.getUIContext())
+  }
+}
+```
+
+<!--code_no_check-->
+
+```ts
+// ./track.ets
+import { FrameNode } from '@kit.ArkUI';
+import { Rect } from '@ohos.arkui.node';
+
+@Component
+export struct TrackNode {
+  @BuilderParam closer: VoidCallback = this.defaultBuilder
+  track: Track | null = null
+  trackShadow: TrackShadow = new TrackShadow()
+
+  @Builder defaultBuilder() {
+  }
+
+  build() {
+    this.closer()
+  }
+
+  aboutToAppear(): void {
+    // use onDidBuild later
+  }
+
+  aboutToDisappear(): void {
+    TrackManager.get().removeTrack(this.trackShadow.id)
+    console.log("Track disappear:" + this.trackShadow.id)
+  }
+
+  onDidBuild(): void {
+    // 构建埋点的虚拟树，获取的node为当前页面的根节点（用例中为Row）。
+    let uid = this.getUniqueId()
+    let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(uid);
+    console.log("Track onDidBuild node:" + node?.getNodeType())
+    if (node === null) {
+      return
+    }
+    this.trackShadow.node = node
+    this.trackShadow.id = node?.getUniqueId()
+    this.trackShadow.track = this.track;
+    TrackManager.get().addTrack(this.trackShadow.id, this.trackShadow)
+    // 通过setOnVisibleAreaApproximateChange监听记录埋点组件的可视区域。
+    node?.commonEvent.setOnVisibleAreaApproximateChange(
+      { ratios: [0, 0.1, 0.2, 0.5, 0.8, 1], expectedUpdateInterval: 500 },
+      (ratioInc: boolean, ratio: number) => {
+        console.log(`Node ${node?.getUniqueId()}:${node?.getNodeType()} is visibleRatio is ${ratio}`);
+        this.trackShadow.visibleRatio = ratio
+      })
+
+    let parent: FrameNode | null = node?.getParent()
+
+    let attachTrackToParent: (parent: FrameNode | null) => boolean =
+      (parent: FrameNode | null) => {
+        while (parent !== null) {
+          let parentTrack = TrackManager.get().getTrackById(parent.getUniqueId())
+          if (parentTrack !== undefined) {
+            parentTrack.childIds.add(this.trackShadow.id)
+            this.trackShadow.parentId = parentTrack.id
+            return true;
+          }
+          parent = parent.getParent()
+        }
+        return false;
+      }
+    let attached = attachTrackToParent(parent);
+
+    if (!attached) {
+      node?.commonEvent.setOnAppear(() => {
+        let attached = attachTrackToParent(parent);
+        if (attached) {
+          console.log("Track lazy attached:" + this.trackShadow.id)
+        }
+      })
+    }
+  }
+}
+
+export class Track {
+  public areaPercent: number = 0
+  private trackTag: string = ""
+  private trackId: number = 0
+
+  constructor() {
+  }
+
+  tag(newTag: string): Track {
+    this.trackTag = newTag;
+    return this;
+  }
+
+  id(newId: number): Track {
+    this.trackId = newId;
+    return this;
+  }
+}
+
+export class TrackShadow {
+  public node: FrameNode | null = null
+  public id: number = -1
+  public track: Track | null = null
+  public childIds: Set<number> = new Set()
+  public parentId: number = -1
+  public visibleRect: Rect = { left: 0, top: 0, right: 0, bottom: 0 }
+  public area: number = 0
+  public visibleRatio: number = 0
+
+  // 通过全局dump输出埋点树的信息
+  dump(depth: number = 0): void {
+    console.log("Track Dp:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
+    this.childIds.forEach((value: number) => {
+      TrackManager.get().getTrackById(value)?.dump(depth + 1)
+    })
+  }
+}
+
+export class TrackManager {
+  static instance: TrackManager
+  private trackMap: Map<number, TrackShadow> = new Map()
+  private rootTrack: TrackShadow | null = null
+
+  static get(): TrackManager {
+    if (TrackManager.instance !== undefined) {
+      return TrackManager.instance
+    }
+    TrackManager.instance = new TrackManager()
+    return TrackManager.instance
+  }
+
+  addTrack(id: number, track: TrackShadow) {
+    if (this.trackMap.size == 0) {
+      this.rootTrack = track
+    }
+    console.log("Track add id:" + id)
+    this.trackMap.set(id, track)
+  }
+
+  removeTrack(id: number) {
+    let current = this.getTrackById(id)
+    if (current !== undefined) {
+      this.trackMap.delete(id)
+      let parent = this.getTrackById(current?.parentId)
+      parent?.childIds.delete(id)
+    }
+  }
+
+  getTrackById(id: number): TrackShadow | undefined {
+    return this.trackMap.get(id)
+  }
+
+  startListenClick(context: UIContext) {
+    // 通过无感监听获取FrameNode查找埋点信息。
+    context.getUIObserver().on("willClick", (event: ClickEvent, node?: FrameNode) => {
+      console.log("Track clicked:" + node)
+      if (node == undefined) {
+        return
+      }
+      let track = this.getTrackById(node.getUniqueId())
+      track?.dump(0);
+    })
+  }
+
+  updateVisibleInfo(track: TrackShadow): void {
+    // do something
+  }
+
+  dump(): void {
+    this.rootTrack?.dump(0)
+  }
+}
+```
 ## 节点自定义示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@ohos.arkui.node';
-import drawing from '@ohos.graphics.drawing';
+import { UIContext, DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
   const size = child.getUserConfigSize();
@@ -1612,4 +3514,200 @@ struct Index {
     .height('100%')
   }
 }
+```
+## NodeAdapter使用示例
+
+```ts
+import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
+
+class MyNodeAdapter extends NodeAdapter {
+  uiContext: UIContext
+  cachePool: Array<FrameNode> = new Array();
+  changed: boolean = false
+  reloadTimes: number = 0;
+  data: Array<string> = new Array();
+  hostNode?: FrameNode
+
+  constructor(uiContext: UIContext, count: number) {
+    super();
+    this.uiContext = uiContext;
+    this.totalNodeCount = count;
+    this.loadData();
+  }
+
+  reloadData(count: number): void {
+    this.reloadTimes++;
+    NodeAdapter.attachNodeAdapter(this, this.hostNode);
+    this.totalNodeCount = count;
+    this.loadData();
+    this.reloadAllItems();
+  }
+
+  refreshData(): void {
+    let items = this.getAllAvailableItems()
+    console.log("UINodeAdapter get All items:" + items.length);
+    this.reloadAllItems();
+  }
+
+  detachData(): void {
+    NodeAdapter.detachNodeAdapter(this.hostNode);
+    this.reloadTimes = 0;
+  }
+
+  loadData(): void {
+    for (let i = 0; i < this.totalNodeCount; i++) {
+      this.data[i] = "Adapter ListItem " + i + " r:" + this.reloadTimes;
+    }
+  }
+
+  changeData(from: number, count: number): void {
+    this.changed = !this.changed;
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data[index] = "Adapter ListItem " + (this.changed ? "changed:" : "") + index + " r:" + this.reloadTimes;
+    }
+    this.reloadItem(from, count);
+  }
+
+  insertData(from: number, count: number): void {
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data.splice(index, 0, "Adapter ListItem " + from + "-" + i);
+    }
+    this.insertItem(from, count);
+    this.totalNodeCount += count;
+    console.log("UINodeAdapter after insert count:" + this.totalNodeCount);
+  }
+
+  removeData(from: number, count: number): void {
+    let arr = this.data.splice(from, count);
+    this.removeItem(from, count);
+    this.totalNodeCount -= arr.length;
+    console.log("UINodeAdapter after remove count:" + this.totalNodeCount);
+  }
+
+  moveData(from: number, to: number): void {
+    let tmp = this.data.splice(from, 1);
+    this.data.splice(to, 0, tmp[0]);
+    this.moveItem(from, to);
+  }
+
+  onAttachToNode(target: FrameNode): void {
+    console.log("UINodeAdapter onAttachToNode id:" + target.getUniqueId());
+    this.hostNode = target;
+  }
+
+  onDetachFromNode(): void {
+    console.log("UINodeAdapter onDetachFromNode");
+  }
+
+  onGetChildId(index: number): number {
+    console.log("UINodeAdapter onGetChildId:" + index);
+    return index;
+  }
+
+  onCreateChild(index: number): FrameNode {
+    console.log("UINodeAdapter onCreateChild:" + index);
+    if (this.cachePool.length > 0) {
+      let cacheNode = this.cachePool.pop();
+      if (cacheNode !== undefined) {
+        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        let text = cacheNode?.getFirstChild();
+        let textNode = text as typeNode.Text;
+        textNode?.initialize(this.data[index]).fontSize(20);
+        return cacheNode;
+      }
+    }
+    console.log("UINodeAdapter onCreateChild createNew");
+    let itemNode = typeNode.createNode(this.uiContext, "ListItem");
+    let textNode = typeNode.createNode(this.uiContext, "Text");
+    textNode.initialize(this.data[index]).fontSize(20);
+    itemNode.appendChild(textNode);
+    return itemNode;
+  }
+
+  onDisposeChild(id: number, node: FrameNode): void {
+    console.log("UINodeAdapter onDisposeChild:" + id);
+    if (this.cachePool.length < 10) {
+      if (!this.cachePool.includes(node)) {
+        console.log("UINodeAdapter caching node id:" + node.getUniqueId());
+        this.cachePool.push(node);
+      }
+    } else {
+      node.dispose();
+    }
+  }
+
+  onUpdateChild(id: number, node: FrameNode): void {
+    let index = id;
+    let text = node.getFirstChild();
+    let textNode = text as typeNode.Text;
+    textNode?.initialize(this.data[index]).fontSize(20);
+  }
+}
+
+class MyNodeAdapterController extends NodeController {
+  rootNode: FrameNode | null = null;
+  nodeAdapter: MyNodeAdapter | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    let listNode = typeNode.createNode(uiContext, "List");
+    listNode.initialize({ space: 3 }).borderWidth(2).borderColor(Color.Black);
+    this.rootNode.appendChild(listNode);
+    this.nodeAdapter = new MyNodeAdapter(uiContext, 100);
+    NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct ListNodeTest {
+  adapterController: MyNodeAdapterController = new MyNodeAdapterController();
+
+  build() {
+    Column() {
+      Text("ListNode Adapter");
+      NodeContainer(this.adapterController)
+        .width(300).height(300)
+        .borderWidth(1).borderColor(Color.Black);
+      Row() {
+        Button("Reload")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.reloadData(50);
+          })
+        Button("Change")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.changeData(5, 10)
+          })
+        Button("Insert")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.insertData(10, 10);
+          })
+      }
+
+      Row() {
+        Button("Remove")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.removeData(10, 10);
+          })
+        Button("Move")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.moveData(2, 5);
+          })
+        Button("Refresh")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.refreshData();
+          })
+        Button("Detach")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.detachData();
+          })
+      }
+    }.borderWidth(1)
+    .width("100%")
+  }
+}
+
 ```

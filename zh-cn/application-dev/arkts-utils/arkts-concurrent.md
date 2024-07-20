@@ -24,7 +24,7 @@
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
@@ -184,7 +184,7 @@ task3 catch e: testPromiseError2 Error msg
 
 ## 装饰器使用示例
   ```ts
-  import taskpool from '@ohos.taskpool';
+  import { taskpool } from '@kit.ArkTS';
   
   @Concurrent
   function add(num1: number, num2: number): number {

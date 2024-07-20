@@ -5,7 +5,9 @@
 
 定义DRM数据类型。
 
-**库：** libnative_drm.z.so
+**库：** libnative_drm.so
+
+**引用文件：** &lt;multimedia/drm_framework/native_drm_common.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
@@ -38,8 +38,11 @@ shutdown(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
 
 **示例：**
 
@@ -49,33 +52,6 @@ try {
 } catch(err) {
     console.error('shutdown failed, err: ' + err);
 }
-```
-
-## power.rebootDevice<sup>(deprecated)</sup>
-
-rebootDevice(reason: string): void
-
-> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用[power.reboot](#powerreboot9)替代，替代接口能力仅对系统应用开放。
-
-重启设备。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.REBOOT
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明    |
-| ------ | ------ | ---- | ----- |
-| reason | string | 是    | 重启原因。 |
-
-**示例：**
-
-```js
-power.rebootDevice('reboot_test');
 ```
 
 ## power.reboot<sup>9+</sup>
@@ -102,8 +78,10 @@ reboot(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -137,8 +115,9 @@ wakeup(detail: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -173,7 +152,9 @@ suspend(isImmediate?: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -210,8 +191,10 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -255,8 +238,10 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -292,10 +277,9 @@ setScreenOffTime(timeout: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
-| 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -329,8 +313,9 @@ hibernate(clearMemory: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 202 | If the system permission is denied. |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 

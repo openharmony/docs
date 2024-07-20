@@ -42,11 +42,11 @@
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 | 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 | 
 | executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | 执行包含指定参数但不返回值的SQL语句。 | 
 | insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据。 | 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据。 | 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象从数据库中删除数据。 | 
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象更新数据库中的数据。 | 
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象从数据库中删除数据。 | 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | 根据指定条件查询数据库中的数据。 | 
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | 删除数据库。 | 
 
@@ -58,10 +58,10 @@
    Stage模型示例：
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { relationalStore } from '@kit.ArkData'; // 导入模块
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
@@ -70,8 +70,8 @@
          name: 'RdbTest.db', // 数据库文件名
          securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
-         dataGroupId: 'dataGroupID', // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
-         customDir: 'customDir/subCustomDir' // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
+         customDir: 'customDir/subCustomDir', // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
+         isReadOnly: false // 可选参数，指定数据库是否以只读方式打开。该参数默认为false，表示数据库可读可写。该参数为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
        };
 
        // 判断数据库版本，如果不匹配则需进行升降级操作
@@ -119,12 +119,12 @@
 
    FA模型示例：
 
-     
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // 导入模块
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { relationalStore } from '@kit.ArkData'; // 导入模块
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
-   let context = featureAbility.getContext()
+   let context = featureAbility.getContext();
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
@@ -172,6 +172,8 @@
    > - 应用创建的数据库与其上下文（Context）有关，即使使用同样的数据库名称，但不同的应用上下文，会产生多个数据库，例如每个UIAbility都有各自的上下文。
    > 
    > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，在与数据库文件相同的目录下可能会产生以-wal和-shm结尾的临时文件。此时若开发者希望移动数据库文件到其它地方使用查看，则需要同时移动这些临时文件，当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
+   > 
+   > - 错误码的详细介绍请参见[通用错误码](../reference/errorcode-universal.md)和[关系型数据库错误码](../reference/apis-arkdata/errorcode-data-rdb.md)。
 
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
      
@@ -224,43 +226,41 @@
 3. 根据谓词指定的实例对象，对数据进行修改或删除。
 
    调用update()方法修改数据，调用delete()方法删除数据。示例代码如下所示：
-     
-   ```ts
-   // 修改数据
 
-   let value1 = 'Rose';
-   let value2 = 22;
-   let value3 = 200.5;
-   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   let value5 = BigInt('15822401018187971967863');
+   ```ts
+   let value6 = 'Rose';
+   let value7 = 22;
+   let value8 = 200.5;
+   let value9 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value10 = BigInt('15822401018187971967863');
    // 以下三种方式可用
-   const valueBucket1: relationalStore.ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-     'IDENTITY': value5,
+   const valueBucket4: relationalStore.ValuesBucket = {
+     'NAME': value6,
+     'AGE': value7,
+     'SALARY': value8,
+     'CODES': value9,
+     'IDENTITY': value10,
    };
-   const valueBucket2: relationalStore.ValuesBucket = {
-     NAME: value1,
-     AGE: value2,
-     SALARY: value3,
-     CODES: value4,
-     IDENTITY: value5,
+   const valueBucket5: relationalStore.ValuesBucket = {
+     NAME: value6,
+     AGE: value7,
+     SALARY: value8,
+     CODES: value9,
+     IDENTITY: value10,
    };
-   const valueBucket3: relationalStore.ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-     "IDENTITY": value5,
+   const valueBucket6: relationalStore.ValuesBucket = {
+     "NAME": value6,
+     "AGE": value7,
+     "SALARY": value8,
+     "CODES": value9,
+     "IDENTITY": value10,
    };
-   
+
    // 修改数据
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
-   predicates.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
+   let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
+   predicates1.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket4, predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -270,10 +270,10 @@
    }
 
    // 删除数据
-   predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Lisa');
+   predicates1 = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates1.equalTo('NAME', 'Lisa');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).delete(predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).delete(predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to delete data. Code:${err.code}, message:${err.message}`);
          return;
@@ -286,12 +286,12 @@
 4. 根据谓词指定的查询条件查找数据。
 
    调用query()方法查找数据，返回一个ResultSet结果集。示例代码如下所示：
-     
+
    ```ts
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Rose');
+   let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates2.equalTo('NAME', 'Rose');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
+     (store as relationalStore.RdbStore).query(predicates2, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
        if (err) {
          console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
          return;
@@ -316,37 +316,94 @@
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
 
-5. 删除数据库。
+5. 在同路径下备份数据库。示例代码如下所示：
 
-   调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
-   
-   Stage模型示例：
-
-     
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   if (store !== undefined) {
+     // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
+     (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in backing up RdbStore.`);
+     })
+   }
+   ```
 
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
-         if (err) {
-           console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
-           return;
-         }
-         console.info('Succeeded in deleting RdbStore.');
-       });
+6. 从备份数据库中恢复数据。示例代码如下所示：
+
+   ```ts
+   if (store !== undefined) {
+     (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in restoring RdbStore.`);
+     })
+   }
+   ```
+
+7. 若数据库文件损坏，需要重建数据库。
+
+   进行开库及增删改查等操作时抛出错误码14800011表示数据库文件损坏。重建数据库的示例代码如下所示：
+
+   ```ts
+   if (store !== undefined) {
+     // 数据库文件损坏后需要关闭所有数据库连接和结果集，使用store.close()方法或把对象置为null
+     (store as relationalStore.RdbStore).close();
+     store = undefined;
+     // 将config.allowRebuild配置为true，重新调用getRdbStore开库
+     const STORE_CONFIG: relationalStore.StoreConfig = {
+       name: 'RdbTest.db',
+       securityLevel: relationalStore.SecurityLevel.S1,
+       allowRebuild: true
+     };
+
+     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+       store = rdbStore;
+       console.info('Get RdbStore successfully.')
+     }).catch((err: BusinessError) => {
+       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+     })
+
+     if (store !== undefined) {
+       // 查看重建结果
+       if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
+         console.info('Succeeded in rebuilding RdbStore.');
+         // 将损坏前备份的数据恢复到新数据库中
+         (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+           if (err) {
+             console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+             return;
+           }
+           console.info(`Succeeded in restoring RdbStore.`);
+         })
+       }
      }
    }
+   ``` 
+
+8. 删除数据库。
+
+   调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
+
+   Stage模型示例：
+
+   ```ts
+   relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
+    if (err) {
+       console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
+       return;
+     }
+     console.info('Succeeded in deleting RdbStore.');
+   });
    ```
 
    FA模型示例：
 
-     
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
-   
-   let context = getContext(this);
-
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);

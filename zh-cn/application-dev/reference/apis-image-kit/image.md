@@ -17,13 +17,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [image_mdk.h](image__mdk_8h.md) | 声明访问图像剪辑矩形、大小、格式和组件数据的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_mdk.h&gt;<br/>**库**：libimage_ndk.z.so | 
-| [image_mdk_common.h](image__mdk__common_8h.md) | 声明图像常用的枚举值和结构体。<br/>**引用文件**：&lt;multimedia/image_framework/image_mdk_common.h&gt;<br/>**库**：libimage_ndk.z.so |
-| [image_packer_mdk.h](image__packer__mdk_8h.md) | 声明用于将图像编码到缓冲区或文件的方法。 <br/>**引用文件**：&lt;multimedia/image_framework/image_packer_mdk.h&gt;<br/>**库**：| 
-| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br/>**库**：libpixelmap_ndk.z.so | 
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | （已废弃）声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br/>**库**：libpixelmap_ndk.z.so | 
-| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | 声明从native层获取图片数据的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br/>**库**：libimage_receiver_ndk.z.so | 
-| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将图片源解码成像素位图的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_source_mdk.h&gt;<br/>**库**：libimage_source_ndk.z.so |
+| [image_mdk.h](image__mdk_8h.md) | 声明访问图像剪辑矩形、大小、格式和组件数据的方法。 | 
+| [image_mdk_common.h](image__mdk__common_8h.md) | 声明图像常用的枚举值和结构体。 |
+| [image_packer_mdk.h](image__packer__mdk_8h.md) | 声明用于将图像编码到缓冲区或文件的方法。 | 
+| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | （已废弃）声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
+| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | 声明从native层获取图片数据的方法。 | 
+| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将图片源解码成像素位图的方法。 |
 
 
 ### 结构体
@@ -33,10 +33,10 @@
 | [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) | 定义图像矩形信息。 | 
 | [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) | 定义图像组成信息。 | 
 | [OhosImageSize](_ohos_image_size.md) | 定义图像大小。 | 
-| [ImagePacker_Opts_](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
+| [ImagePacker_Opts](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
 | [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | 用于定义PixelMap的相关信息。 | 
 | [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | 用于定义创建PixelMap设置选项的相关信息。 | 
-| [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
+| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
 | [OhosImageReceiverInfo](_ohos_image_receiver_info.md) | 定义**ImageReceiver**的相关信息。 | 
 | [OhosImageRegion](_ohos_image_region.md) | 定义图像源解码的范围选项。 | 
 | [OhosImageSourceOps](_ohos_image_source_ops.md) | 定义图像源选项信息。 | 
@@ -240,7 +240,7 @@ typedef struct ImagePacker_Native_ ImagePacker_Native
 ### ImagePacker_Opts
 
 ```
-typedef struct ImagePacker_Opts_ImagePacker_Opts
+typedef struct ImagePacker_Opts_ ImagePacker_Opts
 ```
 
 **描述**
@@ -3363,7 +3363,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **参见：**
 
-[GetDensity](oh_pixelmap_getdensity)
+[GetDensity](#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()

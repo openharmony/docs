@@ -17,7 +17,7 @@ The AVSource module provides the functions for constructing audio and video reso
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used for audio and video demuxing.| 
+| [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used for audio and video demuxing. | 
 
 
 ### Types
@@ -32,11 +32,11 @@ The AVSource module provides the functions for constructing audio and video reso
 | Name| Description| 
 | -------- | -------- |
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**. | 
-| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
-| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources.| 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource.| 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track.| 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI. | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD). | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track. | 
 
 
 ## Type Description
@@ -80,7 +80,19 @@ Creates an **OH_AVSource** instance with a user-defined data source. You can rel
 
 **Returns**
 
-Returns the pointer to an **OH_AVSource** instance.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The value of **dataSource** is a null pointer.
+
+2. The size of the data source is 0.
+
+3. Setting the data source fails.
+
+4. The memory is insufficient.
+
+5. The decoder engine is a null pointer.
 
 
 ### OH_AVSource_CreateWithFD()
@@ -105,13 +117,25 @@ If **offset** is not the start position of the file or **size** is not the file 
 
 | Name| Description| 
 | -------- | -------- |
-| fd | FD of a media resource file.| 
-| offset | Position from which data is to read.| 
-| size | File size, in bytes.| 
+| fd | FD of a media resource file. | 
+| offset | Position from which data is to read. | 
+| size | File size, in bytes. | 
 
 **Returns**
 
-Returns the pointer to an **OH_AVSource** instance.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The FD is invalid.
+
+2. The offset is not the start position of the file.
+
+3. The size is incorrect.
+
+4. The resource is invalid.
+
+5. The file format is not supported.
 
 
 ### OH_AVSource_CreateWithURI()
@@ -122,7 +146,7 @@ OH_AVSource* OH_AVSource_CreateWithURI (char *uri)
 
 **Description**
 
-Create an **OH_AVSource** instance object based on a URI. You can release the instance by calling **OH_AVSource_Destroy**.
+Create an **OH_AVSource** instance based on a URI. You can release the instance by calling **OH_AVSource_Destroy**.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -132,11 +156,19 @@ Create an **OH_AVSource** instance object based on a URI. You can release the in
 
 | Name| Description| 
 | -------- | -------- |
-| uri | URI of the media resource.| 
+| uri | URI of the media resource. | 
 
 **Returns**
 
-Returns the pointer to an **OH_AVSource** instance.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The network is abnormal.
+
+2. The resource is invalid.
+
+3. The file format is not supported.
 
 
 ### OH_AVSource_Destroy()
@@ -159,11 +191,13 @@ An instance can be destroyed only once. The destroyed instance cannot be used un
 
 | Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.| 
+| source | Pointer to an **OH_AVSource** instance. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+If the value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance), **AV_ERR_INVALID_VAL** is returned.
 
 
 ### OH_AVSource_GetSourceFormat()
@@ -184,11 +218,13 @@ Obtains the basic information about a media resource.
 
 | Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.| 
+| source | Pointer to an **OH_AVSource** instance. | 
 
 **Returns**
 
-Returns the basic information obtained.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows: The value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance).
 
 
 ### OH_AVSource_GetTrackFormat()
@@ -209,9 +245,15 @@ Obtains the basic information about a track.
 
 | Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.| 
-| trackIndex | Index of the track whose information is to be obtained.| 
+| source | Pointer to an **OH_AVSource** instance. | 
+| trackIndex | Index of the track whose information is to be obtained. | 
 
 **Returns**
 
-Returns the basic information obtained.
+Returns the basic information about the track if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance).
+
+2. The track index is out of range.

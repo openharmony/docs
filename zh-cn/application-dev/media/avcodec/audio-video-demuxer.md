@@ -2,23 +2,26 @@
 
 开发者可以调用本模块的Native API接口，完成音视频解封装，即从比特流数据中取出音频、视频等媒体帧数据。
 
-当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
+当前支持的数据输入类型有：远程连接(http协议、HLS协议)和文件描述符(fd)。
 
 支持的解封装格式如下：
-<!--RP1-->
+
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)|
-| 音视频     | mkv                        |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS|
-| 音视频     | mpeg-ts                    |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)|
-| 音频       | m4a                        |音频码流：AAC|
+| 音视频     | mp4                        |<!--RP1-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP1End-->|
+| 音视频     | fmp4                       |<!--RP2-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP2End-->|
+| 音视频     | mkv                        |<!--RP3-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP3End-->|
+| 音视频     | mpeg-ts                    |<!--RP4-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP4End-->|
+| 音视频     | flv                        |<!--RP5-->视频码流：AVC(H.264)，音频码流：AAC<!--RP5End-->|
+| 音频       | m4a                        |<!--RP6-->音频码流：AAC<!--RP6End-->|
 | 音频       | aac                        |音频码流：AAC|
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
 | 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                        |音频码流：FLAC|
+| 音频       | flac                       |音频码流：FLAC|
 | 音频       | wav                        |音频码流：PCM|
-| 音频       | amr                        |音频码流：AMR(amrnb/amrwb)|
-<!--RP1End-->
+| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
+| 音频       | ape                        |音频码流：APE|
+| 外挂字幕   | srt                        |字幕流：SRT|
 
 **适用场景**：
 
@@ -162,7 +165,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-   加入头文件
+   添加头文件
    ```c++
    #include <multimedia/drm_framework/native_drm_common.h>
    ```
@@ -171,8 +174,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
+   设置DRM信息监听的接口有两种，可根据需要选择。
 
-   使用示例
+   使用示例一：
    ```c++
    // DRM信息监听回调OnDrmInfoChanged实现
    static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
@@ -180,11 +184,24 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       // 解析DRM信息，包括数量、DRM类型及对应pssh
    }
 
-   // 设置异步回调
    DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
    int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
 
-   // 在监听到DRM信息后，也可主动调用获取DRM信息接口
+   使用示例二：
+   ```c++
+   // DRM信息监听回调OnDrmInfoChangedWithObj实现
+   static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // 解析DRM信息，包括数量、DRM类型及对应pssh
+   }
+
+   Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
+   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
+
+   ```
+   在监听到DRM信息后，也可主动调用获取DRM信息接口。
+   ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
@@ -192,14 +209,17 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
-   // 从文件 source 信息获取文件轨道数
+   // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
       printf("get source format failed");
       return;
    }
    int32_t trackCount = 0;
-   OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount);
+   if (!OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount)) {
+      printf("get track count from source format failed");
+      return;
+   }
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
@@ -212,18 +232,27 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t h = 0;
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
-      // 获取轨道信息
+      // 获取轨道信息，用户可通过该接口获取对应轨道级别属性，具体支持信息参考附表 2
       OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, index);
       if (trackFormat == nullptr) {
          printf("get track format failed");
          return;
       }
-      OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
+      if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType)) {
+         printf("get track type from track format failed");
+         return;
+      }
       static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
       // 获取视频轨宽高
       if (trackType == OH_MediaType::MEDIA_TYPE_VID) {
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w)) {
+            printf("get track width from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h)) {
+            printf("get track height from track format failed");
+            return;
+         }
       }
       OH_AVFormat_Destroy(trackFormat);
    }
@@ -297,17 +326,75 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 10. 销毁解封装实例。
+      ```c++
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
+         printf("destroy source pointer error");
+      }
+      source = NULL;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
+         printf("destroy demuxer pointer error");
+      }
+      demuxer = NULL;
+      close(fd);
+      ```
 
-   ```c++
-   // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
-   if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
-      printf("destroy source pointer error");
-   }
-   source = NULL;
-   // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
-   if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
-      printf("destroy demuxer pointer error");
-   }
-   demuxer = NULL;
-   close(fd);
-   ```
+## 附表
+### 文件级别属性支持范围
+
+> **说明：**
+> 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 
+> 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+**表1** 文件级别属性支持范围
+| 名称 | 描述 |
+| -- | -- |
+|OH_MD_KEY_TITLE|文件标题的键|
+|OH_MD_KEY_ARTIST|文件艺术家的键|
+|OH_MD_KEY_ALBUM|文件专辑的键|
+|OH_MD_KEY_ALBUM_ARTIST|文件专辑艺术家的键|
+|OH_MD_KEY_DATE|文件日期的键|
+|OH_MD_KEY_COMMENT|文件注释的键|
+|OH_MD_KEY_GENRE|文件流派的键|
+|OH_MD_KEY_COPYRIGHT|文件版权的键|
+|OH_MD_KEY_LANGUAGE|文件语言的键|
+|OH_MD_KEY_DESCRIPTION|文件描述的键|
+|OH_MD_KEY_LYRICS|文件歌词的键|
+|OH_MD_KEY_TRACK_COUNT|文件轨道数量的键|
+|OH_MD_KEY_DURATION|文件时长的键|
+|OH_MD_KEY_START_TIME|文件起始时间的键|
+
+### 轨道级别属性支持范围
+
+> **说明：**
+> 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 
+> 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+**表2** 轨道级别属性支持范围
+| 名称 | 描述 | 视频轨支持 | 音频轨支持 | 字幕轨支持 |
+| -- | -- | -- | -- | -- |
+|OH_MD_KEY_CODEC_MIME|码流编解码器类型的键|√|√|√|
+|OH_MD_KEY_TRACK_TYPE|码流媒体类型的键|√|√|√|
+|OH_MD_KEY_BITRATE|码流比特率的键|√|√|-|
+|OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√|-|
+|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData|√|√|-|
+|OH_MD_KEY_WIDTH|视频流宽度的键|√|-|-|
+|OH_MD_KEY_HEIGHT|视频流高度的键|√|-|-|
+|OH_MD_KEY_FRAME_RATE|视频流帧率的键|√|-|-|
+|OH_MD_KEY_ROTATION|视频流旋转角度的键|√|-|-|
+|OH_MD_KEY_VIDEO_SAR|视频流样本长宽比的键|√|-|-|
+|OH_MD_KEY_PROFILE|视频流编码档次，只针对 h265 码流使用|√|-|-|
+|OH_MD_KEY_RANGE_FLAG|视频流视频YUV值域标志的键，只针对 h265 码流使用|√|-|-|
+|OH_MD_KEY_COLOR_PRIMARIES|视频流视频色域的键，只针对 h265 码流使用|√|-|-|
+|OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频流视频传递函数的键，只针对 h265 码流使用|√|-|-|
+|OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，只针对 h265 码流使用|√|-|-|
+|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为 HDRVivid 的键，只针对 HDRVivid 码流使用|√|-|-|
+|OH_MD_KEY_AUD_SAMPLE_RATE|音频流采样率的键|-|√|-|
+|OH_MD_KEY_AUD_CHANNEL_COUNT|音频流通道数的键|-|√|-|
+|OH_MD_KEY_CHANNEL_LAYOUT|音频流所需编码通道布局的键|-|√|-|
+|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频流样本格式的键|-|√|-|
+|OH_MD_KEY_AAC_IS_ADTS|aac格式的键，只针对 aac 码流使用|-|√|-|
+|OH_MD_KEY_BITS_PER_CODED_SAMPLE|音频流每个编码样本位数的键|-|√|-|

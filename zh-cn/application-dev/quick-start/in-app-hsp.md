@@ -24,7 +24,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -98,7 +98,7 @@ export { Log, add, minus } from './src/main/ets/utils/test';
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`liblibrary.so`的乘法接口`multi`为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {
@@ -166,7 +166,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)<!--RP2End-->。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -448,38 +448,81 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
     ```
 
 ## 集成态HSP
+集成态HSP是应用内HSP的一种中间编译产物，目的就是解决使用方的bundleName和签名强耦合性。
+> **说明：** HSP使用只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
 
-### 配置HSP模块为集成态HSP
-修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
 
-```
-{
-  "apiType": "stageMode",
-  "buildOption": {
-    "arkOptions": {
-      "integratedHsp": true
-    }
-  }
-}
-```
+#### 开发使用说明
+1. 创建方—集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
 
-### 配置工程使用标准化的OHMUrl格式
-集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
-```
-{
-  "app": {
-    "products": {
-      "name": "default",
-      "signingConfig": "default",
-      "compatibleSdkVersion": "5.0.0(12)",
-      "runtimeOS": "HarmonyOS",
-      "buildOption": {
-        "strictMode": {
-          "useNormalizedOHMUrl": true
+    ```json
+    // created_party_project/build-profile.json5
+    {
+      "app": {
+        "products": {
+          "name": "default",
+          "signingConfig": "default",
+          "compatibleSdkVersion": "5.0.0(12)",
+          "runtimeOS": "HarmonyOS",
+          "buildOption": {
+            "strictMode": {
+              "useNormalizedOHMUrl": true
+            }
+          }
         }
       }
     }
-  }
-}
-```
+    ```
+2. 创建方—集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
+
+    ```json
+    // created_party_project/library/build-profile.json5
+    {
+      "apiType": "stageMode",
+      "buildOption": {
+        "arkOptions": {
+          "integratedHsp": true
+        }
+      }
+    }
+    ```
+
+3. 创建方—集成态HSP-打包配置（tgz包）。
+
+    3.1 配置项目签名信息；
+
+    3.2 配置release模式；
+
+    ![](./figures/ide-release-setting.png)
+
+    3.3 选择library目录，Build -> Make Module 'libray'。
+
+4. 使用方-工程依赖配置:使用方主模块下oh-package.json5配置文件中添加依赖。
+
+    ```json
+    // user_project/entry/oh-package.json5
+      "dependencies": {
+        "hsp": "./lib/library-default.tgz"
+      }
+    ```
+
+5. 使用方-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
+
+    ```json
+    // user_project/build-profile.json5
+    {
+      "app": {
+        "products": {
+          "name": "default",
+          "signingConfig": "default",
+          "compatibleSdkVersion": "5.0.0(12)",
+          "runtimeOS": "HarmonyOS",
+          "buildOption": {
+            "strictMode": {
+              "useNormalizedOHMUrl": true
+            }
+          }
+        }
+      }
+    }
+    ```

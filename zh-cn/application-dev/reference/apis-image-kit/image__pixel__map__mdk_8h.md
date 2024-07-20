@@ -5,6 +5,10 @@
 
 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。
 
+**库**：libpixelmap_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;
+
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)

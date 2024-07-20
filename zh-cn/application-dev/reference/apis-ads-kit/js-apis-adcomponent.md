@@ -17,11 +17,9 @@ import { AdComponent } from '@kit.AdsKit';
 
 ## AdComponent
 
-AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer:() => void): void
+AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer?:() => void): void
 
 展示非全屏广告。
-
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -30,9 +28,9 @@ AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.A
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | 是 | 广告对象数组。 | 
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | 是 | 广告展示参数。 | 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是 | 广告状态变化回调。 | 
+| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | 是 | 广告对象数组。<br/>原子化服务API：从API version12开始，该接口支持在原子化服务中使用。 | 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | 是 | 广告展示参数。<br/>原子化服务API：从API version12开始，该接口支持在原子化服务中使用。 | 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是 | 广告状态变化回调。<br/>原子化服务API：从API version12开始，该接口支持在原子化服务中使用。 | 
 | adRenderer<sup>12+</sup> | () => void | 否 | 应用自渲染广告样式。 | 
 
 **示例：**
@@ -49,7 +47,7 @@ export struct ShowNonFullScreenAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {

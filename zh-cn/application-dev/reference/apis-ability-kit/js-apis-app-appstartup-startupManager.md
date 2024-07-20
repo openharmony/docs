@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-本模块提供应用启动框架管理待初始化组件的能力，只能在主线程调用。
+本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import startupManager  from '@ohos.app.appstartup.startupManager';
+import { startupManager }  from '@kit.AbilityKit';
 ```
 
 ## startupManager.run
@@ -25,14 +25,14 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | 是 | 表明准备执行的待初始化组件所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称数组。 |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与组件初始化监听器配置。 |
+  | startupTasks | Array\<string\> | 是 | 表明准备执行的启动任务所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称数组。 |
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -50,31 +50,31 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
-    let startParams = 'Sample_001';
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let startParams = ['StartupTask_001'];
     try {
-        startup.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ')
-        }).catch(error => {
+      // 手动调用run方法
+      startupManager.run(startParams).then(() => {
+        console.log('StartupTest startupManager run then, startParams = ');
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error)
-        let errCode = error.code
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = JSON.stringify(error);
+      let errCode: number = error.code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
+  // ...
 }
 ```
 
@@ -82,32 +82,29 @@ export default class EntryAbility extends UIAbility {
 
 removeAllStartupTaskResults(): void
 
-删除所有组件的初始化结果。
+删除所有启动任务结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = removeAllStartupTaskResults.removeAllStartupTaskResults();
-    
+    startupManager.removeAllStartupTaskResults(); // 移除所有启动任务结果
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -124,7 +121,7 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-获得特定的组件初始化结果。
+获得指定的启动任务结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -132,13 +129,13 @@ getStartupTaskResult(startupTask: string): Object
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有待初始化组件都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Object | 特定组件初始化的结果。 |
+  | Object | 指定启动任务的结果。 |
 
 **错误码：**
 
@@ -151,24 +148,21 @@ getStartupTaskResult(startupTask: string): Object
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult('Sample_001');
+    let result = startupManager.getStartupTaskResult('StartupTask_001'); // 手动获取启动任务结果
     console.info("getStartupTaskResult result = " + result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -186,7 +180,7 @@ export default class EntryAbility extends UIAbility {
 
 isStartupTaskInitialized(startupTask: string): boolean
 
-获取特定组件是否已初始化。
+获取指定启动任务是否已初始化。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -194,13 +188,13 @@ isStartupTaskInitialized(startupTask: string): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 返回布尔值，true表示该组件已完成初始化，false表示该组件未完成初始化。 |
+  | boolean | 返回布尔值，true表示该启动任务已执行完成，false表示该启动任务尚未执行完成。 |
 
 **错误码：**
 
@@ -213,30 +207,27 @@ isStartupTaskInitialized(startupTask: string): boolean
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.isStartupTaskInitialized('Sample_001');
+    let result = startupManager.isStartupTaskInitialized('StartupTask_001');
     if (result) {
-      console.info("Sample_001 init successful");
+      console.info("StartupTask_001 init successful");
     } else {
-      console.info("Sample_001 uninitialized");
+      console.info("StartupTask_001 uninitialized");
     }
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -260,7 +251,7 @@ removeStartupTaskResult(startupTask: string): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
   
 **错误码：**
 
@@ -273,25 +264,22 @@ removeStartupTaskResult(startupTask: string): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeStartupTaskResult('Sample_001');
-    
+    startupManager.removeStartupTaskResult('StartupTask_001');
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

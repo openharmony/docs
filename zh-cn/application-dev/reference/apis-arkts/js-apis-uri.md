@@ -21,97 +21,113 @@ import { uri } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
-
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | 是 | 否 | 获取URI的协议部分。 |
-| userInfo | string | 是 | 否 | 获取URI的用户信息部分。 |
-| host | string | 是 | 否 | 获取URI的主机名部分（不带端口）。 |
-| port | string | 是 | 否 | 获取URI的端口部分。 |
-| path | string | 是 | 否 | 获取URI的路径部分。 |
-| query | string | 是 | 否 | 获取URI的查询部分。 |
-| fragment | string | 是 | 否 | 获取URI的片段部分 |
-| authority | string | 是 | 否 | 获取此URI的解码权限组件部分。 |
-| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。 |
-| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分。   |
-| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分。         |
-| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分。       |
-| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分。       |
-| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分。   |
-| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。   |
+| scheme | string | 是 | 否 | 获取URI的协议部分。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| userInfo | string | 是 | 否 | 获取URI的用户信息部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| host | string | 是 | 否 | 获取URI的主机名部分（不带端口）。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| port | string | 是 | 否 | 获取URI的端口部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| path | string | 是 | 否 | 获取URI的路径部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| query | string | 是 | 否 | 获取URI的查询部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| fragment | string | 是 | 否 | 获取URI的片段部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| authority | string | 是 | 否 | 获取此URI的解码权限组件部分。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分。<br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
+| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分。  <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
+| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。      |
+| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。      |
+| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分。<br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
+| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
 
 ### 命名规则
 
 **命名形式：**
 
-标准uri定义由以下三个部分组成
-[scheme:]scheme-specific-part[#fragment]
-- scheme: 协议名，根据需要填写。例如http、https、ftp、datashare、dataability等。
-- scheme-specific-part: URI的特定解码方案特定部分，由[//][authority][path][?query]组成，根据需要填写。
+标准uri定义主要由以下三个部分组成：
+[scheme:]scheme-specific-part[#fragment]。
+
+将URI格式细化一些则可分为：
+[scheme:][//authority][path][?query][#fragment]。
+
+将URI格式进一步细化可分为：
+[scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
+
+- scheme: 协议名，与scheme-specific-part以：进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
+- scheme-specific-part: URI的特定解码方案特定部分，位于[scheme:]和[#fragment]之间由[//][authority][path][?query]组成，此部分以/开头的为分层URI，不以/开头的为不透明URI，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
-        - userinfo: 用户信息，根据需要填写。
+        - userinfo: 用户信息，与host通过@进行分隔，根据需要填写。
         - host: 服务器的主机名部分，当authority存在时，此项必填。
-        - port: 服务器端口，根据需要填写。
-    - path: 路径信息，根据需要填写。
-    - query: 查询部分，根据需要填写。
-- fragment: 片段部分，根据需要填写。
+        - port: 服务器端口，默认值为-1。根据需要填写。
+    - path: 路径信息，位于host与query之间以 / 进行分割，根据需要填写。
+    - query: 查询部分，位于path和fragment之间，以 ? 开头的键值对格式，以&分割键值对，以=分割键值，根据需要填写。
+- fragment: 片段部分，以#与scheme-specific-part进行分隔，根据需要填写。
 
 **URI示例：**
 
 ```ts
 const result1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
-console.log(result1.host) // ftp.aaa.bbb.ccc
-console.log(result1.fragment) // null
-console.log(result1.path) // /dddd/eee.txt
-console.log(result1.scheme) // ftp
-console.log(result1.userInfo) // null
-console.log(result1.port) // -1
-console.log(result1.query) // null
+console.info(result1.host) // ftp.aaa.bbb.ccc
+console.info(result1.fragment) // null
+console.info(result1.path) // /dddd/eee.txt
+console.info(result1.scheme) // ftp
+console.info(result1.userInfo) // null
+console.info(result1.port) // -1
+console.info(result1.query) // null
 
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
-console.log(result2.host) // spinaltap.micro.umn.edu
-console.log(result2.fragment) // fragment
-console.log(result2.path) // /00/Weather/California/Los Angeles
-console.log(result2.scheme) // gopher
-console.log(result2.userInfo) // null
-console.log(result2.port) //-1
-console.log(result2.query) // null
+console.info(result2.host) // spinaltap.micro.umn.edu
+console.info(result2.fragment) // fragment
+console.info(result2.path) // /00/Weather/California/Los Angeles
+console.info(result2.scheme) // gopher
+console.info(result2.userInfo) // null
+console.info(result2.port) //-1
+console.info(result2.query) // null
 
 const result3 = new uri.URI("datashare:///com.samples.datasharetest.DataShare/DB00/TBL00");
-console.log(result3.host) // null
-console.log(result3.fragment) // null
-console.log(result3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
-console.log(result3.scheme) // datashare
-console.log(result3.userInfo) // null
-console.log(result3.port) // -1
-console.log(result3.query) // null
+console.info(result3.host) // null
+console.info(result3.fragment) // null
+console.info(result3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
+console.info(result3.scheme) // datashare
+console.info(result3.userInfo) // null
+console.info(result3.port) // -1
+console.info(result3.query) // null
 
 const result4 = new uri.URI("https://username:password@host:8080/directory/file?foo=1&bar=2#fragment");
-console.log(result4.host) // host
-console.log(result4.fragment) // fragment
-console.log(result4.path) // /directory/file
-console.log(result4.scheme) // https
-console.log(result4.userInfo) // username:password
-console.log(result4.port) // 8080
-console.log(result4.query) // foo=1&bar=2
+console.info(result4.host) // host
+console.info(result4.fragment) // fragment
+console.info(result4.path) // /directory/file
+console.info(result4.scheme) // https
+console.info(result4.userInfo) // username:password
+console.info(result4.port) // 8080
+console.info(result4.query) // foo=1&bar=2
 
 const result5 = new uri.URI("dataability:///com.example.DataAbility");
-console.log(result5.host) // null
-console.log(result5.fragment) // null
-console.log(result5.path) // /com.example.DataAbility:
-console.log(result5.scheme) // dataability
-console.log(result5.userInfo) // null
-console.log(result5.port) // -1
-console.log(result5.query) // null
+console.info(result5.host) // null
+console.info(result5.fragment) // null
+console.info(result5.path) // /com.example.DataAbility:
+console.info(result5.scheme) // dataability
+console.info(result5.userInfo) // null
+console.info(result5.port) // -1
+console.info(result5.query) // null
 
 const result6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
-console.log(result6.encodedUserInfo) // username:my+name
-console.log(result6.encodedPath) // /directory/my+file
-console.log(result6.encodedQuery) // foo=1&bar=2
-console.log(result6.encodedFragment) // fragment
-console.log(result6.encodedAuthority) // username:my+name@host:8080
-console.log(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+console.info(result6.encodedUserInfo) // username:my+name
+console.info(result6.encodedPath) // /directory/my+file
+console.info(result6.encodedQuery) // foo=1&bar=2
+console.info(result6.encodedFragment) // fragment
+console.info(result6.encodedAuthority) // username:my+name@host:8080
+console.info(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+
+let result7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
+console.log(result7.scheme) // www.abc.com
+console.log(result7.host) // null
+console.log(result7.port) // -1
+console.log(result7.path) // null
+console.log(result7.query) // null
+console.log(result7.authority) // null
+console.log(result7.fragment) // qwer=da
+console.log(result7.ssp) // 8080/directory/file?ab=pppppp
+console.log(result7.checkIsAbsolute()) // true
 ```
 
 ### constructor
@@ -120,7 +136,7 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -132,10 +148,11 @@ constructor是URI的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid uri string. |
 
 **示例：**
@@ -153,23 +170,23 @@ new uri.URI('https://username:password@host:8080');
 
 toString(): string
 
+将URI转化为编码后的字符串。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-返回适用于URI中的查询字符串。
-
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回网址的字符串序列化。 |
+| string | 返回URI的字符串序列化。 |
 
 **示例：**
 
 ```ts
-const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result1 = result.toString();
+const result = new uri.URI('https://username:password@host:8080/directory/file?ab=pppppp#qwer da');
+let result1 = result.toString(); // https://username:password@host:8080/directory/file?ab=pppppp#qwer%20da
 ```
 
 ### equalsTo<sup>9+</sup>
@@ -178,7 +195,7 @@ equalsTo(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -194,12 +211,20 @@ equalsTo(other: URI): boolean
 | -------- | -------- |
 | boolean | 返回true表示相等，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = uriInstance.equalsTo(uriInstance1);
+let result = uriInstance.equalsTo(uriInstance1); // true
 ```
 
 ### checkIsAbsolute
@@ -208,7 +233,7 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -222,9 +247,9 @@ checkIsAbsolute(): boolean
 
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-console.log(`${uriInstance.checkIsAbsolute()}`); // true
+console.info(`${uriInstance.checkIsAbsolute()}`); // true
 const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
-console.log(`${uriInstance1.checkIsAbsolute()}`); // false
+console.info(`${uriInstance1.checkIsAbsolute()}`); // false
 ```
 
 
@@ -234,7 +259,7 @@ normalize(): URI
 
 规范化此URI的路径。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -248,16 +273,18 @@ normalize(): URI
 
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
-console.log(uriInstance.path); // /path/path1/../path2/./path3
+console.info(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
-console.log(uriInstance1.path); // /path/path2/path3
+console.info(uriInstance1.path); // /path/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
 
 checkRelative(): boolean
 
-判断此URI是否为相对URI，相对URI指的是不包括协议部分的URI。
+判断此URI是否为相对URI，相对URI指的是不包含协议(scheme)部分的URI。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -271,16 +298,18 @@ checkRelative(): boolean
 
 ```ts
 const uriInstance = new uri.URI("https://username:password@www.qwer.com:8080?query=p");
-console.log(`${uriInstance.checkRelative()}`); // false
+console.info(`${uriInstance.checkRelative()}`); // false
 const uriInstance1 = new uri.URI("/images/pic.jpg");
-console.log(`${uriInstance1.checkRelative()}`); // true
+console.info(`${uriInstance1.checkRelative()}`); // true
 ```
 
 ### checkOpaque<sup>12+</sup>
 
 checkOpaque(): boolean
 
-判断此URI的方案特定部分是否以“/”开头，不以“/”开头的URI为不透明的URI。
+判断此URI是否为不透明URI，方案特定部分不以“/”开头的URI为不透明的URI。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -294,16 +323,18 @@ checkOpaque(): boolean
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
-console.log(`${uriInstance.checkOpaque()}`); // false
+console.info(`${uriInstance.checkOpaque()}`); // false
 const uriInstance1 = new uri.URI("mailto:user@example.com");
-console.log(`${uriInstance1.checkOpaque()}`); // true
+console.info(`${uriInstance1.checkOpaque()}`); // true
 ```
 
 ### checkHierarchical<sup>12+</sup>
 
 checkHierarchical(): boolean
 
-判断此URI的方案特定部分是否以“/”开头，以“/”开头的URI为分层的URI。相对URI也是分层的。
+判断此URI是否为分层URI，方案特定部分以“/”开头的URI为分层的URI。相对URI也是分层的。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -317,16 +348,20 @@ checkHierarchical(): boolean
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
-console.log(`${uriInstance.checkHierarchical()}`); // true
+console.info(`${uriInstance.checkHierarchical()}`); // true
 const uriInstance1 = new uri.URI("mailto:user@example.com");
-console.log(`${uriInstance1.checkHierarchical()}`); // false
+console.info(`${uriInstance1.checkHierarchical()}`); // false
 ```
 
 ### getQueryValue<sup>12+</sup>
 
 getQueryValue(key:string): string
 
-根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值。
+根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -342,11 +377,21 @@ getQueryValue(key:string): string
 | ------ | ----------------------------- |
 | string | 返回第一个此URI查询参数的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
-console.log(uriInstance.getQueryValue("param1")); // value1
+console.info(uriInstance.getQueryValue("param1")); // value1
+let uriInstance1 = new uri.URI('htps://www.zyy.ss?sa%3D=po%7E');
+console.info(uriInstance1.getQueryValue('sa=')) // po~
 ```
 
 ### addQueryValue<sup>12+</sup>
@@ -354,6 +399,8 @@ console.log(uriInstance.getQueryValue("param1")); // value1
 addQueryValue(key:string, value:string): URI
 
 在当前URI的基础上添加查询参数，并创建一个新的URI，同时保持原有URI对象不变。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -370,19 +417,29 @@ addQueryValue(key:string, value:string): URI
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回添加查询部分后的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com");
 const newRoute = uriInstance.addQueryValue("param1", "hello world");
-console.log(newRoute.toString()); // https://www.test.com?param1=hello%20world
+console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 ```
 
 ### addSegment<sup>12+</sup>
 
 addSegment(pathSegment:string): URI
 
-对给定的字段进行编码并将其追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
+对给定的字段进行编码并将其追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -398,19 +455,29 @@ addSegment(pathSegment:string): URI
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com");
 const newRoute = uriInstance.addSegment("my image.jpg");
-console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 ```
 
 ### addEncodedSegment<sup>12+</sup>
 
 addEncodedSegment(pathSegment:string): URI
 
-通过将已编码的字段追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
+通过将已编码的字段追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -426,19 +493,29 @@ addEncodedSegment(pathSegment:string): URI
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com");
 const newRoute = uriInstance.addEncodedSegment("my%20image.jpg");
-console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 ```
 
 ### getQueryNames<sup>12+</sup>
 
 getQueryNames(): string[]
 
-获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，不同的参数之间使用与号“&”分隔。
+获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -453,14 +530,18 @@ getQueryNames(): string[]
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
 const paramNames = uriInstance.getQueryNames();
-console.log(Array.from(paramNames).toString()); // param1,param2
+console.info(Array.from(paramNames).toString()); // param1,param2
 ```
 
 ### getQueryValues<sup>12+</sup>
 
 getQueryValues(key:string): string[]
 
-获取此URI中查询参数的所有值。
+获取此URI中查询参数的所有指定键对应值的集合。若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -468,19 +549,27 @@ getQueryValues(key:string): string[]
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| key    | string | 是   | 此URI查询参数的名称。 |
+| key    | string | 是   | 指定键的名称。 |
 
 **返回值：**
 
 | 类型     | 说明                                |
 | -------- | ----------------------------------- |
-| string[] | 返回此URI中查询参数的所有值。 |
+| string[] | 返回此URI中查询参数内所有指定键对应值的集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
 
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com/search?query=name&query=my");
-console.log(uriInstance.getQueryValues("query").toString()); // name,my
+console.info(uriInstance.getQueryValues("query").toString()); // name,my
 ```
 
 ### getBooleanQueryValue<sup>12+</sup>
@@ -488,6 +577,8 @@ console.log(uriInstance.getQueryValues("query").toString()); // name,my
 getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
 从URI查询参数中获取布尔类型的参数值。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -504,17 +595,25 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | ------- | ---------------------------------------------------------------------- |
 | boolean | 如果指定的查询参数不存在，则返回默认值；查询参数对应第一个值为“false”或者“0”返回false，否则返回true。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com/search?active=true");
-console.log(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
+console.info(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
 const uriInstance1 = new uri.URI("https://www.test.com/search");
-console.log(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
+console.info(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
 const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=false");
-console.log(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
+console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
-console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
 ```
 
 ### clearQuery<sup>12+</sup>
@@ -522,6 +621,8 @@ console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
 clearQuery(): URI
 
 清除URI路径查询部分，并创建一个新的URI，同时保持原有URI对象不变。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -535,7 +636,7 @@ clearQuery(): URI
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1");
-console.log(uriInstance.clearQuery().toString()); // https://www.test.com
+console.info(uriInstance.clearQuery().toString()); // https://www.test.com
 ```
 
 ### getLastSegment<sup>12+</sup>
@@ -543,6 +644,8 @@ console.log(uriInstance.clearQuery().toString()); // https://www.test.com
 getLastSegment(): string
 
 获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的不代表段。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -556,7 +659,7 @@ getLastSegment(): string
 
 ```ts
 const uriInstance = new uri.URI("content://com.test.provider/files/image.jpg");
-console.log(uriInstance.getLastSegment()); // image.jpg
+console.info(uriInstance.getLastSegment()); // image.jpg
 ```
 
 ### getSegment<sup>12+</sup>
@@ -564,6 +667,8 @@ console.log(uriInstance.getLastSegment()); // image.jpg
 getSegment(): string[]
 
 获取此URI路径中的所有段。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -577,7 +682,7 @@ getSegment(): string[]
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/path/to/image.jpg");
-console.log(uriInstance.getSegment().toString()); // path,to,image.jpg
+console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
 ```
 
 ### createFromParts<sup>12+</sup>
@@ -585,6 +690,8 @@ console.log(uriInstance.getSegment().toString()); // path,to,image.jpg
 createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 根据提供的协议、方案特定部分以及片段部分创建一个新的URI。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -602,11 +709,19 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 | ---- | ------------------------------------------------- |
 | [URI](#uri)  | 返回创建的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | if the input parameters are invalid. |
+
 **示例：**
 
 ```ts
 const uriInstance = uri.URI.createFromParts("mailto", "no body", "top");
-console.log(uriInstance.toString()); // mailto:no%20body#top
+console.info(uriInstance.toString()); // mailto:no%20body#top
 ```
 
 ### equals<sup>(deprecated)</sup>
@@ -638,5 +753,5 @@ equals(other: URI): boolean
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-uriInstance.equals(uriInstance1);
+uriInstance.equals(uriInstance1); // true
 ```

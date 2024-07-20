@@ -47,6 +47,7 @@
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
 | --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
 | --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效              |
+| --hnp-path | 否 | NA | 指定native软件包文件路径，将native软件包打入HAP包内。 | NA |
 
 ## HSP打包指令
 
@@ -82,6 +83,11 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 
 **App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。
 
+**打包app时的压缩规则：** 打包app时，对release模式的hap、hsp包会进行压缩，对debug模式的hap、hsp包不会压缩。
+
+>**说明：**
+>
+>从API version 12开始，App打包不再对versionName校验。
 
 示例：
 
@@ -100,6 +106,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 | --out-path         | 是     | NA          | 目标文件路径，文件名必须以.app为后缀。                                        |
 | --signature-path   | 否     | NA          | 签名路径。                                                        |
 | --certificate-path | 否     | NA          | 证书路径。                                                        |
+| --pack-res-path    | 否     | NA          | pack.res快照文件路径。                                 |
 | --force            | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                           |
 
 
@@ -109,6 +116,10 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
 **多工程打包HAP合法性校验：** 需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug属性相同，minAPIVersion、targetAPIVersion、apiReleaseType、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证json文件中配置的package唯一。
+
+>**说明：**
+>
+>从API version 12开始，多工程打包不再对versionName校验。
 
 示例：
 
@@ -210,3 +221,23 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 | --bundle-name  | 是     | 包名            | 指定的包名，HSP的包名会被修改为指定的包名。                             |
 | --version-code | 是     | 版本号           | 指定的版本号，HSP的版本号会被修改为该版本号。需要为整数，且大于0。                 |
 | --out-path     | 是     | NA            | 目标文件路径，需要为一个目录。                                     |
+
+## res模式打包指令
+
+此命令用于打包元服务快照资源。
+
+示例：
+
+```
+java -jar app_packing_tool.jar --mode res --entrycard-path [option] --pack-info-path [option] --out-path [option] --force [option]
+```
+
+**表9** 参数含义及规范
+
+| 指令               | 是否必选项 | 选项            | 描述                                 |
+|------------------|-------|---------------|------------------------------------|
+| --mode           | 是     | res           | 命令类型。                              |
+| --entrycard-path | 是     | NA            | 快照目录的路径。                           |
+| --pack-info-path | 是     | NA            | pack.info文件路径。              |
+| --out-path       | 是     | NA            | 目标文件路径，文件名必须以.res为后缀。              |
+| --force          | 否     | true或者false   | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |

@@ -56,7 +56,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
   console.info('Should be no callback.');
 });
 ```
-
+<!--Del-->
 ## Selecting an Audio Input Device (for System Applications only)
 
 Currently, only one input device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
@@ -93,3 +93,4 @@ async function getRoutingManager() {
 }
 
 ```
+<!--DelEnd-->

@@ -24,44 +24,51 @@ FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIA
    ![pageability-switch](figures/pageability-switch.png)
 
 3. 对迁移过来的代码进行调整，主要有以下两部分。
-   1、指定加载页面的方式不同。
 
-   - 在FA模型中，通过在config.json中设置页面信息来配置需要加载的页面。
-   - 在Stage模型中，则是通过在onWindowStageCreate回调中调用windowStage.loadContent实现对页面的加载。
+    1. 指定加载页面的方式不同。
 
-   例如，开发者希望Ability启动后加载"pages/Index"页面，在FA模型中，开发者需要在config.json中加入如下代码：
+        - 在FA模型中，通过在config.json中设置页面信息来配置需要加载的页面。
+        - 在Stage模型中，则是通过在onWindowStageCreate回调中调用windowStage.loadContent实现对页面的加载。
 
-
-   ```json
-   "pages" : [
-       "pages/Index"
-   ]
-   ```
-
-   在Stage模型中，则在MainAbility中实现如下接口：
+        例如，开发者希望Ability启动后加载"pages/Index"页面，在FA模型中，开发者需要在config.json中加入如下代码：
 
 
-   ```ts
-    import Window from '@ohos.window'；
-    import UIAbility from '@ohos.app.ability.UIAbility';
+        ```json
+        "pages" : [
+            "pages/Index"
+        ]
+        ```
 
-    export default class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
-        // Main window is created, set main page for this ability
-        windowStage.loadContent('pages/Index', (err, data) => {
-          if (err.code) {
-            console.error("loadContent failed")
-            return;
+        在Stage模型中，则在MainAbility中实现如下接口：
+
+
+        ```ts
+        import { UIAbility } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
+        import { window } from '@kit.ArkUI';
+
+        export default class TestAbility extends UIAbility {
+          // ...
+          onWindowStageCreate(windowStage: window.WindowStage) {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
+            windowStage.loadContent('testability/pages/Index', (err, data) => {
+              if (err.code) {
+                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+                return;
+              }
+              hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+                JSON.stringify(data) ?? '');
+            });
           }
-        });
-      }
-    }
-   ```
-  2、在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例:
-  ```json
-  {
-    "src": [
-      "pages/Index"
-    ]
-  }
-  ```
+          // ...
+        }
+        ```
+
+    2. 在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例:
+        ```json
+        {
+          "src": [
+            "pages/Index"
+          ]
+        }
+        ```

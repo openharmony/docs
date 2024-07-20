@@ -1,12 +1,13 @@
 # Native API Standard Libraries
 
-- [musl libc](musl.md)
+- [libc](musl.md)
 - [libc++](cpp.md)
 - [Node-API](napi.md)
 - [libuv](libuv.md)
 - [OpenSL ES](opensles.md)
 - [OpenGL ES](opengles.md)
 - [EGL](egl.md)
+- [ICU4C](icu4c.md)
 - [Zlib](zlib.md)
 - Vulkan
   - [Vulkan Development](vulkan-guidelines.md)
@@ -24,5 +25,6 @@
 - Appendix
   - [libc Symbols Not Exported](musl-peculiar-symbol.md)
   - [Restricted musl libc APIs](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
-  - [EGL Symbols Exported](egl-symbol.md)
-  - [OpenGL ES 3.2 Symbols Exported](openglesv3-symbol.md)
+  - [EGL Symbols Exported from Native APIs](egl-symbol.md)
+  - [ICU4C Symbols Exported from Native APIs](icu4c-symbol.md)
+  - [OpenGL ES 3.2 Symbols Exported from Native APIs](openglesv3-symbol.md)

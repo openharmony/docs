@@ -24,7 +24,7 @@
 |  lexical variable	|  词法变量，词法环境中所存的闭包变量   |
 
 #### 约束
-* 本文中所有采用代码形式描述的内容均遵循[ArkTS语言规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/introduction-to-arkts.md)
+* 本文中所有采用代码形式描述的内容均遵循[ArkTS语言规范](introduction-to-arkts.md)
 * 本文仅适用于版本号为11.0.2.0的方舟字节码（版本号为方舟编译器内部保留字段，开发者无需关注）
 
 ### 字节码构成
@@ -272,7 +272,7 @@ function foo(a: number, b: number): void {}
 |  PREF_IMM16	 |  16位前缀操作码，16位立即数   |
 |  PREF_IMM16_ID16	 |  16位前缀操作码，16位立即数，16位id   |
 |  PREF_IMM16_V8	 |  16位前缀操作码，16位立即数，8位寄存器   |
-|  PREF_IMM16_V8_V8	 |  16位前缀操作码，16位寄存器，2个8位寄存器   |
+|  PREF_IMM16_V8_V8	 |  16位前缀操作码，16位立即数，2个8位寄存器   |
 |  PREF_IMM8	 |  16位前缀操作码，8位立即数   |
 |  PREF_NONE	 |  16位前缀操作码   |
 |  PREF_V8	 |  16位前缀操作码，8位寄存器   |
@@ -546,11 +546,11 @@ function foo(a: number, b: number): void {}
 |  0x06fc	|  (deprecated)	 |  |  | （弃用的操作码） |  	 
 |  0x06fd	|  PREF_IMM16_V8	|  wide.supercallthisrange +AAAA, vBB	|  A：参数数量<br>B, ..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数, 调用`super`函数，并将结果存放到acc中。<br>当A的值是0时，B是**undefined**。<br>此指令仅出现在非箭头函数中。   |
 |  0x06fe	|  PREF_V8_V8	|  throw.undefinedifhole vAA, vBB	|  A：对象<br>B：对象名称	|  如果A的值是**hole**，则抛出异常：B的值是**undefined**。   |
-|  0x07fb	|  PREF_IMM16_ID16_ID16_IMM16_V8	|  callruntime.definesendableclass RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：[sendable class](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-sendable.md#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建一个A类的对象，并将其存放到acc中。   |
+|  0x07fb	|  PREF_IMM16_ID16_ID16_IMM16_V8	|  callruntime.definesendableclass RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：[sendable class](../arkts-utils/arkts-sendable.md#sendable-class)的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建一个A类的对象，并将其存放到acc中。   |
 |  0x07fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x07fd	|  PREF_IMM16_V8	|  wide.supercallarrowrange +AAAA, vBB	|  默认入参：acc：类对象<br>A：参数数量<br>B, ..., B + A - 1:参数	|  以B, ..., B + A - 1作为参数，调用acc中所存类的父类的构造函数，并将结果存放到acc中。<br>如果A的值为0，则B为**undefined**。<br>此指令仅出现在箭头函数中。   |
 |  0x07fe	|  PREF_IMM8	|  throw.ifsupernotcorrectcall +AA	|  默认入参：acc：对象<br>A：错误种类	|  如果`super`没有被正确调用，抛出错误。   |
-|  0x08fb	|  PREF_IMM16	|  callruntime.ldsendableclass +AAAA	|  A：词法环境层级	|  将A个层次外的词法环境的[sendable class](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-sendable.md#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)存放到acc中。   |
+|  0x08fb	|  PREF_IMM16	|  callruntime.ldsendableclass +AAAA	|  A：词法环境层级	|  将A个层次外的词法环境的[sendable class](../arkts-utils/arkts-sendable.md#sendable-class)存放到acc中。   |
 |  0x08fc	|  (deprecated)	 |  |  | （弃用的操作码） | 
 |  0x08fd	|  PREF_IMM32	|  wide.ldobjbyindex +AAAAAAAA	|  默认入参：acc：对象<br>A：属性键值	|  加载acc中所存对象的键值为A的属性，并将其存放到acc中。   |
 |  0x08fe	|  PREF_IMM16	|  throw.ifsupernotcorrectcall +AAAA	|  默认入参：acc：对象<br>A：错误种类	|  如果`super`没有被正确调用，抛出错误。   |

@@ -18,4 +18,4 @@ Defines the observer for the device-cloud sync progress.
 | Name| Description| 
 | -------- | -------- |
 | [context](_r_d_b.md#context-22) | Context of the device-cloud sync progress observer.| 
-| [callback](_r_d_b.md#callback-22) | Callback invoked to return the device-cloud sync progress.| 
+| [callback](_r_d_b.md#callback-22) | Callback used to return the device-cloud sync progress.| 

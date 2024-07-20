@@ -26,7 +26,7 @@ The index is out of range.
 
 **错误信息**
 
-The number of record exceeds the maximum limit.
+The number of records exceeds the upper limit.
 
 **错误描述**
 
@@ -45,7 +45,7 @@ The number of record exceeds the maximum limit.
 
 **错误信息**
 
-Another copy or paste is in progress.
+Another copy or paste operation is in progress.
 
 **错误描述**
 
@@ -83,7 +83,7 @@ Replication is prohibited.
 
 **错误信息**
 
-Request time out.
+Request timed out.
 
 **错误描述**
 
@@ -96,3 +96,21 @@ Request time out.
 **处理步骤**
 
 如果处理数据过大，建议换成异步接口。
+
+## 12900006 设置已存在
+
+**错误信息**
+
+Settings already exist.
+
+**错误描述**
+
+当应用全局的可粘贴的范围已存在时，再次进行设置时，系统会报此错误码。
+
+**可能原因**
+
+应用全局的可粘贴的范围已存在。
+
+**处理步骤**
+
+先删除已有设置，再进行新的设置。

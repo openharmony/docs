@@ -71,7 +71,7 @@ Call the **write** API again to perform event logging.
 
 **Error Message**
 
-The event length exceeds the limit.
+The event length exceeds the limit
 
 **Description**
 
@@ -183,7 +183,7 @@ Check whether the number of event watchers exceeds 30.
 
 **Error Message**
 
-The number of watcher rules exceeds the limit.
+The number of watch rules exceeds the limit.
 
 **Description**
 
@@ -260,7 +260,7 @@ Check whether the event domain name and event name configured in the query rule 
 
 **Error Message**
 
-The number of concurrent queries exceeds the limit.
+The number of concurrent queriers exceeds the limit.
 
 **Description**
 

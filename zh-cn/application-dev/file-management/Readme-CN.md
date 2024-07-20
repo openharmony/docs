@@ -19,15 +19,17 @@
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
     <!--DelEnd-->
   - [文件授权访问(ArkTS)](app-file-authorization.md)
-  - [文件授权访问(C/C++)](native-fileshare-guidelines.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
   - [用户文件uri介绍](user-file-uri-intro.md)
   - [FileUri开发指导(C/C++)](native-fileuri-guidelines.md)
   - [获取用户目录环境(C/C++)](native-environment-guidelines.md)
-  - 选择与保存用户文件（FilePicker）
+  - 选择与保存用户文件
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
+    - [授权持久化](file-persistPermission.md)
+    - [授权持久化(C/C++)](native-fileshare-guidelines.md)
+  - [获取并使用公共目录](request-dir-permission.md)
   <!--Del-->
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)

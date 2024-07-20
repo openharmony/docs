@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import storageStatistics from "@ohos.file.storageStatistics";
+import  { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -32,14 +32,14 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
@@ -67,14 +67,14 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
       console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
@@ -89,7 +89,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| 名称      | 类型   | 只读 | 可写 | 说明           |
+| 名称      | 类型   | 只读 | 必填 | 说明           |
 | --------- | ------ | --- | ---- | -------------- |
 | appSize   | number | 是 | 否 | app数据大小（不包含空目录）（单位为Byte）    |
 | cacheSize | number | 是 | 否 | 缓存数据大小（单位为Byte）   |

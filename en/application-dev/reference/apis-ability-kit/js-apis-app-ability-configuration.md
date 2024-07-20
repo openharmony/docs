@@ -9,10 +9,10 @@ The **Configuration** module defines environment change information. **Configura
 ## Modules to Import
 
 ```ts
-import Configuration from '@ohos.app.ability.Configuration';
+import { Configuration } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -26,42 +26,44 @@ import Configuration from '@ohos.app.ability.Configuration';
 | hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fontSizeScale<sup>12+<sup> | number | No| No| Scale factor for the font size. The value ranges from 0 to 3.2.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontWeightScale<sup>12+<sup> | number | No| No| Scale factor for the font weight. The value ranges from 0 to 1.25.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| mcc<sup>12+<sup> | string | No | No| Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| mnc<sup>12+<sup> | string | No | No| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 
 **Example**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, AbilityConstant, EnvironmentCallback, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let envCallback: EnvironmentCallback = {
-            onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
-                let language = config.language;
-                let colorMode = config.colorMode;
-                let direction = config.direction;
-                let screenDensity = config.screenDensity;
-                let displayId = config.displayId;
-                let hasPointerDevice = config.hasPointerDevice;
-                let fontSizeScale = config.fontSizeScale;
-                let fontWeightScale = config.fontWeightScale;
-            },
-            onMemoryLevel(level) {
-                console.log('onMemoryLevel level: ${level}');
-            }
-        };
-        try {
-            let applicationContext = this.context.getApplicationContext();
-            let callbackId = applicationContext.on('environment', envCallback);
-            console.log(`callbackId: ${callbackId}`);
-        } catch (paramError) {
-            console.error(`error: ${paramError.code}, ${paramError.message}`);
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let envCallback: EnvironmentCallback = {
+      onConfigurationUpdated(config) {
+        console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
+        let language = config.language;
+        let colorMode = config.colorMode;
+        let direction = config.direction;
+        let screenDensity = config.screenDensity;
+        let displayId = config.displayId;
+        let hasPointerDevice = config.hasPointerDevice;
+        let fontSizeScale = config.fontSizeScale;
+        let fontWeightScale = config.fontWeightScale;
+        let mcc = config.mcc;
+        let mnc = config.mnc;
+      },
+      onMemoryLevel(level) {
+        console.log('onMemoryLevel level: ${level}');
+      }
+    };
+    try {
+      let applicationContext = this.context.getApplicationContext();
+      let callbackId = applicationContext.on('environment', envCallback);
+      console.log(`callbackId: ${callbackId}`);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
+  }
 }
   ```

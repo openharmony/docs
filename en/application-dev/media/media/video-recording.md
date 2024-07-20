@@ -23,12 +23,13 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
      
    ```ts
-   import media from '@ohos.multimedia.media';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (error: Error) => {
+   }, (error: BusinessError) => {
      console.error('createAVRecorder failed');
    })
    ```
@@ -40,7 +41,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    | error | Mandatory; used to listen for AVRecorder errors.| 
 
    ```ts
-   import media from '@ohos.multimedia.media';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
@@ -65,8 +67,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
@@ -96,7 +98,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
      
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
@@ -130,8 +132,8 @@ Refer to the sample code below to complete the process of starting, pausing, res
 
   
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {

@@ -1,6 +1,6 @@
-# WitheTheme
+# WithTheme
 
-WitheTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
+WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ WithTheme(options: WithThemeOptions)
 
 | 参数名                            | 参数类型                                  | 必填  | 参数描述          |
 |--------------------------------|---------------------------------------|-----|---------------|
-| WithThemeOptions | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
+| options | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
 
 ## 属性
 
@@ -31,6 +31,8 @@ WithTheme(options: WithThemeOptions)
 ## WithThemeOptions
 设置WithTheme作用域内组件缺省样式及深浅色模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名                    | 参数类型                                                    | 必填 | 参数描述                                                             |
@@ -39,6 +41,10 @@ WithTheme(options: WithThemeOptions)
 | colorMode | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 用于指定WithTheme作用域内组件深浅色模式。<br/>默认值：ThemeColorMode.System。<br/>    |
 
 ## 示例
+
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![resources_dark](figures/resources_dark.png)
 
 ```ts
 // 指定局部深浅色模式
@@ -72,7 +78,7 @@ struct Index {
         .height('33%')
         .backgroundColor($r('sys.color.background_primary'))
       }
-      // 设置组件为深色模式
+      // 设置组件为浅色模式
       WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
         Column() {
           Text('WithTheme')
@@ -97,7 +103,7 @@ struct Index {
 
 ```ts
 // 自定义WithTheme作用域内组件缺省配色
-import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors } from '@kit.ArkUI';
 
 class GreenColors implements CustomColors {
   fontPrimary = '#ff049404';

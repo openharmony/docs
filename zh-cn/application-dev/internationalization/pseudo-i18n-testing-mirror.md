@@ -10,8 +10,8 @@
 
    通过代码切换的方法（需要系统应用权限）：
    ```ts
-   import I18n from '@ohos.i18n'
-   I18n.System.setSystemLanguage('ar-XB')
+   import { i18n } from '@kit.LocalizationKit';
+   i18n.System.setSystemLanguage('ar-XB')
    ```
 
 2. 遍历需要测试的APP。

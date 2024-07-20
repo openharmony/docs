@@ -29,12 +29,12 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                        |
+| Name  | Type                                      | Mandatory | Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
+| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md). |
 | config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
 | version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback used to return the RDB store obtained.                    |
 
 **Example**
 
@@ -87,9 +87,9 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 **Parameters**
 
-| Name | Type                       | Mandatory| Description                                                        |
+| Name | Type                       | Mandatory | Description                                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md). |
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | version | number                      | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
@@ -97,7 +97,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object. |
 
 **Example**
 
@@ -148,11 +148,11 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                        |
+| Name  | Type                     | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md). |
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                      |
 
 **Example**
 
@@ -202,16 +202,16 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md). |
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -252,6 +252,8 @@ promise.then(()=>{
 
 ## ValueType
 
+type ValueType = number | string | boolean
+
 Defines the data types allowed.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -260,16 +262,18 @@ Defines the data types allowed.
 | ------- | -------------------- |
 | number  | Number.  |
 | string  | String.  |
-| boolean | Boolean.|
+| boolean | Boolean. |
 
 
 ## ValuesBucket
+
+type ValuesBucket = { [key: string]: ValueType | Uint8Array | null }
 
 Defines the types of the key and value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Key Type| Value Type                                                     |
+| Key Type | Value Type                                                     |
 | ------ | ----------------------------------------------------------- |
 | string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
 
@@ -281,7 +285,7 @@ Defines the database sync mode.
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH | 0    | Data is pushed from a local device to a remote device.|
+| SYNC_MODE_PUSH | 0    | Data is pushed from a local device to a remote device. |
 | SYNC_MODE_PULL | 1    | Data is pulled from a remote device to a local device.  |
 
 ## SubscribeType<sup>8+</sup>
@@ -294,7 +298,7 @@ Defines the subscription type.
 
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.|
+| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes. |
 
 ## StoreConfig
 
@@ -302,9 +306,9 @@ Defines the RDB store configuration.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Database file name.|
+| name | string | Yes | Database file name. |
 
 ## RdbPredicates
 
@@ -320,9 +324,9 @@ A constructor used to create an **RdbPredicates** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Database table name.|
+| name | string | Yes | Database table name. |
 
 **Example**
 
@@ -338,21 +342,21 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 
 > **NOTE**
 >
-> The value of **devices** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **devices** can be obtained by <!--RP2-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP2End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| devices | Array&lt;string&gt; | Yes| IDs of the remote devices in the same network.|
+| devices | Array&lt;string&gt; | Yes | IDs of the remote devices in the same network. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -392,9 +396,9 @@ Sets an **RdbPredicates** to specify all remote devices on the network to connec
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -413,16 +417,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -442,16 +446,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -471,9 +475,9 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis. |
 
 **Example**
 
@@ -497,9 +501,9 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis. |
 
 **Example**
 
@@ -523,9 +527,9 @@ Adds the OR condition to the **RdbPredicates**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition. |
 
 **Example**
 
@@ -546,9 +550,9 @@ Adds the AND condition to the **RdbPredicates**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition. |
 
 **Example**
 
@@ -569,16 +573,16 @@ Sets an **RdbPredicates** to match a string containing the specified value.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | string | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -597,16 +601,16 @@ Sets an **RdbPredicates** to match a string that starts with the specified value
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | string | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -625,16 +629,16 @@ Sets an **RdbPredicates** to match a string that ends with the specified value.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | string | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -653,15 +657,15 @@ Sets an **RdbPredicates** to match the field whose value is null.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
+| field | string | Yes | Column name in the database table. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 ```ts
@@ -679,15 +683,23 @@ Sets an **RdbPredicates** to match the field whose value is not null.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
+| field | string | Yes | Column name in the database table. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **Error Code** | **Error Message**                                                                                                      |
+| --------- |----------------------------------------------------------------------------------------------------------------|
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;  2. Incorrect parameter types. |
 
 **Example**
 
@@ -706,16 +718,16 @@ Sets an **RdbPredicates** to match a string that is similar to the specified val
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | string | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -734,16 +746,16 @@ Sets an **RdbPredicates** to match the specified string.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| field | string | Yes | Column name in the database table. |
+| value | string | Yes | Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -762,17 +774,17 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| low | [ValueType](#valuetype) | Yes | Minimum value to match the **RdbPredicates**. |
+| high | [ValueType](#valuetype) | Yes | Maximum value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -791,17 +803,17 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| low | [ValueType](#valuetype) | Yes | Minimum value to match the **RdbPredicates**. |
+| high | [ValueType](#valuetype) | Yes | Maximum value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -820,16 +832,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -848,16 +860,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -876,16 +888,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -904,16 +916,16 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| field | string | Yes | Column name in the database table. |
+| value | [ValueType](#valuetype) | Yes | Value to match the **RdbPredicates**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -932,15 +944,15 @@ Sets an **RdbPredicates** to match the column with values sorted in ascending or
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
+| field | string | Yes | Column name in the database table. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -959,15 +971,15 @@ Sets an **RdbPredicates** to match the column with values sorted in descending o
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
+| field | string | Yes | Column name in the database table. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -986,9 +998,9 @@ Sets an **RdbPredicates** to filter out duplicate records.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records. |
 
 **Example**
 
@@ -1007,15 +1019,15 @@ Sets an **RdbPredicates** to specify the maximum number of records.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Maximum number of records.|
+| value | number | Yes | Maximum number of records. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records. |
 
 **Example**
 
@@ -1034,15 +1046,15 @@ Sets an **RdbPredicates** to specify the start position of the returned result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+| rowOffset | number | Yes | Number of rows to offset from the beginning. The value is a positive integer. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result. |
 
 **Example**
 
@@ -1061,15 +1073,15 @@ Sets an **RdbPredicates** to group rows that have the same value into summary ro
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| fields | Array&lt;string&gt; | Yes| Names of columns to group.|
+| fields | Array&lt;string&gt; | Yes | Names of columns to group. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value. |
 
 **Example**
 
@@ -1088,16 +1100,16 @@ Sets an **RdbPredicates** object to specify the index column.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Name of the index column.|
+| field | string | Yes | Name of the index column. |
 
 **Return value**
 
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column. |
 
 **Example**
 
@@ -1116,16 +1128,16 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| field | string | Yes | Column name in the database table. |
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes | Array of **ValueType**s to match. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -1144,16 +1156,16 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the database table.|
-| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| field | string | Yes | Column name in the database table. |
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes | Array of **ValueType**s to match. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created. |
 
 **Example**
 
@@ -1178,11 +1190,11 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| table | string | Yes | Name of the target table. |
+| values | [ValuesBucket](#valuesbucket) | Yes | Row of data to insert. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Example**
 
@@ -1223,16 +1235,16 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
+| table | string | Yes | Name of the target table. |
+| values | [ValuesBucket](#valuesbucket) | Yes | Row of data to insert. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
 
 **Example**
 
@@ -1272,11 +1284,11 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes| An array of data to insert.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| table | string | Yes | Name of the target table. |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes | An array of data to insert. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned. |
 
 **Example**
 
@@ -1338,16 +1350,16 @@ Batch inserts data into a table. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes| An array of data to insert.|
+| table | string | Yes | Name of the target table. |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes | An array of data to insert. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned. |
 
 **Example**
 
@@ -1408,11 +1420,11 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
+| values | [ValuesBucket](#valuesbucket) | Yes | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Update conditions specified by the **RdbPredicates** object. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
 
 **Example**
 
@@ -1455,16 +1467,16 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
+| values | [ValuesBucket](#valuesbucket) | Yes | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Update conditions specified by the **RdbPredicates** object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated. |
 
 **Example**
 
@@ -1506,10 +1518,10 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Conditions specified by the **RdbPredicates** object for deleting data. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
 
 **Example**
 
@@ -1535,15 +1547,15 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Conditions specified by the **RdbPredicates** object for deleting data. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated. |
 
 **Example**
 
@@ -1568,11 +1580,11 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
-| columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Query conditions specified by the **RdbPredicates** object. |
+| columns | Array&lt;string&gt; | Yes | Columns to query. If this parameter is not specified, the query applies to all columns. |
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -1599,16 +1611,16 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
-| columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | Query conditions specified by the **RdbPredicates** object. |
+| columns | Array&lt;string&gt; | No | Columns to query. If this parameter is not specified, the query applies to all columns. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -1634,11 +1646,11 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| sql | string | Yes | SQL statement to run. |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array. |
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -1663,16 +1675,16 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
+| sql | string | Yes | SQL statement to run. |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Example**
 
@@ -1696,11 +1708,11 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| sql | string | Yes | SQL statement to run. |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -1725,22 +1737,22 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
+| sql | string | Yes | SQL statement to run. |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-let promise: void = rdbStore.executeSql(SQL_DELETE_TABLE)
+let promise = rdbStore.executeSql(SQL_DELETE_TABLE)
 promise.then(() => {
   console.info('Delete table done.')
 }).catch((err: BusinessError) => {
@@ -1876,10 +1888,10 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| tables | Array&lt;string&gt; | Yes| Names of the distributed tables to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| tables | Array&lt;string&gt; | Yes | Names of the distributed tables to set. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -1905,15 +1917,15 @@ Sets distributed tables. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| tables | Array&lt;string&gt; | Yes| Names of the distributed tables to set.|
+| tables | Array&lt;string&gt; | Yes | Names of the distributed tables to set. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -1934,7 +1946,7 @@ Obtains the distributed table name of a remote device based on the local table n
 
 > **NOTE**<br/>
 >
-> The value of **device** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1942,11 +1954,11 @@ Obtains the distributed table name of a remote device based on the local table n
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| ID of the remote device.|
-| table | string | Yes| Local table name of the remote device.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+| device | string | Yes | ID of the remote device. |
+| table | string | Yes | Local table name of the remote device. |
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. If the operation succeeds, the distributed table name of the remote device is returned. |
 
 **Example**
 
@@ -1982,7 +1994,7 @@ Obtains the distributed table name of a remote device based on the local table n
 
 > **NOTE**<br/>
 >
-> The value of **device** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1990,16 +2002,16 @@ Obtains the distributed table name of a remote device based on the local table n
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| ID of the remote device.|
-| table | string | Yes| Local table name of the remote device.|
+| device | string | Yes | ID of the remote device. |
+| table | string | Yes | Local table name of the remote device. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+| Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned. |
 
 **Example**
 
@@ -2038,11 +2050,11 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
+| mode | [SyncMode](#syncmode8) | Yes | Data sync mode. The value can be **push** or **pull**. |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | **RdbPredicates** object that specifies the data and devices to synchronize. |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes | Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Example**
 
@@ -2089,16 +2101,16 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
+| mode | [SyncMode](#syncmode8) | Yes | Data sync mode. The value can be **push** or **pull**. |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes | **RdbPredicates** object that specifies the data and devices to synchronize. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure.  |
 
 **Example**
 
@@ -2142,11 +2154,11 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
-| type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
+| type | [SubscribeType](#subscribetype8) | Yes | Subscription type to register. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes | Observer that listens for the data changes in the RDB store. **Array<string>** indicates the ID of the peer device whose data in the database is changed. |
 
 **Example**
 
@@ -2174,7 +2186,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
 | type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
@@ -2195,4 +2207,3 @@ try {
   console.log('Failed to unregister observer')
 }
 ```
-<!--no_check-->

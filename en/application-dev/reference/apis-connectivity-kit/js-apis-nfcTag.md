@@ -1,6 +1,7 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
+
 - Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
 - Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
@@ -43,7 +44,7 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "tag",
+                "reason": "$string:app_name",
             }
         ]
     }
@@ -58,17 +59,15 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
 ## **Modules to Import**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## **tag.TagInfo**
 
 Before a card with tags is read or written, **[TagInfo](#taginfo)** must be obtained to determine the tag technologies supported by the card. In this way, the application can invoke the correct API to communicate with the card.
 ```js
-import tag from '@ohos.nfc.tag';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want'
+import { tag } from '@kit.ConnectivityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
@@ -79,7 +78,7 @@ export default class EntryAbility extends UIAbility {
     try {
       tagInfo = tag.getTagInfo(want);
     } catch (error) {
-      console.error("tag.getTagInfo catched error: " + error);
+      console.error("tag.getTagInfo catch error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
       console.log("no TagInfo to be created, ignore it.");
@@ -100,24 +99,24 @@ export default class EntryAbility extends UIAbility {
       // Also check for technology tag.NFC_B, NFC_F, NFC_V, ISO_DEP, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
     }
 
-    // Use NfcA APIs to access the found tag.
+    // use NfcA APIs to access the found tag.
     if (isNfcATag) {
       let nfcA : tag.NfcATag | null = null;
       try {
         nfcA = tag.getNfcATag(tagInfo);
       } catch (error) {
-        console.error("tag.getNfcATag catched error: " + error);
+        console.error("tag.getNfcATag catch error: " + error);
       }
       // Other code to read or write this tag.
     }
 
-    // Use getIsoDep APIs to access the found tag.
+    // use getIsoDep APIs to access the found tag.
     if (isIsoDepTag) {
       let isoDep : tag.IsoDepTag | null = null;
       try {
         isoDep = tag.getIsoDep(tagInfo);
       } catch (error) {
-        console.error("tag.getIsoDep catched error: " + error);
+        console.error("tag.getIsoDep catch error: " + error);
       }
       // Other code to read or write this tag.
     }
@@ -177,6 +176,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcBTag<sup>(deprecated)</sup>
@@ -186,6 +187,7 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcB](#taggetnfcb9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
@@ -230,6 +232,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcFTag<sup>(deprecated)</sup>
@@ -239,6 +243,7 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcF](#taggetnfcf9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
@@ -283,6 +288,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcVTag<sup>(deprecated)</sup>
@@ -292,6 +299,7 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcV](#taggetnfcv9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
@@ -336,6 +344,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
@@ -366,6 +376,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
@@ -426,6 +438,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
@@ -455,6 +469,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
@@ -479,11 +495,13 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
 
 Obtains **TagInfo** from **Want**, which is initialized by the NFC service and contains the attributes required by **TagInfo**.
 
@@ -495,13 +513,22 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 | Name| Type                                    | Mandatory| Description                                               |
 | ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want) | Yes  | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#want) | Yes  | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.|
 
 **Return value**
 
 | **Type**           | **Description**                                    |
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | **TagInfo** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
@@ -521,7 +548,18 @@ Registers a listener for the NFC tag read event so that the tag can be preferent
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
 | discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
-| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback used to return the tag information read. It cannot be empty.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100202  | The element state is invalid. |
 
 **Example**
 
@@ -545,15 +583,23 @@ Unregisters the listener for the NFC tag read event. If the listener is unregist
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.          |
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+
 **Example**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -629,7 +675,7 @@ Subscribes to the NFC tag read event to implement dispatch of the tag to a foreg
 | type    | string  | Yes  | Event type, which has a fixed value of **readerMode**.|
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
 | discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
-| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback used to return the tag information read. It cannot be empty.|
 
 **Error codes**
 
@@ -637,6 +683,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100202  | The element state is invalid. |
 
 **Example**
@@ -669,17 +718,17 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100203  | The off() can be called only when the on() has been called. |
 
 **Example**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -759,22 +808,30 @@ Creates an NDEF record based on the specified URI.
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let uri = "https://www.example.com"; // Change it to match your case.
-    let ndefRecord = tag.ndef.makeUriRecord(uri);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeUriRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeUriRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeUriRecord catch businessError: " + businessError);
 }
 ```
 
@@ -801,23 +858,31 @@ Creates an NDEF record based on the specified text data and encoding type.
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let text = "Hello World";   // change it to be correct.
     let locale = "en"; // change it to be correct.
-    let ndefRecord = tag.ndef.makeTextRecord(text, locale);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeTextRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeTextRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeTextRecord catch businessError: " + businessError);
 }
 ```
 
@@ -845,23 +910,31 @@ Creates an NDEF record based on the specified MIME data and type.
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let mimeType = "text/plain";   // change it to be correct.
     let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeMimeRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeMimeRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeMimeRecord catch businessError: " + businessError);
 }
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
@@ -888,24 +961,32 @@ Creates an NDEF record based on application-specific data.
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let domainName = "ohos.nfc.application"; // change it to be correct.
     let type = "test"; // change it to be correct.
     let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeExternalRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeExternalRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeExternalRecord catch businessError: " + businessError);
 }
 ```
 
@@ -931,19 +1012,27 @@ Converts an NDEF message to bytes.
 | -------- | ------------------------------------------------------------------------------------- |
 | number[] | NDEF message in bytes, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -968,16 +1057,24 @@ Creates an NDEF message from raw byte data. The data must comply with the NDEF r
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -1003,19 +1100,27 @@ Creates an NDEF message from the NDEF records list.
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
-let uriRecord = tag.ndef.makeUriRecord("https://www.example.com");
-let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
-let ndefRecords = [uriRecord, textRecord];
+let uriRecord : tag.NdefRecord = tag.ndef.makeUriRecord("https://www.example.com");
+let textRecord : tag.NdefRecord = tag.ndef.makeTextRecord("Hello World", "en");
+let ndefRecords : tag.NdefRecord[] = [uriRecord, textRecord];
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -1029,14 +1134,16 @@ Defines the **TagInfo** object, which provides information about the tag technol
 
 | **Name**                     | **Type**                                                     | **Readable**| **Writable**| **Description**                                                                                    |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| uid<sup>9+</sup>              | number[]                                                      | Yes      | No      | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.                                    |
-| technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported tag technologies. Each number is a constant indicating the supported technology.                                    |
+| uid<sup>9+</sup>              | number[]                                                      | Yes      | No      | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
+| technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported tag technologies. Each number is a constant indicating the supported technology.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
 | supportedProfiles             | number[]                                                      | Yes      | No      | Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#taginfo) instead.           |
 
 ## NdefRecord<sup>9+</sup>
 Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**                                                                                 |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
@@ -1049,6 +1156,8 @@ Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 Enumerates the tag technology types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | **Name**                    | **Value**| **Description**                   |
 | ---------------------------- | ------ | --------------------------- |
@@ -1067,6 +1176,8 @@ Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | **Name**        | **Value**| **Description**                                        |
 | ---------------- | ------ | ------------------------------------------------ |
 | TNF_EMPTY        | 0x0    | Empty.                                         |
@@ -1082,6 +1193,8 @@ Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-ND
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | **Name**             | **Value**| **Description**               |
 | --------------------- | ------ | ----------------------- |
 | RTD_TEXT<sup>9+</sup> | [0x54] | NDEF record of the text type.|
@@ -1091,6 +1204,8 @@ Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-ND
 Enumerates the NFC Forum tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | **Name**        | **Value**| **Description**            |
 | ---------------- | ------ | -------------------- |
@@ -1105,6 +1220,8 @@ Enumerates the MIFARE Classic tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | **Name**    | **Value**| **Description**            |
 | ------------ | ------ | -------------------- |
 | TYPE_UNKNOWN | 0      | Unknown type.  |
@@ -1117,6 +1234,8 @@ Enumerates the sizes of a MIFARE Classic tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | **Name**    | **Value**| **Description**                         |
 | ------------ | ------ | --------------------------------- |
 | MC_SIZE_MINI | 320    | Each tag has 5 sectors, and each sector has 4 blocks. |
@@ -1128,6 +1247,8 @@ Enumerates the sizes of a MIFARE Classic tag.
 Enumerates the MIFARE Ultralight tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | **Name**         | **Value**| **Description**                 |
 | ----------------- | ------ | ------------------------- |

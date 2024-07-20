@@ -313,7 +313,7 @@
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
-允许应用读取用户帐号的登录状态。
+允许应用读取用户账号的登录状态。
 
 **权限级别**：normal
 
@@ -330,6 +330,28 @@
 **授权方式**：system_grant
 
 **起始版本**：12
+
+### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+
+允许应用在锁屏后保护本应用敏感数据不被访问。
+
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
+### ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：system_grant
+
+**起始版本**：11
 
 ## user_grant（用户授权）权限列表
 
@@ -425,7 +447,7 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 
@@ -463,26 +485,6 @@
 
 **起始版本**：8
 
-### ohos.permission.READ_HEALTH_DATA
-
-允许应用读取用户的健康数据。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.READ_MEDIA
-
-允许应用读取用户外部存储中的媒体文件信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
 ### ohos.permission.WRITE_CALENDAR
 
 允许应用添加、移除或更改日历活动。
@@ -493,9 +495,9 @@
 
 **起始版本**：8
 
-### ohos.permission.WRITE_MEDIA
+### ohos.permission.READ_HEALTH_DATA
 
-允许应用读写用户外部存储中的媒体文件信息。
+允许应用读取用户的健康数据。
 
 **权限级别**：normal
 
@@ -512,3 +514,55 @@
 **授权方式**：user_grant
 
 **起始版本**：12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下DownLoad目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
+
+### ohos.permission.READ_MEDIA
+
+允许应用读取用户外部存储中的媒体文件信息。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**起始版本**：7
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+
+### ohos.permission.WRITE_MEDIA
+
+允许应用读写用户外部存储中的媒体文件信息。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**起始版本**：7
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。

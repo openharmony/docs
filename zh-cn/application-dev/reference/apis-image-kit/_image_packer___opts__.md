@@ -1,4 +1,4 @@
-# ImagePacker_Opts_
+# ImagePacker_Opts
 
 
 ## 概述
@@ -29,7 +29,7 @@
 ### format
 
 ```
-const char* ImagePacker_Opts_::format
+const char* ImagePacker_Opts::format
 ```
 
 **描述**
@@ -40,7 +40,7 @@ const char* ImagePacker_Opts_::format
 ### quality
 
 ```
-int ImagePacker_Opts_::quality
+int ImagePacker_Opts::quality
 ```
 
 **描述**

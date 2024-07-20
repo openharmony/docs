@@ -11,7 +11,7 @@ The **childProcessManager** module provides the child process management capabil
 ## Modules to Import
 
 ```ts
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
 ```
 
 ## childProcessManager.StartMode
@@ -61,7 +61,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 ```ts
 // Create the child process class DemoProcess.ts in src/main/ets/process of the entry module.
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
@@ -72,9 +72,9 @@ export default class DemoProcess extends ChildProcess {
 
 ```ts
 // Call childProcessManager.startChildProcess to start the child process.
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import DemoProcess from '../process/DemoProcess';
-import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.
@@ -120,7 +120,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 ```ts
 // Create the child process class DemoProcess.ts in src/main/ets/process of the entry module.
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
@@ -131,9 +131,9 @@ export default class DemoProcess extends ChildProcess {
 
 ```ts
 // Call childProcessManager.startChildProcess to start the child process.
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import DemoProcess from '../process/DemoProcess';
-import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.

@@ -26,7 +26,7 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 这是一个补充类型别名，表示[lockAsync](#lockasync)函数所有重载中的回调。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -36,7 +36,7 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 #### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -47,11 +47,9 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 **示例：**
 
 ```ts
+// 示例一：
 @Sendable
 class A {
-  // 暂不支持AsyncLock跨线程共享，因此@Sendable不能持有AsyncLock，只能用AsyncLock.request。
-  // 如下一行示例代码是错误的。
-  // static lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
   count_: number = 0;
   async getCount(): Promise<number> {
     let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock_1");
@@ -67,10 +65,26 @@ class A {
   }
 }
 
+// 示例二：
+@Sendable
+class A {
+  count_: number = 0;
+  lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
+  async getCount(): Promise<number> {
+    return this.lock_.lockAsync(() => {
+      return this.count_;
+    })
+  }
+  async setCount(count: number) {
+    await this.lock_.lockAsync(() => {
+      this.count_ = count;
+    })
+  }
+}
+
 @Concurrent
 async function foo(a: A) {
-  let unused = ArkTSUtils.locks.AsyncLock; // 4月版本临时规避代码，需要在@Concurrent函数中使用一下，否则后续逻辑使用异步锁会存在加载失败的异常问题。
-  await a.setNum(10)
+  await a.setCount(10)
 }
 ```
 
@@ -78,9 +92,9 @@ async function foo(a: A) {
 
 constructor()
 
-默认构造函数。创建一个匿名锁。
+默认构造函数。创建一个异步锁。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -88,7 +102,7 @@ constructor()
 
 | 类型                    | 说明               |
 | ----------------------- | ------------------ |
-| [AsyncLock](#asynclock) | 创建的匿名锁实例。 |
+| [AsyncLock](#asynclock) | 创建的异步锁实例。 |
 
 **示例：**
 
@@ -102,7 +116,7 @@ static request(name: string): AsyncLock
 
 使用指定的名称查找或创建（如果未找到）异步锁实例。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -131,7 +145,7 @@ static query(name: string): AsyncLockState
 
 查询指定异步锁的信息。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -153,7 +167,7 @@ static query(name: string): AsyncLockState
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -174,7 +188,7 @@ static queryAll(): AsyncLockState[]
 
 查询所有现有锁的信息。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -199,7 +213,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -221,7 +235,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -238,7 +252,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -261,7 +275,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -276,9 +290,9 @@ let p1 = lock.lockAsync<void>(() => {
 
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
-在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用 lockAsync 的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -302,7 +316,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 10200030 | No such lock.     |
+| 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
 **示例：**
@@ -324,7 +338,7 @@ let p: Promise<void> = lock.lockAsync<void, void>(
 
 锁操作对应的模式枚举。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -339,7 +353,7 @@ class AsyncLockOptions\<T>
 
 表示锁操作选项的类。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -349,7 +363,7 @@ constructor()
 
 默认构造函数。创建一个所有属性均具有默认值的异步锁配置项实例。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -380,7 +394,7 @@ options.signal = s;
 
 用于存储特定异步锁实例上当前执行的所有锁操作的信息的类。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -395,7 +409,7 @@ options.signal = s;
 
 关于锁的信息。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -411,7 +425,7 @@ options.signal = s;
 
 用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -432,7 +446,7 @@ type ISendable = lang.ISendable
 
 ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -440,13 +454,74 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 | ------ | ------ |
 | [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
 
+### Transformer
+
+type Transformer = (this: ISendable, key: string, value: ISendable | undefined | null) => ISendable | undefined | null
+
+用于转换结果函数的类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
+| key  | string | 是 | 属性名。|
+| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ISendable](#isendable) \| undefined \| null | 返回转换结果后的ISendable对象或undefined或null。|
+
+### BigIntMode
+
+定义处理BigInt的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| DEFAULT   | 0 |不支持BigInt。|
+| PARSE_AS_BIGINT   | 1 |当整数小于-(2^53-1)或大于(2^53-1)时，解析为BigInt。|
+| ALWAYS_PARSE_AS_BIGINT   | 2 |所有整数都解析为BigInt。|
+
+### ParseReturnType
+
+定义解析结果的返回类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| OBJECT   | 0 |返回Sendable Object对象。|
+
+### ParseOptions
+
+解析的选项，可定义处理BigInt的模式与解析结果的返回类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型| 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
+| parseReturnType   | [ParseReturnType](#parsereturntype) | 是 |定义解析结果的返回类型。|
+
 ### parse
 
-parse(text: string): ISendable | null
+parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | null
 
-用于解析JSON字符串生成Isendable数据或null。
+用于解析JSON字符串生成ISendable数据或null。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -455,33 +530,48 @@ parse(text: string): ISendable | null
 | 参数名 | 类型   | 必填 | 说明            |
 | ------ | ------ | ---- | --------------- |
 | text   | string | 是 | 有效的JSON字符串。|
+| reviver   | [Transformer](#transformer) | 否 | 转换函数，传入该参数，可以用来修改解析生成的原始值。默认值是undefined。目前只支持传入undefined。|
+| options   | [ParseOptions](#parseoptions) | 否 | 解析的配置，传入该参数，可以用来控制解析生成的结果类型。默认值是undefined。|
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ISendable](#isendable) \| null | 返回Isendable数据或null。当入参是null时，返回null。|
+| [ISendable](#isendable) \| null | 返回ISendable数据或null。当入参是null时，返回null。|
 
 **示例：**
 
 ```ts
+import { lang } from '@kit.ArkTS';
+
+type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = ArkTSUtils.ASON.parse(jsonText);
-console.info(obj.name);
+let obj = ArkTSUtils.ASON.parse(jsonText) as ISendable;
+console.info((obj as object)?.["name"]);
 // 期望输出: 'John'
-console.info(obj.age);
+console.info((obj as object)?.["age"]);
 // 期望输出: 30
-console.info(obj.city);
+console.info((obj as object)?.["city"]);
 // 期望输出: 'ChongQing'
+
+let options: ArkTSUtils.ASON.ParseOptions = {
+  bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+  parseReturnType: ArkTSUtils.ASON.ParseReturnType.OBJECT,
+}
+let numberText = '{"largeNumber":112233445566778899}';
+let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable;
+
+console.info((numberObj as object)?.["largeNumber"]);
+// 期望输出: 112233445566778899
 ```
 
 ### stringify
 
-stringify(value: ISendable): string
+stringify(value: ISendable | null | undefined): string
 
 该方法将ISendable数据转换为JSON字符串。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -489,7 +579,7 @@ stringify(value: ISendable): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable)  | 是 | ISendable数据。|
+| value | [ISendable](#isendable) \| null \| undefined  | 是 | ISendable数据。|
 
 **返回值：**
 

@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
 ## PrintTask
@@ -31,10 +31,19 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -64,10 +73,19 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：succeed，<br/>表示打印成功 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -97,10 +115,19 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：fail，<br/>表示打印失败 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -130,10 +157,19 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：cancel，<br/>表示打印取消 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -163,10 +199,19 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -196,10 +241,19 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：succeed，<br/>表示打印成功 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -229,10 +283,19 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：fail，<br/>表示打印失败 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -262,10 +325,19 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：cancel，<br/>表示打印取消 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -302,10 +374,19 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | fd | number | 是 | 表示文件描述符 |
 | writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新要打印的文件完成后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -345,10 +426,19 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 | jobId | string | 是 | 表示打印任务ID |
 | state | PrintDocumentAdapterState | 是 | 表示打印任务更改为该状态 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -385,20 +475,29 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
-//let file = ['fd://1', 'fd://2'];
-print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入fd
+//let files = ['fd://1', 'fd://2'];
+print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -423,24 +522,33 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
-//let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入fd
+//let files = ['fd://1', 'fd://2'];
+print.print(files).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -463,22 +571,31 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入fd
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -503,7 +620,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 
 **返回值：**
@@ -511,18 +628,27 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入id
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入fd
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context).then((printTask: print.PrintTask) => {
+print.print(files, context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -555,10 +681,19 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobName : string = "jobName";

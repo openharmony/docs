@@ -54,10 +54,10 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过fs
 2. 使用获取到的文件uri进行重命名操作。
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { fileAccess } from '@kit.CoreFileKit';
 // context 是EntryAbility 传过来的context
 let context = getContext(this) as common.UIAbilityContext;
 
@@ -147,7 +147,7 @@ async function example() {
 
 ### 媒体文件uri的使用方式
 
-normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'，在使用中需要注意应用是否有此权限。<!--Del-->
+normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'，在使用中需要注意应用是否有此权限。<!--Del-->
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)进行进一步处理，接口详细使用方式见接口文档。
 <!--DelEnd-->
@@ -174,10 +174,10 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过ph
 下面为通过临时授权方式使用媒体文件uri进行获取缩略图和读取文件部分信息的示例代码：
 
 ```ts
-import picker from '@ohos.file.picker';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { BusinessError } from '@ohos.base';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { picker } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: Array<string> = [];
@@ -209,7 +209,7 @@ try {
     // 配置查询条件，使用PhotoViewPicker选择图片返回的uri进行查询
     predicates.equalTo('uri', uris[0]);
     let fetchOption: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
+      fetchColumns: [photoAccessHelper.PhotoKeys.WIDTH, photoAccessHelper.PhotoKeys.HEIGHT, photoAccessHelper.PhotoKeys.TITLE, photoAccessHelper.PhotoKeys.DURATION],
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
@@ -253,12 +253,14 @@ try {
 <!--DelEnd-->
 
 ```
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { fileAccess } from '@kit.CoreFileKit';
 
-async example() {
+// context 是EntryAbility 传过来的context
+let context = getContext(this) as common.UIAbilityContext;
+async function example() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -268,8 +270,6 @@ async example() {
       },
     ]
     try {
-      // context 是EntryAbility 传过来的context
-      let context = getContext(this) as common.UIAbilityContext;
       fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
       if (!fileAccessHelper) {
         console.error("createFileAccessHelper interface returns an undefined object");

@@ -48,7 +48,7 @@ static terminate(): void
 
 Terminates the current ability.
 
-You are advised to use [@ohos.ability.featureAbility](../apis-ability-kit/js-apis-ability-featureAbility.md) since API version 7.
+This API is deprecated since API version 7. You are advised to use [@ohos.ability.featureAbility](../apis-ability-kit/js-apis-ability-featureAbility.md) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -79,17 +79,30 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
 **Example**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageCacheCount(100) // Set the maximum number of decoded images that can be cached in the memory to 100.
-    console.info('Application onCreate')
-  },
+@Entry
+@Component
+struct Index {
+  // The app.setImageCacheCount API works only when it is called in onPageShow or aboutToAppear on the @Entry decorated page.
+  onPageShow() {
+    // Set the maximum number of decoded images that can be cached in the memory to 100.
+    app.setImageCacheCount(100) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxxxxxx indicates the image address.
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 
@@ -110,18 +123,30 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 **Example**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageRawDataCacheSize(104857600)
+@Entry
+@Component
+struct Index {
+  // The app.setImageRawDataCacheSize API works only when it is called in onPageShow or aboutToAppear on the @Entry decorated page.
+  onPageShow() {
     // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
-    console.info('Application onCreate')
-  },
+    app.setImageRawDataCacheSize(104857600) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxxxxxx indicates the image address.
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 
@@ -129,7 +154,7 @@ export default class OnC {
 
 static setImageFileCacheSize(value: number): void
 
-Sets the maximum size of the image file cache (in bytes) to speed up the loading of images from the same sources, especially online image sources and thumbnails. If the input parameter is not set, the default value 100 MB is used. The LRU policy is used for caching. If the maximum size is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the image cache is too large, the disk usage may be too high.
+Sets the maximum size of the image file cache (in bytes) to speed up the loading of images from the same sources, especially online image sources. If the input parameter is not set, the default value 100 MB is used. The LRU policy is used for caching. If the maximum size is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the image cache is too large, the disk usage may be too high.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,20 +175,20 @@ export default class OnC {
     app.setImageFileCacheSize(209715200)
     // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
     console.info('Application onCreate')
-  },
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
 }
 ```
 
 ### ScreenOnVisible<sup>(deprecated)</sup>
 
-static screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
+static screenOnVisible(options?: ScreenOnVisibleOptions): void
 
 Defines whether to keep the application visible when the screen is woken up.
 
-This API is deprecated since API Version 8.
+This API is deprecated since API version 8.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -235,4 +260,3 @@ Defines the options of the **RequestFullWindow** API.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | duration | number | Yes| Duration of an animation, in milliseconds.|
-<!--no_check-->

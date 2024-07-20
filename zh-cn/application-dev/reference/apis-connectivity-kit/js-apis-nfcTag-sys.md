@@ -12,7 +12,7 @@
 ## **导入模块**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## TagInfo

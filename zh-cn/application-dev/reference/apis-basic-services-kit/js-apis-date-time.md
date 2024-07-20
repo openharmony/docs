@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import systemDateTime from '@ohos.systemDateTime';
+import { systemDateTime } from '@kit.BasicServicesKit';
 ```
 
 ## TimeType<sup>10+</sup>
@@ -49,7 +49,7 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getCurrentTime(true, (error: BusinessError, time: number) => {
@@ -90,7 +90,7 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getCurrentTime((error: BusinessError, time: number) => {
@@ -137,7 +137,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getCurrentTime().then((time: number) => {
@@ -177,7 +177,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
@@ -218,7 +218,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealActiveTime((error: BusinessError, time: number) => {
@@ -265,7 +265,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealActiveTime().then((time: number) => {
@@ -305,7 +305,7 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealTime(true, (error: BusinessError, time: number) => {
@@ -346,7 +346,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealTime((error: BusinessError, time: number) => {
@@ -393,7 +393,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getRealTime().then((time: number) => {
@@ -430,6 +430,8 @@ getTime(isNanoseconds?: boolean): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
@@ -459,9 +461,19 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 | ------ | -------------------------- |
 | number | 自系统启动以来经过的时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
@@ -499,7 +511,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getDate((error: BusinessError, date: Date) => {
@@ -544,7 +556,7 @@ getDate(): Promise&lt;Date&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getDate().then((date: Date) => {
@@ -572,18 +584,10 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
-
-| 错误码ID   | 错误信息                                                 |
-|---------|------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1.System error. |
-
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getTimezone((error: BusinessError, data: string) => {
@@ -613,18 +617,10 @@ getTimezone(): Promise&lt;string&gt;
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
-
-| 错误码ID   | 错误信息                                                 |
-|---------|------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1.System error. |
-
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.getTimezone().then((data: string) => {
@@ -655,6 +651,8 @@ getTimezoneSync(): string
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {

@@ -29,23 +29,24 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseResource: WebResourceResponse = new WebResourceResponse()
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseResource: WebResourceResponse = new WebResourceResponse();
     // 开发者自定义响应数据
     @State webData: string = '<!DOCTYPE html>\n' +
-    '<html>\n'+
-    '<head>\n'+
-    '<title>intercept test</title>\n'+
-    '</head>\n'+
-    '<body>\n'+
-    '<h1>intercept ok</h1>\n'+
-    '</body>\n'+
-    '</html>'
+      '<html>\n' +
+      '<head>\n' +
+      '<title>intercept test</title>\n' +
+      '</head>\n' +
+      '<body>\n' +
+      '<h1>intercept ok</h1>\n' +
+      '</body>\n' +
+      '</html>'
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -105,13 +106,13 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseResource: WebResourceResponse = new WebResourceResponse()
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseResource: WebResourceResponse = new WebResourceResponse();
     // 开发者自定义响应数据（响应数据长度需大于等于1024才会生成codecache）
     @State jsData: string = 'let text_msg = "the modified content:version 0000000000001";\n' +
       'let element1 = window.document.getElementById("div-1");\n' +
@@ -135,8 +136,8 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
       'element8.innerHTML = text_msg;\n' +
       'element9.innerHTML = text_msg;\n' +
       'element10.innerHTML = text_msg;\n' +
-      'element11.innerHTML = text_msg;\n'
-  
+      'element11.innerHTML = text_msg;\n';
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })

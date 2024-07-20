@@ -13,7 +13,7 @@ This component can contain a single child component.
 
 ## APIs
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ### ListItem<sup>10+</sup>
 
@@ -79,7 +79,7 @@ selectable(value: boolean)
 
 Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,7 +95,7 @@ selected(value: boolean)
 
 Sets whether the list item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.
 
-**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -205,7 +205,7 @@ onSelect(event: (isSelected: boolean) =&gt; void)
 
 Triggered when the selected state of the list item for multiselect changes.
 
-**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

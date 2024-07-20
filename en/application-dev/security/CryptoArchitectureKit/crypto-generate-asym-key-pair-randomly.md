@@ -21,7 +21,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Example: Randomly generate an RSA key pair (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKey() {
     // Create an AsyKeyGenerator instance.
@@ -42,7 +42,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKeySync() {
     // Create an AsyKeyGenerator instance.
@@ -82,7 +82,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Example: Randomly generate an SM2 key pair (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2Key() {
     // Create an AsyKeyGenerator instance.
@@ -103,7 +103,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2KeySync() {
     // Create an AsyKeyGenerator instance.

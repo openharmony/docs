@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## State<sup>11+</sup>
@@ -92,12 +92,18 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   };
 
-  fileCache.on('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### off<sup>11+</sup>
@@ -127,15 +133,20 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   }
 
-  fileCache.on('progress', callback);
-
-  fileCache.off('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+    fileCache.off('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### start<sup>11+</sup>
@@ -161,15 +172,20 @@ start(uri: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
-    console.info("download state:" + pg.state);
-  });
+  try {
+    fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
+      console.info("download state:" + pg.state);
+    });
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
 
   fileCache.start(uri).then(() => {
     console.info("start download successfully");
@@ -220,8 +236,8 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -272,8 +288,8 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -316,8 +332,8 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);

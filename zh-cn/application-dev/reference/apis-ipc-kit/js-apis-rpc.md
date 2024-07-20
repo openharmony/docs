@@ -38,6 +38,26 @@ import { rpc } from '@kit.IPCKit';
   | OS_DUP_ERROR                          | 1900013 | 执行系统调用dup失败。                         |
 
 
+## TypeCode<sup>12+</sup>
+
+从API version 12起，IPC新增[writeArrayBuffer](#writearraybuffer12)和[readArrayBuffer](#readarraybuffer12)方法传递ArrayBuffer数据，传递数据时通过具体类型值来分辨业务是以哪一种TypedArray去进行数据的读写。类型码对应数值及含义如下。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+  | 名称                         | 值     | 说明                                          |
+  | ---------------------------- | ------ | --------------------------------------------  |
+  | INT8_ARRAY                   | 0      | TypedArray类型为INT8_ARRAY。                  |
+  | UINT8_ARRAY                  | 1      | TypedArray类型为UINT8_ARRAY。                 |
+  | INT16_ARRAY                  | 2      | TypedArray类型为INT16_ARRAY。                 |
+  | UINT16_ARRAY                 | 3      | TypedArray类型为UINT16_ARRAY。                |
+  | INT32_ARRAY                  | 4      | TypedArray类型为INT32_ARRAY。                 |
+  | UINT32_ARRAY                 | 5      | TypedArray类型为UINT32_ARRAY。                |
+  | FLOAT32_ARRAY                | 6      | TypedArray类型为FLOAT32_ARRAY。               |
+  | FLOAT64_ARRAY                | 7      | TypedArray类型为FLOAT64_ARRAY。               |
+  | BIGINT64_ARRAY               | 8      | TypedArray类型为BIGINT64_ARRAY。              |
+  | BIGUINT64_ARRAY              | 9      | TypedArray类型为BIGUINT64_ARRAY。             |
+
+
 ## MessageSequence<sup>9+</sup>
 
   在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
@@ -100,6 +120,7 @@ writeRemoteObject(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
   | 1900009  | write data to message sequence failed |
 
@@ -192,6 +213,7 @@ writeInterfaceToken(token: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -315,6 +337,14 @@ setSize(size: number): void
   | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -352,6 +382,7 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900011  | parcel memory alloc failed |
 
 **示例：**
@@ -489,6 +520,14 @@ rewindRead(pos: number): void
   | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -524,6 +563,14 @@ rewindWrite(pos: number): void
   | 参数名 | 类型   | 必填 | 说明  |
   | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -565,6 +612,7 @@ writeByte(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------  |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -649,6 +697,7 @@ writeShort(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -733,6 +782,7 @@ writeInt(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -817,6 +867,7 @@ writeLong(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -901,6 +952,7 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -985,6 +1037,7 @@ writeDouble(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1069,6 +1122,7 @@ writeBoolean(val: boolean): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1153,6 +1207,7 @@ writeChar(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1237,6 +1292,7 @@ writeString(val: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1321,6 +1377,7 @@ writeParcelable(val: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1378,6 +1435,7 @@ readParcelable(dataIn: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
   | 1900012  | call js callback function failed |
 
@@ -1438,6 +1496,7 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1477,6 +1536,7 @@ readByteArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -1524,6 +1584,7 @@ readByteArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -1571,6 +1632,7 @@ writeShortArray(shortArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1609,6 +1671,7 @@ readShortArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -1701,6 +1764,7 @@ writeIntArray(intArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1739,6 +1803,7 @@ readIntArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -1831,6 +1896,7 @@ writeLongArray(longArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1869,6 +1935,7 @@ readLongArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -1961,6 +2028,7 @@ writeFloatArray(floatArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -1999,6 +2067,7 @@ readFloatArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -2091,6 +2160,7 @@ writeDoubleArray(doubleArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2129,6 +2199,7 @@ readDoubleArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -2221,6 +2292,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2259,6 +2331,7 @@ readBooleanArray(dataIn: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -2351,6 +2424,7 @@ writeCharArray(charArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2389,6 +2463,7 @@ readCharArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -2481,6 +2556,7 @@ writeStringArray(stringArray: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2519,6 +2595,7 @@ readStringArray(dataIn: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -2684,7 +2761,7 @@ readException(): void
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -2745,6 +2822,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2805,6 +2883,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
   | 1900012  | call js callback function failed |
 
@@ -2868,6 +2947,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -2917,6 +2997,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -3013,6 +3094,14 @@ static closeFileDescriptor(fd: number): void
   | ------ | ------ | ---- | -------------------- |
   | fd     | number | 是   | 要关闭的文件描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -3033,7 +3122,7 @@ static closeFileDescriptor(fd: number): void
 
 ### dupFileDescriptor
 
-static dupFileDescriptor(fd: number) :number
+static dupFileDescriptor(fd: number): number
 
 静态方法，复制给定的文件描述符。
 
@@ -3057,6 +3146,7 @@ static dupFileDescriptor(fd: number) :number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900013  | call os dup function failed |
 
 **示例：**
@@ -3138,6 +3228,7 @@ writeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -3228,6 +3319,7 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
@@ -3274,6 +3366,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
@@ -3319,7 +3412,7 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                         |
   | ------ | ------------------------------------------------------------ |
-  | number | 返回MessageSequence可以容纳的最大原始数据量，即128&nbsp;Mb。 |
+  | number | 返回MessageSequence可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
@@ -3354,6 +3447,7 @@ writeRawData(rawData: number[], size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -3394,6 +3488,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
@@ -3446,6 +3541,7 @@ readRawData(size: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -3499,6 +3595,7 @@ readRawDataBuffer(size: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
@@ -3529,6 +3626,116 @@ readRawDataBuffer(size: number): ArrayBuffer
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### writeArrayBuffer<sup>12+</sup>
+
+writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
+
+将ArrayBuffer类型数据写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                      | 必填 | 说明                        |
+  | --------- | ------------------------- | ---- | --------------------------- |
+  | buf       | ArrayBuffer               | 是   | 要写入的ArrayBuffer数据。   |
+  | typeCode  | [TypeCode](#typecode12)   | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的写入方式，需要业务正确传递枚举值。) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readArrayBuffer<sup>12+</sup>
+
+readArrayBuffer(typeCode: TypeCode): ArrayBuffer
+
+从MessageSequence读取ArrayBuffer类型数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型                     | 必填 | 说明                   |
+  | -------- | ----------------------- | ---- | ------------------------|
+  | typeCode | [TypeCode](#typecode12) | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的读取方式，需要业务正确传递枚举值，读写枚举值不匹配会导致数据异常。)  |
+
+**返回值：**
+
+  | 类型     | 说明                                         |
+  | -------- | -------------------------------------------- |
+  | ArrayBuffer | 返回ArrayBuffer类型数据（以字节为单位）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
+    let readInt16View = new Int16Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read ArrayBuffer result is ' + readInt16View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -5439,7 +5646,7 @@ readException(): void
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -5941,7 +6148,7 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                       |
   | ------ | ---------------------------------------------------------- |
-  | number | 返回MessageParcel可以容纳的最大原始数据量，即128&nbsp;Mb。 |
+  | number | 返回MessageParcel可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
@@ -6297,7 +6504,7 @@ asObject(): IRemoteObject
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
@@ -6393,6 +6600,14 @@ getLocalInterface(descriptor: string): IRemoteBroker
 | ------------- | --------------------------------------------- |
 | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 ### queryLocalInterface<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
@@ -6417,7 +6632,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始不再维护，建议使用[sendRequest](#sendrequest8deprecated)类替代。
+>从API version 8开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6430,7 +6645,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6453,7 +6668,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6462,6 +6677,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 类型                         | 说明                                      |
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6478,7 +6701,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6501,10 +6724,18 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                                 | 必填 | 说明                                                                                   |
   | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6521,7 +6752,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
@@ -6547,6 +6778,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
@@ -6593,6 +6825,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
@@ -6686,7 +6919,7 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-2)类替代。
+>从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6699,7 +6932,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6741,7 +6974,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -6782,7 +7015,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6791,6 +7024,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 类型                         | 说明                                      |
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -6824,7 +7066,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -6874,7 +7116,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6916,7 +7158,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -6965,10 +7207,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                                 | 必填 | 说明                                                                                   |
   | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -7017,7 +7268,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -7057,7 +7308,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
@@ -7109,7 +7360,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -7151,6 +7402,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900006  | only remote object permitted |
 
 **示例：**
@@ -7185,7 +7437,7 @@ getLocalInterface(interface: string): IRemoteBroker
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
@@ -7260,7 +7512,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
@@ -7295,6 +7547,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 **示例：**
@@ -7329,7 +7582,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
@@ -7410,7 +7663,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
@@ -7450,6 +7703,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 **示例：**
@@ -7484,7 +7738,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
@@ -7566,7 +7820,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
@@ -7641,7 +7895,7 @@ getDescriptor(): string
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
@@ -7709,7 +7963,7 @@ getInterfaceDescriptor(): string
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
@@ -7769,7 +8023,7 @@ isObjectDead(): boolean
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, options);
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
@@ -7833,7 +8087,7 @@ MessageOption构造函数。
   | 参数名    | 类型   | 必填 | 说明                                          |
   | --------- | ------ | ---- | --------------------------------------------- |
   | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
-  | waitTime  | number | 否   | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
+  | waitTime  | number | 否   | 调用rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
 
@@ -8221,6 +8475,14 @@ static flushCmdBuffer(object: IRemoteObject): void
   | ------ | ------------------------------- | ---- | ------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -8335,6 +8597,14 @@ static restoreCallingIdentity(identity: string): void
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
   | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -8408,7 +8678,7 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-4)类替代。
+>从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8421,7 +8691,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8487,7 +8757,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8496,6 +8766,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | 类型                                            | 说明                                      |
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -8548,7 +8827,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8622,10 +8901,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | 参数名        | 类型                                                  | 必填 | 说明                                                         |
 | ------------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | code          | number                                                | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                  |
+| data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的MessageSequence对象。                  |
 | reply         | [MessageSequence](#messagesequence9)                  | 是   | 接收应答数据的MessageSequence对象。                          |
 | options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -8676,10 +8964,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code          | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -8749,7 +9037,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   | code   | number                               | 是   | 对端发送的服务请求码。                    |
   | data   | [MessageSequence](#messagesequence9) | 是   | 携带客户端调用参数的MessageSequence对象。 |
   | reply  | [MessageSequence](#messagesequence9) | 是   | 写入结果的MessageSequence对象。           |
-  | option | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
+  | options | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
 
 **返回值：**
 
@@ -8888,7 +9176,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   | code   | number                                    | 是   | 对端发送的服务请求码。                  |
   | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
   | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
-  | option | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
+  | options | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
 
 **返回值：**
 
@@ -9005,6 +9293,14 @@ getLocalInterface(descriptor: string): IRemoteBroker
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9217,6 +9513,14 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
 | descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -9339,6 +9643,14 @@ static create(name: string, size: number): Ashmem
 | ------------------ | ---------------------------------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
@@ -9409,6 +9721,14 @@ static create(ashmem: Ashmem): Ashmem
 | 类型               | 说明                   |
 | ------------------ | ---------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9535,6 +9855,7 @@ mapTypedAshmem(mapType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900001  | call mmap function failed |
 
 **示例：**
@@ -9721,7 +10042,8 @@ setProtectionType(protectionType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900002  | call os ioctl function failed |
+  | 401      | check param failed |
+  | 1900002  | os ioctl function failed |
 
 **示例：**
 
@@ -9793,6 +10115,7 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
@@ -9842,6 +10165,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
@@ -9864,7 +10188,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9deprecated)类替代。
+>从API version 9 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9926,6 +10250,7 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
@@ -9989,6 +10314,7 @@ readAshmem(size: number, offset: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
@@ -10013,7 +10339,7 @@ readAshmem(size: number, offset: number): number[]
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9deprecated)类替代。
+>从API version 9 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
 
 readFromAshmem(size: number, offset: number): number[]
 

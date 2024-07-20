@@ -122,4 +122,6 @@ The following walks you through on how to use the native purgeable memory APIs t
     ```c++
     // Destroy the object.
     OH_PurgeableMemory_Destroy(pPurgmem);
+    // Set a null pointer to prevent UAF.
+    pPurgmem = nullptr;
     ```

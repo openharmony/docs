@@ -11,7 +11,7 @@
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，这两个装饰器支持在元服务中使用。
+> 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -65,7 +65,7 @@
 
 | \@Provide传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
-| 从父组件初始化和更新     | 可选，允许父组件中常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
+| 从父组件初始化和更新     | 可选，允许父组件中常规变量（常规变量对@Provide赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
 | 用于初始化子组件       | 允许，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 和父组件同步         | 否。                                       |
 | 和后代组件同步        | 和\@Consume双向同步。                          |
@@ -167,7 +167,7 @@ struct CompA {
 1. 初始渲染：
    1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件；
    2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR；
-   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会保存在map中查找到的\@Provide变量，并把自己注册给\@Provide。
+   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
    1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）；
@@ -513,7 +513,7 @@ struct CustomWidget {
 
   build() {
     Column() {
-      Button('你好').onClick((x) => {
+      Button('你好').onClick(() => {
         if (this.a == 'ddd') {
           this.a = 'abc';
         }
@@ -536,6 +536,63 @@ struct CustomWidgetChild {
   build() {
     Column() {
       this.builder({ a: this.a })
+    }
+  }
+}
+```
+
+正确示例：
+
+```ts
+class Tmp {
+  name: string = ''
+}
+
+@Entry
+@Component
+struct HomePage {
+  @Provide('name') name: string = 'abc';
+
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.name}测试`)
+  }
+
+  build() {
+    Column() {
+      Button('你好').onClick(() => {
+        if (this.name == 'ddd') {
+          this.name = 'abc';
+        } else {
+          this.name = 'ddd';
+        }
+      })
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    this.builder()
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('name') name: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ name: this.name })
     }
   }
 }

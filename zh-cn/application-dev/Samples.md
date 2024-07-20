@@ -213,7 +213,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.10.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/CustomShare)
 
 #### Stage模型
 ##### 介绍
@@ -240,7 +240,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StageModel)
 
 ### 网络与连接
 
@@ -948,7 +948,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)
 
 ### 文件管理
 
@@ -1046,7 +1046,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileShare/Picker)
 
 #### 为应用之间分享和文件访问提供统一的入口能力
 
@@ -1056,7 +1056,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 使用
 
-1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker)应用;
+1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileShare/Picker)应用;
 2. 在主界面，可以点击沙箱文件夹列出文件夹中的文件，同时也可以直接点击沙箱目录下的文件进入文件分享界面；
 3. 点击沙箱文件，进入文件分享界面，点击分享图标，文件将以picker方式打开文件，点击编辑图标，文件进入可编辑模式，在textArea中输入内容，然后点击保存，文件内容更新，返回沙箱应用首页，文件修改成功。
 
@@ -1115,7 +1115,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/MediaCollections)
 
 #### 相册
 
@@ -1157,7 +1157,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/Photos)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/Photos)
 
 ### IDL
 
@@ -1186,7 +1186,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IDL/AbilityConnectServiceExtension)
 
 ### 国际化
 
@@ -1304,7 +1304,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaController)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/AVSession/MediaController)
 
 #### 媒体会话——提供方
 
@@ -1713,7 +1713,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/VoiceCallDemo)
 
 #### 相机示例
 
@@ -2351,7 +2351,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationPush)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Notification/CustomNotificationPush)
 
 ### 资源
 
@@ -2389,38 +2389,38 @@ Preferences.flush()保存并刷新文件内容。
 
 ### 安全
 
-#### 应用帐号管理
+#### 应用账号管理
 
 ##### 介绍
 
-本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。
+本示例选择应用进行注册/登录，并设置账号相关信息，简要说明应用账号管理相关功能。
 
 ##### 使用
 
-1.首页面选择想要进入的应用，首次进入该应用需要进行注册，如已注册帐号则直接登录。
+1.首页面选择想要进入的应用，首次进入该应用需要进行注册，如已注册账号则直接登录。
 
-2.注册页面可设置帐号名、邮箱、个性签名、密码（带*号为必填信息），注册完成后返回登录页面使用注册的帐号进行登录。
+2.注册页面可设置账号名、邮箱、个性签名、密码（带*号为必填信息），注册完成后返回登录页面使用注册的账号进行登录。
 
-3.登录后进入帐号详情界面，点击**修改信息**按钮可跳转至帐号信息修改页面重新设置帐号信息。
+3.登录后进入账号详情界面，点击**修改信息**按钮可跳转至账号信息修改页面重新设置账号信息。
 
-4.点击**切换应用**按钮则退出该帐号并返回首页面。重新选择想要进入的应用。
+4.点击**切换应用**按钮则退出该账号并返回首页面。重新选择想要进入的应用。
 
-5.点击**删除帐号**按钮则会删除该帐号所有相关信息。
+5.点击**删除账号**按钮则会删除该账号所有相关信息。
 
 ##### 基本原理
 
 * 本示例分为音乐，视频，地图三个模块
   * 音乐模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用账号管理器对象
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 视频模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用账号管理器对象
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 地图模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用账号管理器对象
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
 ##### 约束与限制
 
@@ -2457,7 +2457,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 使用证书公钥实现签名校验的功能接口Verify封装在CertFrameworkModel中
-    * 获取证书公钥：首先调用[cert.createX509Cert](reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey)能力将公钥pubKey转换为正确的格式。
+    * 获取证书公钥：首先调用[cert.createX509Cert](reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey)能力将公钥pubKey转换为正确的格式。
     * 使用公钥校验签名：首先调用[cryptoFramework.createVerify](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)接口创建验签对象verifier，使用公钥pubKey对验签对象verifier进行初始化[verifier.init](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6)；然后使用验签对象verifier的[verify](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify)能力对签名进行校验。
 
 ##### 约束与限制
@@ -2675,11 +2675,11 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 签名校验的功能接口Verify封装在Model中
-    * 安装私有凭据：调用[certManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
-    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
-    * 填充源数据：调用[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
-    * 完成签名的操作：调用[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
-    * 完成验签的操作：同上，再依次调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+    * 安装私有凭据：调用[certificateManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
+    * 使用凭据进行签名、验签的初始化操作：调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口进行初始化，并获取返回结果signHandle。
+    * 填充源数据：调用[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口填充源数据。
+    * 完成签名的操作：调用[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish)接口完成签名，并获取签名结果signResult。
+    * 完成验签的操作：同上，再依次调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口，[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口，[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
 
 ##### 约束与限制
 
@@ -2715,7 +2715,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.3.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/DLPManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/DLPManager)
 
 ### 任务管理
 
@@ -2778,7 +2778,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/Flybird)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/Flybird)
 
 #### 后台代理提醒
 
@@ -2867,7 +2867,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/TransientTask)
 
 #### 任务延时调度
 
@@ -2905,7 +2905,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/WorkScheduler)
 
 ### 电话服务
 
@@ -2932,7 +2932,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Call)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Call)
 
 #### 联系人
 
@@ -3190,7 +3190,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)
 
 #### 悬浮窗
 
@@ -3200,7 +3200,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 使用
 
-1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)工程hap包
+1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)工程hap包
 2. 打开WindowManage应用sample，点击**窗口预览**进入视频播放页面，点击主窗口后拉起子窗口。
 3. 点击**拉起悬浮应用**按钮后，将以悬浮窗模式拉起应用WindowRatio 。
 4. 点击悬浮应用中的下拉框，选择窗口缩放比例，点击**确定**按钮，以新的宽度/比例计算得到窗口宽高，监听到窗口缩放比例发生变化，窗口以设置的比例改变大小，窗口监听到大小发生变化，在页面上显示当前窗口的宽度和高度。另外，窗口不具备记忆之前位置大小的能力，当前sample所调用的接口展示结果不居中，若要使得窗口居中，则需调用resize接口指定成想要的大小。
@@ -3219,7 +3219,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.8.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
 
 
 
@@ -3594,7 +3594,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/ResourceAllocation/ApplicationThemeSwitch)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ResourceAllocation/ApplicationThemeSwitch)
 
 ### 测试框架
 
@@ -3791,7 +3791,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过输入法框架实现自会编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
+本示例通过输入法框架实现自绘编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
 
 ##### 使用
 
@@ -3823,7 +3823,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.application.InputMethodExtensionAbility](application-models/inputmethodextentionability.md)系统权限的系统接口，展示一个轻量级的输入法应用，支持在运行OpenHarmony OS的智能终端上。
+本示例使用@ohos.application.InputMethodExtensionAbility系统权限的系统接口，展示一个轻量级的输入法应用，支持在运行OpenHarmony OS的智能终端上。
 
 ##### 使用
 
@@ -3831,7 +3831,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 基本原理
 
-* 参考接口：[@ohos.application.InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
+* 参考接口：@ohos.application.InputMethodExtensionAbility
 
 ##### 约束与限制
 
@@ -4233,26 +4233,26 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributeCalc)
 
-#### 分布式帐号
+#### 分布式账号
 
 ##### 介绍
 
-本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能。
+本示例主要展示了分布式账号相关的功能，使用[@ohos.account.distributedAccount](reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式账号、解绑分布式账号、更新分布式账号信息和管理分布式账号的功能。
 
 ##### 使用
 
-1. 首次进入应用会根据分布式帐号绑定状态进行页面跳转，若帐号已绑定，则直接跳转至帐号列表界面；若帐号未绑定，则需要在首页进行绑定；
-1. 首页输入分布式帐号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统帐号，点击**绑定**，绑定成功跳转至帐号列表界面；
-2. 在帐号列表界面，可对所有可解绑分布式帐号进行管理，点击选择分布式帐号，跳转至对应的帐号信息界面；
-3. 在帐号信息界面，点击**解绑**，可解绑该分布式帐号；
-3. 在帐号解绑之后，可对分布式帐号信息进行更新，在首页直接进行输入后点击绑定即可。
+1. 首次进入应用会根据分布式账号绑定状态进行页面跳转，若账号已绑定，则直接跳转至账号列表界面；若账号未绑定，则需要在首页进行绑定；
+1. 首页输入分布式账号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统账号，点击**绑定**，绑定成功跳转至账号列表界面；
+2. 在账号列表界面，可对所有可解绑分布式账号进行管理，点击选择分布式账号，跳转至对应的账号信息界面；
+3. 在账号信息界面，点击**解绑**，可解绑该分布式账号；
+3. 在账号解绑之后，可对分布式账号信息进行更新，在首页直接进行输入后点击绑定即可。
 
 ##### 基本原理
 
-* 绑定、解绑、查询、更新分布式帐号的功能接口封装在DistributedAccountModel：
-    * 使用distributedAccount.getDistributedAccountAbility()获取分布式帐号单实例对象accountAbility;
-    * 绑定、解绑和更新分布式帐号：使用accountAbility.setOsAccountDistributedInfoByLocalId();
-    * 查询分布式帐号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
+* 绑定、解绑、查询、更新分布式账号的功能接口封装在DistributedAccountModel：
+    * 使用distributedAccount.getDistributedAccountAbility()获取分布式账号单实例对象accountAbility;
+    * 绑定、解绑和更新分布式账号：使用accountAbility.setOsAccountDistributedInfoByLocalId();
+    * 查询分布式账号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
 
 ##### 约束与限制
 
@@ -5053,7 +5053,7 @@ return formInfo.FormState.READY }。
 
 2.卡片的样式如"添加卡片"所示。当卡片更新时，卡片上的温度和时间会产生变化。
 
-3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/processProxyForm)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/persistentProxyForm)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
+3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/FormExtAbility/processProxyForm)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/FormExtAbility/persistentProxyForm)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
@@ -5072,7 +5072,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/FormExtAbility)
 
 #### Stage模型卡片小游戏
 
@@ -5136,7 +5136,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.8.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/RequestAddForm)
 
 
 
@@ -5179,7 +5179,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)接口实现了系统管理状态变化通知功能，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
+本示例通过[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)接口实现了系统管理状态变化通知功能，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
 
 ##### 使用
 
@@ -5194,7 +5194,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例通过EnterpriseAdminExtensionAbility接口实现了系统管理状态变化通知功能，adminManager接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
-* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)，[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)
+* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)，[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)
 
 ##### 约束与限制
 

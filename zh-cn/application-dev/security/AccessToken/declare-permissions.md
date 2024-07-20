@@ -9,10 +9,13 @@
 | 属性 | 说明 | 取值范围 |
 | -------- | -------- | -------- |
 | name | 必须，填写需要使用的权限名称。 | 需为系统已定义的权限，取值范围请参考[应用权限列表](permissions-for-all.md)。 |
-| reason | 可选，当申请的权限为user_grant权限时此字段必填，用于描述申请权限的原因。<br/>**说明：**<br/>该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。 | 使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
-| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。<br/>**说明：**<br/>默认为可选，当申请的权限为user_grant权限时，abilities标签必填，when标签可选。 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 |
+| reason | 可选，用于描述申请权限的原因，当申请的权限为user_grant权限时此字段必填。<br/>**说明：**<br/>该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。 | 使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
+| usedScene | 可选，用于描述权限使用的场景，当申请的权限为user_grant权限时建议填写此字段。<br/>描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 |
 
 ## 声明样例
+
+> **说明：**
+> 以下"ohos.permission.PERMISSION1"、"ohos.permission.PERMISSION2"仅为样例示意，不存在该权限。请开发者根据实际需要，参照上表要求填写对应属性。
 
 ```json
 {
@@ -51,7 +54,7 @@
 但在实际向用户弹窗申请授权时，user_grant权限将会以[权限组](app-permission-mgmt-overview.md#权限组和子权限)的形式向用户申请。当前支持的权限组请查看[应用权限组列表](app-permission-group-list.md)。
 
 ### reason字段的内容写作规范及建议
-
+<!--RP1-->
 1. 保持句子简洁、不要加入多余的分割符号。
 
    **建议句式**：用于某事。
@@ -61,7 +64,7 @@
 2. 用途描述的字串建议小于72个字符（即36个中文字符，UI界面显示大约为两行）。不能超过256个字符，以保证多语言适配的体验。
 
 3. 如果不写，将展示默认的申请理由。
-
+<!--RP1End-->
 ### 权限使用理由展示方式
 
 权限使用理由有两个展示途径：授权弹窗界面和“设置（Settings）”界面。“设置”的具体路径：设置-隐私-权限管理-某应用某权限详情。

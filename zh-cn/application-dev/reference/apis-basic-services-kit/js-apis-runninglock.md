@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import runningLock from '@ohos.runningLock';
+import {runningLock} from '@kit.BasicServicesKit';
 ```
 
 ## runningLock.isSupported<sup>9+</sup>
@@ -38,14 +38,14 @@ isSupported(type: RunningLockType): boolean;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **示例：**
 
 ```js
 try {
-    let isSupported = runningLock.isSupported(runningLock.RunningLockType.BACKGROUND);
+    let isSupported = runningLock.isSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL);
     console.info('BACKGROUND type supported: ' + isSupported);
 } catch(err) {
     console.error('check supported failed, err: ' + err);
@@ -77,13 +77,17 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+static recordLock = null;
+
+runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
+        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }
@@ -120,13 +124,17 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+static recordLock = null;
+
+runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
+        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }
@@ -283,7 +291,7 @@ hold(timeout: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                      |
 | ------- | ------ | ---- | ----------------------------------------- |
-| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒；该参数必须为数字类型。 |
+| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒；该参数必须为数字类型。 timeout = -1为永久持锁，需要主动释放；timeout = 0 3s后超时释放; timeout > 0 按传入值超时释放|
 
 **错误码：**
 
@@ -291,25 +299,34 @@ hold(timeout: number): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | If connecting to the service failed. |
-| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 201     | If the permission is denied.|
 
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
-    if (typeof err === 'undefined') {
-        console.info('create running lock: ' + lock);
-        try {
-            lock.hold(500);
-            console.info('hold running lock success');
-        } catch(err) {
-            console.error('hold running lock failed, err: ' + err);
+static recordLock = null;
+
+if (recordLock) {
+    recordLock.hold(500);
+    console.info('hold running lock success');
+} else {
+   runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+        if (typeof err === 'undefined') {
+            console.info('create running lock: ' + lock);
+            recordLock = lock;
+            try {
+                lock.hold(500);
+                console.info('hold running lock success');
+            } catch(err) {
+                console.error('hold running lock failed, err: ' + err);
+            }
+        } else {
+            console.error('create running lock failed, err: ' + err);
         }
-    } else {
-        console.error('create running lock failed, err: ' + err);
-    }
-});
+    });
+}
 ```
 
 ### unhold<sup>9+</sup>
@@ -328,24 +345,34 @@ unhold(): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 201     | If the permission is denied.|
+
 
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
-    if (typeof err === 'undefined') {
-        console.info('create running lock: ' + lock);
-        try {
-            lock.unhold();
-            console.info('unhold running lock success');
-        } catch(err) {
-            console.error('unhold running lock failed, err: ' + err);
+static recordLock = null;
+
+if (recordLock) {
+    recordLock.unhold();
+    console.info('unhold running lock success');
+} else {
+    runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+        if (typeof err === 'undefined') {
+            console.info('create running lock: ' + lock);
+            recordLock = lock;
+            try {
+                lock.unhold();
+                console.info('unhold running lock success');
+            } catch(err) {
+                console.error('unhold running lock failed, err: ' + err);
+            }
+        } else {
+            console.error('create running lock failed, err: ' + err);
         }
-    } else {
-        console.error('create running lock failed, err: ' + err);
-    }
-});
+    });
+}
 ```
 
 ### isHolding<sup>9+</sup>
@@ -368,24 +395,33 @@ isHolding(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
-    if (typeof err === 'undefined') {
-        console.info('create running lock: ' + lock);
-        try {
-            let isHolding = lock.isHolding();
-            console.info('check running lock holding status: ' + isHolding);
-        } catch(err) {
-            console.error('check running lock holding status failed, err: ' + err);
+
+static recordLock = null;
+
+if (recordLock) {
+    let isHolding = recordLock.isHolding();
+    console.info('check running lock holding status: ' + isHolding);
+} else {
+    runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+        if (typeof err === 'undefined') {
+            console.info('create running lock: ' + lock);
+            runningLock = lock;
+            try {
+                let isHolding = lock.isHolding();
+                console.info('check running lock holding status: ' + isHolding);
+            } catch(err) {
+                console.error('check running lock holding status failed, err: ' + err);
+            }
+        } else {
+            console.error('create running lock failed, err: ' + err);
         }
-    } else {
-        console.error('create running lock failed, err: ' + err);
-    }
-});
+    });
+}
 ```
 
 ### lock<sup>(deprecated)</sup>

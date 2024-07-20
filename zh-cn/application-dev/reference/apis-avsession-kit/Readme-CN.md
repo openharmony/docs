@@ -1,4 +1,4 @@
-# AVSession Kit API参考
+# AVSession Kit（音视频播控服务）
 
 - ArkTS API
   - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)

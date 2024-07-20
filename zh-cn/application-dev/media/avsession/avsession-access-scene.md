@@ -36,7 +36,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 使用代码示例：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 // 开始创建并激活媒体会话
 // 创建session
@@ -65,8 +65,8 @@ async function createSession() {
 应用可以通过setAVMetadata把会话的一些元数据信息设置给系统，从而在播控中心界面进行展示，包括不限制：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setSessionInfo() {
@@ -92,8 +92,8 @@ async function setSessionInfo() {
 对于长音频来说，播控中心提供了歌词的展示页面，对于应用来说，接入也比较简单，只需要把歌词内容设置给系统。播控中心会解析歌词内容，并根据播放进度进行同步的刷新。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -126,8 +126,8 @@ async function setListener() {
 对于应用来说，接入只需要在AVMetadata中通知系统，当前播放音频的音源标识，播控就会同步展示。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -159,8 +159,8 @@ async function setListener() {
 播放状态一般是在资源播放后会进行变化的内容，包括：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setSessionInfo() {
@@ -188,7 +188,8 @@ async function setSessionInfo() {
 应用如果支持在播控中心展示进度，那么在媒体资源播放中，需要设置资源的时长、播放状态（暂停、播放）、播放位置、倍速，播控中心会使用这些信息进行进度的展示：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -297,7 +298,7 @@ async function setListener() {
 系统支持的控制命令对于不支持的控制，比如应用不支持“上一首”的命令处理，只需要使用off 接口注销对应的控制命令，系统的播控中心会相应的对该控制界面进行置灰处理，以明确告知用户此控制命令不支持。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -319,8 +320,8 @@ async function unregisterSessionListener() {
 系统支持三种快进快退的时长，应用可以通过接口进行设置；同时注册快进快退的回调命令，以响应控制。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -357,8 +358,8 @@ async function unregisterSessionListener() {
 音乐类应用实现收藏功能，那么需要注册收藏的控制响应[on('toggleFavorite')](../../reference/apis-avsession-kit/js-apis-avsession.md#ontogglefavorite10)。
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -393,8 +394,8 @@ async function setListener() {
 实现参考：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -434,7 +435,7 @@ async function setListener() {
 应用如果支持进度显示，进一步也可以支持进度控制。应用需要响应seek的控制命令，那么当用户在播控中心的界面上进行拖动操作时，应用就会收到对应的回调。参考实现：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 let context: Context = getContext(this);
 async function setListener() {

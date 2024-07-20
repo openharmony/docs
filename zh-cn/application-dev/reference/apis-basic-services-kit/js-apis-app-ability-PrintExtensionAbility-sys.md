@@ -26,6 +26,14 @@ onCreate(want: Want): void
 | -------- | -------- | -------- | -------- |
 | want | Want | 是 | 表示调用打印页面需要参数 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -48,6 +56,14 @@ onStartDiscoverPrinter(): void
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -68,6 +84,14 @@ onStopDiscoverPrinter(): void
 停止发现打印机时调用。
 
 **系统能力：** SystemCapability.Print.PrintFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -95,6 +119,14 @@ onConnectPrinter(printerId: number): void
 | -------- | -------- | -------- | -------- |
 | printerId | number | 是 | 表示打印机ID |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -120,6 +152,14 @@ onDisconnectPrinter(printerId: number): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | number | 是 | 表示打印机ID |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -147,6 +187,14 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -173,6 +221,14 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -205,6 +261,14 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 | **类型** | **说明** |
 | -------- | -------- |
 | print.PrinterCapability | 表示打印能力 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -244,6 +308,14 @@ onRequestPreview(jobInfo: print.PrintJob): string
 | -------- | -------- |
 | string | 返回的预览结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
@@ -267,6 +339,14 @@ onDestroy(): void
 结束打印扩展时调用。
 
 **系统能力：** SystemCapability.Print.PrintFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 

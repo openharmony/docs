@@ -42,6 +42,9 @@
     - 开发指导
       - [用户身份认证访问控制开发指导](huks-user-identity-authentication.md)
       - [细粒度用户身份认证访问控制开发指导](huks-refined-user-identity-authentication.md)
+  - HMAC
+    - [HMAC(ArkTS)](huks-hmac-arkts.md)
+    - [HMAC(C/C++)](huks-hmac-ndk.md)
 - 密钥删除
   - [密钥删除(ArkTS)](huks-delete-key-arkts.md)
   - [密钥删除(C/C++)](huks-delete-key-ndk.md)

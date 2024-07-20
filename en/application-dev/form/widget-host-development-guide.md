@@ -47,7 +47,6 @@ The **temporary** field in **FormComponent** specifies whether a widget is a tem
 
 - Temporary widget: a widget temporarily used by the widget host, for example, the widget displayed when you swipe up on a widget application.
   
-
 Data of a temporary widget will be deleted on the Widget Manager if the widget framework is killed and restarted. The widget provider, however, is not notified of the deletion and still keeps the data. Therefore, the widget provider needs to clear the data of temporary widgets proactively if the data has been kept for a long period of time. If the widget host has converted a temporary widget into a normal one, the widget provider should change the widget data from temporary storage to persistent storage. Otherwise, the widget data may be deleted by mistake. 
 
 ## Using formHost APIs
@@ -58,13 +57,10 @@ The **formHost** module provides a series of APIs for the widget host to update 
 
 ```ts
 //Index.ets
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import HashMap from '@ohos.util.HashMap';
-import HashSet from '@ohos.util.HashSet';
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
-import { BusinessError } from '@ohos.base';
-import formObserver from '@ohos.app.form.formObserver';
+import { HashMap, HashSet } from '@kit.ArkTS';
+import { formHost, formInfo, formObserver } from '@kit.FormKit';
+import { bundleMonitor } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component

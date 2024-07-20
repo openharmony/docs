@@ -16,6 +16,7 @@ In today's software market, applications need to support multiple languages for 
 - Character/text attribute setting (uchar.h and uscript.h)
 - Code conversion (ucnv.h)
 - Bidirectional text processing (ubidi.h)
+- Domain name conversion (uidna.h)
 
 
 ## Symbols Exported from the Standard Library

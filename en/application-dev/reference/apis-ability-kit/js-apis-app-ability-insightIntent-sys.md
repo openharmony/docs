@@ -13,7 +13,7 @@ The **insightIntent** module provides APIs for InsightIntent calls.
 ## Modules to Import
 
 ```ts
-import insightIntent from '@ohos.app.ability.insightIntent';
+import { insightIntent } from '@kit.AbilityKit';
 ```
 
 ## ExecuteMode

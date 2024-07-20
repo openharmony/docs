@@ -567,9 +567,9 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+> **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9) instead.
+> This API is deprecated since API version 9. You are advised to use **window.setShowOnLockScreen**, which is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -600,7 +600,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9) instead.
+> This API is deprecated since API version 9. You are advised to use **window.setShowOnLockScreen**, which is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1154,7 +1154,7 @@ Obtains the module information of the application. This API uses an asynchronous
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is a **ModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is an **HapModuleInfo** object.|
 
 **Example**
 
@@ -1175,7 +1175,7 @@ context.getHapModuleInfo((error, data) => {
 
 getHapModuleInfo(): Promise\<HapModuleInfo>
 
-Obtains the **ModuleInfo** object of the application. This API uses a promise to return the result.
+Obtains the module information of the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1183,7 +1183,7 @@ Obtains the **ModuleInfo** object of the application. This API uses a promise to
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is a **ModuleInfo** object.|
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is an **HapModuleInfo** object.|
 
 **Example**
 

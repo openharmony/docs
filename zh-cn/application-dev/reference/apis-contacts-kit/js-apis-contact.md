@@ -19,7 +19,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 添加联系人，使用callback方式作为异步方法。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -38,7 +38,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -102,7 +102,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -126,7 +126,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -210,7 +210,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -290,7 +290,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -368,7 +368,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -452,7 +452,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -546,7 +546,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -636,7 +636,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
@@ -715,7 +715,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -792,7 +792,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -872,7 +872,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -948,7 +948,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1021,7 +1021,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1104,7 +1104,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1172,8 +1172,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
-**需要权限**：ohos.permission.READ_CONTACTS
-
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1206,8 +1204,6 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)
 
-**需要权限**：ohos.permission.READ_CONTACTS
-
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
@@ -1234,7 +1230,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1248,7 +1244,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1269,7 +1265,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1279,11 +1275,6 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 401      | Parameter error.   |
 
 **示例：**
 
@@ -1303,7 +1294,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1318,7 +1309,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1341,7 +1332,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1361,7 +1352,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1398,7 +1389,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1474,7 +1465,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1558,7 +1549,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1639,7 +1630,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1734,7 +1725,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1823,7 +1814,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1896,7 +1887,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1978,7 +1969,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2057,7 +2048,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2149,7 +2140,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2239,7 +2230,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2315,7 +2306,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2399,7 +2390,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2480,7 +2471,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2575,7 +2566,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2666,7 +2657,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2741,7 +2732,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2825,7 +2816,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2906,7 +2897,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3001,7 +2992,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3091,7 +3082,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3164,7 +3155,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3251,7 +3242,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3335,7 +3326,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3412,7 +3403,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3483,7 +3474,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -3558,7 +3549,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -3647,7 +3638,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -3714,7 +3705,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 选择联系人条件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -3728,7 +3719,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 联系人对象类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3801,7 +3792,7 @@ myContact.phoneNumbers = [phoneNumber];
 联系人属性列表，一般作为入参用来标识希望查询的联系人属性。
 当传入为null时，默认查询全部属性。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3838,7 +3829,7 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 
 枚举，联系人属性列表。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3873,7 +3864,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 联系人的邮箱。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3955,7 +3946,7 @@ holder.holderId = 1;
 
 联系人事件类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4001,7 +3992,7 @@ event.eventDate = "xxxxxx";
 
 联系人的群组类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4034,7 +4025,7 @@ group.title = "title";
 
 联系人的即时消息地址。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4086,7 +4077,7 @@ imAddress.imAddress = "imAddress";
 
 联系人的名字类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4127,7 +4118,7 @@ name.fullName = "fullName";
 
 联系人的昵称类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4158,7 +4149,7 @@ nickName.nickName = "nickName";
 
 联系人的备注类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4189,7 +4180,7 @@ note.noteContent = "noteContent";
 
 联系人的组织类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4223,7 +4214,7 @@ organization.title = "title";
 
 联系人电话号码类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4287,7 +4278,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 联系人的头像类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4318,7 +4309,7 @@ portrait.uri = "uri";
 
 联系人的邮政地址类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4373,7 +4364,7 @@ postalAddress.postalAddress = "postalAddress";
 
 联系人的关系类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4432,7 +4423,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 联系人的会话发起协议（SIP）地址类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4477,7 +4468,7 @@ sipAddress.sipAddress = "sipAddress";
 
 联系人的网站信息类。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 

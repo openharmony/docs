@@ -41,39 +41,80 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 4. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
 
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
-// The plaintext is split into input1 and input2.
-let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
-let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
-async function signMessagePromise(priKey: cryptoFramework.PriKey) {
-  let signAlg = "RSA1024|PKCS1|SHA256";
-  let signer = cryptoFramework.createSign(signAlg);
-  await signer.init(priKey);
-  await signer.update(input1); // If the plaintext is short, you can use sign() to pass in the full data at a time.
-  let signData = await signer.sign(input2);
-  return signData;
-}
-async function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
-  let verifyAlg = "RSA1024|PKCS1|SHA256";
-  let verifier = cryptoFramework.createVerify(verifyAlg);
-  await verifier.init(pubKey);
-  await verifier.update(input1); // If the plaintext is short, you can use verify() to pass in the full data at a time.
-  let res = await verifier.verify(input2, signMessageBlob);
-  console.info("verify result is " + res);
-  return res;
-}
-async function main() {
-  let keyGenAlg = "RSA1024";
-  let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
-  let keyPair = await generator.generateKeyPair();
-  let signData = await signMessagePromise(keyPair.priKey);
-  let verifyResult = await verifyMessagePromise(signData, keyPair.pubKey);
-  if (verifyResult == true) {
-    console.info('verify success');
-  } else {
-    console.error('verify failed');
+- Example (using asynchronous APIs):
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+  // The plaintext is split into input1 and input2.
+  let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  async function signMessagePromise(priKey: cryptoFramework.PriKey) {
+    let signAlg = "RSA1024|PKCS1|SHA256";
+    let signer = cryptoFramework.createSign(signAlg);
+    await signer.init(priKey);
+    await signer.update(input1); // If the plaintext is short, you can use sign() to pass in the full data at a time.
+    let signData = await signer.sign(input2);
+    return signData;
   }
-}
-```
+  async function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
+    let verifyAlg = "RSA1024|PKCS1|SHA256";
+    let verifier = cryptoFramework.createVerify(verifyAlg);
+    await verifier.init(pubKey);
+    await verifier.update(input1); // If the plaintext is short, you can use verify() to pass in the full data at a time.
+    let res = await verifier.verify(input2, signMessageBlob);
+    console.info("verify result is " + res);
+    return res;
+  }
+  async function main() {
+    let keyGenAlg = "RSA1024";
+    let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
+    let keyPair = await generator.generateKeyPair();
+    let signData = await signMessagePromise(keyPair.priKey);
+    let verifyResult = await verifyMessagePromise(signData, keyPair.pubKey);
+    if (verifyResult == true) {
+      console.info('verify success');
+    } else {
+      console.error('verify failed');
+    }
+  }
+  ```
+
+- Example (using synchronous APIs):
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+  // The plaintext is split into input1 and input2.
+  let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  function signMessagePromise(priKey: cryptoFramework.PriKey) {
+    let signAlg = "RSA1024|PKCS1|SHA256";
+    let signer = cryptoFramework.createSign(signAlg);
+    signer.initSync(priKey);
+    signer.updateSync(input1); // If the plaintext is short, you can use sign() to pass in the full data at a time.
+    let signData = signer.signSync(input2);
+    return signData;
+  }
+  function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
+    let verifyAlg = "RSA1024|PKCS1|SHA256";
+    let verifier = cryptoFramework.createVerify(verifyAlg);
+    verifier.initSync(pubKey);
+    verifier.updateSync(input1); // If the plaintext is short, you can use verify() to pass in the full data at a time.
+    let res = verifier.verifySync(input2, signMessageBlob);
+    console.info("verify result is " + res);
+    return res;
+  }
+  function main() {
+    let keyGenAlg = "RSA1024";
+    let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
+    let keyPair = generator.generateKeyPairSync();
+    let signData = signMessagePromise(keyPair.priKey);
+    let verifyResult = verifyMessagePromise(signData, keyPair.pubKey);
+    if (verifyResult == true) {
+      console.info('verify success');
+    } else {
+      console.error('verify failed');
+    }
+  }
+  ```

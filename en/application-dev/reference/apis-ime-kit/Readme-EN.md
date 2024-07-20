@@ -1,4 +1,4 @@
-# IME Kit API Reference
+# IME Kit (Input Method Development Service)
 
 - ArkTS APIs
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)

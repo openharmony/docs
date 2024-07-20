@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import hiTraceChain from '@ohos.hiTraceChain';
+import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## HiTraceFlag

@@ -1,9 +1,10 @@
-# Input Kit
+# Input Kit (Multimodal Input)
 
-- [Introduction to Multimodal Input](input-overview.md)
+- [Introduction to Input Kit](input-overview.md)
 - [Input Device Development](inputdevice-guidelines.md)
-- [Mouse Pointer Development](pointerstyle-guidelines.md)
+- [Mouse Pointer Development](pointerstyle-guidelines.md)<!--Del-->
 - [Input Monitor Development](inputmonitor-guidelines.md)
 - [Event Injection Development](inputeventclient-guidelines.md)
-- [Combination Key Development](inputconsumer-guidelines.md)
+- [Input Consumer Development](inputconsumer-guidelines.md)
 - [Shortcut Key Development](shortkey-guidelines.md)
+<!--DelEnd-->

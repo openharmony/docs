@@ -5,12 +5,12 @@ The **osAccount** module provides basic capabilities for managing system (OS) ac
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [ohos.account.osAccount](js-apis-osAccount.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [ohos.account.osAccount (System Account Management)](js-apis-osAccount.md).
 
 ## Modules to Import
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import { osAccount } from '@kit.BasicServicesKit';
 ```
 
 ## AccountManager
@@ -31,24 +31,27 @@ Activates a system account. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                               |
+| Name  | Type                      | Mandatory | Description                                               |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
 | localId  | number                    | Yes  | ID of the target system account.                 |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **Example**: Activate system account 100.
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId, (err: BusinessError)=>{
@@ -77,30 +80,33 @@ Activates a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **Example**: Activate system account 100.
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId).then(() => {
@@ -110,6 +116,57 @@ Activates a system account. This API uses a promise to return the result.
     });
   } catch (e) {
     console.log('activateOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### deactivateOsAccount<sup>12+</sup>
+
+deactivateOsAccount(localId: number): Promise&lt;void&gt;
+
+Deactivates (logs out of) a system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory | Description                |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | Yes  | ID of the target system account. |
+
+**Return value**
+
+| Type               | Description                                 |
+| ------------------- | ------------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+| ID | Error Message            |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+
+Example: Deactivate system account 100.
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.deactivateOsAccount(localId).then(() => {
+      console.log('deactivateOsAccount successfully');
+    }).catch((err: BusinessError) => {
+      console.log('deactivateOsAccount failed, err:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('deactivateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -127,28 +184,31 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                              |
+| Name | Type  | Mandatory | Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type                  | Description                                                      |
 | ---------------------- | ---------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **Example**: Check whether system account 100 is activated.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
@@ -175,29 +235,32 @@ Checks whether a constraint is enabled for a system account. This API uses a pro
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                               |
+| Name    | Type  | Mandatory | Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
 | localId    | number | Yes  | ID of the target system account. |
-| constraint | string | Yes  | [Constraint](js-apis-osAccount.md#constraints) to check.|
+| constraint | string | Yes  | [Constraint](js-apis-osAccount.md#constraints) to check. |
 
 **Return value**
 
 | Type                  | Description                                                                 |
 | --------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -225,28 +288,31 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                             |
+| Name | Type  | Mandatory | Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
+| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified. |
 
 **Return value**
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
@@ -273,16 +339,19 @@ Removes a system account. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                |
+| Name  | Type                     | Mandatory | Description                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
 | localId  | number                    | Yes  | ID of the target system account.                 |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -290,12 +359,12 @@ Removes a system account. This API uses an asynchronous callback to return the r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
-    accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccount(accountName, osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo) => {
         accountManager.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
           if (err) {
             console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
@@ -323,21 +392,24 @@ Removes a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                              |
+| Name | Type  | Mandatory | Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -345,12 +417,12 @@ Removes a system account. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
-    accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccount(accountName, osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
         accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
           console.log('removeOsAccount successfully');
         }).catch((err: BusinessError) => {
@@ -376,18 +448,21 @@ Sets or removes constraints for a system account. This API uses an asynchronous 
 
 **Parameters**
 
-| Name     | Type                     | Mandatory| Description                                            |
+| Name     | Type                     | Mandatory | Description                                            |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId     | number                    | Yes  | ID of the target system account.              |
 | constraints | Array&lt;string&gt;       | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.       |
 | enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                          |
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -395,8 +470,8 @@ Sets or removes constraints for a system account. This API uses an asynchronous 
 **Example**: Disable Wi-Fi for system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -426,7 +501,7 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                                        |
+| Name     | Type               | Mandatory | Description                                        |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
 | localId     | number              | Yes  | ID of the target system account.          |
 | constraints | Array&lt;string&gt; | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.   |
@@ -436,13 +511,16 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 | Type               | Description                                |
 | :------------------ | :----------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -450,8 +528,8 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 **Example**: Remove the constraint on the use of Wi-Fi for system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
@@ -468,7 +546,7 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a name for a system account. This API uses an asynchronous callback to return the result.
+Sets the name for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -478,17 +556,20 @@ Sets a name for a system account. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                                            |
+| Name   | Type                     | Mandatory | Description                                            |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId   | number                    | Yes  | ID of the target system account.              |
-| localName | string                    | Yes  | Account name. The value cannot exceed 1024 characters.                         |
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| localName | string                    | Yes  | Account name to set. The value cannot exceed 1024 characters.                         |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -496,8 +577,8 @@ Sets a name for a system account. This API uses an asynchronous callback to retu
 **Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'demoName';
   try {
@@ -517,7 +598,7 @@ Sets a name for a system account. This API uses an asynchronous callback to retu
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-Sets a name for a system account. This API uses a promise to return the result.
+Sets the name for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -527,22 +608,25 @@ Sets a name for a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                               |
+| Name   | Type  | Mandatory | Description                               |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | Yes  | ID of the target system account.|
+| localId   | number | Yes  | ID of the target system account. |
 | localName | string | Yes  | Account name to set. The value cannot exceed 1024 characters.           |
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -550,8 +634,8 @@ Sets a name for a system account. This API uses a promise to return the result.
 **Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'testName';
   try {
@@ -577,21 +661,23 @@ Queries the maximum number of system accounts that can be created. This API uses
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                             |
+| Name  | Type                       | Mandatory | Description                                                                             |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber((err: BusinessError, maxCnt: number) => {
       if (err) {
@@ -619,19 +705,20 @@ Queries the maximum number of system accounts that can be created. This API uses
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created.|
+| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber().then((maxCnt: number) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
@@ -640,6 +727,45 @@ Queries the maximum number of system accounts that can be created. This API uses
     });
   } catch (err) {
     console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### queryMaxLoggedInOsAccountNumber<sup>12+</sup>
+
+queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
+
+Queries the maximum number of system accounts allowed to log in to the system. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                 | Description                                        |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
+      console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
+    }).catch((err: BusinessError) => {
+      console.log('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -657,28 +783,31 @@ Obtains all the enabled constraints of a system account. This API uses a promise
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type                              | Description                                                      |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the system account.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the system account. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **Example**: Obtain all constraints of system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
@@ -705,23 +834,26 @@ Queries information about all the system accounts created. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                              |
+| Name  | Type                                                        | Mandatory | Description                                              |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
+    accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
       console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
       console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
     });
@@ -746,27 +878,68 @@ Queries information about all the system accounts created. This API uses a promi
 
 | Type                                                       | Description                                          |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created.|
+| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryAllCreatedOsAccounts().then((accountArr: account_osAccount.OsAccountInfo[]) => {
+    accountManager.queryAllCreatedOsAccounts().then((accountArr: osAccount.OsAccountInfo[]) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
       console.log('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getForegroundOsAccountLocalId<sup>12+</sup>
+
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+
+Obtains the ID of the foreground system account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                  | Description                                                              |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the ID of the foreground system account obtained. |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
+      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
+    }).catch((err: BusinessError) => {
+      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -784,31 +957,34 @@ Creates a system account. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name   | Type                                                | Mandatory| Description                                                                        |
+| Name   | Type                                                | Mandatory | Description                                                                        |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
 | localName | string                                               | Yes  | Name of the system account to create.                                                       |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                       |
-| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 | ID | Error Message                  |
 | -------- | ------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.createOsAccount('testName', account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccount('testName', osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       console.log('createOsAccount err:' + JSON.stringify(err));
       console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
@@ -831,40 +1007,44 @@ Creates a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory| Description                  |
+| Name   | Type                           | Mandatory | Description                  |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | Yes  | Name of the system account to create.|
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
+| localName | string                          | Yes  | Name of the system account to create. |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create. |
 | options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
 | Type                                          | Description                                 |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account. |
 
 **Error codes**
 
 | ID | Error Message                  |
 | -------- | ------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let options: account_osAccount.CreateOsAccountOptions;
-  options.shortName = 'myShortName';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let options: osAccount.CreateOsAccountOptions = {
+    shortName: 'myShortName'
+  }
   try {
-    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, options).then(
-      (accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
+      (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
       console.log('createOsAccount err: ' + JSON.stringify(err));
@@ -888,33 +1068,37 @@ Creates a system account and associates it with the specified domain account. Th
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                                                        |
+| Name    | Type                                                | Mandatory | Description                                                                        |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                      |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                                                              |
-| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo =
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       console.log('createOsAccountForDomain err:' + JSON.stringify(err));
       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
@@ -925,7 +1109,7 @@ Creates a system account and associates it with the specified domain account. Th
 
 ### createOsAccountForDomain<sup>8+</sup>
 
-createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
+createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, options?: CreateOsAccountForDomainOptions): Promise&lt;OsAccountInfo&gt;
 
 Creates a system account and associates it with the specified domain account. This API uses a promise to return the result.
 
@@ -937,38 +1121,47 @@ Creates a system account and associates it with the specified domain account. Th
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description                |
+| Name    | Type                                     | Mandatory | Description                |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create. |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid type or domainInfo. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo =
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
+  let options: osAccount.CreateOsAccountForDomainOptions = {
+    shortName: 'myShortName'
+  }
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
-      (accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo, options).then(
+      (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
       console.log('createOsAccountForDomain err: ' + JSON.stringify(err));
@@ -994,21 +1187,23 @@ Queries information about the system account to which the current process belong
 
 | Type                                          | Description                                      |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.queryOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
       console.log('queryOsAccount err: ' + JSON.stringify(err));
@@ -1032,27 +1227,30 @@ Queries information about the system account of the given ID. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                                                      |
+| Name  | Type                                                | Mandatory | Description                                                                      |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | localId  | number                                               | Yes  | ID of the target system account.                                                     |
-| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
 **Example**: Query information about system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
       console.log('queryOsAccountById err:' + JSON.stringify(err));
       console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
     });
@@ -1075,32 +1273,35 @@ Queries information about the system account of the given ID. This API uses a pr
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type                                          | Description                                |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
 **Example**: Query information about system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.queryOsAccountById(localId).then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.queryOsAccountById(localId).then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
       console.log('queryOsAccountById err: ' + JSON.stringify(err));
@@ -1124,24 +1325,27 @@ Obtains the profile photo of a system account. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                        |
+| Name  | Type                       | Mandatory | Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | localId  | number                      | Yes  | ID of the target system account.                                                               |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
 **Example**: Obtain the profile photo of system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
@@ -1167,29 +1371,32 @@ Obtains the profile photo of a system account. This API uses a promise to return
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 
 **Return value**
 
 | Type                 | Description                                   |
 | --------------------- | -------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the profile photo information obtained.|
+| Promise&lt;string&gt; | Promise used to return the profile photo information obtained. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
 **Example**: Obtain the profile photo of system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId).then((photo: string) => {
@@ -1216,17 +1423,20 @@ Sets a profile photo for a system account. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description        |
+| Name  | Type                     | Mandatory | Description        |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | Yes  | ID of the target system account.|
+| localId  | number                    | Yes  | ID of the target system account. |
 | photo    | string                    | Yes  | Profile photo information.  |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -1234,8 +1444,8 @@ Sets a profile photo for a system account. This API uses an asynchronous callbac
 **Example**: Set a profile photo for system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -1264,22 +1474,25 @@ Sets a profile photo for a system account. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account.|
+| localId | number | Yes  | ID of the target system account. |
 | photo   | string | Yes  | Profile photo information.  |
 
 **Return value**
 
 | Type               | Description                                |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -1287,8 +1500,8 @@ Sets a profile photo for a system account. This API uses a promise to return the
 **Example**: Set a profile photo for system account 100.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -1319,23 +1532,26 @@ Subscribes to the system account activation states, including the states of the 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                                        |
+| Name  | Type                      | Mandatory | Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the system account activation is complete, and **activating** indicates an event reported when system account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates a system account is activated, and **activating** indicates a system account is being activated. |
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
-| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the system account being activated or activated.   |
+| callback | Callback&lt;number&gt;     | Yes  | Callback used to return the ID of the system account being activated or activated.   |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **Example**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
     console.log('receive localId:' + receiveLocalId);
   }
@@ -1360,28 +1576,197 @@ Unsubscribes from the system account activation states, including the states of 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                                        |
+| Name  | Type                      | Mandatory | Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that a system account is activated, and **activating** means an event indicating that a system account is being activated.|
-| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback for the system account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the system account activation state events.                     |
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** indicates that a system account is activated, and **activating** indicates that a system account is being activated. |
+| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**. |
+| callback | Callback&lt;number&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the system account activation states.                     |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **Example**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function offCallback(){
     console.log('off enter')
   }
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
+  } catch (e) {
+    console.log('off exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### on<sup>12+</sup>
+
+on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+Subscribes to the switchover between a foreground system account and a background system account in progress. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory | Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed. |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | Yes  | Callback used to return the system account IDs before and after the switchover.   |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type. |
+
+**Example**
+
+  ```ts
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  function onSwitchingCallback(eventData: osAccount.OsAccountSwitchEventData){
+    console.log('receive eventData:' + JSON.stringify(eventData));
+  }
+  try {
+    accountManager.on('switching', onSwitchingCallback);
+  } catch (e) {
+    console.log('receive eventData exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### off<sup>12+</sup>
+
+off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+Unsubscribes from the switchover between a foreground system account and a background system account in progress. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory | Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed. |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the **switching** event.                     |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type. |
+
+**Example**
+
+  ```ts
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.off('switching');
+  } catch (e) {
+    console.log('off exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### on<sup>12+</sup>
+
+on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+Subscribes to the end of a switchover between a foreground system account and a background system account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory | Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete. |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | Yes  | Callback used to return the system account IDs before and after the switchover.   |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type. |
+
+**Example**
+
+  ```ts
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  function onSwitchedCallback(eventData: osAccount.OsAccountSwitchEventData){
+    console.log('receive eventData:' + JSON.stringify(eventData));
+  }
+  try {
+    accountManager.on('switched', onSwitchedCallback);
+  } catch (e) {
+    console.log('receive eventData exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### off<sup>12+</sup>
+
+off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+Unsubscribes from the end of a switchover between a foreground system account and a background system account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory | Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete. |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the **switched** event.                     |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type. |
+
+**Example**
+
+  ```ts
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.off('switched');
   } catch (e) {
     console.log('off exception: ' + JSON.stringify(e));
   }
@@ -1399,23 +1784,25 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                                                       |
+| Name  | Type                      | Mandatory | Description                                                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------------------ |
 | uid      | number                      | Yes  | Process UID.                                                                |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the bundle ID obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle ID obtained. Otherwise, **data** is an error object. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
@@ -1439,28 +1826,30 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| uid     | number | Yes  |  Process UID.|
+| uid     | number | Yes  |  Process UID. |
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the bundle ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the bundle ID obtained. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
@@ -1477,7 +1866,7 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 getBundleIdForUidSync(uid: number): number
 
-Obtains the bundle ID based on the specified UID. The API returns the result synchronously.
+Obtains the bundle ID based on the specified UID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1485,26 +1874,28 @@ Obtains the bundle ID based on the specified UID. The API returns the result syn
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| uid     | number | Yes  |  Process UID.|
+| uid     | number | Yes  |  Process UID. |
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Bundle ID obtained.|
+| number | Bundle ID obtained. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid uid. |
 
 **Example**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
@@ -1516,7 +1907,7 @@ Obtains the bundle ID based on the specified UID. The API returns the result syn
 
 ### isMainOsAccount<sup>9+</sup>
 
-isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
+isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the current process belongs to the main system account. This API uses an asynchronous callback to return the result.
 
@@ -1528,21 +1919,24 @@ Checks whether the current process belongs to the main system account. This API 
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                                                              |
+| Name  | Type                         | Mandatory | Description                                                              |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
       console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
@@ -1569,19 +1963,21 @@ Checks whether the current process belongs to the main system account. This API 
 
 | Type                  | Description                                                                 |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
@@ -1595,7 +1991,7 @@ Checks whether the current process belongs to the main system account. This API 
 
 ### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void
 
 Obtains the constraint source information of a system account. This API uses an asynchronous callback to return the result.
 
@@ -1607,28 +2003,31 @@ Obtains the constraint source information of a system account. This API uses an 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                                        |
+| Name  | Type                      | Mandatory | Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | Yes  |  ID of the target system account.|
-| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](js-apis-osAccount.md#constraints) source information obtained. Otherwise, **err** is an error object.                     |
+| localId     | number | Yes  |  ID of the target system account. |
+| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained. |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](js-apis-osAccount.md#constraints) source information obtained. Otherwise, **err** is an error object.                     |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
-      (err: BusinessError,sourceTypeInfos: account_osAccount.ConstraintSourceTypeInfo[])=>{
+      (err: BusinessError,sourceTypeInfos: osAccount.ConstraintSourceTypeInfo[])=>{
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
@@ -1651,39 +2050,93 @@ Obtains the constraint source information of a system account. This API uses a p
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | Yes  |  ID of the target system account.|
-| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
+| localId     | number | Yes  |  ID of the target system account. |
+| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained. |
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the source information of the specified [constraint](js-apis-osAccount.md#constraints).|
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the source information of the specified [constraint](js-apis-osAccount.md#constraints). |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then(
-      (result: account_osAccount.ConstraintSourceTypeInfo[]) => {
+      (result: osAccount.ConstraintSourceTypeInfo[]) => {
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
     console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountType<sup>12+</sup>
+
+getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
+
+Obtains the type of a system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory | Description        |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | Yes  |  ID of the target system account. |
+
+**Return value**
+
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise used to return the type of the system account obtained. |
+
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    accountManager.getOsAccountType(localId).then((type: osAccount.OsAccountType) => {
+      console.info('getOsAccountType Type:' + type);
+    }).catch((err: BusinessError) => {
+      console.info('getOsAccountType errInfo:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.info('getOsAccountType exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1703,9 +2156,15 @@ A constructor used to create an instance for user authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   ```
 
 ### getVersion<sup>8+</sup>
@@ -1724,9 +2183,15 @@ Obtains version information.
 | :----- | :----------- |
 | number | Version information obtained.|
 
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let version: number = userAuth.getVersion();
   console.log('getVersion version = ' + version);
   ```
@@ -1745,29 +2210,32 @@ Obtains the available status of the authentication capability corresponding to t
 
 **Parameters**
 
-| Name          | Type                              | Mandatory| Description                      |
+| Name          | Type                              | Mandatory | Description                      |
 | --------------- | -----------------------------------| ---- | ------------------------- |
 | authType        | [AuthType](#authtype8)             | Yes  | Authentication credential type.    |
-| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication.|
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication. |
 
 **Return value**
 
 | Type  | Description                          |
 | ------ | ----------------------------- |
-| number | Available status of the authentication capability.|
+| number | Available status of the authentication capability. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let userAuth = new osAccount.UserAuth();
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
@@ -1778,7 +2246,7 @@ Obtains the available status of the authentication capability corresponding to t
 
 ### getProperty<sup>8+</sup>
 
-getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProperty&gt;): void;
+getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProperty&gt;): void
 
 Obtains the executor property based on the request. This API uses an asynchronous callback to return the result.
 
@@ -1790,33 +2258,37 @@ Obtains the executor property based on the request. This API uses an asynchronou
 
 **Parameters**
 
-| Name   | Type                                                                   | Mandatory| Description                               |
+| Name   | Type                                                                   | Mandatory | Description                               |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| request  | [GetPropertyRequest](#getpropertyrequest8)                  | Yes  | Request information, including the authentication credential type and property list.|
-| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the executor property information obtained. Otherwise, **err** is an error object.|
+| request  | [GetPropertyRequest](#getpropertyrequest8)                  | Yes  | Request information, including the authentication credential type and property list. |
+| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the executor property information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let keys: Array<account_osAccount.GetPropertyType>  = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    account_osAccount.GetPropertyType.REMAIN_TIMES,
-    account_osAccount.GetPropertyType.FREEZING_TIME
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let keys: Array<osAccount.GetPropertyType>  = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request: account_osAccount.GetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
+  let request: osAccount.GetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
     keys: keys
   };
   try {
-    userAuth.getProperty(request, (err: BusinessError, result: account_osAccount.ExecutorProperty) => {
+    userAuth.getProperty(request, (err: BusinessError, result: osAccount.ExecutorProperty) => {
       console.log('getProperty err = ' + JSON.stringify(err));
       console.log('getProperty result = ' + JSON.stringify(result));
     });
@@ -1839,38 +2311,42 @@ Obtains the executor property based on the request. This API uses a promise to r
 
 **Parameters**
 
-| Name   | Type                                                  | Mandatory| Description                               |
+| Name   | Type                                                  | Mandatory | Description                               |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#getpropertyrequest8) | Yes  | Request information, including the authentication credential type and property list.|
+| request  | [GetPropertyRequest](#getpropertyrequest8) | Yes  | Request information, including the authentication credential type and property list. |
 
 **Return value**
 
 | Type                                                             | Description                                                |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property information obtained.|
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property information obtained. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let keys: Array<account_osAccount.GetPropertyType> = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    account_osAccount.GetPropertyType.REMAIN_TIMES,
-    account_osAccount.GetPropertyType.FREEZING_TIME
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let keys: Array<osAccount.GetPropertyType> = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request: account_osAccount.GetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
+  let request: osAccount.GetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
     keys: keys
   };
   try {
-    userAuth.getProperty(request).then((result: account_osAccount.ExecutorProperty) => {
+    userAuth.getProperty(request).then((result: osAccount.ExecutorProperty) => {
       console.log('getProperty result = ' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
       console.log('getProperty error = ' + JSON.stringify(err));
@@ -1882,7 +2358,7 @@ Obtains the executor property based on the request. This API uses a promise to r
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the property for the initialization algorithm. This API uses an asynchronous callback to return the result.
 
@@ -1894,25 +2370,28 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
 
 **Parameters**
 
-| Name   | Type                                                 | Mandatory| Description                                                                   |
+| Name   | Type                                                 | Mandatory | Description                                                                   |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| Yes  | Request information, including the authentication credential type and the key value to set.                                  |
-| callback | AsyncCallback&lt;void&gt;                           | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let request: account_osAccount.SetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
-    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let request: osAccount.SetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
+    key: osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
@@ -1942,30 +2421,33 @@ Sets the property for the initialization algorithm. This API uses a promise to r
 
 **Parameters**
 
-| Name   | Type                                      | Mandatory| Description                                     |
+| Name   | Type                                      | Mandatory | Description                                     |
 | -------- | ------------------------------------------ | ---- | ---------------------------------------- |
-| request  | [SetPropertyRequest](#setpropertyrequest8) | Yes  | Request information, including the authentication credential type and the key value to set.|
+| request  | [SetPropertyRequest](#setpropertyrequest8) | Yes  | Request information, including the authentication credential type and the key value to set. |
 
 **Return value**
 
 | Type                 | Description                                                          |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let request: account_osAccount.SetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
-    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let request: osAccount.SetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
+    key: osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
@@ -1977,6 +2459,63 @@ Sets the property for the initialization algorithm. This API uses a promise to r
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
   }
+  ```
+
+### prepareRemoteAuth<sup>12+</sup>
+
+prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
+
+Prepares for remote authentication. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name           | Type  | Mandatory | Description            |
+| --------         | ------ | ---- | --------------- |
+| remoteNetworkId  | string | Yes  | Remote network ID. |
+
+**Return value**
+
+| Type                 | Description                                                          |
+| :-------------------- | :------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid remoteNetworkId. |
+
+**Example**
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let userAuth = new osAccount.UserAuth();
+  let distributedDeviceMgr = distributedDeviceManager.createDeviceManager("com.example.bundleName");
+  distributedDeviceMgr.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
+      try {
+        if (data.length > 0 && data[0].networkId != null) {
+          userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
+            console.log('prepareRemoteAuth successfully');
+          }).catch((err: BusinessError) => {
+            console.log('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+          });
+        }
+      } catch (e) {
+        console.log('prepareRemoteAuth exception = ' + JSON.stringify(e));
+      }
+    }
+  )
   ```
 
 ### auth<sup>8+</sup>
@@ -1993,43 +2532,116 @@ Performs authentication of the current user. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name          | Type                                    | Mandatory| Description                               |
+| Name          | Type                                    | Mandatory | Description                               |
 | --------------- | ---------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                               | Yes | Challenge value, which is a random number used to improve security.|
 | authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
-| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback invoked to return the authentication result. |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback used to return the authentication result. |
 
 **Return value**
 
 | Type       | Description              |
 | ---------- | ------------------ |
-| Uint8Array | ID of the context for canceling the authentication.|
+| Uint8Array | ID of the context for canceling the authentication. |
 
 **Error codes**
 
-| ID| Error Message         |
+| ID | Error Message         |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300117 | PIN is expired. |
 
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
+          console.log('auth result = ' + result);
+          console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      }
+    });
+  } catch (e) {
+    console.log('auth exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### auth<sup>12+</sup>
+
+auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, options: AuthOptions, callback: IUserAuthCallback): Uint8Array
+
+Starts user authentication based on the specified challenge value, authentication type (PIN, facial, or fingerprint authentication), authentication trust level, and optional parameters (such as the account ID and authentication intent). This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name          | Type                                    | Mandatory | Description                               |
+| --------------- | ---------------------------------------- | --- | ------------------------------------ |
+| challenge       | Uint8Array                               | Yes | Challenge value, which is a random number used to prevent replay attacks and improve security.|
+| authType        | [AuthType](#authtype8)                   | Yes | Authentication type.                       |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
+| options         | [AuthOptions](#authoptions12) | Yes | Optional parameters for the authentication. |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback used to return the authentication result. |
+
+**Return value**
+
+| Type       | Description              |
+| ---------- | ------------------ |
+| Uint8Array | ID of the context for canceling the authentication. |
+
+**Error codes**
+
+| ID | Error Message         |
+| -------- | --------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid challenge, authType, authTrustLevel or options. |
+| 12300003 | Account not found. |
+| 12300101 | The credential is incorrect. |
+| 12300102 | Credential not enrolled. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300117 | PIN is expired. |
+
+**Example**
+  ```ts
+  let userAuth = new osAccount.UserAuth();
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+  let options: osAccount.AuthOptions = {
+    accountId: 100
+  };
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, options, {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -2053,42 +2665,47 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name          | Type                                                | Mandatory| Description                               |
+| Name          | Type                                                | Mandatory | Description                               |
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | userId          | number                                               | Yes | User ID.                       |
 | challenge       | Uint8Array                                           | Yes | Challenge value, which is a random number used to improve security.                         |
 | authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
-| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback invoked to return the authentication result. |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback used to return the authentication result. |
 
 **Return value**
 
 | Type       | Description              |
 | ---------- | ------------------ |
-| Uint8Array | ID of the context for canceling the authentication.|
+| Uint8Array | ID of the context for canceling the authentication. |
 
 **Error codes**
 
-| ID| Error Message         |
+| ID | Error Message         |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300003 | Account not found. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300117 | PIN is expired. |
 
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let userID: number = 100;
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: (result,extraInfo) => {
@@ -2103,7 +2720,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 
 ### cancelAuth<sup>8+</sup>
 
-cancelAuth(contextID: Uint8Array): void;
+cancelAuth(contextID: Uint8Array): void
 
 Cancels an authentication.
 
@@ -2117,22 +2734,25 @@ Cancels an authentication.
 
 | Name   | Type      | Mandatory | Description                                       |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated.|
+| contextId | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated. |
 
 **Error codes**
 
-| ID| Error Message           |
+| ID | Error Message           |
 | -------- | ------------------ |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid contextId. |
 
 **Example**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let userAuth = new osAccount.UserAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextId: Uint8Array = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let contextId: Uint8Array = userAuth.auth(challenge, osAccount.AuthType.PIN, osAccount.AuthTrustLevel.ATL1, {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -2154,20 +2774,26 @@ Provides APIs for PIN authentication.
 
 constructor()
 
-A constructor used to create an instance for PIN authentication.
+Creates a PIN authentication instance.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Account.OsAccount
 
+**Error codes**
+
+| ID | Error Message      |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **Example**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   ```
 
 ### registerInputer<sup>8+</sup>
 
-registerInputer(inputer: IInputer): void;
+registerInputer(inputer: IInputer): void
 
 Register a PIN inputer.
 
@@ -2179,25 +2805,28 @@ Register a PIN inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory| Description                     |
+| Name   | Type                    | Mandatory | Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN.|
+| inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid inputer. |
-| 12300103 | Inputer already registered. |
+| 12300103 | The credential inputer already exists. |
 
 **Example**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     pinAuth.registerInputer({
-        onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
@@ -2209,7 +2838,7 @@ Register a PIN inputer.
 
 ### unregisterInputer<sup>8+</sup>
 
-unregisterInputer(): void;
+unregisterInputer(): void
 
 Unregisters this PIN inputer.
 
@@ -2219,9 +2848,16 @@ Unregisters this PIN inputer.
 
 **Required permissions**: ohos.permission.ACCESS_PIN_AUTH
 
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+
 **Example**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
 
@@ -2243,27 +2879,30 @@ Register a credential inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory| Description                     |
+| Name   | Type                    | Mandatory | Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
-| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register.|
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type. |
+| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or inputer. |
-| 12300103 | The credential inputer has been registered. |
-| 12300106 | Unsupported authType. |
+| 12300103 | The credential inputer already exists. |
+| 12300106 | The authentication type is not supported. |
 
 **Example**
   ```ts
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    account_osAccount.InputerManager.registerInputer(authType, {
-        onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    osAccount.InputerManager.registerInputer(authType, {
+        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
@@ -2287,21 +2926,24 @@ Unregisters this credential inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory| Description                     |
+| Name   | Type                    | Mandatory | Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002  | Invalid authType. |
 
 **Example**
   ```ts
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
   try {
-    account_osAccount.InputerManager.unregisterInputer(authType);
+    osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
     console.log('unregisterInputer err:' + JSON.stringify(err));
@@ -2326,50 +2968,50 @@ Authenticates a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | credential   | Uint8Array  | Yes  | Credentials of the domain account.|
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Example**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                      callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                      callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin);
-  let userAuth = new account_osAccount.UserAuth();
+  osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new osAccount.UserAuth();
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
           console.log('auth resultCode = ' + resultCode);
           console.log('auth authResult = ' + JSON.stringify(authResult));
       }
@@ -2391,42 +3033,42 @@ Authenticates a domain account in a pop-up window.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Example**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### authWithToken<sup>10+</sup>
@@ -2441,43 +3083,43 @@ Authenticates a domain account by the authorization token.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token   | Uint8Array  | Yes  | Authorization token generated when the PIN or biometric authentication is successful.|
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Example**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAccountInfo<sup>10+</sup>
@@ -2492,23 +3134,23 @@ Obtains information about a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | Yes  | Options for obtaining the domain account information.|
-| callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {
       // mock getting account information
       // notify result
       let code: BusinessError = {
@@ -2516,23 +3158,23 @@ Obtains information about a domain account.
         name: "",
         message: ""
       };
-      let accountInfo: account_osAccount.DomainAccountInfo = {
+      let accountInfo: osAccount.DomainAccountInfo = {
         domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };
       callback(code, accountInfo);
     },
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAuthStatusInfo<sup>10+</sup>
@@ -2547,44 +3189,44 @@ Obtains the authentication status of a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {
       let code: BusinessError = {
         code: 0,
         name: "",
         message: ""
       };
-      let statusInfo: account_osAccount.AuthStatusInfo = {
+      let statusInfo: osAccount.AuthStatusInfo = {
         remainTimes: 5,
         freezingTime: 0
       };
       callback(code, statusInfo);
     },
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### bindAccount<sup>10+</sup>
@@ -2599,26 +3241,26 @@ Binds a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify binding result
@@ -2629,12 +3271,12 @@ Binds a domain account.
       };
       callback(code);
     },
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### unbindAccount<sup>10+</sup>
@@ -2649,28 +3291,28 @@ Unbinds a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify unbinding result
       let code: BusinessError = {
@@ -2680,11 +3322,11 @@ Unbinds a domain account.
       };
       callback(code);
     },
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### isAccountTokenValid<sup>10+</sup>
@@ -2699,30 +3341,30 @@ Checks whether the specified domain account token is valid.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array | Yes| Domain account token.|
-| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.|
+| token | Uint8Array | Yes | Domain account token to check. |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {
       // mock checking operation
       // notify checking result
@@ -2733,9 +3375,9 @@ Checks whether the specified domain account token is valid.
       };
       callback(code, true);
     },
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAccessToken<sup>10+</sup>
@@ -2750,31 +3392,31 @@ Obtains the domain access token based on the specified conditions.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options | [GetDomainAccessTokenOptions](#getdomainaccesstokenoptions10)  | Yes  | Options specified for obtaining the domain access token.|
-| callback   | AsyncCallback&lt;Uint8Array&gt; | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;Uint8Array&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
       // mock getting operation
       // notify result
       let code: BusinessError = {
@@ -2786,7 +3428,7 @@ Obtains the domain access token based on the specified conditions.
       callback(code, token);
     }
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ## DomainAccountManager <sup>9+</sup>
@@ -2806,39 +3448,42 @@ Registers a domain plug-in.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory| Description                     |
+| Name   | Type                    | Mandatory | Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register.|
+| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300201 | The domain plugin has been registered. |
 
 **Example**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-         callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                  callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                  callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                   callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+         callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                  callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                  callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                   callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                         callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
   try {
-    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    osAccount.DomainAccountManager.registerPlugin(plugin);
     console.log('registerPlugin success.');
   } catch(err) {
     console.log('registerPlugin err:' + JSON.stringify(err));
@@ -2857,10 +3502,17 @@ Unregisters this domain plug-in.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+
 **Example**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.unregisterPlugin();
+    osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
   } catch(err) {
     console.log('unregisterPlugin err:' + JSON.stringify(err));
@@ -2881,38 +3533,42 @@ Authenticates a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | credential   | Uint8Array  | Yes  | Credentials of the domain account.|
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **Example**
   ```ts
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   let credential = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('auth resultCode = ' + resultCode);
         console.log('auth authResult = ' + JSON.stringify(authResult));
       }
@@ -2938,30 +3594,34 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **Example**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.authWithPopup({
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.authWithPopup({
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('auth resultCode = ' + resultCode);
         console.log('auth authResult = ' + JSON.stringify(authResult));
       }
@@ -2987,32 +3647,36 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | localId   | number  | Yes  | Local ID of the system account bound to the domain account.|
-| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **Example**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.authWithPopup(100, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.authWithPopup(100, {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('authWithPopup resultCode = ' + resultCode);
         console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
       }
@@ -3036,29 +3700,33 @@ Checks whether a domain account exists.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback invoked to return the result.|
+| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
+    osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
       if (err) {
         console.log('call hasAccount failed, error: ' + JSON.stringify(err));
       } else {
@@ -3084,7 +3752,7 @@ Checks whether a domain account exists.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 
@@ -3092,26 +3760,30 @@ Checks whether a domain account exists.
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
+    osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
       console.log('hasAccount result: ' + result);
     }).catch((err: BusinessError) => {
         console.log('call hasAccount failed, error: ' + JSON.stringify(err));
@@ -3123,7 +3795,7 @@ Checks whether a domain account exists.
 
 ### updateAccountToken<sup>10+</sup>
 
-updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void;
+updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void
 
 Updates the token of a domain account. An empty token means an invalid token. This API uses an asynchronous callback to return the result.
 
@@ -3135,31 +3807,34 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array  | Yes  | New token of the domain account.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
+    osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
       if (err != null) {
         console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
       } else {
@@ -3185,7 +3860,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array  | Yes  | New token of the domain account.|
@@ -3194,33 +3869,86 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
+    osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
       console.log('updateAccountToken successfully');
     }).catch((err: BusinessError) => {
         console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### updateAccountInfo<sup>12+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+Updates information of a domain account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory | Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information to update.|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | New domain account information.|
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let oldDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
   }
   ```
 
@@ -3238,30 +3966,34 @@ Obtains information about the specified domain account. This API uses an asynchr
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
-| callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | Yes  | Callback invoked to return the result.|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
-      (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+    osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
+      (err: BusinessError, result: osAccount.DomainAccountInfo) => {
       if (err) {
         console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
       } else {
@@ -3287,7 +4019,7 @@ Obtains information about the specified domain account. This API uses a promise 
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
 
@@ -3295,27 +4027,31 @@ Obtains information about the specified domain account. This API uses a promise 
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise used to return the domain account information obtained.|
+| Promise&lt;DomainAccountInfo&gt; | Promise used to return the domain account information obtained. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
-      .then((result: account_osAccount.DomainAccountInfo) => {
+    osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
+      .then((result: osAccount.DomainAccountInfo) => {
       console.log('getAccountInfo result: ' + result);
     }).catch((err: BusinessError) => {
       console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
@@ -3337,31 +4073,34 @@ Obtains the service access token of this domain account. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | businessParams | Record<string, Object>  | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
-| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, an error object is returned.|
+| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, an error object is returned.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let businessParams: Record<string, Object> = {
     'clientId': 'xxx',
     'secretId': 'yyy'
   };  // depends on the implementation of the domain plugin
   try {
-    account_osAccount.DomainAccountManager.getAccessToken(businessParams,
+    osAccount.DomainAccountManager.getAccessToken(businessParams,
       (err: BusinessError, result: Uint8Array) => {
       if (err) {
         console.log('getAccessToken failed, error: ' + JSON.stringify(err));
@@ -3386,7 +4125,7 @@ Obtains the service access token of this domain account. This API uses a promise
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | businessParams | Record<string, Object> | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
 
@@ -3394,28 +4133,31 @@ Obtains the service access token of this domain account. This API uses a promise
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the service access token obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the service access token obtained. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let businessParams: Record<string, Object> = {
     'clientId': 'xxx',
     'secretId': 'yyy'
   };  // depends on the implementation of the domain plugin
   try {
-    account_osAccount.DomainAccountManager.getAccessToken(businessParams)
+    osAccount.DomainAccountManager.getAccessToken(businessParams)
       .then((result: Uint8Array) => {
       console.log('getAccessToken result: ' + result);
     }).catch((err: BusinessError) => {
@@ -3424,6 +4166,226 @@ Obtains the service access token of this domain account. This API uses a promise
   } catch (err) {
     console.log('getAccessToken exception = ' + JSON.stringify(err));
   }
+  ```
+
+### isAuthenticationExpired<sup>12+</sup>
+
+isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;;
+
+Checks whether the authentication of a domain account has expired. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory | Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300003 | Domain account not found. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
+  try {
+    osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
+      console.log('isAuthenticationExpired, result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('isAuthenticationExpired err: ' + err);
+    });
+  } catch (e) {
+    console.log('isAuthenticationExpired exception: ' + e);
+  }
+  ```
+
+## DomainServerConfig<sup>12+</sup>
+
+Represents the configuration of a domain server.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory | Description      |
+| ----------- | ------ | ---- | ---------- |
+| parameters | Record<string, Object> | Yes  | Server configuration parameters. |
+| id | string | Yes  | Server configuration ID.|
+| domain | string | Yes | Domain to which the server belongs. |
+
+## DomainServerConfigManager<sup>12+</sup>
+
+Provides APIs for domain server configuration and management.
+
+### addServerConfig<sup>12+</sup>
+
+static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+Adds domain server configuration. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory | Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| parameters   | Record<string, Object>  | Yes | Configuration parameters of the domain server. |
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the configuration of the newly added domain server. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | - Invalid server config parameters. |
+| 12300211 | - Server unreachable. |
+
+**Example**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### removeServerConfig<sup>12+</sup>
+
+static removeServerConfig(configId: string): Promise&lt;void&gt;
+
+Deletes domain server configuration. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory | Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | Yes | Server configuration ID. |
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300212 | - Server config not found. |
+
+**Example**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    console.log('remove domain server configuration successfully');
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getAccountServerConfig<sup>12+</sup>
+
+static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
+
+Obtains the server configuration of a domain account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory | Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes | Information of the domain account. |
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the domain server configuration of the account. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300003 | Domain account not found. |
+
+**Example**
+  ```ts
+  let accountInfo: osAccount.DomainAccountInfo = {
+    'accountName': 'demoName',
+    'accountId': 'demoId',
+    'domain': 'demoDomain'
+  };
+  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -3442,14 +4404,20 @@ A constructor used to create an instance for user IDM.
 
 **System capability**: SystemCapability.Account.OsAccount
 
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 202 | Not system application.|
+
 **Example**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   ```
 
 ### openSession<sup>8+</sup>
 
-openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
+openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Opens a session to obtain the challenge value. This API uses an asynchronous callback to return the result.
 
@@ -3461,20 +4429,23 @@ Opens a session to obtain the challenge value. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name   | Type                            | Mandatory| Description                                                           |
+| Name   | Type                            | Mandatory | Description                                                           |
 | -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the challenge value obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the challenge value obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
         console.log('openSession error = ' + JSON.stringify(err));
@@ -3487,9 +4458,9 @@ Opens a session to obtain the challenge value. This API uses an asynchronous cal
 
 ### openSession<sup>8+</sup>
 
-openSession(): Promise&lt;Uint8Array&gt;;
+openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 
-Opens a session to obtain the challenge value. This API uses a promise to return the result.
+Opens a session. This API returns a challenge value, which can be used to determine whether the subsequent identity authentication is in this session. This can prevent replay attacks. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3497,24 +4468,36 @@ Opens a session to obtain the challenge value. This API uses a promise to return
 
 **Required permissions**: ohos.permission.MANAGE_USER_IDM
 
+**Parameters**
+
+| Name    | Type   | Mandatory | Description       |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default. |
+
 **Return value**
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the challenge value obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the challenge value obtained. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let accountId = 100;
   try {
-    userIDM.openSession().then((challenge: Uint8Array) => {
+    userIDM.openSession(accountId).then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
         console.info('openSession error = ' + JSON.stringify(err));
@@ -3526,7 +4509,7 @@ Opens a session to obtain the challenge value. This API uses a promise to return
 
 ### addCredential<sup>8+</sup>
 
-addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 Adds credential information, including the credential type, subtype, and token (if a non-PIN credential is added).
 
@@ -3538,43 +4521,49 @@ Adds credential information, including the credential type, subtype, and token (
 
 **Parameters**
 
-| Name          | Type                                | Mandatory| Description                       |
+| Name          | Type                                | Mandatory | Description                       |
 | --------------- | ------------------------------------ | --- | ---------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)   | Yes | Credential information to add.               |
-| callback        | [IIdmCallback](#iidmcallback8)       | Yes | Callback invoked to return the result. |
+| callback        | [IIdmCallback](#iidmcallback8)       | Yes | Callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
-| 12300101 | Token is invalid. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
+| 12300101 | The token is invalid. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
+| 12300116 | Credential complexity verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
       callback.onSetData(authSubType, password);
     }
   });
-  let credentialInfo: account_osAccount.CredentialInfo = {
-    credType: account_osAccount.AuthType.PIN,
-    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+  let credentialInfo: osAccount.CredentialInfo = {
+    credType: osAccount.AuthType.PIN,
+    credSubType: osAccount.AuthSubType.PIN_SIX,
     token: new Uint8Array([]),
   };
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
     try {
     userIDM.addCredential(credentialInfo, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
         console.log('addCredential result = ' + result);
         console.log('addCredential extraInfo = ' + extraInfo);
       }
@@ -3587,7 +4576,7 @@ Adds credential information, including the credential type, subtype, and token (
 
 ### updateCredential<sup>8+</sup>
 
-updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 Updates credential information. This API uses a callback to return the result.
 
@@ -3599,44 +4588,49 @@ Updates credential information. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name          | Type                                 | Mandatory| Description                    |
+| Name          | Type                                 | Mandatory | Description                    |
 | --------------- | ------------------------------------- | --- | ------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.            |
-| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback invoked to return the new credential information.|
+| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback used to return the new credential information. |
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
-| 12300101 | Token is invalid. |
+| 12300003 | Account not found. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled.|
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
+| 12300116 | Credential complexity verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
-  let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let credentialInfo: account_osAccount.CredentialInfo = {
-    credType: account_osAccount.AuthType.PIN,
-    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+  let credentialInfo: osAccount.CredentialInfo = {
+    credType: osAccount.AuthType.PIN,
+    credSubType: osAccount.AuthSubType.PIN_SIX,
     token: new Uint8Array([]),
   };
   pinAuth.registerInputer({
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
       callback.onSetData(authSubType, password);
     }
   });
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
-    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL1, {
-      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
-        if (result != account_osAccount.ResultCode.SUCCESS) {
+    userAuth.auth(challenge, credentialInfo.credType, osAccount.AuthTrustLevel.ATL1, {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
+        if (result != osAccount.ResultCode.SUCCESS) {
           return;
         }
         if (extraInfo.token != null) {
@@ -3644,7 +4638,7 @@ Updates credential information. This API uses a callback to return the result.
         }
         try {
           userIDM.updateCredential(credentialInfo, {
-            onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+            onResult: (result: number, extraInfo: osAccount.RequestResult) => {
                 console.log('updateCredential result = ' + result);
                 console.log('updateCredential extraInfo = ' + extraInfo);
             }
@@ -3659,7 +4653,7 @@ Updates credential information. This API uses a callback to return the result.
 
 ### closeSession<sup>8+</sup>
 
-closeSession(): void;
+closeSession(accountId?: number): void
 
 Closes this session to terminate IDM.
 
@@ -3669,15 +4663,33 @@ Closes this session to terminate IDM.
 
 **Required permissions**: ohos.permission.MANAGE_USER_IDM
 
+**Parameters**
+
+| Name    | Type   | Mandatory | Description       |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default. |
+
+**Error codes**
+
+| ID | Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
+
 **Example**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
-  userIDM.closeSession();
+  let userIDM = new osAccount.UserIdentityManager();
+  let accountId = 100;
+  userIDM.closeSession(accountId);
   ```
 
 ### cancel<sup>8+</sup>
 
-cancel(challenge: Uint8Array): void;
+cancel(challenge: Uint8Array): void
 
 Cancels an entry based on the challenge value.
 
@@ -3689,20 +4701,23 @@ Cancels an entry based on the challenge value.
 
 **Parameters**
 
-| Name   | Type       | Mandatory| Description  |
+| Name   | Type       | Mandatory | Description  |
 | -------- | ----------- | ---- | ----- |
-| challenge | Uint8Array | Yes  | Challenge value.|
+| challenge | Uint8Array | Yes  | Challenge value. |
 
 **Error codes**
 
-| ID| Error Message           |
+| ID | Error Message           |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge. |
 
 **Example**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let challenge: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.cancel(challenge);
@@ -3713,7 +4728,7 @@ Cancels an entry based on the challenge value.
 
 ### delUser<sup>8+</sup>
 
-delUser(token: Uint8Array, callback: IIdmCallback): void;
+delUser(token: Uint8Array, callback: IIdmCallback): void
 
 Deletes a user based on the authentication token. This API uses a callback to return the result.
 
@@ -3725,25 +4740,28 @@ Deletes a user based on the authentication token. This API uses a callback to re
 
 **Parameters**
 
-| Name   | Type                          | Mandatory| Description                     |
+| Name   | Type                          | Mandatory | Description                     |
 | -------- | ------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                     | Yes | Authentication token.            |
-| callback | [IIdmCallback](#iidmcallback8) | Yes | Callback invoked to return the result.|
+| callback | [IIdmCallback](#iidmcallback8) | Yes | Callback used to return the result.|
 
 **Error codes**
 
-| ID| Error Message       |
+| ID | Error Message       |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300101 | Token is invalid. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300101 | The token is invalid. |
 
 **Example**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delUser(token, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
         console.log('delUser result = ' + result);
         console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -3755,7 +4773,7 @@ Deletes a user based on the authentication token. This API uses a callback to re
 
 ### delCred<sup>8+</sup>
 
-delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void;
+delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void
 
 Deletes user credential information.
 
@@ -3767,29 +4785,32 @@ Deletes user credential information.
 
 **Parameters**
 
-| Name          | Type                                           | Mandatory| Description                     |
+| Name          | Type                                           | Mandatory | Description                     |
 | --------------- | ----------------------------------- | --- | ---------------------------|
 | credentialId    | Uint8Array                          | Yes | Credential ID.                 |
 | token           | Uint8Array                          | Yes | Authentication token.              |
-| callback        | [IIdmCallback](#iidmcallback8)      | Yes | Callback invoked to return the result.|
+| callback        | [IIdmCallback](#iidmcallback8)      | Yes | Callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
-| 12300101 | Token is invalid. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let credentialId: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]);
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delCred(credentialId, token, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
           console.log('delCred result = ' + result);
           console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -3801,7 +4822,7 @@ Deletes user credential information.
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 Obtains authentication information. This API uses an asynchronous callback to return the result.
 
@@ -3813,23 +4834,26 @@ Obtains authentication information. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name   | Type                                                                    | Mandatory| Description                                                |
+| Name   | Type                                                                    | Mandatory | Description                                                |
 | -------- | ------------------------------------------------------------------------ | ---- | --------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is information about all registered credentials of the user. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is information about all registered credentials of the user. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo((err: BusinessError, result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo((err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo err = ' + JSON.stringify(err));
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
@@ -3840,7 +4864,7 @@ Obtains authentication information. This API uses an asynchronous callback to re
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 Obtains authentication information of the specified type. This API uses an asynchronous callback to return the result.
 
@@ -3852,26 +4876,29 @@ Obtains authentication information of the specified type. This API uses an async
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory| Description                                               |
+| Name   | Type                                              | Mandatory | Description                                               |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
 | authType | [AuthType](#authtype8) | Yes  | Authentication credential type.                                         |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the information about all enrolled credentials of the specified type. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the information about all enrolled credentials of the specified type. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo(account_osAccount.AuthType.PIN,
-      (err: BusinessError, result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo(osAccount.AuthType.PIN,
+      (err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo err = ' + JSON.stringify(err));
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
@@ -3894,7 +4921,7 @@ Obtains authentication information of the specified type. This API uses a promis
 
 **Parameters**
 
-| Name   | Type                               | Mandatory| Description     |
+| Name   | Type                               | Mandatory | Description     |
 | -------- | ----------------------------------- | ---- | -------- |
 | authType | [AuthType](#authtype8)              | No  | Authentication type. By default, this parameter is left blank, which means to obtain information about all authentication types.|
 
@@ -3906,24 +4933,136 @@ Obtains authentication information of the specified type. This API uses a promis
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo(osAccount.AuthType.PIN).then((result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
       console.log('getAuthInfo error = ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('getAuthInfo exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getAuthInfo<sup>12+</sup>
+
+getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;
+
+Obtains authentication information. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.USE_USER_IDM
+
+**Parameters**
+
+| Name   | Type                               | Mandatory | Description     |
+| -------- | ----------------------------------- | ---- | -------- |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | No  | Optional parameters for obtaining authentication information. |
+
+**Return value**
+
+| Type                                        | Description                                                                    |
+| :------------------------------------------- | :----------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise used to return the information about all the enrolled credentials of the specified type.|
+
+**Error codes**
+
+| ID | Error Message              |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid options. |
+| 12300003 | Account not found. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let options: osAccount.GetAuthInfoOptions = {
+    authType: osAccount.AuthType.PIN,
+    accountId: 100,
+  };
+  try {
+    userIDM.getAuthInfo(options).then((result: osAccount.EnrolledCredInfo[]) => {
+      console.log('getAuthInfo result = ' + JSON.stringify(result))
+    }).catch((err: BusinessError) => {
+      console.log('getAuthInfo error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getEnrolledId<sup>12+</sup>
+
+getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
+
+Obtains the ID of the enrolled credential based on the credential type and account ID (optional). This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.USE_USER_IDM
+
+**Parameters**
+
+| Name    | Type                  | Mandatory | Description     |
+| --------  | ---------------------- | ---- | -------- |
+| authType  | [AuthType](#authtype8) | Yes  | Credential type. |
+| accountId | number                 | No  | System account ID, which is left blank by default. |
+
+**Return value**
+
+| Type                      | Description                                                                    |
+| :------------------------ | :----------------------------------------------------------------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the credential ID obtained.|
+
+**Error codes**
+
+| ID | Error Message              |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid authType. |
+| 12300003 | Account not found. |
+| 12300102 | Credential not enrolled. |
+| 12300106 | The authentication type is not supported. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let accountId = 100;
+  try {
+    userIDM.getEnrolledId(authType, accountId).then((enrolledId: Uint8Array) => {
+        console.info('getEnrolledId enrolledId = ' + JSON.stringify(enrolledId));
+    }).catch((err: BusinessError) => {
+        console.info('getEnrolledId error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getEnrolledId exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -3939,30 +5078,32 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **System API**: This is a system API.
 
-Called to set data in a PIN operation.
+Called to notify the caller the data is set.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
 
-| Name     | Type                                    | Mandatory| Description                                           |
+| Name     | Type                                    | Mandatory | Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
 | authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
-| data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
+| data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials. |
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ------------------- |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid pinSubType. |
 
 **Example**
   ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer: account_osAccount.IInputer = {
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+  let inputer: osAccount.IInputer = {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
+        if (authSubType == osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
         } else {
           callback.onSetData(authSubType, password);
@@ -3979,9 +5120,9 @@ Provides callbacks for credential inputers.
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData, options: GetInputDataOptions) => void;
 
-Called to obtain data.
+Called to notify the caller that data is obtained.
 
 **System API**: This is a system API.
 
@@ -3989,24 +5130,27 @@ Called to obtain data.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory| Description            |
+| Name     | Type                                   | Mandatory | Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| callback   | [IInputData](#iinputdata8)  | Yes  | Called to input the PIN.|
+| authSubType | [AuthSubType](#authsubtype8) | Yes | Authentication credential subtype. |
+| callback   | [IInputData](#iinputdata8)  | Yes  | Callback used to return the PIN data.|
+| options | [GetInputDataOptions](#getinputdataoptions-12) | Yes | Optional parameters for the callback function. |
 
 **Example**
   ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer: account_osAccount.IInputer = {
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+  let inputer: osAccount.IInputer = {
+    onGetData: (authSubType: osAccount.AuthSubType,
+      callback: osAccount.IInputData, options: osAccount.GetInputDataOptions) => {
+        if (authSubType == osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
         } else {
           callback.onSetData(authSubType, password);
         }
     }
   };
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let result = pinAuth.registerInputer(inputer);
   console.log('registerInputer result: ' + result);
   ```
@@ -4029,15 +5173,15 @@ Called to return the result code and authentication result.
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                |
+| Name    | Type                                   | Mandatory | Description                |
 | --------- | --------------------------------------- | ---- | ------------------- |
 | result    | number                                   | Yes  | Authentication result code.|
 | extraInfo | [AuthResult](#authresult8)  | Yes  | Specific authentication result information. If the authentication is successful, the authentication token is returned in **extrainfo**. If the authentication fails, the remaining authentication time is returned. If the authentication executor is locked, the freezing time is returned.|
 
 **Example**
   ```ts
-  let authCallback: account_osAccount.IUserAuthCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let authCallback: osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -4056,7 +5200,7 @@ Called to acquire identity authentication information.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                          |
+| Name   | Type    | Mandatory | Description                          |
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
@@ -4064,8 +5208,8 @@ Called to acquire identity authentication information.
 
 **Example**
   ```ts
-  let authCallback: account_osAccount.IUserAuthCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let authCallback: osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
@@ -4095,15 +5239,15 @@ Called to return the result code and request result information.
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                    |
+| Name    | Type                                   | Mandatory | Description                    |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | Yes  | Authentication result code.   |
 | extraInfo | [RequestResult](#requestresult8)  | Yes  | Specific information to be transferred.|
 
 **Example**
   ```ts
-  let idmCallback: account_osAccount.IIdmCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+  let idmCallback: osAccount.IIdmCallback = {
+    onResult: (result: number, extraInfo: osAccount.RequestResult) => {
       console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -4122,7 +5266,7 @@ Called to acquire IDM information.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                          |
+| Name   | Type    | Mandatory | Description                          |
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
@@ -4130,7 +5274,7 @@ Called to acquire IDM information.
 
 **Example**
   ```ts
-  let idmCallback: account_osAccount.IIdmCallback = {
+  let idmCallback: osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));
@@ -4154,7 +5298,8 @@ Defines the request for obtaining property information.
 | Name   | Type                                                         | Mandatory  | Description                  |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | Yes   | Authentication credential type.       |
-| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | An array of the types of the properties to obtain.|
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | An array of the types of the properties to obtain. |
+| accountId<sup>12+</sup> | number | No | System account ID, which is **undefined** by default. |
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -4167,7 +5312,7 @@ Defines the request for setting property information.
 | Name   | Type                                            | Mandatory  | Description                |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
 | authType | [AuthType](#authtype8)               | Yes   | Authentication credential type.    |
-| key     | [SetPropertyType](#setpropertytype8) | Yes   | Type of the property to set.|
+| key     | [SetPropertyType](#setpropertytype8) | Yes   | Type of the property to set. |
 | setInfo  | Uint8Array                                       | Yes   | Information to set.    |
 
 ## ExecutorProperty<sup>8+</sup>
@@ -4178,14 +5323,15 @@ Defines the executor property.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name        | Type                        |  Readable| Writable| Description             |
+| Name        | Type                        |  Readable | Writable | Description             |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
 | result       | number                       | Yes   | Yes  | Result.        |
 | authSubType  | [AuthSubType](#authsubtype8) | Yes   | Yes  | Authentication credential subtype.|
 | remainTimes  | number                       | Yes   | Yes  | Number of remaining authentication times.    |
 | freezingTime | number                       | Yes   | Yes  | Freezing time.    |
-| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed.|
-| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed.|
+| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed in. |
+| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed in. |
+| nextPhaseFreezingTime<sup>12+</sup> | number | Yes   | Yes  | Next freezing time, which is **undefined** by default. |
 
 ## AuthResult<sup>8+</sup>
 
@@ -4197,9 +5343,13 @@ Defines the authentication result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | No   | Authentication token. By default, no value is passed.     |
-| remainTimes  | number      | No   | Number of remaining authentication times. By default, no value is passed.     |
-| freezingTime | number      | No   | Freezing time. By default, no value is passed.     |
+| token        | Uint8Array  | No   | Authentication token. By default, no value is passed in.     |
+| remainTimes  | number      | No   | Number of remaining authentication times. By default, no value is passed in.     |
+| freezingTime | number      | No   | Freezing time. By default, no value is passed in.     |
+| nextPhaseFreezingTime<sup>12+</sup> | number | No   | Next freezing time, which is **undefined** by default. |
+| credentialId<sup>12+</sup> | Uint8Array  | No   | Credential ID, which is left blank by default. |
+| accountId<sup>12+</sup>         | number | No   | System account ID, which is **undefined** by default. |
+| pinValidityPeriod<sup>12+</sup> | number | No   | Authentication validity period, which is **undefined** by default. |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -4214,6 +5364,7 @@ Defines the credential information.
 | credType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.    |
 | credSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.  |
 | token        | Uint8Array                           | Yes   | Authentication token.    |
+| accountId<sup>12+</sup>    | number | No   | System account ID, which is **undefined** by default. |
 
 ## RequestResult<sup>8+</sup>
 
@@ -4225,7 +5376,7 @@ Defines the request result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | No   | Credential ID. By default, no value is passed.     |
+| credentialId | Uint8Array  | No   | Credential ID. By default, no value is passed in.     |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -4239,7 +5390,7 @@ Defines enrolled credential information.
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | Yes   | Credential ID.      |
 | authType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.  |
-| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype.|
+| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype. |
 | templateId   | Uint8Array                               | Yes   | Authentication credential template ID.    |
 
 ## GetPropertyType<sup>8+</sup>
@@ -4250,13 +5401,14 @@ Enumerates the types of properties to obtain.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Value| Description     |
+| Name          | Value | Description     |
 | ------------- | ------ | --------- |
-| AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
+| AUTH_SUB_TYPE | 1      | Authentication credential subtype. |
 | REMAIN_TIMES  | 2      | Remaining time.  |
 | FREEZING_TIME | 3      | Freezing time.  |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | Enrollment progress.  |
 | SENSOR_INFO<sup>10+</sup> | 5      | Sensor information.  |
+| NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | Next freezing time. |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -4266,9 +5418,9 @@ Enumerates the types of properties to set.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Value| Description       |
+| Name          | Value | Description       |
 | -------------- | ----- | ----------- |
-| INIT_ALGORITHM | 1     | Initialization algorithm.|
+| INIT_ALGORITHM | 1     | Initialization algorithm. |
 
 ## AuthType<sup>8+</sup>
 
@@ -4278,11 +5430,12 @@ Enumerates the authentication credential types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Value| Description            |
+| Name | Value | Description            |
 | ----- | ----- | ---------------- |
-| PIN   | 1     | PIN authentication.|
+| PIN   | 1     | PIN authentication. |
 | FACE  | 2     | Facial authentication.|
-| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
+| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication. |
+| RECOVERY_KEY<sup>12+</sup> | 8 | Key recovery type. |
 | DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
@@ -4293,11 +5446,13 @@ Enumerates the authentication credential subtypes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Value| Description              |
+| Name      | Value | Description              |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
-| PIN_NUMBER | 10001 | Custom PIN.|
-| PIN_MIXED  | 10002 | Custom mixed credentials.|
+| PIN_NUMBER | 10001 | Custom PIN. |
+| PIN_MIXED  | 10002 | Custom mixed credentials. |
+| PIN_FOUR<sup>12+</sup>   | 10003 | 4-digit credential. |
+| PIN_PATTERN<sup>12+</sup>  | 10004 | Pattern credential. |
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
@@ -4313,12 +5468,12 @@ Enumerates the trust levels of the authentication result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Value| Description       |
+| Name | Value | Description       |
 | ---- | ------ | ----------- |
-| ATL1 | 10000  | Trust level 1.|
-| ATL2 | 20000  | Trust level 2.|
-| ATL3 | 30000  | Trust level 3.|
-| ATL4 | 40000  | Trust level 4.|
+| ATL1 | 10000  | Trust level 1. |
+| ATL2 | 20000  | Trust level 2. |
+| ATL3 | 30000  | Trust level 3. |
+| ATL4 | 40000  | Trust level 4. |
 
 ## Module<sup>8+</sup>
 
@@ -4328,9 +5483,9 @@ Enumerates the modules from which information is obtained.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Value| Description                    |
+| Name      | Value | Description                    |
 | --------- | ------ | ------------------------ |
-| FACE_AUTH | 1      | Facial authentication module.|
+| FACE_AUTH | 1      | Facial authentication module. |
 
 ## ResultCode<sup>8+</sup>
 
@@ -4340,7 +5495,7 @@ Enumerates the authentication result codes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                   | Value| Description                                    |
+| Name                   | Value | Description                                    |
 | ----------------------- | ----- | ---------------------------------------- |
 | SUCCESS                 | 0     | The authentication is successful or the authentication feature is supported.            |
 | FAIL                    | 1     | The authentication executor failed to identify the user.                  |
@@ -4349,7 +5504,7 @@ Enumerates the authentication result codes.
 | TIMEOUT                 | 4     | The authentication timed out.                      |
 | TYPE_NOT_SUPPORT        | 5     | The authentication credential type is not supported.                |
 | TRUST_LEVEL_NOT_SUPPORT | 6     | The authentication trust level is not supported.              |
-| BUSY                    | 7     | The authentication executor is busy. Try again after a few seconds.|
+| BUSY                    | 7     | The authentication executor is busy. Try again after a few seconds. |
 | INVALID_PARAMETERS      | 8     | Incorrect parameters are detected.                         |
 | LOCKED                  | 9     | The authentication executor is locked.                    |
 | NOT_ENROLLED            | 10    | The authentication executor is not enrolled.                  |
@@ -4362,7 +5517,7 @@ Enumerates the tip codes for facial authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Value| Description                                    |
+| Name                         | Value | Description                                    |
 | ----------------------------- | ----- | ---------------------------------------- |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1     | The obtained face image is too bright.        |
 | FACE_AUTH_TIP_TOO_DARK        | 2     | The obtained face image is too dark.      |
@@ -4370,8 +5525,8 @@ Enumerates the tip codes for facial authentication.
 | FACE_AUTH_TIP_TOO_FAR         | 4     | The face is too far away from the device.                      |
 | FACE_AUTH_TIP_TOO_HIGH        | 5     | Only the upper part of the face is captured because the device is angled too high.             |
 | FACE_AUTH_TIP_TOO_LOW         | 6     | Only the lower part of the face is captured because the device is angled too low.             |
-| FACE_AUTH_TIP_TOO_RIGHT       | 7     | Only the right part of the face is captured because the device is angled too much to the right.|
-| FACE_AUTH_TIP_TOO_LEFT        | 8     | Only the left part of the face is captured because the device is angled too much to the left.|
+| FACE_AUTH_TIP_TOO_RIGHT       | 7     | Only the right part of the face is captured because the device is angled too much to the right. |
+| FACE_AUTH_TIP_TOO_LEFT        | 8     | Only the left part of the face is captured because the device is angled too much to the left. |
 | FACE_AUTH_TIP_TOO_MUCH_MOTION | 9     | The face moves too fast during facial information collection.        |
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | The face is not facing the device.                        |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | No face is detected.                        |
@@ -4384,10 +5539,10 @@ Enumerates the tip codes for fingerprint authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Value| Description                                           |
+| Name                         | Value | Description                                           |
 | ----------------------------- | ----- | ----------------------------------------------- |
 | FINGERPRINT_TIP_GOOD          | 0     | The captured image is clear.                             |
-| FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | The fingerprint image has big noise due to dirt on the sensor.|
+| FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | The fingerprint image has big noise due to dirt on the sensor. |
 | FINGERPRINT_TIP_INSUFFICIENT  | 2     | Failed to process the fingerprint image due to big noise.  |
 | FINGERPRINT_TIP_PARTIAL       | 3     | Only part of the fingerprint image is detected.                        |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | The fingerprint image is incomplete due to quick motion.                 |
@@ -4397,24 +5552,36 @@ Enumerates the tip codes for fingerprint authentication.
 
 ## OsAccountInfo
 
-Defines the system account information.
+Represents information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | No  | Short name of a system account.<br>**System API**: This is a system API and is left blank by default.|
+| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default. |
+| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**. |
+
+## OsAccountType
+
+Enumerates the system account types.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name  | Value | Description        |
+| ------ | ------ | ----------- |
+| PRIVATE<sup>12+</sup> | 1024  | Private account. Only one privacy account is allowed.<br>**System API**: This is a system API.  |
 
 ## DomainAccountInfo<sup>8+</sup>
 
-Defines the domain account information.
+Represents information about a domain account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default. |
+| isAuthenticated<sup>11+</sup>| boolean | No | Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
+| serverConfigId<sup>12+</sup>| boolean | No | ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -4424,10 +5591,10 @@ Defines the constraint source type.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | Yes  | ID of the system account.    |
-| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
+| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source. |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -4437,9 +5604,9 @@ Enumerates the constraint sources.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Value| Description        |
+| Name  | Value | Description        |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | The constraint does not exist.|
+| CONSTRAINT_NOT_EXIST  | 0      | The constraint does not exist. |
 | CONSTRAINT_TYPE_BASE | 1      | Constraint from system settings.  |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | Constraint from the device owners' settings.  |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | Constraint from the profile owners' settings.  |
@@ -4452,10 +5619,10 @@ Presents the authentication status information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
 | remainTimes  | number | Yes  | Number of remaining authentication times.  |
-| freezingTime | number | Yes  | Freezing time.|
+| freezingTime | number | Yes  | Freezing time. |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -4465,12 +5632,12 @@ Defines the options for obtaining a domain access token.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.  |
-| domainAccountToken | Uint8Array | Yes  | Token of the domain account.|
-| businessParams | Record<string, Object> | Yes  | Service parameters customized by the service party based on the request protocol.|
-| callerUid | number | Yes  | Unique identifier of the caller.|
+| domainAccountToken | Uint8Array | Yes  | Token of the domain account. |
+| businessParams | Record<string, Object> | Yes  | Service parameters customized by the service party based on the request protocol. |
+| callerUid | number | Yes  | Unique identifier of the caller. |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -4480,10 +5647,11 @@ Defines the options for obtaining domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountName | string | Yes  | Domain account name.|
-| domain      | string | No  | Domain name.    |
+| accountName | string | Yes  | Domain account name. |
+| domain      | string | No  | Domain name, which is **undefined** by default.|
+| serverConfigId<sup>12+</sup>| boolean | No | ID of the server to which the domain account belongs. The default value is **undefined**.|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -4493,18 +5661,108 @@ Defines the options for the domain plug-in to obtain the domain account informat
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | Yes  | Unique identifier of the caller.|
+| callerUid | number | Yes  | Unique identifier of the caller. |
 
-## CreateOsAccountOptions<sup>12+</sup>
+## OsAccountSwitchEventData<sup>12+</sup>
 
-Defines the options for creating a system account.
+Defines the event that indicates the start or end of a foreground-background system account switchover.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
+| ----------- | ------ | ---- | ---------- |
+| fromAccountId | number | Yes  | System account ID before the switchover. |
+| toAccountId | number | Yes  | System account ID after the switchover. |
+
+## CreateOsAccountOptions<sup>12+</sup>
+
+Represents the optional parameter used to create a system account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
+
+## CreateOsAccountForDomainOptions<sup>12+</sup>
+
+Represents a set of optional parameters for creating a system account bound to the specified domain account. It inherits from [CreateOsAccountOptions](#createosaccountoptions12).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory | Description      |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
+
+## GetAuthInfoOptions<sup>12+</sup>
+
+Represents a set of optional parameters for [GetAuthInfo](#getauthinfo12).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type                   | Mandatory | Description      |
+| --------- | ---------------------- | ---- | ---------- |
+| authType  | [AuthType](#authtype8) | No  | Authentication type, which is **undefined** by default. |
+| accountId | number                 | No  | System account ID, which is **undefined** by default. |
+
+## AuthIntent<sup>12+</sup>
+
+Enumerates the authentication intents.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name    | Value  | Description      |
+| -------- | --- | ---------- |
+| UNLOCK   | 1   | Unlock. |
+
+## RemoteAuthOptions<sup>12+</sup>
+
+Represents a set of optional parameters for remote authentication.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name              | Type   | Mandatory | Description      |
+| ------------------ | ------ | ---- | ---------- |
+| verifierNetworkId  | string | No  | Network ID of the credential verifier, which is left blank by default. |
+| collectorNetworkId | string | No  | Network ID of the credential collector, which is left blank by default. |
+| collectorTokenId   | number | No  | Token ID of the credential collector, which is **undefined** by default. |
+
+## AuthOptions<sup>12+</sup>
+
+Represents a set of optional parameters for [auth](#auth12).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name              | Type   | Mandatory | Description      |
+| ------------------ | ------ | ---- | ---------- |
+| accountId          | number | No  | System account ID, which is **undefined** by default. |
+| authIntent         | [AuthIntent](#authintent12) | No  | Authentication intent, which is **undefined** by default. |
+| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | No  | Remote authentication options, which is **undefined** by default. |
+
+## GetInputDataOptions <sup>12+</sup>
+
+Represents a set of optional parameters for [onGetData](#ongetdata8).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name              | Type   | Mandatory | Description      |
+| ------------------ | ------ | ---- | ---------- |
+| challenge          | Uint8Array | No  | Challenge value, which is **undefined** by default. |

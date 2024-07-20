@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import usb from "@ohos.usbManager";
+import { usbManager } from '@kit.BasicServicesKit';
 ```
 
-## usb.getDevices
+## usbManager.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
@@ -37,7 +37,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 console.log(`devicesList = ${devicesList}`);
 /*
 devicesList 返回的数据结构,此处提供一个简单的示例，如下
@@ -92,13 +92,13 @@ devicesList 返回的数据结构,此处提供一个简单的示例，如下
 */
 ```
 
-## usb.connectDevice
+## usbManager.connectDevice
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 根据getDevices()返回的设备信息打开USB设备。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)请求使用该设备的权限。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -121,23 +121,23 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 14400001 | Permission denied. Need call requestRight to get permission. |
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
-## usb.hasRight
+## usbManager.hasRight
 
 hasRight(deviceName: string): boolean
 
@@ -171,11 +171,11 @@ hasRight(deviceName: string): boolean
 
 ```ts
 let devicesName: string = "1-1";
-let right: boolean = usb.hasRight(devicesName);
+let right: boolean = usbManager.hasRight(devicesName);
 console.log(`${right}`);
 ```
 
-## usb.requestRight
+## usbManager.requestRight
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
@@ -207,12 +207,12 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 ```ts
 let devicesName: string = "1-1";
-usb.requestRight(devicesName).then(ret => {
+usbManager.requestRight(devicesName).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
 
-## usb.removeRight
+## usbManager.removeRight
 
 removeRight(deviceName: string): boolean
 
@@ -244,18 +244,18 @@ removeRight(deviceName: string): boolean
 
 ```ts
 let devicesName: string = "1-1";
-if (usb.removeRight(devicesName)) {
+if (usbManager.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
 ```
 
-## usb.claimInterface
+## usbManager.claimInterface
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 注册通信接口。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -284,26 +284,26 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number= usb.claimInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number= usbManager.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
 
-## usb.releaseInterface
+## usbManager.releaseInterface
 
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 释放注册过的通信接口。
 
-需要调用[usb.claimInterface](#usbclaiminterface)先获取接口，才能使用此方法释放接口。
+需要调用[usbManager.claimInterface](#usbmanagerclaiminterface)先获取接口，才能使用此方法释放接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -331,27 +331,27 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.releaseInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
 
-## usb.setConfiguration
+## usbManager.setConfiguration
 
 setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及config；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -379,26 +379,26 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let config: usb.USBConfiguration = device.configs[0];
-let ret: number= usb.setConfiguration(devicepipe, config);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let config: usbManager.USBConfiguration = device.configs[0];
+let ret: number= usbManager.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
 
-## usb.setInterface
+## usbManager.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数；调用[usb.claimInterface](#usbclaiminterface)注册通信接口。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -426,27 +426,27 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.setInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
 
-## usb.getRawDescriptor
+## usbManager.getRawDescriptor
 
 getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -473,23 +473,23 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: Uint8Array = usb.getRawDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: Uint8Array = usbManager.getRawDescriptor(devicepipe);
 ```
 
-## usb.getFileDescriptor
+## usbManager.getFileDescriptor
 
 getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -516,23 +516,23 @@ getFileDescriptor(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.getFileDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.getFileDescriptor(devicepipe);
 ```
 
-## usb.controlTransfer
+## usbManager.controlTransfer
 
 controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -563,8 +563,8 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 ```ts
 class PARA {
   request: number = 0
-  reqType: usb.USBControlRequestType = 0
-  target: usb.USBRequestTargetType = 0
+  reqType: usbManager.USBControlRequestType = 0
+  target: usbManager.USBRequestTargetType = 0
   value: number = 0
   index: number = 0
   data: Uint8Array = new Uint8Array()
@@ -579,25 +579,25 @@ let param: PARA = {
   data: new Uint8Array()
 };
 
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-usb.controlTransfer(devicepipe, param).then((ret: number) => {
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
 })
 ```
 
-## usb.bulkTransfer
+## usbManager.bulkTransfer
 
 bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 批量传输。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息列表以及endpoint；再调用[usb.requestRight](#usbrequestright)获取设备请求权限；然后调用[usb.connectDevice](#usbconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usb.claimInterface](#usbclaiminterface)；再调用usb.bulkTransfer接口。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -627,34 +627,34 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 **示例：**
 
 ```ts
-//usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
-//把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
-//才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
+//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
 
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let endpoint: usb.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
 let buffer =  new Uint8Array(128);
-usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
+usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
   console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
-## usb.closePipe
+## usbManager.closePipe
 
 closePipe(pipe: USBDevicePipe): number
 
 关闭设备消息控制通道。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -681,14 +681,14 @@ closePipe(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.closePipe(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 

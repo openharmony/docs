@@ -27,7 +27,7 @@ The **OH_Drawing_LineMetrics** struct describes the measurement information abou
 | double [y](#y) | Height from the top edge of the character to the top of the container. The first line is 0, and the second line is the height of the first line.| 
 | size_t [startIndex](#startindex) | Index of the first character in the line.| 
 | size_t [endIndex](#endindex) | Index of the last character in the line.| 
-| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)[firstCharMetrics](#firstcharmetrics) | Measurement information of the first character.| 
+| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) [firstCharMetrics](#firstcharmetrics) | Measurement information of the first character.| 
 
 
 ## Member Variable Description

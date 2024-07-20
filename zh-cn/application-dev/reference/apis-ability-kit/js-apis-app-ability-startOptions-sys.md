@@ -13,7 +13,7 @@ StartOptions可以作为[startAbility()](js-apis-inner-application-uiAbilityCont
 ## 导入模块
 
 ```ts
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { StartOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -23,14 +23,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant-sys.md#abilityconstantwindowmode) | number | 否 | 否 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| windowFocused<sup>12+</sup> | boolean | 否 | 否 | 窗口是否获焦。默认是true，表示窗口获焦。<br>**约束：**<br>1.仅在平板与2in1设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。 |
 
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
 

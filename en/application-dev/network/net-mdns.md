@@ -11,7 +11,7 @@ Typical MDNS management scenarios include:
 - Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -39,16 +39,16 @@ For the complete list of JS APIs and example code, see, see [MDNS Management](..
 ## Managing Local Services
 
 1. Connect the device to the Wi-Fi network.
-2. Import the **mdns** namespace from **@ohos.net.mdns**.
+2. Import the **mdns** namespace from **@kit.NetworkKit**.
 3. Call **addLocalService** to add a local service.
 4. (Optional) Call **resolveLocalService** to resolve the local service for the IP address of the local network.
 5. Call **removeLocalService** to remove the local service.
 
 ```ts
-// Import the mdns namespace from @ohos.net.mdns.
-import mdns from '@ohos.net.mdns';
-import { BusinessError } from '@ohos.base';
-import featureAbility from '@ohos.ability.featureAbility';
+// Import the mdns namespace from @kit.NetworkKit.
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { featureAbility } from '@kit.AbilityKit';
 
 let context = getContext(this) as Context;
 
@@ -69,20 +69,17 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 // Call addLocalService to add a local service.
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // (Optional) Call resolveLocalService to resolve the local service.
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // Call removeLocalService to remove the local service.
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -90,7 +87,7 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 ## Discovering Local Services
 
 1. Connect the device to the Wi-Fi network.
-2. Import the **mdns** namespace from **@ohos.net.mdns**.
+2. Import the **mdns** namespace from **@kit.NetworkKit**.
 3. Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 4. Subscribe to MDNS service discovery status changes.
 5. Enable discovery of MDNS services on the LAN.
@@ -98,12 +95,11 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 7. Unsubscribe from MDNS service discovery status changes.
 
 ```ts
-// Import the mdns namespace from @ohos.net.mdns.
-import mdns from '@ohos.net.mdns';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import featureAbility from '@ohos.ability.featureAbility';
-import window from '@ohos.window';
+// Import the mdns namespace from @kit.NetworkKit.
+import { common, featureAbility, UIAbility } from '@kit.AbilityKit';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -135,7 +131,7 @@ class EntryAbility extends UIAbility {
   }
 }
 
-let context = GlobalContext.getContext().getObject("value");
+let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 // Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 let serviceType = "_print._tcp";

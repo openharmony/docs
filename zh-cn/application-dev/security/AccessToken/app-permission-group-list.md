@@ -16,62 +16,135 @@
 
 ## 位置信息
 
-- ohos.permission.LOCATION_IN_BACKGROUND
+- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
 
-- ohos.permission.LOCATION
+- [ohos.permission.LOCATION](permissions-for-all.md#ohospermissionlocation)
 
-- ohos.permission.APPROXIMATELY_LOCATION
+- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all.md#ohospermissionapproximately_location)
 
 ## 相机
 
-- ohos.permission.CAMERA
+- [ohos.permission.CAMERA](permissions-for-all.md#ohospermissioncamera)
 
 ## 麦克风
 
-- ohos.permission.MICROPHONE
+- [ohos.permission.MICROPHONE](permissions-for-all.md#ohospermissionmicrophone)
 
-<!--Del-->
 ## 通讯录
 
-- ohos.permission.READ_CONTACTS
+<!--RP1-->
+- [ohos.permission.READ_CONTACTS](permissions-for-system-apps.md#ohospermissionread_contacts)
 
-- ohos.permission.WRITE_CONTACTS
-<!--DelEnd-->
+- [ohos.permission.WRITE_CONTACTS](permissions-for-system-apps.md#ohospermissionwrite_contacts)
+<!--RP1End-->
 
 ## 日历
 
-- ohos.permission.READ_CALENDAR
+- [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
 
-- ohos.permission.WRITE_CALENDAR
+- [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
 <!--Del-->
-- ohos.permission.READ_WHOLE_CALENDAR
+- [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
-- ohos.permission.WRITE_WHOLE_CALENDAR
+- [ohos.permission.WRITE_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionwrite_whole_calendar)
 <!--DelEnd-->
 
 ## 健身运动
 
-- ohos.permission.ACTIVITY_MOTION
+- [ohos.permission.ACTIVITY_MOTION](permissions-for-all.md#ohospermissionactivity_motion)
 
 ## 身体传感器
 
-- ohos.permission.READ_HEALTH_DATA
+- [ohos.permission.READ_HEALTH_DATA](permissions-for-all.md#ohospermissionread_health_data)
 
 ## 图片和视频
 
-- ohos.permission.WRITE_IMAGEVIDEO
+<!--RP2-->
+- [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
 
-- ohos.permission.READ_IMAGEVIDEO
-
-- ohos.permission.MEDIA_LOCATION
+- [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
+<!--RP2End-->
+- [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
 
 ## 音乐和音频
 
-- ohos.permission.WRITE_AUDIO
+<!--RP3-->
+- [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)
 
-- ohos.permission.READ_AUDIO
+- [ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)
+<!--RP3End-->
 
-## 文件
+## 广告跟踪
+
+- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
+
+<!--Del-->
+## 读取已安装应用列表
+
+- [ohos.permission.GET_INSTALLED_BUNDLE_LIST](permissions-for-system-apps.md#ohospermissionget_installed_bundle_list)
+<!--DelEnd-->
+
+## 多设备协同
+
+- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all.md#ohospermissiondistributed_datasync)
+
+## 蓝牙
+
+- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
+
+<!--Del-->
+## 电话
+
+- [ohos.permission.ANSWER_CALL](permissions-for-system-apps.md#ohospermissionanswer_call)
+
+- [ohos.permission.MANAGE_VOICEMAIL](permissions-for-system-apps.md#ohospermissionmanage_voicemail)
+
+## 通话记录
+
+- [ohos.permission.READ_CALL_LOG](permissions-for-system-apps.md#ohospermissionread_call_log)
+
+- [ohos.permission.WRITE_CALL_LOG](permissions-for-system-apps.md#ohospermissionwrite_call_log)
+
+## 信息
+
+- [ohos.permission.READ_CELL_MESSAGES](permissions-for-system-apps.md#ohospermissionread_cell_messages)
+
+- [ohos.permission.READ_MESSAGES](permissions-for-system-apps.md#ohospermissionread_messages)
+
+- [ohos.permission.RECEIVE_MMS](permissions-for-system-apps.md#ohospermissionreceive_mms)
+
+- [ohos.permission.RECEIVE_SMS](permissions-for-system-apps.md#ohospermissionreceive_sms)
+
+- [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps.md#ohospermissionreceive_wap_messages)
+
+- [ohos.permission.SEND_MESSAGES](permissions-for-system-apps.md#ohospermissionsend_messages)
+<!--DelEnd-->
+
+## 剪切板
+
+<!--RP4-->
+- [ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)
+<!--RP4End-->
+
+<!--Del-->
+## 文件夹
+
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+
+- [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
+
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_documents_directory)
+<!--DelEnd-->
+
+## 星闪
+
+- [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
+
+## 文件<sup>(deprecated)</sup>
+
+> **说明：**
+> 从API version 12开始，该权限组及其子权限废弃。
+
 <!--Del-->
 - ohos.permission.READ_DOCUMENT
 
@@ -81,66 +154,18 @@
 
 - ohos.permission.WRITE_MEDIA
 
-## 广告跟踪
+**废弃替代方案：**
 
-- ohos.permission.APP_TRACKING_CONSENT
+- 读写媒体库图片或视频：
 
-<!--Del-->
-## 读取已安装应用列表
+  - 推荐方案（无需申请权限）：使用[Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)读取媒体库的图片与视频；使用[保存控件](../../media/medialibrary/photoAccessHelper-savebutton.md)保存媒体库的图片与视频。
+  - 受限使用方案：申请受限权限<!--RP5-->[ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)或[ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)<!--RP5End-->读取媒体库的图片与视频。
 
-- ohos.permission.GET_INSTALLED_BUNDLE_LIST
-<!--DelEnd-->
+- 读取媒体库音频文件：
 
-## 多设备协同
+  申请受限权限<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End-->读写媒体库的图片与视频。
 
-- ohos.permission.DISTRIBUTED_DATASYNC
+- 读取文件管理器中的文件：
 
-## 蓝牙
+  无需申请权限，通过文件Picker读写文件管理器中的文件。参考：[选择用户文件](../../file-management/select-user-file.md#选择文档类文件)、[保存用户文件](../../file-management/save-user-file.md#保存文档类文件)。
 
-- ohos.permission.ACCESS_BLUETOOTH
-
-<!--Del-->
-## 电话
-
-- ohos.permission.ANSWER_CALL
-
-- ohos.permission.MANAGE_VOICEMAIL
-
-## 通话记录
-
-- ohos.permission.READ_CALL_LOG
-
-- ohos.permission.WRITE_CALL_LOG
-
-## 信息
-
-- ohos.permission.READ_CELL_MESSAGES
-
-- ohos.permission.READ_MESSAGES
-
-- ohos.permission.RECEIVE_MMS
-
-- ohos.permission.RECEIVE_SMS
-
-- ohos.permission.RECEIVE_WAP_MESSAGES
-
-- ohos.permission.SEND_MESSAGES
-<!--DelEnd-->
-
-## 剪切板
-
-- ohos.permission.READ_PASTEBOARD
-
-<!--Del-->
-## 文件夹
-
-- ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
-
-- ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
-
-- ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-<!--DelEnd-->
-
-## 星闪
-
-- ohos.permission.ACCESS_NEARLINK

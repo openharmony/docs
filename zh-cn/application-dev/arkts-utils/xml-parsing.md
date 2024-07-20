@@ -30,8 +30,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 1. 引入模块。
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    import { xml, util } from '@kit.ArkTS'; // 需要使用util模块函数对文件编码
     ```
 
 2. 对XML文件编码后调用XmlPullParser。
@@ -93,8 +92,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 1. 引入模块。
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    import { xml, util } from '@kit.ArkTS'; // 需要使用util模块函数对文件编码
     ```
 
 2. 对XML文件编码后调用XmlPullParser。
@@ -141,8 +139,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 1. 引入模块。
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    import { xml, util } from '@kit.ArkTS'; // 需要使用util模块函数对文件编码
     ```
 
 2. 对XML文件编码后调用XmlPullParser。
@@ -197,8 +194,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 
 ```ts
-import xml from '@ohos.xml';
-import util from '@ohos.util';
+import { xml, util } from '@kit.ArkTS';
 
 let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +

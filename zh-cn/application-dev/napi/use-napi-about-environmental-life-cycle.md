@@ -1,22 +1,24 @@
-# 使用NAPI接口关联数据，使其生命周期与当前环境的生命周期相关联
+# 使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联
 
 ## 简介
 
-在NAPI模块中，我们可以使用NAPI接口将特定数据与当前的环境相关联，并在需要时检索该数据。
+在Node-API模块中，我们可以使用Node-API接口将特定数据与当前的环境相关联，并在需要时检索该数据。
 
 ## 基本概念
 
-在NAPI中的关联数据是指将自定义的C++数据结构的生命周期与当前环境的生命周期相关联，这意味着只要当前运行环境存在，关联数据就会保持有效。
+在Node-API中的关联数据是指将自定义的C++数据结构的生命周期与当前环境的生命周期相关联，这意味着只要当前运行环境存在，关联数据就会保持有效。
 
 ## 场景和功能介绍
 
-以下接口可以帮助我们在NAPI模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下:
+以下接口可以帮助我们在Node-API模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下:
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_set_instance_data | 绑定与当前运行的环境相关联的数据项。 |
 | napi_get_instance_data | 检索与当前运行的环境相关联的数据项。 |
 
 ## 使用示例
+
+Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 
 ### napi_set_instance_data
 
@@ -25,6 +27,9 @@
 cpp部分代码
 
 ```cpp
+#include <cstdlib>
+#include "napi/native_api.h"
+
 // 定义一个结构来存储实例数据
 struct InstanceData {
     int32_t value;
@@ -50,7 +55,7 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
     napi_get_value_int32(env, argv[0], &instanceDataValue);
     InstanceData *instanceData = new InstanceData;
     instanceData->value = instanceDataValue;
-    // 调用napi_set_instance_data将实例数据关联到NAPI环境，并指定FinalizeCallback函数
+    // 调用napi_set_instance_data将实例数据关联到Node-API环境，并指定FinalizeCallback函数
     napi_status status = napi_set_instance_data(env, instanceData, FinalizeCallback, nullptr);
     bool success = true;
     napi_value result;
@@ -71,9 +76,11 @@ export const setInstanceData: (data: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 let data = 5;
 let value = testNapi.setInstanceData(data);
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_instance_data:%{public}s', value);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
 ```
 
 ### napi_get_instance_data
@@ -83,6 +90,8 @@ hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_instance_data:%{public}s', val
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
     InstanceData *resData = nullptr;
     // napi_get_instance_data获取之前想关联的数据项
@@ -103,44 +112,19 @@ export const getInstanceData: () => number;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 let data = 5;
 testNapi.setInstanceData(data);
 let value = testNapi.getInstanceData();
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_instance_data:%{public}d', value);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}d', value);
 ```
 
-### 编译配置、模块注册
-
-- 编译配置
+以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
 ```text
 // CMakeLists.txt
-# the minimum version of CMake.
-cmake_minimum_required(VERSION 3.4.1)
-project(AboutEnvironmentalLifeCycle)
-
-set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/include)
-
-add_library(entry SHARED environmental_life_cycle.cpp)
-target_link_libraries(entry PUBLIC libace_napi.z.so)
-```
-
-- 模块注册
-
-```cpp
-// environmental_life_cycle.cpp
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
-       {"setInstanceData", nullptr, SetInstanceData, nullptr, nullptr, nullptr, napi_default, nullptr},
-       {"getInstanceData", nullptr, GetInstanceData, nullptr, nullptr, nullptr, napi_default, nullptr}
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
+add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+add_definitions( "-DLOG_TAG=\"testTag\"" )
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```

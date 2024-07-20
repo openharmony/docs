@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ComposeListItem } from "@ohos.arkui.advanced.ComposeListItem"
+import { ComposeListItem } from "@kit.ArkUI"
 ```
 
 
@@ -30,8 +30,6 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
@@ -40,24 +38,23 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。 |
-| operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。 |
+| contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ContentItem
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。 |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。 |
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容，超出以"..."显示。 |
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容，超出以"..."显示。 |
-| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容，超出以"..."显示。 |
+| iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## IconType
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -72,7 +69,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateItem
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -88,7 +85,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateIcon
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -97,7 +94,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateButton
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -105,7 +102,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateCheck
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -118,8 +115,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 ## 示例
 
 ```ts
-import { IconType, ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
-import promptAction from '@ohos.promptAction'
+// 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
+import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -133,13 +130,14 @@ struct ComposeListItemExample {
               iconStyle: IconType.NORMAL_ICON,
               icon: $r('sys.media.ohos_app_icon'),
               primaryText: '双行列表',
-              secondaryText: '辅助文字'
+              secondaryText: '辅助文字',
+              description: '描述内容文字'
             }),
             operateItem: ({
               icon: {
                 value: $r('sys.media.ohos_app_icon'),
                 action: () => {
-                  promptAction.showToast({ message: 'icon' })
+                  promptAction.showToast({ message: 'icon' });
                 } },
               text: '右侧文本'
             })
@@ -150,5 +148,4 @@ struct ComposeListItemExample {
   }
 }
 ```
-
-![示例4-左右元素+文本](figures/zh-cn_image_2023072906.PNG)
+![示例1-ComposeListItem示例 左右元素+文本](figures/zh-cn_image_composelistitem_demo_01.jpg)

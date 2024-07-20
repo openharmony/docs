@@ -17,7 +17,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Stack from '@ohos.util.Stack';  
+import { Stack } from '@kit.ArkTS';
 ```
 
 ## Stack
@@ -228,10 +228,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**

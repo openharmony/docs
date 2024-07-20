@@ -273,7 +273,7 @@ off(type: 'syncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void):
 
 ```ts
 // 组件使用示例：
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from '@kit.ArkUI';
 class Params {
 }
 @Builder
@@ -372,9 +372,8 @@ function syncRegisterCallback2(proxy: UIExtensionProxy) {
 
 ```ts
 // 扩展入口文件UIExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-import Want from '@ohos.app.ability.Want';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
   
@@ -411,8 +410,8 @@ export default class UIExtAbility extends UIExtensionAbility {
 
 ```ts
 // 扩展Ability入口页面文件extension.ets
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import router from '@ohos.router';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import { router } from '@kit.ArkUI';
 
 let storage = LocalStorage.getShared()
 AppStorage.setOrCreate('message', 'UIExtensionAbility')

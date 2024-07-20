@@ -9,7 +9,7 @@ The **ImageEffect_Size** struct describes the image size.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

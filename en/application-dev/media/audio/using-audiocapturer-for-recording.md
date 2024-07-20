@@ -22,10 +22,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
     import audio from '@ohos.multimedia.audio';
     
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_2,
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+      channels: audio.AudioChannel.CHANNEL_2, // Channel.
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
@@ -48,7 +48,34 @@ You can call **on('stateChange')** to listen for state changes. For details abou
     });
    ```
 
-2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
+2. Call **on('readData')** to subscribe to the audio data read callback.
+     
+   ```ts
+    import { BusinessError } from '@ohos.base';
+    import fs from '@ohos.file.fs';
+
+    let bufferSize: number = 0;
+    class Options {
+      offset?: number;
+      length?: number;
+    }
+   
+    let path = getContext().cacheDir;
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+   
+    let readDataCallback = (buffer: ArrayBuffer) => {
+      let options: Options = {
+        offset: bufferSize,
+        length: buffer.byteLength
+      }
+      fs.writeSync(file.fd, buffer, options);
+      bufferSize += buffer.byteLength;
+    }
+    audioCapturer.on('readData', readDataCallback);
+   ```
+
+3. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
      
    ```ts
     import { BusinessError } from '@ohos.base';
@@ -60,22 +87,6 @@ You can call **on('stateChange')** to listen for state changes. For details abou
         console.info('Capturer start success.');
       }
     });
-   ```
-
-3. Specify the recording file path and call **read()** to read the data in the buffer.
-     
-   ```ts
-    import fs from '@ohos.file.fs';
-    
-    let context = getContext(this);
-    async function read() {
-      let path = context.filesDir;
-      const filePath = path + '/voice_call_data.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      let bufferSize: number = await audioCapturer.getBufferSize();
-      let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
-      fs.writeSync(file.fd, buffer);
-    }
    ```
 
 4. Call **stop()** to stop recording.
@@ -113,17 +124,24 @@ Refer to the sample code below to record audio using AudioCapturer.
   
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 
 const TAG = 'AudioCapturerDemo';
-let context = getContext(this);
 
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let context = getContext(this);
+let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+  channels: audio.AudioChannel.CHANNEL_2, // Channel.
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type.
@@ -134,8 +152,21 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   capturerInfo: audioCapturerInfo
 }
 
+let path = getContext().cacheDir;
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+
+let readDataCallback = (buffer: ArrayBuffer) => {
+   let options: Options = {
+      offset: bufferSize,
+      length: buffer.byteLength
+   }
+   fs.writeSync(file.fd, buffer, options);
+   bufferSize += buffer.byteLength;
+}
+
 // Create an AudioCapturer instance, and set the events to listen for.
-async function init() {
+function init() {
   audio.createAudioCapturer(audioCapturerOptions, (err, capturer) => { // Create an AudioCapturer instance.
     if (err) {
       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
@@ -144,88 +175,69 @@ async function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-      (audioCapturer as audio.AudioCapturer).on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of captured frames reaches 1000.
-        if (position === 1000) {
-          console.info('ON Triggered successfully');
-        }
-      });
-      (audioCapturer as audio.AudioCapturer).on('periodReach', 2000, (position: number) => { // Subscribe to the periodReach event. A callback is triggered when the number of captured frames reaches 2000.
-        if (position === 2000) {
-          console.info('ON Triggered successfully');
-        }
-      });
+       (audioCapturer as audio.AudioCapturer).on('readData', readDataCallback);
     }
   });
 }
 
 // Start audio recording.
-async function start() {
+function start() {
   if (audioCapturer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
     if (stateGroup.indexOf((audioCapturer as audio.AudioCapturer).state.valueOf()) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
       console.error(`${TAG}: start failed`);
       return;
     }
-    await (audioCapturer as audio.AudioCapturer).start(); // Start recording.
-    const filePath = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
-    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Create the file if it does not exist.
-    let fd = file.fd;
-    let numBuffersToCapture = 150; // Write data for 150 times.
-    let count = 0;
-    class Options {
-      offset: number = 0;
-      length: number = 0
-    }
-    while (numBuffersToCapture) {
-      let bufferSize = await (audioCapturer as audio.AudioCapturer).getBufferSize();
-      let buffer = await (audioCapturer as audio.AudioCapturer).read(bufferSize, true);
-      let options: Options = {
-        offset: count * bufferSize,
-        length: bufferSize
-      };
-      if (buffer === undefined) {
-        console.error(`${TAG}: read buffer failed`);
+
+    // Start recording.
+    (audioCapturer as audio.AudioCapturer).start((err: BusinessError) => {
+      if (err) {
+        console.error('Capturer start failed.');
       } else {
-        let number = fs.writeSync(fd, buffer, options);
-        console.info(`${TAG}: write date: ${number}`);
+        console.info('Capturer start success.');
       }
-      numBuffersToCapture--;
-      count++;
-    }
+    });
   }
 }
 
 // Stop recording.
-async function stop() {
+function stop() {
   if (audioCapturer !== undefined) {
     // The AudioCapturer can be stopped only when it is in the STATE_RUNNING or STATE_PAUSED state.
     if ((audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
-    await (audioCapturer as audio.AudioCapturer).stop(); // Stop recording.
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_STOPPED) {
-       console.info('Capturer stopped');
-    } else {
-       console.error('Capturer stop failed');
-    }
+
+    // Stop recording.
+    (audioCapturer as audio.AudioCapturer).stop((err: BusinessError) => {
+      if (err) {
+        console.error('Capturer stop failed.');
+      } else {
+        fs.close(file);
+        console.info('Capturer stop success.');
+      }
+    });
   }
 }
 
 // Release the instance.
-async function release() {
+function release() {
   if (audioCapturer !== undefined) {
     // The AudioCapturer can be released only when it is not in the STATE_RELEASED or STATE_NEW state.
     if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_RELEASED || (audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
-    await (audioCapturer as audio.AudioCapturer).release(); // Release resources.
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_RELEASED) {
-      console.info('Capturer released');
-    } else {
-      console.error('Capturer release failed');
-    }
+
+    // Release the resources.
+    (audioCapturer as audio.AudioCapturer).release((err: BusinessError) => {
+      if (err) {
+        console.error('Capturer release failed.');
+      } else {
+        console.info('Capturer release success.');
+      }
+    });
   }
 }
 ```

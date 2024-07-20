@@ -11,7 +11,9 @@ flexBasis(value: number | string)
 
 Sets the base size of the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -27,7 +29,9 @@ flexGrow(value: number)
 
 Sets the percentage of the parent container's remaining space that is allocated to the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,9 +45,11 @@ Sets the percentage of the parent container's remaining space that is allocated 
 
 flexShrink(value: number)
 
-Sets the percentage of the parent container's shrink size that is allocated to the component.
+Sets the percentage of the parent container's shrink size that is allocated to the component. When the parent container is **\<Column>** or **\<Row>**, you must set the size along the main axis.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,7 +65,9 @@ alignSelf(value: ItemAlign)
 
 Sets the alignment mode of the child components along the cross axis of the parent container.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

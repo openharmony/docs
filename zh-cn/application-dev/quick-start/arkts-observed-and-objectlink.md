@@ -8,7 +8,7 @@
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，这两个装饰器支持在元服务中使用。
+> 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -260,7 +260,7 @@ struct ViewA {
 
   build() {
     Column() {
-      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -321,7 +321,7 @@ struct ViewB {
         .width(320)
       ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewC: this.child.bookName.size add 10`)
+      Button(`ViewB: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -350,21 +350,21 @@ struct ViewB {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
+被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
 
 
 ViewB中的事件句柄：
 
 
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量b和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
 
-- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
 
 ViewC中的事件句柄：
 
 
-- this.bookName.size += 1：对\@ObjectLink变量c的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
@@ -620,7 +620,7 @@ struct MapSampleNestedChild {
         ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
-          Divider()
+          Divider().strokeWidth(5)
         })
 
         Button('set new one')
@@ -713,7 +713,7 @@ struct SetSampleNestedChild {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+        ForEach(Array.from(this.mySet.entries()), (item: [number, number]) => {
           Text(`${item}`).fontSize(30)
           Divider()
         })
@@ -1264,7 +1264,7 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
 
-该方法可用于实现“两个层级”的观察，即外部对象和内部嵌套对象的观察。但是该方法只能用于\@ObjectLink装饰器，无法作用于\@Prop（\@Prop通过深拷贝传入对象）。详情参考@Prop与@ObjectLink的差异。
+该方法可用于实现“两个层级”的观察，即外部对象和内部嵌套对象的观察。但是该方法只能用于\@ObjectLink装饰器，无法作用于\@Prop（\@Prop通过深拷贝传入对象）。详情参考[@Prop与@ObjectLink的差异](#prop与objectlink的差异)。
 
 
 ```ts

@@ -346,3 +346,33 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
       return ret;
     }
     ```
+
+16. Call **OH_MediaKeySystem_SetCallback** in the **MediaKeySystem** class to set a callback to listen for the media key system status.
+
+    ```c++
+      DRM_ErrCode TestSystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
+      uint8_t *info, int32_t infoLen, char *extra)
+      {
+          OH_LOG_INFO(LOG_APP, "TestSystemCallBackWithObj");
+      }
+      DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
+      {
+      MediaKeySystem *keySystem = NULL;
+      const char *name = "com.wiseplay.drm";
+      ret = OH_MediaKeySystem_Create(name, &keySystem);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      }
+      ret = OH_MediaKeySystem_SetCallback(keySystem,
+          TestSystemCallBackWithObj);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetCallback failed.");
+      }
+      ret = OH_MediaKeySystem_Destroy(keySystem);
+      if (ret != DRM_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      return ret;
+      }
+      return ret;
+    }
+    ```

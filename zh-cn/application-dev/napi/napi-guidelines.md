@@ -18,7 +18,7 @@ static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
 }
 
 static napi_value IncorrectDemo2(napi_env env, napi_callback_info info) {
-    // argc 声明的数量大与 argv 实际初始化的长度，导致 napi_get_cb_info 接口在写入 argv 时数据越界。
+    // argc 声明的数量大于 argv 实际初始化的长度，导致 napi_get_cb_info 接口在写入 argv 时数据越界。
     size_t argc = 5;
     napi_value argv[3] = {nullptr};
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
@@ -49,7 +49,7 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
 
 static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
-    napi_value* argv[2] = {nullptr};
+    napi_value argv[2] = {nullptr};
     // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
     napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
     // 业务代码
@@ -158,8 +158,12 @@ void callbackTest(CallbackContext* context)
         // using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            napi_handle_scope scope = nullptr; 
+            napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
                 return;
             }
             napi_value callback = nullptr;
@@ -203,8 +207,8 @@ napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr)；
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result)；
 // 当js_object和result后续不再使用时，及时调用napi_remove_wrap释放result
-napi_value result1;
-napi_remove_wrap(env, jsobject, result1);
+void* nativeObjectResult = nullptr;
+napi_remove_wrap(env, jsobject, &nativeObjectResult);
 ```
 
 ## 高性能数组

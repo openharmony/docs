@@ -5,6 +5,10 @@
 
 声明将图片源解码成像素位图的方法。
 
+**库**：libimage_source_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_source_mdk.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image
 
 **起始版本：** 10

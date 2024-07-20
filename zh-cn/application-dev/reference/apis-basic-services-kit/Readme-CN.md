@@ -1,21 +1,20 @@
-# Basic Services Kit API参考
+# Basic Services Kit（基础服务）
 
 - ArkTS API
-  - 帐号管理
-    - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
-    - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
-    - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
+  - 账号管理
+    - [@ohos.account.appAccount (应用账号管理)](js-apis-appAccount.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
+    - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
     - [@ohos.power (系统电源管理)](js-apis-power.md)
     - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
-    - [@ohos.thermal (热管理)](js-apis-thermal.md)
-    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)       
+    - [@ohos.thermal (热管理)](js-apis-thermal.md)      
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
@@ -37,6 +36,7 @@
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
+    - [@ohos.pasetboard (剪贴板)(系统接口)](js-apis-pasteboard-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
@@ -70,14 +70,16 @@
       - [文件管理子系统公共事件定义](common_event/commonEvent-filemanagement.md)
       - [主题框架子系统-锁屏管理公共事件定义](common_event/commonEvent-screenlock.md)
       - [时间时区子系统公共事件定义](common_event/commonEvent-time.md)
-      - [帐号子系统公共事件定义](common_event/commonEvent-account.md)
+      - [账号子系统公共事件定义](common_event/commonEvent-account.md)
       - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
       - [Account Kit公共事件定义](common_event/commonEvent-accountkit.md)
+      - [Store Kit公共事件定义](common_event/commonEvent-storekit.md)
       <!--Del-->
       - [系统公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
       <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
+    - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
     - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
     - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](js-apis-resourceschedule-systemload.md)
@@ -98,13 +100,13 @@
     - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@system.device (设备信息)](js-apis-system-device.md)
     - [@system.request (上传下载)](js-apis-system-request.md)
+    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md) 
     <!--Del-->
     - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
     - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
     - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
-    - [@ohos.systemTime (系统时间、时区)(系统接口)](js-apis-system-time-sys.md)
     <!--DelEnd-->
-    - [@ohos.systemTime(系统时间、时区)](js-apis-time.md)
+    - [@ohos.systemTime(系统时间、时区)](js-apis-system-time.md)
 - C API
   - 模块
     - [OsAccount](_os_account.md)
@@ -115,16 +117,22 @@
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [zlib子系统错误码](errorcode-zlib.md)  
+  <!--Del-->
   - [电量信息错误码](errorcode-battery-info.md)
   - [耗电统计错误码](errorcode-batteryStatistics.md)
+  <!--DelEnd-->
   - [剪贴板错误码](errorcode-pasteboard.md)
+  <!--Del-->
   - [屏幕亮度错误码](errorcode-brightness.md)
+  <!--DelEnd-->
   - [热管理错误码](errorcode-thermal.md)
   - [上传下载错误码](errorcode-request.md)
   - [时间时区错误码](errorcode-time.md)
   - [事件错误码](errorcode-CommonEventService.md)
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [系统电源管理错误码](errorcode-power.md)
-  - [帐号管理错误码](errorcode-account.md)
+  - [账号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
+  <!--Del--> 
   - [锁屏服务错误码](errorcode-screenlock.md)
+  <!--DelEnd-->

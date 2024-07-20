@@ -202,7 +202,7 @@ Stack进行增、删、改、查操作的常用API如下：
 
 ```ts
 // ArrayList
-import ArrayList from '@ohos.util.ArrayList'; // 导入ArrayList模块
+import { ArrayList } from '@kit.ArkTS'; // 导入ArrayList模块
 
 let arrayList1: ArrayList<string> = new ArrayList();
 arrayList1.add('a');
@@ -213,7 +213,7 @@ arrayList1[0] = 'one'; // 修改元素
 console.info(`result: ${arrayList1[0]}`);
 
 // Vector
-import Vector from '@ohos.util.Vector'; // 导入Vector模块
+import { Vector } from '@kit.ArkTS'; // 导入Vector模块
 
 let vector1: Vector<string> = new Vector();
 vector1.add('a');
@@ -226,7 +226,7 @@ console.info(`result: ${vector1[0]}`); // 访问元素
 console.info(`result: ${vector2.getFirstElement()}`); // 访问元素
 
 // Deque
-import Deque from '@ohos.util.Deque'; // 导入Deque模块
+import { Deque } from '@kit.ArkTS'; // 导入Deque模块
 
 let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
@@ -237,7 +237,7 @@ deque1[0] = 'one'; // 修改元素
 console.info(`result: ${deque2[0]}`);
 
 // Stack
-import Stack from '@ohos.util.Stack'; // 导入Stack模块
+import { Stack } from '@kit.ArkTS'; // 导入Stack模块
 
 let stack1: Stack<string> = new Stack();
 stack1.push('a');
@@ -248,7 +248,7 @@ stack2.pop(); // 删除栈顶元素并返回该删除元素
 console.info(`result: ${stack2.length}`);
 
 // List
-import List from '@ohos.util.List'; // 导入List模块
+import { List } from '@kit.ArkTS'; // 导入List模块
 
 let list1: List<string> = new List();
 list1.add('a');

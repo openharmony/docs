@@ -1,4 +1,4 @@
-# Telephony Kit API参考
+# Telephony Kit（蜂窝通信服务）
 
 - ArkTS API
   - [@ohos.telephony.call (拨打电话)](js-apis-call.md)

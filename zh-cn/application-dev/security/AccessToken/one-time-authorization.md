@@ -6,11 +6,11 @@
 
 授权弹窗如下图所示：
 
-![alt text](./figures/allow_this_time.png)
+![alt text](figures/allow_this_time.png)
 
 设置中的选项如下图所示：
 
-![alt text](./figures/setting_allow_this.png)
+![alt text](figures/setting_allow_this.png)
 
 路径：设置 > 隐私 > 权限管理 > 应用 > 目标应用 > 位置信息
 
@@ -18,10 +18,10 @@
 
 当前仅支持下列权限，当应用向用户申请下列权限时，弹窗将会出现“允许本次使用”的授权选项，设置中修改权限将会出现“每次询问”授权选项。
 
-- 剪切板：["ohos.permission.READ_PASTEBOARD"](./permissions-for-system-apps.md#ohospermissionread_pasteboard)
-- 模糊位置：["ohos.permission.APPROXIMATELY_LOCATION"](./permissions-for-all.md#ohospermissionapproximately_location)
-- 位置：["ohos.permission.LOCATION"](./permissions-for-all.md#ohospermissionlocation)
-- 后台位置：["ohos.permission.LOCATION_IN_BACKGROUND"](./permissions-for-all.md#ohospermissionlocation_in_background)
+- 剪切板：<!--RP1-->["ohos.permission.READ_PASTEBOARD"](permissions-for-system-apps.md#ohospermissionread_pasteboard)<!--RP1End-->
+- 模糊位置：["ohos.permission.APPROXIMATELY_LOCATION"](permissions-for-all.md#ohospermissionapproximately_location)
+- 位置：["ohos.permission.LOCATION"](permissions-for-all.md#ohospermissionlocation)
+- 后台位置：["ohos.permission.LOCATION_IN_BACKGROUND"](permissions-for-all.md#ohospermissionlocation_in_background)
 
 ## 使用限制
 
@@ -37,6 +37,6 @@
 
       如下图样例所示，相机应用处于卡片可见状态：
 
-      ![alt text](./figures/form_visible.png)
+      ![alt text](figures/form_visible.png)
 
 - 当用户在权限设置中选择了“每次询问”按钮，将会对应用授予模糊位置与位置临时权限，取消临时授权同上。

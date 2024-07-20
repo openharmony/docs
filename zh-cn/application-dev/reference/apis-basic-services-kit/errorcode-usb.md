@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Need call requestRight to get permission.
+Permission denied. Call requestRight to get the permission first.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ Permission denied. Need call requestRight to get permission.
 
 **错误信息**
 
-Permission denied.The HDC is disabled by the system.
+Permission denied. The HDC is disabled by the system.
 
 **错误描述**
 

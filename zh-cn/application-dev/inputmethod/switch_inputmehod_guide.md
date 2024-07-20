@@ -31,19 +31,25 @@
 2. 输入法应用中注册子类型变化事件，根据不同子类型加载不同的输入界面。
 
    ```ts
-   import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
-   
+   import { InputMethodSubtype, inputMethodEngine, inputMethod } from '@kit.IMEKit';
+
    export class KeyboardController {
-     // 设置监听子类型事件，改变输入法应用界面
-     inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-       if(inputMethodSubtype.id == 'InputMethodExtAbility') {
-         this.panel.setUiContent('pages/Index'); // 假设在输入法应用中此时Panel已经在onCreate流程中创建
-       }
-       if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
-         this.panel.setUiContent('pages/Index1'); // 假设在输入法应用中此时Panel已经在onCreate流程中创建
-       }
-     });
+     async switchCurrentInputMethodSubtype() {
+       let panel: inputMethodEngine.Panel;
+       let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+       // 设置监听子类型事件，改变输入法应用界面
+       inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+         if(inputMethodSubtype.id == 'InputMethodExtAbility') {
+           panel.setUiContent('pages/Index'); // 假设在输入法应用中此时Panel已经在onCreate流程中创建
+         }
+         if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
+           panel.setUiContent('pages/Index1'); // 假设在输入法应用中此时Panel已经在onCreate流程中创建
+         }
+       });
+     }
    }
+
+
    ```
 
 ## 切换输入法应用

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import screen from '@ohos.screen';
+import { screen } from '@kit.ArkUI';
 ```
 
 ## screen.getAllScreens
@@ -39,7 +39,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenClass: screen.Screen | null = null;
 screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
@@ -78,7 +78,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenClass: screen.Screen | null = null;
 let promise: Promise<Array<screen.Screen>> = screen.getAllScreens();
@@ -182,7 +182,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number | null = null;
 class ExpandOption {
@@ -236,7 +236,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class ExpandOption {
   screenId: number = 0;
@@ -281,7 +281,7 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let expandScreenIds: Array<number> = [1, 2, 3];
 screen.stopExpand(expandScreenIds, (err: BusinessError) => {
@@ -326,7 +326,7 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let expandScreenIds: Array<number> = [1, 2, 3];
 screen.stopExpand(expandScreenIds).then(() => {
@@ -364,7 +364,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
@@ -411,7 +411,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
@@ -449,7 +449,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
@@ -494,7 +494,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.stopMirror(mirrorScreenIds).then(() => {
@@ -534,7 +534,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenClass: screen.Screen | null = null;
 class VirtualScreenOption {
@@ -598,7 +598,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenClass: screen.Screen | null = null;
 class VirtualScreenOption {
@@ -652,7 +652,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenId: number = 1;
 screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
@@ -697,7 +697,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenId: number = 1;
 screen.destroyVirtualScreen(screenId).then(() => {
@@ -738,7 +738,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
@@ -788,7 +788,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
@@ -816,7 +816,7 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 screen.isScreenRotationLocked().then((isLocked: boolean) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
@@ -842,7 +842,7 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
 const errCode: number = err.code;
@@ -885,7 +885,7 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isLocked: boolean = false;
 screen.setScreenRotationLocked(isLocked).then(() => {
@@ -921,7 +921,7 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isLocked: boolean = false;
 screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
@@ -1004,7 +1004,7 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class VirtualScreenOption {
   name : string = '';
@@ -1068,7 +1068,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class VirtualScreenOption {
   name : string = '';
@@ -1125,7 +1125,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class VirtualScreenOption {
   name : string = '';
@@ -1190,7 +1190,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class VirtualScreenOption {
   name : string = '';
@@ -1248,7 +1248,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let densityDpi: number = 320;
 class VirtualScreenOption {
@@ -1313,7 +1313,7 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let densityDpi: number = 320;
 class VirtualScreenOption {

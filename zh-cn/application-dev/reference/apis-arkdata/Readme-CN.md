@@ -1,4 +1,4 @@
-# ArkData API参考 
+# ArkData（方舟数据管理）
 
 - ArkTS API 
   - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
@@ -9,16 +9,18 @@
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
+  - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
   <!--DelEnd-->
-  - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
+  - [@ohos.data.cloudData (端云服务)](js-apis-data-cloudData.md)
   <!--Del-->
-  - [@ohos.data.cloudData (端云协同)(系统接口)](js-apis-data-cloudData-sys.md)
+  - [@ohos.data.cloudData (端云服务)(系统接口)](js-apis-data-cloudData-sys.md)
   - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](js-apis-data-cloudExtension-sys.md)
   - [@ohos.data.dataShare (数据共享)(系统接口)](js-apis-data-dataShare-sys.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)
@@ -68,4 +70,5 @@
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [用户首选项错误码](errorcode-preferences.md)
+  - [统一数据管理框架错误码](errorcode-udmf.md)
 

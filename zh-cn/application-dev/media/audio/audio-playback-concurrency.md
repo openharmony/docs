@@ -56,8 +56,8 @@
 为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
   
 ```ts
-import audio from '@ohos.multimedia.audio';  // 导入audio模块
-import { BusinessError } from '@ohos.base'; // 导入BusinessError
+import { audio } from '@kit.AudioKit';  // 导入audio模块
+import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError
 
 let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块
 let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块
@@ -67,8 +67,9 @@ async function onAudioInterrupt(): Promise<void> {
   // 此处以使用AudioRenderer开发音频播放功能举例，变量audioRenderer即为播放时创建的AudioRenderer实例。
   audioRenderer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
     // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理
-    // 先读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作
-    // 再读取interruptEvent.hintType的类型，做出相应的处理
+    // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType === audio.InterruptForceType.INTERRUPT_FORCE) {
       // 强制打断类型（INTERRUPT_FORCE）：音频相关处理已由系统执行，应用需更新自身状态，做相应调整
        switch (interruptEvent.hintType) {

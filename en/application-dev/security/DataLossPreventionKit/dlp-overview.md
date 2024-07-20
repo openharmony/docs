@@ -7,15 +7,15 @@ DLP is a system solution. You can implement complete DLP capabilities with littl
 The DLP solution consists of the following components:
 
 - DLP permission management service
-  
+
   Implements functionalities, such as creating a sandbox app and exchanging credentials.
 
 - DLP permission manager app
-  
+
   Implements functionalities of setting and verifying permissions and rejecting access requests locally. It implements the controlled share that can be perceived by users.
 
 - Cloud module (implemented by developers)
-  
+
   Sends DLP certificates to the cloud for account-based authentication, generates certificates, and decrypts the DLP files.
 
 ## Working Principles

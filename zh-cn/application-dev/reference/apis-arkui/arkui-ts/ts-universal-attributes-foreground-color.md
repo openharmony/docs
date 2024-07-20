@@ -12,7 +12,7 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 
 设置组件的前景色。当组件未设置前景色，默认继承父组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,7 +20,7 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-types.md#coloringstrategy10)<sup>10+</sup> | 是   | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-types.md#coloringstrategy10) | 是   | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
 
 ## 示例
 

@@ -19,9 +19,10 @@ Controller相关的Native API结构体。
 | -------- | -------- |
 | size_t [size](#size) | 结构体的大小。  | 
 | void(\* [runJavaScript](#runjavascript) )(const char \*webTag, const [ArkWeb_JavaScriptObject](_ark_web___java_script_object.md) \*javascriptObject) | 注入JavaScript脚本。  | 
-| void(\* [registerJavaScriptProxy](#registerjavascriptproxy) )(const char \*webTag, const [ArkWeb_ProxyObject](_ark_web___proxy_object.md) \*proxyObject) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。  | 
+| void(\* [registerJavaScriptProxy](#registerjavascriptproxy) )(const char \*webTag, const [ArkWeb_ProxyObject](_ark_web___proxy_object.md) \*proxyObject) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。  | 
 | void(\* [deleteJavaScriptRegister](#deletejavascriptregister) )(const char \*webTag, const char \*objName) | 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。  | 
 | void(\* [refresh](#refresh) )(const char \*webTag) | 刷新当前网页。  | 
+| void(\* [registerAsyncJavaScriptProxy](#registerasyncjavascriptproxy) )(const char \*webTag, const [ArkWeb_ProxyObject](_ark_web___proxy_object.md) \*proxyObject) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。  | 
 
 
 ## 结构体成员变量说明
@@ -47,6 +48,16 @@ void(* ArkWeb_ControllerAPI::refresh) (const char *webTag)
 刷新当前网页。
 
 
+### registerAsyncJavaScriptProxy
+
+```
+void(* ArkWeb_ControllerAPI::registerAsyncJavaScriptProxy) (const char *webTag, const ArkWeb_ProxyObject *proxyObject)
+```
+**描述：**
+
+注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。
+
+
 ### registerJavaScriptProxy
 
 ```
@@ -54,7 +65,7 @@ void(* ArkWeb_ControllerAPI::registerJavaScriptProxy) (const char *webTag, const
 ```
 **描述：**
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。
 
 
 ### runJavaScript

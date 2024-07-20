@@ -1,6 +1,6 @@
-# Introduction to MultimodalAwareness Kit
+# Introduction to Multimodal Awareness Kit
 
-MultimodalAwareness Kit allows an application to identify user activities (walking, running, driving, etc.) or postures based on the data collected by sensors including gyroscopes and acceleration sensors built in a HarmonyOS device.
+Multimodal Awareness Kit allows an application to identify user activities (walking, running, driving, etc.) or postures based on the data collected by sensors including gyroscopes and acceleration sensors built in a device.
 
 ## How MultimodalAwareness Kit Works
 

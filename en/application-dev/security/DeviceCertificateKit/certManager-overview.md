@@ -1,6 +1,6 @@
 # Certificate Management Overview
 
-The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their [lifecycle](certManager-guidelines.md#scenarios) (installation, storage, use, and destruction).
+The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their lifecycle (installation, storage, use, and destruction).
 
 ## Basic Concepts
 
@@ -20,5 +20,5 @@ You can use the APIs provided by the **certManager** module to implement lifecyc
 - Certificate destruction: You can use APIs to destroy one or more certificates or credentials stored in the directory of the certificate manager service.
 
 ## Constraints
-
+  
 Currently, only service certificates can be used, and only the private credentials using the RSA or ECC algorithm can be installed and used.

@@ -16,7 +16,7 @@ The following table describes the APIs for accessing SEs.
 | getReaders(): Reader[]                      | Obtains available SE readers, which include all the SEs on the device.                                                               |
 | openSession(): Session                 | Opens a session to connect to an SE in this reader. This API returns a session instance.                                                               |
 | openLogicalChannel(aid: number[]): Promise\<Channel>                  | Opens a logical channel. This API returns a logical channel instance.                                                               |
-| transmit(command: number[]): Promise\<number[]> | Transmits APDU data to this SE.                                                      |
+| transmit(command: number[]): Promise\<number[]> | Transmits APDU data to this SE.    |
 | close(): void | Closes this channel.                                                           |
 
 
@@ -28,13 +28,16 @@ The following table describes the APIs for accessing SEs.
 3. Access an SE and read or write data.
    
 ```ts
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-let seService : secureElement.SEService;
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+
+let seService : omapi.SEService;
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
@@ -50,7 +53,7 @@ export default class EntryAbility extends UIAbility {
 
     // Obtain the service.
     try {
-      seService = secureElement.newSEService("serviceState", (state) => {
+      seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
       });
     } catch (error) {
@@ -103,7 +106,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // transmit data
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
       seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));

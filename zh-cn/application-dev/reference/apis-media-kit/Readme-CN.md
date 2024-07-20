@@ -1,4 +1,4 @@
-# Media Kit API参考
+# Media Kit（媒体服务）
 
 - ArkTS API
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)

@@ -15,10 +15,10 @@ The following uses text sharing as an example. A user selects a piece of text an
 ## Modules to Import
 
 ```ts
-import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -136,9 +136,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 3. In the **ShareExtAbility.ets** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
 
   ```ts
-  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import Want from '@ohos.app.ability.Want';
+  import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = "[ShareExtAbility]";
 

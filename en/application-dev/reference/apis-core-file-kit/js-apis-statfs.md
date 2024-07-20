@@ -41,7 +41,7 @@ Obtains the free size of the specified file system, in bytes. This API uses a pr
   statfs.getFreeBytes(path).then((number: number) => {
     console.info("getFreeBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
+    console.error("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -58,7 +58,7 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | Path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the free size obtained.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the free size obtained.|
 
 **Example**
 
@@ -103,7 +103,7 @@ Obtains the total size of the specified file system, in byte. This API uses a pr
   statfs.getTotalBytes(path).then((number: number) => {
     console.info("getTotalBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
+    console.error("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -120,7 +120,7 @@ Obtains the total size of the specified file system, in bytes. This API uses an 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | Path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size obtained.  |
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the total size obtained.  |
 
 **Example**
 

@@ -96,68 +96,66 @@ The widget provider development based on the [stage model](../application-models
 To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Create a widget template in DevEco Studio and then perform the following:
 
 1. Import related modules to **EntryFormAbility.ets**.
+```ts
+import { Want } from '@kit.AbilityKit';
+import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   ```ts
-   import type Base from '@ohos.base';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
-   import hilog from '@ohos.hilog';
-   import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'JsCardFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   ```
+const TAG: string = 'JsCardFormAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
+```
 
 2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ets**.
 
    
-   ```ts
-    export default class JsCardFormAbility extends FormExtensionAbility {
-      onAddForm(want: Want): formBindingData.FormBindingData {
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
-        // Called when the widget is created. The widget provider should return the widget data binding class.
-        let obj: Record<string, string> = {
-         'title': 'titleOnCreate',
-         'detail': 'detailOnCreate'
-        };
-        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-        return formData;
-      }
-      onCastToNormalForm(formId: string): void {
-        // Called when a temporary widget is being converted into a normal one. The widget provider should respond to the conversion.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
-      }
-      onUpdateForm(formId: string): void {
-        // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
-        let obj: Record<string, string> = {
-          'title': 'titleOnUpdate',
-          'detail': 'detailOnUpdate'
-        };
-        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-        formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
-          hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
-        });
-      }
-      onChangeFormVisibility(newStatus: Record<string, number>): void {
-        // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
-      }
-      onFormEvent(formId: string, message: string): void {
-        // If the widget supports event triggering, override this method and implement the trigger.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
-      }
-      onRemoveForm(formId: string): void {
-        // Delete widget data.
-        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
-      }
-      onAcquireFormState(want: Want): formInfo.FormState {
-        return formInfo.FormState.READY;
-      }
-    }
-   ```
+```ts
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want): formBindingData.FormBindingData {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+    // Called when the widget is created. The widget provider should return the widget data binding class.
+    let obj: Record<string, string> = {
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    return formData;
+  }
+  onCastToNormalForm(formId: string): void {
+    // Called when a temporary widget is being converted into a normal one. The widget provider should respond to the conversion.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
+  }
+  onUpdateForm(formId: string): void {
+    // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+    let obj: Record<string, string> = {
+      'title': 'titleOnUpdate',
+      'detail': 'detailOnUpdate'
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
+      hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+    });
+  }
+  onChangeFormVisibility(newStatus: Record<string, number>): void {
+    // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+    //...
+  }
+  onFormEvent(formId: string, message: string): void {
+    // If the widget supports event triggering, override this method and implement the trigger.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+  }
+  onRemoveForm(formId: string): void {
+    // Delete widget data.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+    //...
+  }
+  onAcquireFormState(want: Want): formInfo.FormState {
+    return formInfo.FormState.READY;
+  }
+}
+```
 
 > **NOTE**
 > FormExtensionAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
@@ -248,13 +246,11 @@ A widget provider is usually started when it is needed to provide information ab
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -268,13 +264,13 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     'updateCount': 0
   };
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // put form info
     await storage.put(formId, JSON.stringify(formInfo));
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   }
 }
 
@@ -305,11 +301,11 @@ You should override **onRemoveForm** to implement widget data deletion.
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -317,13 +313,13 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // Delete the widget information.
     await storage.delete(formId);
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   };
 };
 
@@ -355,11 +351,9 @@ When an application initiates a scheduled or periodic update, the application ob
 
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'JsCardFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -373,7 +367,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       'detail': 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
@@ -627,10 +621,10 @@ The following are examples:
   import Want from '@ohos.app.ability.Want';
   import hilog from '@ohos.hilog';
 
-  const TAG: string = 'JsCardEntryAbility';
+  const TAG: string = 'EtsCardEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
 
-  export default class EntryAbility extends UIAbility {
+  export default class EtsCardEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       if (want.parameters) {
         let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));

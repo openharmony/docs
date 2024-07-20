@@ -14,7 +14,7 @@
 
 在使用备份恢复接口之前，需要：
 
-1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)：`ohos.permission.BACKUP`
+1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
 
@@ -126,14 +126,14 @@ async function getLocalCapabilities(): Promise<void> {
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
@@ -150,6 +150,13 @@ async function getLocalCapabilities(): Promise<void> {
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
+      }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
@@ -183,10 +190,16 @@ async function getLocalCapabilities(): Promise<void> {
   import { BusinessError } from '@ohos.base';
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  let testFileNum = 123; // 123: 初始化文件个数
+  let testBundleName = 'com.example.myapplication'; // 测试包名
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // 初始化计数
   async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
-      uri: file.uri
+      uri: ''
     }
     await g_session.publishFile(fileMeta);
   }
@@ -204,16 +217,19 @@ async function getLocalCapabilities(): Promise<void> {
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // 恢复数据传输完成后，会通知服务端文件准备就绪
-        publishFile(file);
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+          publishFile(file);
+        }
         console.info('onFileReady success');
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
@@ -227,6 +243,13 @@ async function getLocalCapabilities(): Promise<void> {
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

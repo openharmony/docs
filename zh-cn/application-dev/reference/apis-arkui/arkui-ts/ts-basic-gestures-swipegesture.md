@@ -11,7 +11,7 @@
 
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -23,7 +23,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 ## SwipeDirection枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -37,9 +37,11 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## 属性
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |

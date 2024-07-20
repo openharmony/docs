@@ -784,6 +784,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Customization.CustomConfig
+
+定制配置
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
 ## SystemCapability.Customization.EnterpriseDeviceManager
 
 企业设备管理
@@ -1010,7 +1018,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.OsAccount
 
-系统帐号
+系统账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|
@@ -1018,7 +1026,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.AppAccount
 
-应用帐号
+应用账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|

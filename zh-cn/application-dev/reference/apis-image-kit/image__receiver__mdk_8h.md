@@ -5,6 +5,10 @@
 
 声明从native层获取图片数据的方法。
 
+**库**：libimage_receiver_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_receiver_mdk.h&gt;
+
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)

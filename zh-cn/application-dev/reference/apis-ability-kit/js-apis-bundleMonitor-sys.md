@@ -20,9 +20,9 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ------------------------------------ | ----------- | ------------------------------ |
 | ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | 可监听应用的安装，卸载，更新。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
-## BundleChangeInfo
+## BundleChangedInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

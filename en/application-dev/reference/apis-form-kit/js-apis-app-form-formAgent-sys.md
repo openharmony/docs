@@ -10,7 +10,7 @@ The **FormAgent** module provides APIs related to the widget agent. Currently, y
 ## Modules to Import
 
 ```ts
-import formAgent from '@ohos.app.form.formAgent';
+import { formAgent } from '@kit.FormKit';
 ```
 
 ## requestPublishForm
@@ -36,17 +36,21 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timed out. |
 
 For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { formAgent } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.ohos.exampledemo',
@@ -58,7 +62,7 @@ let want: Want = {
   }
 };
 try {
-  formAgent.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
+  formAgent.requestPublishForm(want, (error: BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -66,7 +70,7 @@ try {
     console.log(`formAgent requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -98,17 +102,21 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timed out. |
 
 For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { formAgent } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.ohos.exampledemo',
@@ -122,10 +130,10 @@ let want: Want = {
 try {
   formAgent.requestPublishForm(want).then((data: string) => {
     console.log(`formAgent requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```

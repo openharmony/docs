@@ -62,8 +62,8 @@ networkSecurity.certVerification(cert, caCert)
 
 | 名称  | 类型                   | 必填      | 说明           |
 | ----- | --------------------- | --------- | -------------- |
-| type  | CertType              | Yes       | 证书编码类型。  |
-| data  | string \| ArrayBuffer | Yes       | 证书内容。      |
+| type  | CertType              | 是      | 证书编码类型。  |
+| data  | string \| ArrayBuffer | 是       | 证书内容。      |
 
 
 ## networkSecurity.certVerification

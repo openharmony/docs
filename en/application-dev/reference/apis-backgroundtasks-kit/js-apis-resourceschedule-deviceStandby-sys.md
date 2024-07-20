@@ -33,10 +33,13 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -86,10 +89,13 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -131,10 +137,13 @@ Requests exemption, so that the application can use restricted resources when th
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -173,10 +182,13 @@ Cancels exemption for the application.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |

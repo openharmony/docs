@@ -20,7 +20,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
      console.info('audioVolumeGroupManager create success.');
    }
    ```
-
+<!--Del-->
 2. **(Optional; for system applications only)** Call **on('micStateChange')** to listen for microphone state changes. When the microphone state changes, the application will be notified of the change.
    
    Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
@@ -32,6 +32,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
      });
    }
    ```
+<!--DelEnd-->
 
 3. Call **isMicrophoneMute** to check whether the microphone is muted. If the return value is **true**, the microphone is muted; otherwise, the microphone is not muted.
      
@@ -42,7 +43,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
      });
    }
    ```
-
+<!--Del-->
 4. **(Optional; for system applications only)** Call **setMicrophoneMute** to mute or unmute the microphone. To mute the microphone, pass in **true**. To unmute the microphone, pass in **false**.
      
    ```ts
@@ -108,3 +109,4 @@ Refer to the sample code below to complete the process of muting and unmuting th
    }
 
 ```
+<!--DelEnd--> 

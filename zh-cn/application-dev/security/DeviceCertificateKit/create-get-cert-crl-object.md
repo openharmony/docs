@@ -7,7 +7,7 @@
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
 
    ```ts
-   import { cert } from '@kit.DeviceCertificatekit';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
 2. 基于已有的证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)创建X509证书的对象。
@@ -21,7 +21,7 @@
 6. 调用[CertCRLCollection.selectCRLs](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcrls11)查找所有与[X509CRLMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlmatchparameters11)匹配的证书吊销列表数组，并返回结果。
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 

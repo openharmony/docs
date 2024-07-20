@@ -1,6 +1,6 @@
 # 自定义组件冻结功能
 
-自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyforEach，Navigation。
+自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyForEach，Navigation。
 
 
 > **说明：**
@@ -18,7 +18,7 @@
 页面A：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
@@ -48,7 +48,7 @@ struct FirstTest {
 页面B：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
@@ -80,11 +80,11 @@ struct SecondTest {
 
 在上面的示例中：
 
-1.点击页面A中的Button “first page storLink + 1”，storLink状态变量改变，@Watch中注册的方法first会被调用。
+1.点击页面A中的Button “first page storageLink + 1”，storageLink状态变量改变，@Watch中注册的方法first会被调用。
 
 2.通过router.pushUrl({url: 'pages/second'})，跳转到页面B，页面A隐藏，状态由active变为inactive。
 
-3.点击页面B中的Button “this.storLink2 += 2”，只回调页面B@Watch中注册的方法second，因为页面A的状态变量此时已被冻结。
+3.点击页面B中的Button “this.storageLink2 += 2”，只回调页面B@Watch中注册的方法second，因为页面A的状态变量此时已被冻结。
 
 4.点击“back”，页面B被销毁，页面A的状态由inactive变为active，重新刷新在inactive时被冻结的状态变量，页面A@Watch中注册的方法first被再次调用。
 
@@ -155,9 +155,9 @@ struct FreezeChild {
 ![TabContent.gif](figures/TabContent.gif)
 
 
-### LazyforEach
+### LazyForEach
 
-- 对LazyforEach中缓存的自定义组件进行冻结，不会触发组件的更新。
+- 对LazyForEach中缓存的自定义组件进行冻结，不会触发组件的更新。
 
 ```ts
 // Basic implementation of IDataSource to handle data listener
@@ -301,7 +301,7 @@ struct FreezeChild {
 
 在上面的示例中：
 
-1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachcount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
+1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachecount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
 
 2.List区域外的ListItem滑动到List区域内，状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。
 
@@ -311,7 +311,9 @@ struct FreezeChild {
 
 ### Navigation
 
-- 对当前不可见的页面进行冻结，不会触发组件的更新，当返回该页面时，触发@Watch回调进行刷新。
+- 当NavDestination不可见时，会对其子自定义组件设置成非激活态，不会触发组件的刷新。当返回该页面时，其子自定义组件重新恢复成激活态，触发@Watch回调进行刷新。
+
+- 在下面例子中，NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新。
 
 ```ts
 @Entry

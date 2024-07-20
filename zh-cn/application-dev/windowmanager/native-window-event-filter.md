@@ -1,8 +1,8 @@
-# 使用NaitveWindowEventFilter过滤多模输入事件（C/C++）
+# 使用NativeWindowEventFilter过滤多模输入事件（C/C++）
 
 ## 场景介绍
 
-开发者可以NaitveWindowEventFilter模块提供的能力去拦截按键事件，让按键事件不往应用内部组件分发。
+开发者可以NativeWindowEventFilter模块提供的能力去拦截按键事件，让按键事件不往应用内部组件分发。
 
 
 ## 接口说明
@@ -49,11 +49,11 @@ static bool filterFunc(Input_KeyEvent *event) {
   // return keyCode == Input_KeyCode::KEYCODE_ESCAPE;
 
   // case2: 过滤数字键的按下，抬起不过滤
-  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
   //  && action == Input_KeyEventAction::KEY_ACTION_DOWN;
   
   // 过滤escape和数字键的按下(case1 || case2)
-  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
      && action == Input_KeyEventAction::KEY_ACTION_DOWN) || (keyCode == Input_KeyCode::KEYCODE_ESCAPE);
 }
 

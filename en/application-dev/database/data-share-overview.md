@@ -23,9 +23,10 @@ Before you start, understand the following concepts:
 - **Predicates**: an object that specifies the conditions for updating, deleting, or querying data in a database.
 
 ## One-to-Many Cross-Application Data Sharing
-
+<!--RP1-->
 You can use **DataShare** to implement one-to-many data sharing across applications. Two implementation modes are provided, depending on whether the data provider is started in the cross-application data sharing.  
-
+<!--RP1End-->
+<!--Del-->
 ### Implementation
 
 The data provider can directly use **DataShare** to share data with other applications without complex encapsulation. The data consumer only needs to use a set of APIs because the **DataShare** access mode does not vary with the data provision mode. This greatly reduces the learning time and development difficulty.
@@ -53,6 +54,7 @@ If your application is signed with a system signature, you can use both methods.
 - The payloads of **ValuesBucket**, **Predicates**, and **ResultSet** are restricted by IPC.
 
 - Currently, **dataShare** supports development based on the stage model only.
+<!--DelEnd-->
 
 ## Many-to-Many Cross-Application Data Sharing
 

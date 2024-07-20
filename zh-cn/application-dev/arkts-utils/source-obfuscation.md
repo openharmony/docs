@@ -90,6 +90,10 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
 混淆规则分为两种类型，一种是[混淆选项](#混淆选项)，一种是[保留选项](#保留选项)；前者是提供顶层作用域名称、属性名称、文件名称等多种混淆功能配置开关，后者是提供各种混淆功能的白名单配置能力。
 
+**注意**
+
+若修改应用混淆配置，新配置需要重新全量编译应用才能生效。
+
 ### 混淆选项
 
 #### -disable-obfuscation
@@ -120,7 +124,6 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
 * 被[保留选项](#保留选项)指定的属性名不会被混淆。
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/cache/{...}/release/obfuscation中
-* 在Native API场景中，so库对应的d.ts文件中声明的API不会被混淆。
 * 字符串字面量属性名不会被混淆。例如下面例子中的`"name"`和`"age"`不会被混淆。
 
     ```
@@ -175,7 +178,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[`-keep-file-name`]选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
 上述需要手动配置白名单的情况，包括但不限于以下场景：  
 
-* 当模块中包含Ability组件时。用户需要将`scr/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
+* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
 * 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
 
 #### -enable-export-obfuscation
@@ -249,7 +252,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### `-keep-property-name` [,identifiers,...]
 
-指定想保留的属性名，支持使用[名称类通配符](#名称类通配符)。例如下面的例子:
+指定想保留的属性名，支持使用名称类通配符。例如下面的例子:
 
 ```
 -keep-property-name
@@ -299,16 +302,31 @@ export class MyClass {
 }
 ```
 
-没有在so库的d.ts文件中声明的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
+so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
 
 ```
 import testNapi from 'library.so'
 testNapi.foo()
 ```
 
+使用到的json文件中的字段，需要手动保留。
+
+```
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要保留
+```
+
+使用到的数据库相关的字段，需要手动保留。
+
+```
+const dataToInsert = {  
+  value1: 'example1',   // value1 需要保留
+};
+```
 #### `-keep-global-name` [,identifiers,...]
 
-指定要保留的顶层作用域的名称，支持使用[名称类通配符](#名称类通配符)。例如，
+指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
 
 ```
 -keep-global-name
@@ -341,7 +359,7 @@ let d = new MyClass();      // MyClass 可以被正确地混淆
 
 #### `-keep-file-name` [,identifiers,...]
 
-指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用[名称类通配符](#名称类通配符)。例如，
+指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
 
 ```
 -keep-file-name
@@ -359,7 +377,7 @@ const module2 = import(moduleName)    // 动态引用方式无法识别moduleNam
 
 #### `-keep-comments` [,identifiers,...]
 
-保留声明文件中元素上方的JsDoc注释，支持使用[名称类通配符](#名称类通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留声明文件中元素上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
 ```
 -keep-comments
@@ -386,7 +404,7 @@ export class exportClass {}
 #### `-keep` path
 
 保留指定路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
-路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#路径类通配符)。
+路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
 
 ```
 -keep
@@ -398,6 +416,7 @@ export class exportClass {}
 注：该功能不影响文件名混淆`-enable-filename-obfuscation`的功能
 
 #### 保留选项支持的通配符
+
 ##### 名称类通配符
 
 名称类通配符使用方式如下：
@@ -410,18 +429,21 @@ export class exportClass {}
 **使用示例**：
 
 保留所有以a开头的属性名称：
+
 ```
 -keep-property-name
 a*
 ```
 
 保留所有单个字符的属性名称：
+
 ```
 -keep-property-name
 ?
 ```
 
 保留所有属性名称：
+
 ```
 -keep-property-name
 *
@@ -433,42 +455,58 @@ a*
 
 | 通配符 | 含义                                                                     | 示例                                              |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
-| ?     | 匹配任意单个字符，除了路径分隔符'/'                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"         |
-| \*      | 匹配任意数量的任意字符，除了路径分隔符'/'                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c" |
+| ?     | 匹配任意单个字符，除了路径分隔符`/`                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"         |
+| \*      | 匹配任意数量的任意字符，除了路径分隔符`/`                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c" |
 | \*\*   | 匹配任意数量的任意字符                                                   | "../a**/c"能匹配"../ab/c"，也能匹配"../ab/d/s/c"  |
 | !      | 表示非，只能写在某个路径最前端，用来排除用户配置的白名单中已有的某种情况 | "!../a/b/c.ets"表示除"../a/b/c.ets"以外           |
 
 **使用示例**：
 
 表示路径../a/b/中所有文件夹（不包含子文件夹）中的c.ets文件不会被混淆：
+
 ```
 -keep
 ../a/b/*/c.ets
 ```
 
 表示路径../a/b/中所有文件夹（包含子文件夹）中的c.ets文件不会被混淆：
+
 ```
 -keep
 ../a/b/**/c.ets
 ```
 
-表示路径../a/b/中，除了c.ets文件以外的其它文件都不会被混淆。其中，'!'不可单独使用，只能用来排除白名单中已有的情况：
+表示路径../a/b/中，除了c.ets文件以外的其它文件都不会被混淆。其中，`!`不可单独使用，只能用来排除白名单中已有的情况：
+
 ```
 -keep
 ../a/b/
 !../a/b/c.ets
 ```
 
-表示所有文件都不会被混淆：
+表示路径../a/中的所有文件（不包含子文件夹）不会被混淆：
 ```
 -keep
-*
+../a/*
+```
+
+表示路径../a/下的所有文件夹（包含子文件夹）中的所有文件不会被混淆：
+```
+-keep
+../a/**
+```
+
+表示模块内的所有文件不会被混淆：
+```
+-keep
+./**
 ```
 
 **注意**：
 
-(1)以上选项，不支持配置通配符'*'、'?'、'!'作其它含义使用。
+(1)以上选项，不支持配置通配符`*`、`?`、`!`作其它含义使用。
 例如：
+
 ```
 class A {
   '*'= 1
@@ -478,11 +516,9 @@ class A {
 *
 ```
 
-此时'\*'表示匹配任意数量的任意字符，配置效果为所有属性名称都不混淆，而不是只有'\*'属性不被混淆。
+此时`*`表示匹配任意数量的任意字符，配置效果为所有属性名称都不混淆，而不是只有`*`属性不被混淆。
 
-(2)-keep选项中只允许使用'/'路径格式，不支持'\\'或'\\\\'。
-
-(3)白名单中不支持配置以下特殊字符：'\\'、'\^'、'\$'、'\+'、'\|'、'\['、'\]'、'\{'、'\}'、'\('、'\)'。
+(2)-keep选项中只允许使用`/`路径格式，不支持`\`或`\\`。
 
 ### 注释
 
@@ -582,3 +618,198 @@ end-for
 * 混淆的HAR包被模块依赖，若模块开启混淆，则HAR包会被二次混淆
 * DevEco Studio右上角Product选项，将其中Build Mode选择release，可开启release编译模式
 ![product-release](figures/product-release.png)
+
+## FAQ
+
+### 混淆各功能上线SDK版本
+
+| 混淆选项 | 功能描述  | 最低版本号 |
+| ------- | --------- | ------ |
+| -disable-obfuscation         | 关闭混淆 | 4.0.9.2 |
+| -enable-property-obfuscation | 属性混淆 | 4.0.9.2 |
+| -enable-string-property-obfuscation | 字符串字面量属性名混淆 | 4.0.9.2 |
+| -enable-toplevel-obfuscation | 顶层作用域名称混淆 | 4.0.9.2 |
+| -enable-filename-obfuscation | HAR包文件/文件夹名称混淆 <br> HAP/HSP文件/文件夹名称混淆 | 4.1.5.3 <br> 5.0.0.19 |
+| -enable-export-obfuscation   | 向外导入或导出的名称混淆 | 4.1.5.3 |
+| -compact                     | 去除不必要的空格符和所有的换行符 | 4.0.9.2 |
+| -remove-log                  | 删除特定场景中的console.* | 4.0.9.2 |
+| -print-namecache             | 将名称缓存保存到指定的文件路径 | 4.0.9.2 |
+| -apply-namecache             | 复用指定的名称缓存文件 | 4.0.9.2 |
+| -remove-comments             | 删除文件中所有注释 | 4.1.5.3 |
+| -keep-property-name          | 保留属性名 | 4.0.9.2 |
+| -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
+| -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
+| -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
+| -keep-comments               | 保留声明文件中元素上方的JsDoc注释 | 4.1.5.3 |
+| -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
+| 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
+
+### 如何查看混淆效果
+
+开发人员可以在编译产物build目录中找到混淆后的文件，以及混淆生成的名称映射表及系统API白名单文件。
+
+- 混淆后的文件目录：`build/[...]/release/模块名`
+- 混淆名称映射表及系统API白名单目录：`build/[...]/release/obfuscation`
+  - 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
+  - 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+
+  ![build-product](figures/build-product.png)
+
+### 如何排查功能异常
+
+1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
+2. 若确认是开启混淆后功能出现异常，建议查看混淆构建产物分析代码逻辑，寻找代码异常原因。
+3. 若是白名单未配置导致的错误，请在配置文件中使用[保留选项](#保留选项)来配置白名单。
+
+### 常见报错案例
+
+#### 开启-enable-property-obfuscation选项可能出现的问题
+
+**案例一：报错内容为 Cannot read property 'xxx' of undefined**
+
+```
+// 混淆前
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.jsonProperty
+
+// 混淆后
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.i
+```
+
+开启属性混淆后，"jsonProperty" 被混淆成随机字符 "i"，但json文件中为原始名称，从而导致值为undefined。
+
+**解决方案：** 使用`-keep-property-name`选项将json文件里的字段配置到白名单。
+
+**案例二：使用了数据库相关的字段，开启属性混淆后，出现报错**
+
+报错内容为 `table Account has no column named a23 in 'INSET INTO Account(a23)'`
+
+代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
+
+**解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
+
+#### 开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+
+**当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
+
+| 主模块 | 依赖模块 | 导入与导出的名称混淆情况 |
+| ------- | ------- | ----------------------------|
+| HAP/HSP | HSP     | HSP和主模块是独立编译的，混淆后名称会不一致，因此都需要配置白名单 |
+| HAP/HSP | 本地HAR | 本地HAR与主模块一起编译，混淆后名称一致 |
+| HAP/HSP | 三方库  | 三方库中导出的名称及其属性会被收集到白名单，因此导入和导出时都不会被混淆 |
+
+HSP需要将给其他模块用的方法配置到白名单中。因为主模块里也需要配置相同的白名单，所以推荐将HSP配置了白名单的混淆文件(假设名称为hsp-white-list.txt)添加到依赖它的模块的混淆配置项里，即下图files字段里。
+
+
+![obfuscation-config](figures/obfuscation-config.png)
+
+**案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错**
+
+```
+// 混淆前
+export class Test1 {}
+
+let mytest = (await import('./file')).Test1
+
+// 混淆后
+export class w1 {}
+
+let mytest = (await import('./file')).Test1
+```
+
+导出的类 "Test1" 是一个顶层作用域名，当 "Test1" 被动态使用时，它是一个属性。因为没有开启`-enable-property-obfuscation`选项，所以名称混淆了，但属性没有混淆。
+
+**解决方案：** 使用`-keep-global-name`选项将 "Test1" 配置到白名单。
+
+**案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错**
+
+```
+// 混淆前
+export namespace ns1 {
+  export class person1 {}
+}
+
+import {ns1} from './file1'
+let person1 = new ns1.person1()
+
+// 混淆后
+export namespace a3 {
+  export class b2 {}
+}
+
+import {a3} from './file1'
+let person1 = new a3.person1()
+```
+
+namespace里的 "person1" 属于顶层作用域的class名称，通过 "ns1.person1" 来调用时，它是属于一个属性，由于未开启属性混淆，所以在使用它时没有被混淆。
+
+**解决方案：**
+
+1. 开启`-enable-property-obfuscation`选项。
+2. 将namespace里导出的方法使用`-keep-global-name`选项添加到白名单。
+
+**案例三：使用了`declare global`，混淆后报语法错误**
+
+```
+// 混淆前
+declare global {
+  var age : string
+}
+
+// 混淆后
+declare a2 {
+  var b2 : string
+}
+```
+
+报错内容为 `SyntaxError: Unexpected token`
+
+**解决方案：** 使用`-keep-global-name`选项将`__global`配置到白名单中。
+
+#### 未开启-enable-string-property-obfuscation混淆选项，字符串字面量属性名却被混淆，导致字符串字面量属性名的值为undefined
+
+```
+person["age"] = 22; // 混淆前
+
+person["b"] = 22; // 混淆后
+```
+
+**解决方案：**
+
+1. 确认是否有依赖的HAR包开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
+2. 若不能关闭`-enable-string-property-obfuscation`选项，将属性名配置到白名单中。
+3. 若依赖HAR包未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
+
+#### 开启-enable-filename-obfuscation选项后，可能会出现的问题
+
+**案例一：报错为 Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'**
+
+工程的目录结构如下图所示，模块library1的外层还有目录 "directory"，开启文件名混淆后，"directory" 被混淆为f12，导致路径找不到。
+
+![directory-offuscation](figures/directory-obfuscation.png)
+
+**解决方案：**
+
+1. 如果工程的目录结构和报错内容都相似，请将SDK更新至最低5.0.0.26版本。
+2. 使用`-keep-file-name`将模块外层的目录名 "directory" 配置到白名单中。
+
+**案例二：报错为 Cannot find module 'ets/appability/AppAbility' which is application Entry Point**
+
+由于系统会在应用运行时加载ability文件，用户需要手动配置相应的白名单，防止指定文件被混淆，导致运行失败。
+
+**解决方案：** 使用`-keep-file-name`选项，将`src/main/module.json5`文件中，'srcEntry'字段所对应的路径配置到白名单中。
+
+```
+-keep-file-name
+appability
+AppAbility
+```
+
+#### 使用-keep-global-name选项配置白名单时，可能会出现的问题
+
+报错内容为 `Cannot read properties of undefined (reading 'has')`
+
+**解决方案：** 将SDK更新至最低4.1.6.3版本。

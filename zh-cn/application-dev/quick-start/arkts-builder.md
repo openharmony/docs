@@ -11,7 +11,7 @@
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ## 装饰器使用说明
 
@@ -120,7 +120,7 @@ class Tmp {
 
 @Component
 struct HelloComponent {
-  @Link message: string;
+  @Prop message: string;
 
   build() {
     Row() {
@@ -218,7 +218,7 @@ struct HelloChildComponent {
 
 @Component
 struct HelloGrandsonComponent {
-  @Link message: string;
+  @Prop message: string;
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)

@@ -162,7 +162,7 @@ bootchart and bootevent are available only for the standard system, and begetctl
   3. Restart the system.
   4. Run the **begetctl bootchart stop** command.
   5. Run the **begetctl bootchart disable** command.
-  6. Export the following files from the **/data/bootchart** directory and save them to the **bootchart** folder:<br>
+  6. Export the following files from the **/data/service/el0/startup/init/** directory and save them to the **bootchart** folder:<br>
         header<br>
         proc_diskstats.log<br>
         proc_ps.log<br>

@@ -3,6 +3,10 @@
 
 This topic describes how to obtain properties of a key. Before the operation, ensure that the key exists in HUKS.
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

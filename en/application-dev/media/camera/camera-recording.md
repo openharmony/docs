@@ -6,11 +6,12 @@ As another important function of the camera application, video recording is the 
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a photo output stream.
+1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a video output stream.
      
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { camera } from '@kit.CameraKit';
+   import { media } from '@kit.MediaKit';
    ```
 
 2. Create a surface.
@@ -46,7 +47,6 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createvideooutput) to create a video output stream.
 
    > **NOTE**
-   >
    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
 
    ```ts
@@ -158,7 +158,10 @@ During camera application development, you can listen for the status of the vide
     
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameStart', () => {
+    videoOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame started');
     });
   }
@@ -168,7 +171,10 @@ During camera application development, you can listen for the status of the vide
     
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameEnd', () => {
+    videoOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame ended');
     });
   }

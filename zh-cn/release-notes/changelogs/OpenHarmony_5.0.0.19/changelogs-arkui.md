@@ -651,3 +651,45 @@ advanced.Dialog.TipsDialog,advanced.Dialog.SelectDialog,advanced.Dialog.AlertDia
 **适配指导**
 
 UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.12 分段按钮组件选中项底板默认阴影效果样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为非兼容性变更，只影响选中按钮的底板阴影效果。
+
+- 变更前
+  1. 底板阴影效果为ShadowStyle.OUTER_DEFAULT_MD。
+
+- 变更后
+  1. 底板阴影效果为ShadowStyle.OUTER_DEFAULT_XS。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SegmentButton_Before.png)  |  ![](figures/SegmentButton_After.png)  |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+SegmentButton
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

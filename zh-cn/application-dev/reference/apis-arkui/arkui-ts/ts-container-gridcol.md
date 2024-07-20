@@ -15,7 +15,7 @@ GridCol(option?: GridColOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
@@ -31,14 +31,6 @@ GridCol(option?: GridColOptions)
 
 `span`、`offset`、`order`属性按照`xs`、`sm`、`md`、`lg`、`xl`、`xxl`的顺序具有“继承性”，未设置值的断点将会从前一个断点取值。
 
-在不同宽度设备类型上的默认值为：
-
-|参数\断点 |xs|sm|md|lg|xl|xxl|
-|---|---|---|---|---|---|---|
-|span   |2  |2  |3  |3  |4  |4  |
-|offset |2  |2  |3  |5  |5  |5  |
-|order  |20 |20 |20 |3  |3  |3  |
-
 ## 属性
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
@@ -50,7 +42,7 @@ span(value: number | GridColColumnOption)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,7 +60,7 @@ gridColOffset(value: number | GridColColumnOption)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +78,7 @@ order(value: number | GridColColumnOption)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,7 +94,7 @@ order(value: number | GridColColumnOption)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |

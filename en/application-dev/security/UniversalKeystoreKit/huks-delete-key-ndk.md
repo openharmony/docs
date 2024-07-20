@@ -3,6 +3,10 @@
 
 To ensure data security, delete the key that is no longer required.
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

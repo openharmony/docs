@@ -5,7 +5,7 @@
 
 提供OsAccount接口的公共类型定义。
 
-**库：** libos_account.so
+**库：** libos_account_ndk.so
 
 **系统能力：** SystemCapability.Account.OsAccount
 

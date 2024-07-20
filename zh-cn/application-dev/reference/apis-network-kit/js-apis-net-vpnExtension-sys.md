@@ -1,6 +1,7 @@
 # @ohos.net.vpnExtension (VPN 增强管理)（系统接口）
 
 三方VPN管理模块，支持三方VPN的启动和停止功能。
+三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。
 
 > **说明：**
 > 本模块首批接口从 API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -9,11 +10,11 @@
 ## 导入模块
 
 ```js
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
 
-## vpnExt.setAlwaysOnVpnEnabled
+## vpnExtension.setAlwaysOnVpnEnabled
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
@@ -52,7 +53,7 @@ setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -62,14 +63,14 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-vpnExt.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
+vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
   console.info('setAlwaysOnVpnEnabled success.');
 }).catch((err : BusinessError) => {
   console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
 });
 ```
 
-## vpnExt.isAlwaysOnVpnEnabled
+## vpnExtension.isAlwaysOnVpnEnabled
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
@@ -107,7 +108,7 @@ isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 Stage 模型示例：
 
 ```ts
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -117,14 +118,14 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-vpnExt.isAlwaysOnVpnEnabled(want.bundleName).then((data : boolean) => {
+vpnExtension.isAlwaysOnVpnEnabled(want.bundleName).then((data : boolean) => {
   console.info('isAlwaysOnVpnEnabled success.');
 }).catch((err : BusinessError) => {
   console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
 });
 ```
 
-## vpnExt.updateVpnAuthorizedState
+## vpnExtension.updateVpnAuthorizedState
 
 updateVpnAuthorizedState(bundleName: string): boolean
 
@@ -162,7 +163,7 @@ updateVpnAuthorizedState(bundleName: string): boolean
 Stage 模型示例：
 
 ```ts
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
@@ -171,7 +172,7 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-let result: boolean = vpnExt.updateVpnAuthorizedState(want.bundleName);
+let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
 console.log("Result: "+ result);
 ```
 

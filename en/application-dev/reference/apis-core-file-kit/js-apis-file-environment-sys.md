@@ -45,7 +45,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
-      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -63,7 +63,7 @@ Obtains the root directory of the memory. This API uses an asynchronous callback
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of the memory.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the root directory of the memory.|
 
 **Error codes**
 
@@ -80,7 +80,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
-      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getStorageDataDir successfully, Path: " + path);
     }
@@ -119,7 +119,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
-    console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -137,7 +137,7 @@ Obtains the root directory of user files. This API uses an asynchronous callback
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of user files.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the root directory of user files.|
 
 **Error codes**
 
@@ -154,7 +154,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
-      console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getUserDataDir successfully, Path: " + path);
     }
@@ -165,7 +165,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getExternalStorageDir(): string
 
-Obtains the sandbox path of the root directory of the external storage card. This API is available only to certain devices.
+Obtains the sandbox path of the root directory of an external storage card. This API is available only to the devices with the SystemCapability.FileManagement.File.Environment.FolderObtain system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
@@ -208,7 +208,7 @@ function getExternalStorageDirExample() {
 
 getUserHomeDir(): string
 
-Obtains the sandbox path of the built-in card directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the built-in card directory of the current user. This API is available only to the devices with the SystemCapability.FileManagement.File.Environment.FolderObtain system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 

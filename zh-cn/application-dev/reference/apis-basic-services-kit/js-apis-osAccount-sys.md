@@ -1,11 +1,11 @@
-# @ohos.account.osAccount (系统帐号管理)(系统接口)
+# @ohos.account.osAccount (系统账号管理)(系统接口)
 
-本模块提供管理系统帐号的基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能。
+本模块提供管理系统账号的基础能力，包括系统账号的添加、删除、查询、设置、订阅、启动等功能。
 
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)。
 
 ## 导入模块
 
@@ -15,13 +15,13 @@ import { osAccount } from '@kit.BasicServicesKit';
 
 ## AccountManager
 
-系统帐号管理类。
+系统账号管理类。
 
 ### activateOsAccount
 
 activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-激活指定系统帐号。使用callback异步回调。
+激活指定系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -33,21 +33,23 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | 是   | 系统帐号ID。                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当帐号激活成功时，err为null，否则为错误对象。 |
+| localId  | number                    | 是   | 系统账号ID。                  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当账号激活成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
-**示例：** 激活ID为100的系统帐号
+**示例：** 激活ID为100的系统账号
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let localId: number = 100;
@@ -68,7 +70,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 activateOsAccount(localId: number): Promise&lt;void&gt;
 
-激活指定系统帐号。使用Promise异步回调。
+激活指定系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -80,7 +82,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
@@ -92,14 +94,16 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
-**示例：** 激活ID为100的系统帐号
+**示例：** 激活ID为100的系统账号
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
@@ -119,7 +123,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 deactivateOsAccount(localId: number): Promise&lt;void&gt;
 
-注销（退出登录）指定系统帐号。使用Promise异步回调。
+注销（退出登录）指定系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -131,7 +135,7 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
@@ -143,11 +147,14 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 注销ID为100的系统帐号
+**示例：** 注销ID为100的系统账号
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
@@ -167,7 +174,7 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 
 isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
-判断指定系统帐号是否处于激活状态。使用Promise异步回调。
+判断指定系统账号是否处于激活状态。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -179,23 +186,25 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                       |
 | ---------------------- | ---------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示帐号已激活；返回false表示帐号未激活。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示账号已激活；返回false表示账号未激活。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统账号是否处于激活状态
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -216,7 +225,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-判断指定系统帐号是否使能指定约束。使用Promise异步回调。
+判断指定系统账号是否使能指定约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -228,8 +237,8 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 参数名     | 类型   | 必填 | 说明                                |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | 是   | 系统帐号ID。  |
-| constraint | string | 是   | 指定的[约束](js-apis-osAccount.md#系统帐号约束列表)名称。 |
+| localId    | number | 是   | 系统账号ID。  |
+| constraint | string | 是   | 指定的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 
 **返回值：**
 
@@ -241,11 +250,13 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
+**示例：** 判断ID为100的系统账号是否有禁止使用Wi-Fi的约束
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -267,7 +278,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
-检查指定系统帐号是否已验证。使用Promise异步回调。
+检查指定系统账号是否已验证。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -279,20 +290,22 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                                              |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | 是   | 系统帐号ID。不填则检查当前系统帐号是否已验证。 |
+| localId | number | 是   | 系统账号ID。不填则检查当前系统账号是否已验证。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                               |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前账号已认证解锁；返回false表示当前账号未认证解锁。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
@@ -316,7 +329,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-删除指定系统帐号。使用callback异步回调。
+删除指定系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -328,15 +341,17 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | 是   | 系统帐号ID。                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果删除帐号成功，err为null，否则为错误对象。 |
+| localId  | number                    | 是   | 系统账号ID。                  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果删除账号成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -367,7 +382,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-删除指定系统帐号。使用Promise异步回调。
+删除指定系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -379,7 +394,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
@@ -391,8 +406,10 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -421,7 +438,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置/删除约束。使用callback异步回调。
+为指定系统账号设置/删除约束。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -433,8 +450,8 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 参数名      | 类型                      | 必填 | 说明                                             |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId     | number                    | 是   | 系统帐号ID。               |
-| constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统帐号约束列表)列表。        |
+| localId     | number                    | 是   | 系统账号ID。               |
+| constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。        |
 | enable      | boolean                   | 是   | 设置(true)/删除(false)                           |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
@@ -442,13 +459,15 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
+**示例：** 给ID为100的系统账号设置禁止使用Wi-Fi的约束
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -472,7 +491,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-为指定系统帐号设置/删除约束。使用Promise异步回调。
+为指定系统账号设置/删除约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -484,8 +503,8 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 参数名      | 类型                | 必填 | 说明                                         |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
-| localId     | number              | 是   | 系统帐号ID。           |
-| constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统帐号约束列表)列表。    |
+| localId     | number              | 是   | 系统账号ID。           |
+| constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。    |
 | enable      | boolean             | 是   | 设置(true)/删除(false)。                     |
 
 **返回值：**
@@ -498,13 +517,15 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
+**示例：** 删除ID为100的系统账号的禁止使用Wi-Fi的约束
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -525,7 +546,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定系统帐号的帐号名。使用callback异步回调。
+设置指定系统账号的账号名。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -537,21 +558,23 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 | 参数名    | 类型                      | 必填 | 说明                                             |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId   | number                    | 是   | 系统帐号ID。               |
-| localName | string                    | 是   | 帐号名，最大长度为1024个字符。                          |
+| localId   | number                    | 是   | 系统账号ID。               |
+| localName | string                    | 是   | 账号名，最大长度为1024个字符。                          |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统账号的账号名设置成demoName
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -575,7 +598,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-设置指定系统帐号的帐号名。使用Promise异步调用。
+设置指定系统账号的账号名。使用Promise异步调用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -587,8 +610,8 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明                                |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | 是   | 系统帐号ID。 |
-| localName | string | 是   | 帐号名，最大长度为1024。            |
+| localId   | number | 是   | 系统账号ID。 |
+| localName | string | 是   | 账号名，最大长度为1024。            |
 
 **返回值：**
 
@@ -600,13 +623,15 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统账号的账号名设置成demoName
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -628,7 +653,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
-查询允许创建的系统帐号的最大数量。使用callback异步回调。
+查询允许创建的系统账号的最大数量。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -638,14 +663,15 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                                              |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，如果查询成功，err为null，data为允许创建的系统帐号的最大数量；否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，如果查询成功，err为null，data为允许创建的系统账号的最大数量；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -669,7 +695,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-查询允许创建的系统帐号的最大数量。使用Promise异步回调。
+查询允许创建的系统账号的最大数量。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -679,14 +705,14 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                         |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回允许创建的系统帐号的最大数量。 |
+| Promise&lt;number&gt; | Promise对象，返回允许创建的系统账号的最大数量。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -708,7 +734,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 
-查询允许同时登录的系统帐号的最大数量。使用Promise异步回调。
+查询允许同时登录的系统账号的最大数量。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -718,13 +744,14 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                         |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回允许登录的系统帐号的最大数量。 |
+| Promise&lt;number&gt; | Promise对象，返回允许登录的系统账号的最大数量。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -746,7 +773,7 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定系统帐号已使能的的全部约束。使用Promise异步回调。
+获取指定系统账号已使能的的全部约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -758,23 +785,25 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                               | 说明                                                       |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统帐号已使能的的全部[约束](js-apis-osAccount.md#系统帐号约束列表)。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统账号的全部约束
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -795,7 +824,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&gt;): void
 
-查询已创建的所有系统帐号的信息列表。使用callback异步回调。
+查询已创建的所有系统账号的信息列表。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -807,14 +836,16 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                               |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为已创建的所有系统帐号的信息列表；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为已创建的所有系统账号的信息列表；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -835,7 +866,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-查询已创建的所有系统帐号的信息列表。使用Promise异步回调。
+查询已创建的所有系统账号的信息列表。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -847,14 +878,15 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 | 类型                                                        | 说明                                           |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise对象，返回已创建的所有系统帐号的信息列表。 |
+| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise对象，返回已创建的所有系统账号的信息列表。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -892,8 +924,8 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -915,7 +947,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-创建一个系统帐号。使用callback异步回调。
+创建一个系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -927,21 +959,23 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 | 参数名    | 类型                                                 | 必填 | 说明                                                                         |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
-| localName | string                                               | 是   | 创建的系统帐号的名称。                                                        |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统帐号的类型。                                                        |
-| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
+| localName | string                                               | 是   | 创建的系统账号的名称。                                                        |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统账号的类型。                                                        |
+| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
@@ -963,7 +997,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccountOptions): Promise&lt;OsAccountInfo&gt;
 
-创建一个系统帐号。使用Promise异步回调。
+创建一个系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -975,28 +1009,30 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 | 参数名    | 类型                            | 必填 | 说明                   |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | 是   | 创建的系统帐号的名称。 |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统帐号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统帐号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| localName | string                          | 是   | 创建的系统账号的名称。 |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
 | 类型                                           | 说明                                  |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
@@ -1004,7 +1040,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let options: osAccount.CreateOsAccountOptions = {
-    shortName = 'myShortName'
+    shortName: 'myShortName'
   }
   try {
     accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
@@ -1022,7 +1058,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-根据域帐号信息，创建一个系统帐号并将其与域帐号关联。使用callback异步回调。
+根据域账号信息，创建一个系统账号并将其与域账号关联。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1034,21 +1070,24 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                                         |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统帐号的类型。                                                       |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                                                               |
-| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统账号的类型。                                                       |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域账号信息。                                                               |
+| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
@@ -1072,7 +1111,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, options?: CreateOsAccountForDomainOptions): Promise&lt;OsAccountInfo&gt;
 
-根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。
+根据传入的域账号信息，创建与其关联的系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1084,28 +1123,31 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
 
 | 参数名     | 类型                                      | 必填 | 说明                 |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统帐号的类型。 |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。          |
-| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | 否   | 创建帐号的可选参数，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统账号的类型。 |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号信息。          |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | 否   | 创建账号的可选参数，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
 | 类型                                           | 说明                                    |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
@@ -1115,7 +1157,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
   let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   let options: osAccount.CreateOsAccountForDomainOptions = {
-    shortName = 'myShortName'
+    shortName: 'myShortName'
   }
   try {
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo, options).then(
@@ -1133,7 +1175,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
 
 queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-查询当前进程所属的系统帐号的信息。使用Promise异步回调。
+查询当前进程所属的系统账号的信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1145,13 +1187,15 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 | 类型                                           | 说明                                       |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统帐号信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统账号信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1173,7 +1217,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-查询指定系统帐号的信息。使用callback异步回调。
+查询指定系统账号的信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1185,19 +1229,21 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                                       |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| localId  | number                                               | 是   | 要查询的系统帐号的ID。                                                      |
-| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为查到的系统帐号的信息；否则为错误对象。 |
+| localId  | number                                               | 是   | 要查询的系统账号的ID。                                                      |
+| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为查到的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统账号信息
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1217,7 +1263,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-查询指定系统帐号的信息。使用Promise异步回调。
+查询指定系统账号的信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1229,24 +1275,26 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 要查询的系统帐号的ID |
+| localId | number | 是   | 要查询的系统账号的ID |
 
 **返回值：**
 
 | 类型                                           | 说明                                 |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回查到的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回查到的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
-**示例：** 查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统账号信息
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1267,7 +1315,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定系统帐号的头像信息。使用callback异步回调。
+获取指定系统账号的头像信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1279,19 +1327,21 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 | 参数名   | 类型                        | 必填 | 说明                                                                         |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| localId  | number                      | 是   | 系统帐号ID。                                                                |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为指定系统帐号的头像信息；否则为错误对象。 |
+| localId  | number                      | 是   | 系统账号ID。                                                                |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为指定系统账号的头像信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统账号的头像
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1311,7 +1361,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
-获取指定系统帐号的头像信息。使用Promise异步回调。
+获取指定系统账号的头像信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1323,24 +1373,26 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                  | 说明                                    |
 | --------------------- | -------------------------------------- |
-| Promise&lt;string&gt; | Promise对象，返回指定系统帐号的头像信息。 |
+| Promise&lt;string&gt; | Promise对象，返回指定系统账号的头像信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统账号的头像
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1361,7 +1413,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置头像信息。使用callback异步回调。
+为指定系统账号设置头像信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1373,7 +1425,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 参数名   | 类型                      | 必填 | 说明         |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | 是   | 系统帐号ID。 |
+| localId  | number                    | 是   | 系统账号ID。 |
 | photo    | string                    | 是   | 头像信息。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。  |
 
@@ -1381,13 +1433,15 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统账号设置头像
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1410,7 +1464,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
-为指定系统帐号设置头像信息。使用Promise异步回调。
+为指定系统账号设置头像信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1422,7 +1476,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 | photo   | string | 是   | 头像信息。   |
 
 **返回值：**
@@ -1435,13 +1489,15 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统账号设置头像
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -1466,7 +1522,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
+订阅系统账号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1478,16 +1534,18 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。 |
+| type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是账号已激活完成的事件，activating表示订阅的是账号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
-| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统帐号ID。    |
+| callback | Callback&lt;number&gt;     | 是   | 订阅系统账号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
@@ -1508,7 +1566,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-取消订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
+取消订阅系统账号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1520,16 +1578,18 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
+| type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅账号已激活完成的事件，activating取消订阅账号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统账号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
@@ -1550,7 +1610,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+订阅系统账号的前后台正在切换事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1562,15 +1622,17 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统帐号的前后台正在切换事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台正在切换事件回调，表示切换前和切换后的系统帐号ID。    |
+| type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统账号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台正在切换事件回调，表示切换前和切换后的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1591,7 +1653,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-取消订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+取消订阅系统账号的前后台正在切换事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1603,15 +1665,17 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | 是   | 取消订阅类型，switching表示取消订阅的是系统帐号的前后台正在切换事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台正在切换事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| type     | 'switching'                 | 是   | 取消订阅类型，switching表示取消订阅的是系统账号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统账号的前后台正在切换事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1629,7 +1693,7 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+订阅系统账号的前后台切换结束事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1641,15 +1705,17 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统帐号的前后台切换结束事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台切换结束事件回调，表示切换前和切换后的系统帐号ID。    |
+| type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统账号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台切换结束事件回调，表示切换前和切换后的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1670,7 +1736,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-取消订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+取消订阅系统账号的前后台切换结束事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1682,15 +1748,17 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | 是   | 取消订阅类型，switched表示取消订阅的是系统帐号的前后台切换结束事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台切换结束事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| type     | 'switched'                 | 是   | 取消订阅类型，switched表示取消订阅的是系统账号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统账号的前后台切换结束事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1725,8 +1793,9 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1771,8 +1840,9 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1818,6 +1888,7 @@ getBundleIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid uid. |
 
@@ -1850,14 +1921,16 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                          | 必填 | 说明                                                               |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示当前账号为主账号，返回false表示当前账号非主账号。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1890,14 +1963,15 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 | 类型                   | 说明                                                                  |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示当前账号为主账号，返回false表示当前账号非主账号。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1919,7 +1993,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void
 
-查询指定系统帐号的指定约束来源信息，使用callback异步回调。
+查询指定系统账号的指定约束来源信息，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1931,16 +2005,18 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | 是   |  要查询的系统帐号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统帐号约束列表)名称 |
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](js-apis-osAccount.md#系统帐号约束列表)来源信息；否则为错误对象。                      |
+| localId     | number | 是   |  要查询的系统账号ID |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
@@ -1964,7 +2040,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
-查询指定系统帐号的指定约束来源信息，使用Promise异步回调。
+查询指定系统账号的指定约束来源信息，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1976,21 +2052,23 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统帐号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统帐号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
 
 **返回值：**
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](js-apis-osAccount.md#系统帐号约束列表)来源信息。 |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
@@ -2015,7 +2093,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
-查询指定系统帐号的类型，使用Promise异步回调。
+查询指定系统账号的类型，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2027,20 +2105,22 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统帐号ID。 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
 
 **返回值：**
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统帐号的类型。 |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统账号的类型。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
@@ -2076,6 +2156,12 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
   let userAuth = new osAccount.UserAuth();
@@ -2096,6 +2182,12 @@ getVersion(): number;
 | 类型   | 说明         |
 | :----- | :----------- |
 | number | 返回版本信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
 
 **示例：**
   ```ts
@@ -2133,8 +2225,10 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **示例：**
@@ -2173,8 +2267,10 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 | 12300003 | Account not found. |
 
@@ -2229,8 +2325,10 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 | 12300003 | Account not found. |
 
@@ -2281,8 +2379,10 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
@@ -2335,8 +2435,10 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
@@ -2357,6 +2459,63 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
   }
+  ```
+
+### prepareRemoteAuth<sup>12+</sup>
+
+prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
+
+准备远端认证。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名            | 类型   | 必填 | 说明             |
+| --------         | ------ | ---- | --------------- |
+| remoteNetworkId  | string | 是   | 远端网络Id。  |
+
+**返回值：**
+
+| 类型                  | 说明                                                           |
+| :-------------------- | :------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid remoteNetworkId. |
+
+**示例：**
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let userAuth = new osAccount.UserAuth();
+  let distributedDeviceMgr = distributedDeviceManager.createDeviceManager("com.example.bundleName");
+  distributedDeviceMgr.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
+      try {
+        if (data.length > 0 && data[0].networkId != null) {
+          userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
+            console.log('prepareRemoteAuth successfully');
+          }).catch((err: BusinessError) => {
+            console.log('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+          });
+        }
+      } catch (e) {
+        console.log('prepareRemoteAuth exception = ' + JSON.stringify(e));
+      }
+    }
+  )
   ```
 
 ### auth<sup>8+</sup>
@@ -2390,17 +2549,19 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2421,12 +2582,11 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   }
   ```
 
-
 ### auth<sup>12+</sup>
 
 auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, options: AuthOptions, callback: IUserAuthCallback): Uint8Array
 
-基于指定的挑战值、认证类型（如口令、人脸、指纹等）、认证可信等级以及可选参数（如帐号标识、认证意图等）进行身份认证。使用callback异步回调。
+基于指定的挑战值、认证类型（如口令、人脸、指纹等）、认证可信等级以及可选参数（如账号标识、认证意图等）进行身份认证。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2454,17 +2614,20 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2520,18 +2683,20 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300003 | Account not found. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2575,7 +2740,10 @@ cancelAuth(contextID: Uint8Array): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------ |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid contextId. |
 
 **示例：**
@@ -2612,6 +2780,12 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
@@ -2639,10 +2813,12 @@ registerInputer(inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid inputer. |
-| 12300103 | Inputer already registered. |
+| 12300103 | The credential inputer already exists. |
 
 **示例：**
   ```ts
@@ -2671,6 +2847,13 @@ unregisterInputer(): void
 **系统能力：** SystemCapability.Account.OsAccount
 
 **需要权限：** ohos.permission.ACCESS_PIN_AUTH
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 
 **示例：**
   ```ts
@@ -2705,11 +2888,13 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or inputer. |
-| 12300103 | The credential inputer has been registered. |
-| 12300106 | Unsupported authType. |
+| 12300103 | The credential inputer already exists. |
+| 12300106 | The authentication type is not supported. |
 
 **示例：**
   ```ts
@@ -2748,8 +2933,10 @@ static unregisterInputer(authType: AuthType): void
 **错误码：**
 
 | 错误码ID | 错误信息                     |
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002  | Invalid authType. |
 
 **示例：**
@@ -2765,7 +2952,7 @@ static unregisterInputer(authType: AuthType): void
 
 ## DomainPlugin<sup>9+</sup>
 
-域插件，提供域帐号认证功能。
+域插件，提供域账号认证功能。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2773,7 +2960,7 @@ static unregisterInputer(authType: AuthType): void
 
 auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
 
-认证指定的域帐号。
+认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2783,8 +2970,8 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| credential   | Uint8Array  | 是   | 指示域账号的凭据。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
@@ -2838,7 +3025,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback): void
 
-弹窗认证指定的域帐号。
+弹窗认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2848,7 +3035,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
@@ -2888,7 +3075,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 
 authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: IUserAuthCallback): void
 
-使用授权令牌认证指定的域帐号。
+使用授权令牌认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2898,7 +3085,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | token   | Uint8Array  | 是   | 指示PIN码或生物识别认证成功时生成的授权令牌。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
@@ -2939,7 +3126,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定域帐号的信息。
+查询指定域账号的信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2949,7 +3136,7 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
@@ -2994,7 +3181,7 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
 
 getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;AuthStatusInfo&gt;): void
 
-查询指定域帐号的认证状态信息。
+查询指定域账号的认证状态信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3004,7 +3191,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
@@ -3046,7 +3233,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
 
 bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-绑定指定的域帐号。
+绑定指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3056,7 +3243,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
@@ -3096,7 +3283,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 
 unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;void&gt;): void
 
-解绑指定的域帐号。
+解绑指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3106,7 +3293,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
@@ -3146,7 +3333,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 
 isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定的域帐号令牌是否有效。
+检查指定的域账号令牌是否有效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3156,8 +3343,8 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array | 是 | 指示域帐号令牌。 |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array | 是 | 指示域账号令牌。 |
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。|
 
 **示例：**
@@ -3245,7 +3432,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
   ```
 
 ## DomainAccountManager <sup>9+</sup>
-域帐号管理器类。
+域账号管理器类。
 
 ### registerPlugin<sup>9+</sup>
 
@@ -3269,6 +3456,8 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300201 | The domain plugin has been registered. |
 
@@ -3313,6 +3502,13 @@ static unregisterPlugin(): void
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+
 **示例：**
   ```ts
   try {
@@ -3327,7 +3523,7 @@ static unregisterPlugin(): void
 
 auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
 
-认证指定的域帐号。
+认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3339,26 +3535,29 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| credential   | Uint8Array  | 是   | 指示域账号的凭据。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3383,7 +3582,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 authWithPopup(callback: IUserAuthCallback): void
 
-弹框认证指定的域帐号。
+弹框认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3403,17 +3602,20 @@ authWithPopup(callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3433,7 +3635,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 authWithPopup(localId: number, callback: IUserAuthCallback): void
 
-弹框认证指定的域帐号。
+弹框认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3447,25 +3649,28 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| localId   | number  | 是   | 指示绑定域帐号的系统帐号的本地标识。|
+| localId   | number  | 是   | 指示绑定域账号的系统账号的本地标识。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3485,7 +3690,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查是否存在指定的域帐号。
+检查是否存在指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3497,18 +3702,21 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3534,7 +3742,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
-检查是否存在指定的域帐号。
+检查是否存在指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3546,23 +3754,26 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否存在。 |
+| Promise&lt;boolean&gt; | Promise对象，返回指定的域账号是否存在。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3586,7 +3797,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void
 
-更新指定域帐号的令牌，空令牌表示目标域帐号的令牌失效。使用callback异步回调。
+更新指定域账号的令牌，空令牌表示目标域账号的令牌失效。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3598,16 +3809,18 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array  | 是   | 指示域帐号的令牌。|
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array  | 是   | 指示域账号的令牌。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果更新成功，err为null，否则为错误对象。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
@@ -3637,7 +3850,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Promise&lt;void&gt;
 
-更新指定域帐号的令牌，空令牌表示目标域帐号的令牌失效。使用Promise异步回调。
+更新指定域账号的令牌，空令牌表示目标域账号的令牌失效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3649,8 +3862,8 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array  | 是   | 指示域帐号的令牌。|
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array  | 是   | 指示域账号的令牌。|
 
 **返回值：**
 
@@ -3662,8 +3875,10 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
@@ -3691,7 +3906,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
 
-修改指定域帐号信息。使用Promise异步回调。
+修改指定域账号信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3703,15 +3918,18 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域帐号信息。|
-| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域帐号信息。|
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域账号信息。|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域账号信息。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | The new account info is invalid. |
 | 12300003 | The old account not found. |
 | 12300004 | The new account already exists. |
@@ -3738,7 +3956,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定的域帐号信息，callback方式。
+查询指定的域账号信息，callback方式。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3750,18 +3968,21 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | 是   | 指示查询结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3788,7 +4009,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-查询指定的域帐号信息，promise方式。
+查询指定的域账号信息，promise方式。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3800,23 +4021,26 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域帐号信息。 |
+| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域账号信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3841,7 +4065,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-获取当前域帐号的业务访问令牌，使用callback异步回调。
+获取当前域账号的业务访问令牌，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3858,13 +4082,15 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3891,7 +4117,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt;
 
-查询当前域帐号的业务访问令牌，使用promise异步回调。
+查询当前域账号的业务访问令牌，使用promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3913,13 +4139,15 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3944,7 +4172,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;;
 
-判断指定域帐号是否登录超期。使用Promise异步回调。
+判断指定域账号是否登录超期。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3956,20 +4184,23 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否登录超期。 |
+| Promise&lt;boolean&gt; | Promise对象，返回指定的域账号是否登录超期。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
 
 **示例：**
@@ -4034,8 +4265,11 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | - System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | - Invalid server config parameters. |
 | 12300211 | - Server unreachable. |
 
@@ -4045,13 +4279,12 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
     'uri': 'test.example.com',
     'port': 100
   };
-  try {
-    let serverConfig: osAccount.DomainServerConfig =
-      await osAccount.DomainServerConfigManager.addServerConfig(configParams);
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
     console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  } catch (e) {
-    console.log('add server configuration failed, error: ' + JSON.stringify(e));
-  }
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
   ```
 
 ### removeServerConfig<sup>12+</sup>
@@ -4082,8 +4315,11 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 |- System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300212 | - Server config not found. |
 
 **示例：**
@@ -4092,22 +4328,21 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
     'uri': 'test.example.com',
     'port': 100
   };
-  try {
-    let serverConfig: osAccount.DomainServerConfig =
-      await osAccount.DomainServerConfigManager.addServerConfig(configParams);
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    await osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
     console.log('remove domain server configuration successfully');
-  } catch (e) {
-    console.log('add or remove server configuration failed, error: ' + JSON.stringify(e));
-  }
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
   ```
 
 ### getAccountServerConfig<sup>12+</sup>
 
 static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
 
-获取目标域帐号的服务器配置。使用Promise异步回调。
+获取目标域账号的服务器配置。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4119,20 +4354,23 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 
 | 参数名    | 类型                     | 必填 | 说明                      |
 | ----------| ----------------------- | --- | -------------------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域帐号信息。 |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域账号信息。 |
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标帐号的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标账号的域服务器配置。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
 
 **示例：**
@@ -4142,13 +4380,12 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
     'accountId': 'demoId',
     'domain': 'demoDomain'
   };
-  try {
-    let serverConfig: osAccount.DomainServerConfig =
-      await osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo);
+  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
+    serverConfig: osAccount.DomainServerConfig) => {
     console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  } catch (e) {
-    console.log('get account server configuration failed, error: ' + JSON.stringify(e));
-  }
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4166,6 +4403,12 @@ constructor()
 **系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Account.OsAccount
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 202 | Not system application.|
 
 **示例：**
   ```ts
@@ -4194,8 +4437,10 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
   ```ts
@@ -4227,7 +4472,7 @@ openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 
 | 参数名     | 类型    | 必填 | 说明        |
 | --------- | ------- | ---- | ----------- |
-| accountId<sup>12+</sup> | number  | 否   | 系统帐号标识，默认为空。 |
+| accountId<sup>12+</sup> | number  | 否   | 系统账号标识，默认为空。 |
 
 **返回值：**
 
@@ -4239,8 +4484,10 @@ openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
 
@@ -4283,15 +4530,17 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
-| 12300101 | Token is invalid. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300101 | The token is invalid. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4348,15 +4597,17 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
 | 12300003 | Account not found. |
-| 12300101 | Token is invalid. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled.|
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **示例：**
@@ -4416,13 +4667,16 @@ closeSession(accountId?: number): void
 
 | 参数名     | 类型    | 必填 | 说明        |
 | --------- | ------- | ---- | ----------- |
-| accountId<sup>12+</sup> | number  | 否   | 系统帐号标识，默认为空。 |
+| accountId<sup>12+</sup> | number  | 否   | 系统账号标识，默认为空。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
 
@@ -4455,8 +4709,10 @@ cancel(challenge: Uint8Array): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge. |
 
 **示例：**
@@ -4493,9 +4749,11 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息        |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
-| 12300101 | Token is invalid. |
+| 12300001 | The system service works abnormally. |
+| 12300101 | The token is invalid. |
 
 **示例：**
   ```ts
@@ -4537,10 +4795,12 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
-| 12300101 | Token is invalid. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled. |
 
 **示例：**
@@ -4582,8 +4842,10 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300102 | Credential not enrolled. |
 
 **示例：**
@@ -4623,7 +4885,10 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
@@ -4670,7 +4935,10 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
@@ -4717,8 +4985,10 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 401      | Parameters error. Possible causes: Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid options. |
 | 12300003 | Account not found. |
 
@@ -4745,7 +5015,7 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
 
 getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 
-基于凭据类型，以及可选的帐号标识，获取已注册的凭据ID。使用Promise异步回调。
+基于凭据类型，以及可选的账号标识，获取已注册的凭据ID。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4758,7 +5028,7 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 | 参数名     | 类型                   | 必填 | 说明      |
 | --------  | ---------------------- | ---- | -------- |
 | authType  | [AuthType](#authtype8) | 是   | 认证凭据类型 |
-| accountId | number                 | 否   | 系统帐号标识，默认为空。 |
+| accountId | number                 | 否   | 系统账号标识，默认为空。 |
 
 **返回值：**
 
@@ -4770,12 +5040,14 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 401      | Parameters error. Parameters error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
 | 12300102 | Credential not enrolled. |
-| 12300106 | Unsupported authType. |
+| 12300106 | The authentication type is not supported. |
 
 **示例：**
   ```ts
@@ -4821,6 +5093,7 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid pinSubType. |
 
@@ -5026,7 +5299,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
 | keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
-| accountId<sup>12+</sup> | number | 否 | 系统帐号标识，默认为undefined。 |
+| accountId<sup>12+</sup> | number | 否 | 系统账号标识，默认为undefined。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -5075,7 +5348,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
 | nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 指示下次冻结时间，默认为undefined。 |
 | credentialId<sup>12+</sup> | Uint8Array  | 否    | 指示凭据ID，默认为空。 |
-| accountId<sup>12+</sup>         | number | 否    | 指示系统帐号标识，默认为undefined。 |
+| accountId<sup>12+</sup>         | number | 否    | 指示系统账号标识，默认为undefined。 |
 | pinValidityPeriod<sup>12+</sup> | number | 否    | 指示认证有效期，默认为undefined。 |
 
 ## CredentialInfo<sup>8+</sup>
@@ -5091,7 +5364,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
 | token        | Uint8Array                           | 是    | 指示认证令牌。     |
-| accountId<sup>12+</sup>    | number | 否    | 系统帐号标识，默认为undefined。 |
+| accountId<sup>12+</sup>    | number | 否    | 系统账号标识，默认为undefined。 |
 
 ## RequestResult<sup>8+</sup>
 
@@ -5178,6 +5451,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
+| PIN_FOUR<sup>12+</sup>   | 10003 | 表示4位凭证。 |
+| PIN_PATTERN<sup>12+</sup>  | 10004 | 表示图案凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
@@ -5277,36 +5552,36 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 ## OsAccountInfo
 
-表示系统帐号信息。
+表示系统账号信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| shortName<sup>12+</sup> | string | 否   | 系统账号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
 | isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
-表示系统帐号类型的枚举。
+表示系统账号类型的枚举。
 
 **系统能力：** SystemCapability.Account.OsAccount。
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
-| PRIVATE<sup>12+</sup> | 1024  | 隐私帐号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
+| PRIVATE<sup>12+</sup> | 1024  | 隐私账号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
 
 ## DomainAccountInfo<sup>8+</sup>
 
-表示域帐号信息。
+表示域账号信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
+| accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
 | isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5318,7 +5593,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| localId      | number | 是   | 系统帐号ID     |
+| localId      | number | 是   | 系统账号ID     |
 | type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
 
 ## ConstraintSourceType<sup>9+</sup>
@@ -5359,14 +5634,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号的信息   |
-| domainAccountToken | Uint8Array | 是   | 域帐号的令牌 |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息   |
+| domainAccountToken | Uint8Array | 是   | 域账号的令牌 |
 | businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
 | callerUid | number | 是   | 调用方唯一标识符 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
-表示查询域帐号信息的选项。
+表示查询域账号信息的选项。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5374,13 +5649,13 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountName | string | 是   | 域帐号名。 |
+| accountName | string | 是   | 域账号名。 |
 | domain      | string | 否   | 域名。默认为undefined。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。默认为undefined。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
-表示插件查询域帐号信息的选项。GetDomainAccountInfoPluginOptions类继承[GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)
+表示插件查询域账号信息的选项。GetDomainAccountInfoPluginOptions类继承[GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)
 
 **系统接口：** 此接口为系统接口。
 
@@ -5405,7 +5680,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
-表示用于创建系统帐号的可选参数。
+表示用于创建系统账号的可选参数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5413,11 +5688,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
-表示用于创建与指定域帐号绑定的系统帐号的可选参数。继承自[CreateOsAccountOptions](#createosaccountoptions12)。
+表示用于创建与指定域账号绑定的系统账号的可选参数。继承自[CreateOsAccountOptions](#createosaccountoptions12)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5425,7 +5700,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 
@@ -5438,7 +5713,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型                    | 必填 | 说明       |
 | --------- | ---------------------- | ---- | ---------- |
 | authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为undefined。 |
-| accountId | number                 | 否   | 系统帐号标识，默认为undefined。 |
+| accountId | number                 | 否   | 系统账号标识，默认为undefined。 |
 
 ## AuthIntent<sup>12+</sup>
 
@@ -5476,7 +5751,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称               | 类型    | 必填 | 说明       |
 | ------------------ | ------ | ---- | ---------- |
-| accountId          | number | 否   | 系统帐号标识，默认为undefined。 |
+| accountId          | number | 否   | 系统账号标识，默认为undefined。 |
 | authIntent         | [AuthIntent](#authintent12) | 否   | 认证意图，默认为undefined。 |
 | remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | 否   | 远程认证选项，默认为undefined。 |
 

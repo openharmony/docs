@@ -9,6 +9,11 @@
 - [cem工具](cem-tool.md)
 - [anm工具](anm-tool.md)
 - [restool工具](restool.md)
+<!--Del-->
 - [LLDB工具](lldb-tool.md)
+<!--DelEnd-->
 - [param工具](param-tool.md)
 - [OpenHarmony SDK升级助手](openharmony_sdk_upgrade_assistant.md)
+- 命令行工具
+  - [toybox工具](toybox.md)
+  - [mediatool工具](mediatool.md)

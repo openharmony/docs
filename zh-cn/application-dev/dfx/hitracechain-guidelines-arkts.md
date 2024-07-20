@@ -1,4 +1,4 @@
-# HiTraceChain使用指导
+# 使用HiTraceChain打点（ArkTS/JS）
 
 ## 简介
 
@@ -26,10 +26,8 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > pages > index.ets” 文件，添加一个按钮，完整示例代码如下：
 
     ```ts
-    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
-    import hilog from '@ohos.hilog'
-    import hiTraceChain from '@ohos.hiTraceChain'
-    import { BusinessError } from '@ohos.base'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hiAppEvent, hilog, hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
     @Entry
     @Component

@@ -130,6 +130,24 @@ Enumerates the font weights.
 | W800  | 7 | Font weight W800.|
 | W900  | 8 | Font weight W900.|
 
+## FontWidth
+
+Enumerates the font widths.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name            | Value| Description      |
+| ---------------- | - | ---------- |
+| ULTRA_CONDENSED  | 1 | Ultra condensed. |
+| EXTRA_CONDENSED  | 2 | Extra condensed. |
+| CONDENSED        | 3 | Condensed. |
+| SEMI_CONDENSED   | 4 | Semi condensed. |
+| NORMAL           | 5 | Normal. |
+| SEMI_EXPANDED    | 6 | Semi expanded. |
+| EXPANDED         | 7 | Expanded. |
+| EXTRA_EXPANDED   | 8 | Extra expanded. |
+| ULTRA_EXPANDED   | 9 | Ultra expanded.|
+
 ## FontStyle
 
 Enumerates the font styles.
@@ -138,9 +156,22 @@ Enumerates the font styles.
 
 | Name   | Value| Description                                                |
 | ------- | - | ---------------------------------------------------- |
-| NORMAL  | 0 | Normal style.                                           |
+| NORMAL  | 0 | Normal.                                           |
 | ITALIC  | 1 | Italic. If no italic version is available for the current font, the oblique version will be used instead. |
 | OBLIQUE | 2 | Oblique. If no oblique version is available for the current font, the italic version will be used instead.|
+
+## TextHeightBehavior
+
+Enumerates the text height modifier patterns.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name                 |  Value| Description                                                 |
+| --------------------- | --- | ---------------------------------------------------- |
+| ALL                   | 0x0 | Enables ascent for the first and last rows of a paragraph.           |
+| DISABLE_FIRST_ASCENT  | 0x1 | Disables ascent for the first row of a paragraph.                  |
+| DISABLE_LAST_ASCENT   | 0x2 | Disables ascent for the last row of a paragraph.                |
+| DISABLE_ALL           | 0x3 | Disables ascent for the first and last rows of a paragraph.         |
 
 ## TextBaseline
 
@@ -165,33 +196,132 @@ Enumerates the ellipsis styles.
 | MIDDLE | 1 | Places the ellipsis in the middle of the text.|
 | END    | 2 | Places the ellipsis at the end of the text.|
 
+## TextShadow
+
+Describes the text shadow.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name         | Type                                                | Read Only| Optional| Description                              |
+| ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes |  Yes  | Color of the text shadow. The default value is black (255, 0, 0, 0).       |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | Yes |  Yes  | Position of the text shadow relative to the text. The horizontal and vertical coordinates must be greater than or equal to 0.   |
+| blurRadius    | number                                               | Yes |  Yes  | Blur radius. The value is a floating point number. The default value is **0.0**.      |
+
+## RectStyle
+
+Describes the style of a rectangle.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name              | Type                                                | Read Only| Optional| Description                                     |
+| -----------------  | ---------------------------------------------------- | --  | ---  | ---------------------------------------- |
+| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes |  No  | Color of the rectangle.                |
+| leftTopRadius      | number                                               | Yes |  No  | Left top radius of the rectangle.      |
+| rightTopRadius     | number                                               | Yes |  No  | Right top radius of the rectangle.      |
+| rightBottomRadius  | number                                               | Yes |  No  | Right bottom radius of the rectangle.      |
+| leftBottomRadius   | number                                               | Yes |  No  | Left bottom radius of the rectangle.      |
+
+## FontFeature
+
+Describes a font feature.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name     | Type                                                | Read Only| Optional| Description                                      |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| name      | string                                               | Yes |  No  | String identified by the keyword in the font feature key-value pair.      |
+| value     | number                                               | Yes |  No  | Value in the font feature key-value pair.                       |
+
 ## TextStyle
 
 Describes a text style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name                     | Type                                    | Read Only| Mandatory| Description                                                  |
+| Name                     | Type                                    | Read Only| Optional| Description                                                  |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | Yes| No| Text decoration. The default value is the initial decoration.            |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| No| Font color. The default color is white.                        |
-| fontWeight    | [FontWeight](#fontweight)                            | Yes| No| Font weight. The default value is **W400**.                         |
-| fontStyle     | [FontStyle](#fontstyle)                              | Yes| No| Font style. The default value is **NORMAL**.                         |
-| baseline      | [TextBaseline](#textbaseline)                        | Yes| No| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| No| Font families. The default value is the system fonts.                   |
-| fontSize      | number                                               | Yes| No| Font size, in units of logical pixels. The value is a floating point number. The default value is **14.0**.  |
-| letterSpacing | number                                               | Yes| No| Letter spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
-| wordSpacing   | number                                               | Yes| No| Word spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**.                |
-| heightScale   | number                                               | Yes| No| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.             |
-| halfLeading   | boolean                                              | Yes| No| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
-| heightOnly    | boolean                                              | Yes| No| How the height of the text box is calculated. The value **true** means that the height of the text box is calculated based on the font size, and **false** means that the height is calculated based on the line height and line spacing. The default value is **false**.|
-| ellipsis      | string                                               | Yes| No| Ellipsis content, which will be used to replace the extra content.      |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| No| Ellipsis type. The default value is **END**.                       |
-| locale        | string                                               | Yes| No| Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
+| decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. The default value is the initial decoration.            |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Font color. The default color is white.                        |
+| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**.                         |
+| fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
+| baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
+| fontFamilies  | Array\<string>                                       | Yes| Yes| Font families. The default value is the system fonts.                   |
+| fontSize      | number                                               | Yes| Yes| Font size, in units of logical pixels. The value is a floating point number. The default value is **14.0**.  |
+| letterSpacing | number                                               | Yes| Yes| Letter spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
+| wordSpacing   | number                                               | Yes| Yes| Word spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**.                |
+| heightScale   | number                                               | Yes| Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.             |
+| halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
+| heightOnly    | boolean                                              | Yes| Yes| How the height of the text box is calculated. The value **true** means that the height of the text box is calculated based on the font size, and **false** means that the height is calculated based on the line height and line spacing. The default value is **false**.|
+| ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**.                       |
+| locale        | string                                               | Yes| Yes| Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
+| baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0**.                |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | Yes| Yes| Array of text shadows.|
+| backgroundRect| [RectStyle](#rectstyle)                              | Yes| Yes| Rectangle style.|
+
+## StrutStyle
+
+Describes the strut style, which determines the line spacing, baseline alignment mode, and other properties related to the line height when drawing texts.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name                     | Type                                      | Read Only| Optional| Description                                                                |
+| -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
+| fontFamilies   | Array\<string>                                       | Yes  | Yes| Font families. The default value is the system fonts.                                              |
+| fontStyle      | [FontStyle](#fontstyle)                              | Yes  | Yes| Font style. The default value is **NORMAL**.                                              |
+| fontWidth      | [FontWidth](#fontwidth)                              | Yes  | Yes| Font width. The default value is **NORMAL**.                                               |
+| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**.                                                     |
+| fontSize       | number                                               | Yes  | Yes| Font size, in units of logical pixels. The value is a floating point number. The default value is **14.0**.                             |
+| height         | number                                               | Yes  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
+| leading        | number                                               | Yes  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
+| forceHeight    | boolean                                              | Yes  | Yes| Whether to forcibly use the strut height for all lines. The value **true** means to forcibly use the strut height for all lines, and **false** means the opposite. The default value is **false**.    |
+| enabled        | boolean                                              | Yes  | Yes| Whether to enable the strut style. The value **true** means to enable the strut style, and **false** means the opposite. The default value is **false**.             |
+| heightOverride | boolean                                              | Yes  | Yes| Whether to override the height. The value **true** means to override the height, and **false** means the opposite. The default value is **false**.                 |
+| halfLeading    | boolean                                              | Yes  | Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.          |
 
 ## FontCollection
 
 Implements a font manager.
+
+### getGlobalInstance
+
+static getGlobalInstance(): FontCollection
+
+Obtains a global **FontCollection** instance.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type  | Description               |
+| ------ | ------------------ |
+| [FontCollection](#fontcollection) | **FontCollection** instance.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function Text() {
+  let fontCollection = text.FontCollection.getGlobalInstance();
+  fontCollection.loadFontSync('test', 'File://');
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
 
 ### loadFontSync
 
@@ -238,14 +368,17 @@ Describes a paragraph style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name         | Type              | Read Only| Mandatory| Description                                 |
-| ------------- | ----------------- | ---- | ---- | ------------------------------------ |
-| textStyle     | [TextStyle](#textstyle)         | Yes  | No  | Text style applied to the paragraph. The default value is the initial text style.|
-| textDirection | [TextDirection](#textdirection) | Yes  | No  | Text direction. The default value is **LTR**.              |
-| align         | [TextAlign](#textalign)         | Yes  | No  | Text alignment mode. The default value is **START**.          |
-| wordBreak     | [WordBreak](#wordbreak)         | Yes  | No  | Word break type. The default value is **BREAK_WORD**.              |
-| maxLines      | number                          | Yes  | No  | Maximum number of lines. The value is an integer. The default value is **1e9**.          |
-| breakStrategy | [BreakStrategy](#breakstrategy) | Yes  | No  | Text break strategy. The default value is **GREEDY**.              |
+| Name                | Type                                       | Read Only| Optional| Description                                         |
+| -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
+| textStyle            | [TextStyle](#textstyle)                    | Yes  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
+| textDirection        | [TextDirection](#textdirection)            | Yes  | Yes  | Text direction. The default value is **LTR**.                         |
+| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**.                    |
+| wordBreak            | [WordBreak](#wordbreak)                    | Yes  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
+| maxLines             | number                                     | Yes  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
+| strutStyle           | [StrutStyle](#strutstyle)                  | Yes  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
+| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | Yes  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
+
 
 ## PlaceholderAlignment
 
@@ -1010,6 +1143,195 @@ struct Index {
 }
 ```
 
+### getActualTextRange
+
+getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
+
+Obtains the actually visible text range in the specified line, excluding the ellipsis displayed due to text overflow.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description     |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | Yes  | Line number of the text range, starting from 0.|
+| includeSpaces  | boolean | Yes  | Whether spaces are included. The value **true** means that spaces are contained, and **false** means the opposite.|
+
+**Return value**
+
+| Type            | Description                                             |
+| ---------------- | ------------------------------------------------ |
+| [Range](#range)  | Text range obtained.                              |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let rang = paragraph.getActualTextRange(0, true);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+
+### getLineMetrics
+
+getLineMetrics(): Array\<LineMetrics>
+
+Obtains an array of line measurement information.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                         | Description         |
+| ----------------------------- | ------------- |
+| Array\<[LineMetrics](#linemetrics)> | Array of line measurement information.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let arrLineMetrc =  paragraph.getLineMetrics();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getLineMetrics
+
+getLineMetrics(lineNumber: number): LineMetrics | undefined
+
+Obtains the line measurement information of a line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description     |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | Yes  | Line number, starting from 0.|
+
+**Return value**
+
+| Type            | Description                                             |
+| ---------------- | ------------------------------------------------ |
+| [LineMetrics](#linemetrics) | **LineMetrics** object containing the measurement information if the specified line number is valid and the measurement information exists. If the line number is invalid or the measurement information cannot be obtained, **undefined** is returned.                 |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let lineMetrics =  paragraph.getLineMetrics(0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+## RunMetrics
+
+Describes the layout information and measurement information of a run of text in a text line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name     | Type                                               | Read Only| Optional| Description       |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| textStyle | [TextStyle](#textstyle)                             | Yes  | No  | Text style.|
+| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| Yes  | No  | Font measurement information.   |
+
+## LineMetrics
+
+Describes the measurement information of a single line of text in the text layout.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name     | Type                                               | Read Only| Optional| Description       |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| startIndex | number                                            | Yes  | No  | Start index of the line in the text buffer.|
+| endIndex   | number                                            | Yes  | No  | End index of the line in the text buffer.|
+| ascent     | number                                            | Yes  | No  | Ascent, that is, the distance from the baseline to the top of the character.|
+| descent    | number                                            | Yes  | No  | Descent, that is, the distance from the baseline to the bottom of the character.|
+| height     | number                                            | Yes  | No  | Height of the line, which is Math.round(ascent + descent).|
+| width      | number                                            | Yes  | No  | Width of the line.                     |
+| left       | number                        | Yes  | No  | Left edge of the line. The right edge is the value of **left** plus the value of **width**.|
+| baseline   | number                        | Yes  | No  | Y coordinate of the baseline in the line relative to the top of the paragraph.|
+| lineNumber   | number                        | Yes  | No  | Line number, starting from 0.|
+| topHeight   | number                        | Yes  | No  | Height from the top to the current line.|
+| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | Yes  | No  | Mapping between the text index range and the associated font measurement information.|
+
 ## TextBox
 
 Describes the rectangle that holds the text.
@@ -1136,7 +1458,7 @@ Pushes a text style.
 
 | Name   | Type      | Mandatory| Description                                                                                                  |
 | --------- | --------- | ---- | ------------------------------------------------------------------------------------------------------ |
-| textStyle | [TextStyle](textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow.|
+| textStyle | [TextStyle](#textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow.|
 
 **Example**
 
@@ -1349,6 +1671,54 @@ function Text() {
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### addSymbol
+
+addSymbol(symbolId: number): void
+
+Inserts a symbol into the paragraph being built.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                      |
+| -------- | ------- | ---- | -------------------------- |
+| symbolId | number  | Yes  | Symbol to insert, in hexadecimal format.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addSymbol(0xF0000);
   let paragraph = ParagraphGraphBuilder.build();
 }
 

@@ -4,7 +4,10 @@ The Common Event Manager enables you to print common event information and publi
 
 > **NOTE**
 >
-> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
+> Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
+> 
+> This tool can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot publish common events** is reported.
+
 
 ## Commands
 
@@ -21,10 +24,6 @@ The Common Event Manager enables you to print common event information and publi
   ```
 
 ### publish
-
-> **NOTE**
-> 
-> The Common Event Manager has two editions: **eng** and **user**. The **publish** command can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot publish common events** is reported.
 
 * Function
 

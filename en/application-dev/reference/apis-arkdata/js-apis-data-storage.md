@@ -19,10 +19,10 @@ import data_storage from '@ohos.data.storage';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name            | Type| Readable| Writable| Description                                 |
+| Name            | Type | Readable | Writable | Description                                 |
 | ---------------- | -------- | ---- | ---- | ------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes. |
 
 
 ## data_storage.getStorageSync
@@ -35,15 +35,15 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Return value**
 
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
-| [Storage](#storage) | **Storage** instance used for data storage operations.|
+| [Storage](#storage) | **Storage** instance used for data storage operations. |
 
 **Example**
 
@@ -73,10 +73,10 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                      |
+| Name  | Type                                    | Mandatory | Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
-| path     | string                                   | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback invoked to return the result.                |
+| path     | string                                   | Yes  | Path of the target file. |
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -111,15 +111,15 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Return value**
 
 | Type                              | Description                           |
 | ---------------------------------- | ------------------------------- |
-| Promise&lt;[Storage](#storage)&gt; | Promise used to return the result.|
+| Promise&lt;[Storage](#storage)&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -153,9 +153,9 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Example**
 
@@ -182,10 +182,10 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                      |
+| Name  | Type                     | Mandatory | Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
+| path     | string                    | Yes  | Path of the target file. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -219,15 +219,15 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -259,9 +259,9 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Example**
 
@@ -289,10 +289,10 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                      |
+| Name  | Type                     | Mandatory | Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
+| path     | string                    | Yes  | Path of the target file. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -326,15 +326,15 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | Path of the target file. |
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -372,16 +372,16 @@ Obtains the value corresponding to a key. If the value is null or not of the def
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                        |
+| Name  | Type                   | Mandatory | Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value. |
 
 **Return value**
 
 | Type     | Description                                                    |
 | --------- | -------------------------------------------------------- |
-| ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned.|
+| ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned. |
 
 **Example**
 
@@ -401,11 +401,11 @@ Obtains the value corresponding to a key. If the value is null or not of the def
 
 **Parameters**
 
-| Name  | Type                          | Mandatory| Description                                     |
+| Name  | Type                          | Mandatory | Description                                     |
 | -------- | ------------------------------ | ---- | ----------------------------------------- |
 | key      | string                         | Yes  | Key of the data. It cannot be empty.          |
-| defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback invoked to return the result.                               |
+| defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value. |
+| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -430,16 +430,16 @@ Obtains the value corresponding to a key. If the value is null or not of the def
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                     |
+| Name  | Type                   | Mandatory | Description                                     |
 | -------- | ----------------------- | ---- | ----------------------------------------- |
 | key      | string                  | Yes  | Key of the data. It cannot be empty.          |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. It can be a number, string, or Boolean value. |
 
 **Return value**
 
 | Type                    | Description                           |
 | ------------------------ | ------------------------------- |
-| Promise&lt;ValueType&gt; | Promise used to return the result.|
+| Promise&lt;ValueType&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -463,10 +463,10 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                                     |
+| Name | Type                   | Mandatory | Description                                     |
 | ------ | ----------------------- | ---- | ----------------------------------------- |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.            |
-| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value.|
+| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value. |
 
 **Example**
 
@@ -485,11 +485,11 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                     |
+| Name  | Type                     | Mandatory | Description                                     |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.            |
-| value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                               |
+| value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -514,16 +514,16 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                                     |
+| Name | Type                   | Mandatory | Description                                     |
 | ------ | ----------------------- | ---- | ----------------------------------------- |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.            |
-| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value.|
+| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value. |
 
 **Return value**
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -547,15 +547,15 @@ Checks whether the storage object contains data with a given key.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data. It cannot be empty.|
+| key    | string | Yes  | Key of the data. It cannot be empty. |
 
 **Return value**
 
 | Type   | Description                                 |
 | ------- | ------------------------------------- |
-| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise. |
 
 **Example**
 
@@ -577,16 +577,16 @@ Checks whether the storage object contains data with a given key. This API uses 
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                           |
+| Name  | Type                        | Mandatory | Description                           |
 | -------- | ---------------------------- | ---- | ------------------------------- |
-| key      | string                       | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.                     |
+| key      | string                       | Yes  | Key of the data. It cannot be empty. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                     |
 
 **Return value**
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise. |
 
 **Example**
 
@@ -613,15 +613,15 @@ Checks whether the storage object contains data with a given key. This API uses 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data. It cannot be empty.|
+| key    | string | Yes  | Key of the data. It cannot be empty. |
 
 **Return value**
 
 | Type                  | Description                       |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -647,9 +647,9 @@ Deletes data with the specified key from this storage object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                             |
+| Name | Type  | Mandatory | Description                             |
 | ------ | ------ | ---- | --------------------------------- |
-| key    | string | Yes  | Key of the data. It cannot be empty.|
+| key    | string | Yes  | Key of the data. It cannot be empty. |
 
 **Example**
 
@@ -668,10 +668,10 @@ Deletes data with the specified key from this storage object. This API uses an a
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                           |
+| Name  | Type                     | Mandatory | Description                           |
 | -------- | ------------------------- | ---- | ------------------------------- |
-| key      | string                    | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                     |
+| key      | string                    | Yes  | Key of the data. It cannot be empty. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
 
 **Example**
 
@@ -696,15 +696,15 @@ Deletes data with the specified key from this storage object. This API uses a pr
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                 |
+| Name | Type  | Mandatory | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| key    | string | Yes  | Key of the data.|
+| key    | string | Yes  | Key of the data. |
 
 **Return value**
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -743,9 +743,9 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
+| Name  | Type                     | Mandatory | Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -772,7 +772,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -811,9 +811,9 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
+| Name  | Type                     | Mandatory | Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -839,7 +839,7 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **Return value**
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -865,8 +865,8 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 
 | Name  | Type                                               |  Mandatory| Description                                    |
 | -------- | --------------------------------------------------- | ------ |---------------------------------------- |
-| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback invoked to return the data change.                          |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events. |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return the data change.                          |
 
 **Example**
 
@@ -890,9 +890,9 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory|  Description                                |
+| Name  | Type                                               | Mandatory |  Description                                |
 | -------- | --------------------------------------------------- | ------ |---------------------------------------- |
-| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events. |
 | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback for the data change.                |
 
 **Example**
@@ -909,11 +909,13 @@ storage.off('change', observer);
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name| Type| Mandatory| Description            |
+| Name | Type | Mandatory | Description            |
 | ---- | -------- | ---- | ---------------- |
-| key  | string   | No  | Data changed.|
+| key  | string   | Yes  | Data changed. |
 
 ## ValueType
+
+type ValueType = number | string | boolean
 
 Enumerates the value types.
 
@@ -923,4 +925,4 @@ Enumerates the value types.
 | ------- | -------------------- |
 | number  | The value is a number.  |
 | string  | The value is a string.  |
-| boolean | The value is of Boolean type.|
+| boolean | The value is of Boolean type. |

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import hdrCapability from '@ohos.graphics.hdrCapability';
+import { hdrCapability } from '@kit.ArkGraphics2D';
 ```
 
 ## HDRFormat

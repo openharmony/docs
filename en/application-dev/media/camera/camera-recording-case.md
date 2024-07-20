@@ -15,12 +15,12 @@ After obtaining the output stream capabilities supported by the camera, create a
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import common from '@ohos.app.ability.common';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
@@ -32,6 +32,10 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error('cameraStatus with errorCode = ' + err.code);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -105,11 +109,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameHeight: videoSize.height,
     videoFrameRate: 30
   };
-  let options: PhotoAccessHelper.CreateOptions = {
+  let options: photoAccessHelper.CreateOptions = {
     title: Date.now().toString()
   };
-  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let videoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let videoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', options);
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -166,7 +170,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   });
 
   // Create a session.
-  let videoSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {

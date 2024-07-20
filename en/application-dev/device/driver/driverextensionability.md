@@ -1,15 +1,9 @@
-# DriverExtensionAbility
+# DriverExtensionAbility Development
 
 [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. **DriverExtensionAbility** can be used to develop such applications.
 
-
 You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
 Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
-         
-This topic describes how to use DriverExtensionAbility in the following scenarios:
-
-- [DriverExtensionAbility](#driverextensionability)
-  - [How to Develop](#how-to-develop)
 
 ## How to Develop
 
@@ -22,7 +16,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 3. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
    
    ```ts
-   import rpc from '@ohos.rpc';
+   import { rpc } from '@kit.IPCKit';
    
    const REQUEST_CODE = 99;
    
@@ -52,9 +46,9 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 4. In the **DriverExtAbility.ets** file, import the dependency package [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md), which provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Then, customize a class to inherit from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as required.
    
    ```ts
-   import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
+   import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
+   import { Want } from '@kit.AbilityKit';
+   import { rpc } from '@kit.IPCKit';
    
    const TAG: string = '[Example].[Entry].[DriverExtAbility]';
    const REQUEST_CODE = 99;

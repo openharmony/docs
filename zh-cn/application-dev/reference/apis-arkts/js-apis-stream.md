@@ -20,23 +20,27 @@ import { stream  } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读 | 必填  | 说明        |
+| 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | 是   | 是 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 是  | 定义缓冲区可以存放的最大数据量。默认为16 * 1024，单位为字节。|
-| writable | boolean | 是 | 是  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
-| writableLength | number | 是 | 是  | 表示可读流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 是 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
-| writableEnded | boolean | 是  | 是 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
-| writableFinished | boolean | 是  | 是 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
+| writableObjectMode  | boolean   | 是   | 否 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
+| writableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认为16 * 1024，单位为字节。|
+| writable | boolean | 是 | 否  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
+| writableLength | number | 是 | 否  | 表示可读流缓冲区中待写入的字节数。|
+| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
+| writableEnded | boolean | 是  | 否 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
+| writableFinished | boolean | 是  | 否 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
 
 ### constructor
 
 constructor()
 
 Writable的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -51,6 +55,8 @@ let writableStream = new stream.Writable();
 write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): boolean
 
 将数据写入流的缓冲区中。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -102,6 +108,8 @@ writableStream.write('test', 'utf8');
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
 结束可写流的写入操作，如果传入chunk参数，则将其作为最后一块数据写入。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -159,6 +167,8 @@ setDefaultEncoding(encoding?: string): boolean
 
 设置可写流的默认字符编码。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -205,6 +215,8 @@ cork(): boolean
 
 将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -236,6 +248,8 @@ console.info("Writable cork result", result); // Writable cork result true
 uncork(): boolean
 
 解除cork状态，将缓冲区中的数据全部刷新，并将其写入目标位置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -274,6 +288,8 @@ writableStream.on('finish', () => {
 on(event: string, callback: Callback<emitter.EventData>): void
 
 注册事件处理函数来监听可写流上的不同事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -319,6 +335,8 @@ writable.write('hello', 'utf8', () => {
 off(event: string, callback?: Callback<emitter.EventData>): void
 
 取消通过[on](#on)注册的事件处理函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -370,6 +388,8 @@ doInitialize(callback: Function): void
 
 使用者实现这个函数，这个函数在可写流初始化阶段被调用，无需用户调用。使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -408,6 +428,8 @@ new MyWritable();
 doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 提供一个数据写出接口供使用者实现，该接口函数会在数据被成功写出时自动调用，无需用户手动触发。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -451,13 +473,15 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 提供一个数据批量写出接口供使用者实现，该接口函数会在数据被成功写出时自动调用，无需用户手动触发。使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| chunk    | string[] \|  Uint8Array[] | 是 | 被批量写出的数据数组。 |
+| chunks    | string[] \|  Uint8Array[] | 是 | 被批量写出的数据数组。 |
 | callback  | Function | 是 | 回调函数。 |
 
 **错误码：**
@@ -493,29 +517,45 @@ writableStream.uncork();
 writableStream.end();
 ```
 
+## ReadableOptions
+
+Readable构造函数的选项信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | -------- | ---- | -------------- |
+| encoding | string  | 否 | 指定数据的编码格式，如果传入非法字符串，将会在Readable构造函数中抛出异常。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。|
+
 ## Readable
 
 表示可读取数据的流。可读流用于从数据源（如文件、网络套接字等）读取数据。
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读| 必填  | 说明        |
+| 名称    | 类型      | 只读| 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| readableObjectMode  | boolean   | 是   | 是 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
-| readable | boolean | 是 | 是  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
-| readableHighWatermark | number | 是 | 是  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| readableFlowing | boolean | 是 | 是  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。|
-| readableLength | number | 是 | 是  | 表示缓冲区的当前字节数。|
-| readableEncoding | string \| null | 是 | 是  | 被解码成字符串时所使用的字符编码。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
-| readableEnded | boolean | 是  | 是 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
+| readableObjectMode  | boolean   | 是   | 否 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
+| readable | boolean | 是 | 否  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
+| readableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
+| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。|
+| readableLength | number | 是 | 否  | 表示缓冲区的当前字节数。|
+| readableEncoding | string \| null | 是 | 否  | 被解码成字符串时所使用的字符编码。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
+| readableEnded | boolean | 是  | 否 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
 
 ### constructor
 
 constructor()
 
 Readable的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -525,11 +565,46 @@ Readable的构造函数。
 let readableStream = new stream.Readable();
 ```
 
+### constructor
+
+constructor(options: ReadableOptions)
+
+Readable的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
+| ------ | -------- | -------- | -------- |
+| options   | [ReadableOptions](#readableoptions)   | 是 | Readable构造函数的选项信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let option : stream.ReadableOptions = {
+  encoding : 'utf-8'
+};
+let readableStream = new stream.Readable(option);
+```
+
 ### read
 
 read(size?: number): string | null
 
 从可读流缓冲区读取数据，并返回读取到的数据，如果未读取到数据，则返回null。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -579,6 +654,8 @@ resume(): Readable
 
 将流的读取模式从暂停切换到流动模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -610,6 +687,8 @@ pause(): Readable
 
 将流的读取模式从流动切换到暂停模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -640,6 +719,8 @@ console.info("Readable test pause", readableStream.isPaused()); // Readable test
 setEncoding(encoding?: string): boolean
 
 设置可读流的字符编码。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -686,6 +767,8 @@ isPaused(): boolean
 
 检查流是否处于暂停模式，调用[pause()](#pause)后为true，调用[resume()](#resume)为false。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -717,6 +800,8 @@ console.info("Readable isPaused", readableStream.isPaused()); // Readable isPaus
 pipe(destination: Writable, options?: Object): Writable
 
 将一个可读流与一个可写流连接起来，实现数据的自动传输。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -776,6 +861,8 @@ readable.pipe(writable);
 unpipe(destination?: Writable): Readable
 
 从可写流中移除所有或指定的已连接的可读流。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -838,6 +925,8 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 注册事件处理函数来监听可读流上的不同事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -880,6 +969,8 @@ readable.on('error', () => {
 off(event: string, callback?: Callback<emitter.EventData>): void
 
 取消通过[on](#on)注册的事件处理函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -928,6 +1019,8 @@ doInitialize(callback: Function): void
 
 使用者实现这个函数，这个函数在可读流第一次使用[on](#on-1)监听时被调用。使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -968,6 +1061,8 @@ doRead(size: number): void
 
 数据读取接口，需要在子类中被实现。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1007,6 +1102,8 @@ readable.on('data', () => {
 push(chunk:  Uint8Array | string | null, encoding?: string): boolean
 
 将数据推送到可读流缓冲区中。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1056,23 +1153,27 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读 | 必填  | 说明        |
+| 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | 是   | 是 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 是  | 定义双工流的写模式下缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| writable | boolean | 是 | 是  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
-| writableLength | number | 是 | 是  | 表示双工流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 是 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
-| writableEnded | boolean | 是  | 是 | 表示当前双工流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。|
-| writableFinished | boolean | 是  | 是 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
+| writableObjectMode  | boolean   | 是   | 否 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
+| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
+| writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
+| writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
+| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
+| writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。|
+| writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
 
 ### constructor
 
 constructor()
 
 Duplex的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1087,6 +1188,8 @@ let duplex = new stream.Duplex();
 write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): boolean
 
 将数据写入流的缓冲区中。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1143,6 +1246,8 @@ end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writab
 
 结束双工流的写入操作，如果传入chunk参数，则将其作为最后一块数据写入。使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1197,6 +1302,8 @@ setDefaultEncoding(encoding?: string): boolean
 
 设置双工流的默认字符编码，以便在读取数据时正确解析字符。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1246,6 +1353,8 @@ cork(): boolean
 
 将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1267,6 +1376,8 @@ console.info("duplexStream cork result", result); // duplexStream cork result tr
 uncork(): boolean
 
 解除cork状态，将缓冲区中的数据全部刷新，并将其写入目标位置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1307,6 +1418,8 @@ console.info("Duplex test uncork", dataWritten); // Duplex test uncork ab
 doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 数据写出接口是一个由使用者实现的函数，在数据被写出时自动调用，而不需要用户手动调用。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1352,6 +1465,8 @@ duplexStream.write('data', 'utf8');
 doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 数据分批写出接口是一个由使用者实现的函数，在数据被写出时自动调用，而不需要用户手动调用。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1409,6 +1524,8 @@ constructor()
 
 Transform的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -1422,6 +1539,8 @@ let transform = new stream.Transform();
 doTransform(chunk: string, encoding: string, callback: Function): void
 
 对输入的数据块进行转换或处理操作，并通过回调函数通知处理完成。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1466,6 +1585,8 @@ tr.write("hello");
 doFlush(callback: Function): void
 
 该函数会在流结束时被调用，用于处理剩余的数据。使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

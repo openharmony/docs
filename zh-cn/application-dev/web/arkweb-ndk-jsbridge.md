@@ -216,8 +216,8 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
 * ArkTS侧代码`entry/src/main/ets/pages/Index.ets`
 
   ```javascript
-  import testNapi from 'libentry.so'
-  import web_webview from '@ohos.web.webview';
+  import testNapi from 'libentry.so';
+  import { webview } from '@kit.ArkWeb';
 
   class testObj {
     constructor() {
@@ -237,8 +237,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   @Component
   struct Index {
     webTag: string = 'ArkWeb1';
-    controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
-
+    controller: webview.WebviewController = new webview.WebviewController(this.webTag);
     @State testObjtest: testObj = new testObj();
 
     aboutToAppear() {
@@ -268,7 +267,6 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       }
     }
   }
-
   ```
 
 * NAPI侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`

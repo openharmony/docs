@@ -1,4 +1,4 @@
-# Performance Analysis Kit API参考
+# Performance Analysis Kit（性能分析服务）
 
 - ArkTS API
   - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
@@ -8,6 +8,7 @@
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](js-apis-jsleakwatcher.md)
   <!--Del-->
   - [@ohos.hiSysEvent (系统事件打点)(系统接口)](js-apis-hisysevent-sys.md)
   - [@ohos.logLibrary (维测日志获取)(系统接口)](js-apis-loglibrary-sys.md)

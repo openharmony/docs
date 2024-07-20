@@ -1,4 +1,4 @@
-# Function Flow Runtime Kit API Reference
+# Function Flow Runtime Kit
 
 - C APIs
   - Modules
@@ -6,10 +6,12 @@
   - Header Files and Structs
     - Header Files
       - [condition_variable.h](condition__variable_8h.md)
+      - [loop.h](loop_8h.md)
       - [mutex.h](mutex_8h.md)
       - [queue.h](queue_8h.md)
       - [sleep.h](sleep_8h.md)
       - [task.h](task_8h.md)
+      - [timer.h](timer_8h.md)
       - [type_def.h](type__def_8h.md)
     - Structs
       - [ffrt_cond_t](ffrt__cond__t.md)

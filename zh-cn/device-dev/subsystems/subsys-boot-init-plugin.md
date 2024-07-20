@@ -152,7 +152,7 @@ bootchart和bootevent只支持标准系统， begetctl 支持小型系统和标�
   3. 重启系统。
   4. 执行命令行：begetctl bootchart stop
   5. 执行命令行：begetctl bootchart disable
-  6. 在/data/bootchart目录下导出如下文件并存放在bootchart文件夹：<br>
+  6. 在/data/service/el0/startup/init/目录下导出如下文件并存放在bootchart文件夹：<br>
         header<br>
         proc_diskstats.log<br>
         proc_ps.log<br>

@@ -8,7 +8,7 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
-   import { cert } from '@kit.DeviceCertificatekit';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
 2. 基于已有的X509证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)创建证书对象。
@@ -23,7 +23,7 @@
    入参date用于确认此日期是否在X509证书有效期内。
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 

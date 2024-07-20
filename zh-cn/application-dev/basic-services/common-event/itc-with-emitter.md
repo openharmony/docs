@@ -10,11 +10,12 @@ Emitter的开发步骤如下：
 1. 订阅事件
 
    ```ts
-   import emitter from '@ohos.events.emitter';
-   import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
+   import { emitter } from '@kit.BasicServicesKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ThreadModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
    ```ts
    // 定义一个eventId为1的事件
@@ -25,9 +26,9 @@ Emitter的开发步骤如下：
    // 收到eventId为1的事件后执行该回调
    let callback = (eventData: emitter.EventData): void => {
      promptAction.showToast({
-       message: JSON.stringify(eventData.data?.content)
+       message: JSON.stringify(eventData)
      });
-     Logger.info(TAG, 'event callback:' + JSON.stringify(eventData.data?.content));
+     hilog.info(DOMAIN_NUMBER, TAG, 'event callback:' + JSON.stringify(eventData));
    };
    
    // 订阅eventId为1的事件
@@ -40,7 +41,7 @@ Emitter的开发步骤如下：
 2. 发送事件
 
    ```ts
-   import emitter from '@ohos.events.emitter';
+   import { emitter } from '@kit.BasicServicesKit';
    ```
    ```ts
    // 定义一个eventId为1的事件，事件优先级为Low

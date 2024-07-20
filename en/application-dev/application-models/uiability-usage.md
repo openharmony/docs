@@ -10,8 +10,8 @@ You can use **loadContent()** of [WindowStage](../reference/apis-arkui/js-apis-w
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -38,10 +38,8 @@ To obtain the context of the current ability on the page, call [getContext](../r
 - You can use **this.context** to obtain the context of a UIAbility instance.
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // Obtain the context of the UIAbility instance.
@@ -54,21 +52,20 @@ To obtain the context of the current ability on the page, call [getContext](../r
 - Import the context module and define the **context** variable in the component.
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { common, Want } from '@kit.AbilityKit';
+
   @Entry
   @Component
-  struct Index {
+  struct Page_EventHub {
     private context = getContext(this) as common.UIAbilityContext;
-  
-    startAbilityTest() {
+
+    startAbilityTest(): void {
       let want: Want = {
         // Want parameter information.
       };
       this.context.startAbility(want);
     }
-  
+
     // Page display.
     build() {
       // ...
@@ -80,21 +77,19 @@ To obtain the context of the current ability on the page, call [getContext](../r
 
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { common, Want } from '@kit.AbilityKit';
+
   @Entry
   @Component
-  struct Index {
-  
-    startAbilityTest() {
+  struct Page_UIAbilityComponentsBasicUsage {
+    startAbilityTest(): void {
       let context = getContext(this) as common.UIAbilityContext;
       let want: Want = {
         // Want parameter information.
       };
       context.startAbility(want);
     }
-  
+
     // Page display.
     build() {
       // ...

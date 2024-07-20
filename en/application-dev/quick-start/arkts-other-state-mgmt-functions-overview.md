@@ -1,7 +1,7 @@
 # Overview of Other State Management Features
 
 
-In addition to the component state and application state management mentioned in previous topics, ArkTS also provides \@Watch and $$ for state management.
+In addition to the component state and application state management mentioned in previous topics, ArkTS also provides \@Watch, $$, and \@Track for state management.
 
 
 - [\@Watch](arkts-watch.md) is used to listen for the changes of state variables.

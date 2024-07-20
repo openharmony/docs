@@ -32,6 +32,9 @@
 
   交互事件是UI和用户交互的必要元素。方舟开发框架提供了多种交互事件，除了触摸事件、鼠标事件、键盘按键事件、焦点事件等通用事件外，还包括基于通用事件进行进一步识别的手势事件。手势事件有单一手势如点击手势、长按手势、拖动手势、捏合手势、旋转手势、滑动手势，以及通过单一手势事件进行组合的组合手势事件。
 
+- **自定义能力**
+
+  自定义能力是UI开发框架提供给开发者对UI界面进行开发和定制化的能力。现阶段提供的自定义能力包括：自定义节点。提供给开发者不同层次的自定义能力用于实现不同场景的应用的开发。自定义能力的层次越低，开发的灵活程度越高，但是相应应用的开发难度以及对于开发者能力的要求越高。
 
 ## 特点
 
@@ -75,18 +78,35 @@
 
 ## 开发流程
 
-使用UI开发框架开发应用时，主要涉及如下开发过程。开发者可以先通过[第一个入门](../quick-start/start-with-ets-stage.md)实例了解整个应用的UI开发过程。
-
+使用UI开发框架开发应用时，主要涉及如下开发过程。
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
 | 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-ifelse.md) |
 | 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
 | 添加组件        | 介绍了几种常用的内置组件、自定义组件以及通过API方式支持的界面元素。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md)<br>-&nbsp;[气泡和菜单](arkts-popup-and-menu-components-popup.md) |
-| 设置页面路由和组件导航 | 介绍了如何设置页面路由以及组件间的导航。                | -&nbsp;[页面路由](arkts-routing.md)<br/>-&nbsp;[组件导航](arkts-navigation-navigation.md) |
+| 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。                | -&nbsp;[组件导航](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md) |
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[图片](arkts-graphics-display.md)<br/>-&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
+| 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>|
+| 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md)<br/>|
+| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[添加交互事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)|
+| 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-mirroring-display.md)<br/>|
+
+## 通用规则
+
+- **默认单位**
+
+  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](../reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
+
+- **异常值处理**
+
+  输入的参数为异常（undefined，null或无效值）时，处理规则如下：
+
+  （1）对应参数有默认值，按默认值处理；
+
+  （2）对应参数无默认值，该参数对应的属性或接口不生效。
 
 ## 相关实例
 
@@ -97,3 +117,4 @@
 - [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 
 - [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+

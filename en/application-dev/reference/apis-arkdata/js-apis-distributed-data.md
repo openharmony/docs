@@ -11,7 +11,7 @@ This module provides the following functions:
 - [SingleKVStore](#singlekvstore): provides APIs to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore), and data is not distinguished by device.
 - [DeviceKVStore<sup>8+</sup>](#devicekvstore8): provides APIs to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
 
->**NOTE**
+>**NOTE** 
 >
 >- The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.data.distributedKVStore](js-apis-distributedKVStore.md).
 >
@@ -37,10 +37,10 @@ Creates a **KVManager** instance to manage KV stores. This API uses an asynchron
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ | ------ | ------ |
-| config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller. |
+| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback used to return the **KVManager** instance created. |
 
 **Example**
 ```js
@@ -77,15 +77,15 @@ Creates a **KVManager** instance to manage KV stores. This API uses a promise to
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ | ------ | ------ |
-| config |[KVManagerConfig](#kvmanager) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
+| config |[KVManagerConfig](#kvmanager) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created.|
+| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created. |
 
 **Example**
 ```js
@@ -111,14 +111,14 @@ try {
 
 ## KVManagerConfig
 
-Provides configuration of the **KVManager** object, including the bundle name and user information of the caller.
+Defines the configuration of the **KVManager** object, including the bundle name and user information of the caller.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ | ------ | ------ |
-| userInfo | [UserInfo](#userinfo) | Yes | User information.|
-| bundleName | string | Yes | Bundle name of the caller.|
+| userInfo | [UserInfo](#userinfo) | Yes | User information. |
+| bundleName | string | Yes | Bundle name of the caller. |
 
 ## UserInfo
 
@@ -126,10 +126,10 @@ Defines user information.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ |------ | ------ |
-| userId | string | No | User ID. The default value is **0**.|
-| userType | [UserType](#usertype) | No | User type. The default value is **0**.|
+| userId | string | No | User ID. The default value is **0**. |
+| userType | [UserType](#usertype) | No | User type. The default value is **0**. |
 
 
 ## UserType
@@ -138,9 +138,9 @@ Enumerates the user types.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name| Value| Description|
+| Name | Value | Description |
 | ----- | ------ | ------ |
-| SAME_USER_ID | 0 | User who logs in to different devices using the same account.|
+| SAME_USER_ID | 0 | User who logs in to different devices using the same account. |
 
 
 ## KVManager
@@ -157,11 +157,11 @@ Creates and obtains a KV store. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ | ------ | ------ |
-| storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| options | [Options](#options) | Yes | Configuration of the KV store.|
-| callback | AsyncCallback&lt;T&gt; | Yes | Callback invoked to return the KV store instance created.|
+| storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
+| options | [Options](#options) | Yes | Configuration of the KV store. |
+| callback | AsyncCallback&lt;T&gt; | Yes | Callback used to return the KV store instance created. |
 
 **Example**
 
@@ -203,7 +203,7 @@ Creates and obtains a KV store. This API uses a promise to return the result.
 
 | Name  | Type               | Mandatory | Description   |
 | ------- | ---------------------- | ---- | -------------------- |
-| storeId  | string      | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId  | string      | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
 | options  | [Options](#options)   | Yes  | Configuration of the KV store.|
 
 
@@ -211,7 +211,7 @@ Creates and obtains a KV store. This API uses a promise to return the result.
 
 | Type                                   | Description       |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store instance created.|
+| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt;  | Promise used to return the KV store instance created. |
 
 **Example**
 
@@ -249,12 +249,12 @@ Closes a KV store. This API uses an asynchronous callback to return the result.
 **Parameters**
 
 
-| Name  | Type             | Mandatory| Description        |
+| Name  | Type             | Mandatory | Description        |
 | ------- | -----------------   | ---- | --------------------------- |
 | appId    | string              | Yes  | Bundle name of the app that invokes the KV store.        |
-| storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
 | kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -265,7 +265,7 @@ const options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
@@ -294,17 +294,17 @@ Closes a KV store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description       |
+| Name | Type | Mandatory | Description       |
 | -----  | ------  | ---- | ----------------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.           |
-| storeId | string | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
 | kvStore | [KVStore](#kvstore)  | Yes  | KV store to close.       |
 
 **Return value**
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -315,7 +315,7 @@ const options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
@@ -348,11 +348,11 @@ Deletes a KV store. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
-| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback invoked to return the result.|
+| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -391,17 +391,17 @@ Deletes a KV store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
-| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants). |
 
 
 **Return value**
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -445,10 +445,10 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the IDs of all created KV stores.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback used to return the IDs of all created KV stores. |
 
 **Example**
 
@@ -475,7 +475,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
 
@@ -484,7 +484,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise&lt;string[]&gt;| Promise used to return the IDs of all created KV stores.|
+| Promise&lt;string[]&gt;| Promise used to return the IDs of all created KV stores. |
 
 **Example**
 
@@ -514,10 +514,10 @@ Subscribes to service status changes.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return the service status change. |
+| event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes. |
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback used to return the service status change. |
 
 **Example**
 
@@ -545,7 +545,7 @@ Unsubscribes from service status changes.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes. |
 | deathCallback  | Callback&lt;void&gt;  | No   | Callback to unregister. If this parameter is not specified, all callbacks for **distributedDataServiceDie** will be unregistered.|
@@ -572,15 +572,15 @@ try {
 Provides KV store configuration.
 
 
-| Name | Type| Mandatory  | Description                   |
+| Name | Type | Mandatory  | Description                   |
 | -----  | ------  | ------  | -------------------|
-| createIfMissing  | boolean | No| Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| encrypt  | boolean | No|Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
-| backup  | boolean | No|Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| autoSync  | boolean | No|Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
-| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel | [SecurityLevel](#securitylevel) | Yes|Security level (S1 to S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
-| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| createIfMissing  | boolean | No | Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No |Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| backup  | boolean | No |Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| autoSync  | boolean | No |Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| kvStoreType | [KVStoreType](#kvstoretype) | No |Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | No |Security level (S1 to S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema<sup>8+</sup> | [Schema](#schema8) | No | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -588,18 +588,18 @@ Provides KV store configuration.
 Enumerates the KV store types.
 
 
-| Name | Value| Description                   |
+| Name | Value | Description                   |
 | ---   | ----  | ----------------------- |
 | DEVICE_COLLABORATION  | 0 | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
-| SINGLE_VERSION  | 1 | Single KV store.<br>The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| MULTI_VERSION   | 2 | Multi-version KV store. This API is not supported currently.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| SINGLE_VERSION  | 1 | Single KV store.<br>The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## SecurityLevel
 
 Enumerates the KV store security levels.
 
-| Name | Value| Description                   |
+| Name | Value | Description                   |
 | ---   | ----  | ----------------------- |
 | NO_LEVEL  | 0 | No security level is set for the KV store (deprecated).<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
 | S0  | 1 | The KV store security level is public (deprecated).<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
@@ -615,14 +615,14 @@ Defines the KV store constants.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Value| Description                   |
+| Name | Value | Description                   |
 | ---   | ----  | ----------------------- |
 | MAX_KEY_LENGTH  | 1024 | Maximum length of a key in the KV store, in bytes. |
 | MAX_VALUE_LENGTH  | 4194303 | Maximum length of a value in the KV store, in bytes. |
-| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of a device key, in bytes.|
+| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of a device key, in bytes. |
 | MAX_STORE_ID_LENGTH  | 128 | Maximum length of a KV store ID, in bytes. |
-| MAX_QUERY_LENGTH  | 512000 | Maximum query length, in bytes.|
-| MAX_BATCH_SIZE  | 128 | Maximum number of batch operations.|
+| MAX_QUERY_LENGTH  | 512000 | Maximum query length, in bytes. |
+| MAX_BATCH_SIZE  | 128 | Maximum number of batch operations. |
 
 ## Schema<sup>8+</sup>
 
@@ -630,12 +630,12 @@ Defines the schema of a KV store. You can create a **Schema** object and place i
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name | Type| Readable| Writable| Description                   |
+| Name | Type | Readable | Writable | Description                   |
 | ---   | ----  | ----  | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | Yes| Yes| JSON root object.|
-| indexes<sup>8+</sup>  | Array\<string> | Yes| Yes| String array in JSON format. |
-| mode<sup>8+</sup>  | number | Yes| Yes| Schema mode. |
-| skip<sup>8+</sup>  | number | Yes| Yes|  Size of a skip of the schema. |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | Yes | Yes | JSON root object. |
+| indexes<sup>8+</sup>  | Array\<string> | Yes | Yes | String array in JSON format. |
+| mode<sup>8+</sup>  | number | Yes | Yes | Schema mode. |
+| skip<sup>8+</sup>  | number | Yes | Yes |  Size of a skip of the schema. |
 
 ### constructor<sup>8+</sup> 
 
@@ -647,15 +647,15 @@ A constructor used to create a **Schema** instance.
 
 ## FieldNode<sup>8+</sup>
 
-Represents a **Schema** instance, which provides the methods for defining the values stored in a KV store.
+Represents a **Schema** instance, which provides the APIs for defining the values stored in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name | Type| Readable| Writable| Description                   |
+| Name | Type | Readable | Writable | Description                   |
 | ---   | ----  | ----  | ----  | ----------------------- |
-| nullable<sup>8+</sup>  | boolean | Yes| Yes| Whether the database field can be null.  |
-| default<sup>8+</sup>  | string | Yes| Yes| Default value of a **FieldNode**.|
-| type<sup>8+</sup>  | number | Yes| Yes| Value of the data type corresponding to the specified node.|
+| nullable<sup>8+</sup>  | boolean | Yes | Yes | Whether the database field can be null.  |
+| default<sup>8+</sup>  | string | Yes | Yes | Default value of a **FieldNode**. |
+| type<sup>8+</sup>  | number | Yes | Yes | Value of the data type corresponding to the specified node. |
 
 ### constructor<sup>8+</sup>
 
@@ -667,9 +667,9 @@ A constructor used to create a **FieldNode** instance with a string field.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description           |
+| Name | Type | Mandatory | Description           |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | Yes  | Value of **FieldNode**.|
+| name   | string   | Yes  | Value of **FieldNode**. |
 
 ### appendChild<sup>8+</sup>
 
@@ -681,7 +681,7 @@ Appends a child node to this **FieldNode**.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#fieldnode8) | Yes   | Child node to append.  |
 
@@ -689,7 +689,7 @@ Appends a child node to this **FieldNode**.
 
 | Type         | Description           |
 | ------------- | -------------- |
-| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
@@ -934,7 +934,7 @@ Moves the data read position with the specified offset from the current position
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | offset  | number  | Yes   | Offset to move the data read position. A negative value means to move backward, and a positive value means to move forward.  |
 
@@ -974,7 +974,7 @@ Moves the data read position from 0 to an absolute position.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | position  | number  | Yes   |Absolute position to move to.         |
 
@@ -1229,9 +1229,9 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1264,9 +1264,9 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1299,9 +1299,9 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1334,9 +1334,9 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1369,9 +1369,9 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1404,9 +1404,9 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1439,9 +1439,9 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1474,9 +1474,9 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
@@ -1509,9 +1509,9 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
@@ -1544,9 +1544,9 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
@@ -1579,9 +1579,9 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
@@ -1614,9 +1614,9 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | string  | Yes   | String specified.|
 
 **Return value**
@@ -1649,9 +1649,9 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | string  | Yes   | String specified.|
 
 **Return value**
@@ -1744,9 +1744,9 @@ Creates a **Query** object to sort the query results in ascending order.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1779,9 +1779,9 @@ Creates a **Query** object to sort the query results in descending order.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1814,7 +1814,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | total  | number  | Yes   |Number of results to query. |
 | offset | number  | Yes   |Start position for query. |
@@ -1852,9 +1852,9 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'.     |
+| field  | string  | Yes   |Field to match. It cannot contain '^'.     |
 
 **Return value**
 
@@ -1946,7 +1946,7 @@ Creates a **Query** object with a specified key prefix.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | prefix | string  | Yes   |Key prefix.    |
 
@@ -1981,7 +1981,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | index  | string  | Yes   |Index preferentially used for query.  |
 
@@ -2011,16 +2011,16 @@ try {
 deviceId(deviceId:string):Query
 
 Creates a **Query** object with the device ID as the key prefix.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | deviceId | string  | Yes   |Device ID.  |
 
@@ -2087,11 +2087,11 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result.  |
 
 **Example**
 
@@ -2122,7 +2122,7 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
@@ -2160,10 +2160,10 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
+| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
 
 **Example**
 
@@ -2201,7 +2201,7 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 
@@ -2243,11 +2243,11 @@ Subscribes to data changes of the specified type.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                |
+| Name  | Type                                                     | Mandatory | Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return the data change.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data change.|
 
 **Example**
 
@@ -2268,10 +2268,10 @@ Subscribes to sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                  |
+| Name      | Type                                         | Mandatory | Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 
@@ -2292,10 +2292,10 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                    |
+| Name  | Type                                                     | Mandatory | Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered. |
 
 
 
@@ -2330,9 +2330,9 @@ Unsubscribes from sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                      |
+| Name      | Type                                         | Mandatory | Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered.|
 
 **Example**
@@ -2366,10 +2366,10 @@ Inserts KV pairs in batches to this KV store. This API uses an asynchronous call
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
-| callback |AsyncCallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
+| callback |AsyncCallback&lt;void&gt; |Yes    |Callback used to return the result. |
 
 **Example**
 
@@ -2413,7 +2413,7 @@ Inserts KV pairs in batches to this KV store. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
 
@@ -2467,10 +2467,10 @@ Deletes KV pairs in batches from this KV store. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keys  |string[] | Yes   |KV pairs to delete in batches. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2514,7 +2514,7 @@ Deletes KV pairs in batches from this KV store. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keys   |string[] | Yes   |KV pairs to delete in batches. |
 
@@ -2570,9 +2570,9 @@ Starts the transaction in this KV store. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2657,9 +2657,9 @@ Commits the transaction in this KV store. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2719,9 +2719,9 @@ Rolls back the transaction in this KV store. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2781,10 +2781,10 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | Yes   |Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2814,7 +2814,7 @@ Sets data sync, which can be enabled or disabled. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | Yes   |Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
 
@@ -2850,11 +2850,11 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | Yes   |Sync labels set for the local device. |
 | remoteSupportLabels  |string[] | Yes   |Sync labels set for remote devices. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2882,7 +2882,7 @@ Sets the data sync range. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | Yes   |Sync labels set for the local device. |
 | remoteSupportLabels  |string[] | Yes   |Sync labels set for remote devices. |
@@ -2932,10 +2932,10 @@ Defines the content of data change notifications, including inserted data, updat
 
 | Name | Type  |Mandatory  | Description                   |
 | ----- | -------   | ------|------------------------ |
-| insertEntries | [Entry](#entry)[]   | Yes|Data inserted.  |
-| updateEntries | [Entry](#entry)[]   | Yes|Data updated.  |
-| deleteEntries | [Entry](#entry)[]   | Yes|Data deleted.  |
-| deviceId | string   | Yes|UUID of the device. |
+| insertEntries | [Entry](#entry)[]   | Yes |Data inserted.  |
+| updateEntries | [Entry](#entry)[]   | Yes |Data updated.  |
+| deleteEntries | [Entry](#entry)[]   | Yes |Data deleted.  |
+| deviceId | string   | Yes |UUID of the device. |
 
 ## Entry
 
@@ -2945,8 +2945,8 @@ Defines the KV pairs stored in the KV store.
 
 | Name | Type  |Mandatory  | Description                   |
 | ----- | -------   | ------|------------------------ |
-| key | string   | Yes|Key of the KV pair stored in the KV store.  |
-| value | [Value](#value) | Yes|Value of the KV pair stored in the KV store.  |
+| key | string   | Yes |Key of the KV pair stored in the KV store.  |
+| value | [Value](#value) | Yes |Value of the KV pair stored in the KV store.  |
 
 
 ## Value
@@ -2957,8 +2957,8 @@ Defines the **value** object in a KV store.
 
 | Name | Type  |Mandatory  | Description                   |
 | ----- | -------   | ------|------------------------ |
-| type | [ValueType](#value)   | Yes|Type of the value.  |
-| value | Uint8Array \| string \| number \| boolean| Yes|Value of the KV pair stored in the KV store.  |
+| type | [ValueType](#value)   | Yes |Type of the value.  |
+| value | Uint8Array \| string \| number \| boolean| Yes |Value of the KV pair stored in the KV store.  |
 
 ## ValueType
 
@@ -2993,10 +2993,10 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | Yes   |Callback used to return the value obtained. |
 
 **Example**
 
@@ -3031,7 +3031,7 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 
@@ -3074,10 +3074,10 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
-| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified prefix. |
+| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs that match the specified prefix. |
 
 **Example**
 
@@ -3120,7 +3120,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
 
@@ -3178,10 +3178,10 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |Key prefix to match. |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified **Query** object. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs that match the specified **Query** object. |
 
 **Example**
 
@@ -3229,7 +3229,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match. |
 
@@ -3287,10 +3287,10 @@ Obtains the result set with the specified prefix. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| keyPrefix  |string   | Yes   |Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the result set with the specified prefix.|
+| keyPrefix  |string   | Yes   |Key prefix to match. |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the result set with the specified prefix. |
 
 **Example**
 
@@ -3336,9 +3336,9 @@ Obtains the result set with the specified prefix. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| keyPrefix  |string   | Yes   |Key prefix to match.|
+| keyPrefix  |string   | Yes   |Key prefix to match. |
 
 **Return value**
 
@@ -3396,10 +3396,10 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | Yes   |**Query** object to match.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the **KvStoreResultSet** object obtained. |
 
 **Example**
 
@@ -3444,7 +3444,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)    | Yes   |**Query** object to match.            |
 
@@ -3500,10 +3500,10 @@ Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.            |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.            |
 
 **Example**
 
@@ -3534,7 +3534,7 @@ Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
 
@@ -3565,16 +3565,16 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of results that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
+Obtains the number of results that match the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match.        |
-| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback invoked to return the number of results that match the specified **Query** object.        |
+| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback used to return the number of results that match the specified **Query** object.        |
 
 **Example**
 
@@ -3611,13 +3611,13 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object. This API uses a promise to return the result.
+Obtains the number of results that match the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match.        |
 
@@ -3667,19 +3667,19 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes data of a device. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | Yes   |ID of the target device.      |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.     |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.     |
 
 **Example**
 
@@ -3713,16 +3713,16 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 Deletes data of a device. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | Yes   |ID of the target device.      |
 
@@ -3766,9 +3766,9 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually.
-> **NOTE**
+> **NOTE** 
 >
-> **deviceIds** is **networkId** in [DeviceInfo](../apis-distributedservice-kit/js-apis-device-manager-sys.md#deviceinfo), which can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is **networkId** in <!--RP2-->[DeviceInfo](../apis-distributedservice-kit/js-apis-device-manager-sys.md#deviceinfo), which can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP2End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3776,9 +3776,9 @@ Synchronizes the KV store manually.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory| Description                                          |
+| Name   | Type                 | Mandatory | Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
+| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized. |
 | mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
@@ -3832,11 +3832,11 @@ Subscribes to data changes of the specified type.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                |
+| Name  | Type                                                     | Mandatory | Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                     |
 
 **Example**
 
@@ -3857,10 +3857,10 @@ Subscribes to sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                  |
+| Name      | Type                                         | Mandatory | Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 
@@ -3892,7 +3892,7 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                    |
+| Name  | Type                                                     | Mandatory | Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered. |
@@ -3928,7 +3928,7 @@ Unsubscribes from sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                      |
+| Name      | Type                                         | Mandatory | Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
@@ -3964,10 +3964,10 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database sync, in ms.   |
-| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback invoked to return the result.  |
+| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback used to return the result.  |
 
 **Example**
 
@@ -3994,7 +3994,7 @@ Sets the default delay allowed for KV store sync. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database sync, in ms.   |
 
@@ -4032,9 +4032,9 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback invoked to return the security level of the KV store.   |
+| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback used to return the security level of the KV store.   |
 
 **Example**
 
@@ -4095,20 +4095,20 @@ Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkv
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Example**
 
@@ -4134,16 +4134,16 @@ try{
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
@@ -4182,20 +4182,20 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback invoked to return the KV pairs obtained.   |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback used to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4234,16 +4234,16 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
@@ -4302,10 +4302,10 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4354,7 +4354,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
 
@@ -4407,20 +4407,20 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs that match the specified device ID and **Query** object.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs that match the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4464,16 +4464,16 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
@@ -4528,20 +4528,20 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
 Obtains a **KvStoreResultSet** object that matches the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.   |
 
 **Example**
 
@@ -4567,16 +4567,16 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 Obtains a **KvStoreResultSet** object that matches the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
@@ -4620,10 +4620,10 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -4672,7 +4672,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
 
@@ -4731,20 +4731,20 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
 Obtains a **KvStoreResultSet** object that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4787,16 +4787,16 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 Obtains a **KvStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
@@ -4862,10 +4862,10 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
-| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback invoked to return the result.   |
+| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback used to return the result.   |
 
 **Example**
 
@@ -4897,7 +4897,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
 
@@ -4929,16 +4929,16 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of results that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
+Obtains the number of results that match the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
 
 **Example**
 
@@ -4976,13 +4976,13 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object. This API uses a promise to return the result.
+Obtains the number of results that match the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
 
@@ -5032,21 +5032,21 @@ try {
 
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of results that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+Obtains the number of results that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device.   |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
 
 **Example**
 
@@ -5083,17 +5083,17 @@ try {
 
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+Obtains the number of results that match the specified device ID and **Query** object. This API uses a promise to return the result.
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device.   |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
@@ -5144,19 +5144,19 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes data of the specified device from this KV store. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device. |
-| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback invoked to return the result.   |
+| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback used to return the result.   |
 
 **Example**
 
@@ -5190,16 +5190,16 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 Deletes data of the specified device from this KV store. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
-> The value of **deviceId** can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device. |
 
@@ -5246,7 +5246,7 @@ Synchronizes the KV store manually.
 
 > **NOTE**
 >
-> **deviceIds** is **networkId** in [DeviceInfo](../apis-distributedservice-kit/js-apis-device-manager-sys.md#deviceinfo), which can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is **networkId** in <!--RP2-->[DeviceInfo](../apis-distributedservice-kit/js-apis-device-manager-sys.md#deviceinfo), which can be obtained by [deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP2End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5254,9 +5254,9 @@ Synchronizes the KV store manually.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized.|
+| deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized. |
 | mode            |[SyncMode](#syncmode)  | Yes   |Sync mode. |
 | delayMs  |number                 | No   |Delay time allowed, in ms. The default value is **0**. |
 
@@ -5310,11 +5310,11 @@ Subscribes to data changes of the specified type.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                |
+| Name  | Type                                                     | Mandatory | Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                   |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                   |
 
 **Example**
 
@@ -5335,10 +5335,10 @@ Subscribes to sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                  |
+| Name      | Type                                         | Mandatory | Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 
@@ -5370,10 +5370,10 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                    |
+| Name  | Type                                                     | Mandatory | Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered. |
 
 **Example**
 
@@ -5406,9 +5406,9 @@ Unsubscribes from sync complete events.
 
 **Parameters**
 
-| Name      | Type                                         | Mandatory| Description                                                      |
+| Name      | Type                                         | Mandatory | Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
 
 **Example**
@@ -5440,8 +5440,6 @@ Enumerates the sync modes.
 
 | Name      | Value    | Description                   |
 | -----      | ------    | ----------------------- |
-| PULL_ONLY  |0          |Pull data from the peer end to the local end only.|
-| PUSH_ONLY  |1          |Push data from the local end to the peer end only.|
-| PUSH_PULL  |2          |Push data from the local end to the peer end and then pull data from the peer end to the local end.|
-
-<!--no_check-->
+| PULL_ONLY  |0          |Pull data from the peer end to the local end only. |
+| PUSH_ONLY  |1          |Push data from the local end to the peer end only. |
+| PUSH_PULL  |2          |Push data from the local end to the peer end and then pull data from the peer end to the local end. |

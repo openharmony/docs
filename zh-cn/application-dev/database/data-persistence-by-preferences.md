@@ -19,9 +19,9 @@
 
 ## 约束限制
 
-- Key键为string类型，要求非空且长度不超过80个字节。
+- Key键为string类型，要求非空且长度不超过1024个字节。
 
-- 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过8192个字节。
+- 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过16 * 1024 * 1024个字节。
 
 - 内存会随着存储数据量的增大而增大，所以存储的数据量应该是轻量级的，建议存储的数据不超过一万条，否则会在内存方面产生较大的开销。
 
@@ -34,8 +34,8 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | 获取Preferences实例。该接口存在异步接口。                    |
 | putSync(key: string, value: ValueType): void                 | 将数据写入Preferences实例，可通过flush将Preferences实例持久化。该接口存在异步接口。 |
-| hasSync(key: string): void                                   | 检查Preferences实例是否包含名为给定Key的存储键值对。给定的Key值不能为空。该接口存在异步接口。 |
-| getSync(key: string, defValue: ValueType): void              | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
+| hasSync(key: string): boolean                                   | 检查Preferences实例是否包含名为给定Key的存储键值对。给定的Key值不能为空。该接口存在异步接口。 |
+| getSync(key: string, defValue: ValueType): ValueType              | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
 | deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
 | on(type: 'change', callback: Callback&lt;string&gt;): void | 订阅数据变更，订阅的数据发生变更后，在执行flush方法后，触发callback回调。 |
@@ -45,10 +45,10 @@
 
 ## 开发步骤
 
-1. 导入`@ohos.data.preferences`模块。
+1. 导入`@kit.ArkData`模块。
    
    ```ts
-   import dataPreferences from '@ohos.data.preferences';
+   import { preferences } from '@kit.ArkData';
    ```
 
 2. 获取Preferences实例。
@@ -57,16 +57,16 @@
 
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
-   let preferences: dataPreferences.Preferences | null = null;
+   let dataPreferences: preferences.Preferences | null = null;
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: dataPreferences.Options = { name: 'myStore' };
-       preferences = dataPreferences.getPreferencesSync(this.context, options);
+       let options: preferences.Options = { name: 'myStore' };
+       dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
    ```
@@ -76,12 +76,12 @@
 
    ```ts
    // 获取context
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let context = featureAbility.getContext();
-   let options: dataPreferences.Options =  { name: 'myStore' };
-   let preferences: dataPreferences.Preferences = dataPreferences.getPreferencesSync(context, options);
+   let options: preferences.Options =  { name: 'myStore' };
+   let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
 
 3. 写入数据。
@@ -95,51 +95,50 @@
    示例代码如下所示：
 
    ```ts
-   import util from '@ohos.util';
-   if (preferences.hasSync('startup')) {
+   import { util } from '@kit.ArkTS';
+   if (dataPreferences.hasSync('startup')) {
      console.info("The key 'startup' is contained.");
    } else {
      console.info("The key 'startup' does not contain.");
      // 此处以此键值对不存在时写入数据为例
-     preferences.putSync('startup', 'auto');
+     dataPreferences.putSync('startup', 'auto');
      // 当字符串有特殊字符时，需要将字符串转为Uint8Array类型再存储
-     let uInt8Array = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
-     preferences.putSync('uInt8', uInt8Array);
+     let uInt8Array1 = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
+     dataPreferences.putSync('uInt8', uInt8Array1);
    }
    ```
 
-3. 读取数据。
+4. 读取数据。
 
    使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。
 
    示例代码如下所示：
 
    ```ts
-   import util from '@ohos.util';
-   let val = preferences.getSync('startup', 'default');
+   let val = dataPreferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
-   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
+   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
-4. 删除数据。
+5. 删除数据。
 
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
 
    ```ts
-   preferences.deleteSync('startup');
+   dataPreferences.deleteSync('startup');
    ```
 
-5. 数据持久化。
+6. 数据持久化。
 
    应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
 
    ```ts
-   preferences.flush((err: BusinessError) => {
+   dataPreferences.flush((err: BusinessError) => {
      if (err) {
        console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
        return;
@@ -148,7 +147,7 @@
    })
    ```
 
-6. 订阅数据变更。
+7. 订阅数据变更。
 
    应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
 
@@ -156,16 +155,16 @@
    let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
    }
-   preferences.on('change', observer);
+   dataPreferences.on('change', observer);
    // 数据产生变更，由'auto'变为'manual'
-   preferences.put('startup', 'manual', (err: BusinessError) => {
+   dataPreferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to put the value of 'startup'. Code:${err.code},message:${err.message}`);
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     if (preferences !== null) {
-       preferences.flush((err: BusinessError) => {
+     if (dataPreferences !== null) {
+       dataPreferences.flush((err: BusinessError) => {
          if (err) {
            console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
            return;
@@ -176,7 +175,7 @@
    })
    ```
 
-7. 删除指定文件。
+8. 删除指定文件。
 
    使用deletePreferences()方法从内存中移除指定文件对应的Preferences实例，包括内存中的数据。若该Preference存在对应的持久化文件，则同时删除该持久化文件，包括指定文件及其备份文件、损坏文件。
 
@@ -190,13 +189,12 @@
 
 
    ```ts
-   let options: dataPreferences.Options = { name: 'myStore' };
-     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-           return;
-       }
-       console.info('Succeeded in deleting preferences.');
+   preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+         return;
+     }
+     console.info('Succeeded in deleting preferences.');
    })
    ```
 

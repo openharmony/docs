@@ -734,7 +734,7 @@ export default {
 ![zh-cn_image_0000001218279600](figures/zh-cn_image_0000001218279600.gif)
 
 > **说明：**
-> - setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+> - setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 >
 > - 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >   x' = scaleX \* x + skewY \* y + translateX

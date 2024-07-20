@@ -1,6 +1,6 @@
 # @ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)
 
-EmbeddableUIAbility是为元服务提供可以嵌入式启动的UIAbility，继承自[UIAbility](js-apis-app-ability-uiAbility.md)，同时具备跳转启动和嵌入式启动两种启动方式。
+EmbeddableUIAbility是为原子化服务提供可以嵌入式启动的UIAbility，继承自[UIAbility](js-apis-app-ability-uiAbility.md)，同时具备跳转启动和嵌入式启动两种启动方式。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

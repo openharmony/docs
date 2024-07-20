@@ -1,7 +1,7 @@
 # Loading Pages by Using the Web Component
 
 
-Page loading is a basic function of the **Web** component. Depending on the data source, page loading falls into three types: loading of network pages, loading of local pages, and loading of HTML rich text data.
+Page loading is a basic function of the [\<Web>](../reference/apis-arkweb/ts-basic-components-web.md#web) component. Depending on the data source, page loading falls into three types: loading of network pages, loading of local pages, and loading of HTML rich text data.
 
 
 If acquisition of network resources is involved in page loading, you need to declare the [ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md) permission.
@@ -9,10 +9,10 @@ If acquisition of network resources is involved in page loading, you need to dec
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component.
+You can specify the default network page to be loaded when creating a **\<Web>** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **\<Web>** component. The value of the first parameter **src** of the **\<Web>** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
 
 
-In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
+In the following example, after the **www.\example.com** page is loaded by the **\<Web>** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
 
 
 
@@ -24,7 +24,7 @@ import business_error from '@ohos.base';
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
   build() {
     Column() {
@@ -32,14 +32,14 @@ struct WebComponent {
         .onClick(() => {
           try {
             // Upon button clicking, call loadUrl to redirect to www.example1.com.
-            this.webviewController.loadUrl('www.example1.com');
+            this.controller.loadUrl('www.example1.com');
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // When creating a Web component, set the default network page to be loaded to www.example.com.
-      Web({ src: 'www.example.com', controller: this.webviewController})
+      Web({ src: 'www.example.com', controller: this.controller})
     }
   }
 }
@@ -48,7 +48,7 @@ struct WebComponent {
 
 ## Loading Local Pages
 
-Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
+Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **\<Web>** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **\<Web>** component.
 
 
 The following example shows how to load a local page file.
@@ -71,7 +71,7 @@ The following example shows how to load a local page file.
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
 
     build() {
       Column() {
@@ -79,14 +79,14 @@ The following example shows how to load a local page file.
           .onClick(() => {
             try {
               // Upon button clicking, call loadUrl to redirect to local1.html.
-              this.webviewController.loadUrl($rawfile("local1.html"));
+              this.controller.loadUrl($rawfile("local1.html"));
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         // When creating a Web component, load the local.html file through $rawfile.
-        Web({ src: $rawfile("local.html"), controller: this.webviewController })
+        Web({ src: $rawfile("local.html"), controller: this.controller })
       }
     }
   }
@@ -105,10 +105,22 @@ The following example shows how to load a local page file.
   </html>
   ```
 
+- Code of the **local1.html** page:
+
+  ```html
+  <!-- local1.html -->
+  <!DOCTYPE html>
+  <html>
+    <body>
+      <p>This is local1 page</p>
+    </body>
+  </html>
+  ```
+
 
 ## Loading HTML Rich Text Data
 
-The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
+The **\<Web>** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
 
 
 
@@ -146,12 +158,12 @@ struct WebComponent {
 ```
 
 ## Dynamically Creating Web Components
-**Web** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **Web** instances started in the background be less than or equal to 200. 
+**\<Web>** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **\<Web>** instances started in the background be less than or equal to 200. 
 
 ```ts
 // Carrier ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common"
+import { createNWeb } from "../pages/common"
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     // Dynamically create a Web component (UIContext needs to be passed in). The component can be created at any time after loadContent is called.
@@ -251,7 +263,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // Use the Page page of the NodeController.
 // Index.ets
-import {createNWeb, getNWeb} from "./common"
+import { getNWeb } from "./common"
 @Entry
 @Component
 struct Index {

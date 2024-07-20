@@ -44,7 +44,7 @@ Invalid ${param} string.
 
 **错误信息**
 
-Worker initialization failure.
+Worker initialization failed.
 
 **错误描述**
 
@@ -64,7 +64,7 @@ Worker initialization failure.
 
 **错误信息**
 
-Worker instance is not running.
+The Worker instance is not running.
 
 **错误描述**
 
@@ -82,7 +82,7 @@ Worker instance is not running.
 
 **错误信息**
 
-The invoked API is not supported in workers.
+The called API is not supported in the worker thread.
 
 **错误描述**
 
@@ -119,7 +119,7 @@ Worker传输信息序列化异常。
 
 **错误信息**
 
-The worker file patch is invalid path.
+The worker file path is invalid.
 
 **错误描述**
 
@@ -137,7 +137,7 @@ Worker文件路径异常导致无法正常编译生成合法的worker.abc。
 
 **错误信息**
 
-Buffer size must be a multiple of ${size}.
+The buffer size must be a multiple of ${size}.
 
 **错误描述**
 
@@ -211,7 +211,7 @@ The {className}'s constructor cannot be directly invoked.
 
 **错误信息**
 
-Cannot set property ${propertyName} of Buffer which has only a getter.
+${propertyName} cannot be set for the buffer that has only a getter.
 
 **错误描述**
 
@@ -229,7 +229,7 @@ Buffer的属性${propertyName}只读，不能进行设置。
 
 **错误信息**
 
-The function is not mark as concurrent.
+The function is not marked as concurrent.
 
 **错误描述**
 
@@ -247,7 +247,7 @@ Function未被标记为concurrent。
 
 **错误信息**
 
-The task does not exist when it is canceled.
+The task to cancel does not exist.
 
 **错误描述**
 
@@ -265,7 +265,7 @@ The task does not exist when it is canceled.
 
 **错误信息**
 
-The task is executing when it is canceled.
+The task to cancel is being executed.
 
 **错误描述**
 
@@ -301,7 +301,7 @@ The element does not exist in this container.
 
 **错误信息**
 
-The task group does not exist when it is canceled.
+The task group to cancel does not exist.
 
 **错误描述**
 
@@ -355,7 +355,7 @@ The method to be called is not callable or is an async method or a generator.
 
 **错误信息**
 
-The global call exceeds the timeout.
+Waiting for a global call timed out.
 
 **错误描述**
 
@@ -373,7 +373,7 @@ The global call exceeds the timeout.
 
 **错误信息**
 
-The function is not called in the taskpool thread.
+The function is not called in the TaskPool thread.
 
 **错误描述**
 
@@ -427,7 +427,7 @@ The callback is not registered on the host side.
 
 **错误信息**
 
-Add dependent task to SequenceRunner.
+A dependent task cannot be added to SequenceRunner.
 
 **错误描述**
 
@@ -499,7 +499,7 @@ The delayTime is less than zero.
 
 **错误信息**
 
-Can not set an arraybuffer to both transferList and cloneList.
+An ArrayBuffer cannot be set as both a transfer list and a clone list.
 
 **错误描述**
 
@@ -517,7 +517,7 @@ Can not set an arraybuffer to both transferList and cloneList.
 
 **错误信息**
 
-No such lock.
+The lock does not exist.
 
 **描述**
 
@@ -655,7 +655,7 @@ doRead接口未实现。
 
 **处理步骤**
 
-在继承类中实现doWrite接口函数。
+在继承类中实现doRead接口函数。
 
 ## 10200039 doTransform接口未实现
 
@@ -674,3 +674,97 @@ doTransform接口未实现。
 **处理步骤**
 
 在继承类中实现doTransform接口函数。
+
+## 10200050 并发任务已执行，无法周期执行
+
+**错误信息**
+
+The concurrent task has been executed and cannot be executed periodically.
+
+**错误描述**
+
+并发任务已执行，无法周期执行。
+
+**可能原因**
+
+在调用[executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12)执行周期任务前，该任务已经执行。
+
+**处理步骤**
+
+调用上述接口时，确保需要执行的任务未被执行。无法保证时，需要捕获异常。
+
+## 10200051 无法再次执行周期任务
+
+**错误信息**
+
+The periodic task cannot be executed again.
+
+**错误描述**
+
+无法再次执行周期任务。
+
+**可能原因**
+
+周期任务再次调用[execute](../apis-arkts/js-apis-taskpool.md#execute11)、[executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11)、[addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1)和[execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)执行。
+
+**处理步骤**
+
+调用上述接口时，确保任务不是周期任务。无法保证时，需要捕获异常。
+
+## 10200052 周期性任务不能具有依赖项
+
+**错误信息**
+
+The periodic task cannot have a dependency.
+
+**错误描述**
+
+周期性任务不能具有依赖项。
+
+**可能原因**
+
+调用了[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)和[addDependency](js-apis-taskpool.md#adddependency11)接口给周期任务增加或移除依赖关系。
+
+**处理步骤**
+
+调用上述接口时，确保任务不是周期任务。无法保证时，需要捕获异常。
+
+## 10200060 超出精度限制
+
+**错误信息**
+
+Precision limit exceeded.
+
+**错误描述**
+
+Decimal函数使用错误。
+
+**可能原因**
+
+使用Decimal提供的函数超出精度限制。有以下函数会抛出这个错误码：[pow](js-apis-arkts-decimal.md#pow)、[exp](js-apis-arkts-decimal.md#exp)、[log](js-apis-arkts-decimal.md#log)、[ln](js-apis-arkts-decimal.md#ln)、[acos](js-apis-arkts-decimal.md#acos)、[asin](js-apis-arkts-decimal.md#asin)、[atan](js-apis-arkts-decimal.md#atan)、[acosh](js-apis-arkts-decimal.md#acosh)、[asinh](js-apis-arkts-decimal.md#asinh)、[atanh](js-apis-arkts-decimal.md#atanh)、[log2](js-apis-arkts-decimal.md#log2)、[log10](js-apis-arkts-decimal.md#log10)、[atan2](js-apis-arkts-decimal.md#atan2)。
+
+**处理步骤**
+
+使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来设置有效精度。
+
+如：Decimal.set({ precision: 10 }), 设置有效精度。
+
+## 10200061 加密方法不可用
+
+**错误信息**
+
+crypto unavailable.
+
+**错误描述**
+
+Decimal函数使用错误。
+
+**可能原因**
+
+在Decimal中设置[crypto](js-apis-arkts-decimal.md#decimalconfig)或使用[Decimal.random](js-apis-arkts-decimal.md#random)函数时，使用加密方法失败。
+
+**处理步骤**
+
+使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
+
+如：Decimal.set({ crypto: false}), 取消加密算法。

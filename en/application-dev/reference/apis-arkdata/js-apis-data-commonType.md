@@ -9,7 +9,7 @@ The **commonType** module defines common data types in data management.
 ## Modules to Import
 
 ```ts
-import commonType from '@ohos.data.commonType';
+import { commonType } from '@kit.ArkData';
 ```
 
 ## AssetStatus
@@ -25,7 +25,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 | ASSET_UPDATE      | 3   | The asset is to be updated to the cloud.    |
 | ASSET_DELETE      | 4   | The asset is to be deleted from the cloud.    |
 | ASSET_ABNORMAL    | 5   | The asset is in abnormal status.          |
-| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device.|
+| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device. |
 
 ## Asset
 
@@ -33,7 +33,7 @@ Defines information about an asset (such as a document, image, and video). The a
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
-| Name      | Type                       | Mandatory| Description                              |
+| Name      | Type                       | Mandatory | Description                              |
 | ---------- | --------------------------- | ---- | ---------------------------------- |
 | name       | string                      | Yes  | Asset name.                      |
 | uri        | string                      | Yes  | Asset URI, which is an absolute path in the system.   |
@@ -41,9 +41,11 @@ Defines information about an asset (such as a document, image, and video). The a
 | createTime | string                      | Yes  | Time when the asset was created.            |
 | modifyTime | string                      | Yes  | Time when the asset was last modified.        |
 | size       | string                      | Yes  | Size of the asset.              |
-| status     | [AssetStatus](#assetstatus) | No  | Asset status. The default value is **ASSET_NORMAL**.|
+| status     | [AssetStatus](#assetstatus) | No  | Asset status. The default value is **ASSET_NORMAL**. |
 
 ## Assets
+
+type Assets = Array\<Asset>
 
 Represents an array of [Assets](#asset).
 
@@ -51,9 +53,11 @@ Represents an array of [Assets](#asset).
 
 | Type                        | Description                 |
 | ---------------------------- | --------------------- |
-| Array&lt;[Asset](#asset)&gt; | Array of assets.|
+| Array&lt;[Asset](#asset)&gt; | Array of assets. |
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets
 
 Enumerates the value types, which vary with the parameter function.
 
@@ -67,14 +71,17 @@ Enumerates the value types, which vary with the parameter function.
 | boolean    | The value is true or false.                   |
 | Uint8Array | The value is a Uint8 array.          |
 | Asset      | The value is an [Asset](#asset).      |
-| Assets     | The value is an [Asset array](#assets).|
+| Assets     | The value is an [Asset array](#assets). |
 
 ## ValuesBucket
+
+type ValuesBucket = Record<string, ValueType>
 
 Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
-| Key Type| Value Type                 |
+| Type | Description                 |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| string | The key is a string. |
+| [ValueType](#valuetype)| The value type is [ValueType](#valuetype). |

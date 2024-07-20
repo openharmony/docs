@@ -15,6 +15,4 @@ The process model is shown below.
 
 The system provides the following inter-process communication (IPC) mechanism:
 
-[Common Events](../basic-services/common-event/common-event-fa.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
-
- <!--no_check--> 
+Common events: This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.

@@ -6,8 +6,12 @@ Currently, the following muxer capabilities are supported:
 
 | Muxing Format| Video Codec Type       | Audio Codec Type  | Cover Type      |
 | -------- | --------------------- | ---------------- | -------------- |
-| mp4      | AVC (H.264)          | AAC, MPEG (MP3)| jpeg, png, bmp|
-| m4a      |                       | AAC              | jpeg, png, bmp|
+| mp4      | AVC (H.264) <!--RP1--><!--RP1End-->    | AAC, MPEG (MP3)| jpeg, png, bmp|
+| m4a      | -                     | AAC              | jpeg, png, bmp|
+| mp3      | -                     | MPEG (MP3)     | -              |
+<!--RP2--><!--RP2End-->
+
+<!--RP3--><!--RP3End-->
 
 **Usage Scenario**
 

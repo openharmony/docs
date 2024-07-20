@@ -12,6 +12,7 @@
 | [blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur) | 为当前组件添加内容模糊效果，入参为模糊半径。 |
 | [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | 为当前组件添加背景模糊效果，入参为模糊样式。 |
 | [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | 为当前组件添加内容模糊效果，入参为模糊样式。 |
+| [motionBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-motionBlur.md#motionblur) | 为当前组件添加由缩放大小或位移变化引起的运动过程中的动态模糊效果，入参为模糊半径和锚点坐标。 |
 
 
 ## 使用backdropBlur为组件添加背景模糊
@@ -622,3 +623,54 @@ struct ForegroundBlurStyleDemo {
 
 
 ![zh-cn_image_0000001599658168](figures/zh-cn_image_0000001599658168.png)
+
+
+## 使用motionBlur为组件添加运动模糊效果
+
+```ts
+import { curves } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct motionBlurTest {
+  @State widthSize: number = 400
+  @State heightSize: number = 320
+  @State flag: boolean = true
+  @State radius: number = 0
+  @State x: number = 0
+  @State y: number = 0
+
+  build() {
+    Column() {
+      Column() {
+        Image($r('app.media.testImg'))
+          .width(this.widthSize)
+          .height(this.heightSize)
+          .onClick(() => {
+            this.radius = 5;
+            this.x = 0.5;
+            this.y = 0.5;
+            if (this.flag) {
+              this.widthSize = 100;
+              this.heightSize = 80;
+            } else {
+              this.widthSize = 400;
+              this.heightSize = 320;
+            }
+            this.flag = !this.flag;
+          })
+          .animation({
+            duration: 2000,
+            curve: curves.springCurve(10, 1, 228, 30),
+            onFinish: () => {
+              this.radius = 0;
+            }
+          })
+          .motionBlur({ radius: this.radius, anchor: { x: this.x, y: this.y } })
+      }
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![motionBlurTest](figures/motionBlur.gif)

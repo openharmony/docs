@@ -77,7 +77,7 @@
 
 ## SM4
 
-算法库当前提供了[SM4](crypto-sym-key-generation-conversion-spec.md#sm4)加解密常用的6种加密模式：ECB、CBC、CTR、OFB、CFB和CFB128。不同的加密模式适用的加解密参数不同，具体请参考[ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec)。
+算法库当前提供了[SM4](crypto-sym-key-generation-conversion-spec.md#sm4)加解密常用的7种加密模式：ECB、CBC、CTR、OFB、CFB、CFB128和GCM。不同的加密模式适用的加解密参数不同，具体请参考[ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec)。
 
 由于SM4为分组加密算法，分组长度为128位。在实际应用中，最后一组明文可能不足128位（16字节），此时可以通过不同的[填充模式](#填充模式)进行数据填充。
 
@@ -95,6 +95,8 @@
   
   - 当需要分组模式为CFB、密钥长度为128bit、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|CFB|NoPadding"。
 
+  - 当需要分组模式为GCM、密钥长度为128bit、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|GCM|NoPadding"。
+
   | 分组模式 | 密钥长度（bit） | 填充模式 | API版本 | 
   | -------- | -------- | -------- | -------- |
   | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
@@ -103,9 +105,7 @@
   | OFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-
-- 从API版本10开始，支持对称加解密不带密钥长度的规格。加解密参数输入密钥类型时，支持不带长度，加解密运算取决于实际输入的密钥长度。
-  举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4|CFB|NoPadding"。
+  | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
 
 
 ## 填充模式

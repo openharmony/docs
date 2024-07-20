@@ -40,16 +40,16 @@
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     aboutToAppear() {
       // 配置Web开启调试模式
-      web_webview.WebviewController.setWebDebuggingAccess(true);
+      webview.WebviewController.setWebDebuggingAccess(true);
     }
 
     build() {
@@ -64,7 +64,7 @@
             // 传递runJavaScript侧代码方法。
             this.webviewController.runJavaScript(`function changeColor(){document.getElementById('text').style.color = 'red'}`);
           })
-        Web({ src: $rawfile('index.html'), controller: this.webviewController})
+        Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
   }

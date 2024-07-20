@@ -1,5 +1,7 @@
 # @ohos.multimedia.medialibrary (媒体库管理)(系统接口)
 
+从API version 12开始，该模块中的接口不再支持使用，相应功能可使用PhotoAccessHelper替代。不同功能的使用指导，请参考[Media Library Kit（媒体文件管理服务）简介](../../media/medialibrary/photoAccessHelper-overview.md)中的能力范围说明。
+
 > **说明：**
 >
 > - 该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。

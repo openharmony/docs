@@ -10,11 +10,11 @@ The **appAccount** module provides APIs for adding, deleting, modifying, and que
 ## Modules to Import
 
 ```ts
-import account_appAccount from '@ohos.account.appAccount';
+import { appAccount } from '@kit.BasicServicesKit';
 ```
 
 
-## account_appAccount.createAppAccountManager
+## appAccount.createAppAccountManager
 
 createAppAccountManager(): AppAccountManager
 
@@ -26,11 +26,11 @@ Creates an **AppAccountManager** object.
 
 | Type               | Description          |
 | ----------------- | ------------ |
-| AppAccountManager | **AppAccountManager** object created.|
+| AppAccountManager | **AppAccountManager** object created. |
 
 **Example**
   ```ts
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager
@@ -39,9 +39,9 @@ Implements app account management.
 
 ### createAccount<sup>9+</sup>
 
-createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
+createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Creates an app account. This API uses an asynchronous callback to return the result.
+Creates an app account with the given name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -50,12 +50,13 @@ Creates an app account. This API uses an asynchronous callback to return the res
 | Name     | Type                   | Mandatory | Description              |
 | -------- | ------------------------- | ----- | -------------------- |
 | name     | string                    | Yes   | Name of the app account to create.         |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300004 | Account already exists. |
@@ -64,7 +65,7 @@ Creates an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
@@ -88,13 +89,14 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
 | name      | string                    | Yes   | Name of the app account to create.                             |
-| options | [CreateAccountOptions](#createaccountoptions9) | Yes   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens).|
-| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
+| options | [CreateAccountOptions](#createaccountoptions9) | Yes   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). |
+| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
@@ -103,9 +105,9 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options:account_appAccount.CreateAccountOptions  = {
+  let options:appAccount.CreateAccountOptions  = {
     customData: {
       age: '10'
     }
@@ -136,18 +138,19 @@ Creates an app account with custom data. This API uses a promise to return the r
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | Yes   | Name of the app account to create.                             |
-| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). <br>By default, no value is passed, which means no additional information needs to be added for the account.|
+| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). <br>By default, no value is passed in, which means no additional information needs to be added for the account. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
@@ -156,9 +159,9 @@ Creates an app account with custom data. This API uses a promise to return the r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let options: account_appAccount.CreateAccountOptions = {
+  let options: appAccount.CreateAccountOptions = {
     customData: {
       age: '10'
     }
@@ -187,12 +190,13 @@ Creates an app account implicitly based on the specified account owner. This API
 | Name     | Type               | Mandatory  | Description                     |
 | -------- | --------------------- | ---- | ----------------------- |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -203,13 +207,12 @@ Creates an app account implicitly based on the specified account owner. This API
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
+  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
@@ -256,8 +259,9 @@ Creates an app account implicitly based on the specified account owner and optio
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner or options. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -268,13 +272,12 @@ Creates an app account implicitly based on the specified account owner and optio
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
+  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
@@ -293,7 +296,7 @@ Creates an app account implicitly based on the specified account owner and optio
     })
   }
 
-  let options: account_appAccount.CreateAccountImplicitlyOptions = {
+  let options: appAccount.CreateAccountImplicitlyOptions = {
     authType: 'getSocialData',
     requiredLabels: [ 'student' ]
   };
@@ -319,13 +322,14 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the app account to remove.     |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| name     | string                    | Yes   | Name of the target app account.     |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -333,7 +337,7 @@ Removes an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
@@ -360,18 +364,19 @@ Removes an app account. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| name | string | Yes   | Name of the app account to remove.|
+| name | string | Yes   | Name of the target app account. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -379,7 +384,7 @@ Removes an app account. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
@@ -406,13 +411,14 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 | ------------ | ------------------------- | ---- | --------------------------------- |
 | name         | string                    | Yes   | Name of the target app account.                          |
 | bundleName   | string                    | Yes   | Bundle name of the app.                        |
-| isAccessible | boolean                   | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite.|
-| callback     | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| isAccessible | boolean                   | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite. |
+| callback     | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -421,7 +427,7 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
@@ -449,19 +455,20 @@ Sets the access to the data of an account for an app. This API uses a promise to
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
 | name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app.|
-| isAccessible | boolean | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite.|
+| bundleName | string | Yes   | Bundle name of the app. |
+| isAccessible | boolean | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -470,7 +477,7 @@ Sets the access to the data of an account for an app. This API uses a promise to
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
@@ -497,12 +504,13 @@ Checks whether an app can access the data of an account. This API uses an asynch
 | ---------- | ------------------------- | ---- | --------------------------------- |
 | name       | string                    | Yes   | Name of the target app account.                          |
 | bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means the app can access the account data; the value **false** means the opposite.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the app can access the account data; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -510,7 +518,7 @@ Checks whether an app can access the data of an account. This API uses an asynch
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
@@ -539,18 +547,19 @@ Checks whether an app can access the data of an account. This API uses a promise
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
 | name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app.|
+| bundleName | string | Yes   | Bundle name of the app. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app can access the account data; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app can access the account data; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -558,7 +567,7 @@ Checks whether an app can access the data of an account. This API uses a promise
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
@@ -587,12 +596,14 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | Yes   | Name of the target app account.                  |
 | isEnabled | boolean                   | Yes   | Whether to enable data synchronization.              |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -600,7 +611,7 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
@@ -626,18 +637,20 @@ Sets data synchronization for an app account. This API uses a promise to return 
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | Yes   | Name of the target app account.    |
-| isEnabled | boolean | Yes   | Whether to enable data synchronization.|
+| isEnabled | boolean | Yes   | Whether to enable data synchronization. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -645,7 +658,7 @@ Sets data synchronization for an app account. This API uses a promise to return 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
       appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
@@ -673,12 +686,14 @@ Checks whether data synchronization is enabled for an app account. This API uses
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
 | name     | string                       | Yes   | Name of the target app account.              |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -686,7 +701,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
@@ -715,18 +730,20 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account.|
+| name | string | Yes   | Name of the target app account. |
 
 **Return value**
 
 | Type                    | Description                   |
 | :--------------------- | :-------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -734,7 +751,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
@@ -762,12 +779,13 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 | name           | string                    | Yes   | Name of the target app account.    |
 | credentialType | string                    | Yes   | Type of the credential to set.    |
 | credential     | string                    | Yes   | Credential value.      |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the credential is set successfully, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the credential is set successfully, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
@@ -775,7 +793,7 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
@@ -803,19 +821,20 @@ Sets a credential for an app account. This API uses a promise to return the resu
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
 | name           | string | Yes   | Name of the target app account.  |
-| credentialType | string | Yes   | Type of the credential to set.|
+| credentialType | string | Yes   | Type of the credential to set. |
 | credential     | string | Yes   | Credential value.   |
 
 **Return value**
 
 | Type                | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
@@ -823,7 +842,7 @@ Sets a credential for an app account. This API uses a promise to return the resu
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
@@ -849,13 +868,14 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 | Name           | Type                         | Mandatory  | Description            |
 | -------------- | --------------------------- | ---- | -------------- |
 | name           | string                      | Yes   | Name of the target app account.       |
-| credentialType | string                      | Yes   | Type of the credential to obtain.|
-| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
+| credentialType | string                      | Yes   | Type of the credential to obtain. |
+| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -864,7 +884,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
       appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
@@ -891,19 +911,20 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 | Name         | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | Yes   | Name of the target app account.|
-| credentialType | string | Yes   | Type of the credential to obtain.|
+| name           | string | Yes   | Name of the target app account. |
+| credentialType | string | Yes   | Type of the credential to obtain. |
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the credential obtained.|
+| Promise&lt;string&gt; | Promise used to return the credential obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -912,7 +933,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
@@ -937,15 +958,16 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 
 | Name     | Type                       | Mandatory  | Description               |
 | -------- | ------------------------- | ---- | ----------------- |
-| name     | string                    | Yes   | Name of the target app account.|
-| key      | string                    | Yes   | Key of the custom data to set.|
-| value    | string                    | Yes   | Value of the custom data to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| name     | string                    | Yes   | Name of the target app account. |
+| key      | string                    | Yes   | Key of the custom data to set. |
+| value    | string                    | Yes   | Value of the custom data to set. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
@@ -954,7 +976,7 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
@@ -979,22 +1001,23 @@ Sets custom data for an app account. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name  | Type| Mandatory | Description             |
+| Name  | Type | Mandatory | Description             |
 | ----- | ------ | ---- | ----------------- |
 | name  | string | Yes   | Name of the target app account.  |
-| key   | string | Yes   | Key of the custom data to set.|
-| value | string | Yes   | Value of the custom data to set.|
+| key   | string | Yes   | Key of the custom data to set. |
+| value | string | Yes   | Value of the custom data to set. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
@@ -1003,7 +1026,7 @@ Sets custom data for an app account. This API uses a promise to return the resul
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
@@ -1030,12 +1053,13 @@ Obtains the custom data of an app account based on the specified key. This API u
 | -------- | --------------------------- | ----- | ------------------------ |
 | name     | string                      | Yes   | Name of the target app account.          |
 | key      | string                      | Yes   | Key of the custom data to obtain.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the custom data value obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the custom data value obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1044,7 +1068,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getCustomData('ZhangSan', 'age', (err: BusinessError, data: string) => {
@@ -1072,18 +1096,19 @@ Obtains the custom data of an app account based on the specified key. This API u
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
 | name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the custom data to obtain.|
+| key  | string | Yes   | Key of the custom data to obtain. |
 
 **Return value**
 
 | Type                  | Description                   |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the custom data value obtained.|
+| Promise&lt;string&gt; | Promise used to return the custom data value obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1092,7 +1117,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
@@ -1118,18 +1143,19 @@ Obtains the custom data of an app account based on the specified key. The API re
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
 | name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the custom data to obtain.|
+| key  | string | Yes   | Key of the custom data to obtain. |
 
 **Return value**
 
 | Type                   | Description                   |
 | --------------------- | --------------------- |
-| string | Value of the custom data obtained.|
+| string | Value of the custom data obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1158,21 +1184,22 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
-    appAccountManager.getAllAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.getAllAccounts((err: BusinessError, data: appAccount.AppAccountInfo[]) => {
       if (err) {
         console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
@@ -1196,21 +1223,21 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return information about all accessible accounts.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return information about all accessible accounts. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
     }).catch((err: BusinessError) => {
       console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
@@ -1233,12 +1260,13 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
 | owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.   |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is null and **data** is the app account information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is null and **data** is the app account information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12400001 | Application not found. |
@@ -1246,11 +1274,11 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
-      (err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+      (err: BusinessError, data: appAccount.AppAccountInfo[]) => {
         if (err) {
           console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
         } else {
@@ -1274,18 +1302,19 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name  | Type    | Mandatory  | Description    |
 | ----- | ------ | ---- | ------ |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app account information obtained.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app account information obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12400001 | Application not found. |
@@ -1293,11 +1322,11 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((
-      data: account_appAccount.AppAccountInfo[]) => {
+      data: appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
@@ -1319,14 +1348,15 @@ Subscribes to account information changes of apps.
 
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target app changes.|
+| type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target app changes. |
 | owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
 | 12400001 | Application not found. |
@@ -1334,7 +1364,7 @@ Subscribes to account information changes of apps.
 **Example**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1357,19 +1387,20 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | Yes   | Event type to unsubscribe from. The value is **'accountChange'**.   |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
 **Example**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1400,12 +1431,13 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 | name     | string                | Yes   | Name of the target app account.    |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the authentication result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1416,13 +1448,12 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
+  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
@@ -1467,12 +1498,13 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | Record<string, Object>  | Yes   | Options for the authentication.      |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the authentication result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or options. |
 | 12300003 | Account not found. |
@@ -1483,13 +1515,12 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
+  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
@@ -1534,14 +1565,15 @@ Obtains the authorization token of the specified authentication type for an app 
 | Name     | Type                         | Mandatory  | Description         |
 | -------- | --------------------------- | ---- | ----------- |
 | name     | string                      | Yes   | Name of the target app account.   |
-| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                      | Yes   | Authentication type.      |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1550,7 +1582,7 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
@@ -1579,19 +1611,20 @@ Obtains the authorization token of the specified authentication type for an app 
 | Name     | Type    | Mandatory  | Description         |
 | -------- | ------ | ---- | ----------- |
 | name     | string | Yes   | Name of the target app account.   |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.      |
 
 **Return value**
 
 | Type                   | Description                |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the authorization token obtained.|
+| Promise&lt;string&gt; | Promise used to return the authorization token obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1600,7 +1633,7 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
@@ -1625,15 +1658,16 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type                       | Mandatory  | Description      |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | Yes   | Name of the target app account.|
+| name     | string                    | Yes   | Name of the target app account. |
 | authType | string                    | Yes   | Authentication type.   |
-| token    | string                    | Yes   | Token to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| token    | string                    | Yes   | Authorization token to set. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
@@ -1642,7 +1676,7 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
@@ -1669,20 +1703,21 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type    | Mandatory  | Description      |
 | -------- | ------ | ---- | -------- |
-| name     | string | Yes   | Name of the target app account.|
+| name     | string | Yes   | Name of the target app account. |
 | authType | string | Yes   | Authentication type.   |
-| token    | string | Yes   | Token to set.|
+| token    | string | Yes   | Authorization token to set. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
@@ -1691,7 +1726,7 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
@@ -1720,12 +1755,13 @@ Deletes the authorization token of the specified authentication type for an app 
 | owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                    | Yes   | Authentication type.       |
 | token    | string                    | Yes   | Authorization token to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
@@ -1734,7 +1770,7 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
@@ -1771,12 +1807,13 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
@@ -1785,7 +1822,7 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
@@ -1813,13 +1850,14 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 | name       | string                    | Yes   | Name of the target app account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
 | bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1830,7 +1868,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
@@ -1861,18 +1899,19 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 | name       | string                    | Yes   | Name of the target app account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
 | bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.|
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1883,7 +1922,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
@@ -1910,13 +1949,14 @@ Checks the visibility of an authorization token of the specified authentication 
 | ---------- | ---------------------------- | ---- | ----------- |
 | name       | string                       | Yes   | Name of the target app account.   |
 | authType   | string                       | Yes   | Authentication type.      |
-| bundleName | string                       | Yes   | Bundle name of the app.|
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
+| bundleName | string                       | Yes   | Bundle name of the app. |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1925,7 +1965,7 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
@@ -1955,18 +1995,19 @@ Checks the visibility of an authorization token of the specified authentication 
 | ---------- | ------ | ---- | ------------- |
 | name       | string | Yes   | Name of the target app account.     |
 | authType   | string | Yes   | Authentication type.        |
-| bundleName | string | Yes   | Bundle name of the app.|
+| bundleName | string | Yes   | Bundle name of the app. |
 
 **Return value**
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1975,7 +2016,7 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
@@ -2002,25 +2043,26 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 | Name     | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | name     | string                                   | Yes   | Name of the target app account.   |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
+| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
 
-**Example**
+**Example** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
-      (err: BusinessError, tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      (err: BusinessError, tokenArr: appAccount.AuthTokenInfo[]) => {
         if (err) {
           console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
         } else {
@@ -2045,18 +2087,19 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
 | name  | string | Yes   | Name of the target app account.   |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Promise used to return the tokens obtained.|
+| Promise&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Promise used to return the tokens obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
@@ -2064,11 +2107,11 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
-      tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      tokenArr: appAccount.AuthTokenInfo[]) => {
       console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err: BusinessError) => {
       console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
@@ -2091,13 +2134,14 @@ Obtains the authorization list of the specified authentication type for an app a
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
 | name     | string                                   | Yes   | Name of the target app account.               |
-| authType | string                                   | Yes   | Authentication type.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.|
+| authType | string                                   | Yes   | Authentication type. |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or authType. |
 | 12300003 | Account not found. |
@@ -2106,7 +2150,7 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
@@ -2134,18 +2178,19 @@ Obtains the authorization list of the specified authentication type for an app a
 | Name     | Type    | Mandatory  | Description                     |
 | -------- | ------ | ---- | ------------------------------ |
 | name     | string | Yes   | Name of the target app account.               |
-| authType | string | Yes   | Authentication type.|
+| authType | string | Yes   | Authentication type. |
 
 **Return value**
 
 | Type                                | Description                   |
 | ---------------------------------- | --------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or authType. |
 | 12300003 | Account not found. |
@@ -2154,7 +2199,7 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
@@ -2179,13 +2224,14 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string                                   | Yes   | ID of the authentication session.|
-| callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback object obtained. Otherwise, **err** is an error object.|
+| sessionId | string                                   | Yes   | ID of the authentication session. |
+| callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback object obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid sessionId. |
 | 12300108 | Session not found. |
@@ -2193,21 +2239,19 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: account_appAccount.AuthCallback) => {
+        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: appAccount.AuthCallback) => {
           if (err != null) {
               console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
-          let result: account_appAccount.AuthResult = {
+          let result: appAccount.AuthResult = {
             account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -2238,18 +2282,19 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type    | Mandatory  | Description      |
 | --------- | ------ | ---- | -------- |
-| sessionId | string | Yes   | ID of the authentication session.|
+| sessionId | string | Yes   | ID of the authentication session. |
 
 **Return value**
 
 | Type                                  | Description                   |
 | ------------------------------------ | --------------------- |
-| Promise&lt;[AuthCallback](#authcallback9)&gt; | Promise used to return the authenticator callback obtained.|
+| Promise&lt;[AuthCallback](#authcallback9)&gt; | Promise used to return the authenticator callback obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid sessionId. |
 | 12300108 | Session not found. |
@@ -2257,17 +2302,15 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-        let result: account_appAccount.AuthResult = {
+        appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
+        let result: appAccount.AuthResult = {
           account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -2300,13 +2343,14 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 | Name     | Type                                    | Mandatory  | Description         |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | Yes   | Bundle name of the app.|
-| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
+| owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300113 | Authenticator service not found. |
@@ -2314,11 +2358,11 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
-      (err: BusinessError, info: account_appAccount.AuthenticatorInfo) => {
+      (err: BusinessError, info: appAccount.AuthenticatorInfo) => {
         if (err) {
           console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
         } else {
@@ -2342,18 +2386,19 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                              | Description                   |
 | -------------------------------- | --------------------- |
-| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained.|
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300113 | Authenticator service not found. |
@@ -2361,11 +2406,11 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
-      info: account_appAccount.AuthenticatorInfo) => { 
+      info: appAccount.AuthenticatorInfo) => { 
       console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err: BusinessError) => {
       console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
@@ -2377,7 +2422,7 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void;
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether an app account has specific labels. This API uses an asynchronous callback to return the result. The labels are checked by the authenticator of the target app.
 
@@ -2390,12 +2435,13 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 | name           | string                    | Yes   | Name of the target app account. |
 | owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
 | labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
-| callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** can be **true** or **false**. The value **true** means the app account has the labels; the value **false** means the opposite. If the operation fails, **err** is an error object. |
+| callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** or **false**. The value **true** means the app account has the labels; the value **false** means the opposite. If the operation fails, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
@@ -2406,7 +2452,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let labels = ['student'];
   try {
@@ -2443,12 +2489,13 @@ Checks whether an app account has specific labels. This API uses a promise to re
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app account has the labels; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app account has the labels; the value **false** means the opposite. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
@@ -2459,7 +2506,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let labels = ['student'];
   try {
@@ -2486,14 +2533,15 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 | Name        | Type                      | Mandatory | Description           |
 | -------------- | ------------------------- | ----- | -------------- |
-| name           | string                    | Yes   | Name of the target app account.|
+| name           | string                    | Yes   | Name of the target app account. |
 | credentialType | string                    | Yes   | Type of the credential to delete.     |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -2502,7 +2550,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
@@ -2529,19 +2577,20 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 | Name        | Type  | Mandatory  | Description           |
 | -------------- | ------ | ----- | --------------- |
-| name           | string | Yes   | Name of the target app account.|
+| name           | string | Yes   | Name of the target app account. |
 | credentialType | string | Yes   | Type of the credential to delete.      |
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -2550,7 +2599,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
@@ -2575,13 +2624,14 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 | Name        | Type                                | Mandatory | Description            |
 | -------------- | ----------------------------------- | ----- | --------------- |
-| options        | SelectAccountsOptions               | Yes   | Options for selecting accounts. |
-| callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of accounts selected. Otherwise, **err** is an error object. |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)               | Yes   | Options for selecting accounts. |
+| callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accounts selected. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid options. |
 | 12300010 | Account service busy. |
@@ -2590,15 +2640,15 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options: account_appAccount.SelectAccountsOptions = {
+  let options: appAccount.SelectAccountsOptions = {
     allowedOwners: [ 'com.example.accountjsdemo' ],
     requiredLabels: [ 'student' ]
   };
   try {
     appAccountManager.selectAccountsByOptions(options,
-      (err: BusinessError, accountArr: account_appAccount.AppAccountInfo[]) => {
+      (err: BusinessError, accountArr: appAccount.AppAccountInfo[]) => {
         if (err) {
           console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
         } else {
@@ -2628,12 +2678,13 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise used to return the accounts selected.|
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise used to return the accounts selected. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid options. |
 | 12300010 | Account service busy. |
@@ -2642,13 +2693,13 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options: account_appAccount.SelectAccountsOptions = {
+  let options: appAccount.SelectAccountsOptions = {
     allowedOwners: ['com.example.accountjsdemo']
   };
   try {
-    appAccountManager.selectAccountsByOptions(options).then((accountArr: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.selectAccountsByOptions(options).then((accountArr: appAccount.AppAccountInfo[]) => {
       console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
       console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
@@ -2660,7 +2711,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, callback: AuthCallback): void;
+verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
 Verifies the credential of an app account. This API uses an asynchronous callback to return the result.
 
@@ -2672,12 +2723,13 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 | -------- | --------------------- | ----- | ----------------------- |
 | name     | string                | Yes   | Name of the target app account.         |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.       |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
@@ -2688,11 +2740,11 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
-          onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+          onResult: (resultCode: number, result?: appAccount.AuthResult) => {
               console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
               console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
@@ -2707,7 +2759,7 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthCallback): void;
+verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
 Verifies the user credential. This API uses an asynchronous callback to return the result.
 
@@ -2720,12 +2772,13 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | name     | string                  | Yes   | Name of the target app account.         |
 | owner    | string                  | Yes   | Owner of the app account. The value is the bundle name of the app.       |
 | options  | [VerifyCredentialOptions](#verifycredentialoptions9) | Yes   | Options for verifying the user credential.         |
-| callback | [AuthCallback](#authcallback9)   | Yes   | Callback invoked to return the result.|
+| callback | [AuthCallback](#authcallback9)   | Yes   | Callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or options. |
 | 12300003 | Account not found. |
@@ -2736,15 +2789,15 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  let options: account_appAccount.VerifyCredentialOptions = {
+  let options: appAccount.VerifyCredentialOptions = {
     credentialType: 'pin',
     credential: '123456'
   };
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
@@ -2759,7 +2812,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
 ### setAuthenticatorProperties<sup>9+</sup>
 
-setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
+setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 Sets the authenticator attributes of an app. This API uses an asynchronous callback to return the result.
 
@@ -2769,13 +2822,14 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | Yes   | Owner of the authenticator.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the result.|
+| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the app.         |
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300010 | Account service busy. |
@@ -2785,11 +2839,11 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2804,7 +2858,7 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 
 ### setAuthenticatorProperties<sup>9+</sup>
 
-setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthCallback): void;
+setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthCallback): void
 
 Set authenticator properties. This API uses an asynchronous callback to return the result.
 
@@ -2814,14 +2868,15 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | Yes   | Owner of the authenticator.         |
+| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the app.         |
 | options  | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner or options. |
 | 12300010 | Account service busy. |
@@ -2831,14 +2886,14 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  let options: account_appAccount.SetPropertiesOptions = {
+  let options: appAccount.SetPropertiesOptions = {
     properties: {prop1: 'value1'}
   };
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2856,9 +2911,9 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
 addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Adds an app account. This API uses an asynchronous callback to return the result.
+Adds an app account with the given name. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 > 
 >This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9) instead.
 
@@ -2869,13 +2924,13 @@ Adds an app account. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description                  |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | Yes   | Name of the app account to add.         |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| name     | string                    | Yes   | Name of the target app account.         |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
       console.log('addAccount err: ' + JSON.stringify(err));
@@ -2888,7 +2943,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 > This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2898,13 +2953,13 @@ Adds an app account name and additional information. This API uses an asynchrono
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
 | name      | string                    | Yes   | Name of the target app account.                             |
-| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token.|
-| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
+| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token. |
+| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
     console.log('addAccount err: ' + JSON.stringify(err));
@@ -2927,18 +2982,18 @@ Adds an app account name and additional information. This API uses an asynchrono
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | Yes   | Name of the target app account.                           |
-| extraInfo | string | No   | Additional information (information that can be converted to the string type). <br>The additional information cannot be sensitive information (such as the password and token) of the app account.<br>By default, no value is passed, which means no additional information needs to be added for the account.|
+| extraInfo | string | No   | Additional information (information that can be converted to the string type). <br>The additional information cannot be sensitive information (such as the password and token) of the app account.<br>By default, no value is passed, which means no additional information needs to be added for the account. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
@@ -2949,7 +3004,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 Adds an app account implicitly based on the specified owner. This API uses an asynchronous callback to return the result.
 
@@ -2965,15 +3020,14 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 | -------- | --------------------- | ---- | ----------------------- |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.         |
 | authType | string                | Yes   | Authentication type. The authentication type is customized. |
-| options  | {[key: string]: any}  | Yes   | Authentication options, which can be set as required.|
-| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback invoked to return the result.        |
+| options  | {[key: string]: any}  | Yes   | Authentication options, which can be set as required. |
+| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the result.        |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
@@ -3008,7 +3062,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
@@ -3018,13 +3072,13 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the app account to delete.     |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| name     | string                    | Yes   | Name of the target app account.     |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
       console.log('deleteAccount err: ' + JSON.stringify(err));
@@ -3037,7 +3091,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 Deletes an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
@@ -3047,18 +3101,18 @@ Deletes an app account. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| name | string | Yes   | Name of the app account to delete.|
+| name | string | Yes   | Name of the target app account. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
@@ -3072,7 +3126,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 Disables an app account from accessing an app. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
@@ -3084,12 +3138,12 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 | ---------- | ------------------------- | ---- | --------------------------------- |
 | name       | string                    | Yes   | Name of the target app account.                 |
 | bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('disableAppAccess err: ' + JSON.stringify(err));
@@ -3102,7 +3156,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 Disables an app account from accessing an app. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
@@ -3112,19 +3166,19 @@ Disables an app account from accessing an app. This API uses a promise to return
 
 | Name       | Type    | Mandatory  | Description              |
 | ---------- | ------ | ---- | ---------------- |
-| name       | string | Yes   | Name of the target app account.|
+| name       | string | Yes   | Name of the target app account. |
 | bundleName | string | Yes   | Bundle name of the app.       |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
@@ -3139,7 +3193,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 Enables an app account to access an app. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
@@ -3151,12 +3205,12 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 | ---------- | ------------------------- | ---- | --------------------------------- |
 | name       | string                    | Yes   | Name of the target app account.                          |
 | bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('enableAppAccess: ' + JSON.stringify(err));
@@ -3169,7 +3223,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 Enables an app account to access an app. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
@@ -3180,18 +3234,18 @@ Enables an app account to access an app. This API uses a promise to return the r
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
 | name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app.|
+| bundleName | string | Yes   | Bundle name of the app. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
@@ -3206,7 +3260,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 Checks whether data synchronization is enabled for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9) instead.
 
@@ -3218,13 +3272,13 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the target app account.       |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
+| name     | string                       | Yes   | Name of the target app account.              |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -3238,7 +3292,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 Checks whether data synchronization is enabled for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9-1) instead.
 
@@ -3256,12 +3310,12 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
@@ -3276,7 +3330,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 Set credentials for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9) instead.
 
@@ -3289,12 +3343,12 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 | name           | string                    | Yes   | Name of the target app account.    |
 | credentialType | string                    | Yes   | Type of the credential to set.    |
 | credential     | string                    | Yes   | Credential value.     |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
       console.log('setAccountCredential err: ' + JSON.stringify(err));
@@ -3307,7 +3361,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 Set credentials for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9-1) instead.
 
@@ -3318,19 +3372,19 @@ Set credentials for an app account. This API uses a promise to return the result
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
 | name           | string | Yes   | Name of the target app account.  |
-| credentialType | string | Yes   | Type of the credential to set.|
-| credential     | string | Yes   | Credential value.|
+| credentialType | string | Yes   | Type of the credential to set. |
+| credential     | string | Yes   | Credential value. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
@@ -3345,7 +3399,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 Sets additional information for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
@@ -3358,12 +3412,12 @@ Sets additional information for an app account. This API uses an asynchronous ca
 | --------- | ------------------------- | ---- | --------------- |
 | name      | string                    | Yes   | Name of the target app account.        |
 | extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token.      |
-| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
@@ -3376,7 +3430,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 Sets additional information for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
@@ -3388,18 +3442,18 @@ Sets additional information for an app account. This API uses a promise to retur
 | Name      | Type    | Mandatory  | Description       |
 | --------- | ------ | ---- | --------- |
 | name      | string | Yes   | Name of the target app account.  |
-| extraInfo | string | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token.|
+| extraInfo | string | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
@@ -3414,7 +3468,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 Sets data synchronization for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9) instead.
 
@@ -3428,12 +3482,12 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | Yes   | Name of the target app account.                 |
 | isEnable | boolean                   | Yes   | Whether to enable data synchronization.              |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -3446,7 +3500,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 Sets data synchronization for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9-1) instead.
 
@@ -3459,18 +3513,18 @@ Sets data synchronization for an app account. This API uses a promise to return 
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | Yes   | Name of the target app account.    |
-| isEnable | boolean | Yes   | Whether to enable data synchronization.|
+| isEnable | boolean | Yes   | Whether to enable data synchronization. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
@@ -3485,7 +3539,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 Sets data to be associated with an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
@@ -3497,14 +3551,14 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 | Name     | Type                       | Mandatory  | Description               |
 | -------- | ------------------------- | ---- | ----------------- |
 | name     | string                    | Yes   | Name of the target app account.          |
-| key      | string                    | Yes   | Key of the data to set.|
+| key      | string                    | Yes   | Key of the data to set. |
 | value    | string                    | Yes   | Value of the data to set.        |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
       console.log('setAssociatedData err: ' + JSON.stringify(err));
@@ -3517,7 +3571,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 Sets data to be associated with an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
@@ -3529,19 +3583,19 @@ Sets data to be associated with an app account. This API uses a promise to retur
 | Name  | Type    | Mandatory  | Description               |
 | ----- | ------ | ---- | ----------------- |
 | name  | string | Yes   | Name of the target app account.          |
-| key      | string | Yes   | Key of the data to set.|
-| value    | string | Yes   | Value of the data to set.|
+| key      | string | Yes   | Key of the data to set. |
+| value    | string | Yes   | Value of the data to set. |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
@@ -3556,11 +3610,11 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 Obtains information about all accessible app accounts. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9) instead.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
+**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only for system applications)
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3568,14 +3622,14 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
+  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
@@ -3587,11 +3641,11 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 Obtains information about all accessible app accounts. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9-1) instead.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
+**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only for system applications)
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3604,9 +3658,9 @@ Obtains information about all accessible app accounts. This API uses a promise t
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
+  appAccountManager.getAllAccessibleAccounts().then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err: BusinessError) => {
       console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
@@ -3619,11 +3673,11 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9) instead.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
+**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only for system applications)
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3632,15 +3686,15 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
 | owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.   |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return information about all accessible app accounts.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return information about all accessible app accounts. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
+  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
@@ -3652,11 +3706,11 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9-1) instead.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only to system applications)
+**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only for system applications)
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3664,21 +3718,21 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name  | Type    | Mandatory  | Description    |
 | ----- | ------ | ---- | ------ |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app accounts that can be accessed by the invoker.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app accounts that can be accessed by the invoker. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle).then((data: account_appAccount.AppAccountInfo[]) => { 
+  appAccountManager.getAllAccounts(selfBundle).then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccounts: ' + data);
   }).catch((err: BusinessError) => {
       console.log('getAllAccounts err: ' + JSON.stringify(err));
@@ -3691,7 +3745,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 Obtains the credential of an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9) instead.
 
@@ -3702,13 +3756,13 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 | Name           | Type                         | Mandatory  | Description            |
 | -------------- | --------------------------- | ---- | -------------- |
 | name           | string                      | Yes   | Name of the target app account.       |
-| credentialType | string                      | Yes   | Type of the credential to obtain.|
-| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
+| credentialType | string                      | Yes   | Type of the credential to obtain. |
+| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
       console.log('getAccountCredential err: ' + JSON.stringify(err));
@@ -3722,7 +3776,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 Obtains the credential of an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9-1) instead.
 
@@ -3733,18 +3787,18 @@ Obtains the credential of an app account. This API uses a promise to return the 
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
 | name           | string | Yes   | Name of the target app account.   |
-| credentialType | string | Yes   | Type of the credential to obtain.|
+| credentialType | string | Yes   | Type of the credential to obtain. |
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the credential obtained.|
+| Promise&lt;string&gt; | Promise used to return the credential obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
       console.log('getAccountCredential, result: ' + data);
@@ -3759,7 +3813,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains additional information of an app account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the app account password and token. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
@@ -3770,12 +3824,12 @@ Obtains additional information of an app account. Additional information refers 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | name     | string                      | Yes   | Name of the target app account.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the additional information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the additional information obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
@@ -3789,7 +3843,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 Obtains additional information of an app account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the app account password and token. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
@@ -3799,18 +3853,18 @@ Obtains additional information of an app account. Additional information refers 
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account.|
+| name | string | Yes   | Name of the target app account. |
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the additional information obtained.|
+| Promise&lt;string&gt; | Promise used to return the additional information obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
       console.log('getAccountExtraInfo, result: ' + data);
@@ -3825,7 +3879,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 Obtains data associated with an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
@@ -3837,12 +3891,12 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 | -------- | --------------------------- | ---- | ----------------- |
 | name     | string                      | Yes   | Name of the target app account.          |
 | key      | string                      | Yes   | Key of the data to obtain.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the data obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the data obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
       console.log('getAssociatedData err: ' + JSON.stringify(err));
@@ -3856,7 +3910,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 Obtains data associated with an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
@@ -3867,18 +3921,18 @@ Obtains data associated with an app account. This API uses a promise to return t
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
 | name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the data to obtain.|
+| key  | string | Yes   | Key of the data to obtain. |
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the data obtained.|
+| Promise&lt;string&gt; | Promise used to return the data obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
        console.log('getAssociatedData: ' + data);
@@ -3893,7 +3947,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 Subscribes to account information changes of apps.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [on('accountChange')](#onaccountchange9) instead.
 
@@ -3903,14 +3957,14 @@ Subscribes to account information changes of apps.
 
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes.|
+| type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes. |
 | owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
 
 **Example**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -3927,7 +3981,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 Unsubscribes from account information changes.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [off('accountChange')](#offaccountchange9) instead.
 
@@ -3938,12 +3992,12 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | Yes   | Event type to unsubscribe from. The value is **'change'**, which indicates the account change event.    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event. |
 
 **Example**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', () => {
   		console.debug('off finish');
@@ -3959,11 +4013,11 @@ Unsubscribes from account information changes.
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 Authenticates an app account with customized options. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9) instead.
 
@@ -3977,14 +4031,13 @@ Authenticates an app account with customized options. This API uses an asynchron
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | {[key: string]: any}  | Yes   | Options for the authentication.      |
-| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Callback invoked to return the result.|
+| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Callback used to return the result. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
@@ -4019,7 +4072,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 Obtains the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9) instead.
 
@@ -4030,14 +4083,14 @@ Obtains the authorization token of the specified authentication type for an app 
 | Name     | Type                         | Mandatory  | Description         |
 | -------- | --------------------------- | ---- | ----------- |
 | name     | string                      | Yes   | Name of the target app account.   |
-| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                      | Yes   | Authentication type.      |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.  |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
     (err: BusinessError, data: string) => {
@@ -4052,7 +4105,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 Obtains the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9-1) instead.
 
@@ -4063,19 +4116,19 @@ Obtains the authorization token of the specified authentication type for an app 
 | Name     | Type    | Mandatory  | Description         |
 | -------- | ------ | ---- | ----------- |
 | name     | string | Yes   | Name of the target app account.   |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.      |
 
 **Return value**
 
 | Type                   | Description                   |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
        console.log('getOAuthToken token: ' + data);
@@ -4090,7 +4143,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 Sets an authorization token of the specific authentication type for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9) instead.
 
@@ -4100,15 +4153,15 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type                       | Mandatory  | Description      |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | Yes   | Name of the target app account.|
+| name     | string                    | Yes   | Name of the target app account. |
 | authType | string                    | Yes   | Authentication type.   |
-| token    | string                    | Yes   | Token to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| token    | string                    | Yes   | Authorization token to set. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -4121,7 +4174,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 Sets an authorization token of the specific authentication type for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9-1) instead.
 
@@ -4131,20 +4184,20 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type    | Mandatory  | Description      |
 | -------- | ------ | ---- | -------- |
-| name     | string | Yes   | Name of the target app account.|
+| name     | string | Yes   | Name of the target app account. |
 | authType | string | Yes   | Authentication type.   |
-| token    | string | Yes   | Authorization token to set.|
+| token    | string | Yes   | Authorization token to set. |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
@@ -4159,7 +4212,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 Deletes the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9) instead.
 
@@ -4173,12 +4226,12 @@ Deletes the authorization token of the specified authentication type for an app 
 | owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                    | Yes   | Authentication type.       |
 | token    | string                    | Yes   | Authorization token to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
     (err: BusinessError) => {
@@ -4192,7 +4245,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 Deletes the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9-1) instead.
 
@@ -4211,12 +4264,12 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
@@ -4231,7 +4284,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 Sets the visibility of an authorization token to an app. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9) instead.
 
@@ -4244,13 +4297,13 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 | name       | string                    | Yes   | Name of the target app account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
 | bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.                 |
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.                 |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
     (err: BusinessError) => {
@@ -4264,7 +4317,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 Sets the visibility of an authorization token to an app. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9-1) instead.
 
@@ -4276,19 +4329,19 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 | ---------- | ------- | ---- | ------------ |
 | name       | string  | Yes   | Name of the target app account.    |
 | authType   | string  | Yes   | Authentication type.       |
-| bundleName | string  | Yes   | Bundle name of the app.|
+| bundleName | string  | Yes   | Bundle name of the app. |
 | isVisible  | boolean | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.       |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
@@ -4303,7 +4356,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 Checks the visibility of an authorization token of the specified authentication type to an app. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9) instead.
 
@@ -4315,13 +4368,13 @@ Checks the visibility of an authorization token of the specified authentication 
 | ---------- | ---------------------------- | ---- | ----------- |
 | name       | string                       | Yes   | Name of the target app account.   |
 | authType   | string                       | Yes   | Authentication type.      |
-| bundleName | string                       | Yes   | Bundle name of the app.|
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
+| bundleName | string                       | Yes   | Bundle name of the app. |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
     (err: BusinessError, data: boolean) => {
@@ -4336,7 +4389,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 Checks the visibility of an authorization token of the specified authentication type to an app. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1) instead.
 
@@ -4348,18 +4401,18 @@ Checks the visibility of an authorization token of the specified authentication 
 | ---------- | ------ | ---- | ------------- |
 | name       | string | Yes   | Name of the target app account.     |
 | authType   | string | Yes   | Authentication type.        |
-| bundleName | string | Yes   | Bundle name of the app.|
+| bundleName | string | Yes   | Bundle name of the app. |
 
 **Return value**
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
     data: boolean) => {
@@ -4375,7 +4428,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 Obtains all tokens visible to the invoker for an app account. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9) instead.
 
@@ -4386,16 +4439,16 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 | Name     | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | name     | string                                   | Yes   | Name of the target app account.   |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| callback | AsyncCallback&lt;Array&lt;[OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
+| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| callback | AsyncCallback&lt;Array&lt;[OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
 
-**Example**
+**Example** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
-    (err: BusinessError, data: account_appAccount.OAuthTokenInfo[]) => {
+    (err: BusinessError, data: appAccount.OAuthTokenInfo[]) => {
       console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
     });
@@ -4407,7 +4460,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 Obtains all tokens visible to the invoker for an app account. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9-1) instead.
 
@@ -4418,21 +4471,21 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
 | name  | string | Yes   | Name of the target app account.   |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Promise used to return the tokens obtained.|
+| Promise&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Promise used to return the tokens obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
-    data: account_appAccount.OAuthTokenInfo[]) => {
+    data: appAccount.OAuthTokenInfo[]) => {
     console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
@@ -4445,7 +4498,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9) instead.
 
@@ -4456,13 +4509,13 @@ Obtains the authorization list of the specified authentication type for an app a
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
 | name     | string                                   | Yes   | Name of the target app account.               |
-| authType | string                                   | Yes   | Authentication type.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.              |
+| authType | string                                   | Yes   | Authentication type. |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.              |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
@@ -4476,7 +4529,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9-1) instead.
 
@@ -4487,18 +4540,18 @@ Obtains the authorization list of the specified authentication type for an app a
 | Name     | Type    | Mandatory  | Description                     |
 | -------- | ------ | ---- | ----------------------- |
 | name     | string | Yes   | Name of the target app account.               |
-| authType | string | Yes   | Authentication type.|
+| authType | string | Yes   | Authentication type. |
 
 **Return value**
 
 | Type                                | Description                   |
 | ---------------------------------- | --------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
@@ -4513,7 +4566,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 Obtains the authenticator callback for an authentication session. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9) instead.
 
@@ -4523,27 +4576,25 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string                                   | Yes   | ID of the authentication session.|
-| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback obtained. Otherwise, **err** is an error object.|
+| sessionId | string                                   | Yes   | ID of the authentication session. |
+| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId,
-          (err: BusinessError, callback: account_appAccount.AuthenticatorCallback) => {
-          if (err.code != account_appAccount.ResultCode.SUCCESS) {
+          (err: BusinessError, callback: appAccount.AuthenticatorCallback) => {
+          if (err.code != appAccount.ResultCode.SUCCESS) {
               console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
               return;
           }
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          callback.onResult(appAccount.ResultCode.SUCCESS, {
             name: 'LiSi',
             owner: 'com.example.accountjsdemo',
             authType: 'getSocialData',
@@ -4560,7 +4611,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 Obtains the authenticator callback for an authentication session. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9-1) instead.
 
@@ -4570,28 +4621,26 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type    | Mandatory  | Description      |
 | --------- | ------ | ---- | -------- |
-| sessionId | string | Yes   | ID of the authentication session.|
+| sessionId | string | Yes   | ID of the authentication session. |
 
 **Return value**
 
 | Type                                  | Description                   |
 | ------------------------------------ | --------------------- |
-| Promise&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Promise used to return the authenticator callback obtained.|
+| Promise&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Promise used to return the authenticator callback obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId).then((
-        callback: account_appAccount.AuthenticatorCallback) => {
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        callback: appAccount.AuthenticatorCallback) => {
+        callback.onResult(appAccount.ResultCode.SUCCESS, {
           name: 'LiSi',
           owner: 'com.example.accountjsdemo',
           authType: 'getSocialData',
@@ -4610,7 +4659,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 Obtains the authenticator information of an app. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9) instead.
 
@@ -4620,16 +4669,16 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 | Name     | Type                                    | Mandatory  | Description         |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
+| owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
-    (err: BusinessError, data: account_appAccount.AuthenticatorInfo) => {
+    (err: BusinessError, data: appAccount.AuthenticatorInfo) => {
       console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
     });
@@ -4641,7 +4690,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 Obtains the authenticator information of an app. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1) instead.
 
@@ -4651,21 +4700,21 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 
 **Return value**
 
 | Type                              | Description                   |
 | -------------------------------- | --------------------- |
-| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained.|
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
-    data: account_appAccount.AuthenticatorInfo) => { 
+    data: appAccount.AuthenticatorInfo) => { 
     console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
@@ -4680,7 +4729,7 @@ Defines app account information.
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | name  | string | Yes   | Name of the target app account.   |
 
 ## AuthTokenInfo<sup>9+</sup>
@@ -4693,13 +4742,13 @@ Defines authorization token information.
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | Yes   | Authentication type.  |
 | token<sup>9+</sup>                | string         | Yes   | Value of the authorization token.      |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in.|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
 Defines authorization token information.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [AuthTokenInfo](#authtokeninfo9) instead.
 
@@ -4709,7 +4758,7 @@ Defines authorization token information.
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | Yes   | Authentication type.  |
 | token                | string         | Yes   | Value of the authorization token.      |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in.|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4719,7 +4768,7 @@ Defines OAuth authenticator information.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| owner   | string | Yes   | Owner of the authenticator. The value is the bundle name of the app.|
+| owner   | string | Yes   | Owner of the authenticator. The value is the bundle name of the app. |
 | iconId  | number | Yes   | ID of the authenticator icon. |
 | labelId | number | Yes   | ID of the authenticator label. |
 
@@ -4731,8 +4780,8 @@ Defines the authentication result.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | No   | Token information. By default, no value is passed. |
+| account   | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in. |
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | No   | Token information. By default, no value is passed in. |
 
 ## CreateAccountOptions<sup>9+</sup>
 
@@ -4742,7 +4791,7 @@ Defines the options for creating an app account.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| customData   | Record<string, Object> | No   | Custom data. By default, no value is passed.|
+| customData   | Record<string, string> | No   | Custom data. By default, no value is passed in. |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4752,9 +4801,9 @@ Defines the options for implicitly creating an app account.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed.|
-| authType   | string | No   | Authentication type. By default, no value is passed.|
-| parameters   | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
+| requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed in. |
+| authType   | string | No   | Authentication type. By default, no value is passed in. |
+| parameters   | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
 ## SelectAccountsOptions<sup>9+</sup>
 
 Defines the options for selecting accounts.
@@ -4763,9 +4812,9 @@ Defines the options for selecting accounts.
 
 | Name         | Type                        | Mandatory | Description               |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Array of allowed accounts. By default, no value is passed.    |
-| allowedOwners   | Array&lt;string&gt;         | No   | Array of the owners of the allowed accounts. By default, no value is passed.|
-| requiredLabels  | Array&lt;string&gt;         | No   | Labels of the authenticator. By default, no value is passed. |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Array of allowed accounts. By default, no value is passed in.    |
+| allowedOwners   | Array&lt;string&gt;         | No   | Array of the owners of the allowed accounts. By default, no value is passed in. |
+| requiredLabels  | Array&lt;string&gt;         | No   | Labels of the authenticator. By default, no value is passed in. |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
@@ -4775,9 +4824,9 @@ Represents the options for verifying the user credential.
 
 | Name         | Type                  | Mandatory | Description          |
 | -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | No   | Credential type. By default, no value is passed.     |
-| credential     | string                 | No   | Credential value. By default, no value is passed.     |
-| parameters     | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
+| credentialType | string                 | No   | Credential type. By default, no value is passed in.     |
+| credential     | string                 | No   | Credential value. By default, no value is passed in.     |
+| parameters     | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4788,8 +4837,8 @@ Represents the options for setting authenticator properties.
 
 | Name    | Type                   | Mandatory | Description          |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | Record<string, Object> | No   | Property object. By default, no value is passed.     |
-| parameters | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
+| properties | Record<string, Object> | No   | Property object. By default, no value is passed in.     |
+| parameters | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
 
 ## Constants<sup>8+</sup>
 
@@ -4805,8 +4854,8 @@ Enumerates the constants.
 | ACTION_AUTH<sup>9+</sup>              | 'auth'         | Authentication operation.        |
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | Operation of verifying credentials. |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | Operation of setting authenticator properties.     |
-| KEY_NAME                         | 'name'                 | Name of the app account. |
-| KEY_OWNER                        | 'owner'                | Owner of the app account.|
+| KEY_NAME                         | 'name'                 | Name of the target app account. |
+| KEY_OWNER                        | 'owner'                | Bundle name of the app account owner.|
 | KEY_TOKEN                        | 'token'                | Token.        |
 | KEY_ACTION                       | 'action'               | Operation.        |
 | KEY_AUTH_TYPE                    | 'authType'             | Authentication type.    |
@@ -4842,7 +4891,7 @@ Enumerates the result codes.
 | ERROR_OAUTH_SERVICE_EXCEPTION       | 10011 | The OAuth service is abnormal. |
 | ERROR_OAUTH_SESSION_NOT_EXIST       | 10012 | The session to be authenticated does not exist.  |
 | ERROR_OAUTH_TIMEOUT                 | 10013 | The authentication timed out.     |
-| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | The authorization token does not exist.|
+| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | The authorization token does not exist. |
 | ERROR_OAUTH_TOKEN_TOO_MANY          | 10015 | The number of OAuth tokens reaches the limit. |
 | ERROR_OAUTH_UNSUPPORT_ACTION        | 10016 | The authentication operation is not supported. |
 | ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017 | The authentication type is not supported. |
@@ -4864,18 +4913,18 @@ Called to return the result of an authentication request.
 
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
-| code   | number               | Yes   | Authentication result code.|
+| code   | number               | Yes   | Authentication result code. |
 | result | [AuthResult](#authresult9) | No   | Authentication result. By default, no value is passed, which means the authentication result is not received. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-      let result: account_appAccount.AuthResult = {
+  appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
+      let result: appAccount.AuthResult = {
           account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -4885,7 +4934,7 @@ Called to return the result of an authentication request.
             authType: 'getSocialData'
           }
       };
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(appAccount.ResultCode.SUCCESS, result);
   }).catch((err: BusinessError) => {
       console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
@@ -4903,16 +4952,16 @@ Called to redirect a request.
 
 | Name    | Type  | Mandatory  | Description        |
 | ------- | ---- | ---- | ---------- |
-| request | Want | Yes   | Request to be redirected.|
+| request | Want | Yes   | Request to be redirected. |
 
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  class MyAuthenticator extends account_appAccount.Authenticator {
+  class MyAuthenticator extends appAccount.Authenticator {
       createAccountImplicitly(
-        options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
+        options: appAccount.CreateAccountImplicitlyOptions, callback: appAccount.AuthCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -4921,8 +4970,8 @@ Called to redirect a request.
       }
 
       auth(name: string, authType: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthCallback) {
-          let result: account_appAccount.AuthResult = {
+        options: Record<string, Object>, callback: appAccount.AuthCallback) {
+          let result: appAccount.AuthResult = {
             account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -4932,7 +4981,7 @@ Called to redirect a request.
               authType: 'getSocialData'
             }
           };
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(appAccount.ResultCode.SUCCESS, result);
       }
   }
   ```
@@ -4948,11 +4997,11 @@ Called to continue to process the request.
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+  appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
     if (callback.onRequestContinued != undefined) {
       callback.onRequestContinued();
     }
@@ -4965,13 +5014,13 @@ Called to continue to process the request.
 
 Provides OAuth authenticator callbacks.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
 
 ### onResult<sup>8+</sup>
 
-onResult: (code: number, result: {[key: string]: any}) =&gt; void
+onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 Called to return the result of an authentication request.
 
@@ -4981,18 +5030,18 @@ Called to return the result of an authentication request.
 
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
-| code   | number               | Yes   | Authentication result code.|
+| code   | number               | Yes   | Authentication result code. |
 | result | {[key: string]: any} | Yes   | Authentication result. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: appAccount.AuthenticatorCallback) => {
+      callback.onResult(appAccount.ResultCode.SUCCESS, {
         name: 'LiSi',
         owner: 'com.example.accountjsdemo',
         authType: 'getSocialData',
@@ -5015,16 +5064,16 @@ Called to redirect a request.
 
 | Name    | Type  | Mandatory  | Description        |
 | ------- | ---- | ---- | ---------- |
-| request | Want | Yes   | Request to be redirected.|
+| request | Want | Yes   | Request to be redirected. |
 
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  class MyAuthenticator extends account_appAccount.Authenticator {
+  class MyAuthenticator extends appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5033,8 +5082,8 @@ Called to redirect a request.
       }
 
       authenticate(name: string, authType: string, callerBundleName: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
+          callback.onResult(appAccount.ResultCode.SUCCESS, {
             name: name,
             authType: authType,
             token: 'xxxxxx'}
@@ -5059,16 +5108,16 @@ Creates an app account implicitly based on the specified account owner. This API
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating an account.     |
-| callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating the account.     |
+| callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 Adds an app account implicitly based on the specified authentication type and options. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9-2) instead.
 
@@ -5081,7 +5130,7 @@ Adds an app account implicitly based on the specified authentication type and op
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback invoked to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result. |
 
 ### auth<sup>9+</sup>
 
@@ -5097,17 +5146,16 @@ Authenticates an app account to obtain the authorization token. This API uses an
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | Yes   | Name of the target app account.       |
 | authType         | string                | Yes   | Authentication type.     |
-| callerBundleName | string                | Yes   | Authentication type.      |
 | options          | Record<string, Object>  | Yes   | Options for the authentication.     |
-| callback         | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the result.|
+| callback         | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 Authenticates an app account to obtain the authorization token. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9-2) instead.
 
@@ -5121,11 +5169,11 @@ Authenticates an app account to obtain the authorization token. This API uses an
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback invoked to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result. |
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void;
+verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
 Verifies the credential of an app account. This API uses an asynchronous callback to return the result.
 
@@ -5137,11 +5185,11 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | Yes   | Name of the target app account.             |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Options for credential verification.           |
-| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback invoked to return the verification result.|
+| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the verification result. |
 
 ### setProperties<sup>9+</sup>
 
-setProperties(options: SetPropertiesOptions, callback: AuthCallback): void;
+setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 Sets the authenticator properties. This API uses an asynchronous callback to return the result.
 
@@ -5152,11 +5200,11 @@ Sets the authenticator properties. This API uses an asynchronous callback to ret
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.           |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void;
+checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void
 
 Checks the account labels. This API uses an asynchronous callback to return the result.
 
@@ -5168,11 +5216,11 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |
 | labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the check result.|
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the check result. |
 
 ### checkAccountRemovable<sup>9+</sup>
 
-checkAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void
 
 Checks whether an app account can be deleted. This API uses an asynchronous callback to return the result.
 
@@ -5183,7 +5231,7 @@ Checks whether an app account can be deleted. This API uses an asynchronous call
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
 
 ### getRemoteObject<sup>9+</sup>
 
@@ -5196,30 +5244,12 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 **Example**
 
   ```ts
-  import rpc from '@ohos.rpc';
-  import Want from '@ohos.app.ability.Want';
+  import { rpc } from '@kit.IPCKit';
+  import { Want } from '@kit.AbilityKit';
   
-  class MyAuthenticator extends account_appAccount.Authenticator {
-    addAccountImplicitly(authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        let want: Want = {
-          bundleName: 'com.example.accountjsdemo',
-          abilityName: 'com.example.accountjsdemo.LoginAbility',
-        };
-        callback.onRequestRedirected(want);
-    }
-
-    authenticate(name: string, authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
-          name: name,
-          authType: authType,
-          token: 'xxxxxx'}
-        );
-    }
-
+  class MyAuthenticator extends appAccount.Authenticator {
     verifyCredential(name: string,
-      options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
+      options: appAccount.VerifyCredentialOptions, callback: appAccount.AuthCallback) {
         let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.VerifyAbility',
@@ -5230,7 +5260,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
         callback.onRequestRedirected(want);
     }
 
-    setProperties(options: account_appAccount.SetPropertiesOptions, callback: account_appAccount.AuthCallback) {
+    setProperties(options: appAccount.SetPropertiesOptions, callback: appAccount.AuthCallback) {
       let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.SetPropertiesAbility',
@@ -5241,17 +5271,17 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
         callback.onRequestRedirected(want);
     }
 
-    checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+    checkAccountLabels(name: string, labels: string[], callback: appAccount.AuthCallback) {
+      callback.onResult(0);
     }
   
-    checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+    checkAccountRemovable(name: string, callback: appAccount.AuthCallback) {
+      callback.onResult(0);
     }
   }
 
   export default {
-    onConnect(want: Want): rpc.RemoteObject { // serviceAbility lifecycle function.
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility lifecycle function, which needs to be placed in serviceAbility.
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

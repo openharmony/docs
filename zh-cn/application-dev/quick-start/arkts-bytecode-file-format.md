@@ -405,7 +405,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 | `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | `register_num`：包含局部变量的寄存器  | 在当前地址将指定寄存器中的局部变量标记为超出范围。寄存器的编号为-1，则意味着是累加器寄存器。 |
 | `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | `name_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的名称 | 设置file寄存器的值。`name_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
 | `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | `source_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的源码 | 设置`source_code`寄存器的值。`source_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `SET_COLUMN`           | `0x0b` |    | `uleb128 columm_num`   | `columm_num`：待设置的列号   | 设置`column`寄存器的值，并生成一个位置条目。  |
+| `SET_COLUMN`           | `0x0b` |    | `uleb128 column_num`   | `column_num`：待设置的列号   | 设置`column`寄存器的值，并生成一个位置条目。  |
 | 特殊操作码           | `0x0c..0xff`   |   |  |   | 使 `line` 和 `address` 寄存器指向下一个地址，并生成一个位置条目。详情参阅下文中的说明。 |
 
 

@@ -16,7 +16,7 @@ Multiple child components are supported.
 
 FolderStack(value?: { upperItems?:  Array<string\>})
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 **Parameters**
 

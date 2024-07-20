@@ -11,12 +11,12 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 1. Import the DRM module. The module provides DRM-related attributes and methods.
 
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   import { drm } from '@kit.DrmKit';
    ```
 2. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the DRM module.
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 3. Call **isMediaKeySystemSupported** to check whether the device supports a certain type of DRM plug-in.
 
@@ -63,4 +63,16 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
     }
     return description;
    }
+   ```
+
+6. Call **getMediaKeySystemUuid** to obtain the UUIDs of the DRM plug-ins supported by the device.
+
+   > **NOTE**
+   >
+   > If the length of the UUID is 0, no supported plug-in exists on the device.
+
+   ```ts
+   function getMediaKeySystemUuid(name: string): string{
+    let uuid: string = drm.getMediaKeySystemUuid(name);
+      return uuid;
    ```

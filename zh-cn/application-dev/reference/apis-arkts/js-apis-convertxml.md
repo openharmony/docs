@@ -21,7 +21,7 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -40,10 +40,11 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200002 | Invalid xml string. |
 
 **示例：**
@@ -125,7 +126,7 @@ console.log(result);
 
 转换选项。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -134,7 +135,7 @@ console.log(result);
 | trim              | boolean  | 是   | 是否修剪位于文本前后的空白字符。                 |
 | ignoreDeclaration | boolean  | 否   | 是否忽略xml写入声明指示，默认false。                        |
 | ignoreInstruction | boolean  | 否   | 是否忽略xml的写入处理指令，默认false。                      |
-| ignoreAttributes  | boolean  | 否   | 是否跨多行打印属性并缩进属性，默认false。                   |
+| ignoreAttributes  | boolean  | 否   | 是否忽略元素的属性信息，默认false。                   |
 | ignoreComment     | boolean  | 否   | 是否忽略元素的注释信息，默认false。                         |
 | ignoreCDATA       | boolean  | 否   | 是否忽略元素的CDATA信息，默认false。                        |
 | ignoreDoctype     | boolean  | 否   | 是否忽略元素的Doctype信息，默认false。                      |

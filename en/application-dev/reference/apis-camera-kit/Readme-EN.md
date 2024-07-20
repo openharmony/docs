@@ -1,14 +1,17 @@
-# Camera Kit API Reference
+# Camera Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
-  - [@ohos.multimedia.cameraPicker (Camera Picker)] (js-apis-cameraPicker.md)
+  - [@ohos.multimedia.cameraPicker (Camera Picker)](js-apis-cameraPicker.md)
+  <!--Del-->
   - [@ohos.multimedia.camera (Camera Management) (System API)](js-apis-camera-sys.md)
+  <!--DelEnd-->
 - C APIs
   - Modules
     - [OH_Camera](_o_h___camera.md)
   - Header Files
     - [camera.h](camera_8h.md)
+    - [camera_device.h](camera__device_8h.md)
     - [camera_input.h](camera__input_8h.md)
     - [camera_manager.h](camera__manager_8h.md)
     - [capture_session.h](capture__session_8h.md)

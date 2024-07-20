@@ -1,4 +1,4 @@
-# 兼容JS的类Web开发范式 (ArkUI.Lite)
+# 兼容JS的类Web开发范式（ArkUI.Lite）
 
 - 框架说明
   - [文件组织](js-lite-framework-file.md)

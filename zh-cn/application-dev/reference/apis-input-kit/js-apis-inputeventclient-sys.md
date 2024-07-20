@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -21,6 +21,8 @@ injectEvent({KeyEvent: KeyEvent}): void
 按键(包括单个按键和组合键)注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -78,6 +80,8 @@ injectKeyEvent(keyEvent: KeyEventData): void
 按键(包括单个按键和组合键)事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
 
 **参数：**
 
@@ -137,6 +141,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -155,7 +161,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -237,6 +243,8 @@ injectTouchEvent(touchEvent: TouchEventData): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |
@@ -255,7 +263,7 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import touchEvent from '@ohos.multimodalInput.touchEvent'
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
@@ -314,6 +322,43 @@ try {
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
   console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputEventClient.permitInjection<sup>12+</sup>
+
+permitInjection(result: boolean): void
+
+允许事件注入权限。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
+**参数：**
+
+| 参数名    | 类型    | 必填   | 说明        |
+| -------- | ------  | ----   | --------- |
+| result   | boolean | 是     | 授权结果（true表示：允许事件注入，false表示：不允许事件注入）。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+```ts
+import { inputEventClient } from '@kit.InputKit';
+
+try {
+  let result = true;
+  inputEventClient.permitInjection(result);
+}catch(error){
+  console.error("failed:" + JSON.stringify(error));
 }
 ```
 

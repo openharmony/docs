@@ -9,13 +9,20 @@
   - [Camera Photographing (ArkTS)](camera-shooting.md)
   - [Camera Recording (ArkTS)](camera-recording.md)
   - [Camera Metadata (ArkTS)](camera-metadata.md)
+  <!--Del-->
   - [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](camera-deferred-photo.md)
+  <!--DelEnd-->
+  - [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)
+  - [Moving Photos (ArkTS)](camera-moving-photo.md)
 - Camera Best Practices (ArkTS)
   - [Camera Photographing Sample (ArkTS)](camera-shooting-case.md)
   - [Camera Recording Sample (ArkTS)](camera-recording-case.md)
   - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
+  - [Deferred Photo Delivery Sample (ArkTS)](camera-deferred-capture-case.md)
+  <!--Del-->
   - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   - [High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
+  <!--DelEnd-->
 - Camera Development (C/C++)
   - [Device Input Management (C/C++)](native-camera-device-input.md)
   - [Camera Session Management (C/C++)](native-camera-session-management.md)

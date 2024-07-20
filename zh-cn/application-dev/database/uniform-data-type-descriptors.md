@@ -69,8 +69,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 基于标准类型的层级结构，业务声明自己支持的数据类型标识符时，需要声明该类型标识符的层级逻辑，例如业务自定义图片类型UTD标识符“com.company.x-image”，并归属到general.image类中。UTD会检验自定义类型标识符，确保归属关系中不出现环状结构。
 
-应用安装时，UTD会读取应用中自定义的数据类型进行安装，校验自定义类型数据符合约束条件后，应用自定义数据类型将被安装到设备中。应用启动
-后能正常读取到应用自定义的数据类型。如果引用其他应用定义的自定义数据类型，需要在应用开发时一并写入自定义数据类型配置文件中。
+应用安装时，UTD会读取应用中自定义的数据类型进行安装，校验自定义类型数据符合约束条件后，应用自定义数据类型将被安装到设备中。应用启动后能正常读取到应用自定义的数据类型。如果引用其他应用定义的自定义数据类型，需要在应用开发时一并写入自定义数据类型配置文件中。
 
 ### 约束限制
 
@@ -181,7 +180,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
 3. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
 4. 将上述步骤查询出来的数据类型进行比较，确认类型是否相等。
@@ -189,7 +188,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 try {
   // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
@@ -238,13 +237,13 @@ try {
 
 下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
   let fileExtention = '.mp3';
@@ -261,13 +260,13 @@ try {
 
 下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
   let mineType = 'audio/mp3';

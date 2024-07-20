@@ -18,11 +18,11 @@
 1. 导入模块。
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import promptAction from '@ohos.promptAction';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
@@ -32,20 +32,16 @@
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
    if (this.subscriber !== null) {
-     commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
+     commonEventManager.unsubscribe(this.subscriber, (err: BusinessError) => {
        if (err) {
-         console.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
          promptAction.showToast({
            message: $r('app.string.unsubscribe_success_toast')
          });
-         console.info(TAG, `Unsubscribe success`);
+         hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })
-   } else {
-     promptAction.showToast({
-       message: $r('app.string.unsubscribe_failed_toast')
-     });
    }
    ```

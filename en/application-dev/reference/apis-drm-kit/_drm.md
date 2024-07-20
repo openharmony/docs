@@ -15,26 +15,27 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 | Name| Description| 
 | -------- | -------- |
-| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br>**Library**: libnative_drm.z.so| 
+| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.| 
+| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.| 
+| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.| 
+| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.| 
 
 
 ### Structs
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) | Describes the information about a media key request.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeyRequest](_d_r_m___media_key_request.md) | Describes a media key request.| 
-| struct&nbsp;&nbsp;[DRM_Statistics](_d_r_m___statistics.md) | Describes the statistics information about a media key system.| 
-| struct&nbsp;&nbsp;[DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) | Describes an array holding the IDs of offline media keys.| 
-| struct&nbsp;&nbsp;[DRM_KeysInfo](_d_r_m___keys_info.md) | Describes the information about media keys.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Describes the media key status.| 
-| struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection Scheme Specific Header (PSSH) information of the UUID.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the media key system information obtained from a media source.| 
-| struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | Describes the callback used to listen for events such as media key expiry or change.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the name and UUID of a DRM plug-in. | 
+| struct  [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) | Describes the information about a media key request.| 
+| struct  [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) | Describes a media key request.| 
+| struct  [DRM_Statistics](_d_r_m___statistics.md) | Describes the statistics information about a media key system.| 
+| struct  [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) | Describes an array holding the IDs of offline media keys.| 
+| struct  [DRM_KeysInfo](_d_r_m___keys_info.md) | Describes the information about media keys.| 
+| struct  [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Describes the media key status.| 
+| struct  [DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection Scheme Specific Header (PSSH) information of the UUID.| 
+| struct  [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the media key system information obtained from a media source.| 
+| struct  [MediaKeySession_Callback](_media_key_session___callback.md) | Describes the callback used to listen for events such as media key expiry or change, without returning media key session instances. It applies to the scenario where a single media key session needs to be decrypted.| 
+| struct  [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) | Describes the callback used to listen for events such as media key expiry or change, with media key session instances returned. It applies to the scenario where multiple media key sessions need to be decrypted.| 
+| struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the name and UUID of a DRM plug-in. | 
 
 
 ### Macros
@@ -91,8 +92,12 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | typedef enum [Drm_ErrCode](#drm_errcode-1) [Drm_ErrCode](#drm_errcode) | Defines an enum for the DRM error codes.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_EventCallback](#mediakeysession_eventcallback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the key is changed.| 
-| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | Defines the callback used to listen for events such as media key expiry or change.| 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered.| 
+| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | Defines the callback used to listen for events such as media key expiry or change, without returning media key session instances. It applies to the scenario where a single media key session needs to be decrypted.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the key is changed.| 
+| typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](#oh_mediakeysession_callback) | Defines the callback used to listen for events such as media key expiry or change, with media key session instances returned. It applies to the scenario where multiple media key sessions need to be decrypted.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered. It does not return media key system instances and applies to the scenario where a single media key system is used.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback)) (MediaKeySystem \*mediaKeySystem, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered. It returns media key system instances and applies to the scenario with where media key systems are used.| 
 
 
 ### Enums
@@ -122,10 +127,13 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the content protection level of a media key session.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, const char \*mimeType, bool \*status) | Checks whether secure decoding is required for encrypted content.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | Sets a media key session event callback.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetCallback](#oh_mediakeysession_setcallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | Sets a media key session event callback.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_Destroy](#oh_mediakeysession_destroy) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin) | Releases the media key session resources.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetCallback](#oh_mediakeysystem_setcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback) callback) | Sets a media key system event callback.| 
 | bool [OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported) (const char \*name) | Checks whether a media key system is supported.| 
 | bool [OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | Checks whether a media key system is supported.| 
 | bool [OH_MediaKeySystem_IsSupported3](#oh_mediakeysystem_issupported3) (const char \*name, const char \*mimeType, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) contentProtectionLevel) | Checks whether a media key system is supported.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMediaKeySystems](#oh_mediakeysystem_getmediakeysystems) ([DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) \*infos, uint32_t \*count) | Obtains the names and UUIDs of the supported media key systems.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_Create](#oh_mediakeysystem_create) (const char \*name, [MediaKeySystem](#mediakeysystem) \*\*mediaKeySystem) | Creates a **MediaKeySystem** instance by name.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | Sets a configuration item in the form of a string for a media key system.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | Obtains the value of a configuration item in the form of a string for a media key system.| 
@@ -178,8 +186,11 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH information.| 
 | char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | Name of the DRM plug-in. | 
 | uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of the DRM plug-in. | 
-| [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback) | Event callback, for example, a media key expiry event.| 
-| [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback) | Callback of the media key change event.| 
+| [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback-12) | Event callback, for example, a media key expiry event.| 
+| [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback-12) | Callback of the media key change event.| 
+| [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback) [OH_MediaKeySession_Callback::eventCallback](#eventcallback-22) | Event callback, for example, a media key expiry event.| 
+| [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback) [OH_MediaKeySession_Callback::keyChangeCallback](#keychangecallback-22) | Callback of the media key change event.| 
+
 
 
 ## Macro Description
@@ -743,7 +754,7 @@ typedef struct MediaKeySession_Callback MediaKeySession_Callback
 
 **Description**
 
-Defines the callback used to listen for events such as media key expiry or change.
+Defines the callback used to listen for events such as media key expiry or change, without returning media key session instances. It applies to the scenario where a single media key session needs to be decrypted.
 
 **Since**: 11
 
@@ -819,7 +830,7 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 
 **Description**
 
-Defines the callback that is invoked when a DRM event is triggered.
+Defines the callback that is invoked when a DRM event is triggered. It does not return media key system instances and applies to the scenario where a single media key system is used.
 
 **Since**: 11
 
@@ -827,6 +838,98 @@ Defines the callback that is invoked when a DRM event is triggered.
 
 | Name| Description| 
 | -------- | -------- |
+| eventType | Event type.| 
+| info | Pointer to the event information obtained from the media key system.| 
+| infoLen | Length of the event information.| 
+| extra | Pointer to the additional information obtained from the media key system.| 
+
+**Returns**
+
+Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
+
+
+### OH_MediaKeySession_Callback
+
+```
+typedef struct OH_MediaKeySession_CallbackOH_MediaKeySession_Callback
+```
+
+**Description**
+
+Defines the callback used to listen for events such as media key expiry or change, with media key session instances returned. It applies to the scenario where multiple media key sessions need to be decrypted.
+
+**Since**: 12
+
+
+### OH_MediaKeySession_EventCallback
+
+```
+typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+```
+
+**Description**
+
+Defines the callback that is invoked when a DRM event is triggered.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mediaKeySessoin | Pointer to the **MediaKeySession** instance.| 
+| eventType | Event type.| 
+| info | Pointer to the event information obtained from the media key session.| 
+| infoLen | Length of the event information.| 
+| extra | Pointer to the additional information obtained from the media key session.| 
+
+**Returns**
+
+Returns an error code defined in **Drm_ErrCode**.
+
+
+### OH_MediaKeySession_KeyChangeCallback
+
+```
+typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool newKeysAvailable)
+```
+
+**Description**
+
+Defines the callback that is invoked when the key is changed.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mediaKeySessoin | Pointer to the **MediaKeySession** instance.| 
+| keysInfo | Pointer to the key information obtained from the media key system.| 
+| newKeysAvailable | Whether the new keys are available. The value **true** means that the new keys are available, and **false** means the opposite.| 
+
+**Returns**
+
+Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
+
+
+### OH_MediaKeySystem_Callback
+
+```
+typedef Drm_ErrCode(* OH_MediaKeySystem_Callback) (MediaKeySystem *mediaKeySystem, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+```
+
+**Description**
+
+Defines the callback that is invoked when a DRM event is triggered. It returns media key system instances and applies to the scenario with where media key systems are used.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
 | eventType | Event type.| 
 | info | Pointer to the event information obtained from the media key system.| 
 | infoLen | Length of the event information.| 
@@ -1256,6 +1359,30 @@ Restores offline media keys.
 Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
 
 
+### OH_MediaKeySession_SetCallback()
+
+```
+Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession * mediaKeySessoin, OH_MediaKeySession_Callback * callback )
+```
+
+**Description**
+
+Sets a media key session event callback.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mediaKeySession | Pointer to the **MediaKeySession** instance.| 
+| callback | Pointer to the callback to be set for the media key session.| 
+
+**Returns**
+
+Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
+
+
 ### OH_MediaKeySession_SetMediaKeySessionCallback()
 
 ```
@@ -1509,6 +1636,7 @@ Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL*
 ```
 Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems (DRM_MediaKeySystemDescription * infos, uint32_t * count )
 ```
+
 **Description**
 
 Obtains the names and UUIDs of the supported media key systems.
@@ -1519,8 +1647,8 @@ Obtains the names and UUIDs of the supported media key systems.
 
 | Name| Description| 
 | -------- | -------- |
-| infos | Array holding the names and UUIDs of the media key systems. | 
-| count | Number of the DRM_MediaKeySystemMapInfo structs. | 
+| infos | Array holding the names and UUIDs of the media key systems.| 
+| count | Number of the DRM_MediaKeySystemMapInfo structs.| 
 
 **Returns**
 
@@ -1653,6 +1781,7 @@ Returns **true** if the media key system is supported; returns **false** otherwi
 ```
 bool OH_MediaKeySystem_IsSupported3 (const char * name, const char * mimeType, DRM_ContentProtectionLevel contentProtectionLevel )
 ```
+
 **Description**
 
 Checks whether a media key system is supported.
@@ -1691,6 +1820,30 @@ Processes a response to the media key system request.
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
 | response | Pointer to the response.| 
 | responseLen | Length of the response.| 
+
+**Returns**
+
+Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
+
+
+### OH_MediaKeySystem_SetCallback()
+
+```
+Drm_ErrCode OH_MediaKeySystem_SetCallback (MediaKeySystem * mediaKeySystem, OH_MediaKeySystem_Callback callback )
+```
+
+**Description**
+
+Sets a media key system event callback.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
+| callback | Callback to be set for the media key system.| 
 
 **Returns**
 
@@ -1830,7 +1983,7 @@ char DRM_MediaKeyRequest::defaultUrl[MAX_DEFAULT_URL_LEN]
 URL of a media key server.
 
 
-### eventCallback
+### eventCallback [1/2]
 
 ```
 MediaKeySession_EventCallback MediaKeySession_Callback::eventCallback
@@ -1840,6 +1993,16 @@ MediaKeySession_EventCallback MediaKeySession_Callback::eventCallback
 
 Event callback, for example, a media key expiry event.
 
+
+### eventCallback [2/2]
+
+```
+OH_MediaKeySession_EventCallback OH_MediaKeySession_Callback::eventCallback
+```
+
+**Description**
+
+Event callback, for example, a media key expiry event.
 
 ### ids
 
@@ -1896,7 +2059,7 @@ int32_t DRM_MediaKeyRequestInfo::initDataLen
 Initial data length.
 
 
-### keyChangeCallback
+### keyChangeCallback [1/2]
 
 ```
 MediaKeySession_KeyChangeCallback MediaKeySession_Callback::keyChangeCallback
@@ -1906,6 +2069,16 @@ MediaKeySession_KeyChangeCallback MediaKeySession_Callback::keyChangeCallback
 
 Callback of the media key change event.
 
+
+### keyChangeCallback [2/2]
+
+```
+OH_MediaKeySession_KeyChangeCallback OH_MediaKeySession_Callback::keyChangeCallback
+```
+
+**Description**
+
+Callback of the media key change event.
 
 ### keyId
 

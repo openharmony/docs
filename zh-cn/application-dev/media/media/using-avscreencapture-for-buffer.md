@@ -160,6 +160,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <multimedia/player_framework/native_avbuffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -175,8 +176,6 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理状态变更
-        //可选 配置录屏旋转
-        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
         // 通话中断状态处理
@@ -190,13 +189,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    int32_t ret;
-    // 获取解码后信息
-    OH_AVCodecBufferAttr info;
-    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
+    // 获取解码后信息 可以参考编解码接口
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+    int32_t videoSize= config.height * config.width * 4;
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
     if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
         // 处理视频buffer
     } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
@@ -208,6 +207,23 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
+    // 从js端获取窗口id number[]
+    vector<int> windowIdsExclude = {};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // 获取参数
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取数组长度
+    uint32_t array_length;
+    napi_get_array_length(env, args[0], &array_length);
+    // 读初窗口id
+    for (int32_t i = 0; i < array_length; i++) {
+        napi_value temp;
+        napi_get_element(env, args[0], i, &temp);
+        uint32_t tempValue;
+        napi_get_value_uint32(env, temp, &tempValue);
+        windowIdsExclude.push_back(tempValue);
+     }
     // 实例化ScreenCapture
     capture = OH_AVScreenCapture_Create();
     
@@ -219,11 +235,14 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]
-    OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
+    OH_AVScreenCapture_ContentFilter *contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // 添加过滤通知音
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-    // 排除过滤器
-    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
+    // 排除指定窗口id
+    OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
+                                                      static_cast<int32_t>(windowIdsExclude.size()));
+
+    OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};

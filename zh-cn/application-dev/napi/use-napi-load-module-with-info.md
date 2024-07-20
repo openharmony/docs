@@ -306,7 +306,7 @@ export const add: (a: number, b: number) => number;
 ```json
 {
     "dependencies": {
-        "libentry.so": "file../src/main/cpp/types/libentry"
+        "libentry.so": "file:../src/main/cpp/types/libentry"
     }
 }
 ```

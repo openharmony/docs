@@ -101,7 +101,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed eac
 
 [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
-## How do I convert the implementation in the Java-like thread model (memory sharing) to the implementation in the ArkTS thread model (memory isolation)? (API version 11)
+## How do I convert the implementation of the memory-sharing thread model into the implementation of the ArkTS thread model (memory isolation)? (API version 11)
 
 Use **TaskPool** APIs for conversion in the following scenarios:
 
@@ -412,7 +412,7 @@ Subthreads support priority setting, and the priority affects their scheduling.
 1. [@ohos.taskpool (Using the Task Pool)](../reference/apis-arkts/js-apis-taskpool.md)
 2. [@ohos.worker (Worker Startup)](../reference/apis-arkts/js-apis-worker.md)
 
-## Does ArkTS support multithreading development using a Java-like shared memory model? (API version 10)
+## Does ArkTS support multithreading development using the shared memory model? (API version 10)
 
 Multiple threads cannot perform operations on the same memory object simultaneously by locking the memory object. ArkTS is an actor model that supports cross-thread memory isolation. Currently, only SharedArrayBuffer or native-layer objects can be shared.
 
@@ -420,18 +420,18 @@ Multiple threads cannot perform operations on the same memory object simultaneou
 
 [Multithreaded Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
 
-## What is the memory sharing principle of the Sendable class object of ArkTS? What are the restrictions? How do I use it? (API version 11)
+## What is the memory sharing principle of a sendable class object of ArkTS? What are the restrictions? How do I use it? (API version 11)
 
-The Sendable class is an extension of the actor model. The memory of the Sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing the Sendable class object, use the synchronization mechanism to ensure thread safe.
+The sendable class is an extension of the actor model. The memory of a sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing a sendable class object, use the synchronization mechanism to ensure thread safe.
 
-A Sendable object must meet the following specifications:
-1. The member attribute is of the SendableClass or basic type (string, number, or boolean, but not container class, which will be supported later).
-2. Member attributes must be initialized explicitly.
+A sendable object must meet the following specifications:
+1. The member property is of the sendable or basic type (string, number, or boolean, but not container class, which will be supported later).
+2. Member properties must be initialized explicitly.
 3. Member functions cannot use closures. Only input parameters, **this** member, or variables imported through **import** can be used.
-4. Only the Sendable class can inherit from the Sendable class.
+4. Only a sendable class can inherit from another sendable class.
 5. @Sendable can be used only in .ets files.
-6. Private attributes must be defined using **private**, rather than the number sign (#).
-7. The file to export cannot contain non-SendableClass attributes.
+6. Private properties must be defined using **private**, rather than the number sign (#).
+7. The file to export cannot contain non-sendable properties.
 8. Either of the following transfer modes is used:
     Serialized transfer: Deep copy to other threads is supported.
     Sharing mode: Cross-thread reference transfer is supported. Multiple threads can read and write data at the same time. You need to use the synchronization mechanism to avoid multi-thread competition.
@@ -497,7 +497,7 @@ They are thread safe.
 
 If I/O operations are not involved, asynchronous tasks of ArkTS APIs are triggered at the microtask execution time of the main thread and still occupy the main thread. You are advised to use **TaskPool** to distribute the tasks to the background task pool.
 
-##  How do I implement synchronous function calls in ArkTS as easily as using **synchronized** in Java methods? (API version 10)
+##  How do I implement synchronous function calls? (API version 10)
 
 Currently, the use of **synchronized** is not supported. In the future, the AsyncLock synchronization mechanism will be supported, where code blocks to be synchronized can be placed in asynchronous code blocks.
 
@@ -607,3 +607,128 @@ To address the problem that a large number of threads are required, you are advi
 **References**
 
 [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
+
+##  What should I do if an error message related to modular loading is displayed when running an ArkTS application?
+
+The following errors related to modular loading may be displayed:
+
+1. "Cannot find dynamic-import module 'xxxx'" 
+
+   This error indicates that the module to load is not compiled into the application package.
+
+   Possible cause: An expression is dynamically loaded as an input parameter, but the module path is incorrect.
+
+   ``` typescript
+     import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
+   ```
+
+   Locating method: Print the path information of the module, and check whether the path is correct.
+
+2. "Cannot find module 'xxxx', which is application Entry Point"
+
+   This error indicates that the entry file is not found during application startup.
+
+   Possible cause: The entry file is not found during application startup.
+
+   Locating method:
+
+   (1) Open the application project-level build file **module.json5** in the **entry/src/main** directory.
+
+
+   The following is an example of some parameters in **module.json5**.
+
+   ```
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       ...
+       "abilities": [
+         {
+           "name": "EntryAbility", // Module name.
+           "srcEntry": "./ets/entryability/EntryAbility.ts",  // Relative path of the src directory to the project root directory.
+           "description": "$string:EntryAbility_desc",
+           "icon": "$media:icon",
+           "label": "$string:EntryAbility_label",
+           "startWindowIcon": "$media:icon",
+           "startWindowBackground": "$color:start_window_background",
+           "exported": true,
+           "skills": [
+             {
+               "entities": [
+                 "entity.system.home"
+               ],
+               "actions": [
+                 "action.system.home"
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   }
+   ```
+
+   (2) Check the value of **srcEntry** under **"abilities** in **module.json5**. This parameter specifies the path of the entry file.
+
+3. "No export named 'xxxx' which exported by 'xxxx'"
+
+   This error indicates that no specific object is found in the module when the .so file in the HAP or HAR of the application is being loaded.
+
+   Possible cause: The dependency between modules is pre-parsed in the static compilation phase of the module. If the imported variable name in the .ets file is incorrect, an error message is displayed in both DevEco Studio and application build phase. Note that the dependency of C++ modules is checked at runtime.
+
+   Locating method:
+
+   Check whether the .so file in the application contains the exported variable that causes the error, and compare the exported variable with the imported variable in the .so file. If they are inconsistent, modify the variable.
+
+## Can long-time listening interfaces, such as **emitter.on**, be used in a TaskPool thread?
+
+Not recommended.
+
+**Principle Clarification**
+
+1. Long-time listening may adversely affect thread recycling or reuse.
+2. If a thread is reclaimed, the thread callback becomes invalid or an unexpected error occurs.
+3. If a task function is executed for multiple times, listening may be generated in different threads. Consequently, the result may fail to meet your expectation.
+
+**Solution**
+
+You are advised to use a [continuous task](../reference/apis-arkts/js-apis-taskpool.md#longtask12).
+
+## Should I call onEnqueued, onStartExecution, onExecutionFailed, and onExecutionSucceeded in a certain sequence to listen for a task in the task pool? (API version 12)
+
+ The four APIs are independent and can be called in any sequence.
+
+## How do I use a sendable class in HAR?
+
+ Use the TS HAR.
+
+**References**
+
+[Compiling and Generating TS Files](../quick-start/har-package.md#compiling-and-generating-ts-files)
+
+## What are the commands used for setting various hdc properties?
+
+- To use the default properties, run the following command: **hdc shell param set persist.ark.properties 0x105c**
+- To disable multithreading detection and print abnormal stack frames, run the following command: **hdc shell param set persist.ark.properties -1**
+- To print the GC status, run the following command: **hdc shell param set persist.ark.properties 0x105e**
+- To enable multithreading detection, run the following command: **hdc shell param set persist.ark.properties 0x107c**
+- To enable multithreading detection and print abnormal stacks, run the following command: **hdc shell param set persist.ark.properties 0x127c**
+- To enable memory leak check for global objects, run the following command: **hdc shell param set persist.ark.properties 0x145c**
+- To enable memory leak check for global original values, run the following command: **hdc shell param set persist.ark.properties 0x185C**
+- To open the GC heap information, run the following command: **hdc shell param set persist.ark.properties 0x905c**
+- To enable microtask tracing (including enqueuing and execution), run the following command: **hdc shell param set persist.ark.properties 0x8105c**
+- To use ArkProperties to control whether to enable the socket debugger of an earlier version, run the following command: **hdc shell param set persist.ark.properties 0x10105C**
+- To use DISABLE to adapt to the existing ArkProperties in the test script, run the following command: **hdc shell param set persist.ark.properties 0x40105C**
+- To enhance error reporting during the loading of .so files to a module, run the following command: **hdc shell param set persist.ark.properties 0x80105C**
+- To enable modular tracing, run the following command: **hdc shell param set persist.ark.properties 100105C**
+- To enable module-specific logging, run the following command: **hdc shell param set persist.ark.properties 200105C**
+### What are the commands used for performance data collection of CPU Profiler?
+- To collect data of the main thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x705c**
+- To collect data of the worker thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x1505c**
+- To collect data of the main thread and worker thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x1705c**
+- To collect data of the main thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x2505c**
+- To collect data of the worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x4505c**
+- To collect data of the main thread and worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x6505c**
+
+ <!--no_check--> 

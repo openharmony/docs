@@ -6,6 +6,10 @@ Immersive window: a window display mode where the system windows (generally the 
 
 The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a subwindow (for example, a dialog box or a floating window).
 
+> **NOTE**
+>
+> Currently, immersive UI development supports window-level configuration, but not page-level configuration. If page redirection is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in the **onPageShow** callback, and then restore the default settings when the page exits, for example, in the **onPageHide** callback.
+
 ## When to Use
 
 In the FA model, you can perform the following operations during application window development:
@@ -14,22 +18,21 @@ In the FA model, you can perform the following operations during application win
 
 - Experiencing the immersive window feature
 
-
 ## Available APIs
 
 The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
-| Window static method| findWindow(name: string): Window                             | Finds a window based on the name.                                    |
+| Window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
+| Window static method | findWindow(name: string): Window                             | Finds a window based on the name.                                    |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.                                |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout.                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar. |
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
@@ -48,8 +51,8 @@ You can create a subwindow, such as a dialog box, and set its properties.
    - Call **window.findWindow** to find an available subwindow.
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
    // Method 1: Create a subwindow.
@@ -156,8 +159,8 @@ To create a better video watching and gaming experience, you can use the immersi
    > Ensure that the top window of the application is the main window. You can use **window.getLastWindow** to obtain the main window.
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let mainWindowClass: window.Window | null = null;
    

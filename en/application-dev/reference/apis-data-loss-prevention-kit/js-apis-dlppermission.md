@@ -9,7 +9,7 @@ Data loss prevention (DLP) is a system solution provided to prevent data disclos
 ## Modules to Import
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
 ```
 
 ## dlpPermission.isDLPFile
@@ -37,19 +37,19 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 
 try {
   let res = dlpPermission.isDLPFile(file.fd);  // Check whether the file is a DLP file.
@@ -57,7 +57,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ## dlpPermission.isDLPFile
@@ -73,7 +73,7 @@ Checks whether a file is a DLP file based on the FD. This API uses an asynchrono
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fd | number | Yes| FD of the file to check.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.<br> The value **true** means the file is a DLP file; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.<br>The value **true** means the file is a DLP file; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -81,19 +81,19 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 
 try {
   dlpPermission.isDLPFile(file.fd, (err, res) => {
@@ -102,11 +102,11 @@ try {
     } else {
       console.info('res', res);
     }
-    fs.closeSync(file);
+    fileIo.closeSync(file);
   });
 } catch (err) {
   console.error('isDLPFile error,', (err as BusinessError).code, (err as BusinessError).message);
-  fs.closeSync(file);
+  fileIo.closeSync(file);
 }
 ```
 
@@ -137,8 +137,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox().then((inSandbox) => {// Check whether the application is running in a sandbox.
@@ -164,7 +164,7 @@ Obtains the permission information of this DLP file. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -172,7 +172,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -180,9 +180,9 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox().then((inSandbox) => {// Check whether the application is running in a sandbox.
@@ -233,8 +233,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // Obtain the original file name.
@@ -269,8 +269,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getDLPSuffix(); // Obtain the DLP file name extension.
@@ -301,7 +301,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -309,8 +309,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
@@ -341,7 +341,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -349,8 +349,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.off('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
@@ -387,8 +387,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
@@ -410,7 +410,7 @@ Checks whether this application is running in a DLP sandbox environment. This AP
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -418,15 +418,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox((err, data) => {
@@ -467,8 +467,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getDLPSupportedFileTypes(); // Obtain the file types that support DLP.
@@ -490,7 +490,7 @@ Obtains the file name extension types that support DLP. This API uses an asynchr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -498,15 +498,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getDLPSupportedFileTypes((err, res) => {
@@ -549,7 +549,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -557,8 +557,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -576,7 +576,8 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the sandbox retention state. This API uses an asynchronous callback to return the result. 
+Sets the sandbox retention state. This API uses an asynchronous callback to return the result.
+
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -594,7 +595,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -602,8 +603,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -646,15 +647,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -685,15 +686,15 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -735,7 +736,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -743,8 +744,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // Obtain all the sandbox applications in the retention state.
@@ -767,7 +768,7 @@ Obtains the sandbox applications in the retention state of an application. This 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -775,7 +776,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -783,8 +784,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getRetentionSandboxList("bundleName", (err, res) => {
@@ -811,7 +812,7 @@ Obtains the sandbox applications in the retention state of this application. Thi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -819,7 +820,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -827,8 +828,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getRetentionSandboxList((err, res) => {
@@ -870,8 +871,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
@@ -893,7 +894,7 @@ Obtains the list of DLP files that are accessed recently. This API uses an async
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -901,7 +902,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -909,8 +910,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getDLPFileAccessRecords((err, res) => {
@@ -954,7 +955,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 | 19100016 | Uri does not exist in want. |
@@ -963,12 +964,9 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import common from '@ohos.app.ability.common';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
@@ -1012,7 +1010,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -1021,8 +1019,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.setSandboxAppConfig('configInfo'); // Set sandbox application configuration.
@@ -1050,7 +1048,6 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -1059,8 +1056,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.cleanSandboxAppConfig(); // Clean sandbox application configuration.
@@ -1087,7 +1084,6 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
@@ -1095,8 +1091,8 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
@@ -1130,16 +1126,14 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-async checkIsDLPFeatureProvided() {
-  dlpPermission.isDLPFeatureProvided().then((res) => {git
-    console.info('res', JSON.stringify(res));
-  }).catch((err: BusinessError) => {
-    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
-  });
-}
+dlpPermission.isDLPFeatureProvided().then((res) => {
+  console.info('res', JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+});
 ```
 
 ## ActionFlagType

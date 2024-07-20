@@ -20,7 +20,7 @@ geometryTransition的使用方式为对需要添加一镜到底动效的两个�
 对于同一个页面中的两个元素的一镜到底效果，geometryTransition接口的简单使用示例如下：
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -235,7 +235,7 @@ export default struct  Post {
 
 ## 使用transition和属性动画实现一镜到底效果
 
-除了使用geometryTransition实现一镜到底动效外，也可以通过使用transition搭配属性动画实现一镜到底效果。
+除了使用geometryTransition实现一镜到底动效外，也可以通过使用[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)搭配[属性动画](./arkts-attribute-animation-apis.md)实现一镜到底效果。
 
 对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现一镜到底效果。基本步骤为：
 
@@ -458,7 +458,7 @@ export default struct  Post {
 
 ```ts
 // utils.ets
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
 @Component
@@ -593,7 +593,7 @@ struct ShareZIndexDemo {
 该实现方式相较于其他实现方式而言自由度较高，可以根据需要自定义动画过程中各组件的行为，相关的示例及效果如下：
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 class RectJson {
   $rect: Array<number> = []

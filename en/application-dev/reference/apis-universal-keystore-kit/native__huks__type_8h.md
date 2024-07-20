@@ -5,11 +5,9 @@
 
 Defines the enumerated variables, structs, and macros used in the HUKS APIs.
 
- **Since**
-9
+**Since**: 9
 
-**Related Modules**
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -19,18 +17,19 @@ Defines the enumerated variables, structs, and macros used in the HUKS APIs.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Huks_Result](_o_h___huks___result.md) | Defines the returned status data, including the return code and message. | 
-| [OH_Huks_Blob](_o_h___huks___blob.md) | Defines the binary large object (BLOB) that stores data. | 
-| [OH_Huks_Param](_o_h___huks___param.md) | Defines the structure of the parameters in a parameter set. | 
-| [OH_Huks_ParamSet](_o_h___huks___param_set.md) | Defines the parameter set information. | 
-| [OH_Huks_CertChain](_o_h___huks___cert_chain.md) | Defines the certificate chain information. | 
-| [OH_Huks_KeyInfo](_o_h___huks___key_info.md) | Defines the key information. | 
-| [OH_Huks_PubKeyInfo](_o_h___huks___pub_key_info.md) | Defines the information of a public key. | 
-| [OH_Huks_KeyMaterialRsa](_o_h___huks___key_material_rsa.md) | Defines the information of an RSA key. | 
-| [OH_Huks_KeyMaterialEcc](_o_h___huks___key_material_ecc.md) | Defines the information of an ECC key. | 
-| [OH_Huks_KeyMaterialDsa](_o_h___huks___key_material_dsa.md) | Defines the information of a DSA key. | 
-| [OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md) | Defines the information of a DH key. | 
-| [OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md) | Defines the information of a 25519 key. | 
+| struct  [OH_Huks_Result](_o_h___huks___result.md) | Defines the returned status data, including the return code and message. | 
+| struct  [OH_Huks_Blob](_o_h___huks___blob.md) | Defines the binary large object (BLOB) that stores data. | 
+| struct  [OH_Huks_Param](_o_h___huks___param.md) | Defines the parameters in a parameter set. | 
+| struct  [OH_Huks_ParamSet](_o_h___huks___param_set.md) | Defines a parameter set. | 
+| struct  [OH_Huks_CertChain](_o_h___huks___cert_chain.md) | Defines a certificate chain. | 
+| struct  [OH_Huks_KeyInfo](_o_h___huks___key_info.md) | Defines the key information. | 
+| struct  [OH_Huks_PubKeyInfo](_o_h___huks___pub_key_info.md) | Defines the public key information. | 
+| struct  [OH_Huks_KeyMaterialRsa](_o_h___huks___key_material_rsa.md) | Defines an RSA key. | 
+| struct  [OH_Huks_KeyMaterialEcc](_o_h___huks___key_material_ecc.md) | Defines an ECC key. | 
+| struct  [OH_Huks_KeyMaterialDsa](_o_h___huks___key_material_dsa.md) | Defines a DSA key. | 
+| struct  [OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md) | Defines a DH key. | 
+| struct  [OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md) | Defines a 25519 key. | 
+| struct&nbsp;&nbsp;[OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) | Defines a key alias set. | 
 
 
 ### Macros

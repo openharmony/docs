@@ -9,9 +9,10 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 ```
 ```ts
 (async (): Promise<void> => {
@@ -21,7 +22,7 @@ const TAG: string = 'PagePageAbilityFirst';
     parameters: { page: 'pages/second' }
   };
   featureAbility.startAbility({ want: wantInfo }).then((data) => {
-    Logger.debug(TAG, `restartAbility success : ${data}`);
+    hilog.debug(domain, TAG, `restartAbility success : ${data}`);
   });
 })()
 ```
@@ -138,41 +139,22 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import worker from '@ohos.worker';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
 struct PagePageAbilityFirst {
   build() {
     Column() {
-      Row() {
-        Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-          Text($r('app.string.pageAbility_first_button'))
-            .fontSize(24)
-            .fontWeight(FontWeight.Bold)
-            .textAlign(TextAlign.Start)
-            .margin({ top: 12, bottom: 11, right: 24, left: 24 })
-        }
-      }
-      .width('100%')
-      .height(56)
-      .justifyContent(FlexAlign.Start)
-      .backgroundColor($r('app.color.backGrounding'))
-
+      //...
       List({ initialIndex: 0 }) {
-        ...
+        //...
         ListItem() {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
-            Text($r('app.string.start_standard_first_button'))
-              .textAlign(TextAlign.Start)
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
-              .fontSize(16)
-              .width(232)
-              .height(22)
-              .fontColor($r('app.color.text_color'))
+          //...
           }
           .onClick(() => {
             let want: Want = {
@@ -181,27 +163,16 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/first' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
-        .height(56)
-        .backgroundColor($r('app.color.start_window_background'))
-        .borderRadius(24)
-        .margin({ top: 12, right: 12, left: 12 })
-
+        //...
         ListItem() {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
-            Text($r('app.string.start_standard_second_button'))
-              .textAlign(TextAlign.Start)
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
-              .fontSize(16)
-              .width(232)
-              .height(22)
-              .fontColor($r('app.color.text_color'))
+          //...
           }
           .onClick(() => {
             let want: Want = {
@@ -210,24 +181,17 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/second' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
-        .height(56)
-        .backgroundColor($r('app.color.start_window_background'))
-        .borderRadius(24)
-        .margin({ top: 12, right: 12, left: 12 })
-        ...
+        //...
       }
-      .height('100%')
-      .backgroundColor($r('app.color.backGrounding'))
+      //...
     }
-    .width('100%')
-    .margin({ top: 8 })
-    .backgroundColor($r('app.color.backGrounding'))
+    //...
   }
 }
 ```

@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContentSession.loadContent
@@ -31,11 +31,12 @@ Loads content from a page associated with a local storage to the window correspo
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -50,6 +51,14 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -80,6 +89,14 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Result returned to the UIExtensionComponent.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
@@ -99,6 +116,14 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -122,6 +147,15 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 | ------------------- | ------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -139,6 +173,15 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 | isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
 | callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
@@ -152,22 +195,19 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../../application-dev/application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
 | wantParam | Record<string, Object> | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 | callback | AsyncCallback\<void> | Yes|Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -182,7 +222,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../../application-dev/application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
 | wantParam | Record<string, Object> | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 
@@ -194,12 +234,72 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
+
+## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+
+getUIExtensionWindowProxy(): uiExtension.WindowProxy
+
+Obtains the window proxy of this UIExtensionAbility.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| uiExtension.WindowProxy | Window proxy.|
+
+**Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+// Index.ets
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import uiExtension from '@ohos.arkui.uiExtension';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Extension {
+  @State message: string = 'EmbeddedUIExtensionAbility Index';
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
+
+  aboutToAppear(): void {
+    this.extensionWindow?.on('windowSizeChange', (size) => {
+      console.info(`size = ${JSON.stringify(size)}`);
+    });
+    this.extensionWindow?.on('avoidAreaChange', (info) => {
+      console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
+    });
+  }
+
+  aboutToDisappear(): void {
+    this.extensionWindow?.off('windowSizeChange');
+    this.extensionWindow?.off('avoidAreaChange');
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+  }
+}
+```

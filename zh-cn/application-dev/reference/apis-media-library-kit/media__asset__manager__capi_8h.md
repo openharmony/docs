@@ -7,7 +7,7 @@
 
 使用由媒体资产管理器提供的C API来请求媒体库资源。
 
-**系统能力：**SystemCapability.FileManagement.PhotoAccessHelper.Core
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **库：** libmedia_asset_manager.so
 

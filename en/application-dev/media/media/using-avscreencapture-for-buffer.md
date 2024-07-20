@@ -10,6 +10,8 @@ By default, the main screen is captured, and the **Graphics** module generates t
 
 The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
 
+If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
+
 This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
 ## How to Develop
@@ -140,7 +142,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Example
+## Sample Code
 
 Refer to the sample code below to implement screen capture using **AVScreenCapture**.
 
@@ -159,6 +161,7 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <multimedia/player_framework/native_avbuffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -174,10 +177,11 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // Process the state change.
-        // (Optional) Configure screen capture rotation.
-        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     }
-
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // Process the screen capture interruption caused by incoming calls.
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // Process the state change.
     }
@@ -186,13 +190,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    int32_t ret;
-    // Obtain the decoded information.
-    OH_AVCodecBufferAttr info;
-    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
+    // Obtain the decoded information. For details, see the encoding and decoding API reference.
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+    int32_t videoSize= config.height * config.width * 4;
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
     if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
         // Process the video buffer.
     } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
@@ -202,21 +206,44 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
-int main() {
+struct OH_AVScreenCapture *capture;
+static napi_value Screencapture(napi_env env, napi_callback_info info) {
+    // Obtain the window ID number[] from the JS side.
+    vector<int> windowIdsExclude = {};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // Obtain parameters.
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // Obtain the length of the array.
+    uint32_t array_length;
+    napi_get_array_length(env, args[0], &array_length);
+    // Read the initial window ID.
+    for (int32_t i = 0; i < array_length; i++) {
+        napi_value temp;
+        napi_get_element(env, args[0], i, &temp);
+        uint32_t tempValue;
+        napi_get_value_uint32(env, temp, &tempValue);
+        windowIdsExclude.push_back(tempValue);
+     }
     // Instantiate AVScreenCapture.
-    struct OH_AVScreenCapture *capture;
+    capture = OH_AVScreenCapture_Create();
     
-    // Set the callbacks.
+    // Set the callbacks. 
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
 
+    // (Optional) Configure screen capture rotation. This API should be called when the device screen rotation is detected. If the device screen does not rotate, the API call is invalid.
+    OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // Optional. Filter audio.
-    OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
+    OH_AVScreenCapture_ContentFilter *contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // Add a filter announcement.
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-    // Exclude the content.
-    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
+    // Exclude the specified window ID.
+    OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
+                                                      static_cast<int32_t>(windowIdsExclude.size()));
+
+    OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // Initialize the screen capture parameters and pass in an OH_AVScreenRecorderConfig struct.
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
@@ -252,6 +279,10 @@ int main() {
     OH_AVScreenCapture_StopScreenCapture(capture);
     // Release the AVScreenCapture instance.
     OH_AVScreenCapture_Release(capture);
-    return 0;
+    // Return the call result. In the example, only a random number is returned.
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
 }
 ```

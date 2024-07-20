@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## 常量
@@ -44,7 +44,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
@@ -88,7 +88,7 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
@@ -98,6 +98,67 @@ async function createTonePlayerBefore(){
   }
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
+```
+
+## audio.createAsrProcessingController<sup>12+</sup>
+
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+
+获取ASR处理控制器
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                                    | 说明         |
+|-------------------------------------------------------| ------------ |
+| [AsrProcessingController](#asrprocessingcontroller12) | ASR处理控制器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+let audioCapturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+let audioCapturerOptions: audio.AudioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+}
+
+audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+  if (err) {
+    console.error(`AudioCapturer Created : Error: ${err}`);
+  } else {
+    console.info('AudioCapturer Created : Success : SUCCESS');
+    let audioCapturer = data;
+    let asrProcessingController = audio.createAsrProcessingController(audioCapturer);
+    console.info('AsrProcessingController Created : Success : SUCCESS');
+  }
+});
 ```
 
 ## AudioVolumeType
@@ -166,6 +227,7 @@ async function createTonePlayerBefore(){
 | STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。    |
 | STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。   |
 | STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。 |
+| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | 通话辅助语音。<br/>此接口为系统接口。 |
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -178,6 +240,46 @@ async function createTonePlayerBefore(){
 | 名称                               |  值     | 说明                       |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  默认类型，可中断音频请求。  |
+
+## VolumeFlag<sup>12+</sup>
+
+枚举，音量相关操作。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+| 名称                               | 值 | 说明       |
+| ---------------------------------- |---|----------|
+| FLAG_SHOW_SYSTEM_UI | 1 | 拉起系统音量条。 |
+
+## AsrNoiseSuppressionMode<sup>12+</sup>
+
+枚举，ASR 噪音抑制模式
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| BYPASS | 0 |旁路噪音抑制|
+| STANDARD | 1 |标准噪音抑制|
+| NEAR_FIELD | 2 |近场噪音抑制|
+| FAR_FIELD | 3 |远场噪音抑制|
+
+## AsrAecMode<sup>12+</sup>
+
+枚举，ASR AEC 模式
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| BYPASS | 0 |BYPASS AEC|
+| STANDARD | 1 |STANDARD AEC|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -308,13 +410,15 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 | 错误码ID | 错误信息                                                                                                       |
 |-----|------------------------------------------------------------------------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
@@ -356,13 +460,14 @@ getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<
 
 | 错误码ID | 错误信息 |
 | ------ | -------------------------|
+| 202 | Not system App. |
 |  401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
@@ -392,7 +497,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: BusinessError) => {
   if (err) {
@@ -428,7 +533,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
@@ -464,7 +569,7 @@ getSpatializationManager(): AudioSpatializationManager
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
@@ -500,21 +605,13 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-"reqPermissions": [
-    {
-        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
-        "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
-    }
-]
-let audioManager = audio.getAudioManager();
-try {
-    await audioManager.disableSafeMediaVolume().then(() => {
-      console.info('disableSafeMediaVolume success.');
-    })
-} catch (err) {
-  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
-}
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioManager.disableSafeMediaVolume().then(() => {
+    console.info('disableSafeMediaVolume success.');
+}).catch ((err: BusinessError) => {
+    console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+});
 ```
 
 ### on('volumeChange')<sup>(deprecated)</sup>
@@ -600,7 +697,7 @@ getVolumeGroupInfos(networkId: string, callback: AsyncCallback<VolumeGroupInfos\
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessError, value: audio.VolumeGroupInfos) => {
   if (err) {
@@ -676,7 +773,7 @@ getVolumeGroupInfosSync(networkId: string\): VolumeGroupInfos
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let volumegroupinfos: audio.VolumeGroupInfos = audioVolumeManager.getVolumeGroupInfosSync(audio.LOCAL_NETWORK_ID);
@@ -710,13 +807,13 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
@@ -746,7 +843,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
 
 **返回值：**
 
@@ -758,6 +855,51 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 ```ts
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
+### setVolumeWithFlag<sup>12+</sup>
+
+setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
+
+设置指定流的音量，同时指定本次修改音量是否要显示系统音量条，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                   |
+| ---------- | ----------------------------------- | ---- |--------------------------------------|
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                               |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
+| flags      | number                              | 是   | 是否需要显示系统音量条，0为不需要显示，1为需要显示。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setVolumeWithFlag(audio.AudioVolumeType.MEDIA, 10, 1).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
 ```
@@ -787,7 +929,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
@@ -857,7 +999,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -972,6 +1114,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
@@ -979,7 +1122,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
@@ -1022,6 +1165,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
@@ -1029,7 +1173,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
@@ -1066,6 +1210,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
@@ -1073,7 +1218,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
@@ -1116,6 +1261,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
@@ -1123,7 +1269,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
@@ -1164,13 +1310,14 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
@@ -1205,6 +1352,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -1242,6 +1390,7 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -1270,8 +1419,8 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -1324,8 +1473,8 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -1370,8 +1519,8 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -1423,8 +1572,8 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -1470,8 +1619,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1533,8 +1682,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1616,7 +1765,7 @@ async function selectOutputDeviceByFilter(){
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1659,8 +1808,8 @@ isSpatializationSupported(): boolean
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
   console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
@@ -1705,8 +1854,8 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1757,8 +1906,8 @@ isHeadTrackingSupported(): boolean
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
   console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -1803,8 +1952,8 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1860,8 +2009,8 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true
 audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
@@ -1910,8 +2059,8 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true
 audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
@@ -1948,8 +2097,8 @@ isSpatializationEnabled(): boolean
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -1989,7 +2138,7 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
   console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -2026,7 +2175,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 audioSpatializationManager.off('spatializationEnabledChange');
 ```
 
@@ -2063,8 +2212,8 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true
 audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
@@ -2113,8 +2262,8 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true
 audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
@@ -2151,8 +2300,8 @@ isHeadTrackingEnabled(): boolean
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2192,7 +2341,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
   console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2229,7 +2378,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 audioSpatializationManager.off('headTrackingEnabledChange');
 ```
 
@@ -2265,8 +2414,8 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
   isSpatializationSupported: true,
@@ -2314,8 +2463,8 @@ setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
   console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -2352,8 +2501,8 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
@@ -2381,7 +2530,7 @@ try {
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
@@ -2488,7 +2637,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err: BusinessError) => {
   if (err) {
@@ -2551,7 +2700,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.start((err: BusinessError) => {
   if (err) {
@@ -2608,7 +2757,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.stop((err: BusinessError) => {
   if (err) {
@@ -2665,7 +2814,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.release((err: BusinessError) => {
   if (err) {
@@ -2701,4 +2850,184 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
+```
+
+## AsrProcessingController<sup>12+</sup>
+
+ASR处理控制器
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+### setAsrAecMode<sup>12+</sup>
+
+setAsrAecMode(mode: AsrAecMode): boolean;
+
+设置ASR AEC模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名| 类型                         | 必填 | 说明 |
+|-------|----------------------------|-------|-------|
+| mode | [AsrAecMode](#asraecmode12) | 是 |ASR AEC 模式 |
+
+**返回值：**
+
+| 类型 | 说明                                    |
+|-------|---------------------------------------|
+| boolean | 返回设置ASR AEC模式结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
+```
+
+### getAsrAecMode<sup>12+</sup>
+
+getAsrAecMode(): AsrAecMode;
+
+获取ASR AEC模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型 | 说明 |
+|-------|-------|
+| [AsrAecMode](#asraecmode12) |ASR AEC 模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+
+**示例：**
+
+```ts
+let mode = asrProcessingController.getAsrAecMode();
+```
+
+### setAsrNoiseSuppressionMode<sup>12+</sup>
+
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+
+设置ASR 噪音抑制模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名| 类型                                                    | 必填 | 说明 |
+|-------|-------------------------------------------------------|-------|-------|
+| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | 是 |ASR 噪音抑制模式 |
+
+**返回值：**
+
+| 类型 | 说明                                     |
+|-------|----------------------------------------|
+| boolean | 返回设置ASR 噪音抑制模式结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrNoiseSuppressionMode(audio.AsrNoiseSuppressionMode.BYPASS);
+```
+
+### getAsrNoiseSuppressionMode<sup>12+</sup>
+
+getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+
+获取ASR 噪音抑制模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                      |说明 |
+|-------------------------|-------|
+| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR 噪音抑制模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let mode = asrProcessingController.getAsrNoiseSuppressionMode();
+```
+
+### isWhispering<sup>12+</sup>
+
+isWhispering(): boolean;
+
+查询耳语状态。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型 | 说明                       |
+|-------|--------------------------|
+| boolean | 返回耳语状态，true为开启，false为关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.isWhispering();
 ```

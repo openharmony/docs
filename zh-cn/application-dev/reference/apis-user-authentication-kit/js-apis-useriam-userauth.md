@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## 常量
@@ -89,7 +89,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -97,7 +97,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
@@ -165,7 +165,7 @@ onResult(result: UserAuthResult): void
 **示例1：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -193,7 +193,7 @@ try {
 **示例2：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
@@ -249,13 +249,13 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -305,13 +305,13 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -355,7 +355,7 @@ start(): void
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
 | 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
@@ -371,7 +371,7 @@ start(): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -410,13 +410,13 @@ cancel(): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Incorrect parameters.           |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -467,7 +467,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -475,7 +475,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -525,28 +525,36 @@ try {
 
 ## EventInfo<sup>(deprecated)</sup>
 
+type EventInfo = AuthResultInfo | TipInfo
+
 表示认证过程中事件信息的类型。
+
+该类型为下表类型中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型    | 说明                       |
+| 类型    | 说明                       |
 | --------- | ----------------------- |
 | [AuthResultInfo](#authresultinfodeprecated)    | 获取到的认证结果信息。  |
 | [TipInfo](#tipinfodeprecated)    | 认证过程中的提示信息。      |
 
 ## AuthEventKey<sup>(deprecated)</sup>
 
+type AuthEventKey = 'result' | 'tip'
+
 表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+
+该类型为下表类型取值中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型       | 说明                    |
+| 类型       | 说明                    |
 | ---------- | ----------------------- |
 | "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
 | "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |
@@ -578,7 +586,7 @@ callback(result : EventInfo) : void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -661,7 +669,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -726,7 +734,7 @@ off : (name : AuthEventKey) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -775,18 +783,18 @@ start : () => void
 | 401 | Incorrect parameters. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
-| 12500003 | Authentication canceled. |
-| 12500004 | Authentication timeout.  |
+| 12500003 | The operation is canceled. |
+| 12500004 | The operation is time-out.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | Authentication service is busy. |
-| 12500009 | Authentication is locked out. |
+| 12500007 | The authentication task is busy. |
+| 12500009 | The authenticator is locked. |
 | 12500010 | The type of credential has not been enrolled. |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -829,7 +837,7 @@ cancel : () => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -886,7 +894,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -931,7 +939,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -941,7 +949,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -990,7 +998,7 @@ constructor()
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 ```
@@ -1017,7 +1025,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
@@ -1053,7 +1061,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -1095,7 +1103,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1144,7 +1152,7 @@ cancelAuth(contextID : Uint8Array) : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // contextId可通过auth接口获取，此处直接定义
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
@@ -1185,7 +1193,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1228,7 +1236,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1383,7 +1391,7 @@ getAuthenticator(): Authenticator
 
 **示例：**
   ```ts
-  import userAuth from '@ohos.userIAM.userAuth';
+  import { userAuth } from '@kit.UserAuthenticationKit';
   
   let authenticator = userAuth.getAuthenticator();
   ```
@@ -1419,7 +1427,7 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
@@ -1461,7 +1469,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let authenticator = userAuth.getAuthenticator();

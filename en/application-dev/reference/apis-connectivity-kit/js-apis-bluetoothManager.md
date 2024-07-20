@@ -640,7 +640,7 @@ Sets the device pairing confirmation.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.setDevicePairingConfirmation](js-apis-bluetooth-connection.md#connectionsetdevicepairingconfirmation) instead.
 
-**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -696,7 +696,7 @@ Subscribes to the Bluetooth device discovery events.
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.|
-| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.   |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.   |
 
 **Error codes**
 
@@ -739,7 +739,7 @@ Unsubscribes from the Bluetooth device discovery events.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -783,7 +783,7 @@ Subscribes to the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.    |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | Yes   | Callback invoked to return the pairing request. You need to implement this callback.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | Yes   | Callback used to return the pairing request. You need to implement this callback.|
 
 **Error codes**
 
@@ -826,7 +826,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -870,7 +870,7 @@ Subscribes to the Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | Yes   | Callback used to return the pairing state. You need to implement this callback.   |
 
 **Error codes**
 
@@ -913,7 +913,7 @@ Unsubscribes from the Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -957,7 +957,7 @@ Subscribes to Bluetooth state events.
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.  |
-| callback | Callback&lt;[BluetoothState](#bluetoothstatedeprecated)&gt; | Yes   | Callback invoked to return the Bluetooth connection state. You need to implement this callback.|
+| callback | Callback&lt;[BluetoothState](#bluetoothstatedeprecated)&gt; | Yes   | Callback used to return the Bluetooth connection state. You need to implement this callback.|
 
 **Error codes**
 
@@ -1000,7 +1000,7 @@ Unsubscribes from Bluetooth state events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[BluetoothState](#bluetoothstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -1045,7 +1045,7 @@ Creates a server listening socket.
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | Yes   | Name of the service.                 |
 | option   | [SppOption](#sppoptiondeprecated)     | Yes   | Serial port profile (SPP) listening configuration.             |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the server socket ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the server socket ID.|
 
 **Error codes**
 
@@ -1096,7 +1096,7 @@ Listens for a connection to be made to this socket from the client and accepts i
 | Name         | Type                         | Mandatory  | Description                     |
 | ------------ | --------------------------- | ---- | ----------------------- |
 | serverSocket | number                      | Yes   | Server socket ID.          |
-| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.|
+| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.|
 
 **Error codes**
 
@@ -1157,7 +1157,7 @@ Initiates an SPP connection to a remote device from the client.
 | -------- | --------------------------- | ---- | ------------------------------ |
 | device   | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | option   | [SppOption](#sppoptiondeprecated)     | Yes   | Configuration for connecting to the SPP client.                 |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Error codes**
 
@@ -1354,7 +1354,7 @@ Subscribes to the SPP read request events.
 | ------------ | --------------------------- | ---- | -------------------------- |
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.|
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.             |
-| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
+| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback used to return the data read.         |
 
 **Error codes**
 
@@ -1407,7 +1407,7 @@ Unsubscribes from the SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -1574,7 +1574,7 @@ Starts a BLE scan.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.startBLEScan](js-apis-bluetooth-ble.md#blestartblescan) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH, ohos.permission.MANAGE_BLUETOOTH, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH, ohos.permission.MANAGE_BLUETOOTH (available only for system applications), ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1674,7 +1674,7 @@ Subscribe to the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.  |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.|
 
 **Error codes**
 
@@ -1717,7 +1717,7 @@ Unsubscribes from the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -1949,7 +1949,7 @@ Subscribes to the A2DP connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback invoked to return the A2DP connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change.                              |
 
 **Return value**
 
@@ -2167,7 +2167,7 @@ Subscribes to the HFP connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HFP connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback invoked to return the HFP connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HFP connection state change.                              |
 
 **Example**
 
@@ -2248,7 +2248,7 @@ Subscribes to the HidHost connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HidHost connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback invoked to return the HidHost connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HidHost connection state change.                              |
 
 **Example**
 
@@ -2327,7 +2327,7 @@ Subscribes to the PAN connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates PAN connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback invoked to return the PAN connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the PAN connection state change.                              |
 
 **Example**
 
@@ -2778,7 +2778,7 @@ Subscribes to the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.|
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.           |
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.           |
 
 **Example**
 
@@ -2825,7 +2825,7 @@ Unsubscribes from the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -2858,7 +2858,7 @@ Subscribes to the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.            |
 
 **Example**
 
@@ -2908,7 +2908,7 @@ Unsubscribes from the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -2941,7 +2941,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
 
 **Example**
 
@@ -2988,7 +2988,7 @@ Unsubscribes from the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -3021,7 +3021,7 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
 
 **Example**
 
@@ -3071,7 +3071,7 @@ Unsubscribes from the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -3104,7 +3104,7 @@ Subscribes to the BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback used to return the BLE connection state.                         |
 
 **Example**
 
@@ -3141,7 +3141,7 @@ Unsubscribes from the BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -3291,7 +3291,7 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | Yes   | Callback invoked to return the services obtained.|
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | Yes   | Callback used to return the services obtained.|
 
 **Error codes**
 
@@ -3392,7 +3392,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 | Name           | Type                                      | Mandatory  | Description                     |
 | -------------- | ---------------------------------------- | ---- | ----------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristicdeprecated)  | Yes   | Characteristic value to read.               |
-| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | Yes   | Callback invoked to return the characteristic value read.|
+| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | Yes   | Callback used to return the characteristic value read.|
 
 **Error codes**
 
@@ -3524,7 +3524,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptordeprecated)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptordeprecated)&gt; | Yes   | Callback invoked to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptordeprecated)&gt; | Yes   | Callback used to return the descriptor read.|
 
 **Error codes**
 
@@ -3850,7 +3850,7 @@ Subscribes to the BLE characteristic changes. The client can receive a notificat
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | Yes   | Callback invoked to return the characteristic value changes.                 |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | Yes   | Callback used to return the characteristic value changes.                 |
 
 **Example**
 
@@ -3888,7 +3888,7 @@ Unsubscribes from the BLE characteristic changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -3921,7 +3921,7 @@ Subscribes to the BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback invoked to return the BLE connection state.                          |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback used to return the BLE connection state.                          |
 
 **Example**
 
@@ -3958,7 +3958,7 @@ Unsubscribes from the BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
 
 **Example**
 
@@ -3990,7 +3990,7 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the remote BLE device name obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the remote BLE device name obtained.|
 
 **Error codes**
 
@@ -4081,7 +4081,7 @@ Obtains the RSSI of the remote BLE device. This API uses an asynchronous callbac
 
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the RSSI, in dBm.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the RSSI, in dBm.|
 
 **Error codes**
 

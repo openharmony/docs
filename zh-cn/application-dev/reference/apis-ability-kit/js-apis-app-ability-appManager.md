@@ -9,24 +9,24 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## ProcessState<sup>10+</sup>
 
 表示进程状态的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+| STATE_CREATE    | 0   |    进程处于创建状态。       |
+| STATE_FOREGROUND          | 2   |    进程处于前台状态。      |
+| STATE_ACTIVE  | 3   |     进程处于获焦状态。   |
+| STATE_BACKGROUND        | 4   |    进程处于后台不可见状态。           |
+| STATE_DESTROY        | 5   |    进程处于销毁状态。         |
 
 ## appManager.isRunningInStabilityTest
 
@@ -34,7 +34,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -56,15 +56,15 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err) {
-        console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
-    }
-});  
+  if (err) {
+    console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  }
+});
 ```
 
 
@@ -74,7 +74,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,13 +95,13 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRunningInStabilityTest().then((flag) => {
-    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -112,7 +112,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,13 +133,13 @@ isRamConstrainedDevice(): Promise\<boolean>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRamConstrainedDevice().then((data) => {
-    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -149,7 +149,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -171,14 +171,14 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err) {
-        console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -188,7 +188,7 @@ getAppMemorySize(): Promise\<number>
 
 获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -209,13 +209,13 @@ getAppMemorySize(): Promise\<number>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getAppMemorySize().then((data) => {
-    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  console.log(`The size of app memory is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -225,7 +225,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -247,14 +247,14 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err) {
-        console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -268,7 +268,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -289,13 +289,13 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getRunningProcessInformation().then((data) => {
-    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  console.log(`The running process information is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -309,7 +309,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -331,13 +331,13 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The running process information is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  }
 });
 ```

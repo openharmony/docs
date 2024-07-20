@@ -12,36 +12,37 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为myabilitystage。
 
-2. 在myabilitystage目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为MyAbilityStage.ets。
+2. 在myabilitystage目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为MyAbilityStage.ts。
 
-3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
+3. 打开MyAbilityStage.ts文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
    
-   ```ts
-   import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type Want from '@ohos.app.ability.Want';
-   
-   export default class MyAbilityStage extends AbilityStage {
-     onCreate(): void {
-       // 应用的HAP在首次加载的时，为该Module初始化操作
-     }
-     onAcceptWant(want: Want): string {
-       // 仅specified模式下触发
-       return 'MyAbilityStage';
-     }
-   }
-   ```
+    ```ts
+    import { AbilityStage, Want } from '@kit.AbilityKit';
+    
+    export default class MyAbilityStage extends AbilityStage {
+      onCreate(): void {
+        // 应用的HAP在首次加载的时，为该Module初始化操作
+      }
+
+      onAcceptWant(want: Want): string {
+        // 仅specified模式下触发
+        return 'MyAbilityStage';
+      }
+    }
+    ```
    
 4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中，通过配置 `srcEntry` 参数来指定模块对应的代码路径，以作为HAP加载的入口。
-   ```json
-   {
-     "module": {
-       "name": "entry",
-       "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
-       ...
-     }
-   }
-   ```
+
+    ```json
+    {
+      "module": {
+        "name": "entry",
+        "type": "entry",
+        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+        ...
+      }
+    }
+    ```
 
 [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)拥有[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调和[`onAcceptWant()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[`onConfigurationUpdated()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[`onMemoryLevel()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调。
 
@@ -58,9 +59,8 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 
   ```ts
-  import AbilityStage from '@ohos.app.ability.AbilityStage';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  
+  import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
+
   export default class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // 根据系统可用内存的变化情况，释放不必要的内存

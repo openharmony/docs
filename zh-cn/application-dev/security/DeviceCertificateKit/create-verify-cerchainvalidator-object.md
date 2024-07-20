@@ -17,7 +17,7 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
-   import { cert } from '@kit.DeviceCertificatekit';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
 2. [cert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertchainvalidator)创建证书链校验器对象。
@@ -35,7 +35,7 @@
 4. 调用[CertChainValidator.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate)校验证书链数据。
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { util } from '@kit.ArkTS';
 
 // CA数据，这只是一个示例，需要根据具体业务来赋值

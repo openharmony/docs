@@ -11,7 +11,7 @@ A modal dialog box is a system pop-up box that intercepts events (such as mouse,
 ## Modules to Import
 
 ```ts
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { dialogRequest } from '@kit.AbilityKit';
 ```
 
 ## dialogRequest.getRequestInfo
@@ -49,10 +49,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -100,10 +97,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -146,10 +140,7 @@ Defines the request information, which is used as an input parameter for binding
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -177,7 +168,7 @@ Enumerates the result codes of the request for the modal dialog box.
 ## RequestResult
 Defines the result of the request for the modal dialog box. It contains **ResultCode** and **ResultWant**.
 
-### Attributes
+### Properties
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -221,10 +212,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

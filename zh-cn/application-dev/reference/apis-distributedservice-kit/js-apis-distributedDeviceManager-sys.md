@@ -48,13 +48,14 @@ replyUiAction(action: number, actionResult: string): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified actionResult is greater than 255. |
 
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -77,7 +78,7 @@ replyUiAction(action: number, actionResult: string): void;
 
 ### on('replyResult')
 
-on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 回复UI操作结果回调。
 
@@ -92,7 +93,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
   | 参数名      | 类型                             | 必填 | 说明                            |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
   | type     | string                                | 是  | 注册的设备管理器 UI 状态回调，以便在状态改变时通知应用，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 UI 状态回调，返回UI状态。        |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string;}&gt; | 是  | 指示要注册的设备管理器 UI 状态回调，返回UI状态。        |
 
 **错误码：**
 
@@ -100,12 +101,13 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 202 | Permission verification failed. A non-system application calls a system API.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255. |
 
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -132,7 +134,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
 ### off('replyResult')
 
-off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 取消回复UI操作结果回调。
 
@@ -147,7 +149,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
   | 参数名      | 类型                              | 必填 | 说明                            |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
   | type     | string                                | 是   | 取消注册的设备管理器 UI 状态回调，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 UI 状态，返回UI状态。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string;}&gt; | 否   | 指示要取消注册的设备管理器 UI 状态，返回UI状态。 |
 
 **错误码：**
 
@@ -155,12 +157,13 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255. |
 
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

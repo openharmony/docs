@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
+import { privacyManager } from '@kit.AbilityKit';
 ```
 
 
@@ -29,7 +29,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
+| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
@@ -50,7 +50,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | The service is abnormal. |
@@ -59,8 +59,8 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
@@ -94,7 +94,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
+| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 应用权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
@@ -109,7 +109,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | The service is abnormal. |
@@ -118,8 +118,8 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
@@ -162,7 +162,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | The service is abnormal. |
@@ -171,8 +171,8 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -218,7 +218,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | The service is abnormal. |
@@ -227,8 +227,8 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -264,7 +264,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。 |
+| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
 
 **返回值：**
@@ -282,7 +282,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -292,8 +292,8 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
@@ -317,7 +317,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。 |
+| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions                | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当开始使用权限成功时，err为undefined；否则为错误对象。 |
 
@@ -330,7 +330,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -340,8 +340,8 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
@@ -367,7 +367,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。 |
+| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
 
 **返回值：**
@@ -385,7 +385,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
@@ -395,8 +395,8 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
@@ -420,7 +420,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。 |
+| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions                | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止使用权限成功时，err为undefined；否则为错误对象。 |
 
@@ -433,7 +433,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
@@ -443,8 +443,8 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
@@ -487,7 +487,7 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 | 12100004 | The API is used repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | The service is abnormal. |
@@ -496,8 +496,8 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let permissionList: Array<Permissions> = [];
 try {
@@ -538,7 +538,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100001 | Invalid parameter. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
 | 12100004 | The API is not used in pair with 'on'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -546,7 +546,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
 
 let permissionList: Array<Permissions> = [];
 try {
@@ -587,16 +587,16 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid Parameter. The parameter is invalid. PermissionName exceeds 256 characters. |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
 
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
 let permissionName: Permissions = 'ohos.permission.CAMERA';

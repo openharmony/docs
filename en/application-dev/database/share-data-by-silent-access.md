@@ -109,7 +109,7 @@ The following walks you through on how to share an RDB store.
    | uri                     | URI of the data proxy, which is the unique identifier for cross-application data access.                 | Yes   |
    | requiredReadPermission  | Permission required for reading data from the data proxy. If this parameter is not set, other applications are not allowed to access data. For details about the permissions, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md).           | No   |
    | requiredWritePermission | Permission required for writing data to the data proxy. If this parameter is not set, other applications are not allowed to write data to the data proxy. For details about the permissions, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md).         | No   |
-   | metadata                | Metadata of the data source, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **dataProperties**.<br>The value of **resource** is **$profile:{fileName}**, indicating that the name of the configuration file is **{fileName}.json**. | Yes   |
+   | metadata                | Metadata of the data source, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **dataProperties**.<br>The value of **resource** is **$profile:{fileName}**, indicating that the name of the configuration file is **{fileName}.json**.| Yes   |
 
    **module.json5 example**
 
@@ -132,7 +132,7 @@ The following walks you through on how to share an RDB store.
    | ----- | ---------------------------------------- | ---- |
    | path  | Data source path, in the **Database_name/Table_name** format. Currently, only RDB stores are supported.             | Yes   |
    | type  | Database type. Currently, only **rdb** is supported.            | Yes   |
-   | scope | Scope of the database.<br>- **module** indicates that the database is located in this module.<br>- **application** indicates that the database is located in this application. | No   |
+   | scope | Scope of the database.<br>- **module** indicates that the database is located in this module.<br>- **application** indicates that the database is located in this application.| No   |
 
    **my_config.json example**
 
@@ -150,12 +150,10 @@ The following walks you through on how to share an RDB store.
 1. Import dependencies.
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import dataSharePredicates from '@ohos.data.dataSharePredicates';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 2. Define the URI string for communicating with the data provider.
@@ -297,10 +295,10 @@ In the **module.json5** file, set the data to be hosted in **proxyData**. For de
 1. Import dependencies.
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Define the URI string for communicating with the data provider.
@@ -368,9 +366,9 @@ The data provider calls the **enableSilentProxy** API to dynamically enable sile
 1. Import dependencies.
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
    ```
 
 2. Define the URI string for communicating with the data provider.

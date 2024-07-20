@@ -54,6 +54,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400103 | I/O error. |
 
 **Example**
@@ -90,6 +91,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 
@@ -135,6 +137,9 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **Example**
@@ -183,6 +188,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **Example**
@@ -213,6 +220,14 @@ Releases the system alert tone player. This API uses a promise to return the res
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.  |
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message             |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
 
 **Example**
 

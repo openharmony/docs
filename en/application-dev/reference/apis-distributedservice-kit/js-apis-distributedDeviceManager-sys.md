@@ -40,21 +40,22 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | action        | number          | Yes   | User operation.      |
-  | actionResult        | string          | Yes   | Operation result.|
+  | actionResult        | string          | Yes   | Operation result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified actionResult is greater than 255. |
 
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager).
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -77,7 +78,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 ### on('replyResult')
 
-on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 Subscribes to the reply to the UI operation result.
 
@@ -89,23 +90,24 @@ Subscribes to the reply to the UI operation result.
 
 **Parameters**
 
-  | Name     | Type                            | Mandatory| Description                           |
+  | Name     | Type                            | Mandatory | Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | Yes | Event type, which has a fixed value of **replyResult**.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status change.       |
+  | type     | string                                | Yes | Event type, which has a fixed value of **replyResult**. |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string;}&gt; | Yes | Callback invoked to return the UI status change.       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 202 | Permission verification failed. A non-system application calls a system API.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255. |
 
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager).
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -132,7 +134,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 ### off('replyResult')
 
-off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 Unsubscribes from the reply to the UI operation result.
 
@@ -144,23 +146,24 @@ Unsubscribes from the reply to the UI operation result.
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory| Description                           |
+  | Name     | Type                             | Mandatory | Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | Yes  | Event type, which has a fixed value of **replyResult**.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
+  | type     | string                                | Yes  | Event type, which has a fixed value of **replyResult**. |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string;}&gt; | No  | Callback to unregister. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified actionResult is greater than 255. |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255. |
 
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager).
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

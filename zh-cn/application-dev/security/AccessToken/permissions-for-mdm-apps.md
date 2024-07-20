@@ -1,6 +1,6 @@
 # 仅对MDM应用开放
 
-以下权限仅对MDM（Mobile Device Management）设备管理应用开放。
+以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -10,7 +10,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -22,7 +23,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -34,7 +36,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -46,7 +49,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -58,7 +62,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -70,7 +75,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -82,7 +88,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -94,7 +101,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
 
@@ -106,7 +114,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -118,7 +127,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -130,7 +140,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
 
@@ -142,7 +153,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -154,7 +166,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -166,7 +179,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -178,7 +192,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -190,7 +205,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -202,7 +218,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -214,7 +231,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -226,7 +244,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -238,7 +257,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -250,7 +270,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
 
@@ -262,7 +283,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -274,7 +296,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -286,7 +309,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -298,7 +322,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -310,7 +335,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -322,7 +348,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -334,7 +361,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -346,7 +374,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -358,7 +387,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -370,7 +400,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -382,7 +413,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -394,7 +426,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -406,7 +439,8 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
 
@@ -418,6 +452,20 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+### ohos.permission.QUERY_AUDIT_EVENT
+
+允许MDM应用查询安全审计事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12

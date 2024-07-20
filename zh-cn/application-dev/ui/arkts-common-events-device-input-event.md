@@ -305,7 +305,7 @@ struct HoverExample {
 ![hoverEffect](figures/hoverEffect.gif)
 
 
-Button默认的悬浮态效果就是缩放效果，因此Auto和Scale的效果一样，Highlight会使背板颜色变暗，None会禁用悬浮态效果。
+Button默认的悬浮态效果就是Highlight效果，因此Auto和Highlight的效果一样，Highlight会使背板颜色变暗，Scale会让组件缩放，None会禁用悬浮态效果。
 
 
 ## 按键事件
@@ -325,6 +325,7 @@ Button默认的悬浮态效果就是缩放效果，因此Auto和Scale的效果�
 
 按键事件到ArkUI框架之后，会先找到完整的父子节点获焦链。从叶子节点到根节点，逐一发送按键事件。 
 
+Web组件的KeyEvent流程与上述过程有所不同。对于Web组件，不会在`onKeyPreIme`返回false时候，去匹配快捷。而是第三次按键派发中，Web对于未消费的KeyEvent会通过ReDispatch重新派发回ArkUI。在ReDispatch中再执行匹配快捷键等操作。
 
 ### onKeyEvent & onKeyPreIme
 
@@ -477,7 +478,7 @@ struct KeyEventExample {
 
 使用OnKeyPreIme屏蔽在输入框中使用方向左键。
 ```ts
-import { KeyCode } from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 
 @Entry
 @Component

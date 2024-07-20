@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -398,7 +398,7 @@ Installation-free service is busy, please wait and try again later.
 
 **可能原因**
 
-已有相同免安装任务在执行。
+已有相同原子化服务的下载安装任务在执行。
 
 **处理步骤**
 
@@ -632,8 +632,8 @@ Start options check failed.
 
 **可能原因**
 
-1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
-2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
 
 **处理步骤**
 
@@ -656,6 +656,103 @@ Ability already running.
 **处理步骤**
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
+
+## 16000069 严格模式下不允许该类型Extension启动三方应用
+
+**错误信息**
+
+The extension cannot start the third party application.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动三方应用。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动其他三方应用。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000070 严格模式下不允许该类型Extension启动指定ServiceExtensionAbility
+
+**错误信息**
+
+The extension cannot start the service.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动指定ServiceExtensionAbility。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动指定ServiceExtensionAbility。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000071 不支持应用分身模式
+
+**错误信息**
+
+App clone is not supported.
+
+**错误描述**
+
+当应用不支持分身模式时，返回该错误码。
+
+**可能原因**
+
+在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+
+**处理步骤**
+
+在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+
+<!--Del-->
+## 16000072 不支持应用多开
+
+**错误信息**
+
+App clone or multi-instance is not supported.
+
+**错误描述**
+
+当应用不支持多开时，返回该错误码。
+
+**可能原因**
+
+调用getRunningMultiAppInfo查询不支持应用多开的应用多开信息，则返回该错误码。
+
+**处理步骤**
+
+调用getCurrentAppCloneIndex时确保查询的应用支持应用多开。
+<!--DelEnd-->
+
+## 16000073 传入的appCloneIndex是一个无效值
+
+**错误信息**
+
+The app clone index is invalid.
+
+**错误描述**
+
+传入一个无效的appCloneIndex，返回该错误码。
+
+**可能原因**
+
+1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
+<!--Del-->
+2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
+<!--DelEnd-->
+
+**处理步骤**
+
+确认appCloneIndex的约束条件是否满足。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
@@ -1178,3 +1275,21 @@ The target bundle does not exist.
 **处理步骤**
 
 检查传入的bundleName、userId和appIndex参数是否正确。
+
+## 16300007 指定的原子化服务的下载安装任务信息不存在。
+
+**错误信息**
+
+The target free install task does not exist.
+
+**错误描述**
+
+为原子化服务窗口打开窗口时，指定的原子化服务的下载安装任务不存在时，方法将返回该错误码。
+
+**可能原因**
+
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+
+**处理步骤**
+
+检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。

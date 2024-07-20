@@ -27,8 +27,11 @@
 1. 导入NotificationManager模块。
 
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 增加角标个数。
@@ -40,10 +43,10 @@
     ```ts
     let setBadgeNumberCallback = (err: Base.BusinessError): void => {
       if (err) {
-        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info(`Succeeded in setting badge number.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in setting badge number.`);
     }
 
     let badgeNumber = 9;
@@ -57,10 +60,10 @@
     ```ts
     let setBadgeNumberCallback = (err: Base.BusinessError): void => {
       if (err) {
-        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info(`Succeeded in setting badge number.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in setting badge number.`);
     }
 
     let badgeNumber = 8;

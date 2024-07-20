@@ -7,13 +7,13 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -23,8 +23,7 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
               this.controller.enableIntelligentTrackingPrevention(true);
               console.log("enableIntelligentTrackingPrevention: true");
             } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -37,13 +36,13 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -52,11 +51,10 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
             try {
               let result = this.controller.isIntelligentTrackingPreventionEnabled();
               console.log("result: " + result);
-          } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
       }
     }
@@ -67,13 +65,14 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
@@ -82,15 +81,14 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
             try {
               this.controller.enableIntelligentTrackingPrevention(true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
-        .onIntelligentTrackingPreventionResult((details) => {
+          .onIntelligentTrackingPreventionResult((details) => {
             console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
               ", [trackerHost]=" + details.trackerHost);
-        })
+          })
       }
     }
   }
@@ -102,26 +100,25 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
-  
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Button('addIntelligentTrackingPreventionBypassingList')
           .onClick(() => {
             try {
-              let hostList = [ "www.test1.com", "www.test2.com", "www.test3.com" ];
-              web_webview.WebviewController.addIntelligentTrackingPreventionBypassingList(hostList);
-          } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
+              let hostList = ["www.test1.com", "www.test2.com", "www.test3.com"];
+              webview.WebviewController.addIntelligentTrackingPreventionBypassingList(hostList);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
       }
     }
@@ -132,26 +129,25 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
-  
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Button('removeIntelligentTrackingPreventionBypassingList')
           .onClick(() => {
             try {
               let hostList = [ "www.test1.com", "www.test2.com" ];
-              web_webview.WebviewController.removeIntelligentTrackingPreventionBypassingList(hostList);
-          } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
+              webview.WebviewController.removeIntelligentTrackingPreventionBypassingList(hostList);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
       }
     }
@@ -162,19 +158,19 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Button('clearIntelligentTrackingPreventionBypassingList')
           .onClick(() => {
-            web_webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
-        })
+            webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
+          })
         Web({ src: 'www.example.com', controller: this.controller })
       }
     }

@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates

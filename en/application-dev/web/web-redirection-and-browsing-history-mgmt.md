@@ -3,9 +3,11 @@
 
 ## History Navigation
 
-When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
+When a user clicks a web page link on the frontend page, the **\<Web>** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
 
-  In the following example, when a user clicks the button, **backward()** is called to go back to the previous page.
+If acquisition of network resources is involved in page loading, you need to declare the [ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md) permission.
+
+In the following example, when a user clicks the button, **backward()** is called to go back to the previous page.
 
 ```ts
 // xxx.ets
@@ -52,6 +54,7 @@ In the following example, the frontend page **route.html** is loaded on to the a
   
     build() {
       Column() {
+        // Path for storing the route.html resource file: src/main/resources/rawfile
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {

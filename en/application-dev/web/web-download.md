@@ -61,7 +61,7 @@ HTML file to be loaded:
 <!DOCTYPE html>
 <html>
 <body>
-<a href='./download.html' download='download.html'>Download</a>
+<a href='data:text/html,%3Ch1%3EHello%2C%20World%21%3C%2Fh1%3E' download='download.html'>Download</a>
 </body>
 </html>
 ```

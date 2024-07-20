@@ -20,13 +20,13 @@ Defines the response interface to receive the device status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-### Name
-
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | Yes| No| New device status.|
 
 ## ActivityType
+
+type ActivityType = 'still' | 'relativeStill'
 
 Enumerates the device status types.
 

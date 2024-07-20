@@ -8,7 +8,7 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 示例如下。通过点击click，红色方块的缩放属性会发生变化。当连续快速点击click时，缩放属性的终点值连续发生变化，当前动画也会平滑过渡到朝着新的缩放属性终点值运动。
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 class SetSlt{
   isAnimation:boolean = true
   set():void{
@@ -66,7 +66,7 @@ struct AnimationToAnimationDemo {
 示例代码如下，小球跟手运动。
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -84,7 +84,7 @@ struct SpringMotionDemo {
           .fill(Color.Blue)
           // 第二步：将状态变量设置到相关可动画属性接口
           .position({ x: this.positionX, y: this.positionY })
-          // 第三步：在跟手过程改变状态变量值，并且采用reponsiveSpringMotion动画运动到新的值
+          // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
           .onTouch((event?: TouchEvent) => {
             if(event){
               if (event.type === TouchType.Move) {

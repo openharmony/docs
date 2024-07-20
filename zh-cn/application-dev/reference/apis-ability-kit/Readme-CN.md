@@ -1,4 +1,4 @@
-# Ability Kit API参考
+# Ability Kit（程序框架服务）
 
 - ArkTS API
   - Stage模型能力的接口
@@ -12,6 +12,8 @@
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
+    - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](js-apis-app-ability-childProcessArgs.md)
+    - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](js-apis-app-ability-childProcessOptions.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
@@ -27,6 +29,7 @@
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](js-apis-app-ability-uiExtensionAbility.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
+    - [@ohos.app.ability.sendableContextManager](js-apis-app-ability-sendableContextManager.md)
     - [@ohos.app.appstartup.StartupConfig](js-apis-app-appstartup-startupConfig.md)
     - [@ohos.app.appstartup.StartupConfigEntry](js-apis-app-appstartup-startupConfigEntry.md)
     - [@ohos.app.appstartup.StartupListener](js-apis-app-appstartup-startupListener.md)
@@ -50,6 +53,7 @@
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
   - 通用能力的接口(推荐)
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
     - [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
@@ -63,6 +67,7 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     <!--Del-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](js-apis-abilityAccessCtrl-sys.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](js-apis-screenLockFileManager-sys.md)
     - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](js-apis-app-ability-abilityManager-sys.md)
     - [@ohos.app.ability.appManager (appManager)(系统接口)](js-apis-app-ability-appManager-sys.md)
     - [@ohos.app.ability.missionManager (missionManager)(系统接口)](js-apis-app-ability-missionManager-sys.md)
@@ -71,9 +76,11 @@
     - [@ohos.app.ability.wantConstant (wantConstant)(系统接口)](js-apis-app-ability-wantConstant-sys.md)
     - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](js-apis-businessAbilityRouter-sys.md)
     - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](js-apis-uripermissionmanager-sys.md)
+    <!--DelEnd-->
     - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
+    <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
     - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](js-apis-bundleManager-sys.md)
     - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](js-apis-bundleMonitor-sys.md)
@@ -117,6 +124,7 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
@@ -201,7 +209,9 @@
     - [@ohos.application.appManager (appManager)(系统接口)](js-apis-application-appManager-sys.md)
     - [@ohos.application.missionManager (missionManager)(系统接口)](js-apis-application-missionManager-sys.md)
     - [@ohos.wantAgent (WantAgent模块)(系统接口)](js-apis-wantAgent-sys.md)
+    <!--DelEnd-->
     - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+    <!--Del-->
     - [@ohos.bundle (Bundle模块)(系统接口)](js-apis-Bundle-sys.md)
     - [@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](js-apis-Bundle-InnerBundleManager-sys.md)
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
@@ -226,8 +236,10 @@
 - C API
   - 模块
     - [Bundle](_bundle.md)
+    - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
     - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_child_process.h](native__child__process_8h.md)
   - 结构体
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - 错误码
@@ -235,3 +247,4 @@
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [访问控制错误码](errorcode-access-token.md)
+  - [锁屏敏感数据管理错误码](errorcode-screenLockFileManager.md)

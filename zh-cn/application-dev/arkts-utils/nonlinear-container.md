@@ -214,7 +214,7 @@ PlainArray进行增、删、改、查操作的常用API如下：
 
 ```ts
 // HashMap
-import HashMap from '@ohos.util.HashMap'; // 导入HashMap模块
+import { HashMap } from '@kit.ArkTS'; // 导入HashMap模块
 
 let hashMap1: HashMap<string, number> = new HashMap();
 hashMap1.set('a', 123);
@@ -224,7 +224,7 @@ console.info(`result: ${hashMap2.hasKey(4)}`); // 判断是否含有某元素
 console.info(`result: ${hashMap1.get('a')}`); // 访问元素
 
 // TreeMap
-import TreeMap from '@ohos.util.TreeMap'; // 导入TreeMap模块
+import { TreeMap } from '@kit.ArkTS'; // 导入TreeMap模块
 
 let treeMap: TreeMap<string, number> = new TreeMap();
 treeMap.set('a', 123);
@@ -234,7 +234,7 @@ console.info(`result: ${treeMap.getFirstKey()}`); // 访问首元素
 console.info(`result: ${treeMap.getLastKey()}`); // 访问尾元素
 
 // LightWeightMap
-import LightWeightMap from '@ohos.util.LightWeightMap'; // 导入LightWeightMap模块
+import { LightWeightMap } from '@kit.ArkTS'; // 导入LightWeightMap模块
 
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set('x', 123);
@@ -244,7 +244,7 @@ console.info(`result: ${lightWeightMap.get('x')}`); // 访问元素
 console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // 访问元素
 
 // PlainArray
-import PlainArray from '@ohos.util.PlainArray' // 导入PlainArray模块
+import { PlainArray } from '@kit.ArkTS'; // 导入PlainArray模块
 
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, 'sdd');

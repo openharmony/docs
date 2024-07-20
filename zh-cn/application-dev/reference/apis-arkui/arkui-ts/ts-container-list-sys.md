@@ -39,6 +39,3 @@
 | intensity    | number                                   | 否    | 设置链式联动动效效果强度。取值范围[0,1]，数值越大，动效效果越明显。<br/>默认为0.3。 |
 | edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10枚举说明) | 否    | 设置链式联动动效边缘效果。<br/>默认为ChainEdgeEffect.DEFAULT。 |
 
-> **说明：** 
->
-> List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。

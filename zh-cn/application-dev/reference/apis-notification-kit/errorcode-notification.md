@@ -226,7 +226,7 @@ No memory space.
 
 **错误信息**
 
-Enable Notification Dialog has been popping already.
+A notification dialog box is already displayed.
 
 **错误描述**
 
@@ -245,7 +245,7 @@ Enable Notification Dialog has been popping already.
 
 **错误信息**
 
-No relevant right.
+No permission.
 
 **错误描述**
 
@@ -299,7 +299,7 @@ The notification version for this update is too low.
 
 **错误信息**
 
-Network is unreachable.
+Network unreachable.
 
 **错误描述**
 

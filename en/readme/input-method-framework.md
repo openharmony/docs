@@ -69,8 +69,8 @@ The input method framework has four modules:
 ## How to Use
 
 * [InputMethodExtentionAbility](../application-dev/application-models/inputmethodextentionability.md)
-* [@ohos.inputMethod (Input Method Framework)](../application-dev/reference/apis/js-apis-inputmethod.md)
-* [@ohos.inputMethodEngine (Input Method Service)](../application-dev/reference/apis/js-apis-inputmethodengine.md)
+* [@ohos.inputMethod (Input Method Framework)](../application-dev/reference/apis-ime-kit/js-apis-inputmethod.md)
+* [@ohos.inputMethodEngine (Input Method Service)](../application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md)
 
 ## Repositories Involved
 

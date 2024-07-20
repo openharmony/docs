@@ -1,12 +1,14 @@
 # GATT Development
 
 ## Introduction
-Generic Attribute Profile (GATT) provides profile discovery and description services for BLE protocol. It defines how ATT attributes are organized and exchanged over a BLE connection.<br>A GATT server (referred to as server in this topic) is a device that stores attribute data locally and provides data access to a remote GATT client paired via BLE. A GATT client (referred to as client in this topic) is a device that accesses data on the remote GATT server via read, write, notify, or indicate operations.
+Generic Attribute Profile (GATT) provides profile discovery and description services for BLE protocol. It defines how ATT attributes are organized and exchanged over a BLE connection.
+
+A GATT server (referred to as server in this topic) is a device that stores attribute data locally and provides data access to a remote GATT client paired via BLE. A GATT client (referred to as client in this topic) is a device that accesses data on the remote GATT server via read, write, notify, or indicate operations.
 
 ## When to Use
 
 You can use the APIs provided by the **gatt** module to:
-- Connect to the server and read and write data in the server.
+- Connect to the server to read and write data.
 - Manage services on the server and respond to the requests from the client.
 
 ## Available APIs
@@ -56,170 +58,303 @@ The following table describes the related APIs.
 
 ## How to Develop
 
-### Reading and Writing Data in the Server
+### Reading and Writing Data on the Server
 1. Import the **ble** module.
 2. Create a **gattClient** instance.
 3. Connect to the server.
-4. Obtain the device name, services information, and RSSI of the server.
-5. Read characteristics and descriptors from the server.
-6. Write characteristics and descriptors to the server.
-7. Disconnect from the server and close the **gattClient** instance.
+4. Read characteristics and descriptors from the server.
+5. Write characteristics and descriptors to the server.
+6. Disconnect from the server and destroy the **gattClient** instance.
 
-Example:
+    Example:
 
-```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
-
-// serverDeviceId is the device ID of the GATT server obtained after Bluetooth scanning is started.
-let serverDeviceId = 'xx:xx:xx:xx:xx:xx';
-
-// Create a GattClientDevice instance.
-let clientDevice = ble.createGattClientDevice(serverDeviceId);
-
-// Connect to the server.
-clientDevice.connect();
-
-// Subscribe to connection status changes.
-clientDevice.on('BLEConnectionStateChange', (bleConnectionState) => {
-  let bleConnectionStateInfo = '';
-  switch (bleConnectionState.state) {
-    case 0:
-      bleConnectionStateInfo = 'DISCONNECTED';
-      break;
-    case 1:
-      bleConnectionStateInfo = 'CONNECTING';
-      break;
-    case 2:
-      bleConnectionStateInfo = 'STATE_CONNECTED';
-      break;
-    case 3:
-      bleConnectionStateInfo = 'STATE_DISCONNECTING';
-      break;
-    default:
-      bleConnectionStateInfo = 'undefined';
-      break;
-  }
-  console.info('status: ' + bleConnectionStateInfo);
-})
-
-// Obtain the server device name.
-clientDevice.getDeviceName((err: BusinessError, data: string) => {
-  console.info('getDeviceName success, deviceName = ' + JSON.stringify(data));
-})
-
-// Obtain the service information of the server.
-clientDevice.getServices((code, gattServices) => {
-  let message = '';
-  if (code != null) {
-    console.error('getServices error, errCode: ' + (code as BusinessError).code + ', errMessage: ' + (code as BusinessError).message);
-  } else {
-    for (let i = 0; i < gattServices.length; i++) {
-      message += 'serviceUuid is ' + gattServices[i].serviceUuid + '\n';
+    ```ts
+    import { ble } from '@kit.ConnectivityKit';
+    import { constant } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+    
+    const TAG: string = 'GattClientManager';
+    
+    export class GattClientManager {
+      device: string = undefined;
+      gattClient: ble.GattClientDevice = undefined;
+      connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
+      myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
+      myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';
+      myFirstDescriptorUuid: string = '00002902-0000-1000-8000-00805F9B34FB'; // 2902 is generally used for notification or indication.
+      mySecondDescriptorUuid: string = '00002903-0000-1000-8000-00805F9B34FB';
+      found: boolean = false;
+    
+      // Construct BLEDescriptor.
+      private initDescriptor(des: string, value: ArrayBuffer): ble.BLEDescriptor {
+        let descriptor: ble.BLEDescriptor = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          descriptorUuid: des,
+          descriptorValue: value
+        };
+        return descriptor;
+      }
+    
+      // Construct BLECharacteristic.
+      private initCharacteristic(): ble.BLECharacteristic {
+        let descriptors: Array<ble.BLEDescriptor> = [];
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 11;
+        descValue[1] = 12;
+        descriptors[0] = this.initDescriptor(this.myFirstDescriptorUuid, new ArrayBuffer(2));
+        descriptors[1] = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        let charBuffer = new ArrayBuffer(2);
+        let charValue = new Uint8Array(charBuffer);
+        charValue[0] = 1;
+        charValue[1] = 2;
+        let characteristic: ble.BLECharacteristic = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          characteristicValue: charBuffer,
+          descriptors: descriptors
+        };
+        return characteristic;
+      }
+    
+      private logCharacteristic(char: ble.BLECharacteristic) {
+        let message = 'logCharacteristic uuid:' + char.characteristicUuid + '\n';
+        let value = new Uint8Array(char.characteristicValue);
+        message += 'logCharacteristic value: ';
+        for (let i = 0; i < char.characteristicValue.byteLength; i++) {
+          message += value[i] + ' ';
+        }
+        console.info(TAG, message);
+      }
+    
+      private logDescriptor(des: ble.BLEDescriptor) {
+        let message = 'logDescriptor uuid:' + des.descriptorUuid + '\n';
+        let value = new Uint8Array(des.descriptorValue);
+        message += 'logDescriptor value: ';
+        for (let i = 0; i < des.descriptorValue.byteLength; i++) {
+          message += value[i] + ' ';
+        }
+        console.info(TAG, message);
+      }
+    
+      private checkService(services: Array<ble.GattService>): boolean {
+        for (let i = 0; i < services.length; i++) {
+          if (services[i].serviceUuid != this.myServiceUuid) {
+            continue;
+          }
+          for (let j = 0; j < services[i].characteristics.length; j++) {
+            if (services[i].characteristics[j].characteristicUuid != this.myCharacteristicUuid) {
+              continue;
+            }
+            for (let k = 0; k < services[i].characteristics[j].descriptors.length; k++) {
+              if (services[i].characteristics[j].descriptors[k].descriptorUuid == this.myFirstDescriptorUuid) {
+                console.info(TAG, 'find expected service from server');
+                return true;
+              }
+            }
+          }
+        }
+        console.error(TAG, 'no expected service from server');
+        return false;
+      }
+    
+      // 1. Subscribe to the connection status change event.
+      public onGattClientStateChange() {
+        if (!this.gattClient) {
+          console.error(TAG, 'no gattClient');
+          return;
+        }
+        try {
+          this.gattClient.on('BLEConnectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+            let state = '';
+            switch (stateInfo.state) {
+              case 0:
+                state = 'DISCONNECTED';
+                break;
+              case 1:
+                state = 'CONNECTING';
+                break;
+              case 2:
+                state = 'CONNECTED';
+                break;
+              case 3:
+                state = 'DISCONNECTING';
+                break;
+              default:
+                state = 'undefined';
+                break;
+            }
+            console.info(TAG, 'onGattClientStateChange: device=' + stateInfo.deviceId + ', state=' + state);
+            if (stateInfo.deviceId == this.device) {
+              this.connectState = stateInfo.state;
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 2. Called when the client proactively connects to the server.
+      public startConnect(peerDevice: string) {// The peer device is generally discovered through BLE scan.
+        if (this.connectState != constant.ProfileConnectionState.STATE_DISCONNECTED) {
+          console.error(TAG, 'startConnect failed');
+          return;
+        }
+        console.info(TAG, 'startConnect ' + peerDevice);
+        this.device = peerDevice;
+        // 2.1 Use device to construct gattClient. This instance is used for subsequent interactions.
+        this.gattClient = ble.createGattClientDevice(peerDevice);
+        try {
+          this.onGattClientStateChange(); // 2.2 Subscribe to the connection status.
+          this.gattClient.connect(); // 2.3 Initiate a connection.
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 3. After the client is connected, start service discovery.
+      public discoverServices() {
+        if (!this.gattClient) {
+          console.info(TAG, 'no gattClient');
+          return;
+        }
+        console.info(TAG, 'discoverServices');
+        try {
+          this.gattClient.getServices().then((result: Array<ble.GattService>) => {
+            console.info(TAG, 'getServices success: ' + JSON.stringify(result));
+            this.found = this.checkService(result); // Ensure that the service required exists on the server.
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 4. Read a specific characteristic after obtaining the services on the server.
+      public readCharacteristicValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) {// Ensure that the server has the corresponding characteristic.
+          console.error(TAG, 'no characteristic from server');
+          return;
+        }
+    
+        let characteristic = this.initCharacteristic();
+        console.info(TAG, 'readCharacteristicValue');
+        try {
+          this.gattClient.readCharacteristicValue(characteristic).then((outData: ble.BLECharacteristic) => {
+            this.logCharacteristic(outData);
+          })
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 5. Write a characteristic value after obtaining the services on the server.
+      public writeCharacteristicValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) {// Ensure that the server has the corresponding characteristic.
+          console.error(TAG, 'no characteristic from server');
+          return;
+        }
+    
+        let characteristic = this.initCharacteristic();
+        console.info(TAG, 'writeCharacteristicValue');
+        try {
+          this.gattClient.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE, (err) => {
+            if (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+              return;
+            }
+            console.info(TAG, 'writeCharacteristicValue success');
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 6. Read a specific service descriptor after obtaining the services on the server. 
+      public readDescriptorValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) {// Ensure that the server has the corresponding descriptor.
+          console.error(TAG, 'no descriptor from server');
+          return;
+        }
+    
+        let descBuffer = new ArrayBuffer(0);
+        let descriptor = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        console.info(TAG, 'readDescriptorValue');
+        try {
+          this.gattClient.readDescriptorValue(descriptor).then((outData: ble.BLEDescriptor) => {
+            this.logDescriptor(outData);
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 7. Write a service descriptor after obtaining the services on the server. 
+      public writeDescriptorValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) {// Ensure that the server has the corresponding descriptor.
+          console.error(TAG, 'no descriptor from server');
+          return;
+        }
+    
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 11;
+        descValue[1] = 12;
+        let descriptor = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        console.info(TAG, 'writeDescriptorValue');
+        try {
+          this.gattClient.writeDescriptorValue(descriptor, (err) => {
+            if (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+              return;
+            }
+            console.info(TAG, 'writeDescriptorValue success');
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 8. The client proactively disconnects from the server.
+      public stopConnect() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+    
+        console.info(TAG, 'stopConnect ' + this.device);
+        try {
+          this.gattClient.disconnect (); // 8.1 Disconnect from the server.
+          this.gattClient.off('BLEConnectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+          });
+          this.gattClient.close () // 8.2 Close this gattClient if it is no longer required.
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
     }
-    console.info('getServices success, ' + message);
-  }
-})
+    
+    let gattClientManager = new GattClientManager();
+    export default gattClientManager as GattClientManager;
+    ```
 
-// Obtain the RSSI.
-clientDevice.getRssiValue((err, cbRssi) => {
-  console.info('return code = ' + JSON.stringify(err) + ', RSSI = ' + JSON.stringify(cbRssi))
-});
-
-// Set the MTU to 256.
-clientDevice.setBLEMtuSize(256);
-
-// Read a characteristic from the server.
-// The values of the following fields are obtained from the result returned by getServices().
-let serviceUuid = 'xxx';
-let characteristicUuid = 'xxx';
-let descriptorUuid = 'xxx';
-let descriptorValue = new Uint8Array('xxx'.length).buffer;
-let characteristicValue = new Uint8Array('xxx'.length).buffer;
-let descriptors: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
-let descriptor: ble.BLEDescriptor = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  descriptorUuid: descriptorUuid,
-  descriptorValue: descriptorValue
-}
-descriptors.push(descriptor);
-let bleCharacteristicDataIn: ble.BLECharacteristic = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  characteristicValue: characteristicValue,
-  descriptors: descriptors
-};
-clientDevice.readCharacteristicValue(bleCharacteristicDataIn, (err, bleCharacteristicDataOut) => {
-  if (err != null) {
-    console.error('readCharacteristicValue error, code = ' + (err as BusinessError).code)
-    return;
-  }
-  let message = 'characteristic value = ';
-  let value = new Uint8Array(bleCharacteristicDataOut.characteristicValue);
-  for (let i = 0; i < bleCharacteristicDataOut.characteristicValue.byteLength; i++) {
-    message += value[i];
-  }
-  console.info(message);
-});
-
-// Read a descriptor.
-let descriptorIn: ble.BLEDescriptor = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  descriptorUuid: descriptorUuid,
-  descriptorValue: descriptorValue
-};
-clientDevice.readDescriptorValue(descriptorIn, (err, descriptorOut) => {
-  if (err != null) {
-    console.error('readDescriptorValue error, code: ' + (err as BusinessError).code)
-    return;
-  }
-  let message = 'descriptor value: ';
-  let value = new Uint8Array(descriptorOut.descriptorValue);
-  for (let i = 0; i < descriptorOut.descriptorValue.byteLength; i++) {
-    message += value[i];
-  }
-  console.info(message);
-});
-
-// Write a characteristic.
-let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
-  let array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i);
-  }
-  return array.buffer;
-}
-
-let bufferCCC = string2ArrayBuffer('V');
-let characteristic: ble.BLECharacteristic = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  characteristicValue: bufferCCC,
-  descriptors: descriptors
-};
-clientDevice.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE);
-
-// Write a descriptor.
-let message = '';
-if (clientDevice.writeDescriptorValue(descriptor)) {
-  message = 'writeDescriptorValue success';
-} else {
-  message = 'writeDescriptorValue failed';
-}
-console.info(message);
-
-// Disconnect from the server.
-clientDevice.disconnect();
-console.info('disconnect success')
-
-// Close the GattClient instance.
-clientDevice.close();
-console.info('close gattClientDevice success');
-```
-
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+    For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 
 ### Managing Services on the Server and Notifying the Client
@@ -230,105 +365,279 @@ For details about the error codes, see [Bluetooth Error Codes](../../reference/a
 5. Remove services.
 6. Close the gattServer instance.
 
-Example:
+    Example:
 
-```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { ble } from '@kit.ConnectivityKit';
+    import { constant } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+    
+    const TAG: string = 'GattServerManager';
+    
+    export class GattServerManager {
+      gattServer: ble.GattServer = undefined;
+      connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
+      myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
+      myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';
+      myFirstDescriptorUuid: string = '00002902-0000-1000-8000-00805F9B34FB'; // 2902 is generally used for notification or indication.
+      mySecondDescriptorUuid: string = '00002903-0000-1000-8000-00805F9B34FB';
+    
+      // Construct BLEDescriptor.
+      private initDescriptor(des: string, value: ArrayBuffer): ble.BLEDescriptor {
+        let descriptor: ble.BLEDescriptor = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          descriptorUuid: des,
+          descriptorValue: value
+        };
+        return descriptor;
+      }
+    
+      // Construct BLECharacteristic.
+      private initCharacteristic(): ble.BLECharacteristic {
+        let descriptors: Array<ble.BLEDescriptor> = [];
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 31;
+        descValue[1] = 32;
+        descriptors[0] = this.initDescriptor(this.myFirstDescriptorUuid, new ArrayBuffer(2));
+        descriptors[1] = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        let charBuffer = new ArrayBuffer(2);
+        let charValue = new Uint8Array(charBuffer);
+        charValue[0] = 21;
+        charValue[1] = 22;
+        let characteristic: ble.BLECharacteristic = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          characteristicValue: charBuffer,
+          descriptors: descriptors
+        };
+        return characteristic;
+      }
+    
+      // 1. Subscribe to the connection status change event.
+      public onGattServerStateChange() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+        try {
+          this.gattServer.on('connectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+            let state = '';
+            switch (stateInfo.state) {
+              case 0:
+                state = 'DISCONNECTED';
+                break;
+              case 1:
+                state = 'CONNECTING';
+                break;
+              case 2:
+                state = 'CONNECTED';
+                break;
+              case 3:
+                state = 'DISCONNECTING';
+                break;
+              default:
+                state = 'undefined';
+                break;
+            }
+            console.info(TAG, 'onGattServerStateChange: device=' + stateInfo.deviceId + ', state=' + state);
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 2. Register a service with the server.
+      public registerServer() {
+        let characteristics: Array<ble.BLECharacteristic> = [];
+        let characteristic = this.initCharacteristic();
+        characteristics.push(characteristic);
+        let gattService: ble.GattService = {
+          serviceUuid: this.myServiceUuid,
+          isPrimary: true,
+          characteristics: characteristics
+        };
+    
+        console.info(TAG, 'registerServer ' + this.myServiceUuid);
+        try {
+          The this.gattServer = ble.createGattServer(); // 2.1 Create a gattServer instance, which is used in subsequent interactions.
+          this.onGattServerStateChange(); // 2.2 Subscribe to the connection status.
+          this.gattServer.addService(gattService);
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 3. Subscribe to the characteristic read requests from the gattClient.
+      public onCharacteristicRead() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+    
+        console.info(TAG, 'onCharacteristicRead');
+        try {
+          this.gattServer.on('characteristicRead', (charReq: ble.CharacteristicReadRequest) => {
+            let deviceId: string = charReq.deviceId;
+            let transId: number = charReq.transId;
+            let offset: number = charReq.offset;
+            console.info(TAG, 'receive characteristicRead');
+            let rspBuffer = new ArrayBuffer(2);
+            let rspValue = new Uint8Array(rspBuffer);
+            rspValue[0] = 21;
+            rspValue[1] = 22;
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // The value 0 indicates the operation is successful.
+              offset: offset,
+              value: rspBuffer
+            };
+    
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 4. Subscribe to the characteristic write requests from the gattClient.
+      public onCharacteristicWrite() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+    
+        console.info(TAG, 'onCharacteristicWrite');
+        try {
+          this.gattServer.on('characteristicWrite', (charReq: ble.CharacteristicWriteRequest) => {
+            let deviceId: string = charReq.deviceId;
+            let transId: number = charReq.transId;
+            let offset: number = charReq.offset;
+            console.info(TAG, 'receive characteristicWrite: needRsp=' + charReq.needRsp);
+            if (!charReq.needRsp) {
+              return;
+            }
+            let rspBuffer = new ArrayBuffer(0);
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // The value 0 indicates the operation is successful.
+              offset: offset,
+              value: rspBuffer
+            };
+    
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 5. Subscribe to the descriptor read requests from the gattClient.
+      public onDescriptorRead() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+    
+        console.info(TAG, 'onDescriptorRead');
+        try {
+          this.gattServer.on('descriptorRead', (desReq: ble.DescriptorReadRequest) => {
+            let deviceId: string = desReq.deviceId;
+            let transId: number = desReq.transId;
+            let offset: number = desReq.offset;
+            console.info(TAG, 'receive descriptorRead');
+            let rspBuffer = new ArrayBuffer(2);
+            let rspValue = new Uint8Array(rspBuffer);
+            rspValue[0] = 31;
+            rspValue[1] = 32;
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // The value 0 indicates the operation is successful.
+              offset: offset,
+              value: rspBuffer
+            };
+    
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 6. Subscribe to the descriptor write requests from the gattClient.
+      public onDescriptorWrite() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+    
+        console.info(TAG, 'onDescriptorWrite');
+        try {
+          this.gattServer.on('descriptorWrite', (desReq: ble.DescriptorWriteRequest) => {
+            let deviceId: string = desReq.deviceId;
+            let transId: number = desReq.transId;
+            let offset: number = desReq.offset;
+            console.info(TAG, 'receive descriptorWrite: needRsp=' + desReq.needRsp);
+            if (!desReq.needRsp) {
+              return;
+            }
+            let rspBuffer = new ArrayBuffer(0);
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // The value 0 indicates the operation is successful.
+              offset: offset,
+              value: rspBuffer
+            };
+    
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    
+      // 7. Unregister the service that is not required from the server.
+      public unRegisterServer() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+    
+        console.info(TAG, 'unRegisterServer ' + this.myServiceUuid);
+        try {
+          this.gattServer.removeService (this.myServiceUuid); // 7.1 Remove the service.
+          this.gattServer.off('connectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => { // 7.2 Unsubscribe from the connection state changes.
+          });
+          this.gattServer.close() // 7.3 Close the gattServer if it is no longer required.
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    }
+    
+    let gattServerManager = new GattServerManager();
+    export default gattServerManager as GattServerManager;
+    ```
 
-// Create a gattServer instance.
-let gattServerInstance = ble.createGattServer();
-
-// Add services.
-let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
-  let array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i);
-  }
-  return array.buffer;
-}
-
-let characteristicsArray: Array<ble.BLECharacteristic> = new Array<ble.BLECharacteristic>();
-let descriptorsArray: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
-let characteristics1: ble.BLECharacteristic = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  characteristicValue: string2ArrayBuffer('I am charac1'),
-  descriptors: descriptorsArray
-};
-characteristicsArray.push(characteristics1);
-
-let descriptors1: ble.BLEDescriptor = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  descriptorUuid: '00002904-0000-1000-8000-00805f9b34fb',
-  descriptorValue: string2ArrayBuffer('I am Server Descriptor1')
-}
-let descriptors2: ble.BLEDescriptor = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  descriptorUuid: '00002905-0000-1000-8000-00805f9b34fb',
-  descriptorValue: string2ArrayBuffer('I am Server Descriptor2')
-}
-descriptorsArray.push(descriptors1);
-descriptorsArray.push(descriptors2);
-
-let service: ble.GattService = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  isPrimary: true,
-  characteristics: characteristicsArray
-};
-gattServerInstance.addService(service);
-console.info('addService success');
-
-// Subscribe to the characteristic write event and send a response to gattClient.
-gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
-  let deviceId = characteristicWriteReq.deviceId;
-  let transId = characteristicWriteReq.transId;
-  let offset = characteristicWriteReq.offset;
-  let needRsp = characteristicWriteReq.needRsp;
-  let arrayBufferCCC: ArrayBuffer = string2ArrayBuffer('characteristicWriteForResponse');
-  let serverResponse: ble.ServerResponse = {
-    deviceId: deviceId,
-    transId: transId,
-    status: 0,
-    offset: offset,
-    value: arrayBufferCCC
-  };
-  // Send a response.
-  if (needRsp) {
-    gattServerInstance.sendResponse(serverResponse);
-    console.info('sendResponse success, response data: ' + JSON.stringify(serverResponse));
-  }
-  // Unsubscribe from the characteristic write event.
-  gattServerInstance.off('characteristicWrite');
-})
-
-// Subscribe to the characteristic write event and notify the gattClient of the characteristic change.
-gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
-  let characteristicUuid = characteristicWriteReq.characteristicUuid;
-  let serviceUuid = characteristicWriteReq.serviceUuid;
-  let deviceId = characteristicWriteReq.deviceId;
-  let notifyCharacteristic: ble.NotifyCharacteristic = {
-    serviceUuid: serviceUuid,
-    characteristicUuid: characteristicUuid,
-    characteristicValue: string2ArrayBuffer('Value4notifyCharacteristic'),
-    confirm: false
-  }
-  // Notify the connected client devices when the characteristic changes.
-  gattServerInstance.notifyCharacteristicChanged(deviceId, notifyCharacteristic);
-  console.info('notifyCharacteristicChanged success, deviceId = ' + deviceId);
-  // Unsubscribe from the characteristic write event.
-  gattServerInstance.off('characteristicWrite');
-})
-
-// Remove a service.
-gattServerInstance.removeService('0000aaaa-0000-1000-8000-00805f9b34fb');
-console.info('removeService success')
-
-// Close the gattServer instance.
-gattServerInstance.close();
-console.info('close gattServerInstance success');
-```
-
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+    For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

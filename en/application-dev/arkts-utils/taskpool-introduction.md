@@ -24,6 +24,7 @@ With TaskPool, you can encapsulate tasks in the main thread and throw the tasks 
 
 - Parameters of the ArrayBuffer type are transferred in TaskPool by default. You can set the transfer list by calling [setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10).
 
-- Context objects vary in different threads. Therefore, the worker thread of TaskPool can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
+- Context objects vary in different threads. Therefore, the TaskPool worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
 
 - A maximum of 16 MB data can be serialized.
+- Among all the values of [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority), **IDLE** is used to mark time-consuming tasks (such as data synchronization and backup) that need to run in the background and has the lowest priority. Tasks marked with **IDLE** are executed only when all threads are idle and occupy only one thread for execution.

@@ -14,7 +14,7 @@ import { huks } from '@kit.UniversalKeystoreKit'
 
 ## huks.generateKeyItemAsUser
 
-generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份生成密钥，使用Promise方式异步返回结果。基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
@@ -54,12 +54,11 @@ generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : 
 **示例：**
 
 - 以下代码示例接口调用的前置条件：
-  
+
   调用方必须是运行在User0~99（包含0和99）用户身份下的系统应用，同时需要申请ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。允许应用安装到User0的配置指导，请参考[singleton|bool|false|是否允许应用安装到单用户下(U0)](../../../../zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -94,21 +93,21 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
-  }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+  }).catch((err: Error) => {
+    console.error("密钥生成失败，错误:" + JSON.stringify(err))
   })
 }
 
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   GenerateKey(aesKeyAlias, GetAesGenerateProperties())
 }
 ```
 
 ## huks.deleteKeyItemAsUser
 
-deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份删除密钥，使用Promise方式异步返回结果。
 
@@ -146,8 +145,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -182,7 +180,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -196,7 +194,7 @@ async function DeleteKey(keyAlias: string) {
   await huks.deleteKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("别名为: " + keyAlias + " 密钥删除成功！")
   }).catch((err: BusinessError) => {
-    console.info("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -206,14 +204,14 @@ async function TestHuksDelete() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksDelete()
 }
 ```
 
 ## huks.importKeyItemAsUser
 
-importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份导入明文密钥，使用Promise方式异步返回结果。
 
@@ -257,8 +255,7 @@ importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -298,12 +295,12 @@ async function ImportPlainKey(keyAlias: string, importProperties: Array<huks.Huk
   await huks.importKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功导入了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥导入失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥导入失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   ImportPlainKey(aesKeyAlias, GetAesGenerateProperties(), plainAesKey128)
 }
 ```
@@ -311,7 +308,7 @@ export default function HuksAsUserTest() {
 
 ## huks.attestKeyItemAsUser
 
-attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取密钥证书，使用Promise方式异步返回结果 。
 
@@ -359,8 +356,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -411,7 +407,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -438,16 +434,16 @@ async function LetKeyAttest(keyAlias: string, keyOptions: Array<huks.HuksParam>)
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log('开始attest')
+  console.info('开始attest')
   await huks.attestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log('attestation ok!')
-    console.log(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+    console.info('attestation ok!')
+    console.debug(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+      console.debug(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链
     }
     console.info("attest 成功")
   }).catch((err: BusinessError) => {
-    console.info("attest 失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("attest 失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -457,14 +453,14 @@ async function TestHuksAttest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksAttest()
 }
 ```
 
 ## huks.anonAttestKeyItemAsUser
 
-anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取匿名化密钥证书，使用Promise方式异步返回结果。
 
@@ -514,8 +510,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -566,7 +561,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -593,16 +588,16 @@ async function LetKeyAnonAttest(keyAlias: string, keyOptions: Array<huks.HuksPar
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log('开始匿名attest')
+  console.info('开始匿名attest')
   await huks.anonAttestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log('匿名attestation ok!')
-    console.log(`拿到的证书链是${JSON.stringify(data)}`)
+    console.info('匿名attestation ok!')
+    console.debug(`拿到的证书链是${JSON.stringify(data)}`)
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log(`证书${i}是${data.certChains[i]}`)
+      console.info(`证书${i}是${data.certChains[i]}`)
     }
     console.info("匿名 attest 成功")
   }).catch((err: BusinessError) => {
-    console.info("匿名 attest 失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("匿名 attest 失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -613,14 +608,14 @@ async function TestHuksAnonAttest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksAnonAttest()
 }
 ```
 
 ## huks.importWrappedKeyItemAsUser
 
-importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<void>
+importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份导入加密密钥，使用Promise方式异步返回结果。
 
@@ -666,7 +661,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 const initializationVector = '0000000000000000';
@@ -973,7 +968,7 @@ async function PublicImportWrappedKeyFunc(
   userId: number,
   keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter callback importWrappedKeyItemAsUser`);
-  console.error(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
+  console.info(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
   try {
     await huks.importWrappedKeyItemAsUser(userId, keyAlias, wrappingKeyAlias, huksOptions)
       .then((data) => {
@@ -1024,17 +1019,17 @@ async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
     if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
       isFinished = true;
       inDataSegSize = lastInDataPosition - inDataSegPosition + 1;
-      console.error(`enter promise doUpdate`);
+      console.info(`enter promise doUpdate`);
       break;
     }
     huksOptions.inData = new Uint8Array(
       Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
     );
-    console.error(`enter promise doUpdate`);
+    console.info(`enter promise doUpdate`);
     try {
       await huks.updateSession(handle, huksOptions)
         .then((data) => {
-          console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+          console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           if (data.outData == undefined) {
             console.error('data.outData is undefined');
             return;
@@ -1048,9 +1043,9 @@ async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
       console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
     }
     if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-      console.log(`update size invalid isFinished = ${isFinished}`);
-      console.log(`inDataSegPosition = ${inDataSegPosition}`);
-      console.log(`lastInDataPosition = ${lastInDataPosition}`);
+      console.error(`update size invalid isFinished = ${isFinished}`);
+      console.error(`inDataSegPosition = ${inDataSegPosition}`);
+      console.error(`lastInDataPosition = ${lastInDataPosition}`);
       return [];
     }
     inDataSegPosition += maxUpdateSize;
@@ -1095,11 +1090,11 @@ async function AgreeFunction(
   const handle = await PublicInitFunc(userId, keyAlias, huksOptions);
   let outSharedKey: Uint8Array = new Uint8Array;
   huksOptions.inData = huksPublicKey;
-  console.error(`enter promise doUpdate`);
+  console.info(`enter promise doUpdate`);
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`promise: doUpdate failed, code: ${err.code}, msg: ${err.message}`);
@@ -1267,7 +1262,7 @@ export async function HuksSecurityImportTest(userId: number) {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
 
   const userId = 100;
   HuksSecurityImportTest(userId)
@@ -1276,7 +1271,7 @@ export default function HuksAsUserTest() {
 
 ## huks.exportKeyItemAsUser
 
-exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份导出密钥，使用Promise方式回调异步返回的结果。
 
@@ -1324,8 +1319,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
 const userId = 100;
@@ -1364,7 +1358,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1378,7 +1372,7 @@ async function ExportPublicKey(keyAlias: string) {
   await huks.exportKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功将别名为：" + keyAlias + " 的公钥导出, data 的长度为" + data?.outData?.length)
   }).catch((err: BusinessError) => {
-    console.info("密钥导出失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥导出失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1388,14 +1382,14 @@ async function ExportHuksTest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   ExportHuksTest()
 }
 ```
 
 ## huks.getKeyItemPropertiesAsUser
 
-getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取密钥属性，使用Promise回调异步返回结果。
 
@@ -1443,8 +1437,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOption
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -1480,7 +1473,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1494,7 +1487,7 @@ async function GetKeyProperties(keyAlias: string) {
   await huks.getKeyItemPropertiesAsUser(userId, keyAlias, options).then((data) => {
     console.info("获取密钥属性成功！属性为: " + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    console.info("获取密钥属性失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("获取密钥属性失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1504,14 +1497,14 @@ async function TestHuksGet() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksGet()
 }
 ```
 
 ## huks.hasKeyItemAsUser
 
-hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<boolean>
+hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<boolean>
 
 指定用户身份判断密钥是否存在，使用Promise回调异步返回结果 。
 
@@ -1557,8 +1550,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promi
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
@@ -1593,7 +1585,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1605,9 +1597,9 @@ async function HasKey(keyAlias: string) {
     }]
   }
   await huks.hasKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    console.log("别名为: " + keyAlias + "的密钥查询存在结果" + JSON.stringify(data))
+    console.info("别名为: " + keyAlias + "的密钥查询存在结果" + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    console.info("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1617,14 +1609,14 @@ async function TestHuksHasKey() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksHasKey()
 }
 ```
 
 ## huks.initSessionAsUser
 
-initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
+initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksSessionHandle>
 
 指定用户身份操作密钥接口，使用Promise方式异步返回结果。huks.initSessionAsUser, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
@@ -1674,8 +1666,7 @@ initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Prom
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -1779,7 +1770,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: BusinessError) => {
-    console.info("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1793,16 +1784,16 @@ async function EncryptData(keyAlias: string, encryptProperties: Array<huks.HuksP
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    console.info("密钥初始化失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥初始化失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
     console.info("加密数据成功， 密文是： " + Uint8ArrayToString(data.outData))
     if (data.outData != undefined) {
       cipherData = data.outData
     }
-    console.log("running time result success!")
+    console.info("running time result success!")
   }).catch((err: BusinessError) => {
-    console.info("加密流程捕获了异常，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("加密流程捕获了异常，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
   return cipherData
 }
@@ -1816,12 +1807,12 @@ async function DecryptData(keyAlias: string, decryptProperties: Array<huks.HuksP
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    console.info("密钥初始化失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥初始化失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
     console.info("解密成功， 解密的明文是： " + Uint8ArrayToString(data.outData))
   }).catch((err: BusinessError) => {
-    console.info("解密流程捕获了异常，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("解密流程捕获了异常，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1832,7 +1823,7 @@ async function TestHuksInit() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksInit()
 }
 ```

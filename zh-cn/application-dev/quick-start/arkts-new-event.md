@@ -1,10 +1,12 @@
 # \@Event装饰器：组件输出
 
-为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用@Event装饰器。
+为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。
 
 >**说明：**
 >
 >从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
+>
+>当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -25,7 +27,7 @@
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数 | 无。 |
 | 允许装饰的变量类型 | 回调方法，例如()=>void、(x:number)=>boolean等。回调方法是否含有参数以及返回值由开发者决定。 |
-| 允许传入的函数类型 | 成员方法、箭头函数以及传入时创建的临时函数。 |
+| 允许传入的函数类型 | 箭头函数。 |
 
 ## 限制条件
 
@@ -56,42 +58,90 @@
 struct Index {
   @Local title: string = "Titile One";
   @Local fontColor: Color = Color.Red;
-  changeFactory: (type: number) => void = (type: number) => {
-    if (type == 1) {
-      this.title = "Title One";
-      this.fontColor = Color.Red;
-    } else if (type == 2) {
-      this.title = "Title Two";
-      this.fontColor = Color.Green;
-    }
-  }
+
   build() {
     Column() {
       Child({
         title: this.title,
         fontColor: this.fontColor,
-        changeFactory: this.changeFactory.bind(this)
+        changeFactory: (type: number) => {
+          if (type == 1) {
+            this.title = "Title One";
+            this.fontColor = Color.Red;
+          } else if (type == 2) {
+            this.title = "Title Two";
+            this.fontColor = Color.Green;
+          }
+        }
       })
     }
   }
 }
+
 @ComponentV2
 struct Child {
   @Param title: string = '';
   @Param fontColor: Color = Color.Black;
   @Event changeFactory: (x: number) => void = (x: number) => {};
+
   build() {
     Column() {
       Text(`${this.title}`)
       Button("change to Title Two")
         .onClick(() => {
-          this.changeFactory(2)
-      })
+          this.changeFactory(2);
+        })
       Button("change to Title One")
         .onClick(() => {
-          this.changeFactory(1)
-      })
+          this.changeFactory(1);
+        })
     }
   }
 }
 ````
+
+值得注意的是，使用\@Event修改父组件的值是立刻生效的，但从父组件将变化同步回子组件的过程是异步的，即在调用完\@Event的方法后，子组件内的值不会立刻变化。这是因为\@Event将子组件值实际的变化能力交由父组件处理，在父组件实际决定如何处理后，将最终值在渲染之前同步回子组件。
+
+```ts
+@ComponentV2
+struct Child {
+  @Param index: number = 0;
+  @Event changeIndex: (val: number) => void;
+
+  build() {
+    Column() {
+      Text(`Child index: ${this.index}`)
+        .onClick(() => {
+          this.changeIndex(20);
+          console.log(`after changeIndex ${this.index}`);
+        })
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local index: number = 0;
+
+  build() {
+  	Column() {
+  	  Child({
+  	    index: this.index,
+  	    changeIndex: (val: number) => {
+  	      this.index = val;
+          console.log(`in changeIndex ${this.index}`);
+  	    }
+  	  })
+  	}
+  }
+}
+```
+
+在上面的示例中，点击文字触发\@Event函数事件改变子组件的值，打印出的日志为：
+
+```
+in changeIndex 20
+after changeIndex 0
+```
+
+这表明在调用changeIndex之后，父组件中index的值已经变化，但子组件中的index值还没有同步变化。

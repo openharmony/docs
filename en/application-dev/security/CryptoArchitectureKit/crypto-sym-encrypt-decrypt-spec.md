@@ -77,7 +77,7 @@ The 3DES encryption and decryption can be implemented based a string parameter. 
 
 ## SM4
 
-The Crypto framework provides the following cipher modes for [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) encryption and decryption: ECB, CBC, CTR, OFB, CFB, and CFB128. The encryption and decryption parameters vary depending on the cipher mode. For details, see [ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec).
+The Crypto framework provides the following cipher modes for [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) encryption and decryption: ECB, CBC, CTR, OFB, CFB, CFB128, and GCM. The encryption and decryption parameters vary depending on the cipher mode. For details, see [ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec).
 
 SM4 is a block cipher, with a fixed block size of 128 bits. If the last block is less than 128 bits (16 bytes), you can specify the [padding mode](#padding-mode) to pad data.
 
@@ -95,6 +95,8 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
   
   - If the cipher block mode is CFB and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|CFB|NoPadding**.
 
+  - If the cipher block mode is GCM and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|GCM|NoPadding**.
+
   | Cipher Mode| Key Length (Bit)| Padding Mode| API Version| 
   | -------- | -------- | -------- | -------- |
   | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
@@ -103,9 +105,7 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
   | OFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-
-- Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
-  For example, if the block mode is CFB and the padding mode is **NoPadding** for an SM4 key with key length not specified, the string parameter is **SM4|CFB|NoPadding**.
+  | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
 
 
 ## Padding Mode

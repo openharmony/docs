@@ -103,6 +103,24 @@ typedef enum {
 } JSVM_TypedarrayType;
 ```
 
+### JSVM_RegExpFlags
+正则表达式标志位。
+
+```c++
+typedef enum {
+    JSVM_REGEXP_NONE = 0,
+    JSVM_REGEXP_GLOBAL = 1 << 0,
+    JSVM_REGEXP_IGNORE_CASE = 1 << 1,
+    JSVM_REGEXP_MULTILINE = 1 << 2,
+    JSVM_REGEXP_STICKY = 1 << 3,
+    JSVM_REGEXP_UNICODE = 1 << 4,
+    JSVM_REGEXP_DOT_ALL = 1 << 5,
+    JSVM_REGEXP_LINEAR = 1 << 6,
+    JSVM_REGEXP_HAS_INDICES = 1 << 7,
+    JSVM_REGEXP_UNICODE_SETS = 1 << 8,
+} JSVM_RegExpFlags;
+```
+
 ### 内存管理类型
 
 JSVM-API包含以下内存管理类型：
@@ -758,6 +776,9 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateStringLatin1 | 根据 Latin-1 编码的字符串创建一个 JavaScript string 对象 |
 |OH_JSVM_CreateStringUtf16 | 根据 Utf16 编码的字符串创建一个 JavaScript string 对象 |
 |OH_JSVM_CreateStringUtf8 | 根据 Utf8 编码的字符串创建一个 JavaScript string 对象 |
+|OH_JSVM_CreateMap | 创建一个新的 JavaScript Map对象 |
+|OH_JSVM_CreateRegExp | 根据输入的字符串创建一个JavaScript 正则对象 |
+|OH_JSVM_CreateSet | 创建一个新的 JavaScript Set对象 |
 
 场景示例:
 创建指定长度的数组
@@ -804,6 +825,30 @@ JSVM_Value testNumber1 = nullptr;
 JSVM_Value testNumber2 = nullptr;
 OH_JSVM_CreateDouble(env, 10.1, &testNumber1);
 OH_JSVM_CreateInt32(env, 10, &testNumber2);
+```
+
+创建Map:
+
+```c++
+JSVM_Value value = nullptr;
+OH_JSVM_CreateMap(env, &value);
+```
+
+创建RegExp:
+
+```c++
+JSVM_Value value = nullptr;
+const char testStr[] = "ab+c";
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &value);
+JSVM_Value result = nullptr;
+OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
+```
+
+创建Set:
+
+```c++
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
 ```
 
 ### 从JS类型获取C类型&获取JS类型信息
@@ -911,6 +956,7 @@ JS值操作和抽象操作。
 |OH_JSVM_CoerceToNumber | 将目标值转换为 Number 类型对象 |
 |OH_JSVM_CoerceToObject | 将目标值转换为 Object 类型对象 |
 |OH_JSVM_CoerceToString | 将目标值转换为 String 类型对象 |
+|OH_JSVM_CoerceToBigInt | 将目标值转换为 BigInt 类型对象 |
 |OH_JSVM_Typeof | 返回 JavaScript 对象的类型 |
 |OH_JSVM_Instanceof | 判断一个对象是否是某个构造函数的实例 |
 |OH_JSVM_IsArray | 判断一个 JavaScript 对象是否为 Array 类型对象|
@@ -928,6 +974,10 @@ JS值操作和抽象操作。
 |OH_JSVM_IsFunction | 此API检查传入的值是否为Function。这相当于JS中的`typeof value === 'function'`。 |
 |OH_JSVM_IsObject | 此API检查传入的值是否为Object。 |
 |OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
+|OH_JSVM_IsConstructor | 此API检查传入的值是否为构造函数。 |
+|OH_JSVM_IsMap | 此API检查传入的值是否为Map。 |
+|OH_JSVM_IsSet | 此API检查传入的值是否为Set。 |
+|OH_JSVM_IsRegExp | 此API检查传入的值是否为RegExp。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
@@ -960,6 +1010,15 @@ OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
 ```
 
+将boolean类型转换为bigint类型
+
+```c++
+JSVM_Value boolValue;
+OH_JSVM_GetBoolean(env, false, &boolValue);
+JSVM_Value bigIntValue;
+OH_JSVM_CoerceToBigInt(env, boolValue, &bigIntValue);
+```
+
 判断两个JS值类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
 
 ```c++
@@ -985,6 +1044,52 @@ OH_JSVM_CreateInt32(env, 1, &rhs);
 bool isEquals = false;
 OH_JSVM_Equals(env, lhs, rhs, &isEquals); // 这里isEquals的值是true
 OH_JSVM_CloseHandleScope(env, handleScope);
+```
+
+判断JS值是否为构造函数
+
+```c++
+JSVM_Value SayHello(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    return nullptr;
+}
+JSVM_Value value = nullptr;
+JSVM_CallbackStruct param;
+param.data = nullptr;
+param.callback = SayHello;
+OH_JSVM_CreateFunction(env, "func", JSVM_AUTO_LENGTH, &param, &value);
+bool isConstructor = false;
+OH_JSVM_IsConstructor(env, value, &isConstructor); // 这里isConstructor的值是true
+```
+
+判断JS值是否为map类型
+
+```c++
+JSVM_Value value = nullptr;
+OH_JSVM_CreateMap(env, &value);
+bool isMap = false;
+OH_JSVM_IsMap(env, value, &isMap); // 这里isMap的值是true
+```
+
+判断JS值是否为Set类型
+
+```c++
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
+bool isSet = false;
+OH_JSVM_IsSet(env, value, &isSet); // 这里isSet的值是true
+```
+
+判断JS值是否为RegExp类型
+
+```c++
+JSVM_Value value = nullptr;
+const char testStr[] = "ab+c";
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &value);
+JSVM_Value result = nullptr;
+OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
+bool isRegExp = false;
+OH_JSVM_IsRegExp(env, result, &isRegExp);
 ```
 
 ### JS属性操作
@@ -1013,6 +1118,8 @@ JS对象属性的增删获取和判断
 |OH_JSVM_DefineProperties |  批量的向给定对象中定义属性。 |
 |OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。 |
 |OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。 |
+|OH_JSVM_ObjectSetPrototypeOf | 为给定对象设置一个原型。 |
+|OH_JSVM_ObjectGetPrototypeOf | 获取给定JavaScript对象的原型。 |
 
 场景示例:
 JS对象属性的增删获取和判断
@@ -1068,6 +1175,15 @@ OH_JSVM_HasNamedProperty(env, myObject, "name", &hasProperty);
 
 // 删除属性
 OH_JSVM_DeleteProperty(env, myObject, key, &hasProperty);
+
+// 设置对象原型
+JSVM_Value value;
+OH_JSVM_CreateSet(env, &value);
+OH_JSVM_ObjectSetPrototypeOf(env, myObject, value);
+
+// 获取对象原型
+JSVM_Value proto;
+OH_JSVM_ObjectGetPrototypeOf(env, myObject, &proto);
 ```
 
 ### JS函数操作
@@ -1084,6 +1200,7 @@ JS函数操作。
 |OH_JSVM_GetCbInfo | 从给定的callback info中获取有关调用的详细信息，如参数和this指针 |
 |OH_JSVM_GetNewTarget | 获取构造函数调用的new.target |
 |OH_JSVM_NewInstance | 通过给定的构造函数，构建一个实例 |
+|OH_JSVM_CreateFunctionWithScript | 根据传入的函数体和函数参数列表，创建一个新的 JavaScript Function对象 |
 
 场景示例:
 创建JavaScript函数操作
@@ -1131,6 +1248,20 @@ static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_CALL(env, OH_JSVM_CallFunction(env, global, args[0], 0, nullptr, &ret));
     return ret;
 }
+```
+
+创建Function:
+
+```c++
+JSVM_Value script;
+OH_JSVM_CreateStringUtf8(env, "return a + b;", JSVM_AUTO_LENGTH, &script);
+JSVM_Value param1;
+JSVM_Value param2;
+OH_JSVM_CreateStringUtf8(env, "a", JSVM_AUTO_LENGTH, &param1);
+OH_JSVM_CreateStringUtf8(env, "b", JSVM_AUTO_LENGTH, &param2);
+JSVM_Value argus[] = {param1, param2};
+JSVM_Value func;
+OH_JSVM_CreateFunctionWithScript(env, "add", JSVM_AUTO_LENGTH, 2, argus, script, &func);
 ```
 
 ### 对象绑定操作
@@ -1264,7 +1395,7 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get requests on an object
+    // 该回调是由对象上的获取请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1286,7 +1417,7 @@ static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value th
 }
 
 static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by set requests on an object
+    // 该回调是由对象上的设置请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1308,7 +1439,7 @@ static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value pr
 }
 
 static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by delete requests on an object
+    // 该回调是由对象上的删除请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1330,7 +1461,7 @@ static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Valu
 }
 
 static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get all properties requests on an object
+    // 该回调是由获取对象上的所有属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value name1 = nullptr;
@@ -1357,7 +1488,7 @@ static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSV
 }
 
 static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting an indexed property of an instance objec
+    // 该回调是由获取实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
 
@@ -1379,7 +1510,7 @@ static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by setting an indexed property of an instance object.
+    // 该回调是由设置实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     char str[100];
@@ -1403,7 +1534,7 @@ static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by deleting an indexed property of an instance object.
+    // 该回调是由删除实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     JSVM_Value newResult = nullptr;
@@ -1424,7 +1555,7 @@ static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Va
 }
 
 static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting all indexed properties requests on an object.
+    // 该回调是由获取对象上的所有索引属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value index1 = nullptr;
@@ -1492,7 +1623,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
                 sizeof(*test) / sizeof(uint64_t));
     JSVM_Status status = OH_JSVM_CreateBigintWords(env, 1, 2, reinterpret_cast<const uint64_t *>(test), &res);
 
-    // initialize the propertyCfg
+    // 初始化propertyCfg
     JSVM_PropertyHandlerConfigurationStruct propertyCfg;
     propertyCfg.genericNamedPropertyGetterCallback = GetPropertyCbInfo;
     propertyCfg.genericNamedPropertySetterCallback = SetPropertyCbInfo;
@@ -1534,19 +1665,19 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     JSVM_Value setvalueName = nullptr;
     OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName);
 
-    //======= 1. test name property callback ========================
-    // test set property
+    // 1. 名称属性回调
+    // 设置属性
     OH_JSVM_SetNamedProperty(env, instanceValue, "str11", setvalueName);
     OH_JSVM_SetNamedProperty(env, instanceValue, "str123", setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName = nullptr;
     OH_JSVM_GetNamedProperty(env, instanceValue, "str11", &valueName);
     char str[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, valueName, str, 100, &size);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1561,15 +1692,15 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result = false;
     propertyName = nullptr;
     char propertyChar[] = "str11";
     OH_JSVM_CreateStringUtf8(env, propertyChar, strlen(propertyChar), &propertyName);
     OH_JSVM_DeleteProperty(env, instanceValue, propertyName, &result);
 
-    // ======= 2. test index property callback ===================
-    // test set property
+    // 2. 索引属性回调
+    // 设置属性
     JSVM_Value jsIndex = nullptr;
     uint32_t index = 0;
     OH_JSVM_CreateUint32(env, index, &jsIndex);
@@ -1579,14 +1710,14 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     OH_JSVM_CreateUint32(env, index, &jsIndex1);
     OH_JSVM_SetProperty(env, instanceValue, jsIndex1, setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName1 = nullptr;
     OH_JSVM_GetProperty(env, instanceValue, jsIndex, &valueName1);
     char str1[100];
     size_t size1;
     OH_JSVM_GetValueStringUtf8(env, valueName1, str1, 100, &size1);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames1 = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1601,11 +1732,11 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName1, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result1 = false;
     OH_JSVM_DeleteProperty(env, instanceValue, jsIndex, &result1);
 
-    // ======= 3. test call as function callback ===================
+    // 3. 作为函数的回调
     JSVM_Value gloablObj = nullptr;
     OH_JSVM_GetGlobal(env, &gloablObj);
     OH_JSVM_SetNamedProperty(env, gloablObj, "myTestInstance", instanceValue);
@@ -1662,16 +1793,44 @@ OH_JSVM_GetVersion(env, &versionId);
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
-|OH_JSVM_AdjustExternalMemory| 通知虚拟机系统内存不足并有选择地触发垃圾回收 |
-|OH_JSVM_MemoryPressureNotification| 创建一个延迟对象和一个JavaScript promise |
+|OH_JSVM_AdjustExternalMemory| 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
+|OH_JSVM_MemoryPressureNotification| 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。 |
 
 场景示例：
 内存管理。
 
 ```c++
-int64_t change = 1024 * 1024; // 分配1MB的内存
+// 分别在调用OH_JSVM_AdjustExternalMemory前后来查看底层虚拟机视角下外部分配的内存大小
 int64_t result;
-OH_JSVM_AdjustExternalMemory(env, change, &result);
+OH_JSVM_AdjustExternalMemory(env, 0, &result); // 假设外部分配内存的变化不变
+OH_LOG_INFO(LOG_APP, "Before AdjustExternalMemory: %{public}lld\n", result); // 得到调整前的数值
+// 调整外部分配的内存大小通知给底层虚拟机（此示例假设内存使用量增加）
+int64_t memoryIncrease = 1024 * 1024; // 增加 1 MB
+OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result); 
+OH_LOG_INFO(LOG_APP, "After AdjustExternalMemory: %{public}lld\n", result); // 得到调整后的数值
+```
+```c++
+// 打开一个Handle scope，在scope范围内申请大量内存来测试函数功能；
+// 分别在“完成申请后”、“关闭scope后”和“调用OH_JSVM_MemoryPressureNotification后”三个节点查看内存状态
+JSVM_HandleScope tmpscope;   
+OH_JSVM_OpenHandleScope(env, &tmpscope);
+for (int i = 0; i < 1000000; ++i) {
+    JSVM_Value obj;
+    OH_JSVM_CreateObject(env, &obj);
+}
+JSVM_HeapStatistics mem;
+OH_JSVM_GetHeapStatistics(vm, &mem); // 获取虚拟机堆的统计数据
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 申请完成后，内存处于最大状态
+OH_JSVM_CloseHandleScope(env, tmpscope); // 关闭Handle scope
+
+OH_JSVM_GetHeapStatistics(vm, &mem);
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 关闭scope后，GC并没有立即回收
+
+// 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收
+OH_JSVM_MemoryPressureNotification(env, JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL); // 假设内存压力处于临界状态
+
+OH_JSVM_GetHeapStatistics(vm, &mem);
+OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 触发垃圾回收后
 ```
 
 ### Promise操作
@@ -1870,37 +2029,61 @@ Lock操作
 加锁解锁操作
 
 ```c++
-static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
-    // create vm, and open vm scope
-    JSVM_VM vm;
-    JSVM_CreateVMOptions options;
-    memset(&options, 0, sizeof(options));
-    OH_JSVM_CreateVM(&options, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-    // create env, register native method, and open env scope
-    JSVM_Env env;
-    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
-    // open handle scope
-    JSVM_HandleScope handleScope;
-    OH_JSVM_OpenHandleScope(env, &handleScope);
-    std::thread t1([vm, env]() {
-        bool isLocked = false;
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (!isLocked) {
-            OH_JSVM_AcquireLock(env);
-        }
-        JSVM_VMScope vmScope;
-        OH_JSVM_OpenVMScope(vm, &vmScope);
-        JSVM_EnvScope envScope;
-        OH_JSVM_OpenEnvScope(env, &envScope);
+class LockWrapper {
+ public:
+  LockWrapper(JSVM_Env env) : env(env) {
+    OH_JSVM_IsLocked(env, &isLocked);
+    if (!isLocked) {
+      OH_JSVM_AcquireLock(env);
+      OH_JSVM_GetVM(env, &vm);
+      OH_JSVM_OpenVMScope(vm, &vmScope);
+      OH_JSVM_OpenEnvScope(env, &envScope);
+    }
+  }
+
+  ~LockWrapper() {
+    if (!isLocked) {
+      OH_JSVM_CloseEnvScope(env, envScope);
+      OH_JSVM_CloseVMScope(vm, vmScope);
+      OH_JSVM_ReleaseLock(env);
+    }
+  }
+
+  LockWrapper(const LockWrapper&) = delete;
+  LockWrapper& operator=(const LockWrapper&) = delete;
+  LockWrapper(LockWrapper&&) = delete;
+  void* operator new(size_t) = delete;
+  void* operator new[](size_t) = delete;
+
+ private:
+  JSVM_Env env;
+  JSVM_EnvScope envScope;
+  JSVM_VMScope vmScope;
+  JSVM_VM vm;
+  bool isLocked;
+};
+
+static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    static JSVM_VM vm;
+    static JSVM_Env env;
+    if (aa == 0) {
+        OH_JSVM_Init(nullptr);
+        aa++;
+        // create vm
+        JSVM_CreateVMOptions options;
+        memset(&options, 0, sizeof(options));
+        OH_JSVM_CreateVM(&options, &vm);
+        // create env
+        OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
+    }
+
+    std::thread t1([]() {
+        LockWrapper lock(env);
         JSVM_HandleScope handleScope;
         OH_JSVM_OpenHandleScope(env, &handleScope);
         JSVM_Value value;
         JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
-        if (rst) {
+        if (rst == JSVM_OK) {
             OH_LOG_INFO(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 suc");
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
@@ -1909,28 +2092,14 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
-        OH_JSVM_CloseEnvScope(env, envScope);
-        OH_JSVM_DestroyEnv(env);
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (isLocked) {
-            OH_JSVM_ReleaseLock(env);
-        }
     });
-    std::thread t2([vm, env]() {
-        bool isLocked = false;
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (!isLocked) {
-            OH_JSVM_AcquireLock(env);
-        }
-        JSVM_VMScope vmScope;
-        OH_JSVM_OpenVMScope(vm, &vmScope);
-        JSVM_EnvScope envScope;
-        OH_JSVM_OpenEnvScope(env, &envScope);
+    std::thread t2([]() {
+        LockWrapper lock(env);
         JSVM_HandleScope handleScope;
         OH_JSVM_OpenHandleScope(env, &handleScope);
         JSVM_Value value;
         JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
-        if (rst) {
+        if (rst == JSVM_OK) {
             OH_LOG_INFO(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 suc");
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
@@ -1939,22 +2108,9 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
-        OH_JSVM_CloseEnvScope(env, envScope);
-        OH_JSVM_DestroyEnv(env);
-        OH_JSVM_IsLocked(env, &isLocked);
-        if (isLocked) {
-            OH_JSVM_ReleaseLock(env);
-        }
     });
     t1.detach();
     t2.detach();
-    sleep(10);
-    // exit vm and clean memory
-    OH_JSVM_CloseHandleScope(env, handleScope);
-    OH_JSVM_CloseEnvScope(env, envScope);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
     return nullptr;
 }
 ```

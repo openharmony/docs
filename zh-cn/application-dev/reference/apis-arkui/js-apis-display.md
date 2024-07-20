@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 ```
 
 ## DisplayState
@@ -45,6 +45,8 @@ import display from '@ohos.display';
 
 当前可折叠设备的折叠状态枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称 | 值 | 说明 |
@@ -57,6 +59,8 @@ import display from '@ohos.display';
 ## FoldDisplayMode<sup>10+</sup>
 
 可折叠设备的显示模式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -124,7 +128,7 @@ getDefaultDisplaySync(): Display
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -143,7 +147,7 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 
@@ -175,8 +179,8 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: Array<display.Display> = [];
 display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
@@ -215,8 +219,8 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
@@ -233,6 +237,8 @@ promise.then((data: Array<display.Display>) => {
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启显示设备变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -254,7 +260,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -268,6 +274,8 @@ display.on("add", callback);
 off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭显示设备变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -315,17 +323,16 @@ isFoldable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let ret: boolean = false;
 ret = display.isFoldable();
@@ -346,17 +353,16 @@ getFoldStatus(): FoldStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldStatus = display.getFoldStatus();
 console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
@@ -377,17 +383,16 @@ getFoldDisplayMode(): FoldDisplayMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldDisplayMode = display.getFoldDisplayMode();
 console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
@@ -408,17 +413,16 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
 console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
@@ -429,6 +433,8 @@ console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.
 on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -446,13 +452,12 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -465,6 +470,8 @@ display.on('foldStatusChange', callback);
 off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 关闭折叠设备折叠状态变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -482,7 +489,6 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -505,6 +511,8 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
 开启折叠设备折叠角度变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -521,13 +529,12 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<Array<number>> = (angles: Array<number>) => {
   console.info('Listening fold angles length: ' + angles.length);
@@ -541,6 +548,8 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 
 关闭折叠设备折叠角度变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -552,12 +561,11 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -571,6 +579,8 @@ display.off('foldAngleChange');
 on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 
 开启屏幕截屏、投屏、录屏状态变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -588,13 +598,12 @@ on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<boolean> = (captureStatus: boolean) => {
   console.info('Listening capture status: ' + captureStatus);
@@ -607,6 +616,8 @@ display.on('captureStatusChange', callback);
 off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 
 关闭屏幕截屏、投屏、录屏状态变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -624,7 +635,6 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -648,17 +658,16 @@ isCaptured(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let ret: boolean = false;
 ret = display.isCaptured();
@@ -669,6 +678,8 @@ ret = display.isCaptured();
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
 开启折叠设备屏幕显示模式变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -686,13 +697,12 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -705,6 +715,8 @@ display.on('foldDisplayModeChange', callback);
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
 关闭折叠设备屏幕显示模式变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -722,7 +734,6 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -761,7 +772,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
@@ -796,7 +807,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 let promise: Promise<display.Display> = display.getDefaultDisplay();
@@ -829,7 +840,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
@@ -862,7 +873,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
@@ -888,12 +899,12 @@ promise.then((data: Array<display.Display>) => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。                                                                                             |
-| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
-| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
-| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                  |
+| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
@@ -924,7 +935,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -962,7 +973,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();

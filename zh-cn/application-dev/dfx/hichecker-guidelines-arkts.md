@@ -36,13 +36,10 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; entryability ”，打开工程中的“EntryAbility.ets”文件；在页面执行加载后，在自己的业务中调用HiChecker的接口，添加检测规则， 示例代码如下：
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import hilog from '@ohos.hilog';
-   import window from '@ohos.window';
-   import hichecker from '@ohos.hichecker';
-   import image from '@ohos.multimedia.image';
-   import Want from '@ohos.app.ability.Want';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import { window } from '@kit.ArkUI';
+   import { image } from '@kit.ImageKit';
+   import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+   import { hichecker, hilog } from '@kit.PerformanceAnalysisKit';
    
    export default class EntryAbility extends UIAbility {
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

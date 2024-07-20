@@ -11,7 +11,7 @@
 ##  导入模块
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -42,7 +42,7 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 **示例**：
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -89,7 +89,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);
@@ -98,3 +98,30 @@ try {
   console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## FingerprintAction<sup>12+</sup>
+
+按键事件类型的枚举。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+| 名称                 | 值          | 说明                |
+| ---------------------| ---------- | --------------------|
+| DOWN                 | 0x00000000 | 按下事件。           |
+| UP                   | 0x00000001 | 抬起事件。           |
+| SLIDE                | 0x00000002 | 滑动事件。           |
+| RETOUCH              | 0x00000003 | 滑动事件。           |
+| CLICK                | 0x00000004 | 点击事件。           |
+
+
+## FingerprintEvent<sup>12+</sup>
+
+按键事件的类型和相对按键的偏移位置。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+| 名称      | 类型                                       |只读   | 可选  |说明                    |
+| --------  | ------------------------                  |-------|------ |--------               |
+| action    | [FingerprintAction](#fingerprintaction12)   | 是    |  否   |按键事件类型。           |
+| distanceX | number                                    | 是    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
+| distanceY | number                                    | 是    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |

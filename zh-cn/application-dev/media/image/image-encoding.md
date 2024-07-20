@@ -1,4 +1,4 @@
-# 图片编码(ArkTS)
+# 使用ImagePacker完成图片编码
 
 图片编码指将PixelMap编码成不同格式的存档图片（当前仅支持打包为JPEG、WebP 和 png 格式），用于后续处理，如保存、传输等。
 
@@ -9,16 +9,16 @@
 ### 图片编码进文件流
 
 1. 创建图像编码ImagePacker对象。
-   
+
    ```ts
    // 导入相关模块包
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    
    const imagePackerApi = image.createImagePacker();
    ```
 
 2. 设置编码输出流和编码参数。
-   
+
    format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量。
 
    ```ts
@@ -28,11 +28,11 @@
 3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
 
 4. 进行图片编码，并保存编码后的图片。
-   
+
    方法一：通过PixelMap进行编码。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
@@ -43,7 +43,7 @@
    方法二：通过imageSource进行编码。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
@@ -58,26 +58,26 @@
    方法一：通过PixelMap编码进文件。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
-   import fs from '@ohos.file.fs'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
-   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+   let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
-   
+
    方法二：通过imageSource编码进文件。
-   
+
    ```ts
-   import {BusinessError} from '@ohos.base'
-   import fs from '@ohos.file.fs'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
-   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+   let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 

@@ -7,6 +7,8 @@
 
 **库：** libavplayer.so
 
+**引用文件：** <multimedia/player_framework/avplayer_base.h>
+
 **起始版本：** 11
 
 **相关模块：**[AVPlayer](_a_v_player.md)

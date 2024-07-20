@@ -84,7 +84,7 @@ Navigation跳转时，Navigation未注册创建NavDestination组件的builder函
 
 **可能原因**
 
-Navigation跳转时，Navigation未注册创建NavDestiantion的builder函数。
+Navigation跳转时，Navigation未注册创建NavDestination的builder函数。
 
 **处理步骤**
 

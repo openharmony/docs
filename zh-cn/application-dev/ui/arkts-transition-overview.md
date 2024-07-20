@@ -16,3 +16,5 @@
 - [共享元素转场](arkts-shared-element-transition.md)：共享元素转场是一种界面切换时对相同或者相似的元素做的一种位置和大小匹配的过渡动画效果。
 
 - [页面转场动画（不推荐）](arkts-page-transition-animation.md)：页面的路由转场方式，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。为了实现更好的转场效果，推荐使用[导航转场](arkts-navigation-transition.md)和[模态转场](arkts-modal-transition.md)。
+
+- [旋转屏动画增强](arkts-rotation-transition-animation.md)：在原旋转屏动画基础上，可配置渐隐和渐现的转场效果。

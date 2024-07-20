@@ -36,7 +36,7 @@ Failed to obtain the service.
 
 **错误信息**
 
-Authentication invalid.
+Authentication unavailable.
 
 **可能原因**
 
@@ -50,7 +50,7 @@ Authentication invalid.
 
 **错误信息**
 
-Discovery invalid.
+Discovery unavailable.
 
 **可能原因**
 
@@ -64,7 +64,7 @@ Discovery invalid.
 
 **错误信息**
 
-Publish invalid.
+Publish unavailable.
 
 **可能原因**
 

@@ -1,7 +1,7 @@
 # 通过router或call事件刷新卡片内容
 
 
-在卡片页面中可以通过[postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发router事件拉起UIAbility。
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -64,7 +64,7 @@
   }
   ```
   
-- 在UIAbility的onCreate()或者onNewWant()生命周期中可以通过入参want获取卡片的formID和传递过来的参数信息，然后调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在UIAbility的onCreate或者onNewWant生命周期中可以通过入参want获取卡片的formID和传递过来的参数信息，然后调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -138,7 +138,7 @@
 
 ## 通过call事件刷新卡片内容
 
-- 在使用**postCardAction**接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
+- 在使用postCardAction接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
 
   ```ts
   import { Want } from '@kit.AbilityKit';
@@ -162,7 +162,7 @@
   }
   ```
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发call事件拉起UIAbility。
   
   ```ts
   let storageUpdateCall = new LocalStorage();

@@ -10,7 +10,7 @@ The **InputMethodExtensionContext** module, inherited from **ExtensionContext**,
 ## Modules to Import
 
 ```ts
-import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+import { InputMethodExtensionContext } from '@kit.IMEKit';
 ```
 
 ## Usage
@@ -18,8 +18,8 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 Before using the **InputMethodExtensionContext** module, you must define a child class that inherits from **InputMethodExtensionAbility**.
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
@@ -29,7 +29,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(callback: AsyncCallback\<void>): void
+destroy(callback: AsyncCallback&lt;void&gt;): void;
 
 Destroys this input method. This API uses an asynchronous callback to return the result.
 
@@ -37,16 +37,16 @@ Destroys this input method. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                                        |
+| Name  | Type                | Mandatory | Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -66,7 +66,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(): Promise\<void>;
+destroy(): Promise&lt;void&gt;;
 
 Destroys this input method. This API uses a promise to return the result.
 
@@ -74,16 +74,16 @@ Destroys this input method. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -99,9 +99,9 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 }
 ```
 
-## InputMethodExtensionContext.startAbility
+## InputMethodExtensionContext.startAbility<sup>12+</sup>
 
-startAbility(want: Want): Promise<**void**>;
+startAbility(want: Want): Promise&lt;void&gt;;
 
 Starts an ability. This API uses a promise to return the result.
 
@@ -109,31 +109,35 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description                                                        |
+| Name | Type                                                   | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md), [Ability Error Codes](../apis-ability-kit/errorcode-ability.md), and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                               |
+| ID | Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect ability type.                                 |
 | 16000004 | Can not start invisible component.                      |
 | 16000005 | The specified process does not have the permission.     |
 | 16000006 | Cross-user operations are not allowed.                  |
 | 16000008 | The crowdtesting application expires.                   |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.       |
 | 16000011 | The context does not exist.                             |
 | 16000012 | The application is controlled.                          |
 | 16000013 | The application is controlled by EDM.                   |
+| 16000019 | Can not match any component.                            |
 | 16000050 | Internal error.                                         |
 | 16000053 | The ability is not on the top of the UI.                |
 | 16000055 | Installation-free timed out.                            |
@@ -143,21 +147,30 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  this.context.startAbility(want).then((err) => {
-    if (err !== undefined) {
-      this.addLog(`startAbility error: ${err} `);
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
+  }
+  onDestroy() {
+    let want: Want = {
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
+    };
+    try {
+      this.context.startAbility(want).then(() => {
+        console.log(`startAbility success`);
+      }).catch((err: BusinessError) => {
+        let error = err as BusinessError;
+        console.log(`startAbility error: ${error.code} ${error.message}`);
+      })
+    } catch (err) {
+      let error = err as BusinessError;
+      console.log(`startAbility error: ${error.code} ${error.message}`);
     }
-  }).catch((err) => {
-    let error = err as BusinessError;
-    this.addLog(`startAbility error: ${error.code} ${error.message}`);
-  })
-} catch (err) {
-  let error = err as BusinessError;
-  this.addLog(`startAbility error: ${error.code} ${error.message}`);
+  }
 }
 ```

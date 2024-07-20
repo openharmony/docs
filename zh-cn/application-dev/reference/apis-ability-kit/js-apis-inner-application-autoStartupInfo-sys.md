@@ -20,19 +20,19 @@
 | moduleName | string | 否   | 应用程序的Module名称。 |
 | abilityName | string | 是  | 应用程序的Ability名称。 |
 | abilityTypeName | string | 否 | 应用程序的Ability类型。 |
+| appCloneIndex | number   | 否   | 分身应用索引。  |
 
 **示例：**
 
 ```ts
-import autoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 autoStartupManager.setApplicationAutoStartup({
   bundleName: 'com.example.autostartupapp',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
   abilityTypeName: 'ServiceExtension'
-} as common.AutoStartupInfo , (err, data) => {
+} as common.AutoStartupInfo, (err, data) => {
   console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
 });
 ```

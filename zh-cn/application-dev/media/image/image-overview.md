@@ -22,7 +22,8 @@
 
 图片开发的主要流程如下图所示。
 
-**图1** 图片开发流程示意图  
+**图1** 图片开发流程示意图
+
 ![Image development process](figures/image-development-process.png)
 
 1. 获取图片：通过应用沙箱等方式获取原始图片。

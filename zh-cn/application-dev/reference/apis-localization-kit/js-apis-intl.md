@@ -9,12 +9,14 @@
 >  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
+>
+>  - 从API version 12开始，本模块全接口支持在原子化服务中使用。
 
 
 ## 导入模块
 
 ```ts
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 ```
 
 ## Locale
@@ -23,6 +25,8 @@ import Intl from '@ohos.intl';
 ### 属性
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -47,12 +51,14 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 默认构造函数使用系统当前locale创建Locale对象
-  let locale = new Intl.Locale();
+  let locale = new intl.Locale();
   // 返回系统当前locale
   let localeID = locale.toString();
   ```
@@ -66,6 +72,8 @@ constructor(locale: string, options?: LocaleOptions)
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -78,7 +86,7 @@ constructor(locale: string, options?: LocaleOptions)
 **示例：** 
   ```ts
   // 创建 "zh-CN" Locale对象
-  let locale = new Intl.Locale("zh-CN");
+  let locale = new intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
   ```
 
@@ -91,6 +99,8 @@ toString(): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -102,7 +112,7 @@ toString(): string
 **示例：** 
   ```ts
   // 创建 "en-GB" Locale对象
-  let locale = new Intl.Locale("en-GB");
+  let locale = new intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
   ```
 
@@ -115,6 +125,8 @@ maximize(): Locale
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -126,13 +138,13 @@ maximize(): Locale
 **示例：** 
   ```ts
   // 创建 "zh" Locale对象
-  let locale = new Intl.Locale("zh");
+  let locale = new intl.Locale("zh");
   // 补齐Locale对象的脚本和地区
   let maximizedLocale = locale.maximize();
   let localeID = maximizedLocale.toString(); // localeID = "zh-Hans-CN"
 
   // 创建 "en-US" Locale对象
-  locale = new Intl.Locale("en-US");
+  locale = new intl.Locale("en-US");
   // 补齐Locale对象的脚本
   maximizedLocale = locale.maximize();
   localeID = maximizedLocale.toString(); // localeID = "en-Latn-US"
@@ -147,6 +159,8 @@ minimize(): Locale
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -158,13 +172,13 @@ minimize(): Locale
 **示例：** 
   ```ts
   // 创建 "zh-Hans-CN" Locale对象
-  let locale = new Intl.Locale("zh-Hans-CN");
+  let locale = new intl.Locale("zh-Hans-CN");
   // 去除Locale对象的脚本和地区
   let minimizedLocale = locale.minimize();
   let localeID = minimizedLocale.toString(); // localeID = "zh"
 
   // 创建 "en-US" Locale对象
-  locale = new Intl.Locale("en-US");
+  locale = new intl.Locale("en-US");
   // 去除Locale对象的地区
   minimizedLocale = locale.minimize();
   localeID = minimizedLocale.toString(); // localeID = "en"
@@ -178,6 +192,8 @@ minimize(): Locale
 从API9开始，LocaleOptions中的属性改为可选。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -200,12 +216,14 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 使用系统当前locale创建DateTimeFormat对象
-  let datefmt= new Intl.DateTimeFormat();
+  let datefmt= new intl.DateTimeFormat();
   ```
 
 
@@ -216,6 +234,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 创建时间日期格式化对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -229,14 +249,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 **示例：** 
   ```ts
   // 使用 "zh-CN" locale创建DateTimeFormat对象，日期风格为full，时间风格为medium
-  let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt= new intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **示例：** 
   ```ts
   // 使用 ["ban", "zh"] locale列表创建DateTimeFormat对象，因为ban为非法LocaleID，因此使用zh Locale创建DateTimeFormat对象
-  let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt= new intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
@@ -247,6 +267,8 @@ format(date: Date): string
 格式化时间日期字符串。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -266,11 +288,11 @@ format(date: Date): string
   ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
-  let datefmt = new Intl.DateTimeFormat("en-GB");
+  let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
 
   // 使用 en-GB locale创建DateTimeFormat对象，dateStyle设置为full，timeStyle设置为medium
-  datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   formattedDate = datefmt.format(date); // formattedDate "Friday, 17 December 2021 at 03:24:00"
   ```
 
@@ -282,6 +304,8 @@ formatRange(startDate: Date, endDate: Date): string
 格式化时间日期段字符串。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -303,8 +327,8 @@ formatRange(startDate: Date, endDate: Date): string
   let startDate = new Date(2021, 11, 17, 3, 24, 0);
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
-  let datefmt = new Intl.DateTimeFormat("en-GB");
-  let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021-18/12/2021"
+  let datefmt = new intl.DateTimeFormat("en-GB");
+  let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
   ```
 
 
@@ -316,6 +340,8 @@ resolvedOptions(): DateTimeOptions
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -326,7 +352,7 @@ resolvedOptions(): DateTimeOptions
 
 **示例：** 
   ```ts
-  let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // 返回DateTimeFormat对象的配置项
   let options = datefmt.resolvedOptions();
   let dateStyle = options.dateStyle; // dateStyle = "full"
@@ -341,6 +367,8 @@ resolvedOptions(): DateTimeOptions
 从API9开始，DateTimeOptions中的属性改为可选。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -375,12 +403,14 @@ constructor()
 
 创建数字格式化对象。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 使用系统当前locale创建NumberFormat对象
-  let numfmt = new Intl.NumberFormat();
+  let numfmt = new intl.NumberFormat();
   ```
 
 
@@ -389,6 +419,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 创建数字格式化对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -402,7 +434,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 **示例：** 
   ```ts
   // 使用 en-GB locale创建NumberFormat对象，style设置为decimal，notation设置为scientific
-  let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
 
@@ -411,6 +443,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 format(number: number): string
 
 格式化数字字符串。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -430,7 +464,7 @@ format(number: number): string
 **示例：** 
   ```ts
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
-  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
   ```
 
@@ -440,6 +474,8 @@ format(number: number): string
 resolvedOptions(): NumberOptions
 
 获取NumberFormat 对象的格式化选项。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -452,7 +488,7 @@ resolvedOptions(): NumberOptions
 
 **示例：** 
   ```ts
-  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // 获取NumberFormat对象配置项
   let options = numfmt.resolvedOptions();
   let style = options.style; // style = decimal
@@ -465,6 +501,8 @@ resolvedOptions(): NumberOptions
 表示设备支持的能力。
 
 从API9开始，NumberOptions中的属性改为可选。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -498,12 +536,14 @@ constructor()
 
 创建排序对象。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 使用系统locale创建Collator对象
-  let collator = new Intl.Collator();
+  let collator = new intl.Collator();
   ```
 
 
@@ -512,6 +552,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 创建排序对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -525,7 +567,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 **示例：** 
   ```ts
   // 使用 zh-CN locale创建Collator对象，localeMatcher设置为lookup，usage设置为sort
-  let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
+  let collator = new intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
 
@@ -534,6 +576,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 compare(first: string, second: string): number
 
 依据Collator的排序策略对两个字符串进行比较。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -553,7 +597,7 @@ compare(first: string, second: string): number
 **示例：** 
   ```ts
   // 使用en-GB locale创建Collator对象
-  let collator = new Intl.Collator("en-GB");
+  let collator = new intl.Collator("en-GB");
   // 比较 "first" 和 "second" 的先后顺序
   let compareResult = collator.compare("first", "second"); // compareResult = -1
   ```
@@ -565,6 +609,8 @@ resolvedOptions(): CollatorOptions
 
 返回Collator对象的属性。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -575,7 +621,7 @@ resolvedOptions(): CollatorOptions
 
 **示例：** 
   ```ts
-  let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
+  let collator = new intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // 获取Collator对象的配置项
   let options = collator.resolvedOptions();
   let usage = options.usage; // usage = "sort"
@@ -588,6 +634,8 @@ resolvedOptions(): CollatorOptions
 表示Collator可设置的属性。
 
 从API9中，CollatorOptions中的属性改为可选。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -610,12 +658,14 @@ constructor()
 
 创建单复数对象来计算数字的单复数类别。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 使用系统locale创建PluralRules对象
-  let pluralRules = new Intl.PluralRules();
+  let pluralRules = new intl.PluralRules();
   ```
 
 
@@ -624,6 +674,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 创建单复数对象来计算数字的单复数类别。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -637,7 +689,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 **示例：** 
   ```ts
   // 使用 zh-CN locale创建PluralRules对象，localeMatcher设置为lookup，type设置为cardinal
-  let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
@@ -646,6 +698,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 select(n: number): string
 
 返回一个字符串表示该数字的单复数类别。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -664,12 +718,12 @@ select(n: number): string
 **示例：** 
   ```ts
   // 使用 zh-Hans locale创建PluralRules对象
-  let zhPluralRules = new Intl.PluralRules("zh-Hans");
+  let zhPluralRules = new intl.PluralRules("zh-Hans");
   // 计算 zh-Hans locale中数字1对应的单复数类别
   let plural = zhPluralRules.select(1); // plural = other
 
   // 使用 en-US locale创建PluralRules对象
-  let enPluralRules = new Intl.PluralRules("en-US");
+  let enPluralRules = new intl.PluralRules("en-US");
   // 计算 en-US locale中数字1对应的单复数类别
   plural = enPluralRules.select(1); // plural = one
   ```
@@ -679,6 +733,8 @@ select(n: number): string
 
 表示PluralRules对象可设置的属性。
 从API9开始，PluralRulesOptions中的属性改为可选。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -702,12 +758,14 @@ constructor()
 
 创建相对时间格式化对象。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```ts
   // 使用系统locale创建RelativeTimeFormat对象
-  let relativetimefmt = new Intl.RelativeTimeFormat();
+  let relativetimefmt = new intl.RelativeTimeFormat();
   ```
 
 
@@ -716,6 +774,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
 创建相对时间格式化对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -729,7 +789,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 **示例：** 
   ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象，localeMatcher设置为lookup，numeric设置为always，style设置为long
-  let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
+  let relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
 
@@ -738,6 +798,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 format(value: number, unit: string): string
 
 依据locale和格式化选项，对value和unit进行格式化。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -757,7 +819,7 @@ format(value: number, unit: string): string
 **示例：** 
   ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象
-  let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
+  let relativetimefmt = new intl.RelativeTimeFormat("zh-CN");
   // 计算 zh-CN locale中数字3，单位quarter的本地化表示
   let formatResult = relativetimefmt.format(3, "quarter"); // formatResult = "3个季度后"
   ```
@@ -768,6 +830,8 @@ format(value: number, unit: string): string
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 返回一个对象数组，表示可用于自定义区域设置格式的相对时间格式。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -787,7 +851,7 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 **示例：** 
   ```ts
   // 使用 en locale创建RelativeTimeFormat对象，numeric设置为auto
-  let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
+  let relativetimefmt = new intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
   ```
 
@@ -797,6 +861,8 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 获取RelativeTimeFormat对象的格式化选项。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -809,7 +875,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 **示例：** 
   ```ts
   // 使用 en-GB locale创建RelativeTimeFormat对象
-  let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
+  let relativetimefmt= new intl.RelativeTimeFormat("en-GB", { style: "short" });
   // 获取RelativeTimeFormat对象配置项
   let options = relativetimefmt.resolvedOptions();
   let style = options.style; // style = "short"
@@ -822,6 +888,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 从API9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 类型     | 必填   |说明                                       |
@@ -833,6 +901,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

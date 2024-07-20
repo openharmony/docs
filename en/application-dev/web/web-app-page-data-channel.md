@@ -32,6 +32,7 @@ In the following example, **createWebMessagePorts** is used to create message po
             this.sendFromEts = value;
           })
 
+        // The following can be called in the onPageEnd lifecycle callback.
         Button('postMessage')
           .onClick(() => {
             try {

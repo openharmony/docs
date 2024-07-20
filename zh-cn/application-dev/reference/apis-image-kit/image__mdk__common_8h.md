@@ -5,6 +5,10 @@
 
 声明图像常用的枚举值和结构体。
 
+**库**：libimage_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_mdk_common.h&gt;
+
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)

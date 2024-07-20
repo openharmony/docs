@@ -30,7 +30,7 @@ Provides the constants of all rule types.
 
 addCheckRule(rule: bigint): void
 
-Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
+Adds one or more check rules. HiChecker detects unexpected operations or gives feedback based on the added rules. You can use **grep HiChecker** to check for the application running information in the hilog.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 

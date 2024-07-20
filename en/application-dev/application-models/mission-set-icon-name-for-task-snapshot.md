@@ -22,23 +22,24 @@ Call [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-i
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image/image-decoding.md).
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Logger from '../utils/Logger';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
-... // Obtain a pixelMap object.
+// ... // Obtain a pixelMap object.
 
 // Set an icon for the mission snapshot.
 context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
-    Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
   } else {
-    Logger.info(TAG, `Success to set mission icon.`);
+    hilog.info(DOMAIN_NUMBER, TAG, `Success to set mission icon.`);
   }
 })
 ```
@@ -54,19 +55,20 @@ Figure 2 Mission snapshot icon
 Call [UIAbilityContext.setMissionLabel()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import Logger from '../utils/Logger';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // Set a name for the mission snapshot.
 context.setMissionLabel('test').then(() => {
-  Logger.info(TAG, 'Succeeded in seting mission label.');
+  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in seting mission label.');
 }).catch((err: BusinessError) => {
-  Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+  hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

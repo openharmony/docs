@@ -12,10 +12,10 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemParameterEnhance';
+import { systemParameterEnhance } from '@kit.BasicServicesKit';
 ```
 
-## systemparameter.getSync
+## systemParameterEnhance.getSync
 
 getSync(key: string, def?: string): string
 
@@ -41,9 +41,9 @@ getSync(key: string, def?: string): string
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -51,14 +51,14 @@ getSync(key: string, def?: string): string
 
 ```ts
 try {
-    let info: string = systemparameter.getSync("const.ohos.apiversion");
+    let info: string = systemParameterEnhance.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
 }
 ```
 
-## systemparameter.get
+## systemParameterEnhance.get
 
 get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -78,19 +78,19 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
+    systemParameterEnhance.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -101,7 +101,7 @@ try {
 }
 ```
 
-## systemparameter.get
+## systemParameterEnhance.get
 
 get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -122,19 +122,19 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
+    systemParameterEnhance.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -146,7 +146,7 @@ try {
 }
 ```
 
-## systemparameter.get
+## systemParameterEnhance.get
 
 get(key: string, def?: string): Promise&lt;string&gt;
 
@@ -172,19 +172,19 @@ get(key: string, def?: string): Promise&lt;string&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
+    let p: Promise<string> = systemParameterEnhance.get("const.ohos.apiversion");
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
@@ -195,7 +195,7 @@ try {
 }
 ```
 
-## systemparameter.setSync
+## systemParameterEnhance.setSync
 
 setSync(key: string, value: string): void
 
@@ -215,25 +215,25 @@ setSync(key: string, value: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    systemparameter.setSync("test.parameter.key", "default");
+    systemParameterEnhance.setSync("test.parameter.key", "default");
 } catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
 
-## systemparameter.set
+## systemParameterEnhance.set
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -254,19 +254,19 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    systemparameter.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
+    systemParameterEnhance.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -277,7 +277,7 @@ try {
 }
 ```
 
-## systemparameter.set
+## systemParameterEnhance.set
 
 set(key: string, value: string): Promise&lt;void&gt;
 
@@ -303,19 +303,19 @@ set(key: string, value: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let p: Promise<void>  = systemparameter.set("test.parameter.key", "testValue");
+    let p: Promise<void>  = systemParameterEnhance.set("test.parameter.key", "testValue");
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
