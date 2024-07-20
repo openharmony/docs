@@ -298,9 +298,9 @@ import { window } from '@kit.ArkUI';
 
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
-| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式状态布局。       |
-| EXIT_IMMERSIVE | 1    | 最大化时，如果设置了沉浸式布局会退出沉浸式布局。             |
-| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式状态布局。   |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局。   |
 
 ## window.createWindow<sup>9+</sup>
 
