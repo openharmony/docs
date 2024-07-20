@@ -290,6 +290,18 @@ import { window } from '@kit.ArkUI';
 | width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
 | height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
 
+## MaximizePresentation<sup>12+</sup>
+
+窗口最大化布局枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app设置的沉浸式状态布局。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，退出沉浸式状态布局。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式状态布局。   |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -5182,12 +5194,17 @@ promise.then(() => {
 ```
 
 ### maximize<sup>12+</sup>
+maximize(presentation?: [MaximizePresentation](#maximizepresentation12) ): Promise&lt;void&gt;
 
-maximize(): Promise&lt;void&gt;
-
-主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
+主窗口调用，实现最大化功能，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| presentation  | [MaximizePresentation](#maximizepresentation12) | 否 | 主窗口最大化时候的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
 
 **返回值：**
 
@@ -5226,7 +5243,8 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let promise = windowClass.maximize();
+      let promise = windowClass.maximize(); 
+      // let promise = windowClass.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
       promise.then(() => {
         console.info('Succeeded in maximizing the window.');
       }).catch((err: BusinessError) => {
