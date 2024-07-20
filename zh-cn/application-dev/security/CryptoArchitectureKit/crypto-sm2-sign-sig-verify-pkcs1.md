@@ -1,4 +1,4 @@
-# 使用SM2密钥对签名验签
+# 使用SM2密钥对签名验签(ArkTS)
 
 
 对应的算法规格请查看[签名验签算法规格：SM2](crypto-sign-sig-verify-overview.md#sm2)。

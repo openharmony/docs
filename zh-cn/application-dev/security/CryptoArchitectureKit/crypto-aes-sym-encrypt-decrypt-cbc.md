@@ -1,4 +1,4 @@
-# 使用AES对称密钥（CBC模式）加解密
+# 使用AES对称密钥（CBC模式）加解密(ArkTS)
 
 
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
