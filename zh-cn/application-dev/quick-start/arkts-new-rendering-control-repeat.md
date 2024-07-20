@@ -74,7 +74,7 @@ interface VirtualScrollOptions {
 
 | 属性名     | 类型   | 是否必填 | 描述                                                         |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
+| totalCount | number | 否       | 定义数据源长度为arrLength，以下为totalCount的判断规则：<br/>1) totalCount == undefined \|\| totalCount <= 0 \|\| totalCount == arrLength时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arrLength时，界面中数据源被截断，只渲染“totalCount”个数据<br/>3) totalCount > arrLength时，滚动条样式正常，无数据项的位置显示空白，当滚动动画停止时，滚动条停留在最后一个数据项的位置。这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
 
 ### RepeatItemBuilder类型
 
