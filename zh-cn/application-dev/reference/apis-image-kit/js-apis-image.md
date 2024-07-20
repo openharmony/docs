@@ -2311,6 +2311,56 @@ async function Demo() {
 }
 ```
 
+### toSdr<sup>12+<sup>
+
+toSdr(): Promise\<void>
+
+将HDR的图像内容转换为SDR的图像内容，异步使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980137 | Invalid image operation.              |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import resourceManager from '@ohos.resourceManager'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    await pixelmap.toSdr();
+    let imageInfo = pixelmap.getImageInfoSync();
+    console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
+  } catch (e) {
+    console.info('toSdr failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
