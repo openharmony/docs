@@ -26,7 +26,7 @@
 
 4. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（明文）。
    
-   - 当数据量较小时，数据量较小时，可以在init完成后直接调用final。
+   - 当数据量较小时，可以在init完成后直接调用final。
    - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)。
 
 5. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。

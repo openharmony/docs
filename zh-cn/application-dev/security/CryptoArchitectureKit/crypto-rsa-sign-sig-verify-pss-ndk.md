@@ -16,7 +16,7 @@
 
 2. 调用[OH_CryptoVerify_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_setparam)，设置签名参数。需要与签名时设置的保持一致。
 
-3. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（PubKey）初始化Verify实例。
+3. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（OH_CryptoPubKey）初始化Verify实例。
 
 4. 调用[OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update)，传入待验证的数据。
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。

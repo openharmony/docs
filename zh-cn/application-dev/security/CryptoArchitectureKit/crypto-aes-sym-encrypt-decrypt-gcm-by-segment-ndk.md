@@ -36,7 +36,7 @@
 5. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    
    - 由于已使用update传入数据，此处data传入null。
-   - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
+   - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
 6. 调用[OH_CryptoSymCipherParams_SetParams](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag作为解密的认证信息。
    

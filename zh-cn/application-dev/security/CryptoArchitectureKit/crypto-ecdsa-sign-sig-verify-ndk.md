@@ -15,7 +15,7 @@
 
 1. 调用[OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create)，指定字符串参数'ECC256|SHA256'，创建非对称密钥类型为ECC256、摘要算法为SHA256的Verify实例，用于完成验签操作。
 
-2. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（PubKey）初始化Verify实例。
+2. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（OH_CryptoPubKey）初始化Verify实例。
 
 3. 调用[OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update)，传入待验证的数据。
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。

@@ -16,7 +16,7 @@
 
 2. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（OH_CryptoSymKeyGenerator）。
 
-3. 调用[OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert)，根据指定的对称密钥二进制数据，生成对称密钥对象（convertKeyCtx）。
+3. 调用[OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert)，根据指定的对称密钥二进制数据，生成对称密钥对象（OH_CryptoSymKey）。
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
@@ -63,7 +63,7 @@
 
 2. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)，指定字符串参数'HMAC'，创建密钥算法为HMAC、密钥长度为[1, 32768]位的对称密钥生成器（OH_CryptoSymKeyGenerator）。
 
-3. 调用[OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert)，根据指定的对称密钥二进制数据，生成对称密钥对象（convertKeyCtx）。
+3. 调用[OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert)，根据指定的对称密钥二进制数据，生成对称密钥对象（OH_CryptoSymKey）。
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 

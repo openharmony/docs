@@ -18,10 +18,8 @@
 1. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'RSA1024|PRIMES_2'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 
 2. 调用[OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate)，随机生成非对称密钥对象（OH_CryptoKeyPair）。
-   
-   KeyPair对象中包括公钥PubKey、私钥PriKey。
 
-3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
+3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)分别获取密钥对象的二进制数据。
 
 
 ```c++
@@ -72,8 +70,6 @@ static OH_Crypto_ErrCode randomGenerateAsymKey()
 1. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'SM2_256'，创建密钥算法为SM2、密钥长度为256位的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 
 2. 调用[OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate)，随机生成非对称密钥对象（OH_CryptoKeyPair）。
-   
-   KeyPair对象中包括公钥PubKey、私钥PriKey。
 
 3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
 
