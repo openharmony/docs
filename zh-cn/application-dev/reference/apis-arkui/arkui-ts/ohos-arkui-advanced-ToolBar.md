@@ -25,7 +25,7 @@ import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
 ## ToolBar
 
-Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
+Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController, dividerModifier: DividerModifier, toolBarModifier: ToolBarModifier})
 
 **装饰器类型：**\@Component
 
@@ -35,11 +35,13 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  |
-| -------- | -------- | -------- |-------------|---------------------|
-| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              |
-| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 |
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           |
+| 名称                            | 参数类型                                                      | 必填  | 装饰器类型       | 说明                                                                                                       |
+|-------------------------------|-----------------------------------------------------------|-----|-------------|----------------------------------------------------------------------------------------------------------|
+| toolBarList                   | [ToolBarOptions](#toolbaroptions)                         | 是   | @ObjectLink | 工具栏列表。                                                                                                   |
+| activateIndex                 | number                                                    | 否   | @Prop       | 激活态的子项。<br/>默认值：-1。                                                                                      |
+| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)     | 是   | -           | 筛选器的样式类型。                                                                                                |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 设置工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13) | 否   | @Prop       | 设置工具栏属性，可设置工具栏高度、背景色、padding（仅在item小于5个时生效）、是否显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarOptions
 
@@ -51,12 +53,86 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 工具栏子项的文本。 |
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 工具栏子项点击事件。 |
-| icon | [Resource](ts-types.md#resource) | 否 | 工具栏子项的图标。 |
-| state | [ItemState](#itemstate) | 否 | 工具栏子项的状态，默认为ENABLE。 |
+| 名称                                 | 类型                                                        | 必填 | 说明                                                                                                                 |
+|------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------------|
+| content                            | [ResourceStr](ts-types.md#resourcestr)                    | 是 | 工具栏子项的文本。                                                                                                          |
+| action                             | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。                                                                                                         |
+| icon                               | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标,toolBarSymbol有传入参数时，icon不生效。                                                                              |
+| state                              | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态，默认为ENABLE。                                                                                                |
+| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色，默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。        |
+| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色，默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。     |
+| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色，默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。          |
+| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色，默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。       |
+| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>fontColor默认值与图标色一致、fontSize默认值为24vp。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。  |
+
+## ToolBarModifier<sup>13+</sup>
+ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)、左右内边距（padding，仅在item小于5个时生效）、是否显示按压态（stateEffect）的方法。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+### backgroundColor
+
+backgroundColor?(color: ResourceColor): ToolBarModifier
+
+自定义绘制工具栏背景色的接口，若重载该方法则可进行工具栏背景色的自定义绘制。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明                                                                |
+| ------- | ------------------------------------------------------ | ---- |-------------------------------------------------------------------|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 是   | 绘制工具栏背景色。<br/>默认背景色为为$r('sys.color.ohos_id_color_toolbar_bg')。 |
+
+### padding
+
+padding(padding: Length): ToolBarModifier
+
+自定义绘制工具栏左右内边距的接口，若重载该方法则可进行工具栏左右内边距的自定义绘制。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                                                                                  |
+| ------- |--------| ---- |-------------------------------------------------------------------------------------|
+| padding | [Length](ts-types.md#length) | 是   | 设置工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+
+### height
+
+height(height: Length): ToolBarModifier
+
+自定义绘制工具栏高度的接口，若重载该方法则可进行工具栏高度的自定义绘制，此高度不包含分割线高度。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                 |
+| ------- |---------------------------------| ---- |------------------------------------|
+| height | [Length](ts-types.md#length) | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包括分割线）。 |
+
+### stateEffect
+
+stateEffect(stateEffect: boolean): ToolBarModifier
+
+设置是否显示按压态效果的接口。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                             | 必填 | 说明                                                       |
+| ------- |--------------------------------| ---- |----------------------------------------------------------|
+| stateEffect | boolean | 是   | 设置工具栏是否显示按压态效果。<br/>true为显示按压态效果，false为移除按压态效果，默认为true。 |
 
 ## ItemState
 
@@ -67,6 +143,19 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | ENABLE | 1 | 工具栏子项为正常可点击状态。 |
 | DISABLE | 2 | 工具栏子项为不可点击状态。 |
 | ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 |
+
+## ToolBarSymbolGlyphOptions<sup>13+</sup>
+
+ToolBarSymbolGlyphOptions定义图标的属性。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型       | 必填 | 说明               |
+| ------ | ---------- | ---- | ------------------ |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定事件。 |
+| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定事件。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
