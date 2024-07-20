@@ -30,6 +30,8 @@ applyContent() : WrappedBuilder<[T]>
 
 定制内容区的Builder。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数**：
 
 | 参数 | 描述                                                         |
@@ -46,6 +48,8 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 ## CommonConfiguration\<T><sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    | 说明              |
 | ------ | ------ | ---------------- |

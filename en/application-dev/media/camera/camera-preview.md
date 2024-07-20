@@ -9,8 +9,8 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Import the camera module, which provides camera-related attributes and methods.
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Create a surface.
@@ -18,7 +18,6 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
     The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details about how to obtain the surface ID, see [getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid). For details about the component, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
     > **NOTE**
-    >
     > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio of the surface of the **\<XComponent>** is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
 
 3. Use **previewProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput) to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
@@ -80,7 +79,10 @@ During camera application development, you can listen for the preview output str
     
   ```ts
   function onPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameStart', () => {
+    previewOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame started');
     });
   }
@@ -90,7 +92,10 @@ During camera application development, you can listen for the preview output str
     
   ```ts
   function onPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameEnd', () => {
+    previewOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame ended');
     });
   }

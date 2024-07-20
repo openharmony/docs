@@ -207,7 +207,6 @@ struct Index {
 }
 ```
 
-
 ### dispose
 
 dispose(): void
@@ -218,11 +217,11 @@ dispose(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**示例：**
+**示例：** 
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""

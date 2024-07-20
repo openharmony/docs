@@ -60,6 +60,8 @@ static show(options?: DatePickerDialogOptions)
 
 ## PickerDialogButtonStyle<sup>12+</sup>类型说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | type | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否    | 按钮显示样式。                     |

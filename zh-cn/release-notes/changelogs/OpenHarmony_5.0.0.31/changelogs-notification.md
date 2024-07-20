@@ -1,30 +1,66 @@
-## 应用请求通知使能接口废弃
+# 通知子系统Changelog
+
+## cl.notificationManager.1 应用请求通知使能接口废弃
+
 **访问级别**
 
-其他
+公开接口
 
-**变更原因**
+**废弃原因**
 
-无context入参接口无法跟随应用窗口弹窗，与权限授权弹窗体验不一致。
+    1.恶意应用如果在后台调用弹窗，可能存在安全风险。
 
-**变更影响**
+    2.使用该接口调用弹窗时，弹窗无法跟随应用窗口，UX体验不佳。
 
-该变更为非兼容性变更。
+**废弃影响**
 
-开发者需要使用推荐的带context入参接口。
+notificationManager模块废弃接口。
 
-**API Level**
+**起始 API Level**
 
 9
 
-**变更发生版本**
+**废弃发生版本**
 
-从OpenHarmony API 12开始。
+从OpenHarmony SDK 5.0.0.31开始。
 
-**变更的接口/组件**
+**废弃的接口/组件**
 
-受影响的组件：distributed_notification_service。
+|接口声明|替代接口|
+|-------|-------|
+|requestEnableNotification(callback: AsyncCallback\<void\>): void|requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void|
+|requestEnableNotification(): Promise\<void\>|requestEnableNotification(context: UIAbilityContext): Promise\<void\>|
+
 
 **适配指导**
-替换使用带context入参的请求通知使能接口requestEnableNotification。
 
+需要使用新的替代接口，替代接口为带context入参的请求通知使能接口requestEnableNotification。
+
+废弃前代码示例：
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 请求通知弹窗，不跟随应用窗口
+notificationManager.requestEnableNotification().then(() => {
+    console.info("requestEnableNotification success");
+}).catch((err: BusinessError) => {
+    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+});
+```
+废弃后代码示例：
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+// 请求通知弹窗，传入UIAbilityContext，弹窗跟随应用窗口
+notificationManager.requestEnableNotification(context).then(() => {
+    console.info("requestEnableNotification success");
+}).catch((err: BusinessError) => {
+    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+});
+```

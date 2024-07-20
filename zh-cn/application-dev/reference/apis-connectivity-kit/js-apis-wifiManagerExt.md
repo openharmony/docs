@@ -33,7 +33,7 @@ enableHotspot(): void;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 
@@ -68,7 +68,7 @@ disableHotspot(): void;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 
@@ -106,8 +106,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
-
+| 2701000 | AP extension module error.|
 ## PowerMode<sup>9+</sup>
 
 表示功率模式的枚举。
@@ -144,9 +143,9 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 
@@ -195,7 +194,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 
@@ -233,9 +232,9 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 
@@ -282,7 +281,7 @@ setPowerMode(mode: PowerMode) : void;
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000  | Operation failed.|
+| 2701000 | AP extension module error.|
 
 **示例：**
 

@@ -54,6 +54,15 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 | -------- | --------- |
 | SEService | SE服务实例。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+
 **示例：**
 
 ```js
@@ -131,8 +140,17 @@ getReaders(): Reader[]
 | :------- | :--------------------- |
 | Reader[] | 返回可用Reader对象数组。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -169,7 +187,16 @@ isConnected(): boolean
 | :------- | :--------------------------------------------- |
 | boolean  | true: SE服务状态已连接，false: SE服务状态已断开。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
+
 
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
@@ -202,8 +229,17 @@ shutdown(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -234,8 +270,17 @@ getVersion(): string
 | -------- | -------------------------------------------------- |
 | string   | OMA版本号（例如，“3.3”表示Open Mobile API规范版本3.3） |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -267,8 +312,17 @@ getName(): string
 | -------- | ---------- |
 | string   | Reader名称。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -310,6 +364,7 @@ isSecureElementPresent(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -352,6 +407,7 @@ try {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -392,6 +448,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -434,8 +491,17 @@ getReader(): Reader
 | -------- | --------------------------- |
 | Reader   | 返回此Session的Reader实例。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -488,6 +554,7 @@ getATR(): number[]
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -522,6 +589,7 @@ close(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -555,8 +623,13 @@ isClosed(): boolean
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```Js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -591,6 +664,7 @@ closeChannels(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -639,6 +713,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -694,6 +769,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -757,6 +833,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -814,6 +891,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -871,12 +949,13 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -926,12 +1005,13 @@ function secureElementDemo() {
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -989,12 +1069,13 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1046,12 +1127,13 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1096,8 +1178,17 @@ function secureElementDemo() {
 | -------- | ----------------------------- |
 | Session  | 该Channel绑定的Session 对象。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1122,8 +1213,17 @@ close(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1153,8 +1253,17 @@ isBasicChannel(): boolean
 | -------- | ------------------------------------------------------------ |
 | boolean  | true: 该Channel是基础Channel, false：该Channel逻辑Channel 。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1185,8 +1294,17 @@ isClosed(): boolean
 | -------- | --------------------------------------------- |
 | boolean  | true: Channel是关闭的，false: 不是关闭的。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1221,8 +1339,13 @@ getSelectResponse(): number[]
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1271,6 +1394,7 @@ transmit(command: number[]): Promise\<number[]>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1318,6 +1442,7 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';

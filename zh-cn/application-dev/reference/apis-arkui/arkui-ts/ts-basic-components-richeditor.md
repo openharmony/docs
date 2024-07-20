@@ -213,9 +213,9 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
-### selectionMenuOptions<sup>12+</sup>
+### editMenuOptions<sup>12+</sup>
 
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
@@ -227,7 +227,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 否   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -856,6 +856,20 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### getLayoutManager<sup>12+</sup>
+
+getLayoutManager(): LayoutManager
+
+获取布局管理器对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
+
 ## RichEditorController
 
 RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
@@ -1198,8 +1212,6 @@ getSelection(): RichEditorSelection
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
-
-
 ## RichEditorStyledStringController<sup>12+</sup>
 
 使用属性字符串构建的RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
@@ -1225,22 +1237,6 @@ getSelection(): RichEditorRange
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | [RichEditorRange](#richeditorrange) | 选中区域范围。 |
-
-### getLayoutManager<sup>12+</sup>
-
-getLayoutManager(): LayoutManager
-
-获取布局管理器对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
 
 ### setStyledString<sup>12+</sup>
 
@@ -1436,7 +1432,7 @@ SymbolSpan样式选项。
 | fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color: 跟随字体颜色<br/>}。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>仅支持设置阴影模糊半径、阴影的颜色、阴影的偏移量。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineHeight<sup>12+</sup>    | number \| string \| [Resource](ts-types.md#resource) | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 |
 | letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp, 不支持设置百分比字符串。|
 | fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/|
@@ -1880,8 +1876,7 @@ struct RichEditorExample {
 
 ```ts
 // xxx.ets
-import pasteboard from '@ohos.pasteboard'
-import { BusinessError } from '@ohos.base';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 export interface SelectionMenuTheme {
   imageSize: number;
@@ -2803,7 +2798,8 @@ struct Index {
 
 ```ts
 // xxx.ets
-import font from '@ohos.font'
+import { font } from '@kit.ArkUI'
+
 const canvasWidth = 1000
 const canvasHeight = 100
 const Indentation = 40
@@ -4056,8 +4052,8 @@ struct LineBreakStrategyExample {
 属性字符串使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
-import image from '@ohos.multimedia.image'
+import { LengthMetrics } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
@@ -4206,7 +4202,11 @@ struct Index {
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.selection = '[ ' + start + ' , ' + end + ' ]';
-            this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            if (start == end) {
+              this.content = "";
+            } else {
+              this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            }
           })
           Button("更新选中样式").onClick(() => {
             // 获取选中范围
@@ -4317,44 +4317,62 @@ export struct Index {
 
 ### 示例22
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions 使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct RichEditorExample {
-  richEditorController: RichEditorController = new RichEditorController()
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'RichEditor扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
 
-   build(){
-    Column(){
-      RichEditor({ controller: this.richEditorController })
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    console.log('menuItems size=' + menuItems.length);
+    menuItems.forEach((value, index) => {
+      console.log('menuItem' + index + ', id=' + JSON.stringify(value));
+    })
+    let extensionMenuItems: Array<TextMenuItem> = [
+      {
+        content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
+      },
+      {
+        content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
+      },
+      {
+        content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
+      },
+      {
+        content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
+      }
+    ]
+    return menuItems.concat(extensionMenuItems)
+  }
+  onMenuItemClicked(menuItem: TextMenuItem, textRange: TextRange) {
+    if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
+      console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange))
+      return true;
+    }
+    return false;
+  }
+
+  build() {
+    Row() {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan("RichEditor扩展")
+        })
+        .editMenuOptions({
+          onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+            return this.onCreateMenu(menuItems)
+          },
+          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            return this.onMenuItemClicked(menuItem, textRange)
+          }
+        })
         .height(200)
         .borderWidth(1)
         .borderColor(Color.Red)
-        .selectionMenuOptions(this.menuOptionArray)
     }
   }
 }

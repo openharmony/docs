@@ -19,7 +19,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 
 ### 调试步骤
 
-1.在应用工程配置文件module.json中配置网络权限：
+1. 在应用工程配置文件module.json中配置网络权限：
 
 ```
 "requestPermissions": [{
@@ -34,17 +34,14 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 }]
 ```
 
-2.为避免debugger过程中的暂停被误报为无响应异常，要为应用进程临时屏蔽appfreeze检测，设置命令为：
-hdc shell param set hiviewdfx.freeze.filter.(processName) (pid of processName)
-例如：
-hdc shell param set hiviewdfx.freeze.filter.com.example.helloworld 1234
-3.在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
-4.调用OH_JSVM_WaitForDebugger，等待建立socket连接。
-5.检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
-6.转发端口。hdc fport tcp:9229 tcp:9225。转发PC侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
-7.在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
-8.用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
-9.调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
+4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
+5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
+6. 转发端口。hdc fport tcp:9229 tcp:9225。转发PC侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
+7. 在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
+8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
+9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
 ### 示例代码
 

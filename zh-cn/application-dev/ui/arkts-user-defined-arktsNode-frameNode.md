@@ -4,7 +4,7 @@
 
 对于具备自己前端定义的三方框架，需要将特定的dsl转换成为ArkUI的声明式描述。这个转换过程需依赖额外的数据驱动绑定至[Builder](../quick-start/arkts-builder.md)中，转换比较复杂且性能较低。这一类框架一般依赖系统ArkUI框架的布局、事件能力，以及最基础的节点操作和自定义能力，大部分组件通过自定义完成，但是需要使用部分原生组件混合显示。[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计就是为了解决上述的问题。
 
-FrameNode表示组件树的实体节点，配合自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)等，在占位容器内挂载一颗自定义的节点树，并对这个节点树中的节点进行动态的增加、修改、删除等操作。基础的FrameNode可以设置通用属性、设置事件回调，并提供完整的自定义能力，包括自定义测量、布局以及绘制。
+FrameNode表示组件树的实体节点，配合自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)等，在占位容器内挂载一棵自定义的节点树，并对这个节点树中的节点进行动态的增加、修改、删除等操作。基础的FrameNode可以设置通用属性、设置事件回调，并提供完整的自定义能力，包括自定义测量、布局以及绘制。
 
 除此之外，ArkUI框架还提供获取和遍历获得原生组件对应的代理FrameNode对象的能力，下文简称代理节点。代理节点可以用于需要遍历整个UI的树形结构，并支持获取原生组件节点的具体信息或者额外注册组件的事件监听回调。
 
@@ -487,8 +487,7 @@ struct Index {
 > - 通过onDraw方法进行的自定义绘制，绘制内容大小无法超出组件大小。
 
 ```ts
-import { DrawContext, FrameNode, NodeController, Position, Size, UIContext } from '@kit.ArkUI';
-import { LayoutConstraint } from '@ohos.arkui.node';
+import { DrawContext, FrameNode, NodeController, Position, Size, UIContext, LayoutConstraint } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {

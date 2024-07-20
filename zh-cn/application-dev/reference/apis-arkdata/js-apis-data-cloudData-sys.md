@@ -2,9 +2,9 @@
 
 端云服务提供端云协同、端云共享和端云策略。
 
-端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
+端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同账号设备间的数据一致性。
 
-端云共享是在端云协同能力基础上，实现跨帐号的数据共享。其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
+端云共享是在端云协同能力基础上，实现跨账号的数据共享。其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
 
 端云共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
 
@@ -49,12 +49,12 @@ import { cloudData } from '@kit.ArkData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含账号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
 **样例：**
 
 ```ts
-//accountId:用户打开的云帐号ID
+//accountId:用户打开的云账号ID
 //bundleName:应用包名
 //containerName:云上数据库名称
 //databaseScopes:云上数据库类型
@@ -118,7 +118,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
+| accountId | string                          | 是   | 具体打开的云账号ID。                                         |
 | switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
@@ -168,7 +168,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
+| accountId | string                          | 是   | 具体打开的云账号ID。                                         |
 | switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
@@ -221,7 +221,7 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                 |
 | --------- | ------------------------- | ---- | -------------------- |
-| accountId | string                    | 是   | 具体打开的云帐号ID。 |
+| accountId | string                    | 是   | 具体打开的云账号ID。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 **错误码：**
@@ -269,7 +269,7 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| accountId | string | 是   | 具体打开的云帐号ID。 |
+| accountId | string | 是   | 具体打开的云账号ID。 |
 
 **返回值：**
 
@@ -320,7 +320,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
 | status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
@@ -371,7 +371,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
 | status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
@@ -425,7 +425,7 @@ static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCa
 
 | 参数名     | 类型                      | 必填 | 说明                 |
 | ---------- | ------------------------- | ---- | -------------------- |
-| accountId  | string                    | 是   | 具体打开的云帐号ID。 |
+| accountId  | string                    | 是   | 具体打开的云账号ID。 |
 | bundleName | string                    | 是   | 应用名。             |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
@@ -475,7 +475,7 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 
 | 参数名     | 类型   | 必填 | 说明                 |
 | ---------- | ------ | ---- | -------------------- |
-| accountId  | string | 是   | 具体打开的云帐号ID。 |
+| accountId  | string | 是   | 具体打开的云账号ID。 |
 | bundleName | string | 是   | 应用名。             |
 
 **返回值：**
@@ -688,7 +688,7 @@ static queryStatistics(accountId: string, bundleName: string, storeId?: string):
 
 | 参数名  | 类型      | 必填 | 说明                                |
 | ------- |---------| ---- |-----------------------------------|
-| accountId | string  | 是   | 具体打开的云帐号ID。                       |
+| accountId | string  | 是   | 具体打开的云账号ID。                       |
 | bundleName | string  | 是   | 应用包名。                             |
 | storeId  | string  | 否   | 数据库名称。默认值为空字符串，此时将查询当前应用所有的本地数据库。 |
 
@@ -739,7 +739,7 @@ static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| accountId  | string | 是   | 具体打开的云帐号ID。                                         |
+| accountId  | string | 是   | 具体打开的云账号ID。                                         |
 | bundleName | string | 是   | 应用包名。                                                   |
 | storeId    | string | 否   | 数据库名称。默认值为空字符串，此时查询当前应用下所有数据库上一次端云同步信息。 |
 
@@ -840,7 +840,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>,  callba
 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| accountId  | string                                              | 是   | 具体打开的云账号ID。             |
 | appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 | callback   | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。                       |
 
@@ -894,7 +894,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| accountId  | string                                              | 是   | 具体打开的云账号ID。             |
 | appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 
 **返回值：**
@@ -978,7 +978,7 @@ try {
 | REPEATED_REQUEST        | 1    | 重复邀请，表示当前参与者已被邀请。请使用枚举名称而非枚举值。 |
 | NOT_INVITER             | 2    | 非端云共享的邀请者，表示当前参与者不是端云共享的邀请者。请使用枚举名称而非枚举值。 |
 | NOT_INVITER_OR_INVITEE  | 3    | 非法参与者，表示当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
-| OVER_QUOTA              | 4    | 端云共享次数达到上限，表示当前帐号可共享的次数达到上限。请使用枚举名称而非枚举值。   |
+| OVER_QUOTA              | 4    | 端云共享次数达到上限，表示当前账号可共享的次数达到上限。请使用枚举名称而非枚举值。   |
 | TOO_MANY_PARTICIPANTS   | 5    | 端云共享参与者数量达到上限。请使用枚举名称而非枚举值。 |
 | INVALID_ARGS            | 6    | 无效的参数。请使用枚举名称而非枚举值。 |
 | NETWORK_ERROR           | 7    | 网络错误。请使用枚举名称而非枚举值。 |

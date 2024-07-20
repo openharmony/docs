@@ -5,6 +5,10 @@
 
 Declares the APIs used to access the image rectangle, size, format, and component data.
 
+**Library**: libimage_ndk.z.so
+
+**File to include**: &lt;multimedia/image_framework/image_mdk.h&gt;
+
 **Since**: 10
 
 **Related module**: [Image](image.md)

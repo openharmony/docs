@@ -11,10 +11,11 @@ The **PermissionRequestResult** module defines the result of a permission reques
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | Yes| No| Permissions requested.|
-| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not authorized and must be set in **Settings** without displaying a dialog box.<br>- **0**: The permission is authorized.<br>- **2**: The permission is not authorized due to an invalid request. The possible causes are as follows:<br>  - The permission is not declared in the configuration file.<br>  - The permission name is invalid.<br>  - Certain conditions are not met when the permission is applied. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location).|
+| permissions | Array&lt;string&gt; | Yes| Yes| Permissions requested.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
+| authResults | Array&lt;number&gt; | Yes| Yes| Result of the permission request.<br>- **-1**: The permission is not authorized and must be set in **Settings** without displaying a dialog box.<br>- **0**: The permission is authorized.<br>- **2**: The permission is not authorized due to an invalid request. The possible causes are as follows:<br>  - The permission is not declared in the configuration file.<br>  - The permission name is invalid.<br>  - Certain conditions are not met when the permission is applied. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location).<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
+| dialogShownResults? | Array&lt;bool&gt; | Yes| No| Whether to display a dialog box.<br>The value **true** means to display a dialog box; the value **false** means the opposite.<br> **Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## Usage
 
@@ -35,10 +36,11 @@ try {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
+      console.info("data dialogShownResults:" + data.dialogShownResults);
   }).catch((err: BusinessError) => {
-      console.info("data:" + JSON.stringify(err));
+      console.error("data:" + JSON.stringify(err));
   })
 } catch(err) {
-  console.log(`catch err->${JSON.stringify(err)}`);
+  console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```

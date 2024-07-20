@@ -9,6 +9,7 @@
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)

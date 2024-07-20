@@ -12,7 +12,7 @@
     方舟编译运行时通过采用PGO(Profile-Guided-Optimization，配置文件引导型优化)方式，提前生成高性能机器码，从而提升程序运行速度。
 ## 减少丢帧卡顿
 
-丢帧卡顿是指应用在运行时出现卡顿或者画面不流畅的现象。为了[减少丢帧卡顿](reduce-animation-frame-loss.md)，可以采取以下措施：
+丢帧卡顿是指应用在运行时出现卡顿或者画面不流畅的现象。为了[减少丢帧卡顿](reasonable-using-animation)，可以采取以下措施：
 
 - **避免在主线程上执行耗时操作：**
   UI主线程是应用中最重要的线程之一，在主线程上执行耗时操作会阻塞UI渲染，从而导致UI主线程的负载过高。因此，可以将耗时操作放在[TaskPool或者Worker](../arkts-utils/taskpool-vs-worker.md)等后台线程中执行。
@@ -40,7 +40,7 @@
 应用启动和响应速度是用户体验的重要组成部分。为了[提升应用启动](improve-application-cold-start-speed.md)和[响应速度](improve-application-response.md)，可以采取以下措施：
 
 - **延迟加载：**
-  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/arkui-ts/ts-container-list.md)、[Grid](../reference/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
+  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
   
 - **使用缓存：**
   选择合适的[缓存策略](list-perf-improvment.md#缓存列表项)可以提高应用程序的性能和响应速度，从而提升应用响应速度。

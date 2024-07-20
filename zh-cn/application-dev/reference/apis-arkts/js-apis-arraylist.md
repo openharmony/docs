@@ -519,7 +519,7 @@ comparator的参数说明：
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 10200011 | The sort method cannot be bound. |
 
 **示例：**
@@ -790,7 +790,7 @@ arrayList.increaseCapacityTo(8);
 
 trimToCurrentLength(): void
 
-把容量限制为当前的length大小。
+释放ArrayList中预留的空间，把容量调整为当前的元素个数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

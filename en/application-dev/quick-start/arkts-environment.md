@@ -1,4 +1,4 @@
-# Environment: Device Environment Query
+# Environment: Querying Device Environment
 
 
 You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need Environment for device environment query.
@@ -90,8 +90,8 @@ Environment can be called only when the [UIContext](../reference/apis-arkui/js-a
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

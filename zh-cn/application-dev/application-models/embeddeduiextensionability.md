@@ -9,8 +9,8 @@ EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/a
 > **说明：**
 >
 > 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
-> 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
-> 3. 当前提供的EmbeddedUIExtensionAbility支持多实例场景，并且继承了UIExtensionAbility的进程模型，UIExtensionAbility的多实例及进程配置相关介绍可参见[UIExtensionAbility](uiextensionability.md)。
+> 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。<!--Del-->
+> 3. 当前提供的EmbeddedUIExtensionAbility支持多实例场景，并且继承了UIExtensionAbility的进程模型，UIExtensionAbility的多实例及进程配置相关介绍可参见[UIExtensionAbility](uiextensionability.md)。<!--DelEnd-->
 
 EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的EmbeddedUIExtensionAbility为提供方，称启动EmbeddedUIExtensionAbility的EmbeddedComponent组件为使用方。
 
@@ -37,48 +37,47 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 3. 打开EmbeddedUIExtAbility.ts文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
-      ```ts
-      import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-      import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-      import Want from '@ohos.app.ability.Want';
-      
-      const TAG: string = '[ExampleEmbeddedAbility]'
-      export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-        onCreate() {
-          console.log(TAG, `onCreate`);
-        }
-      
-        onForeground() {
-          console.log(TAG, `onForeground`);
-        }
-      
-        onBackground() {
-          console.log(TAG, `onBackground`);
-        }
-      
-        onDestroy() {
-          console.log(TAG, `onDestroy`);
-        }
-      
-        onSessionCreate(want: Want, session: UIExtensionContentSession) {
-          console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-          let param: Record<string, UIExtensionContentSession> = {
-            'session': session
-          };
-          let storage: LocalStorage = new LocalStorage(param);
-          session.loadContent('pages/extension', storage);
-        }
-      
-        onSessionDestroy(session: UIExtensionContentSession) {
-          console.log(TAG, `onSessionDestroy`);
-        }
+    ```ts
+    import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
+    const TAG: string = '[ExampleEmbeddedAbility]'
+
+    export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+      onCreate() {
+        console.log(TAG, `onCreate`);
       }
-      ```
+
+      onForeground() {
+        console.log(TAG, `onForeground`);
+      }
+
+      onBackground() {
+        console.log(TAG, `onBackground`);
+      }
+
+      onDestroy() {
+        console.log(TAG, `onDestroy`);
+      }
+
+      onSessionCreate(want: Want, session: UIExtensionContentSession) {
+        console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+        let param: Record<string, UIExtensionContentSession> = {
+          'session': session
+        };
+        let storage: LocalStorage = new LocalStorage(param);
+        session.loadContent('pages/extension', storage);
+      }
+
+      onSessionDestroy(session: UIExtensionContentSession) {
+        console.log(TAG, `onSessionDestroy`);
+      }
+    }
+    ```
 
 4. EmbeddedUIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets内容如下：
 
     ```ts
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { UIExtensionContentSession } from '@kit.AbilityKit';
     
     let storage = LocalStorage.getShared()
     
@@ -108,21 +107,21 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册EmbeddedUIExtensionAbility，type标签需要设置为“embeddedUI”，srcEntry标签表示当前EmbeddedUIExtensionAbility组件所对应的代码路径。
 
-   ```json
-   {
-     "module": {
-       "extensionAbilities": [
-         {
-           "name": "EmbeddedUIExtAbility",
-           "icon": "$media:icon",
-           "description": "EmbeddedUIExtAbility",
-           "type": "embeddedUI",
-           "srcEntry": "./ets/EmbeddedUIExtAbility/EmbeddedUIExtAbility.ts"
-         },
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "extensionAbilities": [
+          {
+            "name": "EmbeddedUIExtAbility",
+            "icon": "$media:icon",
+            "description": "EmbeddedUIExtAbility",
+            "type": "embeddedUI",
+            "srcEntry": "./ets/EmbeddedUIExtAbility/EmbeddedUIExtAbility.ts"
+          },
+        ]
+      }
+    }
+    ```
 
 
 

@@ -26,7 +26,7 @@ The index is out of range.
 
 **错误信息**
 
-The number of record exceeds the maximum limit.
+The number of records exceeds the upper limit.
 
 **错误描述**
 
@@ -45,7 +45,7 @@ The number of record exceeds the maximum limit.
 
 **错误信息**
 
-Another copy or paste is in progress.
+Another copy or paste operation is in progress.
 
 **错误描述**
 
@@ -83,7 +83,7 @@ Replication is prohibited.
 
 **错误信息**
 
-Request time out.
+Request timed out.
 
 **错误描述**
 

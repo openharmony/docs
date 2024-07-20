@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D';
 ```
 
 ## TextAlign
@@ -362,6 +362,32 @@ struct Index {
 }
 ```
 
+### clearCaches
+
+clearCaches(): void
+
+清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button().onClick(() => {
+        text.FontCollection.getGlobalInstance().clearCaches();
+      })
+    }
+  }
+}
+```
+
 ## ParagraphStyle
 
 段落样式。
@@ -501,6 +527,55 @@ function Text() {
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
   let canvas = new drawing.Canvas(pixelMap);
   paragraph.paint(canvas, 0, 0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### paintOnPath
+
+paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset: number): void
+
+在画布上沿路径绘制文本。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标画布。         |
+| path | [drawing.Path](js-apis-graphics-drawing.md#path) | 是   | 确认文字位置的路径。         |
+|    hOffset   | number                                               | 是   | 沿路径方向偏置，从路径起点向前为正，向后为负。|
+|    vOffset   | number                                               | 是   | 沿路径垂直方向偏置，沿路径方向左侧为负，右侧为正。|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
+
+function Text() {
+  const color: ArrayBuffer = new ArrayBuffer(160000);
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
+  let canvas = new drawing.Canvas(pixelMap);
+  let path = new drawing.Path();
+  path.arcTo(20, 20, 180, 180, 180, 90);
+  paragraph.paintOnPath(canvas, path, 0, 0);
 }
 
 @Entry

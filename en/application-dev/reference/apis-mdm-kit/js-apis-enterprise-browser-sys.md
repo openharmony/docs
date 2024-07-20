@@ -8,21 +8,21 @@ The **browser** module provides browser management, including setting, deleting,
 >
 > - The APIs of this module can be used only in the stage model.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - The APIs provided by this module are system APIs.
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.browser](js-apis-enterprise-browser.md).
 
 ## Modules to Import
 
 ```ts
-import browser from '@ohos.enterprise.browser';
+import { browser } from '@kit.MDMKit';
 ```
 
 ## browser.setPolicies
 
 setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets policies for a given browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets policies for a browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -36,21 +36,24 @@ Sets policies for a given browser through the specified device administrator app
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
 | policies    | string              | Yes   | Policies to set. If this parameter is set to an empty string, the policies of the specified browser will be deleted. |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -62,7 +65,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
     console.error(`Failed to set browser policies. Code is ${err.code}, message is ${err.message}`);
     return;
   }
-  console.info('Succeeded in setting browser policies');
+  console.info('Succeeded in setting browser policies.');
 });
 ```
 
@@ -70,7 +73,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
-Sets policies for a given browser through the specified device administrator application. This API uses a promise to return the result.
+Sets policies for a browser through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -89,22 +92,25 @@ Sets policies for a given browser through the specified device administrator app
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -112,7 +118,7 @@ let wantTemp: Want = {
 let appId: string = 'com.example.myapplication';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies).then(() => {
-  console.info('Succeeded in setting browser policies');
+  console.info('Succeeded in setting browser policies.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set browser policies. Code is ${err.code}, message is ${err.message}`);
 });
@@ -122,7 +128,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the policies of a given browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the policies of a browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -133,20 +139,22 @@ Obtains the policies of a given browser through the specified device administrat
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
-| callback | AsyncCallback&lt;string&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -165,7 +173,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
-Obtains the policies of a given browser through the specified device administrator application. This API uses a promise to return the result.
+Obtains the policies of a browser through the specified device administrator application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -185,17 +193,19 @@ Obtains the policies of a given browser through the specified device administrat
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

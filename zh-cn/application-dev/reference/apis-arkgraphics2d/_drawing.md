@@ -232,6 +232,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawSingleCharacter](#oh_drawing_canvasdrawsinglecharacter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*font, float x, float y) | 用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const char \*str, float \*textWidth) | 用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。 |
+| void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | 沿路径绘制文本。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RoundRectOffset](#oh_drawing_roundrectoffset) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, float dx, float dy) | 用于将圆角矩形沿x轴方向和y轴方向平移指定距离。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetX](#oh_drawing_pointgetx) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*x) | 用于获取点的x轴坐标。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetY](#oh_drawing_pointgety) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*y) | 用于获取点的y轴坐标。 | 
@@ -257,7 +260,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PathGetBounds](#oh_drawing_pathgetbounds) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | 获取包含路径的最小边界框。 | 
 | bool [OH_Drawing_PathIsClosed](#oh_drawing_pathisclosed) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed) | 获取路径是否闭合。 | 
 | bool [OH_Drawing_PathGetPositionTangent](#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | 获取距路径起始点指定距离的坐标点和切线值。 |
-| bool [OH_Drawing_PathOp](#oh_drawing_pathop) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*srcPath, [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
+| bool [OH_Drawing_PathOp](#oh_drawing_pathop) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*other, [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
 | bool [OH_Drawing_PathGetMatrix](#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) flag) | 获取距路径起始点指定距离的相应变换矩阵。 | 
 | bool [OH_Drawing_PenGetFillPath](#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](#oh_drawing_pen) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_Path](#oh_drawing_path) \*dst, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 获取使用画笔绘制的源路径轮廓，并用目标路径表示。 |
 | [OH_Drawing_Pen](#oh_drawing_pen) \* [OH_Drawing_PenCopy](#oh_drawing_pencopy) ([OH_Drawing_Pen](#oh_drawing_pen) \*pen) | 创建一个画笔对象副本[OH_Drawing_Pen](#oh_drawing_pen)，用于拷贝一个已有画笔对象。 | 
@@ -266,7 +269,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PixelMapDissolve](#oh_drawing_pixelmapdissolve) ([OH_Drawing_PixelMap](#oh_drawing_pixelmap) \*) | 解除本模块定义的像素图对象和图像框架定义的像素图对象之间的关系，该关系通过调用 [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap)或[OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative)建立。 | 
 | bool [OH_Drawing_RectJoin](#oh_drawing_rectjoin) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | 将两个矩形取并集。 | 
 | bool [OH_Drawing_RegionContains](#oh_drawing_regioncontains) ([OH_Drawing_Region](#oh_drawing_region) \*region, int32_t x, int32_t y) | 判断区域是否包含指定坐标点。 | 
-| bool [OH_Drawing_RegionOp](#oh_drawing_regionop) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Region](#oh_drawing_region) \*dst, [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op) | 将两个区域按照指定的区域操作类型合并。 | 
+| bool [OH_Drawing_RegionOp](#oh_drawing_regionop) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Region](#oh_drawing_region) \*other, [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op) | 将两个区域按照指定的区域操作类型合并。 | 
 | bool [OH_Drawing_RegionSetPath](#oh_drawing_regionsetpath) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Region](#oh_drawing_region) \*clip) | 给区域对象设置为指定区域内路径表示的范围。 | 
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateColorShader](#oh_drawing_shadereffectcreatecolorshader) (const uint32_t color) | 创建具有单一颜色的着色器。 | 
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix](#oh_drawing_shadereffectcreatelineargradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 创建着色器，在两个指定点之间生成线性渐变。 | 
@@ -381,6 +384,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
 | void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
 | [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection) (void) | 创建可共享的字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
+| void [OH_Drawing_ClearFontCaches](#oh_drawing_clearfontcaches) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。 | 
 | [OH_Drawing_FontMgr](#oh_drawing_fontmgr) \* [OH_Drawing_FontMgrCreate](#oh_drawing_fontmgrcreate) (void) | 构造字体管理对象。 | 
 | void [OH_Drawing_FontMgrDestroy](#oh_drawing_fontmgrdestroy) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*) | 释放字体管理对象占用的内存。 | 
 | int [OH_Drawing_FontMgrGetFamilyCount](#oh_drawing_fontmgrgetfamilycount) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*) | 获取字体家族的数量。 | 
@@ -2850,6 +2854,88 @@ enum OH_Drawing_WordBreakType
 
 ## 函数说明
 
+### OH_Drawing_CanvasDrawSingleCharacter()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacter (OH_Drawing_Canvas* canvas, const char* str, const OH_Drawing_Font* font, float x, float y )
+```
+
+**描述**
+
+用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| str | 待绘制的单个字符。可以传入字符串，但只会以UTF-8编码解析并绘制字符串中的首个字符。 | 
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| x | 字符对象基线左端点（靠近字符左下角）的横坐标。 | 
+| y | 字符对象基线左端点（靠近字符左下角）的纵坐标。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas、str、font任意一个为NULL或者str的长度为0。
+
+
+
+### OH_Drawing_FontMeasureSingleCharacter()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacter (const OH_Drawing_Font* font, const char* str, float* textWidth )
+```
+
+**描述**
+
+用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| str | 待测量的单个字符。可以传入字符串，但只会以UTF-8编码解析并测量字符串中的首个字符。 | 
+| textWidth | 用于存储得到的字符宽度。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、str、textWidth任意一个为NULL或者str的长度为0。
+
+
+ 
+### OH_Drawing_TypographyPaintOnPath()
+
+```
+void OH_Drawing_TypographyPaintOnPath (OH_Drawing_Typography* , OH_Drawing_Canvas* , OH_Drawing_Path* , double , double  )
+```
+
+**描述**
+
+沿路径绘制文本。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
+| OH_Drawing_Canvas | 指向OH_Drawing_Canvas对象的指针，由[OH_Drawing_CanvasCreate](#oh_drawing_canvascreate)获取。 | 
+| OH_Drawing_Path | 指向OH_Drawing_Path对象的指针，由[OH_Drawing_PathCreate](#oh_drawing_pathcreate)获取。 | 
+| double | 沿路径方向偏置，从路径起点向前为正，向后为负。 | 
+| double | 沿路径垂直方向偏置，沿路径方向左侧为负，右侧为正。 | 
+
 
 ### OH_Drawing_RoundRectOffset()
 
@@ -3011,7 +3097,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion (OH_Drawing_Canvas* canvas, con
 
 **返回：**
 
-函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者region为空。
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者region为空。返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示clipOp不在枚举范围内。
 
 
 ### OH_Drawing_CanvasDrawColor()
@@ -3038,7 +3124,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor (OH_Drawing_Canvas* canvas, uint
 
 **返回：**
 
-函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas为空。
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas为空。返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示blendMode不在枚举范围内。
 
 
 ### OH_Drawing_CanvasGetImageInfo()
@@ -3240,7 +3326,7 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur (float sigmaX, float si
 | -------- | -------- |
 | sigmaX | 表示沿x轴方向上高斯模糊的方差。 | 
 | sigmaY | 表示沿y轴方向上高斯模糊的方差。 | 
-| OH_Drawing_TileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见**OH_Drawing_TileMoe**枚举。 | 
+| OH_Drawing_TileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 | 
 | input | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
 
 **返回：**
@@ -3400,7 +3486,9 @@ void OH_Drawing_PathAddCircle (OH_Drawing_Path* path, float x, float y, float ra
 
 path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
 
-radius小于等于0时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+radius小于等于0时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE；
+
+OH_Drawing_PathDirection不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3539,7 +3627,7 @@ path、position、tangent任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PA
 ### OH_Drawing_PathOp()
 
 ```
-bool OH_Drawing_PathOp (OH_Drawing_Path* path, const OH_Drawing_Path* srcPath, OH_Drawing_PathOpMode op )
+bool OH_Drawing_PathOp (OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_Drawing_PathOpMode op )
 ```
 
 **描述**
@@ -3548,7 +3636,9 @@ bool OH_Drawing_PathOp (OH_Drawing_Path* path, const OH_Drawing_Path* srcPath, O
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-path、srcPath任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+path、other任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+op不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3558,8 +3648,8 @@ path、srcPath任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| srcPath | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针，操作完成后的路径结果将会保存在此路径对象中。 | 
+| other | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | op | 路径操作枚举类型，支持可选的具体模式可见[OH_Drawing_PathOpMode](#oh_drawing_pathopmode)枚举。 | 
 
 **返回：**
@@ -3579,7 +3669,9 @@ bool OH_Drawing_PathGetMatrix (OH_Drawing_Path* path, bool forceClosed, float di
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-path、matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+path、matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+flag不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3797,7 +3889,7 @@ region为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 ### OH_Drawing_RegionOp()
 
 ```
-bool OH_Drawing_RegionOp (OH_Drawing_Region* region, const OH_Drawing_Region* dst, OH_Drawing_RegionOpMode op )
+bool OH_Drawing_RegionOp (OH_Drawing_Region* region, const OH_Drawing_Region* other, OH_Drawing_RegionOpMode op )
 ```
 
 **描述**
@@ -3806,7 +3898,9 @@ bool OH_Drawing_RegionOp (OH_Drawing_Region* region, const OH_Drawing_Region* ds
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-region、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+region、other任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+op不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3816,8 +3910,8 @@ region、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
-| dst | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针，操作完成后的区域结果将会保存在此区域对象中。 | 
+| other | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
 | op | 区域操作枚举类型，支持可选的具体模式可见[OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)枚举。 | 
 
 **返回：**
@@ -3895,6 +3989,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMat
 
 startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3930,6 +4026,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMat
 
 centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3943,7 +4041,7 @@ centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER�
 | colors | 表示在径向上分布的颜色。 | 
 | pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL, 颜色均匀分布在径向上。 | 
 | size | 表示颜色和位置的数量(如果pos不为NULL)。 | 
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见**OH_Drawing_TileMoe**枚举。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 | 
 | OH_Drawing_Matrix | 表示作用于着色器上的矩阵变换，如果matrix是NULL, 默认是一个单位矩阵。 | 
 
 **返回：**
@@ -3964,6 +4062,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateTwoPointConicalGradient (c
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
 startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4190,7 +4290,9 @@ void OH_Drawing_FontSetEdging (OH_Drawing_Font* , OH_Drawing_FontEdging  )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_FontEdging不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4589,7 +4691,9 @@ void OH_Drawing_FontSetHinting (OH_Drawing_Font* , OH_Drawing_FontHinting  )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_FontHinting不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5232,7 +5336,9 @@ void OH_Drawing_BrushSetBlendMode (OH_Drawing_Brush* , OH_Drawing_BlendMode  )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_BlendMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5440,7 +5546,9 @@ void OH_Drawing_CanvasClipPath (OH_Drawing_Canvas* , const OH_Drawing_Path* , OH
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Canvas、OH_Drawing_Path任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Canvas、OH_Drawing_Path任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+clipOp不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5468,7 +5576,9 @@ void OH_Drawing_CanvasClipRect (OH_Drawing_Canvas* , const OH_Drawing_Rect* , OH
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+clipOp不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5495,7 +5605,9 @@ void OH_Drawing_CanvasClipRoundRect (OH_Drawing_Canvas* , const OH_Drawing_Round
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Canvas、OH_Drawing_RoundRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Canvas、OH_Drawing_RoundRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+clipOp不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5946,7 +6058,9 @@ void OH_Drawing_CanvasDrawPoints (OH_Drawing_Canvas* , OH_Drawing_PointMode mode
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Canvas、OH_Drawing_Point2D任意一个为NULL或者count等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Canvas、OH_Drawing_Point2D任意一个为NULL或者count等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+mode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6114,7 +6228,9 @@ void OH_Drawing_CanvasDrawVertices (OH_Drawing_Canvas* , OH_Drawing_VertexMode v
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Canvas、positions、texs、colors、indices任意一个为NULL或者vertexCount、indexCount任意一个小于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Canvas、positions、texs、colors、indices任意一个为NULL或者vertexCount、indexCount任意一个小于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+vertexMmode、mode任意一个不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6959,6 +7075,25 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection (void )
 
 指向创建的字体集对象的指针。
 
+### OH_Drawing_ClearFontCaches()
+
+```
+void OH_Drawing_ClearFontCaches (OH_Drawing_FontCollection* )
+```
+
+**描述**
+
+清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_FontCollection | 指向字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)的指针。 | 
 
 ### OH_Drawing_CreateTextShadow()
 
@@ -9450,7 +9585,9 @@ void OH_Drawing_PathAddOval (OH_Drawing_Path* , const OH_Drawing_Rect* , OH_Draw
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathDirection不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9476,7 +9613,9 @@ void OH_Drawing_PathAddOvalWithInitialPoint (OH_Drawing_Path* , const OH_Drawing
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathDirection不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9531,7 +9670,9 @@ void OH_Drawing_PathAddPathWithMatrixAndMode (OH_Drawing_Path* path, const OH_Dr
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathAddMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9559,7 +9700,9 @@ void OH_Drawing_PathAddPathWithMode (OH_Drawing_Path* path, const OH_Drawing_Pat
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathAddMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9587,6 +9730,8 @@ void OH_Drawing_PathAddPathWithOffsetAndMode (OH_Drawing_Path* path, const OH_Dr
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
 path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+OH_Drawing_PathAddMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10707,7 +10852,9 @@ void OH_Drawing_PenSetCap (OH_Drawing_Pen* , OH_Drawing_PenLineCapStyle  )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PenLineCapStyle不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10785,7 +10932,9 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen* , OH_Drawing_PenLineJoinStyle  )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PenLineJoinStyle不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11576,6 +11725,10 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate (OH_Drawing_FilterM
 **描述**
 
 创建一个采样选项对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_MipmapMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -12707,6 +12860,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateImageShader (OH_Drawing_Im
 
 OH_Drawing_Image、OH_Drawing_SamplingOptions任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
+tileX、tileY任意一个不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -12739,6 +12894,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradient (const OH_D
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
 startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -12774,6 +12931,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradient (const OH_D
 
 centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -12807,6 +12966,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient (const OH_Dr
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
 centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

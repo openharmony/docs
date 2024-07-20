@@ -7,8 +7,8 @@
     - [OHIPCParcel](_o_h_i_p_c_parcel.md)
     - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
     - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
-    - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
-    - [IPCKit](_i_p_c_kit.md)
+    - [OH_IPC_ErrorCode](_o_h_i_p_c_error_code.md)
+    - [IPC Kit](_i_p_c_kit.md)
   - Header Files
     - [ipc_cparcel.h](ipc__cparcel_8h.md)
     - [ipc_cremote_object.h](ipc__cremote__object_8h.md)

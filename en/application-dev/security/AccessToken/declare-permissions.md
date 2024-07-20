@@ -9,10 +9,14 @@ In the **module.json5** file of your application, declare the required permissio
 | Name| Description| Value Range|
 | -------- | -------- | -------- |
 | name | Permission name. This field is mandatory.| The value must be a permission defined in the system. For details, see [Permissions for All Applications](permissions-for-all.md).|
-| reason | Reason for requesting the permission. This field is mandatory only when a **user_grant** permission is requested.<br>**NOTE**<br>This field is used for application release verification. It is mandatory for a user_grant permission, and must be a resource reference to support multiple languages.| The value is a resource reference of the string type, in the $string: \*\*\* format.<br>For details, see [Specifications for reason](#specifications-for-reason).|
-| usedScene | Scene under which the permission is used. It consists of **abilities** and **when**. **abilities** is an array of multiple UIAbility components, and **when** specifies when the permission is used. This field is optional.<br>**NOTE**<br>If a **user_grant** permission is requested, **abilities** is mandatory and **when** is optional.| **abilities**: an array of UIAbility or ExtensionAbility names.<br>**when**: **inuse** (when used) and **always** (always).|
+| reason | Reason for requesting the permission. This field is optional and must be set when a user_grant permission is requested.<br>**NOTE**<br>This field is used for application release verification. It is mandatory for a user_grant permission, and must be a resource reference to support multiple languages.| The value is a resource reference of the string type, in the $string: \*\*\* format.<br>For details, see [Specifications for reason](#specifications-for-reason).|
+| usedScene | Scene under which the permission is used. This field is optional and must be set when a user_grant permission is requested.<br>This field consists of **abilities** and **when**, where **abilities** (mandatory) is an array of multiple UIAbility components, and **when** (optional) specifies when the permission is used.| **abilities**: an array of UIAbility or ExtensionAbility names.<br>**when**: **inuse** (when used) and **always** (always).|
 
 ## Example
+
+> **NOTE**
+>
+> The ohos.permission.PERMISSION1 and ohos.permission.PERMISSION2 permissions are only examples and do not exist. Set parameters to match your case.
 
 ```json
 {
@@ -74,4 +78,4 @@ The reason for requesting a permission is normally presented in an authorization
 
 2. For a permission in other permission groups, the reason for using the first requested permission in the permission group is presented to the user. The permissions are sorted according to the sequence of the permission array for each permission group under **Permission manager**.
 
-   **Example**: If permission group A = {permission A, permission B, permission C} and {permission C, permission B} are requested, the reason for using permission B is presented to the user.
+   **Example**: If permission group A consists of permission A, permission B, and permission C in sequence, and permission C and permission B are requested, the reason for using permission B is presented to the user.

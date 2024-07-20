@@ -166,6 +166,24 @@ Two applications attempt to open the same camera simultaneously.
 
 N/A
 
+## 7400110 Configuration Conflicts
+
+**Error Message**
+
+Unresolved conflicts with current configurations.
+
+**Error Description**
+
+The committed configuration is incompatible with the configuration supported by the device.
+
+**Possible Cause**
+
+The frame rate of the preview stream exceeds that supported by the device.
+
+**Solution**
+
+Check whether the committed configuration is supported by the device.
+
 ## 7400201 Camera Service Error
 
 **Error Message**

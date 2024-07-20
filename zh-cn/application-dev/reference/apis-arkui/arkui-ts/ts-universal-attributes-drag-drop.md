@@ -81,6 +81,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewOptions<sup>11+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -99,6 +101,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
 
 ## DragInteractionOptions<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -400,7 +404,7 @@ struct Example {
 dragPreviewOptions属性中ImageModifier参数使用方法用例。
 ```ts
 // xxx.ets
-import { ImageModifier } from '@ohos.arkui.modifier'
+import { ImageModifier } from '@kit.ArkUI'
 
 @Entry
 @Component

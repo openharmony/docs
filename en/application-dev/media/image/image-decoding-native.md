@@ -1,4 +1,4 @@
-# Image Decoding (C/C++)
+# Using Image to Decode Images
 
 Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, and DNG.
 
@@ -34,21 +34,22 @@ EXTERN_C_END
 
 ### Calling APIs on the JS Side
 
-1.  Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
- 
+1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
+
     ```js
-    import image from '@ohos.multimedia.image'
-    import resourceManager from '@ohos.resourceManager'
+    import { image } from '@kit.ImageKit';
+    import { resourceManager } from '@kit.LocalizationKit';
 
     export const getSyncPixelMap: (resMgr: resourceManager.ResourceManager, src: string) => image.PixelMap;
     ```
+
 2. Prepare an image resource file, named **example.jpg** in this example, and import it to **src\main\resources\rawfile\**.
 
 3. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The following is an example:
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
@@ -71,7 +72,6 @@ EXTERN_C_END
       }
    }
     ```
-
 
 ### Calling the Native APIs
 
@@ -163,6 +163,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
    ```
 
 The image framework supports incremental decoding. The method is as follows:
+
    ```c++
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>

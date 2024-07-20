@@ -5,6 +5,10 @@
 
 The **image_receiver_mdk.h** file declares the APIs used to obtain image data from the native layer.
 
+**Library**: libimage_receiver_ndk.z.so
+
+**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;
+
 **Since**: 10
 
 **Related module**: [Image](image.md)
