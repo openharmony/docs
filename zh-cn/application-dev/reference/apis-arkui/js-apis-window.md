@@ -1541,7 +1541,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1571,30 +1571,11 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      try {
-        let avoidArea = windowClass.getWindowAvoidArea(type);
-      } catch (exception) {
-        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+try {
+  let avoidArea = windowClass.getWindowAvoidArea(type);
+} catch (exception) {
+  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1737,7 +1718,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置主窗口是否开启沉浸式布局，该调用不会改变窗口模式。
+设置当前应用窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1763,26 +1744,11 @@ setImmersiveModeEnabledState(enabled: boolean): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let enabled = false;
-      windowClass.setImmersiveModeEnabledState(enabled);
-    });
-  }
+try {
+  let enabled = false;
+  windowClass.setImmersiveModeEnabledState(enabled);
+} catch (exception) {
+  console.error(`Failed to set the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1790,7 +1756,7 @@ export default class EntryAbility extends UIAbility {
 
 getImmersiveModeEnabledState(): boolean
 
-查询主窗口是否已经开启沉浸式布局。
+查询当前应用窗口是否已经开启沉浸式布局。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1814,25 +1780,10 @@ getImmersiveModeEnabledState(): boolean
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isEnabled = windowClass.getImmersiveModeEnabledState();
-    });
-  }
+try {
+  let isEnabled = windowClass.getImmersiveModeEnabledState();
+} catch (exception) {
+  console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1841,6 +1792,8 @@ export default class EntryAbility extends UIAbility {
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
 设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+
+子窗口设置无效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1867,37 +1820,20 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let names: Array<'status' | 'navigation'> = [];
-      try {
-        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar to be invisible.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let names: Array<'status' | 'navigation'> = [];
+try {
+  windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the system bar to be invisible.');
+  });
+} catch (exception) {
+  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1905,7 +1841,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口全屏模式或者非全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+
+子窗口设置无效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1937,35 +1875,18 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let names: Array<'status' | 'navigation'> = [];
-      try {
-        let promise = windowClass.setWindowSystemBarEnable(names);
-        promise.then(() => {
-          console.info('Succeeded in setting the system bar to be invisible.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let names: Array<'status' | 'navigation'> = [];
+try {
+  let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1973,7 +1894,9 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口全屏模式或者非全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+
+子窗设置无效果。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2007,34 +1930,17 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 ```ts
 // 此处以隐藏底部导航条为例
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
-        promise.then(() => {
-          console.info('Succeeded in setting the system bar to be invisible.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2043,6 +1949,8 @@ export default class EntryAbility extends UIAbility {
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
 设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+
+子窗设置无效果。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2069,43 +1977,26 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
-        statusBarColor: '#ff00ff',
-        navigationBarColor: '#00ff00',
-        //以下两个属性从API Version8开始支持
-        statusBarContentColor: '#ffffff',
-        navigationBarContentColor: '#00ffff'
-      };
-      try {
-        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar properties.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
+};
+try {
+  windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the system bar properties.');
+  });
+} catch (exception) {
+  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2114,6 +2005,8 @@ export default class EntryAbility extends UIAbility {
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
 设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+
+子窗设置无效果。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2145,41 +2038,22 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
-        statusBarColor: '#ff00ff',
-        navigationBarColor: '#00ff00',
-        //以下两个属性从API Version8开始支持
-        statusBarContentColor: '#ffffff',
-        navigationBarContentColor: '#00ffff'
-      };
-      try {
-        let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
-        promise.then(() => {
-          console.info('Succeeded in setting the system bar properties.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
+};
+try {
+  let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar properties.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2188,6 +2062,8 @@ export default class EntryAbility extends UIAbility {
 getWindowSystemBarProperties(): SystemBarProperties
 
 主窗口获取导航栏、状态栏的属性。
+
+子窗口调用返回错误码。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2213,31 +2089,12 @@ getWindowSystemBarProperties(): SystemBarProperties
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        let systemBarProperty = windowClass.getWindowSystemBarProperties();
-        console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
-      } catch (err) {
-        console.error(`Failed to get system bar properties. Code: ${err.code}, message: ${err.message}`);
-      }
-    });
-  }
-};
+try {
+  let systemBarProperty = windowClass.getWindowSystemBarProperties();
+  console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
+} catch (err) {
+  console.error(`Failed to get system bar properties. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ### setPreferredOrientation<sup>9+</sup>
@@ -3016,7 +2873,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前应用窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3040,32 +2897,13 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('avoidAreaChange', (data) => {
-          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3073,7 +2911,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前应用窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3097,40 +2935,22 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
+interface Param {
+  type: window.AvoidAreaType,
+  area: window.AvoidArea
+}
+const callback = (data: Param) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-	  interface Param {
-		type: window.AvoidAreaType,
-		area: window.AvoidArea
-	  }
-	  const callback = (data: Param) => {
-		// ...
-	  }
-	  try {
-		windowClass.on('avoidAreaChange', callback);
+}
+try {
+  windowClass.on('avoidAreaChange', callback);
 
-		windowClass.off('avoidAreaChange', callback);
-		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-		windowClass.off('avoidAreaChange');
-	  } catch (exception) {
-		console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-	  }
-    });
-  }
+  windowClass.off('avoidAreaChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('avoidAreaChange');
+} catch (exception) {
+  console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
