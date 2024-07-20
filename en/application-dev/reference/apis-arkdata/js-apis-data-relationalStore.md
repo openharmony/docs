@@ -804,7 +804,7 @@ Represents the statistics of the overall device-cloud sync (upload and download)
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Data of the Sendable type cannot be passed across threads.
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. Data of the sendable type cannot be passed across threads.
 
 ### constructor
 
