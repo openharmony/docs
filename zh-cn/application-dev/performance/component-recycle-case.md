@@ -268,7 +268,7 @@ export struct OneMomentNoModifier {
 此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。  
 
 ![noModifier2](./figures/component_recycle_case/noModifier2.png)
-  
+
 ![noModifier3](./figures/component_recycle_case/noModifier3.png)
 
 正例：
@@ -714,10 +714,8 @@ struct withoutReuseId {
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({
-              moment: moment,
-              fontSize: moment.size
-            })
+            // 此处的复用组件，只有一个reuseId，为组件的名称。但是该复用组件中又存在if else重新创建组件的逻辑
+            TrueOneMoment({ moment: moment, sum: this.sum, fontSize: moment.size })
           }
         }, (moment: FriendMoment) => moment.id)
       }
@@ -726,34 +724,34 @@ struct withoutReuseId {
   }
 }
 
-
 @Reusable
 @Component
-export struct OneMoment {
+export struct TrueOneMoment {
   @Prop moment: FriendMoment;
+  @State sum: number = 0;
+  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+
+  aboutToReuse(params: ESObject): void {
+    this.fontSize = params.fontSize as number;
+    this.sum = params.sum as number;
+  }
 
   build() {
     Column() {
-      ...
-      Text(this.moment.text)
-
-      if (this.moment.image !== '') {
-        Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-        }
+      if (this.moment.image) {
+        FalseOneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
+      } else {
+        OneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
       }
-      ...
     }
+    .width('100%')
   }
 }
 ```
 
-上述反例的操作中，通过if来控制组件树走不同的分支，分别选择是否创建Flex组件。导致更新if分支时仍然可能走删除重创的逻辑。考虑采用根据不同的分支设置不同的reuseId来提高复用的性能。
+上述反例的操作中，在一个reuseId标识的组件TrueOneMoment中，通过if来控制其中的组件走不同的分支，选择是否创建FalseOneMoment或OneMoment组件。导致更新if分支时仍然可能走删除重创的逻辑（此处BuildItem重新创建了OneMoment组件）。考虑采用根据不同的分支设置不同的reuseId来提高复用的性能。
 
-优化前，2号列表项复用时长为3ms。
+优化前，15号列表项复用时长为10ms左右，且存在自定义组件创建的情况。
 
 ![noReuseId](./figures/component_recycle_case/noReuseId.png)
 
@@ -773,9 +771,9 @@ struct withoutReuseId {
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({moment: moment})
-              // 使用reuseId进行组件复用的控制
-              .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
+            // 使用不同的reuseId标记，保证TrueOneMoment中各个子组件在复用时，不重新创建
+            TrueOneMoment({ moment: moment, sum: this.sum, fontSize: moment.size })
+              .reuseId((moment.image !=='' ?'withImage' : 'noImage'))
           }
         }, (moment: FriendMoment) => moment.id)
       }
@@ -786,35 +784,36 @@ struct withoutReuseId {
 
 @Reusable
 @Component
-export struct OneMoment {
+export struct TrueOneMoment {
   @Prop moment: FriendMoment;
+  @State sum: number = 0;
+  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+
+  aboutToReuse(params: ESObject): void {
+    this.fontSize = params.fontSize as number;
+    this.sum = params.sum as number;
+  }
 
   build() {
     Column() {
-      ...
-      Text(this.moment.text)
-
-      if (this.moment.image !== '') {
-        Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-        }
+      if (this.moment.image) {
+        FalseOneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
+      } else {
+        OneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
       }
-      ...
     }
+    .width('100%')
   }
-}
+}   
 ```
 
-上述正例的操作中，通过reuseId来标识需要复用的组件，省去走if删除重创的逻辑，提高组件复用的效率和性能。
+上述正例的操作中，通过不同的reuseId来标识需要复用的组件，省去走if删除重创的逻辑，提高组件复用的效率和性能。
 
 **优化效果**
 
-针对列表滑动场景中单个列表项中的一个包含4个Image组件的Flex容器组件，通过if进行条件渲染，存在不同逻辑创建不同布局结构嵌套的组件的情况，反例中没有使用复用标识reuseId，正例中采用复用标识reuseId区分不同结构的组件。
+针对列表滑动场景中，复用的组件中又存在多个自定义组件。通过if进行条件渲染，存在不同逻辑创建不同布局结构的组件的情况。反例中多个复用组件使用相同的复用标识reuseId，正例中采用不同的复用标识reuseId区分不同结构的自定义组件。
 
-优化后，2号列表项复用时长缩短为2ms。
+优化后，15号列表项复用时长缩短为3ms左右，不存在自定义组件的创建。
 
 ![ReuseId](./figures/component_recycle_case/ReuseId.png)
 
