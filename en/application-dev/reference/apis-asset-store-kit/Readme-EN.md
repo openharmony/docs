@@ -1,4 +1,4 @@
-# Asset Store Kit API Reference
+# Asset Store Kit (Asset Store Service)
 
 - ArkTS APIs
   - [@ohos.security.asset (Asset Store Service)](js-apis-asset.md)
