@@ -159,6 +159,7 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_remove_async_cleanup_hook|Unregisters the asynchronous clean-up hook.|11|
 |FUNC|node_api_get_module_file_name|Obtains the absolute path of the location, from which the addon is loaded.|11|
 |FUNC|napi_add_finalizer|Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected.|11|
+|FUNC|napi_fatal_exception|Throws **UncaughtException** to JS.|12|
 
 ## Symbols Not Exported from the Node-API Library
 
@@ -166,7 +167,6 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 | --- | --- | --- |
 |FUNC|napi_run_script|Runs an object as JS code.|
 |FUNC|napi_adjust_external_memory|Adjusts the external memory held by a JS object.|
-|FUNC|napi_fatal_exception|Throws **UncaughtException** to JS.|
 
 ## Node-API Extended Symbols
 
@@ -187,6 +187,8 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_deserialize|Converts native data into an ArkTS object.|12|
 |FUNC|napi_delete_serialization_data|Deletes serialized data.|12|
 |FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|12|
+|FUNC|napi_is_sendable|Checks whether the given JS value is sendable.|12|
+|FUNC|napi_define_sendable_class|Creates a sendable class.|12|
 
 ### napi_qos_t
 
@@ -200,7 +202,6 @@ typedef enum {
 ```
 
 **Description**
-
 Enumerates the QoS levels, which determine the priority of thread scheduling.
 
 ### napi_event_mode
@@ -213,7 +214,6 @@ typedef enum {
 ```
 
 **Description**
-
 Enumerates the modes for running the underlying event loop.
 
 ### napi_queue_async_work_with_qos
@@ -301,7 +301,7 @@ napi_status napi_create_object_with_properties(napi_env env,
 
 Creates a JS object using the given **napi_property_descriptor**.<br>**napi_property_descriptor** defines a property, including the property attributes and the methods used to obtain and set the property. By passing **napi_property_descriptor**, you can define the properties when creating an object.
 
-The key in **napi_property_descriptor** must be a string that cannot be converted into a number.
+ The key in **napi_property_descriptor** must be a string that cannot be converted into a number.
 
 **Parameters**
 
@@ -574,6 +574,73 @@ Calls a task with the specified priority and enqueuing mode into an ArkTS thread
 - **priority**: priority of the task that calls the JS callback function.
 
 - **isTail**: whether the task is added to the tail of the task queue. If the value is **true**, the task will be added to the tail of the event loop. If it is **false**, the task will be executed immediately.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_is_sendable
+
+```cpp
+napi_status napi_is_sendable(napi_env env, napi_value value, bool* result)
+```
+
+**Description**
+
+Checks whether the given JS value is sendable.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **value**: JS value to check.
+
+- **result**: pointer of the bool type, indicating whether the JS value is sendable.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+
+### napi_define_sendable_class
+
+```cpp
+napi_status napi_define_sendable_class(napi_env env,
+                                       const char* utf8name,
+                                       size_t length,
+                                       napi_callback constructor,
+                                       void* data,
+                                       size_t property_count,
+                                       const napi_property_descriptor* properties,
+                                       napi_value parent,
+                                       napi_value* result)
+
+
+```
+
+**Description**
+
+Creates a sendable class.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **utf8name**: pointer to the name of the class to create. This parameter is of the const char* type.
+
+- **length**: length of the class name, in bytes. This parameter is of the size_t type.
+
+- **constructor**: constructor of the class. This parameter is of the napi_callback type.
+
+- **data**: [Optional] pointer to the additional data of the constructor. This parameter is of the void* type.
+
+- **property_count**: number of  properties of the class. This parameter is of the size_t type.
+
+- **properties**: [Optional] pointer to the descriptors of the properties. This parameter of the const napi_property_descriptor* type.
+
+- parent: [Optional] parent class of the class to create. This parameter is of the napi_value type.
+
+- **result**: pointer to the sendable class created. This parameter is of the napi_value type.
 
 **Return value**
 
