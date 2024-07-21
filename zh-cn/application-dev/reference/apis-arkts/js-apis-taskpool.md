@@ -49,7 +49,6 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.               |
 | 10200006 | An exception occurred during serialization.  |
 | 10200014 | The function is not marked as concurrent.      |
 
@@ -97,7 +96,6 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.             |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not marked as concurrent.     |
 | 10200051 | The periodic task cannot be executed again. |
@@ -270,7 +268,6 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 | 错误码ID   | 错误信息                         |
 | ---------- | -------------------------------- |
 | 401        | The input parameters are invalid. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003   | Worker initialization failed. |
 | 10200006   | An exception occurred during serialization. |
 | 10200014   | The function is not marked as concurrent. |
 | 10200028   | The period is less than zero. |
@@ -1786,7 +1783,6 @@ execute(task: Task): Promise\<Object>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200025 | dependent task not allowed.  |
 | 10200051 | The periodic task cannot be executed again.  |
