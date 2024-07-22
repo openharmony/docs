@@ -292,7 +292,7 @@ import { window } from '@kit.ArkUI';
 
 ## MaximizePresentation<sup>12+</sup>
 
-窗口最大化布局枚举。
+窗口最大化时的布局枚举。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -5194,7 +5194,7 @@ promise.then(() => {
 ```
 
 ### maximize<sup>12+</sup>
-maximize(presentation?: [MaximizePresentation](#maximizepresentation12) ): Promise&lt;void&gt;
+maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 主窗口调用，实现最大化功能，使用Promise异步回调。
 
@@ -5243,7 +5243,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let promise = windowClass.maximize(); 
+      let promise = windowClass.maximize();
       // let promise = windowClass.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
       promise.then(() => {
         console.info('Succeeded in maximizing the window.');
