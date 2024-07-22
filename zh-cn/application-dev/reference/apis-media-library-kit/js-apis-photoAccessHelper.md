@@ -4521,6 +4521,17 @@ PhotoAsset的成员类型。
 | DEFAULT |  0 |  默认照片类型。 |
 | MOVING_PHOTO |  3 |  动态照片文件类型。 |
 
+## DynamicRangeType<sup>12+</sup>
+
+枚举，媒体文件的动态范围类型。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SDR |  0 |  标准动态范围类型。|
+| HDR |  1 |  高动态范围类型。  |
+
 ## AlbumType
 
 枚举，相册类型，表示是用户相册还是系统预置相册。
@@ -4570,6 +4581,7 @@ PhotoAsset的成员类型。
 | DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。<br>注意：查询照片时，不支持基于该字段排序。  |
 | DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 修改日期（修改文件时间距1970年1月1日的毫秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。<br>注意：查询照片时，不支持基于该字段排序。 |
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | 媒体文件的子类型。                                                   |
+| DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | 媒体文件的动态范围类型。                                                  |
 
 ## AlbumKeys
 
