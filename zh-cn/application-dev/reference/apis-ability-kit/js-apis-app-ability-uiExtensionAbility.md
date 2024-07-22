@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)
 
-UIExtensionAbility是特定场景下带界面扩展能力的基类，继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，新增带界面扩展能力相关的属性和方法。不支持开发者直接继承该基类。
+UIExtensionAbility是特定场景下带界面扩展能力的基类，继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，新增带界面扩展能力相关的属性和方法。不支持直接以UIExtensionAbility作为父类去实现其他UIExtensionAbility子类。
 
 > **说明：**
 > 
