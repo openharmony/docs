@@ -18,19 +18,19 @@ You are advised to use **HashMap** when you need to quickly access, remove, and 
 
 **HashMap** provides the following Create, Read, Update, and Delete (CRUD) APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access.|
-| Update| Use **replace(key: K, newValue: V)** to change the value of the specified key.|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
+| Read | Use **get(key: K)** to obtain the value of the specified key. |
+| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access. |
+| Update | Use **replace(key: K, newValue: V)** to change the value of the specified key. |
+| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **remove(key: K)** to remove an element with the specified key. |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## HashSet
@@ -47,16 +47,16 @@ You are advised to use **HashSet** when you need a set that has only unique elem
 
 **HashSet** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **add(value: T)** to add a value to this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(value: T)** to remove a value.|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **add(value: T)** to add a value to this container. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
+| Delete | Use **remove(value: T)** to remove a value. |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## TreeMap
@@ -71,21 +71,21 @@ You are advised to use **TreeMap** when you need to store KV pairs in sorted ord
 
 **TreeMap** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | ------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **getFirstKey()** to obtain the first key in this container.|
-| Read| Use **getLastKey()** to obtain the last key in this container.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator\<[K,V]>** for data access.|
-| Update| Use **replace(key: K, newValue: V)** to change the value of the specified key.|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
+| Read | Use **get(key: K)** to obtain the value of the specified key. |
+| Read | Use **getFirstKey()** to obtain the first key in this container. |
+| Read | Use **getLastKey()** to obtain the last key in this container. |
+| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator\<[K,V]>** for data access. |
+| Update | Use **replace(key: K, newValue: V)** to change the value of the specified key. |
+| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **remove(key: K)** to remove an element with the specified key. |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## TreeSet
@@ -102,18 +102,18 @@ You are advised to use **TreeSet** when you need to store data in sorted order.
 
 **TreeSet** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **add(value: T)** to add a value to this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getFirstValue()** to obtain the first value in this container.|
-| Read| Use **getLastValue()** to obtain the last value in this container.|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(value: T)** to remove a value.|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **add(value: T)** to add a value to this container. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **getFirstValue()** to obtain the first value in this container. |
+| Read | Use **getLastValue()** to obtain the last value in this container. |
+| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
+| Delete | Use **remove(value: T)** to remove a value. |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## LightWeightMap
@@ -128,24 +128,24 @@ You are advised to use **LightWeightMap** when you need to store and access **KV
 
 **LightWeightMap** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **getIndexOfKey(key: K)** to obtain the index of the specified key.|
-| Read| Use **getIndexOfValue(value: V)** to obtain the index of the first occurrence of the specified value.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**).|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access.|
-| Update| Use **setValueAt(index: number, newValue: V)** to change the value of an element at a given position (specified by **index**).|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
+| Read | Use **get(key: K)** to obtain the value of the specified key. |
+| Read | Use **getIndexOfKey(key: K)** to obtain the index of the specified key. |
+| Read | Use **getIndexOfValue(value: V)** to obtain the index of the first occurrence of the specified value. |
+| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**). |
+| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
+| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access. |
+| Update | Use **setValueAt(index: number, newValue: V)** to change the value of an element at a given position (specified by **index**). |
+| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **remove(key: K)** to remove an element with the specified key. |
+| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## LightWeightSet
@@ -162,19 +162,19 @@ You are advised to use **LightWeightSet** when you need a set that has only uniq
 
 **LightWeightSet** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **add(obj: T)** to add a value to this container.|
-| Read| Use **getIndexOf(key: T)** to obtain the index of a key.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **add(obj: T)** to add a value to this container. |
+| Read | Use **getIndexOf(key: T)** to obtain the index of a key. |
+| Read | Use **values()** to return an iterator that contains all the values in this container. |
+| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
+| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
+| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
+| Delete | Use **remove(key: K)** to remove an element with the specified key. |
+| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## PlainArray
@@ -189,22 +189,22 @@ You are advised to use PlainArray when you need to store KV pairs whose keys are
 
 **PlainArray** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | -------- | ------ |
-| Create| Use **add(key: number,value: T)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: number)** to obtain the value of the specified key.|
-| Read| Use **getIndexOfKey(key: number)** to obtain the index of the specified key.|
-| Read| Use **getIndexOfValue(value: T)** to obtain the index of the specified value.|
-| Read| Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**).|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;** for data access.|
-| Update| Use **setValueAt(index:number, value: T)** to change the value of an element at a given position (specified by **index**).|
-| Update| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: number)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **removeRangeFrom(index: number, size: number)** to remove elements in a specified range.|
-| Delete| Use **clear()** to clear this container.|
+| Create | Use **add(key: number,value: T)** to add an element (a KV pair) to this container. |
+| Read | Use **get(key: number)** to obtain the value of the specified key. |
+| Read | Use **getIndexOfKey(key: number)** to obtain the index of the specified key. |
+| Read | Use **getIndexOfValue(value: T)** to obtain the index of the specified value. |
+| Read | Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**). |
+| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;** for data access. |
+| Update | Use **setValueAt(index:number, value: T)** to change the value of an element at a given position (specified by **index**). |
+| Update | Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **remove(key: number)** to remove an element with the specified key. |
+| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
+| Delete | Use **removeRangeFrom(index: number, size: number)** to remove elements in a specified range. |
+| Delete | Use **clear()** to clear this container. |
 
 
 ## Use of Nonlinear Containers
@@ -214,7 +214,7 @@ Refer to the code snippet below to add, access, and modify elements in **HashMap
 
 ```ts
 // HashMap
-import HashMap from '@ohos.util.HashMap'; // Import the HashMap module.
+import { HashMap } from '@kit.ArkTS'; // Import the HashMap module.
 
 let hashMap1: HashMap<string, number> = new HashMap();
 hashMap1.set('a', 123);
@@ -224,7 +224,7 @@ console.info(`result: ${hashMap2.hasKey(4)}`); // Check whether an element is co
 console.info(`result: ${hashMap1.get('a')}`); // Access an element.
 
 // TreeMap
-import TreeMap from '@ohos.util.TreeMap'; // Import the TreeMap module.
+import { TreeMap } from '@kit.ArkTS'; // Import the TreeMap module.
 
 let treeMap: TreeMap<string, number> = new TreeMap();
 treeMap.set('a', 123);
@@ -234,7 +234,7 @@ console.info(`result: ${treeMap.getFirstKey()}`); // Access the first element.
 console.info(`result: ${treeMap.getLastKey()}`); // Access the last element.
 
 // LightWeightMap
-import LightWeightMap from '@ohos.util.LightWeightMap'; // Import the LightWeightMap module.
+import { LightWeightMap } from '@kit.ArkTS'; // Import the LightWeightMap module.
 
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set('x', 123);
@@ -244,7 +244,7 @@ console.info(`result: ${lightWeightMap.get('x')}`); // Access an element.
 console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // Access an element.
 
 // PlainArray
-import PlainArray from '@ohos.util.PlainArray' // Import the PlainArray module.
+import { PlainArray } from '@kit.ArkTS'; // Import the PlainArray module.
 
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, 'sdd');
