@@ -8,6 +8,7 @@
     - [多线程能力场景化](multi_thread_capability.md)
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
+	  - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
@@ -42,7 +43,6 @@
     - [合理处理高负载组件的渲染](reasonably-dispose-highly-loaded-component-render.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [减小应用包大小](reduce-package-size.md)
-	- [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
