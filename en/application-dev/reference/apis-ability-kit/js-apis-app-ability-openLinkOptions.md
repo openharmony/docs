@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { OpenLinkOptions } from '@kit.AbilityKit';
 ```
 
 ## Properties
@@ -20,18 +20,17 @@ import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name | Type | Read Only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | No| No| Whether the UIAbility must be started in App Linking mode.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking is degraded to Deep Link. The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
-| parameters | Record\<string, Object> | No| No| List of parameters in Want.|
+| appLinkingOnly | boolean | No | No | Whether the UIAbility must be started in App Linking mode.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking is degraded to Deep Link. The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode. |
+| parameters | Record\<string, Object> | No | No | List of parameters in Want. |
 
 **Example**
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-  import { BusinessError } from '@ohos.base';
+  import { common, OpenLinkOptions } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const DOMAIN = 0xeeee;
   const TAG: string = '[openLinkDemo]';
