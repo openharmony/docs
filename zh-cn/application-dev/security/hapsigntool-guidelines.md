@@ -16,19 +16,17 @@
 
 **C++流程**：
 
-1. openharmony系统ohos-sdk形态
+1. 编译ohos-sdk形态的签名工具
 
    编译release版本：默认是release版本，直接编译即可。 
 
    编译debug版本：在 hapsigntool_cpp/BUILD.gn 中 添加 defines = [ "SIGNATURE_LOG_DEBUG" ] 即可。 
 
-2. 编译命令：./build.sh --product-name ohos-sdk 
+   编译命令：./build.sh --product-name ohos-sdk 
 
-   编译完成后会在目标路径生成对应压缩文件 
+2. 编译产物最终路径：out/sdk/packages/ohos-sdk/ohos/toolchains-ohos-x64-xxx.zip
 
-3. 编译产物最终路径：/openharmony_master/out/sdk/packages/ohos-sdk/ohos 
-
-   自行解压压缩包找到bin文件就是最终得到的产物
+   解压压缩包后，在lib目录下获取最终二进制产物hap-sign-tool
 
 ## 开发指导
 
@@ -256,9 +254,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    C++版本命令实例：
 
-   ~~~~~~shell
+   ```shell
    hap-sign-tool generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
-   ~~~~~~
+   ```
 
    > **说明：**
    >
@@ -498,19 +496,25 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    - **现象描述**
 
      （1）执行命令后，报错提示 ERROR - KEY_ALIAS_ERROR, code: -109. Details: keyAlias: 'oh-app1-key-v2' is not exist in/mnt/d/file/Test_0528/OpenHarmony.p12
+
      （2）执行命令后，报错提示 ERROR - KEYSTORE_PASSWORD_ERROR, code: -115. Details: keyStore password error
+
      （3）执行命令后，报错提示 ERROR - KEY_PASSWORD_ERROR, code: -114. Details: 'oh-app-sign-srv-ca-key-v1' keypair password error
 
    - **可能原因**
 
      （1）参数中的密钥别名在密钥库中找不到
+
      （2）输入的密钥库密码输入错误
+
      （3）生成app中间CA证书时输入的参数中有密钥对的密码，但是生成app调试证书没有输入-issuerKeyPwd参数
 
    - **解决办法**
 
      （1）检查密钥别名修改为与生成密钥对时输入的参数一致
+
      （2）检查密钥库密码与生成密钥对时的输入的密钥库密码一致
+
      （3）生成profile证书时，输入的参数必须有-issuerKeyPwd和对应的密码且与生成profile中间CA证书时密钥对的密码一致
 
 3. 执行profile文件进行签名时，提示签名失败。
@@ -518,16 +522,19 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    - **现象描述**
 
      （1）执行命令后，报错提示 ：ERROR - PROVISION_INVALID, code: 0. Details: Tag app-distribution-type is empty
+
      （2）执行命令后，报错提示 ：VERIFY_ERROR, code: -106. Details: Failed to verify signature: unable to find valid certification path to requested target
 
    - **可能原因**
 
      （1）证书主题顺序不正确 或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
+
      （2）profile.json中type值与bundle_info中的key值不对应 "type": "debug"对应"development-certificate"，"type": "release"对应"distribution-certificate"
 
    - **解决办法**
 
      （1）检查证书主题顺序是否正确，顺序须为C、O、OU、CN
+
      （2）检查bundle.json文件配置信息
 
 4. 对应用包进行签名时提示签名错误。
@@ -535,16 +542,19 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    - **现象描述**
 
      （1）执行命令后，报错提示：ERROR - PROVISION_INVALID, code: 0. Details: Require build type must be debug or release
+
      （2）执行命令后，报错提示：ERROR - ZIP_ERROR, code: -111. Details: zip init failed
 
    - **可能原因**
 
      （1）profile文件并没有被签名(没有生成p7b文件),在进行hap签名之前profile文件里的不存在"type"键值信息
+
      （2）输入的zip包超过了4G，压缩文件数据类型发生变化，导致解压错误
 
    - **解决办法**
 
      （1）当app签名时使用未签名的profile文件对hap包进行签名之前，在profile.json文件中添加"type"键，值对应debug或者release
+
      （2）输入的zip包大小不能超过4G,更换zip包
 
 5. 安装hap包失败。
@@ -560,6 +570,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
      （4）已签名的hap安装报错提示：signature verification failed due to not trusted app source.
 
    - **可能原因**
+
      （1）openharmmony系统的配置文件不支持该app包的设备类型
 
      （2）debug类型的json文件中device-ids中没有你的设备udid
