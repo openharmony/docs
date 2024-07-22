@@ -1515,7 +1515,7 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>, permission?: string): void
 
 registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
 <br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
@@ -1536,6 +1536,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
+| permission<sup>12+</sup> | string | 否   | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。|
 
 **错误码：**
 
@@ -7342,16 +7343,16 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-   
+
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
      precompileController: webview.WebviewController = new webview.WebviewController();
-   
+
      @State businessNode: NodeController | undefined = undefined;
      businessController: webview.WebviewController = new webview.WebviewController();
-   
+
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
