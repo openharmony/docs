@@ -13085,7 +13085,7 @@ struct WebComponent {
 
 static resumeDownload(webDownloadItem: WebDownloadItem): void
 
-设置用于接收从WebDownloadManager触发的下载进度的委托。
+恢复一个失败的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
