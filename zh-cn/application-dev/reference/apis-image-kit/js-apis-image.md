@@ -5581,7 +5581,7 @@ PixelMap的初始化选项。
 | MAKE<sup>10+</sup>                        | "Make"                      | 可读写| 生产商。|
 | MODEL<sup>10+</sup>                       | "Model"                     | 可读写| 设备型号。|
 | STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | 可读写| 每个strip的字节偏移量。|
-| ORIENTATION                               | "Orientation"               | 可读写| 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像垂直翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
+| ORIENTATION                               | "Orientation"               | 可读写| 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像水平翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
 | SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | 可读写| 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。|
 | ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | 可读写| 每个strip的图像数据行数。|
 | STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | 可读写| 每个图像数据带的总字节数。|
