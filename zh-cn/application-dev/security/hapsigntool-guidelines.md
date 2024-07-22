@@ -286,9 +286,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    C++版本命令实例：
 
-   ~~~~~~shell
+   ```shell
    hap-sign-tool generate-app-cert -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA"  -issuer "C=CN,O=OpenHarmony,OU=OpenHarmony Team,CN= OpenHarmony Application CA" -issuerKeyAlias "openharmony application ca" -subject "C=CN,O=OpenHarmony,OU=OpenHarmony Team,CN=OpenHarmony Application Release" -keystoreFile "OpenHarmony.p12" -subCaCertFile "subCA.cer" -rootCaCertFile "rootCA.cer" -outForm "certChain" -outFile "app1.pem" -keyPwd "123456" -keystorePwd "123456" -issuerKeyPwd "123456" -validity "365"
-   ~~~~~~
+   ```
 
    该命令的参数说明：
 
@@ -322,9 +322,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    C++版本命令实例：
 
-   ~~~~~~shell
+   ```shell
    hap-sign-tool sign-profile -keyAlias "openharmony application profile release" -signAlg "SHA256withECDSA" -mode "localSign" -profileCertFile "OpenHarmonyProfileRelease.pem" -inFile "UnsgnedReleasedProfileTemplate.json" -keystoreFile "OpenHarmony.p12" -outFile "app1-profile.p7b" -keyPwd "123456" -keystorePwd "123456"
-   ~~~~~~
+   ```
 
    该命令的参数说明：
 
