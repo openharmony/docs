@@ -63,7 +63,7 @@ struct ImageExample2 {
 
 ### 使用TaskPool线程池异步处理
 
-当前系统提供了[TaskPool线程池](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
+当前系统提供了[TaskPool线程池](../reference/apis-arkts/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
 ```typescript
 import taskpool from '@ohos.taskpool';
@@ -960,3 +960,155 @@ public async release() {
 | 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作 |
 
 正反例数据表明，合理运用延时策略能显著提升函数执行效率，是优化相机资源管理与关闭操作性能的有效手段，对提升整体用户体验具有重要价值。
+
+## 减小拖动识别距离
+
+应用识别拖动手势事件时需要设置合理的拖动距离，设置不合理的拖动距离会导致滑动不跟手、响应时延慢等问题。针对此类问题可以通过设置distance大小来解决。
+
+### 反例
+
+指定触发拖动手势事件的最小拖动距离为100vp
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+
+@Entry
+@Component
+struct PanGestureExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+
+  build() {
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
+      // 左右拖动触发该手势事件
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            hiTraceMeter.startTrace("PanGesture", 1)
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd(() => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            hiTraceMeter.finishTrace("PanGesture", 1)
+          })
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          this.panOption.setDistance(100)
+        })
+    }
+  }
+}
+```
+
+利用Profiler工具分析得到反例trace图，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和PanGesture代表响应，追踪流程从应用侧的DispatchTouchEvent（type=0，标识手指接触屏幕）标签开始，到PanGesture（事件响应）的变化，该过程耗时145.1ms。
+
+反例trace图
+
+![反例响应时延](./figures/pangesture_distance_max.png)
+
+日志主要关注从应用接收TouchDown事件到pan识别耗时，该过程耗时127ms。（注：日志信息和trace图非同一时间获取，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+反例日志
+
+![反例响应时延日志](./figures/pangesture_distance_max_log.png)
+
+### 正例
+
+指定触发拖动手势事件的最小拖动距离为4vp
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+
+@Entry
+@Component
+struct PanGestureExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+
+  build() {
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
+      // 左右拖动触发该手势事件
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            hiTraceMeter.startTrace("PanGesture", 1)
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd(() => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            hiTraceMeter.finishTrace("PanGesture", 1)
+          })
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          this.panOption.setDistance(4)
+        })
+    }
+  }
+}
+```
+
+利用Profiler工具分析得到正例trace图，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和PanGesture代表响应，追踪流程从应用侧的DispatchTouchEvent（type=0，标识手指接触屏幕）标签开始，到PanGesture（事件响应）的变化，该过程耗时38.4ms。
+
+正例trace图
+
+![正例响应时延](./figures/pangesture_distance_min.png)
+
+日志主要关注从应用接收TouchDown事件到pan识别耗时，该过程耗时42ms。（注：日志信息和trace图非同一时间获取，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+正例日志
+
+![正例响应时延日志](./figures/pangesture_distance_min_log.png)
+
+### 性能比对 
+（注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考，该表格仅分析trace图。）
+
+| 拖动距离设置              | 执行时间 | 备注                                                         |
+| ------------------------- | -------- | ------------------------------------------------------------ |
+| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化 |
+| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能                                     |
+
+正反例数据表明，合理减小拖动距离能显著提升执行效率，是优化响应时延的有效手段，对提升整体用户体验具有重要价值。（注：本案例通过设置较大和较小拖动距离进行数据对比得出相关结论。distance的默认值为5vp，设置过小的distance容易出现误触等问题，开发者可根据具体应用场景进行设置。）
