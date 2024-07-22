@@ -6340,7 +6340,6 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass = data;
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
 promise.then((data) => {
