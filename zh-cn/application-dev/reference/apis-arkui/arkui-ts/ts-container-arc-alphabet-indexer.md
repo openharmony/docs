@@ -270,38 +270,61 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 ```ts
 // xxx.ets
 import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
-import { ColorMetrics, LengthMetrics } from '@ohos.arkui.node';
+import { ComponentContent, ColorMetrics, LengthMetrics } from '@ohos.arkui.node';
+import { UIContext } from '@ohos.arkui.UIContext';
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
+
+@Builder
+function buildText() {
+  Stack() {
+    Text("head")
+      .fontSize(30)
+      .padding(0)
+      .backgroundColor(0xF9CF93)
+      .border({ width: '1px', color: Color.Black })
+
+    Divider().width('100%').height('1px')
+  }
+  .alignContent(Alignment.Bottom)
+}
 
 @Entry
 @Component
-struct AlphabetIndexerSample {
-  private fullValue: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+struct ArcListAndIndexer {
+  private fullValue: string[] = [
+    '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+  ]
+  private arrName : string[] = [
+    '济南市','青岛市','淄博市','枣庄市','东营市','烟台市','潍坊市','济宁市','泰安市','威海市','日照市','潮州市','揭阳市','云浮市',
+    '临沂市','德州市','聊城市','滨州市','菏泽市', '广州市','韶关市','深圳市','珠海市','汕头市','佛山市','江门市','湛江市','茂名市',
+    '肇庆市','惠州市','梅州市','汕尾市','河源市','阳江市','清远市','东莞市','中山市','潮州市','揭阳市','云浮市', '东莞市','中山市',
+  ];
+  context: UIContext = this.getUIContext()
+  tabBar1: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
+
   private scrollerForList: Scroller = new Scroller()
   @State indexerIndex: number = 0;
 
-  private watchSize: number = 233;
-  private itemSize: number = 24;
+  private watchSize: number = 233 // 手表默认宽高：233*233
+  private itemSize: number = 24   // 索引项默认大小：24
 
   build() {
     Column() {
       Row() {
         Stack() {
-          List({ space: 2, scroller: this.scrollerForList, initialIndex: 0 }) {
-            ForEach(this.arr, (item: number) => {
-              ListItem() {
-                if (item % 2 == 0) {
-                  Text('' + item)
+          ArcList({ scroller : this.scrollerForList, header: this.tabBar1, initialIndex: 0 }) {
+            ForEach(this.arrName, (itemName: string, index: number) => {
+              ArcListItem() {
+                if (index % 2 == 0) {
+                  Text(index+': '+itemName)
                     .width('100%')
                     .height(40)
                     .fontSize(16)
                     .textAlign(TextAlign.Center)
                     .backgroundColor(0xCC99FF)
                 } else {
-                  Text('' + item)
+                  Text(index+': '+itemName)
                     .width('100%')
                     .height(40)
                     .fontSize(16)
@@ -311,17 +334,20 @@ struct AlphabetIndexerSample {
               }.borderWidth(1)
             })
           }
-          .alignListItem(ListItemAlign.Center)
-          .scrollBar(BarState.On)
+          .scrollBar(BarState.Off)
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-            this.indexerIndex = firstIndex;
+            this.indexerIndex = centerIndex;
           })
           .borderWidth(1)
-          .width(this.watchSize)
+          .width(this.watchSize + 2)
           .height(this.watchSize)
+          .borderRadius(this.watchSize/2 + 1)
+          .space(LengthMetrics.px(2))
 
           ArcAlphabetIndexer({ arrayValue: this.fullValue, selected: 0 })
             .autoCollapse(true)
+            .width(this.watchSize)
+            .height(this.watchSize)
             .usingPopup(true)
             .selected(this.indexerIndex)
             .onSelect((index: number) => {
@@ -330,7 +356,11 @@ struct AlphabetIndexerSample {
             })
             .borderWidth(1)
             .hitTestBehavior(HitTestMode.Transparent)
-            .selectedColor(ColorMetrics.resourceColor(Color.Pink)
+            .selectedColor(ColorMetrics.resourceColor(Color.Blue))
+            .selectedBackgroundColor(ColorMetrics.resourceColor(Color.Blue))
+            .color(ColorMetrics.resourceColor(Color.White))
+            .popupColor(ColorMetrics.resourceColor(Color.White))
+            .popupBackground(ColorMetrics.resourceColor(Color.Black))
             .itemSize(LengthMetrics.vp(this.itemSize))
 
         }.width('100%').height('100%')
