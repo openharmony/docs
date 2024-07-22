@@ -1791,7 +1791,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式或者非全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
 
@@ -1858,7 +1858,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式或者非全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
 
@@ -1928,7 +1928,7 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口全屏模式或者非全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
 
@@ -1999,7 +1999,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 子窗口调用后不生效。
 
@@ -2072,7 +2072,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
 
 子窗口调用后不生效。
 
