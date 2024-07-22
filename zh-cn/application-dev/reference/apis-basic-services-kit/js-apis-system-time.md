@@ -13,7 +13,7 @@
 import { systemTime } from '@kit.BasicServicesKit';
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -96,7 +96,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -154,7 +154,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明   |
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
 **错误码：**
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -224,7 +224,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -352,7 +352,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -397,7 +397,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -438,7 +438,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 
