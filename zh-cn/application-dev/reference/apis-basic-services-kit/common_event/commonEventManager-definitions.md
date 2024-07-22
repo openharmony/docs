@@ -76,12 +76,6 @@
 **取值：** "usual.event.PACKAGE_ADDED"
 
 
-
-
-
-
-
-
 ### COMMON_EVENT_PACKAGE_REMOVED
 
 表示已从设备卸载已安装的应用程序，但应用程序数据保留的公共事件的操作。
@@ -152,8 +146,6 @@
 **订阅者所需权限：** 无
 
 **取值：** "usual.event.PACKAGES_SUSPENDED"
-
-
 
 
 
@@ -308,11 +300,7 @@
 **取值：** "usual.event.DEVICE_IDLE_MODE_CHANGED"
 
 
-
-
 ## Basic Services Kit
-
-
 
 ### COMMON_EVENT_USB_STATE
 
@@ -473,7 +461,6 @@
 **取值：** "usual.event.USER_UNLOCKED"
 
 
-
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
 
 表示分布式账号登出成功的动作。
@@ -571,8 +558,6 @@
 **订阅者所需权限：** 无
 
 **取值：** usual.event.USER_PRESENT
-
-
 
 
 ### COMMON_EVENT_BATTERY_CHANGED
@@ -771,8 +756,6 @@
 **订阅者所需权限：** ohos.permission.POWER_MANAGER
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
-
-
 
 
 
@@ -1089,7 +1072,6 @@ Wi-Fi状态变化。
 
 
 
-
 ## Localization Kit
 
 ## COMMON_EVENT_LOCALE_CHANGED
@@ -1105,7 +1087,6 @@ Wi-Fi状态变化。
 
 
 ## Network Kit
-
 
 ### COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+<sup>
 
@@ -1233,9 +1214,9 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-# 预留事件
+# 预留公共事件
 
-以下事件为预留事件，暂未支持。
+以下事件为预留公共事件，暂未支持。
 
 ### COMMON_EVENT_PACKAGE_REPLACED
 
@@ -1547,7 +1528,6 @@ Store Kit面向应用发布如下系统公共事件。
 **订阅者所需权限：** 无
 
 **取值：** "usual.event.bluetooth.remotedevice.ACL_CONNECTED"
-
 
 
 ### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
