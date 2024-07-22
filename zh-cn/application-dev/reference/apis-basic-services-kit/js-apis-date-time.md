@@ -661,6 +661,60 @@ try {
 }
 ```
 
+## systemDateTime.updateNtpTime<sup>13+</sup>
+
+updateNtpTime(): Promise&lt;number&gt;
+
+使用异步方式从NTP服务器更新NTP时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值**：
+
+| 类型   | 说明                |
+| ------ |-------------------|
+| number | 从NTP服务器更新后的NTP时间。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  await systemDateTime.updateNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getNtpTime<sup>13+</sup>
+
+getNtpTime(): number
+
+使用同步方式获取基于上次更新的NTP时间所计算出的真实时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值**：
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 基于上次更新的NTP时间所计算出的真实时间。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let time = systemDateTime.getNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
 ## 支持的系统时区
 
 支持的系统时区及各时区与0时区相比的偏移量（单位：h）可见下表。
