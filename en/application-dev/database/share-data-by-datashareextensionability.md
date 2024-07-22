@@ -141,12 +141,12 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
      **Table 1** Fields in module.json5
    
-   | Field| Description| Mandatory|
+   | Field | Description | Mandatory |
    | -------- | -------- | -------- |
-   | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
-   | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template.| Yes|
-   | uri | Unique identifier for the data consumer to access the data provider.| Yes|
-   | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
+   | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**. | Yes |
+   | type | Ability type. The value **dataShare** indicates that the development is based on the **datashare** template. | Yes |
+   | uri | Unique identifier for the data consumer to access the data provider. | Yes |
+   | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**. | Yes |
    | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default. | No|
    | writePermission | Permission required for data modificiation. If this parameter is not set, write permission verification is not performed by default. | No|
    | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
@@ -167,18 +167,18 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      }
    ]
    ```
-
+   
    **Table 2** Fields in the data_share_config.json file
 
-   | Field           | Description                                                    | Mandatory|
+   | Field           | Description                                                    | Mandatory |
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | Label configuration.                                                  | Yes  |
    | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect.| Yes  |
-   | crossUserMode       | Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
+   | crossUserMode       | Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes  |
    | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** (default) means to enable silent access; the value **false** means the opposite.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
    
    **data_share_config.json Example**
-   
+
    ```json
    {
        "tableConfig":[
