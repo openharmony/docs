@@ -15,16 +15,16 @@ To accelerate data access, linear containers support Create, Read, Update, and D
 
 **ArrayList** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | --------- | ------- |
-| Create| Use **add(element: T)** to add an element at the end of this container.|
-| Create| Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**).|
-| Read| Use **arr\[index]** to obtain the value at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object): void** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **arr\[index] = xxx** to change the value at a given position (specified by **index**).|
-| Delete| Use **remove(element: T)** to remove the first occurrence of the specified element.|
-| Delete| Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range.|
+| Create | Use **add(element: T)** to add an element at the end of this container. |
+| Create | Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**). |
+| Read | Use **arr\[index]** to obtain the value at a given position (specified by **index**). |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object): void** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **arr\[index] = xxx** to change the value at a given position (specified by **index**). |
+| Delete | Use **remove(element: T)** to remove the first occurrence of the specified element. |
+| Delete | Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range. |
 
 
 ## Vector
@@ -39,23 +39,23 @@ Both **Vector** and [ArrayList](../reference/apis-arkts/js-apis-arraylist.md) ar
 
 **Vector** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | --------- | ------- |
-| Create| Use **add(element: T)** to add an element at the end of this container.|
-| Create| Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**).|
-| Read| Use **vec\[index]** to obtain the value at a given position (specified by **index**).|
-| Read| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
-| Read| Use **getLastElement()** to obtain the last element in this container.|
-| Read| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Read| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **vec\[index]=xxx** to change the value at a given position (specified by **index**).|
-| Update| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
-| Update| Use **setLength(newSize: number)** to set the size of this container.|
-| Delete| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
-| Delete| Use **remove(element: T)** to remove the first occurrence of the specified element.|
-| Delete| Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range.|
+| Create | Use **add(element: T)** to add an element at the end of this container. |
+| Create | Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**). |
+| Read | Use **vec\[index]** to obtain the value at a given position (specified by **index**). |
+| Read | Use **get(index: number)** to obtain the element at a given position (specified by **index**). |
+| Read | Use **getLastElement()** to obtain the last element in this container. |
+| Read | Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element. |
+| Read | Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element. |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **vec\[index]=xxx** to change the value at a given position (specified by **index**). |
+| Update | Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element. |
+| Update | Use **setLength(newSize: number)** to set the size of this container. |
+| Delete | Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**). |
+| Delete | Use **remove(element: T)** to remove the first occurrence of the specified element. |
+| Delete | Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range. |
 
 
 ## List
@@ -68,23 +68,23 @@ You are advised to use **List** for frequent insertion and removal operations.
 
 **List** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | --------- | ------ |
-| Create| Use **add(element: T)** to add an element at the end of this container.|
-| Create| Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**).|
-| Read| Use **list\[index]** to obtain the value at a given position (specified by **index**).|
-| Read| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
-| Read| Use **getFirst()** to obtain the first element in this container.|
-| Read| Use **getLast()** to obtain the last element in this container.|
-| Read| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Read| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
-| Read| Use **forEach(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;)=&gt; void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **list\[index] = xxx** to change the value at a given position (specified by **index**).|
-| Update| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
-| Update| Use **replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)** to replace all elements in this container with new elements.|
-| Delete| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
-| Delete| Use **remove(element: T)** to remove the first occurrence of the specified element.|
+| Create | Use **add(element: T)** to add an element at the end of this container. |
+| Create | Use **insert(element: T, index: number)** to insert an element at a given position (specified by **index**). |
+| Read | Use **list\[index]** to obtain the value at a given position (specified by **index**). |
+| Read | Use **get(index: number)** to obtain the element at a given position (specified by **index**). |
+| Read | Use **getFirst()** to obtain the first element in this container. |
+| Read | Use **getLast()** to obtain the last element in this container. |
+| Read | Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element. |
+| Read | Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element. |
+| Read | Use **forEach(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;)=&gt; void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **list\[index] = xxx** to change the value at a given position (specified by **index**). |
+| Update | Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element. |
+| Update | Use **replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)** to replace all elements in this container with new elements. |
+| Delete | Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**). |
+| Delete | Use **remove(element: T)** to remove the first occurrence of the specified element. |
 
 
 ## LinkedList
@@ -99,22 +99,22 @@ You are advised to use **LinkedList** for frequent insertion and removal operati
 
 **LinkedList** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | ---------- | ------ |
-| Create| Use **add(element: T)** to add an element at the end of this container.|
-| Create| Use **insert(index: number, element: T)** to insert an element at a given position (specified by **index**).|
-| Read| Use **list\[index]** to obtain the value at a given position (specified by **index**).|
-| Read| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
-| Read| Use **getFirst()** to obtain the first element in this container.|
-| Read| Use **getLast()** to obtain the last element in this container.|
-| Read| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Read| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **list\[index]=xxx** to change the value at a given position (specified by **index**).|
-| Update| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
-| Delete| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
-| Delete| Use **remove(element: T)** to remove the first occurrence of the specified element.|
+| Create | Use **add(element: T)** to add an element at the end of this container. |
+| Create | Use **insert(index: number, element: T)** to insert an element at a given position (specified by **index**). |
+| Read | Use **list\[index]** to obtain the value at a given position (specified by **index**). |
+| Read | Use **get(index: number)** to obtain the element at a given position (specified by **index**). |
+| Read | Use **getFirst()** to obtain the first element in this container. |
+| Read | Use **getLast()** to obtain the last element in this container. |
+| Read | Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element. |
+| Read | Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element. |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **list\[index]=xxx** to change the value at a given position (specified by **index**). |
+| Update | Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element. |
+| Delete | Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**). |
+| Delete | Use **remove(element: T)** to remove the first occurrence of the specified element. |
 
 
 ## Deque
@@ -131,19 +131,19 @@ You are advised to use **Deque** when you need to frequently insert or remove el
 
 **Deque** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | ---------- | ------ |
-| Create| Use **insertFront(element: T)** to insert an element at the front of this container.|
-| Create| Use **insertEnd(element: T)** to insert an element at the end of this container.|
-| Read| Use **getFirst()** to obtain the value of the first element in this container, without removing it from the container.|
-| Read| Use **getLast()** to obtain the value of the last element in this container, without removing it from the container.|
-| Read| Use **popFirst()** to obtain the value of the first element in this container and remove it from the container.|
-| Read| Use **popLast()** to obtain the value of the last element in this container and remove it from the container.|
-| Read| Use **forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **popFirst()** to remove the first element from this container.|
-| Delete| Use **popLast()** to remove the last element from this container.|
+| Create | Use **insertFront(element: T)** to insert an element at the front of this container. |
+| Create | Use **insertEnd(element: T)** to insert an element at the end of this container. |
+| Read | Use **getFirst()** to obtain the value of the first element in this container, without removing it from the container. |
+| Read | Use **getLast()** to obtain the value of the last element in this container, without removing it from the container. |
+| Read | Use **popFirst()** to obtain the value of the first element in this container and remove it from the container. |
+| Read | Use **popLast()** to obtain the value of the last element in this container and remove it from the container. |
+| Read | Use **forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **popFirst()** to remove the first element from this container. |
+| Delete | Use **popLast()** to remove the last element from this container. |
 
 
 ## Queue
@@ -160,15 +160,15 @@ You are advised to use **Queue** in FIFO scenarios.
 
 **Queue** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | ---------- | ------ |
-| Create| Use **add(element: T)** to add an element at the end of this container.|
-| Read| Use **getFirst()** to obtain the value of the first element in this container, without removing it from the container.|
-| Read| Use **pop()** to obtain the value of the first element in this container and remove it from the container.|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **pop()** to remove the first element from this container.|
+| Create | Use **add(element: T)** to add an element at the end of this container. |
+| Read | Use **getFirst()** to obtain the value of the first element in this container, without removing it from the container. |
+| Read | Use **pop()** to obtain the value of the first element in this container and remove it from the container. |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Update | Use **forEach(callbackFn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **pop()** to remove the first element from this container. |
 
 
 ## Stack
@@ -183,16 +183,16 @@ You are advised to use **Stack** in LOFI scenarios.
 
 **Stack** provides the following CRUD APIs.
 
-| Operation| Description|
+| Operation | Description |
 | ---------- | ------ |
-| Create| Use **push(item: T)** to add an element at the top of this container.|
-| Read| Use **peek()** to obtain the value of the top element in this container, without removing it from the container.|
-| Read| Use **pop()** to obtain the value of the top element in this container and remove it from the container.|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Read| Use **locate(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Update| Use **forEach(callbackFn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **pop()** to remove the top element from this container.|
+| Create | Use **push(item: T)** to add an element at the top of this container. |
+| Read | Use **peek()** to obtain the value of the top element in this container, without removing it from the container. |
+| Read | Use **pop()** to obtain the value of the top element in this container and remove it from the container. |
+| Read | Use **forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container. |
+| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
+| Read | Use **locate(element: T)** to obtain the index of the first occurrence of the specified element. |
+| Update | Use **forEach(callbackFn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)** to modify an element in this container. |
+| Delete | Use **pop()** to remove the top element from this container. |
 
 
 ## Use of Linear Containers
@@ -202,7 +202,7 @@ Refer to the code snippet below to add, access, and modify elements in **ArrayLi
 
 ```ts
 // ArrayList
-import ArrayList from '@ohos.util.ArrayList'; // Import the ArrayList module.
+import { ArrayList } from '@kit.ArkTS'; // Import the ArrayList module.
 
 let arrayList1: ArrayList<string> = new ArrayList();
 arrayList1.add('a');
@@ -213,7 +213,7 @@ arrayList1[0] = 'one'; // Modify an element.
 console.info(`result: ${arrayList1[0]}`);
 
 // Vector
-import Vector from '@ohos.util.Vector'; // Import the Vector module.
+import { Vector } from '@kit.ArkTS'; // Import the Vector module.
 
 let vector1: Vector<string> = new Vector();
 vector1.add('a');
@@ -226,7 +226,7 @@ console.info(`result: ${vector1[0]}`); // Access an element.
 console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 
 // Deque
-import Deque from '@ohos.util.Deque'; // Import the Deque module.
+import { Deque } from '@kit.ArkTS'; // Import the Deque module.
 
 let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
@@ -237,7 +237,7 @@ deque1[0] = 'one'; // Modify an element.
 console.info(`result: ${deque2[0]}`);
 
 // Stack
-import Stack from '@ohos.util.Stack'; // Import the Stack module.
+import { Stack } from '@kit.ArkTS'; // Import the Stack module.
 
 let stack1: Stack<string> = new Stack();
 stack1.push('a');
@@ -248,7 +248,7 @@ stack2.pop(); // Remove the top element from this container.
 console.info(`result: ${stack2.length}`);
 
 // List
-import List from '@ohos.util.List'; // Import the List module.
+import { List } from '@kit.ArkTS'; // Import the List module.
 
 let list1: List<string> = new List();
 list1.add('a');
