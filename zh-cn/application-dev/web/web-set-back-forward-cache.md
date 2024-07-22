@@ -31,7 +31,7 @@ export default class EntryAbility extends UIAbility {
 
 可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)来设置每一个web示例前进后退缓存的策略。
 
-在下面的示例中，设置web组件可以缓存的最大数量为10，每个页面在前进后退缓存中停留300s。
+在下面的示例中，设置web组件可以缓存的最大数量为10，每个页面在缓存中停留300s。
   
 ```ts
 // xxx.ts
