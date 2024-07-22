@@ -50,19 +50,19 @@
 
 1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的abilities标签中配置跨端迁移标签`continuable`。
 
-   ```json
-   {
-     "module": {
-       // ...
-       "abilities": [
-         {
-           // ...
-           "continuable": true, // 配置UIAbility支持迁移
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "continuable": true, // 配置UIAbility支持迁移
+          }
+        ]
+      }
+    }
+    ```
 
    > **说明：**
    >
@@ -70,42 +70,42 @@
 
 2. 在源端`UIAbility`中实现[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调。
 
-   当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+    当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
    - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与源端应用版本号做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
 
-  ```ts
-  import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
+    ```ts
+    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  const TAG: string = '[MigrationAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  export default class MigrationAbility extends UIAbility {
-    onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
-      let version = wantParam.version;
-      let targetDevice = wantParam.targetDevice;
-      hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
+    export default class MigrationAbility extends UIAbility {
+      onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+        let version = wantParam.version;
+        let targetDevice = wantParam.targetDevice;
+        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
 
-      // 获取源端版本号
-      let versionSrc: number = -1; // 请填充具体获取版本号的代码
+        // 获取源端版本号
+        let versionSrc: number = -1; // 请填充具体获取版本号的代码
 
-      // 兼容性校验
-      if (version !== versionSrc) {
-        // 在兼容性校验不通过时返回MISMATCH
-        return AbilityConstant.OnContinueResult.MISMATCH;
+        // 兼容性校验
+        if (version !== versionSrc) {
+          // 在兼容性校验不通过时返回MISMATCH
+          return AbilityConstant.OnContinueResult.MISMATCH;
+        }
+
+        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
+        const continueInput = '迁移的数据';
+        wantParam['data'] = continueInput;
+
+        return AbilityConstant.OnContinueResult.AGREE;
       }
-
-      // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-      const continueInput = '迁移的数据';
-      wantParam['data'] = continueInput;
-
-      return AbilityConstant.OnContinueResult.AGREE;
     }
-  }
-  ```
+    ```
 
 3. 源端设备`UIAbility`实例在冷启动和热启动情况下分别会调用不同的接口来恢复数据和加载UI。  
    在对端设备的`UIAbility`中，需要实现[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口来恢复迁移数据。不同情况下的函数调用如下图所示：
@@ -116,45 +116,45 @@
    - 开发者可以从`want`中获取之前保存的迁移数据
    - 数据恢复后调用`restoreWindowStage()`来触发**页面恢复**，包括页面栈信息。
 
-  ```ts
-  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
+    ```ts
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  const TAG: string = '[MigrationAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  export default class MigrationAbility extends UIAbility {
-    storage: LocalStorage = new LocalStorage();
+    export default class MigrationAbility extends UIAbility {
+      storage: LocalStorage = new LocalStorage();
 
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-      if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-        // 将上述保存的数据从want.parameters中取出恢复
-        let continueInput = '';
-        if (want.parameters !== undefined) {
-          continueInput = JSON.stringify(want.parameters.data);
-          hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+          }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
         }
-        // 触发页面恢复
-        this.context.restoreWindowStage(this.storage);
+      }
+
+      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+          }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
+        }
       }
     }
-
-    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-      if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-        // 将上述保存的数据从want.parameters中取出恢复
-        let continueInput = '';
-        if (want.parameters !== undefined) {
-          continueInput = JSON.stringify(want.parameters.data);
-          hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-        }
-        // 触发页面恢复
-        this.context.restoreWindowStage(this.storage);
-      }
-    }
-  }
-  ```
+    ```
 
 ## 可选配置迁移能力
 
@@ -446,9 +446,9 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 ​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal"改为"apl":"system_core"。
 
 1. 点击file->Project Structure。  
-   ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
+    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
 2. 点击Signing Configs  点击OK。  
-   ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
+    ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
 3. 连接开发板运行生成demo。
 
 ### 2. 设备组网
@@ -462,8 +462,8 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 ### 3. 发起迁移
 
 1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，A设备出现A设备名称(即：本机:OpenHarmony 3.2)和B设备名称(OpenHarmony 3.2)。  
-   ![hop-cross-device-migration](figures/hop-cross-device-migration4.png)
+    ![hop-cross-device-migration](figures/hop-cross-device-migration4.png)
 2. 点击B设备名称，然后出现B设备的应用。  
-   ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
+    ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
 3. 最后将应用拖拽到A设备名称处，A设备应用被拉起，B设备应用退出。  
-   ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
+    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
