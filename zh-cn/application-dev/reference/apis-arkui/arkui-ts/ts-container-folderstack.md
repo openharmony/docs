@@ -109,6 +109,8 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 当悬停状态改变的时候回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -118,6 +120,8 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 | handler | (param: [HoverEventParam](#hovereventparam对象说明)) => void | 是   | 当悬停状态改变的时候触发回调。 |
 
 ## HoverEventParam对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名              | 类型                                                          | 必填 | 说明         |
 |------------------|-------------------------------------------------------------| --- |------------|
