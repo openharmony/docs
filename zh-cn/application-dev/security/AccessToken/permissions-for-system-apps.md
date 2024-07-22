@@ -3461,6 +3461,18 @@
 
 **起始版本**：12
 
+### ohos.permission.DUMP_AUDIO
+
+允许应用启动音频框架dump能力，将音频数据落盘到本地。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4001,14 +4013,3 @@
 
 **起始版本**：11
 
-### ohos.permission.DUMP_AUDIO
-
-允许应用启动音频框架dump能力，将音频数据落盘到本地。
-
-**权限级别**：system_core
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：12
