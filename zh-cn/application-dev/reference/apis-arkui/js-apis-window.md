@@ -6280,7 +6280,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6298,41 +6298,24 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      });
-    });
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-}
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+});
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6355,32 +6338,16 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      let promise = windowClass.getAvoidArea(type);
-      promise.then((data) => {
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    });
-  }
-}
+windowClass = data;
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -7036,7 +7003,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前应用窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7062,35 +7029,16 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      windowClass.on('systemAvoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-      });
-    });
-  }
-}
+windowClass.on('systemAvoidAreaChange', (data) => {
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+});
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前应用窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7116,32 +7064,13 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+const callback = (avoidArea: window.AvoidArea) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (avoidArea: window.AvoidArea) => {
-        // ...
-      }
-      windowClass.on('systemAvoidAreaChange', callback);
-      windowClass.off('systemAvoidAreaChange', callback);
-      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-      windowClass.off('systemAvoidAreaChange');
-    });
-  }
 }
+windowClass.on('systemAvoidAreaChange', callback);
+windowClass.off('systemAvoidAreaChange', callback);
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
