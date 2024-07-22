@@ -518,7 +518,7 @@ pipController.updateContentSize(width, height);
 ### updatePiPControlStatus<sup>12+</sup>
 updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): void
 
-更新控制面板控件功能状态。此接口第一个参数需传入如播放/暂停控件、麦克风控件和静音控件等具有功能状态的控件，否则调用无效。
+更新控制面板控件功能状态。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
