@@ -464,33 +464,33 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    + **现象描述**
 
-   ​       （1）执行命令，报错提示：ERROR - COMMAND_PARAM_ERROR, code: -107. Details: 'generate-cert' Parameters error, Param key - value must in pairs
+     （1）执行命令，报错提示：ERROR - COMMAND_PARAM_ERROR, code: -107. Details: 'generate-cert' Parameters error, Param key - value must in pairs
 
-   ​       （2）执行命令，报错提示：ERROR - KEY_PASSWORD_ERROR, code: -114. Details: 'oh-app1-key-v1' keypair password error
+     （2）执行命令，报错提示：ERROR - KEY_PASSWORD_ERROR, code: -114. Details: 'oh-app1-key-v1' keypair password error
 
-   ​       （3）执行命令，报错提示：ERROR - NOT_SUPPORT_ERROR, code: -104. Details: Not support file: ./OpenHarmony.p1
+     （3）执行命令，报错提示：ERROR - NOT_SUPPORT_ERROR, code: -104. Details: Not support file: ./OpenHarmony.p1
 
-   ​       （4）执行命令，报错提示：ERROR - KEY_ALIAS_ERROR, code: -109. Details: 'XXX' key alias already exists and cannot be generated repeatedly
+     （4）执行命令，报错提示：ERROR - KEY_ALIAS_ERROR, code: -109. Details: 'XXX' key alias already exists and cannot be generated repeatedly
 
    + **可能原因**
 
-   ​       （1）粘贴某条命令时，多粘贴了一段造成COMMAND_PARAM_ERROR错误，或者填写命令时，最后一个参数的value值忘记填写触发该COMMAND_PARAM_ERROR错误
+     （1）粘贴某条命令时，多粘贴了一段造成COMMAND_PARAM_ERROR错误，或者填写命令时，最后一个参数的value值忘记填写触发该COMMAND_PARAM_ERROR错误
 
-   ​       （2）密钥对密码填写错误时，会触发 KEY_PASSWORD_ERROR错误
+     （2）密钥对密码填写错误时，会触发 KEY_PASSWORD_ERROR错误
 
-   ​       （3）填写了错误的密钥库文件类型，触发NOT_SUPPORT_ERROR错误
+     （3）填写了错误的密钥库文件类型，触发NOT_SUPPORT_ERROR错误
 
-   ​       （4）密钥库中已存在该别名的密钥对，触发KEY_ALIAS_ERROR错误
+     （4）密钥库中已存在该别名的密钥对，触发KEY_ALIAS_ERROR错误
 
    + **解决办法**
 
-   ​       （1）检查填写的命令是否有误，修正多余或错误的命令
+     （1）检查填写的命令是否有误，修正多余或错误的命令
 
-   ​       （2）仔细检查命令中密码参数是否正确，访问不同密钥库获取密钥不要忘记填写各自的密钥对密码
+     （2）仔细检查命令中密码参数是否正确，访问不同密钥库获取密钥不要忘记填写各自的密钥对密码
 
-   ​       （3）检查密钥库文件后缀是否为：`{.p12、.jks}`
+     （3）检查密钥库文件后缀是否为：`{.p12、.jks}`
 
-   ​       （4）将需要生成密钥对的别名替换为其他的命名
+     （4）将需要生成密钥对的别名替换为其他的命名
 
 2. 执行生成应用签名证书命令时，提示参数错误。
 
