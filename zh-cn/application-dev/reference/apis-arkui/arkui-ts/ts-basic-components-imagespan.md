@@ -37,6 +37,8 @@ alt(value:&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -115,6 +117,8 @@ onComplete(callback: ImageCompleteCallback)
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -128,6 +132,8 @@ onComplete(callback: ImageCompleteCallback)
 onError(callback: ImageErrorCallback)
 
 图片加载异常时触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,6 +149,8 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 图片加载异常时触发的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | result  | [ImageLoadResult](#imageloadresult12) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
@@ -150,6 +158,8 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 ## ImageLoadResult<sup>12+</sup>
 
 图片数据加载成功和解码成功触发回调时返回的对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ------------------------------------------------------------ |

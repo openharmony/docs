@@ -886,6 +886,8 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 
 ## ScrollSource<sup>12+</sup>枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
 | DRAG   |  0  | 拖拽事件。 |
