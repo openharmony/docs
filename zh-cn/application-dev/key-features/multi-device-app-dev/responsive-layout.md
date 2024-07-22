@@ -52,7 +52,7 @@
 
    ```ts
    // MainAbility.ts
-   import { window, display } from '@kit.ArkUI'；
+   import { window, display } from '@kit.ArkUI'
    import { UIAbility } from '@kit.AbilityKit'
    
    export default class MainAbility extends UIAbility {
