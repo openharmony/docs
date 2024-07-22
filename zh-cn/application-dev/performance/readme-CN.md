@@ -42,6 +42,7 @@
     - [合理处理高负载组件的渲染](reasonably-dispose-highly-loaded-component-render.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [减小应用包大小](reduce-package-size.md)
+	- [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
