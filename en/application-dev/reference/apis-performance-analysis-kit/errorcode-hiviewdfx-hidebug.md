@@ -8,7 +8,7 @@
 
 **Error Message**
 
-ServiceId invalid, The system ability does not exist.
+ServiceId is invalid, systemAbility is not exist.
 
 **Description**
 This error code is reported if a system service cannot be obtained based on the specified service ID.
@@ -25,7 +25,7 @@ Specify a correct system service ID.
 
 **Error Message**
 
-Capture trace already enabled.
+Have already capture trace.
 
 **Description**
 This error code is reported if capture trace has already been enabled for the current process.
@@ -42,7 +42,7 @@ Disable the previously enabled trace.
 
 **Error Message**
 
-No write permission on the file.
+Without write permission on the file.
 
 **Description**
 This error code is reported if you do not have the permission to write the trace file in the current directory.
@@ -59,7 +59,7 @@ Run the trace again to generate a correct trace file in the current directory.
 
 **Error Message**
 
-Abnormal trace status.
+The status of the trace is abnormal.
 
 **Description**
 This error code is reported if the current trace encounters an internal error.
