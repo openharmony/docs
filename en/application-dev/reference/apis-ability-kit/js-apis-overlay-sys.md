@@ -11,7 +11,7 @@ The **overlay** module provides APIs for installing a [module with the overlay f
 ## Modules to Import
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabledByBundleName
@@ -32,19 +32,19 @@ Enables or disables a module with the overlay feature in another application. Th
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.   |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module. |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -57,8 +57,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -95,14 +95,14 @@ Enables or disables a module with the overlay feature in another application. Th
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.   |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module. |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -115,8 +115,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -159,13 +159,13 @@ Obtains the information about a module with the overlay feature in another appli
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -178,8 +178,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -219,7 +219,7 @@ Obtains the information about a module with the overlay feature in another appli
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -232,8 +232,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -275,7 +275,7 @@ Obtains the information about all modules with the overlay feature in another ap
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -286,8 +286,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 
 try {
@@ -328,13 +328,13 @@ Obtains the information about modules with the overlay feature in another applic
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -347,8 +347,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -388,7 +388,7 @@ Obtains the information about modules with the overlay feature in another applic
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -401,8 +401,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -444,7 +444,7 @@ Obtains the information about all modules with the overlay feature in another ap
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | ------ | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -455,8 +455,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {

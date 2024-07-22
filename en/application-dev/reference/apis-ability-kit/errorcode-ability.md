@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **Description**
 
-This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../../enterprise-device-management/enterpriseDeviceManagement-overview.md).
+This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../../mdm/mdm-kit-admin.md).
 
 **Possible Causes**
 
@@ -398,7 +398,7 @@ This error code is reported when the installation-free service is busy.
 
 **Possible Causes**
 
-Another installation-free task is in progress.
+A download and installation task is being executed for the atomic service.
 
 **Solution**
 
@@ -632,8 +632,8 @@ This error code is reported when verification on **StartOptions** fails.
 
 **Possible Causes**
 
-1. **startAbility()**, with **processMode** set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**, is called, but the application icon is not displayed in the status bar.
-2. **showAbility()** or **hideAbility()** is called, but the caller is not started in **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** mode.
+1. **startAbility()**, with **processMode** set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**, is called, but the application icon is not displayed in the status bar.
+2. **showAbility()** or **hideAbility()** is called, but the caller is not started in **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM** mode.
 
 **Solution**
 
@@ -869,24 +869,6 @@ The **wantAgent** object has been canceled.
 **Solution**
 
 Pass a valid **wantAgent** object in the API.
-
-## 16000200 Process Cache Support Status Is Set Multiple Times
-
-**Error Message**
-
-The supported process cache state cannot be set more than once.
-
-**Description**
-
-During the lifecycle of a single process instance, this error code is reported if the process cache support status is set again after a successful setting.
-
-**Possible Causes**
-
-The process cache support status is set for more than once for a single process instance.
-
-**Solution**
-
-Check whether the process cache support status is set more than once for a single process instance.
 
 ## 16100001 Ability of the Specified URI Does Not Exist
 
@@ -1294,4 +1276,20 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
 
- <!--no_check--> 
+## 16300007 Download and Installation Task Information of the Atomic Service Does Not Exist
+
+**Error Message**
+
+The target free install task does not exist.
+
+**Description**
+
+This error code is reported when the download and installation task of the specified atomic service does not exist while the atomic service window is opened.
+
+**Possible Causes**
+
+The value of **bundleName**, **moduleName**, **abilityName**, or **startTime** is incorrect, leading to the query failure.
+
+**Solution**
+
+Pass in correct values for **bundleName**, **moduleName**, **abilityName**, and **startTime**.

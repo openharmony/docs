@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupListener
 
 
-The @ohos.app.appstartup.StartupListener module provides the API to listen for component initialization events.
+The StartupListener module provides APIs to listen for startup tasks.
 
 > **NOTE**
 >
@@ -19,38 +19,39 @@ import { StartupListener } from '@kit.AbilityKit';
 
 onCompleted?(error: BusinessError\<void\>): void
 
-Called when all the components are initialized.
+Called when all startup tasks are complete.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
+| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes | Error message. |
 
 **Example**
 
 ```ts
-import { StartupConfigEntry, StartupConfig, StartupListener } from '@kit.AbilityKit';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
-    console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error: BusinessError) => {
-      console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
+    hilog.info(0x0000, 'testTag', `onConfig`);
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        console.error('onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
-        console.info('onCompletedCallback: success');
+        hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
     }
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
     }
     let config: StartupConfig = {
-      'timeoutMs': 5000,
+      'timeoutMs': 10000,
       'startupListener': startupListener
     }
     return config;
