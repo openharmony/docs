@@ -1,6 +1,6 @@
 # ArkData API Reference
 
-- ArkTS APIs 
+- ArkTS APIs  
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)

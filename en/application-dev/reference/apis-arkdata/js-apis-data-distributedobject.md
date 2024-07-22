@@ -23,29 +23,28 @@ Creates a distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
-| source | object | Yes| Attributes of the distributed data object.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | Yes | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+  | source | object | Yes | Attributes of the distributed data object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [DataObject](#dataobject) | Distributed data object created.|
+| [DataObject](#dataobject) | Distributed data object created. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 FA model:
-<!--code_no_check_fa-->
 ```ts
 // Import the module.
 import { featureAbility } from '@kit.AbilityKit';
@@ -107,9 +106,9 @@ Creates a random session ID.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Session ID created.|
+  | Type | Description |
+  | -------- | -------- |
+  | string | Session ID created. |
 
 **Example**
 
@@ -123,11 +122,11 @@ Represents the information returned by the callback of [save](#save9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
-| version | number | Yes| Version of the distributed data object saved.|
-| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates the local device.|
+| sessionId | string | Yes | Unique ID for multi-device collaboration. |
+| version | number | Yes | Version of the distributed data object saved. |
+| deviceId | string | Yes | ID of the device where the distributed data object is stored. The value **local** indicates the local device. |
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
@@ -135,9 +134,9 @@ Represents the information returned by the callback of [revokeSave](#revokesave9
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
+| sessionId | string | Yes | Unique ID for multi-device collaboration. |
 
 ## BindInfo<sup>11+</sup>
 
@@ -147,13 +146,13 @@ Represents the information about the joint asset in the RDB store to bind. Curre
 
 **Parameters**
 
-| Name      | Type                                                                | Mandatory| Description                                |
-| ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
-| storeName  | string                                                               | Yes  | RDB store to which the target asset (asset to bind) belongs.  |
-| tableName  | string                                                               | Yes  | Table to which the target asset is located in the RDB store.  |
-| primaryKey | [CommonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | Yes  | Primary key of the target asset in the RDB store.  |
-| field      | string                                                               | Yes  | Column in which the target asset is located in the RDB store.  |
-| assetName  | string                                                               | Yes  | Name of the target asset in the RDB store.|
+  | Name      | Type                                                              | Mandatory | Description                                |
+  | ---------- | ------------------------------------------------------------------ | ---- | ------------------------------------ |
+  | storeName  | string                                                             | Yes  | RDB store to which the target asset (asset to bind) belongs.  |
+  | tableName  | string                                                             | Yes  | Table to which the target asset is located in the RDB store.  |
+  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | Yes  | Primary key of the target asset in the RDB store.  |
+  | field      | string                                                             | Yes  | Column in which the target asset is located in the RDB store.  |
+  | assetName  | string                                                             | Yes  | Name of the target asset in the RDB store. |
 
 ## DataObject
 
@@ -171,20 +170,20 @@ Sets a session ID. This API uses an asynchronous callback to return the result. 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| ID of a distributed data object on a trusted network. If this parameter is set to "", the distributed data object exits the network.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
+  | Name   | Type                     | Mandatory | Description                                                                                                          |
+  | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
+  | sessionId | string                    | Yes  | ID of a distributed data object on a trusted network. If this parameter is set to "", the distributed data object exits the network. |
+  | callback  | AsyncCallback&lt;void&gt; | Yes  | Asynchronous callback invoked when the session ID is successfully set.                                                                                       |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 201      | Permission verification failed. |
-| 401      | Parameter error. Incorrect parameter types. |
-| 15400001 | Create table failed. |
+  | ID | Error Message                                                                                                                                                          |
+  | -------- | -------- |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed.                                                                                                                                               |
 
 **Example**
 
@@ -211,19 +210,19 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked when the distributed data object exits all sessions. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 201      | Permission verification failed. |
-| 401      | Parameter error. Incorrect parameter types. |
-| 15400001 | Create table failed. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 201      | Permission verification failed. |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **Example**
 
@@ -250,13 +249,13 @@ Sets a session ID. This API uses a promise to return the result. Automatic sync 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+  | Name   | Type  | Mandatory | Description                                                                                                                        |
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | No  | ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
@@ -264,11 +263,11 @@ Sets a session ID. This API uses a promise to return the result. Automatic sync 
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 201      | Permission verification failed. |
-| 401      | Parameter error. Incorrect parameter types. |
-| 15400001 | Create table failed. |
+  | ID | Error Message                                                                                                                                                          |
+  | -------- | -------- |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed.                                                                                                                                               |
 
 **Example**
 
@@ -297,18 +296,18 @@ Subscribes to data changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| type | string | Yes | Event type. The value is **change**, which indicates data changes. |
+| callback | Function | Yes | Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -333,18 +332,18 @@ Unsubscribes from the data changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
+| type | string | Yes | Event type. The value is **change**, which indicates data changes. |
+| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -372,18 +371,18 @@ Subscribes to status changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| type | string | Yes | Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
+| callback | Function | Yes | Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -403,18 +402,18 @@ Unsubscribes from the status change of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline. |
+| type | string | Yes | Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
+| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -445,19 +444,19 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
-| callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | deviceId | string | Yes | ID of the device where data is stored. The value **local** indicates a local device. |
+  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes | Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -494,24 +493,24 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | deviceId | string | Yes | ID of the device where the data is saved. The default value is **local**, which indicates a local device.  |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -541,18 +540,18 @@ If the object is stored on another device, the data on the local device will be 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes | Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Incorrect parameter types. |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -595,17 +594,17 @@ If the object is stored on another device, the data on the local device will be 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -643,20 +642,20 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                                              |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
-| assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
-| bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                                |
+  | Name  | Type                     | Mandatory | Description                                                                              |
+  | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
+  | bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store. |
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                                |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -700,7 +699,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
@@ -725,25 +724,25 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                                              |
-| -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
-| assetKey | string                  | Yes  | Key of the joint asset in the distributed data object.                                            |
-| bindInfo | [BindInfo](#bindinfo11) | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
+  | Name  | Type                   | Mandatory | Description                                                                              |
+  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                  | Yes  | Key of the joint asset in the distributed data object.                                            |
+  | bindInfo | [BindInfo](#bindinfo11) | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store. |
 
 **Return value**
 
-| Type               | Description         |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type               | Description         |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. |
+  | ID | Error Message |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **Example**
 
@@ -787,7 +786,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore("attachment", bindInfo).then(() => {
@@ -814,15 +813,15 @@ Creates a distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| source | object | Yes| Attributes of the distributed data object.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | source | object | Yes | Attributes of the distributed data object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [DistributedObject](#distributedobjectdeprecated) | Distributed data object created.|
+| [DistributedObject](#distributedobjectdeprecated) | Distributed data object created. |
 
 **Example**
 
@@ -863,15 +862,15 @@ Sets a session ID. Automatic sync is performed for multiple devices with the sam
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | No | ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
+  | Type | Description |
+  | -------- | -------- |
+  | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise.  |
 
 **Example**
 
@@ -910,10 +909,10 @@ Subscribes to data changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| type | string | Yes | Event type. The value is **change**, which indicates data changes. |
+| callback | Function | Yes | Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
 
 **Example**
 
@@ -956,10 +955,10 @@ Unsubscribes from the data changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
+| type | string | Yes | Event type. The value is **change**, which indicates data changes. |
+| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object. |
 
 **Example**
 
@@ -1005,10 +1004,10 @@ Subscribes to status changes of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| type | string | Yes | Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
+| callback | Function | Yes | Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline. |
 
 **Example**
 
@@ -1047,10 +1046,10 @@ Unsubscribes from the status change of this distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline. |
+| type | string | Yes | Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
+| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline. |
 
 
 **Example**
