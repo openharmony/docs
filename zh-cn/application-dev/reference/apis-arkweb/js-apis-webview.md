@@ -15030,7 +15030,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
-开启web组件允许页面进入前进后退缓存的功能，可以选择使用特定特性的页面进入前进后退缓存。
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -15043,7 +15043,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 **示例：**
 
 ```ts
-// xxx.ts
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -15103,7 +15103,7 @@ struct Index {
           options.timeToLive = 10;
           this.controller.setBackForwardCacheOptions(options);
         })
-        Button("BackWard").onClick((event: ClickEvent) => {
+        Button("Backward").onClick((event: ClickEvent) => {
           this.controller.backward();
         })
         Button("Forward").onClick((event: ClickEvent) => {
