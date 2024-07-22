@@ -14,9 +14,7 @@ import { commonEventManager } from '@kit.BasicServicesKit';
 
 ## Support
 
-系统公共事件是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要特定的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
-
-全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEventManager-definitions.md)。
+系统公共事件是指由系统服务或系统应用发布的事件，订阅这些公共事件需要特定的权限、使用相应的值，详见[系统定义的公共事件](./common_event/commonEventManager-definitions.md)。
 
 ## commonEventManager.publish
 
