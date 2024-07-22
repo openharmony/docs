@@ -120,12 +120,12 @@ class MyNodeController extends NodeController {
     if (this.uiContext) {
       let frameNode1 = new FrameNode(this.uiContext);
       let frameNode2 = new FrameNode(this.uiContext);
-      frameNode1.commonAttribute.size({ width: 150, height: 150 })
+      frameNode1.commonAttribute.size({ width: 50, height: 50 })
         .backgroundColor(Color.Black)
-        .position({ x: 50, y: 0 })
-      frameNode2.commonAttribute.size({ width: 150, height: 150 })
+        .position({ x: 50, y: 60 })
+      frameNode2.commonAttribute.size({ width: 50, height: 50 })
         .backgroundColor(Color.Orange)
-        .position({ x: 150, y: 25 })
+        .position({ x: 120, y: 60 })
       try {
         frameNode?.appendChild(frameNode1);
         console.log(TEST_TAG + " appendChild success ");
@@ -223,7 +223,7 @@ struct Index {
         ListItem() {
           Column({ space: 5 }) {
             Text("验证FrameNode添加子节点的特殊场景")
-            Button("对自定义FrameNode，新增BuilderNode的代理节点")
+            Button("新增BuilderNode的代理节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -231,13 +231,13 @@ struct Index {
                 buttonNode.build(wrapBuilder<[Params]>(buttonBuilder), { text: "BUTTON" })
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, buttonNode?.getFrameNode());
               })
-            Button("对自定义FrameNode，新增原生组件代理节点")
+            Button("新增原生组件代理节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, this.myNodeController?.rootNode?.getParent());
               })
-            Button("对自定义FrameNode，新增已有父节点的自定义节点")
+            Button("新增已有父节点的自定义节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -282,6 +282,7 @@ struct Index {
         .fontSize(16)
         .width(400)
         .height(200)
+        .padding(30)
         .borderWidth(1)
       Column() {
         Text("This is a NodeContainer.")
