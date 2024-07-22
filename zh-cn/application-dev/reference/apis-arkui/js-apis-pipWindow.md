@@ -355,7 +355,7 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 | HANG_UP_BUTTON           | 5   | 挂断控件。 |
 | MICROPHONE_SWITCH | 6  | 打开/关闭麦克风控件。 |
 | CAMERA_SWITCH     | 7   | 打开/关闭摄像头控件。     |
-| MUTE_SWITCH       | 8   | 静音控件。     |
+| MUTE_SWITCH       | 8   | 打开/关闭静音控件。     |
 
 
 ## ControlPanelActionEventCallback<sup>12+</sup>
@@ -524,10 +524,10 @@ updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): v
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明             |
-|--------|--------|-----|----------------|
-| controlType  | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。 |
-| status | [PiPControlStatus](#pipcontrolstatus12)  | 是   | 表示画中画控制面板控件状态。 |
+| 参数名    | 类型     | 必填  | 说明                                                                                                 |
+|--------|--------|-----|----------------------------------------------------------------------------------------------------|
+| controlType  | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。目前仅支持VIDEO_PLAY_PAUSE、MICROPHONE_SWITCH、CAMERA_SWITCH和MUTE_SWITCH这几种控件类型，传入其他控件类型无效。 |
+| status | [PiPControlStatus](#pipcontrolstatus12)  | 是   | 表示画中画控制面板控件状态。                                                                                     |
 
 **错误码：**
 

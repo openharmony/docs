@@ -859,9 +859,7 @@ get commonAttribute(): CommonAttribute
 
 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
 
-仅可以修改通过命令式方式创建的节点的属性。
-
-不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或lambda表达式的属性，且不支持事件和手势。
+仅可以修改自定义节点的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -875,7 +873,9 @@ get commonAttribute(): CommonAttribute
 
 > **说明：**
 >
-> FrameNode的基础属性支持范围和效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+> FrameNode的效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+>
+> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)。
 
 **示例：**
 
@@ -2048,7 +2048,7 @@ Button类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。 |
+| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件,并且不允许再设置子组件，否则会抛出异常。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。<br/> 以子组件模式创建时，只能包含一个子组件，不能设置多个子组件，否则会抛出异常。 |
 
 ### createNode('Button')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Button'): Button
@@ -3235,8 +3235,7 @@ struct TrackTest {
 
 ```ts
 // ./track.ets
-import { FrameNode } from '@kit.ArkUI';
-import { Rect } from '@ohos.arkui.node';
+import { FrameNode, Rect } from '@kit.ArkUI';
 
 @Component
 export struct TrackNode {
@@ -3428,11 +3427,12 @@ function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode
 }
 
 class MyFrameNode extends FrameNode {
-  public width: number = 10;
+  public width: number = 100;
+  public offsetY: number = 0;
   private space: number = 1;
 
   onMeasure(constraint: LayoutConstraint): void {
-    let sizeRes: Size = { width: 100, height: 100 };
+    let sizeRes: Size = { width: vp2px(100), height: vp2px(100) };
     for (let i = 0;i < this.getChildrenCount();i++) {
       let child = this.getChild(i);
       if (child) {
@@ -3452,8 +3452,8 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: 20,
-          y: y
+          x: vp2px(100),
+          y: vp2px(this.offsetY)
         });
         y += child.getMeasuredSize().height + this.space;
       }
@@ -3464,15 +3464,20 @@ class MyFrameNode extends FrameNode {
   onDraw(context: DrawContext) {
     const canvas = context.canvas;
     const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
+    pen.setStrokeWidth(15);
     pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
     canvas.attachPen(pen);
-    canvas.drawRect({ left: 0, right: this.width, top: 0, bottom: this.width });
+    canvas.drawRect({ 
+      left: 50, 
+      right: this.width + 50, 
+      top: 50, bottom: 
+      this.width + 50 
+    });
     canvas.detachPen();
   }
 
   addWidth() {
-    this.width += 10;
+    this.width = (this.width + 10) % 50 + 100;
   }
 }
 
@@ -3482,6 +3487,9 @@ class MyNodeController extends NodeController {
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new MyFrameNode(context);
     this.rootNode?.commonAttribute?.size({ width: 100, height: 100 }).backgroundColor(Color.Green);
+    let frameNode: FrameNode = new FrameNode(context);
+    this.rootNode.appendChild(frameNode);
+    frameNode.commonAttribute.width(10).height(10).backgroundColor(Color.Pink)
     return this.rootNode;
   }
 }
@@ -3496,15 +3504,18 @@ struct Index {
       Column() {
         NodeContainer(this.nodeController)
           .width('100%')
-          .height(100)
+          .height(200)
           .backgroundColor('#FFF0F0F0')
         Button('Invalidate')
+          .margin(10)
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
           })
         Button('UpdateLayout')
           .onClick(() => {
+            let node = this.nodeController.rootNode;
+            node!.offsetY = (node!.offsetY +10) % 110;
             this.nodeController?.rootNode?.setNeedsLayout();
           })
       }

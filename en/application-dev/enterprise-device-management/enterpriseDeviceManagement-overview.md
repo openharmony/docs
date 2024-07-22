@@ -33,7 +33,7 @@ MDM Kit provides APIs to implement system-level management and configuration of 
 - [@ohos.enterprise.accountManager (Account Management)](../reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
 - [@ohos.enterprise.adminManager (Enterprise Device Management)](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
 - [@ohos.enterprise.applicationManager (Application Management)](../reference/apis-mdm-kit/js-apis-enterprise-applicationManager.md)
-- [@ohos.enterprise.bluetoothManager (Bluetooth Management](../reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager.md)
+- [@ohos.enterprise.bluetoothManager (Bluetooth Management)](../reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager.md)
 - [@ohos.enterprise.browser (Browser Management)](../reference/apis-mdm-kit/js-apis-enterprise-browser.md)
 - [@ohos.enterprise.bundleManager (Bundle Management)](../reference/apis-mdm-kit/js-apis-enterprise-bundleManager.md)
 - [@ohos.enterprise.deviceControl (Device Control Management)](../reference/apis-mdm-kit/js-apis-enterprise-deviceControl.md)

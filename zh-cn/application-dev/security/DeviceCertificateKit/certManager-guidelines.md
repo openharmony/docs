@@ -63,7 +63,7 @@
      let keystore: Uint8Array = new Uint8Array([
        0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
      ]);
-   
+
      /* 安装凭据对应的密码，业务赋值 */
      let keystorePwd: string = '123456';
      let appKeyUri: string = '';
@@ -71,8 +71,9 @@
        /* 安装私有凭据 */
        const res = await certificateManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
        appKeyUri = (res.uri != undefined) ? res.uri : '';
-     } catch (err: BusinessError) {
-       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to install private certificate. Code: ${e.code}, message: ${e.message}`);
      }
 
      try {
@@ -80,40 +81,42 @@
        let srcData: Uint8Array = new Uint8Array([
          0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
      ]);
-   
+
        /* 构造签名的属性参数 */
        const signSpec: certificateManager.CMSignatureSpec = {
          purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
          padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
          digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
        };
-   
+
        /* 签名 */
        const signHandle: certificateManager.CMHandle = await certificateManager.init(appKeyUri, signSpec);
        await certificateManager.update(signHandle.handle, srcData);
        const signResult: certificateManager.CMResult = await certificateManager.finish(signHandle.handle);
-   
+
        /* 构造验签的的属性参数 */
        const verifySpec: certificateManager.CMSignatureSpec = {
          purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
          padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
          digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
        };
-   
+
        /* 验签 */
        const verifyHandle: certificateManager.CMHandle = await certificateManager.init(appKeyUri, verifySpec);
        await certificateManager.update(verifyHandle.handle, srcData);
        const verifyResult = await certificateManager.finish(verifyHandle.handle, signResult.outData);
        console.info('Succeeded in signing and verifying.');
-     } catch (err: BusinessError) {
-       console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to sign or verify. Code: ${e.code}, message: ${e.message}`);
      }
 
      try {
        /* 卸载私有凭据 */
        await certificateManager.uninstallPrivateCertificate(appKeyUri);
-     } catch (err: BusinessError) {
-       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to uninstall private certificate. Code: ${e.code}, message: ${e.message}`);
      }
    }
    ```

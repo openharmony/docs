@@ -2,49 +2,17 @@
 
 提供给应用的文件授权访问场景主要分为：
 
-1. 权限申明授权方式获取公共目录访问权限。
+1. 获取并使用公共目录。
 2. 通过FilePicker选择文件或目录授权并支持授权持久化。
 3. 通过接口获取文件或文件夹当前所在路径的URI。
-4. 通过接口获取公共目录、外卡目录的能力。
+4. 通过接口获取外卡目录。
 
 文件授权访问的场景仅支持部分设备。
 
 下面介绍几种常用操作示例。
 
-## 通过授权的方式申请目录权限并获取路径
-
-通过授权的方式申请Download目录权限、Documents目录权限或Desktop目录权限，并获取对应路径。
-
-1. 三方应用可以通过ACL方式申请对应权限，并通过弹窗授权向用户申请授予Download目录权限、Documents目录权限或Desktop目录权限，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
-
-   ```json
-    "requestPermissions" : [
-        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
-        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
-        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
-    ]
-   ```
-
-2. 应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
-
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { Environment } from '@kit.CoreFileKit';
-   import { fileIo as fs } from '@kit.CoreFileKit';
-
-   async function getUserDownloadDirExample() {
-     try {
-       let path = Environment.getUserDownloadDir();
-       console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-       await fs.mkdir(path + "/brower");
-       let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.CREATE);
-       await fs.close(fd);
-     } catch (error) {
-       let err: BusinessError = error as BusinessError;
-       console.error(`failed to getUserDownloadDir because: ${JSON.stringify(err)}`);
-     }
-   }
-   ```
+## 获取并使用公共目录
+通过目录环境能力获取公共目录，通过弹窗授权方式向用户申请授予对应目录的权限后对相应目录进行访问，具体请参考([获取并使用公共目录](../file-management/request-dir-permission.md))。
 
 ## 通过FilePicker设置永久授权
 
@@ -164,7 +132,7 @@
          operationMode: fileShare.OperationMode.READ_MODE,
        };
        let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-       await fileShare.persistPermission(policy);
+       await fileShare.persistPermission(policies);
        fileShare.revokePermission(policies).then(() => {
          console.info("revokePermission successfully");
        }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
@@ -256,7 +224,7 @@
    }
    ```
 
-## 获取文件或文件夹当前所在路径的URI
+## 通过接口获取文件或文件夹当前所在路径的URI
 
 如果当前FileUri指向文件，将返回文件所在路径URI，如果当前FileUri指向目录，将返回当前路径URI。通过文件URI接口（[ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md)）获取文件或文件夹当前所在路径的URI。
 
@@ -277,39 +245,9 @@ function getFullDirectoryUriExample01() {
   }
 }
 ```
-## 获取公共目录
-
-应用可以获得公共目录中的下载目录、桌面目录和文档目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
-
-> 使用相关接口，需确认设备具有以下系统能力：SystemCapability.FileManagement.File.Environment.FolderObtain。
-
-以下示例代码演示了文件管理器通过接口获取公共目录：
-
-```ts
-function getUserDirExample() {
-  if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
-    console.error('this api is not supported on this device');
-    return;
-  }
-  try {
-    // 获取公共下载目录
-    const downloadPath = environment.getUserDownloadDir();
-    console.info(`success to getUserDownloadDir: ${downloadPath}`);
-    // 获取公共文档目录
-    const documentsPath = environment.getUserDocumentDir();
-    console.info(`success to getUserDocumentDir: ${documentsPath}`);
-    // 获取公共桌面目录
-    const desktopPath = environment.getUserDesktopDir();
-    console.info(`success to getUserDesktopDir: ${desktopPath}`);
-  } catch (error) {
-    const err: BusinessError = error as BusinessError;
-    console.error(`failed to get user dir, because: ${JSON.stringify(err)}`);
-  }
-}
-```
 
 <!--Del-->
-## 获取外卡目录、内卡目录
+## 通过接口获取外卡目录
 
 应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
 

@@ -53,6 +53,8 @@ getTag(): string
 
 返回当前手势识别器的tag。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -64,6 +66,8 @@ getTag(): string
 getType(): GestureControl.GestureType
 
 返回当前手势识别器的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -77,6 +81,8 @@ isBuiltIn(): boolean
 
 返回当前手势识别器是否为系统内置手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -88,6 +94,8 @@ isBuiltIn(): boolean
 setEnabled(isEnabled: boolean): void
 
 设置当前手势识别器的使能状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -101,6 +109,8 @@ isEnabled(): boolean
 
 返回当前手势识别器的使能状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -112,6 +122,8 @@ isEnabled(): boolean
 getState(): GestureRecognizerState
 
 返回当前手势识别器的状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -125,6 +137,8 @@ getEventTargetInfo(): EventTargetInfo
 
 返回当前手势识别器对应组件的信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -134,6 +148,8 @@ getEventTargetInfo(): EventTargetInfo
 ## GestureRecognizerState
 
 定义手势识别器状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |
@@ -154,6 +170,8 @@ getId(): string
 
 返回当前组件的组件标识。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -170,6 +188,8 @@ isBegin(): boolean
 
 返回当前滚动类容器组件是否在顶部，如果为Swiper组件且在循环模式下返回false。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -181,6 +201,8 @@ isBegin(): boolean
 isEnd(): boolean
 
 返回当前滚动类容器组件是否在底部，如果为Swiper组件且在循环模式下返回false。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -197,6 +219,8 @@ isEnd(): boolean
 getPanGestureOptions(): PanGestureOptions
 
 返回当前拖动手势识别器的属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 

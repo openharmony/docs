@@ -4,12 +4,13 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - @ohos.dlpPermission归属的Kit已由'DataLossPreventionKit'变更为'DataProtectionKit'，建议开发者使用新模块名'@kit.DataProtectionKit'完成模块导入。如果使用'@kit.DataLossPreventionKit'导入，仅能调用改名前的接口，无法使用新增接口。
 
 ## 导入模块
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 ```
 
 ## dlpPermission.isDLPFile
@@ -44,7 +45,7 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -88,7 +89,7 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -137,7 +138,7 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -180,7 +181,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -233,7 +234,7 @@ getOriginalFileName(fileName: string): string
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -269,7 +270,7 @@ getDLPSuffix(): string
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -309,7 +310,7 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -349,7 +350,7 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -387,7 +388,7 @@ isInSandbox(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -425,7 +426,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -467,7 +468,7 @@ getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -505,7 +506,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -555,7 +556,7 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -599,7 +600,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -650,7 +651,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -689,7 +690,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -740,7 +741,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -780,7 +781,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -824,7 +825,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -867,7 +868,7 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -906,7 +907,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -960,7 +961,7 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1015,7 +1016,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -1052,7 +1053,7 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -1087,7 +1088,7 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -1122,7 +1123,7 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 dlpPermission.isDLPFeatureProvided().then((res) => {

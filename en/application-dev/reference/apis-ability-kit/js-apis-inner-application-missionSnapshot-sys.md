@@ -10,7 +10,7 @@ The **MissionSnapshot** module defines the snapshot of a mission. The snapshot c
 ## Modules to Import
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
@@ -19,10 +19,10 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | Yes| Yes| Ability information of the mission.| 
-| snapshot | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Yes| Snapshot of the mission.|
+| ability | ElementName | Yes | Yes | Ability information of the mission. | 
+| snapshot | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | Yes | Snapshot of the mission. |
 
 ## How to Use
 
@@ -30,31 +30,29 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
 
 **Example**
 ```ts
-  import ElementName from '@ohos.bundle.bundleManager';
-  import image from '@ohos.multimedia.image';
-  import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error) {
-          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-          return;
+try {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
+    if (error) {
+      console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+      return;
+    }
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
+    let id = missions[0].missionId;
+
+    missionManager.getMissionSnapShot('', id, (err, snapshot) => {
+      if (err) {
+        console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
+        return;
       }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
-      let id = missions[0].missionId;
-
-      missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err) {
-          console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
-          return;
-        }
-
-        // Carry out normal service processing.
-        console.log(`bundleName = ${snapshot.ability.bundleName}`);
-      });
+      // Carry out normal service processing.
+      console.log(`bundleName = ${snapshot.ability.bundleName}`);
     });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```

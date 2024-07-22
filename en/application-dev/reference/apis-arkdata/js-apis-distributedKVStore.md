@@ -10,7 +10,7 @@ The **distributedKVStore** module provides the following functionalities:
 - [SingleKVStore](#singlekvstore): provides APIs for querying and synchronizing data in single KV stores. The single KV stores manage data without distinguishing devices.
 - [DeviceKVStore](#devicekvstore): provides APIs for querying and synchronizing data in device KV stores. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
 
-> **NOTE**
+> **NOTE** 
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -26,9 +26,9 @@ Provides the **KVManager** instance configuration, including the bundle name of 
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name    | Type             | Mandatory| Description                                                        |
+| Name    | Type             | Mandatory | Description                                                        |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | BaseContext           | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md).|
+| context    | BaseContext           | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md). |
 | bundleName | string                | Yes  | Bundle name.                                              |
 
 ## Constants
@@ -40,8 +40,8 @@ Provides constants of the distributed KV store.
 | Name                 | Value     | Description                                   |
 | --------------------- | ------- | --------------------------------------- |
 | MAX_KEY_LENGTH        | 1024    | Maximum length of a key in a distributed KV store, in bytes.  |
-| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes.|
-| MAX_KEY_LENGTH_DEVICE | 896     | Maximum length of a key in a device KV store, in bytes.|
+| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes. |
+| MAX_KEY_LENGTH_DEVICE | 896     | Maximum length of a key in a device KV store, in bytes. |
 | MAX_STORE_ID_LENGTH   | 128     | Maximum length of a KV store ID, in bytes. |
 | MAX_QUERY_LENGTH      | 512000  | Maximum query length, in bytes.               |
 | MAX_BATCH_SIZE        | 128     | Maximum number of batch operations.                   |
@@ -57,9 +57,9 @@ Enumerates the types of the value in a KV pair.
 | STRING     | String.  |
 | INTEGER    | Integer.    |
 | FLOAT      | Float (single-precision floating point).  |
-| BYTE_ARRAY | Byte array.|
+| BYTE_ARRAY | Byte array. |
 | BOOLEAN    | Boolean.  |
-| DOUBLE     | Double (double-precision floating point).|
+| DOUBLE     | Double (double-precision floating point). |
 
 ## Value
 
@@ -78,10 +78,10 @@ Defines the KV pairs in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Type       | Mandatory| Description    |
+| Name | Type       | Mandatory | Description    |
 | ----- | --------------- | ---- | -------- |
 | key   | string          | Yes  | Key of the KV pair.  |
-| value | [Value](#value) | Yes  | Value object of the KV pair.|
+| value | [Value](#value) | Yes  | Value object of the KV pair. |
 
 ## ChangeNotification
 
@@ -94,7 +94,7 @@ Defines the content of a data change notification, including inserted data, upda
 | insertEntries | [Entry](#entry)[] | Yes  | Data inserted.          |
 | updateEntries | [Entry](#entry)[] | Yes  | Data updated.          |
 | deleteEntries | [Entry](#entry)[] | Yes   | Data deleted.          |
-| deviceId      | string            | Yes   | UUID of the device.|
+| deviceId      | string            | Yes   | UUID of the device. |
 
 ## SyncMode
 
@@ -106,7 +106,7 @@ Enumerates the sync modes.
 | --------- | ---------------------------------------------------- |
 | PULL_ONLY | Pull data from the peer end to the local end only.                      |
 | PUSH_ONLY | Push data from the local end to the peer end only.                      |
-| PUSH_PULL | Push data from the local end to the peer end and then pull data from the peer end to the local end.|
+| PUSH_PULL | Push data from the local end to the peer end and then pull data from the peer end to the local end. |
 
 ## SubscribeType
 
@@ -118,7 +118,7 @@ Enumerates the subscription types.
 | --------------------- | ---------------------------- |
 | SUBSCRIBE_TYPE_LOCAL  | Local data changes.      |
 | SUBSCRIBE_TYPE_REMOTE | Remote data changes.      |
-| SUBSCRIBE_TYPE_ALL    | Local and remote data changes.|
+| SUBSCRIBE_TYPE_ALL    | Local and remote data changes. |
 
 ## KVStoreType
 
@@ -126,8 +126,8 @@ Enumerates the distributed KV store types.
 
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -137,24 +137,24 @@ Enumerates the KV store security levels.
 
 | Name       | Description                                                        |
 | -------:   | ------------------------------------------------------------ |
-| S1         | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records|
-| S2         | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: individual mailing addresses and nicknames|
-| S3         | High security level. Disclosure, tampering, corruption, or loss of the data may cause critical impact on an individual or group.<br>Examples: real-time precise positioning information and movement trajectory |
-| S4         | Critical security level. Disclosure, tampering, corruption, or loss of the data may cause significant adverse impact on an individual or group.<br>Examples: political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
+| S1         | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records |
+| S2         | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: individual mailing addresses and nicknames |
+| S3         | High security level. Disclosure, tampering, corruption, or loss of the data may cause critical impact on an individual or group.<br>Examples: real-time precise positioning information and movement trajectory  |
+| S4         | Critical security level. Disclosure, tampering, corruption, or loss of the data may cause significant adverse impact on an individual or group.<br>Examples: political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information |
 
 ## Options
 
 Provides KV store configuration.
 
-| Name         | Type                       | Mandatory| Description                                                        |
+| Name         | Type                       | Mandatory | Description                                                        |
 | --------------- | -------------- | ---- | -------------------------|
-| createIfMissing | boolean                         | No | Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| encrypt         | boolean                         | No  | Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| backup          | boolean                         | No  | Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| autoSync        | boolean                         | No  | Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
-| kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| schema          | [Schema](#schema)               | No  | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| createIfMissing | boolean                         | No | Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| encrypt         | boolean                         | No  | Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| backup          | boolean                         | No  | Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| autoSync        | boolean                         | No  | Whether to enable auto sync across devices. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC |
+| kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema          | [Schema](#schema)               | No  | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 ## Schema
 
@@ -162,9 +162,9 @@ Defines the schema of a KV store. You can create a **Schema** object and pass it
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name   | Type                   | Readable| Writable| Description                      |
+| Name   | Type                   | Readable | Writable | Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Definitions of all the fields in **Value**.|
+| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Definitions of all the fields in **Value**. |
 | indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'`|
 | mode    | number                  | Yes  | Yes  | Value check mode, which can be **0** (strict mode) or **1** (compatible mode).|
 | skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4M-2].|
@@ -208,7 +208,7 @@ Represents a **Schema** instance, which provides the methods for defining the va
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name    | Type   | Readable| Writable| Description                          |
+| Name    | Type   | Readable | Writable | Description                          |
 | -------- | ------- | ---- | ---- | ------------------------------ |
 | nullable | boolean | Yes  | Yes  | Whether the field can be null. The value **true** means the node field can be null; the value **false** means the opposite.|
 | default  | string  | Yes  | Yes  | Default value of **FieldNode**.       |
@@ -224,15 +224,15 @@ A constructor used to create a **FieldNode** instance with a string field.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description           |
+| Name | Type | Mandatory | Description           |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | Yes  | Value of **FieldNode**, which cannot be left empty.|
+| name   | string   | Yes  | Value of **FieldNode**, which cannot be left empty. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 
@@ -246,21 +246,21 @@ Appends a child node to this **FieldNode**.
 
 **Parameters**
 
-| Name| Type               | Mandatory| Description            |
+| Name | Type               | Mandatory | Description            |
 | ------ | ----------------------- | ---- | ---------------- |
-| child  | [FieldNode](#fieldnode) | Yes  | Child node to append.|
+| child  | [FieldNode](#fieldnode) | Yes  | Child node to append. |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -296,23 +296,23 @@ Creates a **KVManager** instance for KV store management.
 
 **Parameters**
 
-| Name| Type                     | Mandatory| Description                                                     |
+| Name | Type                     | Mandatory | Description                                                     |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | **KVManager** instance configuration, including the bundle name and user information of the caller.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | **KVManager** instance Configuration, including the bundle name (cannot be empty) and user information of the caller. |
 
 **Return value**
 
 | Type                                  | Description                                      |
 | -------------------------------------- | ------------------------------------------ |
-| [KVManager](#kvmanager) | **KVManager** instance created.|
+| [KVManager](#kvmanager) | **KVManager** instance created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed; 3. Incorrect parameters types.  |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
 **Example**
 
@@ -389,17 +389,17 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 **Parameters**
 
-| Name  | Type              | Mandatory| Description                                                        |
+| Name  | Type              | Mandatory | Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | storeId  | string                 | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the **SingleKVStore** or **DeviceKVStore** instance created.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the **SingleKVStore** or **DeviceKVStore** instance created. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100002     | Open existed database with changed options. |
@@ -410,13 +410,13 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
     securityLevel: distributedKVStore.SecurityLevel.S2,
   };
@@ -432,7 +432,7 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
-if (kvStore !== undefined) {
+if (kvStore !== null) {
      kvStore = kvStore as distributedKVStore.SingleKVStore;
        // Perform subsequent data operations, such as adding, deleting, modifying, and querying data, and subscribing to data changes.
        // ...
@@ -449,7 +449,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description                                                        |
+| Name | Type           | Mandatory | Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | storeId | string              | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options | [Options](#options) | Yes  | Configuration of the distributed KV store to create.                              |
@@ -458,15 +458,15 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;T&gt; | Promise used to return the **SingleKVStore** or **DeviceKVStore** instance created.|
+| Promise&lt;T&gt; | Promise used to return the **SingleKVStore** or **DeviceKVStore** instance created. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameters verification failed; 3. Parameter verification failed.|
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
 
@@ -475,13 +475,13 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
     securityLevel: distributedKVStore.SecurityLevel.S2,
   };
@@ -507,17 +507,17 @@ Closes a distributed KV store. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                                     |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
@@ -526,12 +526,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
   securityLevel: distributedKVStore.SecurityLevel.S2,
@@ -570,22 +570,22 @@ Closes a distributed KV store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | appId   | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                          |
-| storeId | string   | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId | string   | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                               |
+| ID | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
@@ -594,13 +594,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
   securityLevel: distributedKVStore.SecurityLevel.S2,
@@ -635,17 +635,17 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                                     |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 | 15100004     | Not found.   |
@@ -655,13 +655,13 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
   securityLevel: distributedKVStore.SecurityLevel.S2,
@@ -700,22 +700,22 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | appId   | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                          |
-| storeId | string   | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId | string   | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 | 15100004     | Not found.   |
@@ -725,13 +725,13 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
   securityLevel: distributedKVStore.SecurityLevel.S2,
@@ -766,16 +766,16 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                               |
+| Name  | Type                     | Mandatory | Description                                               |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
 | appId    | string                        | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                             |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback used to return the IDs of all the distributed KV stores created.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback used to return the IDs of all the distributed KV stores created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
@@ -809,21 +809,21 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                  |
+| Name | Type | Mandatory | Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| appId  | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.|
+| appId  | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes. |
 
 **Return value**
 
 | Type                   | Description                                                  |
 | ----------------------- | ------------------------------------------------------ |
-| Promise&lt;string[]&gt; | Promise used to return the IDs of all the distributed KV stores created.|
+| Promise&lt;string[]&gt; | Promise used to return the IDs of all the distributed KV stores created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
@@ -856,16 +856,16 @@ Subscribes to the termination (death) of the distributed data service. If the se
 
 **Parameters**
 
-| Name       | Type            | Mandatory| Description                                                        |
+| Name       | Type            | Mandatory | Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
 | deathCallback | Callback&lt;void&gt; | Yes  | Callback used to return the result. If the subscription is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
 
@@ -896,16 +896,16 @@ Unsubscribes from the termination (death) of the distributed data service. The *
 
 **Parameters**
 
-| Name       | Type            | Mandatory| Description                                                        |
+| Name       | Type            | Mandatory | Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
 | deathCallback | Callback&lt;void&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the **distributedDataServiceDie** event.                                         |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -944,7 +944,7 @@ Obtains the total number of rows in the result set.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | Total number of rows obtained.|
+| number | Total number of rows obtained. |
 
 **Example**
 
@@ -979,7 +979,7 @@ Obtains the current data read position (position from which data is read) in the
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | Current data read position obtained. The value must be greater than or equal to **-1**. The value **-1** means no data is read; the value **0** indicates the first row.|
+| number | Current data read position obtained. The value must be greater than or equal to **-1**. The value **-1** means no data is read; the value **0** indicates the first row. |
 
 **Example**
 
@@ -1014,7 +1014,7 @@ Moves the data read position to the first row. If the result set is empty, **fal
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
@@ -1049,7 +1049,7 @@ Moves the data read position to the last row. If the result set is empty, **fals
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
@@ -1084,7 +1084,7 @@ Moves the data read position to the next row. If the result set is empty, **fals
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
@@ -1121,7 +1121,7 @@ Moves the data read position to the previous row. If the result set is empty, **
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
@@ -1155,21 +1155,21 @@ Moves the data read position with the specified offset from the current position
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| offset | number   | Yes  | Offset to move the data read position. A negative value means to move backward, and a positive value means to move forward.|
+| offset | number   | Yes  | Offset to move the data read position. A negative value means to move backward, and a positive value means to move forward. |
 
 **Return value**
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -1205,21 +1205,21 @@ Moves the data read position from 0 to an absolute position.
 
 **Parameters**
 
-| Name  | Type| Mandatory| Description          |
+| Name  | Type | Mandatory | Description          |
 | -------- | -------- | ---- | -------------- |
-| position | number   | Yes  | Absolute position to move to.|
+| position | number   | Yes  | Absolute position to move to. |
 
 **Return value**
 
 | Type   | Description                                           |
 | ------- | ----------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -1257,7 +1257,7 @@ Checks whether the data read position is the first row.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the first row is being read; returns **false** otherwise.|
+| boolean | Returns **true** if the first row is being read; returns **false** otherwise. |
 
 **Example**
 
@@ -1292,7 +1292,7 @@ Checks whether the data read position is the last row.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the last row is being read; returns **false** otherwise.|
+| boolean | Returns **true** if the last row is being read; returns **false** otherwise. |
 
 **Example**
 
@@ -1327,7 +1327,7 @@ Checks whether the data read position is before the first row.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data read position is before the first row; returns **false** otherwise.|
+| boolean | Returns **true** if the data read position is before the first row; returns **false** otherwise. |
 
 **Example**
 
@@ -1361,7 +1361,7 @@ Checks whether the data read position is after the last row.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data read position is after the last row; returns **false** otherwise.|
+| boolean | Returns **true** if the data read position is after the last row; returns **false** otherwise. |
 
 **Example**
 
@@ -1395,7 +1395,7 @@ Obtains the KV pair from the current position.
 
 | Type           | Description        |
 | --------------- | ------------ |
-| [Entry](#entry) | KV pair obtained.|
+| [Entry](#entry) | KV pair obtained. |
 
 **Example**
 
@@ -1443,7 +1443,7 @@ Resets the **Query** object.
 
 | Type          | Description                 |
 | -------------- | --------------------- |
-| [Query](#query) | **Query** object reset.|
+| [Query](#query) | **Query** object reset. |
 
 **Example**
 
@@ -1472,22 +1472,22 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1517,22 +1517,22 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1561,22 +1561,22 @@ Creates a **Query** object to match the specified field whose value is greater t
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1607,22 +1607,22 @@ Creates a **Query** object to match the specified field whose value is less than
 **Parameters**
 
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1653,22 +1653,22 @@ Creates a **Query** object to match the specified field whose value is greater t
 **Parameters**
 
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1699,22 +1699,22 @@ Creates a **Query** object to match the specified field whose value is less than
 **Parameters**
 
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1744,21 +1744,21 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1788,22 +1788,22 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                         |
+| Name   | Type | Mandatory | Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1833,22 +1833,22 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                         |
+| Name   | Type | Mandatory | Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1878,22 +1878,22 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                         |
+| Name   | Type | Mandatory | Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1923,22 +1923,22 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                         |
+| Name   | Type | Mandatory | Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -1968,22 +1968,22 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -2013,22 +2013,22 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -2060,7 +2060,7 @@ Creates a **Query** object with the AND condition.
 
 | Type          | Description          |
 | -------------- | -------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Example**
 
@@ -2091,7 +2091,7 @@ Creates a **Query** object with the OR condition.
 
 | Type          | Description          |
 | -------------- | -------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Example**
 
@@ -2120,21 +2120,21 @@ Creates a **Query** object to sort the query results in ascending order.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -2165,21 +2165,21 @@ Creates a **Query** object to sort the query results in descending order.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -2210,22 +2210,22 @@ Creates a **Query** object to specify the number of records of the query result 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description              |
+| Name | Type | Mandatory | Description              |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | Yes  | Number of results to query.|
+| total  | number   | Yes  | Number of results to query. |
 | offset | number   | Yes  | Start position for query.    |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -2258,21 +2258,21 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                         |
+| Name | Type | Mandatory | Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -2304,7 +2304,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Example**
 
@@ -2335,7 +2335,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Example**
 
@@ -2364,21 +2364,21 @@ Creates a **Query** object with a specified key prefix.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description              |
+| Name | Type | Mandatory | Description              |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | Yes  | Key prefix, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| prefix | string   | Yes  | Key prefix, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -2409,7 +2409,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description              |
+| Name | Type | Mandatory | Description              |
 | ------ | -------- | ---- | ------------------ |
 | index  | string   | Yes  | Index preferentially used for query. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
@@ -2417,13 +2417,13 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -2449,7 +2449,7 @@ try {
 deviceId(deviceId:string):Query
 
 Creates a **Query** object with the device ID as the key prefix.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -2458,21 +2458,21 @@ Creates a **Query** object with the device ID as the key prefix.
 
 **Parameters**
 
-| Name  | Type| Mandatory| Description              |
+| Name  | Type | Mandatory | Description              |
 | -------- | -------- | ---- | ------------------ |
-| deviceId | string   | Yes  | ID of the device to be queried. This parameter cannot be left empty.|
+| deviceId | string   | Yes  | ID of the device to be queried. This parameter cannot be left empty. |
 
 **Return value**
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](#query) | **Query** object created.|
+| [Query](#query) | **Query** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -2503,7 +2503,7 @@ Obtains the query statement of the **Query** object.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Returns the query statement obtained.|
+| string | Returns the query statement obtained. |
 
 **Example**
 
@@ -2535,7 +2535,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
@@ -2545,7 +2545,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
@@ -2553,7 +2553,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2588,7 +2588,7 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
@@ -2597,13 +2597,13 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
@@ -2611,7 +2611,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2644,16 +2644,16 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                    |
+| Name  | Type                | Mandatory | Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
-| entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert, which cannot exceed 512 MB.|
+| entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert, which cannot exceed 512 MB. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
@@ -2661,7 +2661,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2719,21 +2719,21 @@ Batch inserts KV pairs to this single KV store. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type         | Mandatory| Description                    |
+| Name | Type         | Mandatory | Description                    |
 | ------- | ----------------- | ---- | ------------------------ |
-| entries | [Entry](#entry)[] | Yes  | KV pairs to insert, which cannot exceed 512 MB.|
+| entries | [Entry](#entry)[] | Yes  | KV pairs to insert, which cannot exceed 512 MB. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
@@ -2741,7 +2741,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2793,16 +2793,16 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.        |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -2810,7 +2810,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2854,21 +2854,21 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| key    | string   | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
@@ -2876,7 +2876,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2916,16 +2916,16 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                    |
+| Name  | Type                 | Mandatory | Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| keys     | string[]                  | Yes  | KV pairs to delete. This parameter cannot be empty.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| keys     | string[]                  | Yes  | KV pairs to delete. This parameter cannot be empty. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
@@ -2933,7 +2933,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -2990,21 +2990,21 @@ Batch deletes KV pairs from this single KV store. This API uses a promise to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                    |
+| Name | Type | Mandatory | Description                    |
 | ------ | -------- | ---- | ------------------------ |
-| keys   | string[] | Yes  | KV pairs to delete. This parameter cannot be empty.|
+| keys   | string[] | Yes  | KV pairs to delete. This parameter cannot be empty. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
@@ -3012,7 +3012,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -3060,7 +3060,7 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes data of a device. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -3069,16 +3069,16 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                  |
+| Name  | Type                 | Mandatory | Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| deviceId | string                    | Yes  | ID of the target device.|
+| deviceId | string                    | Yes  | ID of the target device. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -3120,7 +3120,7 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 Deletes data of a device. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -3129,21 +3129,21 @@ Deletes data of a device. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type| Mandatory| Description                  |
+| Name  | Type | Mandatory | Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| deviceId | string   | Yes  | ID of the target device.|
+| deviceId | string   | Yes  | ID of the target device. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -3188,7 +3188,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 | callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback used to return the value obtained. |
@@ -3197,7 +3197,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -3245,9 +3245,9 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| key    | string   | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
@@ -3259,7 +3259,7 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -3303,16 +3303,16 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 
 **Parameters**
 
-| Name   | Type                              | Mandatory| Description                                    |
+| Name   | Type                              | Mandatory | Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -3371,21 +3371,21 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                |
+| Name   | Type | Mandatory | Description                |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
 
 **Return value**
 
 | Type                            | Description                                       |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified prefix.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -3440,16 +3440,16 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 **Parameters**
 
-| Name  | Type                              | Mandatory| Description                                           |
+| Name  | Type                              | Mandatory | Description                                           |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                           |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -3507,21 +3507,21 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description          |
+| Name | Type      | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                            | Description                                              |
 | -------------------------------- | -------------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified **Query** object.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -3578,16 +3578,16 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 **Parameters**
 
-| Name   | Type                                                  | Mandatory| Description                                |
+| Name   | Type                                                  | Mandatory | Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | keyPrefix | string                                                     | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100001     | Over max limits.                      |
@@ -3656,21 +3656,21 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                |
+| Name   | Type | Mandatory | Description                |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
 
 **Return value**
 
 | Type                                                | Description                                   |
 | ---------------------------------------------------- | --------------------------------------- |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the result set with the specified prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the result set with the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -3730,16 +3730,16 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name  | Type                                                  | Mandatory| Description                                                     |
+| Name  | Type                                                  | Mandatory | Description                                                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | query    | Query                                                      | Yes  | **Query** object to match.                                           |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -3799,21 +3799,21 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description          |
+| Name | Type      | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                                                | Description                                                        |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -3868,16 +3868,16 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                              |
+| Name   | Type                             | Mandatory | Description                              |
 | --------- | ------------------------------------- | ---- | ---------------------------------- |
-| resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close.|
+| resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close. |
 | callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -3922,21 +3922,21 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                              |
+| Name   | Type                             | Mandatory | Description                              |
 | --------- | ------------------------------------- | ---- | ---------------------------------- |
-| resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close.|
+| resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -3977,16 +3977,16 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                       |
+| Name  | Type                   | Mandatory | Description                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -4040,21 +4040,21 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description          |
+| Name | Type      | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                 | Description                                           |
 | --------------------- | ----------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of results obtained.|
+| Promise&lt;number&gt; | Promise used to return the number of results obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -4106,16 +4106,16 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| file     | string                    | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -4150,21 +4150,21 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| file   | string   | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -4197,16 +4197,16 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                        |
+| Name  | Type                 | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -4241,21 +4241,21 @@ Restores a distributed KV store from a database file. This API uses a promise to
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
+| Name | Type | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| file   | string   | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
@@ -4288,16 +4288,16 @@ Deletes a backup file. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                                                        |
+| Name  | Type                                          | Mandatory | Description                                                        |
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the name of the backup file deleted and the operation result.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 
@@ -4331,21 +4331,21 @@ Deletes a backup file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description                                                        |
+| Name | Type           | Mandatory | Description                                                        |
 | ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| files  | Array&lt;string&gt; | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| files  | Array&lt;string&gt; | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
 | Type                                        | Description                                           |
 | -------------------------------------------- | ----------------------------------------------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the name of the backup file deleted and the operation result.|
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the name of the backup file deleted and the operation result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 
@@ -4377,21 +4377,21 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description      |
+| Name  | Type                 | Mandatory | Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 15100005     | Database or result set already closed.   |
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -4457,19 +4457,19 @@ Starts the transaction in this single KV store. This API uses a promise to retur
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                            |
+| ID | **Error Message**                            |
 | ------------ | ---------------------------------------- |
 | 15100005     | Database or result set already closed.   |
 
 For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
-| ID| **Error Message**                                |
+| ID | **Error Message**                                |
 | ------------ | -------------------------------------------- |
 | 14800047     | The WAL file size exceeds the default limit. |
 
@@ -4505,15 +4505,15 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description      |
+| Name  | Type                 | Mandatory | Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4548,13 +4548,13 @@ Commits the transaction in this single KV store. This API uses a promise to retu
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4585,15 +4585,15 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description      |
+| Name  | Type                 | Mandatory | Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4628,13 +4628,13 @@ Rolls back the transaction in this single KV store. This API uses a promise to r
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4665,16 +4665,16 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                     |
+| Name  | Type                 | Mandatory | Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
-| enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
+| enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.  |
 
@@ -4707,21 +4707,21 @@ Sets data sync, which can be enabled or disabled. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type| Mandatory| Description                                                     |
+| Name | Type | Mandatory | Description                                                     |
 | ------- | -------- | ---- | --------------------------------------------------------- |
-| enabled | boolean  | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
+| enabled | boolean  | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -4752,17 +4752,17 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name             | Type                 | Mandatory| Description                            |
+| Name             | Type                 | Mandatory | Description                            |
 | ------------------- | ------------------------- | ---- | -------------------------------- |
 | localLabels         | string[]                  | Yes  | Sync labels set for the local device.        |
-| remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices.|
+| remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices. |
 | callback            | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -4797,22 +4797,22 @@ Sets the data sync range. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name             | Type| Mandatory| Description                            |
+| Name             | Type | Mandatory | Description                            |
 | ------------------- | -------- | ---- | -------------------------------- |
 | localLabels         | string[] | Yes  | Sync labels set for the local device.        |
-| remoteSupportLabels | string[] | Yes  | Sync labels set for remote devices.|
+| remoteSupportLabels | string[] | Yes  | Sync labels set for remote devices. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -4845,16 +4845,16 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 
 **Parameters**
 
-| Name               | Type                 | Mandatory| Description                                        |
+| Name               | Type                 | Mandatory | Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
-| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms. |
+| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -4888,21 +4888,21 @@ Sets the default delay allowed for KV store sync. This API uses a promise to ret
 
 **Parameters**
 
-| Name               | Type| Mandatory| Description                                        |
+| Name               | Type | Mandatory | Description                                        |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database sync, in ms.|
+| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database sync, in ms. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**|
+| ID | **Error Message** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
@@ -4929,7 +4929,7 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
-> **NOTE**
+> **NOTE** 
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
@@ -4939,9 +4939,9 @@ Synchronizes the KV store manually. For details about the sync modes of KV store
 
 **Parameters**
 
-| Name   | Type             | Mandatory| Description                                          |
+| Name   | Type             | Mandatory | Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
+| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized. |
 | mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
@@ -4949,7 +4949,7 @@ Synchronizes the KV store manually. For details about the sync modes of KV store
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**       |
+| ID | **Error Message**       |
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
@@ -5015,7 +5015,7 @@ export default class EntryAbility extends UIAbility {
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
-> **NOTE**
+> **NOTE** 
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
@@ -5025,9 +5025,9 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 
 **Parameters**
 
-| Name   | Type             | Mandatory| Description                                          |
+| Name   | Type             | Mandatory | Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
+| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized. |
 | mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
@@ -5036,7 +5036,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**       |
+| ID | **Error Message**       |
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
@@ -5110,7 +5110,7 @@ Subscribes to data changes of the specified type.
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                                |
+| Name  | Type                                                 | Mandatory | Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
@@ -5120,7 +5120,7 @@ Subscribes to data changes of the specified type.
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100001     | Over max limits.                      |
@@ -5151,16 +5151,16 @@ Subscribes to sync complete events.
 
 **Parameters**
 
-| Name      | Type                                     | Mandatory| Description                                                  |
+| Name      | Type                                     | Mandatory | Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync complete event.            |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -5197,16 +5197,16 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                                    |
+| Name  | Type                                                 | Mandatory | Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100005     | Database or result set already closed. |
@@ -5255,16 +5255,16 @@ Unsubscribes from sync complete events.
 
 **Parameters**
 
-| Name      | Type                                     | Mandatory| Description                                                      |
+| Name      | Type                                     | Mandatory | Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all the callbacks for the sync complete event. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -5312,15 +5312,15 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory| Description                            |
+| Name  | Type                                            | Mandatory | Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback used to return the security level of the KV store.|
+| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback used to return the security level of the KV store. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -5355,13 +5355,13 @@ Obtains the security level of this KV store. This API uses a promise to return t
 
 | Type                                          | Description                               |
 | ---------------------------------------------- | ----------------------------------- |
-| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level of the KV store.|
+| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level of the KV store. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -5402,16 +5402,16 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
+| Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| key      | string                                                       | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| key      | string                                                       | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 | callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback used to return the value obtained.                                |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -5458,21 +5458,21 @@ Obtains the value of the specified key for this device. This API uses a promise 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| key    | string | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| key    | string | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
 
 **Return value**
 
 | Type                                                    | Description                           |
 | -------------------------------------------------------- | ------------------------------- |
-| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise used to return the value obtained.|
+| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise used to return the value obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -5510,7 +5510,7 @@ try {
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5519,7 +5519,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
@@ -5529,7 +5529,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -5571,7 +5571,7 @@ try {
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5580,9 +5580,9 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 **Parameters**
 
-| Name  | Type| Mandatory| Description                    |
+| Name  | Type | Mandatory | Description                    |
 | -------- | -------- | ---- | ------------------------ |
-| deviceId | string   | Yes  | ID of the target device.|
+| deviceId | string   | Yes  | ID of the target device. |
 | key      | string   | Yes  | Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
 
 **Return value**
@@ -5595,7 +5595,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
@@ -5638,16 +5638,16 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 **Parameters**
 
-| Name   | Type                                  | Mandatory| Description                                    |
+| Name   | Type                                  | Mandatory | Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -5706,21 +5706,21 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                |
+| Name   | Type  | Mandatory | Description                |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
 
 **Return value**
 
 | Type                            | Description                                       |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified prefix.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -5769,7 +5769,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5778,17 +5778,17 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 **Parameters**
 
-| Name   | Type                              | Mandatory| Description                                          |
+| Name   | Type                              | Mandatory | Description                                          |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | Yes  | ID of the target device.                      |
-| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 15100003     | Database corrupted.                    |
@@ -5842,7 +5842,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5851,22 +5851,22 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                    |
+| Name   | Type | Mandatory | Description                    |
 | --------- | -------- | ---- | ------------------------ |
-| deviceId  | string   | Yes  | ID of the target device.|
+| deviceId  | string   | Yes  | ID of the target device. |
 | keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
 | Type                            | Description                                             |
 | -------------------------------- | ------------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return all the KV pairs that match the given condition.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return all the KV pairs that match the given condition. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -5923,16 +5923,16 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                 |
+| Name  | Type                                  | Mandatory | Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object on the local device.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object on the local device. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -5990,21 +5990,21 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 **Parameters**
 
-| Name| Type          | Mandatory| Description          |
+| Name | Type          | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                            | Description                                                    |
 | -------------------------------- | -------------------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified **Query** object on the local device.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified **Query** object on the local device. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -6056,7 +6056,7 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6065,17 +6065,17 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 **Parameters**
 
-| Name  | Type                              | Mandatory| Description                                                   |
+| Name  | Type                              | Mandatory | Description                                                   |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | Yes  | ID of the target device.                                   |
 | query    | [Query](#query)                         | Yes  | **Query** object to match.                                         |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified device ID and **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -6134,7 +6134,7 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6143,22 +6143,22 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 **Parameters**
 
-| Name  | Type      | Mandatory| Description                |
+| Name  | Type      | Mandatory | Description                |
 | -------- | -------------- | ---- | -------------------- |
-| deviceId | string         | Yes  | ID of the target device.|
+| deviceId | string         | Yes  | ID of the target device. |
 | query    | [Query](#query) | Yes  | **Query** object to match.      |
 
 **Return value**
 
 | Type                            | Description                                                      |
 | -------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified device ID and **Query** object.|
+| Promise&lt;[Entry](#entry)[]&gt; | Promise used to return the KV pairs that match the specified device ID and **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
@@ -6216,16 +6216,16 @@ Obtains a result set with the specified prefix for this device. This API uses an
 
 **Parameters**
 
-| Name   | Type                                                      | Mandatory| Description                                |
+| Name   | Type                                                      | Mandatory | Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
+| keyPrefix | string                                                     | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6293,21 +6293,21 @@ Obtains a result set with the specified prefix for this device. This API uses a 
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                |
+| Name   | Type  | Mandatory | Description                |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
 
 **Return value**
 
 | Type                                                | Description                                   |
 | ---------------------------------------------------- | --------------------------------------- |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the result set with the specified prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the result set with the specified prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6362,7 +6362,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6371,17 +6371,17 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 **Parameters**
 
-| Name   | Type                                                    | Mandatory| Description                                                        |
+| Name   | Type                                                    | Mandatory | Description                                                        |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
-| keyPrefix | string                                                       | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| keyPrefix | string                                                       | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6423,7 +6423,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6432,22 +6432,22 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 **Parameters**
 
-| Name   | Type| Mandatory| Description                    |
+| Name   | Type | Mandatory | Description                    |
 | --------- | -------- | ---- | ------------------------ |
-| deviceId  | string   | Yes  | ID of the target device.|
-| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| deviceId  | string   | Yes  | ID of the target device. |
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned. |
 
 **Return value**
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6485,7 +6485,7 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6494,17 +6494,17 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 **Parameters**
 
-| Name  | Type                                                    | Mandatory| Description                                                        |
+| Name  | Type                                                    | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6569,7 +6569,7 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6578,22 +6578,22 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 **Parameters**
 
-| Name  | Type      | Mandatory| Description                              |
+| Name  | Type      | Mandatory | Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
-| deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.|
+| deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs. |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
 
 **Return value**
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6660,21 +6660,21 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name| Type          | Mandatory| Description          |
+| Name | Type          | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                                                | Description                                                        |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6724,7 +6724,7 @@ try {
 getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified **Query** object for this device. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6733,7 +6733,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Parameters**
 
-| Name  | Type          | Mandatory| Description                              |
+| Name  | Type          | Mandatory | Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
 | callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.        |
@@ -6743,7 +6743,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100001     | Over max limits.                      |
@@ -6813,16 +6813,16 @@ Obtains the number of results that match the specified **Query** object for this
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                             |
+| Name  | Type                       | Mandatory | Description                                             |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                   |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
@@ -6876,21 +6876,21 @@ Obtains the number of results that match the specified **Query** object for this
 
 **Parameters**
 
-| Name| Type          | Mandatory| Description          |
+| Name | Type          | Mandatory | Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](#query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match. |
 
 **Return value**
 
 | Type                 | Description                                                |
 | --------------------- | ---------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of results obtained.|
+| Promise&lt;number&gt; | Promise used to return the number of results obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes:1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
@@ -6937,7 +6937,7 @@ try {
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6946,17 +6946,17 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                               |
+| Name  | Type                   | Mandatory | Description                                               |
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                 |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                     |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
@@ -7009,7 +7009,7 @@ try {
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -7018,22 +7018,22 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 **Parameters**
 
-| Name  | Type      | Mandatory| Description                              |
+| Name  | Type      | Mandatory | Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
-| deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.|
+| deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs. |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
 
 **Return value**
 
 | Type                 | Description                                                  |
 | --------------------- | ------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the number of results obtained. |
+| Promise&lt;number&gt; | Promise used to return the number of results obtained.  |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| **Error Message**                          |
+| ID | **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
