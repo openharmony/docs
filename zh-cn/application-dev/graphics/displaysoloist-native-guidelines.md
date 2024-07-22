@@ -62,25 +62,30 @@ libnative_display_soloist.so
 
    ```ts
    import XComponentContext from "../interface/XComponentContext";
-
+   
    @Entry
    @Component
    struct Index {
      private xComponentContext1: XComponentContext | undefined = undefined;
      private xComponentContext2: XComponentContext | undefined = undefined;
-      Row() {
-        XComponent({ id: 'xcomponentId30', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext1 = xComponentContext as XComponentContext;
-          }).width('640px')
-      }.height('40%')
-
-      Row() {
-        XComponent({ id: 'xcomponentId120', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext2 = xComponentContext as XComponentContext;
-          }).width('640px')// 64的倍数
-      }.height('40%')
+   
+     build() {
+       Column() {
+         Row() {
+           XComponent({ id: 'xcomponentId30', type: 'surface', libraryname: 'entry' })
+             .onLoad((xComponentContext) => {
+               this.xComponentContext1 = xComponentContext as XComponentContext;
+             }).width('640px')
+         }.height('40%')
+   
+         Row() {
+           XComponent({ id: 'xcomponentId120', type: 'surface', libraryname: 'entry' })
+             .onLoad((xComponentContext) => {
+               this.xComponentContext2 = xComponentContext as XComponentContext;
+             }).width('640px') // 64的倍数
+         }.height('40%')
+       }
+     }
    }
    ```
    
@@ -299,14 +304,11 @@ libnative_display_soloist.so
    ```c++
    // 离开页面时，取消回调注册与销毁OH_DisplaySoloist实例
    aboutToDisappear(): void {
-     Logger.info(TAG, "aboutToDisappear");
      if (this.xComponentContext1) {
-       Logger.info(TAG, "Unregister1");
        this.xComponentContext1.unregister();
        this.xComponentContext1.destroy();
      }
      if (this.xComponentContext2) {
-       Logger.info(TAG, "Unregister2");
        this.xComponentContext2.unregister();
        this.xComponentContext2.destroy();
      }
