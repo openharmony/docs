@@ -2317,8 +2317,7 @@ get shapeMask(): ShapeMask
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
