@@ -674,7 +674,7 @@
 **取值：** "usual.event.THERMAL_LEVEL_CHANGED"
 
 
-### COMMON_EVENT_ENTER_FORCE_SLEEP
+### COMMON_EVENT_ENTER_FORCE_SLEEP<sup>12+<sup>
 
 表示设备即将进入强制睡眠模式的公共事件的动作。
 
@@ -687,7 +687,7 @@
 
 **取值：** "usual.event.ENTER_FORCE_SLEEP"
 
-### COMMON_EVENT_EXIT_FORCE_SLEEP
+### COMMON_EVENT_EXIT_FORCE_SLEEP<sup>12+<sup>
 
 表示设备退出强制睡眠模式的公共事件的动作。
 
