@@ -199,15 +199,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
-window.minimizeAll(displayClass.id, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in minimizing all windows.');
-});
 
+try {
+  window.minimizeAll(displayClass.id, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in minimizing all windows.');
+  });
+} catch (exception) {
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -249,12 +253,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 
-let promise = window.minimizeAll(displayClass.id);
-promise.then(() => {
-  console.info('Succeeded in minimizing all windows.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-});
+try {
+  let promise = window.minimizeAll(displayClass.id);
+  promise.then(() => {
+    console.info('Succeeded in minimizing all windows.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
