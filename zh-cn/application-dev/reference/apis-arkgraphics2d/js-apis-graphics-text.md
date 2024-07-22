@@ -477,24 +477,7 @@ layoutSync(width: number): void
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  paragraph.layoutSync(100);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+paragraph.layoutSync(100);
 ```
 
 ### paint
@@ -516,31 +499,11 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
-
-function Text() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
-  paragraph.paint(canvas, 0, 0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+const color: ArrayBuffer = new ArrayBuffer(160000);
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
+let canvas = new drawing.Canvas(pixelMap);
+paragraph.paint(canvas, 0, 0);
 ```
 
 ### paintOnPath
@@ -563,33 +526,13 @@ paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
-
-function Text() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
-  let path = new drawing.Path();
-  path.arcTo(20, 20, 180, 180, 180, 90);
-  paragraph.paintOnPath(canvas, path, 0, 0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+const color: ArrayBuffer = new ArrayBuffer(160000);
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
+let canvas = new drawing.Canvas(pixelMap);
+let path = new drawing.Path();
+path.arcTo(20, 20, 180, 180, 180, 90);
+paragraph.paintOnPath(canvas, path, 0, 0);
 ```
 
 ### getMaxWidth
@@ -609,24 +552,7 @@ getMaxWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let maxWidth = paragraph.getMaxWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let maxWidth = paragraph.getMaxWidth();
 ```
 
 ### getHeight
@@ -646,24 +572,7 @@ getHeight(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let height = paragraph.getHeight();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let height = paragraph.getHeight();
 ```
 
 ### getLongestLine
@@ -683,24 +592,7 @@ getLongestLine(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let longestLine = paragraph.getLongestLine();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let longestLine = paragraph.getLongestLine();
 ```
 
 ### getMinIntrinsicWidth
@@ -720,24 +612,7 @@ getMinIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 ```
 
 ### getMaxIntrinsicWidth
@@ -757,24 +632,7 @@ getMaxIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 ```
 
 ### getAlphabeticBaseline
@@ -794,24 +652,7 @@ getAlphabeticBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let alphabeticBaseline = paragraph.getAlphabeticBaseline();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let alphabeticBaseline = paragraph.getAlphabeticBaseline();
 ```
 
 ### getIdeographicBaseline
@@ -831,24 +672,7 @@ getIdeographicBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let ideographicBaseline = paragraph.getIdeographicBaseline();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let ideographicBaseline = paragraph.getIdeographicBaseline();
 ```
 
 ### getRectsForRange
@@ -876,25 +700,8 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let range: text.Range = { start: 0, end: 1};
-  let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let range: text.Range = { start: 0, end: 1};
+let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
 ```
 
 ### getRectsForPlaceholders
@@ -914,24 +721,7 @@ getRectsForPlaceholders(): Array\<TextBox>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let placeholderRects = paragraph.getRectsForPlaceholders();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let placeholderRects = paragraph.getRectsForPlaceholders();
 ```
 
 ### getGlyphPositionAtCoordinate
@@ -958,24 +748,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 ```
 
 ### getWordBoundary
@@ -1001,24 +774,7 @@ getWordBoundary(offset: number): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let wordRange = paragraph.getWordBoundary(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let wordRange = paragraph.getWordBoundary(0);
 ```
 
 ### getLineCount
@@ -1038,24 +794,7 @@ getLineCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineCount = paragraph.getLineCount();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineCount = paragraph.getLineCount();
 ```
 
 ### getLineHeight
@@ -1081,24 +820,7 @@ getLineHeight(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineHeight = paragraph.getLineHeight(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineHeight = paragraph.getLineHeight(0);
 ```
 
 ### getLineWidth
@@ -1124,24 +846,7 @@ getLineWidth(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineWidth = paragraph.getLineWidth(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineWidth = paragraph.getLineWidth(0);
 ```
 
 ### didExceedMaxLines
@@ -1161,24 +866,7 @@ didExceedMaxLines(): boolean
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let didExceed = paragraph.didExceedMaxLines();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let didExceed = paragraph.didExceedMaxLines();
 ```
 
 ### getTextLines
@@ -1198,24 +886,7 @@ getTextLines(): Array\<TextLine>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lines = paragraph.getTextLines();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lines = paragraph.getTextLines();
 ```
 
 ### getActualTextRange
@@ -1242,35 +913,7 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let rang = paragraph.getActualTextRange(0, true);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let rang = paragraph.getActualTextRange(0, true);
 ```
 
 
@@ -1291,35 +934,7 @@ getLineMetrics(): Array\<LineMetrics>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let arrLineMetrc =  paragraph.getLineMetrics();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let arrLineMetrc =  paragraph.getLineMetrics();
 ```
 
 ### getLineMetrics
@@ -1345,35 +960,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let lineMetrics =  paragraph.getLineMetrics(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
 ## RunMetrics
@@ -1735,9 +1322,7 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
 function Text() {
