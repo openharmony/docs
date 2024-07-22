@@ -41,6 +41,10 @@
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
   - 进程线程通信
+    - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
+    <!--Del-->
+    - [系统定义的公共事件 (系统接口)](common_event/commonEventManager-definitions-sys.md)
+    <!--DelEnd-->
     - [@ohos.commonEventManager (公共事件模块)](js-apis-commonEventManager.md)
     - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
     <!--Del-->
@@ -53,30 +57,6 @@
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
       - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-    - 公共事件定义
-      - [系统公共事件定义](common_event/commonEventManager-definitions.md)
-      - [元能力子系统公共事件定义](common_event/commonEvent-ability.md)
-      - [包管理子系统公共事件定义](common_event/commonEvent-bundleManager.md)
-      - [通知服务公共事件定义](common_event/commonEvent-ans.md)
-      - [资源调度子系统公共事件定义](common_event/commonEvent-resourceschedule.md)
-      - [窗口管理子系统公共事件定义](common_event/commonEvent-window.md)
-      - [网络管理子系统公共事件定义](common_event/commonEvent-netmanager.md)
-      - [短信应用公共事件定义](common_event/commonEvent-mms.md)
-      - [电话服务子系统公共事件定义](common_event/commonEvent-telephony.md)
-      - [电源管理子系统公共事件定义](common_event/commonEvent-powermgr.md)
-      - [NFC子系统公共事件定义](common_event/commonEvent-nfc.md)
-      - [Wifi子系统公共事件定义](common_event/commonEvent-wifi.md)
-      - [USB子系统公共事件定义](common_event/commonEvent-usb.md)
-      - [文件管理子系统公共事件定义](common_event/commonEvent-filemanagement.md)
-      - [主题框架子系统-锁屏管理公共事件定义](common_event/commonEvent-screenlock.md)
-      - [时间时区子系统公共事件定义](common_event/commonEvent-time.md)
-      - [账号子系统公共事件定义](common_event/commonEvent-account.md)
-      - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
-      - [Account Kit公共事件定义](common_event/commonEvent-accountkit.md)
-      - [Store Kit公共事件定义](common_event/commonEvent-storekit.md)
-      <!--Del-->
-      - [系统公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
-      <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
     - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)
