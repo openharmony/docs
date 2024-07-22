@@ -2832,6 +2832,82 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### startMove<sup>13+</sup>
+
+startMove(): void
+
+开始移动窗口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    windowClass.startMove();
+} catch (exception) {
+    console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### enableDrag<sup>13+</sup>
+
+enableDrag(enable: boolean): void
+
+允许拖拽窗口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    windowClass.enableDrag();
+} catch (exception) {
+    console.error(`Failed to enable window dragging. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setResizeByDragEnabled<sup>10+</sup>
 
 setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
