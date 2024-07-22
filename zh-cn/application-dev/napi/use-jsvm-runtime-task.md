@@ -6,7 +6,7 @@
 
 ## 使用示例
 
-1. 接口声明、编译配置以及模块注册
+1. 接口声明和编译配置
 
 **接口声明**
 
@@ -38,36 +38,6 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-**模块注册**
-
-  ```cpp
-  // create_jsvm_runtime.cpp
-  EXTERN_C_START
-  static napi_value Init(napi_env env, napi_value exports) {
-      napi_property_descriptor desc[] = {
-          {"createJsCore", nullptr, CreateJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"releaseJsCore", nullptr, ReleaseJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"evalUateJS", nullptr, EvalUateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
-      };
-
-      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      return exports;
-  }
-  EXTERN_C_END
-
-  static napi_module demoModule = {
-      .nm_version = 1,
-      .nm_flags = 0,
-      .nm_filename = nullptr,
-      .nm_register_func = Init,
-      .nm_modname = "entry",
-      .nm_priv = ((void *)0),
-      .reserved = {0},
-  };
-
-  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
-  ```
-
 2. 新建多个JS运行时环境并运行JS代码
 
   ```cpp
@@ -81,7 +51,6 @@
   #include <map>
   #include <unistd.h>
   #include <hilog/log.h>
-  #include "myobject.h"
 
   #include <cstring>
   #include <string>
@@ -432,13 +401,43 @@
               napi_create_string_utf8(env, stdResult.c_str(), stdResult.length(), &res);
       }
           bool aal = false;
-          PumpMessageLoop(*g_vmMap[envId], &aal);
-          PerformMicrotaskCheckpoint(*g_vmMap[envId]);
+          OH_JSVM_PumpMessageLoop(*g_vmMap[envId], &aal);
+          OH_JSVM_PerformMicrotaskCheckpoint(*g_vmMap[envId]);
           OH_JSVM_CloseHandleScope(*g_envMap[envId], handlescope);
       }
       OH_LOG_ERROR(LOG_APP, "JSVM EvalUateJS END");
       return res;
   }
+  ```
+
+**模块注册**
+
+  ```cpp
+  // create_jsvm_runtime.cpp
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports) {
+      napi_property_descriptor desc[] = {
+          {"createJsCore", nullptr, CreateJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"releaseJsCore", nullptr, ReleaseJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"evalUateJS", nullptr, EvalUateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
+      };
+
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+
+  static napi_module demoModule = {
+      .nm_version = 1,
+      .nm_flags = 0,
+      .nm_filename = nullptr,
+      .nm_register_func = Init,
+      .nm_modname = "entry",
+      .nm_priv = ((void *)0),
+      .reserved = {0},
+  };
+
+  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
 
   3. ArkTS侧示例代码
@@ -472,7 +471,7 @@
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-              let sourceCodeStr = `{
+              let sourcecodestr = `{
             let a = "hello World";
             consoleinfo(a);
             const mPromise = createPromise();
@@ -487,12 +486,13 @@
             let a = "second hello";
             consoleinfo(a);
             let b = add(99, 1);
-            assertEqual(100, b);"
-            "assertEqual(add(99, 1), 100);
+            assertEqual(100, b);
+            assertEqual(add(99, 1), 100);
             createPromise().then((result) => {
             assertEqual(result, 1);
-            consoleinfo(onJSResultCallback(result, '999','666'));});"
-            "a
+            consoleinfo(onJSResultCallback(result, '999','666'));
+            });
+            a;
             };`;
 
               // 创建首个运行环境，并绑定TS回调
