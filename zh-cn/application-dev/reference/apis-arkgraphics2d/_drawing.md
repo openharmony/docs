@@ -11101,9 +11101,7 @@ void OH_Drawing_PenSetBlendMode (OH_Drawing_Pen* , OH_Drawing_BlendMode  )
 
 执行成功时返回OH_DRAWING_SUCCESS；
 
-OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
-
-OH_Drawing_BlendMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
