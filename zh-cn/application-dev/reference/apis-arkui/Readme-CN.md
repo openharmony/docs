@@ -222,6 +222,7 @@
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
+    - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
   - 文本与输入
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
