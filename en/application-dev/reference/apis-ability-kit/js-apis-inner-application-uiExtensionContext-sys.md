@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContext.startAbilityForResultAsCaller
@@ -40,34 +40,35 @@ When this API is used to start an ability, the caller information carried in **w
 
 **Parameters**
 
-| Name | Type                                               | Mandatory| Description                     |
+| Name | Type                                               | Mandatory | Description                     |
 | ------- | --------------------------------------------------- | ---- | ------------------------- |
 | want    | [Want](js-apis-app-ability-want.md)                 | Yes  | Want information about the target ability.  |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No  | Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No  | Parameters used for starting the ability. |
 
 **Return value**
 
 | Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message                                               |
+| ID | Error Message                                               |
 | -------- | ------------------------------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Params error. Possible causes: Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
 | 16000004 | Can not start invisible component.                      |
 | 16000050 | Internal error.                                         |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import base from '@ohos.base'
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class UIExtension extends UIExtensionAbility {
   onForeground() {
@@ -75,11 +76,11 @@ export default class UIExtension extends UIExtensionAbility {
       bundleName: 'com.example.startabilityforresultascaller',
       abilityName: 'EntryAbility',
       moduleName: 'entry'
-    }).then((data)=>{
+    }).then((data) => {
       console.log('=======>startAbilityForResultAsCaller data Promise ======>' + JSON.stringify(data));
-    }).catch((error: base.BusinessError)=>{
+    }).catch((error: BusinessError) => {
       console.log('=======>startAbilityForResultAsCaller error.code Promise ======>' + error.code);
-    })
+    });
   }
 }
 ```

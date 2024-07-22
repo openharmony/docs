@@ -10,7 +10,7 @@
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
@@ -19,10 +19,10 @@ import appManager from '@ohos.application.appManager';
 
 **System API**: This is a system API.
 
-| Name       | Type   | Read Only| Mandatory| Description            |
+| Name       | Type   | Read Only | Mandatory | Description            |
 | ----------- | ------- | ---- | ---- | ---------------- |
-| bundleName  | string  | Yes  | No  | Bundle name.|
-| moduleName  | string  | Yes  | No  | Module name.|
+| bundleName  | string  | Yes  | No  | Bundle name. |
+| moduleName  | string  | Yes  | No  | Module name. |
 | abilityName | string  | Yes  | No  | Ability name.   |
 | appIndex    | number  | Yes  | No  | Index of the DLP sandbox. |
 | isColdStart | boolean | Yes  | No  | Enabled status of cold start.    |

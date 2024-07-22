@@ -1,6 +1,6 @@
 # ProcessData (System API)
 
-The **ProcessData** module defines process data. If a lifecycle change listener is registered by calling [registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) is invoked when the lifecycle of an application or ability changes.
+The **ProcessData** module defines process data. If a lifecycle change listener is registered by calling [on](js-apis-app-ability-appManager-sys.md#appmanageron), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) is invoked when the lifecycle of an application or ability changes.
 
 > **NOTE**
 > 
@@ -10,7 +10,7 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## Properties
@@ -19,7 +19,7 @@ import appManager from '@ohos.application.appManager';
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                    | Type    | Read-only| Mandatory| Description                      |
+| Name                    | Type    | Read-only | Mandatory | Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
 | pid         | number   | No  | Yes  | Process ID.                   |
 | bundleName  | string   | No  | Yes | Bundle name of the application.                 |
@@ -30,33 +30,33 @@ import appManager from '@ohos.application.appManager';
 
 **Example**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let observerCode = appManager.on('applicationState', {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`onProcessStateChanged processData.pid : ${JSON.stringify(processData.pid)}`);
-        console.log(`onProcessStateChanged processData.bundleName : ${JSON.stringify(processData.bundleName)}`);
-        console.log(`onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}`);
-        console.log(`onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}`);
-        console.log(`onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}`);
-    },
-    onAppStarted(appStateData) {
-        console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
-    },
-    onAppStopped(appStateData) {
-        console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`onProcessStateChanged processData.pid : ${JSON.stringify(processData.pid)}`);
+    console.log(`onProcessStateChanged processData.bundleName : ${JSON.stringify(processData.bundleName)}`);
+    console.log(`onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}`);
+    console.log(`onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}`);
+    console.log(`onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
+  }
 });
 ```
