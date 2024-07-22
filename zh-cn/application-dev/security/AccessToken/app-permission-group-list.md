@@ -129,11 +129,11 @@
 <!--Del-->
 ## 文件夹
 
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_documents_directory)
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
 <!--DelEnd-->
 
 ## 星闪
