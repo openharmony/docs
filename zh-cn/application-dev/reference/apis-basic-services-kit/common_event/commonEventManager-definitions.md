@@ -1078,7 +1078,7 @@ Wi-Fi状态变化。
 
 
 
-# Store Kit
+## Store Kit
 Store Kit面向应用发布如下系统公共事件。
 
 ## COMMON_EVENT_PRIVACY_POLICY_STATE_CHANGED<sup>11+<sup>
@@ -1093,7 +1093,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-# 预留公共事件
+## 预留公共事件
 
 以下事件为预留公共事件，暂未支持。
 
