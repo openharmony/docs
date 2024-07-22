@@ -5,9 +5,6 @@ Common Event Manager（公共事件管理工具， 简称cem）是实现公共�
 > **说明：**
 >
 > 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
-> 
-> 当前工具仅支持在eng版本中使用，在user版本中使用会出现报错error: user version cannot publish common events。
-
 
 ## cem调试助手
 
