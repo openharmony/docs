@@ -6734,6 +6734,8 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
+子窗口调用后不生效。
+
 > **说明：**
 >
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9)。
@@ -6799,6 +6801,8 @@ export default class EntryAbility extends UIAbility {
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
 设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+
+子窗口调用后不生效。
 
 > **说明：**
 >
