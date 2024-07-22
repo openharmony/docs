@@ -42,7 +42,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000003 | The asset already exists.                                  |
 | 24000005 | The screen lock status does not match.                         |
@@ -114,7 +114,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -181,7 +181,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000005 | The screen lock status does not match.                         |
@@ -251,7 +251,7 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 | -------- | ------------------------------------------------------------ |
 | 201      | The caller doesn't have the permission.                      |
 | 202      | Non-system applications use system APIs.                     |
-| 401      | The argument is invalid.                                     |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -320,10 +320,10 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
-| 24000004 | Access to the asset is denied.                             |
+| 24000004 | Access denied.                             |
 | 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
@@ -393,7 +393,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
 | 24000010 | IPC failed.                                |
