@@ -195,7 +195,7 @@ export class BreakpointSystem {
       } else {
         condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
       }
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener = mediaquery.matchMediaSync(condition)
       if (breakpoint.mediaQueryListener.matches) {
         this.updateAllState(breakpoint.name)
       }
