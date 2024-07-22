@@ -26,9 +26,9 @@ Called when an ability is created.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
 
 **Example**
 
@@ -46,10 +46,10 @@ Called when the window stage of an ability is created.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
-  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes | **WindowStage** object. |
 
 **Example**
 
@@ -67,10 +67,10 @@ Called when the window stage of an ability gains focus.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
-  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes | **WindowStage** object. |
 
 **Example**
 
@@ -88,10 +88,10 @@ Called when the window stage of an ability loses focus.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
-  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes | **WindowStage** object. |
 
 **Example**
 
@@ -109,10 +109,10 @@ Called when the window stage of an ability is destroyed.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
-  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes | **WindowStage** object. |
 
 **Example**
 
@@ -130,9 +130,9 @@ Called when an ability is destroyed.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
 
 **Example**
 
@@ -150,9 +150,9 @@ Called when an ability is switched from the background to the foreground.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
 
 **Example**
 
@@ -170,9 +170,9 @@ Called when an ability is switched from the foreground to the background.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
 
 **Example**
 
@@ -190,9 +190,9 @@ Called when an ability is continued on another device.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes | **Ability** object. |
 
 **Example**
 

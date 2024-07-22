@@ -14,7 +14,7 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Usage
@@ -24,13 +24,14 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 let commRemote: rpc.IRemoteObject | null; // Release the instance when the connection is disconnected.
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
-      let context = this.context; // Obtain a ServiceExtensionContext instance.
+    let context = this.context; // Obtain a ServiceExtensionContext instance.
   }
 }
 ```
@@ -47,16 +48,16 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability, such as the ability name and bundle name. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -76,14 +77,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -122,22 +121,22 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability, such as the ability name and bundle name. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -157,15 +156,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -185,11 +181,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -207,17 +203,17 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -237,15 +233,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -262,7 +255,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbility(want, options, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -270,7 +263,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -294,17 +287,17 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -325,14 +318,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -347,7 +338,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -355,7 +346,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -379,30 +370,28 @@ Starts an ability with the account ID and start options specified. This API uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated). |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -411,15 +400,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -437,7 +423,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, options, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -445,7 +431,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -470,23 +456,23 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1). |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -507,15 +493,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -537,11 +520,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -559,16 +542,16 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -589,9 +572,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -605,7 +587,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -613,7 +595,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -631,21 +613,21 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -666,9 +648,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -680,17 +661,17 @@ class EntryAbility extends ServiceExtensionAbility {
 
     try {
       this.context.startServiceExtensionAbility(want)
-        .then((data: void) => {
+        .then((data) => {
           // Carry out normal service processing.
           console.log('startServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -704,7 +685,8 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -714,17 +696,17 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -745,9 +727,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -762,7 +743,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -770,7 +751,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -784,7 +765,8 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -794,22 +776,22 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1). |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -830,9 +812,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -851,11 +832,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -877,16 +858,16 @@ Starts an ability with the caller information specified. The caller information 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -906,13 +887,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -932,7 +911,6 @@ class EntryAbility extends ServiceExtensionAbility {
     })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
@@ -951,17 +929,17 @@ Starts an ability with the caller information and start options specified. The c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -979,14 +957,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -1010,7 +985,6 @@ class EntryAbility extends ServiceExtensionAbility {
     })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
@@ -1029,22 +1003,22 @@ Starts an ability with the caller information specified. The caller information 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1064,15 +1038,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -1084,7 +1055,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // Start a new ability using the caller information.
     this.context.startAbilityAsCaller(localWant, option)
@@ -1096,7 +1067,6 @@ class EntryAbility extends ServiceExtensionAbility {
       })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
@@ -1111,16 +1081,16 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1137,9 +1107,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1153,7 +1122,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbility(want, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -1161,7 +1130,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1179,21 +1148,21 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1210,9 +1179,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1230,11 +1198,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1248,7 +1216,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1258,17 +1226,17 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1285,9 +1253,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1302,7 +1269,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // Process service logic errors.
-          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -1310,7 +1277,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1324,7 +1291,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1334,22 +1301,22 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1). |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1366,9 +1333,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1387,11 +1353,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1409,20 +1375,17 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
@@ -1430,15 +1393,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     this.context.terminateSelf((error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
       }
       // Carry out normal service processing.
@@ -1460,19 +1423,16 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
@@ -1480,8 +1440,8 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1490,7 +1450,7 @@ class EntryAbility extends ServiceExtensionAbility {
       console.log('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       // Process service logic errors.
-      console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 }
@@ -1502,28 +1462,32 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 Connects this ability to a ServiceExtensionAbility.
 
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability, such as the ability name and bundle name. |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes | Callback used to return the information indicating that the connection is successful, interrupted, or failed. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | A number, based on which the connection will be interrupted.|
+| number | A number, based on which the connection will be interrupted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1541,13 +1505,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject; // Release the instance when the connection is disconnected.
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let want: Want = {
@@ -1559,15 +1522,20 @@ class EntryAbility extends ServiceExtensionAbility {
         commRemote = remote;
         console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-      onFailed(code) { console.error('----------- onFailed -----------') }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------');
+      },
+      onFailed(code) {
+        console.error('----------- onFailed -----------');
+      }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1577,7 +1545,12 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect this ability to another ability.
+Connects this ability to a ServiceExtensionAbility of a given account.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1587,23 +1560,23 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| options | ConnectOptions | Yes| Remote object instance.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated). |
+| options | ConnectOptions | Yes | Remote object instance. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Result code of the connection.|
+| number | Result code of the connection. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -1622,13 +1595,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject; // Release the instance when the connection is disconnected.
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let want: Want = {
@@ -1642,15 +1614,20 @@ class EntryAbility extends ServiceExtensionAbility {
         commRemote = remote;
         console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
-      onFailed(code) { console.log('----------- onFailed -----------'); }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------');
+      },
+      onFailed(code) {
+        console.log('----------- onFailed -----------');
+      }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1668,16 +1645,16 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| connection | number | Yes | Number returned after **connectServiceExtensionAbility** is called. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
@@ -1686,11 +1663,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null; // Release the instance when the connection is disconnected.
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection is the return value of connectServiceExtensionAbility.
@@ -1727,21 +1705,21 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
+| connection | number | Yes | Number returned after **connectServiceExtensionAbility** is called. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
@@ -1750,11 +1728,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null; // Release the instance when the connection is disconnected.
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection is the return value of connectServiceExtensionAbility.
@@ -1799,48 +1778,43 @@ Observe the following when using this API:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released.        |
 
 **Example**
 
 Start an ability in the background.
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let caller: Caller;
-
     // Start an ability in the background by not passing parameters.
     let wantBackground: Want = {
       bundleName: 'com.example.myservice',
@@ -1857,11 +1831,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // Process service logic errors.
-        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1870,15 +1844,12 @@ class EntryAbility extends ServiceExtensionAbility {
 Start an ability in the foreground.
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let caller: Caller;
-
     // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
     let wantForeground: Want = {
       bundleName: 'com.example.myservice',
@@ -1898,11 +1869,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // Process service logic errors.
-        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1923,16 +1894,16 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1953,9 +1924,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2000,28 +1970,26 @@ You can use this API to carry start options.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -2031,10 +1999,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2083,16 +2049,16 @@ This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -2113,10 +2079,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2168,22 +2132,22 @@ Observe the following when using this API:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
-| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background. |
+| accountId | number | Yes | ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1). |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -2203,11 +2167,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, Caller } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2234,11 +2195,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // Process service logic errors.
-        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -2250,11 +2211,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
 
-Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
-
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2262,21 +2223,21 @@ Before starting the UIExtensionAility, ensure that the foreground application ha
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes | Want information used to start the UIExtensionAbility. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 202 | The application is not system-app, can not use system-api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -2285,15 +2246,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'com.example.myapplication.UIExtAbility',
+      abilityName: 'UIExtAbility',
       moduleName: 'entry_test',
       parameters: {
         'bundleName': 'com.example.myapplication',
@@ -2328,28 +2288,27 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
 
-Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
-
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes | Want information used to start the UIExtensionAbility. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 202 | The application is not system-app, can not use system-api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -2358,13 +2317,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
-     let pickerWant: Want = {
+    let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'com.example.myapplication.UIExtAbility',
       moduleName: 'entry_test',
@@ -2377,15 +2335,15 @@ class ServiceExtension extends ServiceExtensionAbility {
 
     try {
       this.context.requestModalUIExtension(pickerWant, (err: BusinessError) => {
-        if (err.code) { 
+        if (err.code) {
           // Process service logic errors.
           console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // Carry out normal service processing.
         console.info('requestModalUIExtension succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // Process input parameter errors.
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -2417,22 +2375,22 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| link | string | Yes| URL to open, which must be in the standard format.|
-| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No| Options of the URL.|
+| link | string | Yes | URL to open, which must be in the standard format. |
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No | Options of the URL. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -2454,10 +2412,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, OpenLinkOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
   console.error(`[ServiceExtApp]:: ${JSON.stringify(info)}`);
@@ -2485,7 +2441,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       });
     }
     catch (e) {
-      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
+      log(`exception occured, errCode ${JSON.stringify((e as BusinessError).code)}`);
     }
   }
 

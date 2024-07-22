@@ -10,7 +10,7 @@
 ### Modules to Import
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ### Attributes
@@ -19,6 +19,6 @@ import appManager from '@ohos.app.ability.appManager';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                    | Type                | Read Only| Mandatory| Description                                                        |
+| Name                    | Type                | Read Only | Mandatory | Description                                                        |
 | ------------------------ | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| onAbilityFirstFrameDrawn | AsyncCallback\<void> | Yes  | No  | Callback invoked when the first frame of an ability is rendered. The parameter type passed in is [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys).|
+| onAbilityFirstFrameDrawn | AsyncCallback\<void> | Yes  | No  | Callback invoked when the first frame of an ability is rendered. The parameter type passed in is [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys). |

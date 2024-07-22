@@ -22,9 +22,9 @@ import { StartOptions } from '@kit.AbilityKit';
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name | Type | Read-only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| windowFocused<sup>12+</sup> | boolean | No| No| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**<br>1. This property takes effect only on tablets.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. This property takes effect only when the application to start is in cold start mode.|
+| windowFocused<sup>12+</sup> | boolean | No | No | Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This property takes effect only on tablets and 2-in-1 devices.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>This property takes effect only when the application to start is in cold start mode. |
 
 **Example**
 
