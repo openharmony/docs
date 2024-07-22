@@ -171,37 +171,7 @@
 **取值：** "usual.event.MY_PACKAGE_UNSUSPENDED"
 
 
-### COMMON_EVENT_PACKAGE_FIRST_LAUNCH
 
-（预留事件，暂未支持）应用程序在安装后首次启动。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** "usual.event.PACKAGE_FIRST_LAUNCH"
-
-
-### COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
-
-（预留事件，暂未支持）当一个包需要被验证时，由系统包验证者发送。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** "usual.event.PACKAGE_NEEDS_VERIFICATION"
-
-
-### COMMON_EVENT_PACKAGE_VERIFIED
-
-（预留事件，暂未支持）当一个包被验证时，由系统包验证者发送。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** "usual.event.PACKAGE_VERIFIED"
 
 
 ### COMMON_EVENT_MANAGE_PACKAGE_STORAGE
@@ -354,26 +324,7 @@
 **取值：** "usual.event.hardware.usb.action.USB_DEVICE_DETACHED"
 
 
-### COMMON_EVENT_USB_ACCESSORY_ATTACHED
 
-（预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED"
-
-
-### COMMON_EVENT_USB_ACCESSORY_DETACHED
-
-（预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** "usual.event.data.DISK_MOUNTED"
 
 
 
@@ -416,15 +367,7 @@
 **取值** "usual.event.TIMEZONE_CHANGED"
 
 
-### COMMON_EVENT_DATE_CHANGED
 
-（预留事件，暂未支持）表示系统日期已更改的公共事件的动作。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值** usual.event.DATE_CHANGED
 
 
 ### COMMON_EVENT_USER_INFO_UPDATED
@@ -759,73 +702,9 @@
 
 
 
-## Core File Kit
-
-### COMMON_EVENT_DISK_REMOVED
-
-（预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.data.DISK_BAD_REMOVAL"
-
-
-### COMMON_EVENT_DISK_UNMOUNTED
-
-（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.data.DISK_UNMOUNTABLE"
-
-
-### COMMON_EVENT_DISK_MOUNTED
-
-（预留事件，暂未支持）外部存储设备状态变更为挂载时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED"
 
 
 
-### COMMON_EVENT_DISK_BAD_REMOVAL
-
-（预留事件，暂未支持）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.data.DISK_REMOVED"
-
-
-### COMMON_EVENT_DISK_UNMOUNTABLE
-
-（预留事件，暂未支持）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.data.DISK_UNMOUNTED"
-
-
-### COMMON_EVENT_DISK_EJECT
-
-（预留事件，暂未支持）用户已表示希望删除外部存储介质时发送此公共事件。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
-
-**取值：** "usual.event.data.DISK_EJECT"
 
 
 ## Connectivity Kit
@@ -1218,6 +1097,39 @@ Store Kit面向应用发布如下系统公共事件。
 
 以下事件为预留公共事件，暂未支持。
 
+
+### COMMON_EVENT_PACKAGE_FIRST_LAUNCH
+
+（预留事件，暂未支持）应用程序在安装后首次启动。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.PACKAGE_FIRST_LAUNCH"
+
+
+### COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
+
+（预留事件，暂未支持）当一个包需要被验证时，由系统包验证者发送。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.PACKAGE_NEEDS_VERIFICATION"
+
+
+### COMMON_EVENT_PACKAGE_VERIFIED
+
+（预留事件，暂未支持）当一个包被验证时，由系统包验证者发送。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.PACKAGE_VERIFIED"
+
 ### COMMON_EVENT_PACKAGE_REPLACED
 
 （预留事件，暂未支持）表示设备上安装了新版本的应用程序包并替换了旧版本的动作。数据包含包的名称。
@@ -1393,6 +1305,104 @@ Store Kit面向应用发布如下系统公共事件。
 
 **取值：** "usual.event.USER_STOPPED"
 
+
+### COMMON_EVENT_DISK_REMOVED
+
+（预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.data.DISK_BAD_REMOVAL"
+
+
+### COMMON_EVENT_DISK_UNMOUNTED
+
+（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.data.DISK_UNMOUNTABLE"
+
+
+### COMMON_EVENT_DISK_MOUNTED
+
+（预留事件，暂未支持）外部存储设备状态变更为挂载时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED"
+
+
+
+### COMMON_EVENT_DISK_BAD_REMOVAL
+
+（预留事件，暂未支持）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.data.DISK_REMOVED"
+
+
+### COMMON_EVENT_DISK_UNMOUNTABLE
+
+（预留事件，暂未支持）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.data.DISK_UNMOUNTED"
+
+
+### COMMON_EVENT_DISK_EJECT
+
+（预留事件，暂未支持）用户已表示希望删除外部存储介质时发送此公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.STORAGE_MANAGER（该权限仅系统应用可申请）
+
+**取值：** "usual.event.data.DISK_EJECT"
+
+
+### COMMON_EVENT_DATE_CHANGED
+
+（预留事件，暂未支持）表示系统日期已更改的公共事件的动作。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值** usual.event.DATE_CHANGED
+
+### COMMON_EVENT_USB_ACCESSORY_ATTACHED
+
+（预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+
+
+### COMMON_EVENT_USB_ACCESSORY_DETACHED
+
+（预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.data.DISK_MOUNTED"
 
 ### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
 （预留事件，暂未支持）蓝牙免提通信连接状态公共事件的动作。

@@ -301,79 +301,7 @@
 **取值：** usual.event.SMS_CB_RECEIVE_COMPLETED
 
 
-### COMMON_EVENT_STK_COMMAND<sup>10+<sup>
 
-（预留事件，暂未支持）提示STK命令。
-
-在发送STK命令时，将会触发事件通知服务发布该系统公共事件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** usual.event.STK_COMMAND
-
-
-### COMMON_EVENT_STK_SESSION_END<sup>10+<sup>
-
-（预留事件，暂未支持）提示STK会话结束。
-
-在STK会话结束时，将会触发事件通知服务发布该系统公共事件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** usual.event.STK_SESSION_END
-
-
-### COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+<sup>
-
-（预留事件，暂未支持）提示STK卡状态已更新。
-
-在STK卡状态更新时，将会触发事件通知服务发布该系统公共事件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-
-**取值：** usual.event.STK_CARD_STATE_CHANGED
-
-### COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+<sup>
-
-（预留事件，暂未支持）提示STK ALPHA标识符。
-
-在发送STK ALPHA标识符时，将会触发事件通知服务发布该系统公共事件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**取值：** usual.event.STK_ALPHA_IDENTIFIER
-
-
-### COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+<sup>
-
-（预留事件，暂未支持）提示服务信息短信接收完成。
-
-在设备接收服务信息短信完成时，将会触发事件通知服务发布该系统公共事件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
-
-**取值：** usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
 
 
 ### COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+<sup>
@@ -554,3 +482,82 @@
 **订阅者所需权限：** 无
 
 **取值：** usual.event.AUDIO_QUALITY_CHANGE
+
+
+## 预留公共事件
+
+以下事件为预留公共事件，暂未支持。
+
+### COMMON_EVENT_STK_COMMAND<sup>10+<sup>
+
+（预留事件，暂未支持）提示STK命令。
+
+在发送STK命令时，将会触发事件通知服务发布该系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.STK_COMMAND
+
+
+### COMMON_EVENT_STK_SESSION_END<sup>10+<sup>
+
+（预留事件，暂未支持）提示STK会话结束。
+
+在STK会话结束时，将会触发事件通知服务发布该系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.STK_SESSION_END
+
+
+### COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+<sup>
+
+（预留事件，暂未支持）提示STK卡状态已更新。
+
+在STK卡状态更新时，将会触发事件通知服务发布该系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+
+**取值：** usual.event.STK_CARD_STATE_CHANGED
+
+### COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+<sup>
+
+（预留事件，暂未支持）提示STK ALPHA标识符。
+
+在发送STK ALPHA标识符时，将会触发事件通知服务发布该系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.STK_ALPHA_IDENTIFIER
+
+
+### COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+<sup>
+
+（预留事件，暂未支持）提示服务信息短信接收完成。
+
+在设备接收服务信息短信完成时，将会触发事件通知服务发布该系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
+
+**取值：** usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
