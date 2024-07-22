@@ -237,6 +237,8 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中   | 
 | NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
 | NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中   | 
+| NATIVE_ERROR_CONSUMER_DISCONNECTED | 消费端已经被断开连接 |
+| NATIVE_ERROR_CONSUMER_NOT_REGISTER_LISTENER | 消费端未注册listener回调函数 |
 | NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持   | 
 | NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
