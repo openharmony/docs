@@ -14884,14 +14884,14 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| size | number | 否 | 是 | 设置每个web组件允许缓存的最大页面个数。默认为1，最大可设置为50。Web会根据内存压力对缓存进行回收。 |
-| timeToLive | number | 否 | 是 | 设置每个web组件允许页面在前进后退缓存中停留的时间，默认为600秒。|
+| size | number | 否 | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 否 | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。|
 
 ### enableBackForwardCache<sup>12+</sup>
 
 static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
-开启web组件允许页面进入前进后退缓存的功能，可以选择使用特定特性的页面进入前进后退缓存。
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -14926,7 +14926,7 @@ export default class EntryAbility extends UIAbility {
 
 setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
-可以设置web组件中前进后退缓存的相关选项。
+可以设置Web组件中前进后退缓存的相关选项。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
