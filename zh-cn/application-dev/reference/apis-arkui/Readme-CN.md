@@ -302,7 +302,6 @@
     - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
     - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
-    - [@ohos.atomicservice.AtomicServiceWeb (Web高阶组件)](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
   - 安全控件
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
