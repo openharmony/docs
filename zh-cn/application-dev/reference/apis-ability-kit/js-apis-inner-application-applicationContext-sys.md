@@ -120,7 +120,7 @@ setSupportedProcessCache(isSupported : boolean): void
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | The input parameter is not a valid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000200 | The supported process cache state cannot be set more than once. |
