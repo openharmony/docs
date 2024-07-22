@@ -28,7 +28,7 @@ TabContent()
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | tabBar | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>**说明：**<br/>如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9对象说明) \| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
 
 >  **说明：**
 >
@@ -37,7 +37,7 @@ TabContent()
 >  - vertical属性为false值，交换上述2个限制。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
-## SubTabBarStyle<sup>9+</sup>
+## SubTabBarStyle<sup>9+</sup>对象说明
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
@@ -72,7 +72,7 @@ SubTabBarStyle的静态构造函数。
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。|
-| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。子页签的显示方式仅在水平模式下有效。<br />默认值：SelectedMode.INDICATOR |
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
@@ -111,7 +111,7 @@ SubTabBarStyle的静态构造函数。
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。                              |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。      |
 
-## BottomTabBarStyle<sup>9+</sup>
+## BottomTabBarStyle<sup>9+</sup>对象说明
 
 底部页签和侧边页签样式。
 
