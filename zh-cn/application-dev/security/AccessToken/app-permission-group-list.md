@@ -163,7 +163,7 @@
 
 - 读取媒体库音频文件：
 
-  申请受限权限<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End-->读写媒体库的图片与视频。
+  申请受限权限<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End-->读写媒体库的音频文件。
 
 - 读取文件管理器中的文件：
 
