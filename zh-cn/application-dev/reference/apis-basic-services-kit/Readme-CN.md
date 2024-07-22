@@ -41,6 +41,10 @@
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
   - 进程线程通信
+    - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
+    <!--Del-->
+    - [系统定义的公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
+    <!--DelEnd-->
     - [@ohos.commonEventManager (公共事件模块)](js-apis-commonEventManager.md)
     - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
     <!--Del-->
@@ -53,11 +57,6 @@
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
       - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-    - 公共事件定义
-      - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
-      <!--Del-->
-      - [系统定义的公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
-      <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
     - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)

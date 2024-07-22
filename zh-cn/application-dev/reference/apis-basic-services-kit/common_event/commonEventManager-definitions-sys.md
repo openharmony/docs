@@ -1,6 +1,6 @@
 # 系统定义的公共事件（系统接口）
 
-本文档提供系统所定义的公共事件类型的索引。
+本文档提供了系统定义的公共事件清单。
 
 公共事件类型定义在[ohos.commonEventManager模块的Support枚举](../js-apis-commonEventManager.md#support)中。
 
