@@ -5270,7 +5270,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
