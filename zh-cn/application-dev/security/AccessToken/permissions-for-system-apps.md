@@ -4003,7 +4003,7 @@
 
 ### ohos.permission.DUMP_AUDIO
 
-允许应用启动音频框架dump能力，将音频数据落盘到本地
+允许应用启动音频框架dump能力，将音频数据落盘到本地。
 
 **权限级别**：system_core
 
