@@ -20,21 +20,21 @@ Add an asset. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name    | Type    | Mandatory| Description                                                        |
+| Name    | Type    | Mandatory | Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
+| attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data. |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
@@ -45,7 +45,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -89,15 +89,15 @@ Add an asset. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name    | Type    | Mandatory| Description                                                        |
+| Name    | Type    | Mandatory | Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
+| attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
@@ -108,7 +108,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -148,21 +148,21 @@ Removes one or more assets. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
+| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data. |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -170,8 +170,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
-| 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -210,15 +209,15 @@ Removes one or more assets. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
+| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -226,8 +225,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
-| 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -262,22 +260,22 @@ Updates an asset. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name            | Type    | Mandatory| Description                                                        |
+| Name            | Type    | Mandatory | Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
+| query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data. |
 | attributesToUpdate | [AssetMap](#assetmap) | Yes  | New attributes of the asset, such as the asset plaintext and custom data.      |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -287,7 +285,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -329,16 +327,16 @@ Updates an asset. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name            | Type    | Mandatory| Description                                                        |
+| Name            | Type    | Mandatory | Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
+| query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data. |
 | attributesToUpdate | [AssetMap](#assetmap) | Yes  | New attributes of the asset, such as the asset plaintext and custom data.      |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -348,7 +346,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -386,21 +384,21 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.|
+| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data. |
 
 **Return value**
 
 | Type               | Description                                                 |
 | ------------------- | ----------------------------------------------------- |
-| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication.|
+| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
 | 24000001 | The ASSET service is unavailable.                            |
@@ -410,7 +408,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                      |
 | 24000008 | The database operation failed.                            |
 | 24000009 | The cryptography operation failed.                        |
-| 24000010 | IPC failed                                  |
+| 24000010 | IPC failed.                                  |
 | 24000011 | Calling the Bundle Manager service failed.   |
 | 24000012 | Calling the OS Account service failed.       |
 | 24000013 | Calling the Access Token service failed.     |
@@ -451,21 +449,21 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.|
+| query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data. |
 
 **Return value**
 
 | Type               | Description                                                 |
 | ------------------- | ----------------------------------------------------- |
-| Uint8Array | Challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication.|
+| Uint8Array | Challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
 | 24000001 | The ASSET service is unavailable.                            |
@@ -475,7 +473,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                      |
 | 24000008 | The database operation failed.                            |
 | 24000009 | The cryptography operation failed.                        |
-| 24000010 | IPC failed                                  |
+| 24000010 | IPC failed.                                  |
 | 24000011 | Calling the Bundle Manager service failed.   |
 | 24000012 | Calling the OS Account service failed.       |
 | 24000013 | Calling the Access Token service failed.     |
@@ -512,7 +510,7 @@ Queries one or more assets. If user authentication is required for the access to
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name  | Type                           | Mandatory| Description                                                        |
+| Name  | Type                           | Mandatory | Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | query    | [AssetMap](#assetmap)           | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.      |
 
@@ -520,13 +518,13 @@ Queries one or more assets. If user authentication is required for the access to
 
 | Type                    | Description                                 |
 | ------------------------ | ------------------------------------- |
-| Promise\<Array\<AssetMap>> | Promise used to return the result obtained.|
+| Promise\<Array\<AssetMap>> | Promise used to return the result obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -537,7 +535,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -581,7 +579,7 @@ Queries one or more assets. If user authentication is required for the access to
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name  | Type                           | Mandatory| Description                                                        |
+| Name  | Type                           | Mandatory | Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | query    | [AssetMap](#assetmap)           | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.      |
 
@@ -589,13 +587,13 @@ Queries one or more assets. If user authentication is required for the access to
 
 | Type                    | Description                                 |
 | ------------------------ | ------------------------------------- |
-| <Array\<AssetMap> | Array of query results.|
+| Array\<AssetMap> | Array of query results. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -606,7 +604,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -649,26 +647,26 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                        |
+| Name | Type    | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuery](#assetprequery).|
+| handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuery](#assetprequery). |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -702,20 +700,20 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                        |
+| Name | Type    | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuerySync](#assetprequerysync12).|
+| handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuerySync](#assetprequerysync12). |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -739,7 +737,7 @@ try {
 
 ## TagType
 
-Enumerates the types of the keys of asset attributes.
+Enumerates the asset attribute types.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -747,7 +745,7 @@ Enumerates the types of the keys of asset attributes.
 | ------ | ---------- | ---------------------------------------- |
 | BOOL   | 0x01 << 28 | Boolean.    |
 | NUMBER | 0x02 << 28 | Number.    |
-| BYTES  | 0x03 << 28 | Byte array.|
+| BYTES  | 0x03 << 28 | Byte array. |
 
 ## Tag
 
@@ -759,7 +757,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 >
 > The following table lists all enums of **Tag**. The specific tags and the value range of tag values vary with the API you use. For details, see [Introduction to Asset Store Kit](../../security/AssetStoreKit/asset-store-kit-overview.md).
 
-| Name| Value                                 | Description                                                        |
+| Name | Value                                 | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.                                                |
 | ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.                        |
@@ -770,26 +768,26 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.                                        |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | Authorization token obtained after the user authentication is successful.                                          |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Type of sync supported by the asset.                                      |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the asset when the application is uninstalled.<br>**Required permissions**: ohos.permission.STORE_PERSISTENT_DATA<br>**NOTE**: This parameter is used only in [asset.add](#assetadd) or [asset.addSync](#assetaddsync12), and permission verification is required when this parameter is passed in.|
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the asset when the application is uninstalled.<br>**Required permissions**: ohos.permission.STORE_PERSISTENT_DATA<br>**NOTE**: This parameter is used only in [asset.add](#assetadd) or [asset.addSync](#assetaddsync12), and permission verification is required when this parameter is passed in. |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | Additional asset data customized by the service with integrity protection.            |
-| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | Additional asset data customized by the service with integrity protection.|
+| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection. |
+| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection. |
+| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | Additional asset data customized by the service with integrity protection. |
 | DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | Additional data of the asset customized by the service without integrity protection.            |
-| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
+| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional data of the asset customized by the service without integrity protection. |
+| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional data of the asset customized by the service without integrity protection. |
+| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional data of the asset customized by the service without integrity protection. |
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced. |
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced. |
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced. |
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced. |
 | RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | Type of the asset query result to return.                                        |
 | RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of asset records to return.                                        |
 | RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
-| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
+| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added. |
 | CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | Policy for resolving the conflict (for example, a duplicate alias).                            |
-| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.|
-| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
+| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp. |
+| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type. |
 
 ## Value
 
@@ -816,8 +814,8 @@ Enumerates the types of access control based on the lock screen status.
 | Name                 | Value  | Description                                                        |
 | --------------------- | ---- | ------------------------------------------------------------ |
 | DEVICE_POWERED_ON     | 0    | The asset can be accessed after the device is powered on.                                  |
-| DEVICE_FIRST_UNLOCKED | 1    | The asset can be accessed only after the device is unlocked for the first time.<br>**NOTE**: If no lock screen password is set, this option is equivalent to **DEVICE_POWERED_ON**.|
-| DEVICE_UNLOCKED       | 2    | The asset can be accessed only when the device is unlocked.<br>**NOTE**: If no lock screen password is set, this option is equivalent to **DEVICE_POWERED_ON**.|
+| DEVICE_FIRST_UNLOCKED | 1    | The asset can be accessed only after the device is unlocked for the first time.<br>**NOTE**: If no lock screen password is set, this option is equivalent to **DEVICE_POWERED_ON**. |
+| DEVICE_UNLOCKED       | 2    | The asset can be accessed only when the device is unlocked.<br>**NOTE**: If no lock screen password is set, this option is equivalent to **DEVICE_POWERED_ON**. |
 
 ## AuthType
 
@@ -825,10 +823,10 @@ Enumerates the types of user authentication supported by an asset.
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Value  | Description                                                        |
+| Name | Value  | Description                                                        |
 | ---- | ---- | ------------------------------------------------------------ |
 | NONE | 0    | No user authentication is required before the asset is accessed.                                |
-| ANY  | 255  | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful.|
+| ANY  | 255  | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful. |
 
 ## SyncType
 
@@ -843,9 +841,9 @@ Enumerates the sync types supported by an asset.
 | Name                         | Value    | Description                                            |
 | ----------------------------- | ------ | ------------------------------------------------ |
 | NEVER                         | 0      | Asset sync is not allowed.                            |
-| THIS_DEVICE                   | 1 << 0 | Asset sync is allowed only on the local device, for example, in data restore on the local device.|
+| THIS_DEVICE                   | 1 << 0 | Asset sync is allowed only on the local device, for example, in data restore on the local device. |
 | TRUSTED_DEVICE                | 1 << 1 | Asset sync is allowed only between trusted devices, for example, in the case of cloning.            |
-| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | Asset sync is allowed only between the devices that are logged in with trusted accounts, for example, in cloud sync scenarios.|
+| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | Asset sync is allowed only between the devices that are logged in with trusted accounts, for example, in cloud sync scenarios. |
 
 ## ReturnType
 
@@ -856,7 +854,7 @@ Enumerates the type of information returned by an asset query operation.
 | Name      | Value  | Description                                                        |
 | ---------- | ---- | ------------------------------------------------------------ |
 | ALL        | 0    | The query result contains the asset plaintext and its attributes.<br>**NOTE**: Use this option when you need to query the plaintext of a single asset. |
-| ATTRIBUTES | 1    | The query result contains only the asset attributes.<br>**NOTE**: Use this option when you need to query attributes of multiple assets.|
+| ATTRIBUTES | 1    | The query result contains only the asset attributes.<br>**NOTE**: Use this option when you need to query attributes of multiple assets. |
 
 ## ConflictResolution
 
@@ -867,7 +865,7 @@ Enumerates the policies for resolving conflicts (for example, a duplicate alias)
 | Name       | Value  | Description                        |
 | ----------- | ---- | ---------------------------- |
 | OVERWRITE   | 0    | Overwrite the original asset.   |
-| THROW_ERROR | 1    | Throw an exception for the service to perform subsequent processing.|
+| THROW_ERROR | 1    | Throw an exception for the service to perform subsequent processing. |
 
 ## OperationType<sup>12+</sup>
 
@@ -877,5 +875,34 @@ Enumerates the types of additional operation to perform.
 
 | Name       | Value  | Description              |
 | ----------- | ---- | ------------------ |
-| NEED_SYNC   | 0    | Sync.|
-| NEED_LOGOUT | 1    | Logout.|
+| NEED_SYNC   | 0    | Sync. |
+| NEED_LOGOUT | 1    | Logout. |
+
+## ErrorCode
+
+Enumerates the error codes.
+
+**System capability**: SystemCapability.Security.Asset
+
+| Name                      | Value   | Description |
+| -------------------------- | ----- | ---- |
+| PERMISSION_DENIED | 201     |The caller does not have the permission.|
+| NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |The caller is not a system application.|
+| INVALID_ARGUMENT | 401    |Incorrect parameters are detected.|
+| SERVICE_UNAVAILABLE | 24000001    |The asset store service is unavailable.|
+| NOT_FOUND | 24000002    |Failed to find the asset.|
+| DUPLICATED | 24000003    |The specified asset already exists.|
+| ACCESS_DENIED | 24000004    |The access to the asset is denied.|
+| STATUS_MISMATCH | 24000005    |The screen lock status does not match.|
+| OUT_OF_MEMORY | 24000006    |The system memory is insufficient.|
+| DATA_CORRUPTED | 24000007    |The asset is corrupted.|
+| DATABASE_ERROR | 24000008   |The database operation failed.|
+| CRYPTO_ERROR | 24000009   |The crypto operation failed.|
+| IPC_ERROR | 24000010   |IPC failed.|
+| BMS_ERROR | 24000011   |The Bundle Manager service is abnormal.|
+| ACCOUNT_ERROR | 24000012   |The account service is abnormal.|
+| ACCESS_TOKEN_ERROR | 24000013   |The Access Token service is abnormal.|
+| FILE_OPERATION_ERROR | 24000014   |The file operation failed.|
+| GET_SYSTEM_TIME_ERROR | 24000015   |Failed to obtain the system time.|
+| LIMIT_EXCEEDED | 24000016   |The number of cached records exceeds the upper limit.|
+| UNSUPPORTED | 24000017   |The feature is not supported.|
