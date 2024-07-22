@@ -10,7 +10,7 @@ The **certManager** module provides system-level certificate management capabili
 ## Modules to Import
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CMErrorCode
@@ -19,11 +19,11 @@ Enumerates the error codes used in the certificate management APIs.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name      | Value|  Description     |
+| Name      | Value |  Description     |
 | ---------- | ------ | --------- |
-| CM_ERROR_NOT_SYSTEM_APP   | 202      | The caller is not a system application.<br> **System API**: This is a system API.|
+| CM_ERROR_NOT_SYSTEM_APP   | 202      | The caller is not a system application.<br>**System API**: This is a system API. |
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
 getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
@@ -37,15 +37,15 @@ Obtains all private credentials. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                      |
-| -------- | ------------------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback invoked to return the private credentials (that is, **credentialList** in [CMResult](js-apis-certManager.md#cmresult)) obtained.|
+| Name  | Type                                                       | Mandatory | Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credentialList** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -54,29 +54,29 @@ For details about the following error codes, see [Certificate Management Error C
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 try {
-  certManager.getAllAppPrivateCertificates((err, cmResult) => {
+  certificateManager.getAllAppPrivateCertificates((err, cmResult) => {
     if (err != null) {
-      console.error("getAllAppPrivateCertificates error");
+      console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.credentialList == undefined) {
-        console.log("[Callback]getAllAppPrivateCertificates result is undefined");
+        console.info('The result of getting all app private certificates is undefined.');
       } else {
         let list = cmResult.credentialList;
-        console.log("[Callback]getAllAppPrivateCertificates success");
+        console.info('Succeeded in getting all app private certificates.');
       }
     }
   });
 } catch (error) {
-  console.error("[Callback]getAllAppPrivateCertificates failed");
+  console.error(`Failed to get all app private certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
-getAllAppPrivateCertificates() : Promise\<CMResult>
+getAllAppPrivateCertificates(): Promise\<CMResult>
 
 Obtains all private credentials. This API uses a promise to return the result.
 
@@ -88,15 +88,15 @@ Obtains all private credentials. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                       | Description                |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return the private credentials (that is, **credentialList** in [CMResult](js-apis-certManager.md#cmresult)) obtained.|
+| Type                                                 | Description                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the private credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object. |
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -104,28 +104,28 @@ For details about the following error codes, see [Certificate Management Error C
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllAppPrivateCertificates().then((cmResult) => {
+  certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
-      console.log("[Promise]getAllAppPrivateCertificates result is undefined");
+      console.info('The result of getting all app private certificates is undefined.');
     } else {
       let list = cmResult.credentialList;
-      console.log("[Promise]getAllAppPrivateCertificates success");
+      console.info('Succeeded in getting all app private certificates.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getAllAppPrivateCertificates failed');
+    console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error("[Promise]getAllAppPrivateCertificates failed");
+  console.error(`Failed to get all app private certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getAllSystemAppCertificates<sup>12+</sup>
+## certificateManager.getAllSystemAppCertificates<sup>12+</sup>
 
-getAllSystemAppCertificates() : Promise\<CMResult>
+getAllSystemAppCertificates(): Promise\<CMResult>
 
 Obtains all system credentials. This API uses a promise to return the result.
 
@@ -137,15 +137,15 @@ Obtains all system credentials. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                       | Description                |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return the system credentials (that is, **credentialList** in [CMResult](js-apis-certManager.md#cmresult)) obtained.|
+| Type                                                 | Description                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the system credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object. |
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -153,21 +153,21 @@ For details about the following error codes, see [Certificate Management Error C
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllSystemAppCertificates().then((cmResult) => {
+  certificateManager.getAllSystemAppCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
-      console.log("[Promise]getAllSystemAppCertificates result is undefined");
+      console.info('The result of getting all system app certificates is undefined.');
     } else {
       let list = cmResult.credentialList;
-      console.log("[Promise]getAllSystemAppCertificates success");
+      console.info('Succeeded in getting all system app certificates.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getAllSystemAppCertificates failed');
+    console.error(`Failed to get all system app certificates. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error("[Promise]getAllSystemAppCertificates failed");
+  console.error(`Failed to get all system app certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
