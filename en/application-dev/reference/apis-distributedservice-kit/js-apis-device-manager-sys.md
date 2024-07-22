@@ -40,17 +40,17 @@ Creates a **DeviceManager** instance.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                                       |
+| Name    | Type                                                | Mandatory | Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | bundleName | string                                               | Yes  | Bundle name of the application.                                 |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created.|
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created. |
 
 **Example**
 
@@ -84,7 +84,7 @@ Defines device information.
 
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique identifier of the device.|
+| deviceId               | string                    | Yes   | Unique identifier of the device. |
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | [DeviceType](#devicetype) | Yes   | Device type.   |
 | networkId<sup>8+</sup> | string                    | Yes   | Network ID of the device. |
@@ -101,13 +101,13 @@ Enumerates the device types.
 
 | Name          | Value | Description  |
 | ------------ | ---- | ---- |
-| SPEAKER      | 0x0A | Smart speaker.|
+| SPEAKER      | 0x0A | Smart speaker. |
 | PHONE        | 0x0E | Phone.  |
 | TABLET       | 0x11 | Tablet.  |
 | WEARABLE     | 0x6D | Wearable.|
 | TV           | 0x9C | Smart TV. |
 | CAR          | 0x83 | Car.   |
-| UNKNOWN_TYPE | 0    | Unknown device type.|
+| UNKNOWN_TYPE | 0    | Unknown device type. |
 
 ## AuthForm<sup>10+</sup>
 
@@ -119,10 +119,10 @@ Enumerates the device authentication types.
 
 | Name                | Value | Description            |
 | ------------------- | ---- | --------------- |
-| INVALID_TYPE        | -1   | No authentication.|
+| INVALID_TYPE        | -1   | No authentication. |
 | PEER_TO_PEER        | 0    | Point-to-point authentication for devices without accounts.  |
 | IDENTICAL_ACCOUNT   | 1    | Authentication for devices using the same account.  |
-| ACROSS_ACCOUNT      | 2    | Authentication for devices using different accounts.|
+| ACROSS_ACCOUNT      | 2    | Authentication for devices using different accounts. |
 
 ## DeviceStateChangeAction
 
@@ -135,7 +135,7 @@ Enumerates the device states.
 | Name     | Value | Description             |
 | ------- | ---- | --------------- |
 | ONLINE  | 0    | The device is physically online.          |
-| READY   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
+| READY   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services. |
 | OFFLINE | 2    | The device is physically offline.          |
 | CHANGE  | 3    | The device information is changed.        |
 
@@ -149,7 +149,7 @@ Defines subscription information.
 
 | Name           | Type                               | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period.|
+| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period. |
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | medium        | [ExchangeMedium](#exchangemedium) | Yes   | Medium used for device discovery.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
@@ -168,8 +168,8 @@ Enumerates the device discovery modes.
 
 | Name                   | Value | Description   |
 | --------------------- | ---- | ----- |
-| DISCOVER_MODE_PASSIVE | 0x55 | Passive discovery.|
-| DISCOVER_MODE_ACTIVE  | 0xAA | Active discovery.|
+| DISCOVER_MODE_PASSIVE | 0x55 | Passive discovery. |
+| DISCOVER_MODE_ACTIVE  | 0xAA | Active discovery. |
 
 
 ## ExchangeMedium 
@@ -184,7 +184,7 @@ Enumerates the media used for device discovery.
 | ---- | ---- | --------- |
 | AUTO | 0    | Automatic.  |
 | BLE  | 1    | Bluetooth.  |
-| COAP | 2    | Wi-Fi.|
+| COAP | 2    | Wi-Fi. |
 | USB  | 3    | USB. |
 
 ## ExchangeFreq 
@@ -200,7 +200,7 @@ Enumerates the device discovery frequencies.
 | LOW        | 0    | Low frequency. |
 | MID        | 1    | Medium frequency. |
 | HIGH       | 2    | High frequency. |
-| SUPER_HIGH | 3    | Ultra-high frequency.|
+| SUPER_HIGH | 3    | Ultra-high frequency. |
 
 
 ## SubscribeCap 
@@ -213,7 +213,7 @@ Enumerates the discovery capabilities.
 
 | Name                       | Value | Description            |
 | ------------------------- | ---- | -------------- |
-| SUBSCRIBE_CAPABILITY_DDMP | 0    | DDMP capability. This will be deprecated later.|
+| SUBSCRIBE_CAPABILITY_DDMP | 0    | DDMP capability. This will be deprecated later. |
 | SUBSCRIBE_CAPABILITY_OSD  | 1    | OSD capability.        |
 
 
@@ -254,7 +254,7 @@ Defines published device information.
 
 | Name         | Type                             | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| publishId     | number                            | Yes   | ID used to identify a publication period.|
+| publishId     | number                            | Yes   | ID used to identify a publication period. |
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
 | ranging       | boolean                           | Yes   | Whether the device supports distance reporting.            |
@@ -279,10 +279,10 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -315,16 +315,16 @@ Obtains all trusted devices synchronously.
 
   | Name                                    | Description       |
   | -------------------------------------- | --------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -356,7 +356,7 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 **Parameters**
 
-| Name       | Type                              | Mandatory| Description                               |
+| Name       | Type                              | Mandatory | Description                               |
 | ------------- | --------------------------------- | ---- | ---------------------------------- |
 |   isRefresh   | boolean                           | Yes  | Whether to enable the heartbeat mode and update the list of online trusted devices.     |
 
@@ -364,16 +364,17 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 | Name                                    | Description           |
 | -------------------------------------- | ---------------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -407,15 +408,15 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
   | Name      | Type                                    | Mandatory  | Description                   |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
@@ -455,16 +456,15 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 
 **Example**
 
@@ -496,16 +496,16 @@ Obtains local device information synchronously.
 
   | Name                     | Description             |
   | ------------------------- | ---------------- |
-  | [DeviceInfo](#deviceinfo) | List of local devices obtained.|
+  | [DeviceInfo](#deviceinfo) | List of local devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -539,15 +539,15 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
@@ -588,15 +588,15 @@ Obtains local device information. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 
 **Example**
 
@@ -628,16 +628,16 @@ Obtains the information about a specific device based on the network ID. This AP
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device.|
+  | networkId| string                                   | Yes  | Network ID of the device. |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **Example**
@@ -677,23 +677,23 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-  | Name  | Type                                    | Mandatory| Description       |
+  | Name  | Type                                    | Mandatory | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. |
   
 **Return value**
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **Example**
@@ -726,7 +726,7 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 **Parameters**
 
-  | Name           | Type                      | Mandatory| Description   |
+  | Name           | Type                      | Mandatory | Description   |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
 
@@ -734,13 +734,13 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **Example**
 
@@ -793,20 +793,20 @@ Starts to discover peripheral devices and filters discovered devices. The discov
 
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information. |
   | filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **Example**
 
@@ -881,16 +881,16 @@ Stops device discovery.
 
   | Name         | Type  | Mandatory  | Description   |
   | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | Yes   | Subscription ID.|
+  | subscribeId | number | Yes   | Subscription ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -924,21 +924,21 @@ Publishes device information for discovery purposes. The publish process lasts 2
 
 **Parameters**
 
-  | Name         | Type                       | Mandatory| Description   |
+  | Name         | Type                       | Mandatory | Description   |
   | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo9)     | Yes  | Device information to publish.|
+  | publishInfo   | [PublishInfo](#publishinfo9)     | Yes  | Device information to publish. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600105 | Publish invalid.                                                |
+| 11600105 | Publish unavailable.                                                |
 
 **Example**
 
@@ -984,18 +984,18 @@ Stops publishing device information.
 
 **Parameters**
 
-  | Name       | Type| Mandatory| Description |
+  | Name       | Type | Mandatory | Description |
   | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | Yes  | Publish ID.|
+  | publishId   | number   | Yes  | Publish ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -1033,15 +1033,15 @@ Authenticates a device.
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
   | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result.|
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
@@ -1126,16 +1126,16 @@ Deauthenticates a device.
 
   | Name        | Type                     | Mandatory  | Description   |
   | ---------- | ------------------------- | ---- | ----- |
-  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -1186,15 +1186,15 @@ Verifies authentication information.
   | Name      | Type                                    | Mandatory  | Description     |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result.|
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
@@ -1260,16 +1260,16 @@ Sets a user operation.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | operateAction | number          | Yes   | User operation.      |
-  | params        | string          | Yes   | Input parameters of the user.|
+  | params        | string          | Yes   | Input parameters of the user. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.    |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **Example**
@@ -1312,15 +1312,15 @@ Obtains the registration information of the credential.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | requestInfo   | string          | Yes   | Request credential information.      |
-  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information.|
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **Example**
@@ -1374,20 +1374,21 @@ Imports credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | credentialInfo| string          | Yes   | Credential information to import.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1468,15 +1469,15 @@ Deletes credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | queryInfo     | string          | Yes   | Credential information to delete.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
@@ -1530,7 +1531,7 @@ Subscribes to UI state changes.
 
 **Parameters**
 
-  | Name     | Type                            | Mandatory| Description                           |
+  | Name     | Type                            | Mandatory | Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
 | type     | string                                | Yes | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status change.       |
@@ -1539,9 +1540,9 @@ Subscribes to UI state changes.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1585,7 +1586,7 @@ Unsubscribes from UI state changes.
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory| Description                           |
+  | Name     | Type                             | Mandatory | Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
 | type     | string                                | Yes  | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
@@ -1594,9 +1595,9 @@ Unsubscribes from UI state changes.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1636,9 +1637,9 @@ Subscribes to device state changes.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1693,9 +1694,9 @@ Unsubscribes from device state changes.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1750,9 +1751,9 @@ Subscribes to device discovery events.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1807,9 +1808,9 @@ Unsubscribes from device discovery events.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1864,9 +1865,9 @@ Subscribes to device discovery failures.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1913,9 +1914,9 @@ Unsubscribes from device discovery failures.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -1953,7 +1954,7 @@ Subscribes to the **'publishSuccess'** event. The application will be notified w
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
+  | Name    | Type                                | Mandatory | Description                      |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
 | type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.|
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback used to return the publish ID.              |
@@ -1962,9 +1963,9 @@ Subscribes to the **'publishSuccess'** event. The application will be notified w
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -2001,7 +2002,7 @@ Unsubscribes from device information publication success events.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                         |
+  | Name    | Type                                | Mandatory | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.                |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister.|
@@ -2010,9 +2011,9 @@ Unsubscribes from device information publication success events.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -2049,7 +2050,7 @@ Subscribes to device information publication failures.
 
 **Parameters**
 
-  | Name    | Type                                             | Mandatory| Description                            |
+  | Name    | Type                                             | Mandatory | Description                            |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.|
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used to return a failure in publishing device information.                |
@@ -2058,9 +2059,9 @@ Subscribes to device information publication failures.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -2098,7 +2099,7 @@ Unsubscribes from the **'publishFail'** event.
 
 **Parameters**
 
-  | Name    | Type                                             | Mandatory| Description               |
+  | Name    | Type                                             | Mandatory | Description               |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
 | type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.    |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister.|
@@ -2107,9 +2108,9 @@ Unsubscribes from the **'publishFail'** event.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -2156,9 +2157,9 @@ Subscribes to dead events of the **DeviceManager** service. The application will
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
@@ -2200,9 +2201,9 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
