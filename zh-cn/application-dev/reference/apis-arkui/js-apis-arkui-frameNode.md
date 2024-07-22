@@ -3235,8 +3235,7 @@ struct TrackTest {
 
 ```ts
 // ./track.ets
-import { FrameNode } from '@kit.ArkUI';
-import { Rect } from '@ohos.arkui.node';
+import { FrameNode, Rect } from '@kit.ArkUI';
 
 @Component
 export struct TrackNode {
