@@ -177,7 +177,7 @@
 文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。
 
 
-### COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>
+### COMMON_EVENT_VOLUME_REMOVED
 
 表示外部存储设备正常移除的公共事件。
 
@@ -193,7 +193,7 @@
 
 
 
-### COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>
+### COMMON_EVENT_VOLUME_UNMOUNTED
 
 表示外部存储设备状态变更为卸载的公共事件。
 
@@ -208,7 +208,7 @@
 **取值：** "usual.event.data.VOLUME_UNMOUNTED"
 
 
-### COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>
+### COMMON_EVENT_VOLUME_MOUNTED
 
 表示外部存储设备状态变更为挂载的公共事件。
 
@@ -223,7 +223,7 @@
 **取值：** "usual.event.data.VOLUME_MOUNTED"
 
 
-### COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>
+### COMMON_EVENT_VOLUME_BAD_REMOVAL
 
 表示外部存储设备异常移除的公共事件。
 
@@ -238,7 +238,7 @@
 **取值：** "usual.event.data.VOLUME_BAD_REMOVAL"
 
 
-### COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>
+### COMMON_EVENT_VOLUME_EJECT
 
 表示外部存储设备即将被弹出的公共事件。
 
