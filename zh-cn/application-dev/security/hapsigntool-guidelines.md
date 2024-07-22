@@ -353,9 +353,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    C++版本命令实例：
    
-   ~~~shell
+   ```shell
    hap-sign-tool sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
-   ~~~
+   ```
 
    > **说明**：
    >
