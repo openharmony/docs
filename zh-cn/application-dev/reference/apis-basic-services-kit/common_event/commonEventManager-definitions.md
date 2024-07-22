@@ -460,7 +460,7 @@
 
 
 
-## COMMON_EVENT_SCREEN_LOCKED
+### COMMON_EVENT_SCREEN_LOCKED
 
 表示屏幕锁定的公共事件。
 当锁屏锁定时，将会触发事件通知服务发布该系统公共事件。
@@ -475,7 +475,7 @@
 
 
 
-## COMMON_EVENT_SCREEN_UNLOCKED
+### COMMON_EVENT_SCREEN_UNLOCKED
 
 表示屏幕解锁的公共事件。
 当锁屏解锁时，将会触发事件通知服务发布该系统公共事件。
@@ -489,7 +489,7 @@
 **取值：** usual.event.SCREEN_UNLOCKED
 
 
-## COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
+### COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 用户解锁设备的公共事件的动作。
 
   > 说明：
@@ -953,7 +953,7 @@ Wi-Fi状态变化。
 
 ## Localization Kit
 
-## COMMON_EVENT_LOCALE_CHANGED
+### COMMON_EVENT_LOCALE_CHANGED
 
 设置系统语言的公共事件的动作。
 当设置系统语言时，将会触发事件通知服务发布该系统公共事件。
