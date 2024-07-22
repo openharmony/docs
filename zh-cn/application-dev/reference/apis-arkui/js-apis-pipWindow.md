@@ -524,10 +524,10 @@ updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): v
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明             |
-|--------|--------|-----|----------------|
-| controlType  | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。 |
-| status | [PiPControlStatus](#pipcontrolstatus12)  | 是   | 表示画中画控制面板控件状态。 |
+| 参数名    | 类型     | 必填  | 说明                                                                                                 |
+|--------|--------|-----|----------------------------------------------------------------------------------------------------|
+| controlType  | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。目前仅支持VIDEO_PLAY_PAUSE、MICROPHONE_SWITCH、CAMERA_SWITCH和MUTE_SWITCH这几种控件类型，传入其他控件类型无效。 |
+| status | [PiPControlStatus](#pipcontrolstatus12)  | 是   | 表示画中画控制面板控件状态。                                                                                     |
 
 **错误码：**
 
