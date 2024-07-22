@@ -52,8 +52,8 @@
 
    ```ts
    // MainAbility.ts
-  import { window, display } from '@kit.ArkUI'
-  import { UIAbility } from '@kit.AbilityKit'
+   import { window, display } from '@kit.ArkUI'；
+   import { UIAbility } from '@kit.AbilityKit'
    
    export default class MainAbility extends UIAbility {
      private windowObj?: window.Window
@@ -195,7 +195,7 @@ export class BreakpointSystem {
       } else {
         condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
       }
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener = mediaquery.matchMediaSync(condition)
       if (breakpoint.mediaQueryListener.matches) {
         this.updateAllState(breakpoint.name)
       }
