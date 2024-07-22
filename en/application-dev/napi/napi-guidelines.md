@@ -9,7 +9,7 @@ If **argv** is not **nullptr**, the arguments actually passed by JS will be copi
 **Example (incorrect)**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc is not correctly initialized and is set to a random value. If the length of argv is less than the number of arguments specified by argc, data overwriting occurs.
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -49,7 +49,7 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
 
 static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
-    napi_value* argv[2] = {nullptr};
+    napi_value argv[2] = {nullptr};
     // napi_get_cb_info writes the arguments (of the quantity specified by argc) passed by JS or undefined to argv.
     napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
     // Service code.
@@ -158,8 +158,13 @@ void callbackTest(CallbackContext* context)
         // Using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            napi_handle_scope scope = nullptr; 
+            napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
+                delete context;
                 return;
             }
             napi_value callback = nullptr;
@@ -267,7 +272,7 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
 >
 > The following data is the accumulated data written in thousands of cycles. To better reflect the difference, the core frequency of the device has been limited.
 
-| Container Type   | Benchmark Data (us)|
+| Container Type   | Benchmark Data (us) |
 | ----------- | ------------------- |
 | JSArray     | 1566.174            |
 | ArrayBuffer | 3.609               |
