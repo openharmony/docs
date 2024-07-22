@@ -18,57 +18,161 @@ TimePicker(options?: TimePickerOptions)
 
 Creates a time picker, which is in 24-hour format by default.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                           | Mandatory| Description                    |
+| Name | Type                                           | Mandatory | Description                    |
 | ------- | ----------------------------------------------- | ---- | ------------------------ |
-| options | [TimePickerOptions](#timepickeroptions) | No  | Parameters of the time picker.|
+| options | [TimePickerOptions](#timepickeroptions)  | No  | Parameters of the time picker. |
 
 ## TimePickerOptions
 
-| Name                | Type                                         | Mandatory| Description                                                        |
-| -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                          | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat) | No  | Time format.                            |
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-## TimePickerFormat
+| Name                | Type                                           | Mandatory | Description                                                        |
+| -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). |
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11) | No  | Time format.<br>Default value: **TimePickerFormat.HOUR_MINUTE** |
+
+## TimePickerFormat<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name              | Description                    |
 | ------------------ | ------------------------ |
 | HOUR_MINUTE        | Display hours and minutes.      |
-| HOUR_MINUTE_SECOND | Display hours, minutes, and seconds.|
+| HOUR_MINUTE_SECOND | Display hours, minutes, and seconds. |
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                            | Type                                                    | Description                                                        |
-| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| useMilitaryTime                  | boolean                                                      | Whether the display time is in 24-hour format.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
-| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
-| textStyle<sup>10+</sup>          | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
-| selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
-| loop<sup>11+</sup>               | boolean                                                      | Whether to enable loop mode.<br>Default value: **true**<br>The value **true** means to enable loop mode, and **false** means the opposite.|
+### useMilitaryTime
+
+useMilitaryTime(value: boolean)
+
+Sets whether to display time in 24-hour format. When the display time is in 12-hour format, the AM/PM zone does not change depending on the hour portion.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type   | Mandatory | Description                                      |
+| ------ | ------- | ---- | ------------------------------------------ |
+| value  | boolean | Yes  | Whether the display time is in 24-hour format.<br>Default value: **false** |
+
+### disappearTextStyle<sup>10+</sup>
+
+disappearTextStyle(value: PickerTextStyle)
+
+Sets the font color, font size, and font width for the top and bottom items.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                                        | Mandatory | Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)  | Yes  | Font color, font size, and font width of the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+
+### textStyle<sup>10+</sup>
+
+textStyle(value: PickerTextStyle)
+
+Sets the font color, font size, and font width for all items except the top, bottom, and selected items.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                                        | Mandatory | Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)  | Yes  | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+
+### selectedTextStyle<sup>10+</sup>
+
+selectedTextStyle(value: PickerTextStyle)
+
+Sets the font color, font size, and font width for the selected item.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                                        | Mandatory | Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)  | Yes  | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+
+### loop<sup>11+</sup>
+
+loop(value: boolean)
+
+Sets whether to enable the loop mode.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type   | Mandatory | Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to enable the loop mode.<br>Default value: **true**<br>The value **true** means to enable  loop mode, and **false** means the opposite. |
+
+### dateTimeOptions<sup>12+</sup>
+
+dateTimeOptions(value: DateTimeOptions)
+
+Sets whether to display a leading zero for the hours, minutes, and seconds.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                                        | Mandatory | Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**second**: defaults to **2-digit**, which means a leading zero is used.<br> |
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description       |
-| ---------------------------------------- | ----------- |
-| onChange(callback: (value: TimePickerResult ) =&gt; void) | Triggered when a time is selected.|
+### onChange
+
+onChange(callback: (value: TimePickerResult ) =&gt; void)
+
+Triggered when a time is selected.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                         | Mandatory | Description          |
+| ------ | --------------------------------------------- | ---- | -------------- |
+| value  | [TimePickerResult](#timepickerresult) | Yes  | Time in 24-hour format. |
 
 ## TimePickerResult
 
 Describes a time in 24-hour format.
 
-| Name                | Type| Description                               |
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name                | Type | Description                               |
 | -------------------- | -------- | ----------------------------------- |
-| hour                 | number   | Hour portion of the selected time.<br>Value range: [0-23]|
-| minute               | number   | Minute portion of the selected time.<br>Value range: [0-59]|
-| second<sup>11+</sup> | number   | Second portion of the selected time.<br>Value range: [0-59]|
+| hour                 | number   | Hour portion of the selected time.<br>Value range: [0-23] |
+| minute               | number   | Minute portion of the selected time.<br>Value range: [0-59] |
+| second<sup>11+</sup> | number   | Second portion of the selected time.<br>Value range: [0-59] |
 
 
 ## Example
@@ -93,7 +197,7 @@ struct TimePickerExample {
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          if(value.hour) {
+          if(value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
             console.info('select current date is: ' + JSON.stringify(value))
           }

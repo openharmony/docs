@@ -22,6 +22,8 @@ constructor()
 
 Constructor used to create a RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -66,6 +68,8 @@ struct Index {
 appendChild(node: RenderNode): void
 
 Appends a child node to this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -121,6 +125,8 @@ struct Index {
 insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 
 Inserts a child node after the specified child node of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,6 +192,8 @@ removeChild(node: RenderNode): void
 
 Deletes the specified child node from this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -244,6 +252,8 @@ clearChildren(): void
 
 Clears all child nodes of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -299,6 +309,8 @@ struct Index {
 getChild(index: number): RenderNode | null
 
 Obtains the child node in the specified position of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -376,6 +388,8 @@ getFirstChild(): RenderNode | null
 
 Obtains the first child node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -443,6 +457,8 @@ struct Index {
 getNextSibling(): RenderNode | null
 
 Obtains the next sibling node of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -513,6 +529,8 @@ getPreviousSibling(): RenderNode | null
 
 Obtains the previous sibling node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -560,15 +578,15 @@ struct Index {
       NodeContainer(this.myNodeController)
         .width(200)
         .height(350)
-      Button('getNextSibling')
+      Button('getPreviousSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const previousSibling = child.getPreviousSibling()
+          const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or nextChild is null');
+            console.log('the child or previousChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-              `the position of nextSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
+              `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
     }
@@ -582,6 +600,8 @@ set backgroundColor(color: number)
 
 Sets the background color for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -593,6 +613,8 @@ Sets the background color for this RenderNode.
 get backgroundColor(): number
 
 Obtains the background color of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -644,6 +666,8 @@ set clipToFrame(useClip: boolean)
 
 Sets whether to clip this RenderNode. The value **true** means to clip the RenderNode to its set size.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -655,6 +679,8 @@ Sets whether to clip this RenderNode. The value **true** means to clip the Rende
 get clipToFrame(): boolean
 
 Obtains whether this RenderNode needs to be clipped.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -713,6 +739,8 @@ set opacity(value: number)
 
 Sets the opacity for this RenderNode. If the value passed in is less than **0**, the opacity is set to **0**. If the value passed in is greater than **1**, the opacity is set to **1**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -724,6 +752,8 @@ Sets the opacity for this RenderNode. If the value passed in is less than **0**,
 get opacity(): number
 
 Obtains the opacity of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -777,6 +807,8 @@ set size(size: Size)
 
 Sets the size for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -788,6 +820,8 @@ Sets the size for this RenderNode.
 get size(): Size
 
 Obtains the size of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -840,6 +874,8 @@ set position(position: Position)
 
 Sets the position for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -851,6 +887,8 @@ Sets the position for this RenderNode.
 get position(): Position
 
 Obtains the position of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -904,6 +942,8 @@ set frame(frame: Frame)
 
 Sets the size and position for this RenderNode. When this parameter is used together with [position](#position) and [size](#size), the one that is set later in time is prioritized.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -915,6 +955,8 @@ Sets the size and position for this RenderNode. When this parameter is used toge
 get frame(): Frame
 
 Obtains the size and position of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -967,6 +1009,8 @@ set pivot(pivot: Pivot)
 
 Sets the pivot for this RenderNode, which affects the scaling and rotation effects of the RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -978,6 +1022,8 @@ Sets the pivot for this RenderNode, which affects the scaling and rotation effec
 get pivot(): Pivot
 
 Obtains the pivot of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1033,6 +1079,8 @@ set scale(scale: Scale)
 
 Sets the scale factor for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1044,6 +1092,8 @@ Sets the scale factor for this RenderNode.
 get scale(): Scale
 
 Obtains the scale factor of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1097,6 +1147,8 @@ set translation(translation: Translation)
 
 Sets the translation amount for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1108,6 +1160,8 @@ Sets the translation amount for this RenderNode.
 get translation(): Translation
 
 Obtains the translation amount of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1161,6 +1215,8 @@ set rotation(rotation: Rotation)
 
 Sets the rotation angle for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1172,6 +1228,8 @@ Sets the rotation angle for this RenderNode.
 get rotation(): Rotation
 
 Obtains the rotation angle of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1225,6 +1283,8 @@ set transform(transform: Matrix4)
 
 Sets the transformation information for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1244,6 +1304,8 @@ Obtains the transformation information of this RenderNode. The default value is 
   0, 0, 0, 1
 ]
 ```
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1302,6 +1364,8 @@ set shadowColor(color: number)
 
 Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#shadowalpha) is set, the opacity is subject to **shadowAlpha**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1313,6 +1377,8 @@ Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#sha
 get shadowColor(): number
 
 Obtains the shadow color of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1367,6 +1433,8 @@ set shadowOffset(offset: Offset)
 
 Sets the shadow offset for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1378,6 +1446,8 @@ Sets the shadow offset for this RenderNode.
 get shadowOffset(): Offset
 
 Obtains the shadow offset of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1434,6 +1504,8 @@ set shadowAlpha(alpha: number)
 
 Sets the alpha value of the shadow color for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1446,6 +1518,8 @@ get shadowAlpha(): number
 
 Obtains the alpha value of the shadow color of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1453,6 +1527,8 @@ Obtains the alpha value of the shadow color of this RenderNode.
 | Type  | Description                                          |
 | ------ | ---------------------------------------------- |
 | number | Alpha value of the shadow color of the current RenderNode. The default value is **0**.|
+
+**Example**
 
 ```ts
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
@@ -1500,6 +1576,8 @@ set shadowElevation(elevation: number)
 
 Sets the shadow elevation for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1512,6 +1590,8 @@ get shadowElevation(): number
 
 Obtains the shadow elevation of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1519,6 +1599,8 @@ Obtains the shadow elevation of this RenderNode.
 | Type  | Description                                 |
 | ------ | ------------------------------------- |
 | number | Shadow elevation of the current RenderNode. The default value is **0**.|
+
+**Example**
 
 ```ts
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
@@ -1567,6 +1649,8 @@ set shadowRadius(radius: number)
 
 Sets the shadow blur radius for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1578,6 +1662,8 @@ Sets the shadow blur radius for this RenderNode.
 get shadowRadius(): number
 
 Obtains the shadow blur radius of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1635,6 +1721,8 @@ struct Index {
 draw(context: DrawContext): void
 
 Performs drawing. You need to implement this API. It is called when the RenderNode performs drawing.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1797,6 +1885,8 @@ invalidate(): void
 
 Triggers the re-rendering of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -1864,7 +1954,7 @@ Sets the border style for this RenderNode.
 
 | Name| Type                                                                                                  | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
-| style  | [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode.|
+| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode.|
 
 get borderStyle(): Edges\<BorderStyle>
 
@@ -1876,7 +1966,7 @@ Obtains the border style of this RenderNode.
 
 | Type                                                                                                  | Description                  |
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode.|
+| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode.|
 
 **Example**
 ```ts
@@ -1935,7 +2025,7 @@ Sets the border width for this RenderNode.
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border width of the RenderNode, in vp.|
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border width of the RenderNode, in vp.|
 
 get borderWidth(): Edges\<number>
 
@@ -1947,7 +2037,7 @@ Obtains the border width of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border width of the RenderNode. The default width of all borders is 0 vp.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border width of the RenderNode. The default width of all borders is 0 vp.|
 
 **Example**
 
@@ -2001,7 +2091,7 @@ Sets the border color for this RenderNode.
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border color of the RenderNode.|
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border color of the RenderNode.|
 
 get borderColor(): Edges\<number>
 
@@ -2013,7 +2103,7 @@ Obtains the border color of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000.|
 
 **Example**
 
@@ -2229,7 +2319,7 @@ class MyNodeController extends NodeController {
   }
 
   disposeRenderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.removeChild(renderNode);
     }

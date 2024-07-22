@@ -15,7 +15,7 @@ Event type.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | void \* [userData](#userdata) | Custom type. | 
 | void(\* [callback](#callback) )(void \*[userData](#userdata)) | Event callback. | 
