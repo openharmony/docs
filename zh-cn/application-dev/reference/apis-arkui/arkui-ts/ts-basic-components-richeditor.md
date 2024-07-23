@@ -870,6 +870,20 @@ getLayoutManager(): LayoutManager
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
 
+### getPreviewText<sup>12+</sup>
+
+getPreviewText(): PreviewText
+
+获取预上屏信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [PreviewText](#previewtext12) | 预上屏信息。 |
+
 ## RichEditorController
 
 RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
@@ -1629,6 +1643,17 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+## PreviewText<sup>12+</sup>
+
+预上屏信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| offset | number | 是   | 预上屏内容的起始位置。 |
+| value    | string         | 是   | 预上屏的内容。         |
 
 ## 示例
 
