@@ -160,7 +160,7 @@ Repeat组件，RepeatItem接口的index参数。
 
 **适配指导**
 
-适配已开发的代码，新开发的代码无需对index做判空处理。
+- 正常使用时，适配已开发的代码，新开发的代码无需对index做判空处理。
 
 变更前：
 
@@ -209,5 +209,23 @@ struct RepeatTest {
 
     }.height(200).backgroundColor(Color.Red)
   }
+}
+```
+- 非正常使用时
+
+变更前:
+
+```ts
+class RepeatClass implements RepeatItem<string> {
+    item: string = "hello" //不写index属性不会报错
+}
+```
+
+变更后：
+
+```ts
+class RepeatClass implements RepeatItem<string> {
+    item: string = "hello"; 
+    index: number = 0 //不写index属性会报错
 }
 ```
