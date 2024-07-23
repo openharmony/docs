@@ -690,7 +690,7 @@ get alpha(): number
 **示例：**
 
 ```ts
-import { ColorMetrics } from '@ohos.arkui.node';
+import { ColorMetrics } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getBlendColor(baseColor: ResourceColor):ColorMetrics {
@@ -833,8 +833,7 @@ setRectShape(rect: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
@@ -891,8 +890,7 @@ setRoundRectShape(roundRect: RoundRect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController} from '@kit.ArkUI';
-import { ShapeMask,RoundRect } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
@@ -958,8 +956,7 @@ setCircleShape(circle: Circle): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
@@ -1016,8 +1013,7 @@ setOvalShape(oval: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
@@ -1074,8 +1070,7 @@ setCommandPath(path: CommandPath): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
@@ -1126,8 +1121,7 @@ fillColor: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1178,8 +1172,7 @@ strokeColor: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1231,8 +1224,7 @@ strokeWidth: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1658,8 +1650,7 @@ edgeColors(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeColors } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeColors } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1719,8 +1710,7 @@ edgeWidths(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeWidths } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeWidths } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1780,8 +1770,7 @@ borderStyles(all: BorderStyle): Edges\<BorderStyle>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import {  borderStyles } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderStyles } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1842,7 +1831,7 @@ borderRadiuses(all: number): BorderRadiuses
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, borderRadiuses } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderRadiuses }  from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };

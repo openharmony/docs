@@ -1322,7 +1322,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | --------- | ------ |
 | STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
 | MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>类型说明
 
@@ -1334,6 +1335,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## 示例
 
 ### 示例1
+
+该示例主要演示Navigation页面的布局。
 
 ```ts
 // xxx.ets
@@ -1439,6 +1442,9 @@ struct NavigationExample {
 
 
 ### 示例2
+
+该示例主要演示NavPathStack中方法的使用及路由拦截。
+
 ```ts
 // Index.ets
 
@@ -2154,6 +2160,9 @@ export class CustomTransition {
 ![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
 ### 示例4
+
+该示例主要演示Navigation带参返回。
+
 ```ts
 // Index.ets
 
@@ -2179,7 +2188,7 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass{
   count:number = 10

@@ -267,7 +267,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 | 错误码ID   | 错误信息                         |
 | ---------- | -------------------------------- |
-| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401        | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified; <br>2. Incorrect parameter types; <br>3. Parameter verification failed. |
 | 10200003   | Worker initialization failed. |
 | 10200006   | An exception occurred during serialization. |
 | 10200014   | The function is not marked as concurrent. |
@@ -932,7 +932,7 @@ export class DeriveClass extends BaseClass {
 }
 ```
 
-
+<!--code_no_check-->
 ```ts
 // index.ets
 // 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
@@ -1784,10 +1784,10 @@ execute(task: Task): Promise\<Object>
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified; <br>2. Incorrect parameter types. |
 | 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | The task to be added to SequenceRunner has dependent tasks.  |
+| 10200025 | A dependent task cannot be added to SequenceRunner.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
@@ -1930,6 +1930,7 @@ taskpoolExecute();
 // b.ets
 export let c: string = "hello";
 ```
+<!--code_no_check-->
 ```ts
 // 引用import变量
 // a.ets(与b.ets位于同一目录中)
@@ -2005,7 +2006,7 @@ export async function func2(): Promise<void> {
   });
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // index.ets
 import { func1, func2 } from "./c";

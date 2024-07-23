@@ -219,6 +219,7 @@ struct Child {
     Button("changed")
       .draggable(true)
       .onDragStart((event: DragEvent) => {
+        // 当前预览器上不支持通用拖拽事件
         this.onDrag(event.getDisplayX(), event.getDisplayY());
       })
   }

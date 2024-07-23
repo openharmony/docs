@@ -164,6 +164,8 @@ enableBreathingAnimation(value: boolean): void
 
 进度满时的呼吸光晕动画开关。默认关闭呼吸光晕动画。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

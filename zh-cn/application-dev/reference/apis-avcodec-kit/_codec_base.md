@@ -205,7 +205,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | AAC档次。 | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9<br/>} | 枚举封装器的输出文件格式。 |
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 枚举封装器的输出文件格式。 |
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。 | 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 枚举每个编码样本的音频位数。 | 
@@ -412,7 +412,10 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
 ```
 **描述**
-当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。
+当OH_AVCodec实例运行出错时，回调将上报具体的错误信息的函数指针。
+
+- AV_ERROR_NO_MEMORY：系统资源不足。
+- AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -975,6 +978,7 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_M4A  | 输出文件格式为M4A格式。   | 
 | AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
 | AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
+| AV_OUTPUT_FORMAT_WAV  | 输出文件格式为WAV格式。<br>**起始版本：** 12   | 
 
 ### OH_AVSeekMode
 

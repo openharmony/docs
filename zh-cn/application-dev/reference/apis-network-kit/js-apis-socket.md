@@ -7068,10 +7068,11 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
+| SkipRemoteValidation  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
-TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参数。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
+TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -7188,7 +7189,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  SkipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
   console.log("listen callback error" + err);
@@ -7258,7 +7260,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  SkipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");

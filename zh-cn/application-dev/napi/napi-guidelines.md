@@ -207,8 +207,8 @@ napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr)；
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result)；
 // 当js_object和result后续不再使用时，及时调用napi_remove_wrap释放result
-napi_value result1;
-napi_remove_wrap(env, jsobject, result1);
+void* nativeObjectResult = nullptr;
+napi_remove_wrap(env, jsobject, &nativeObjectResult);
 ```
 
 ## 高性能数组

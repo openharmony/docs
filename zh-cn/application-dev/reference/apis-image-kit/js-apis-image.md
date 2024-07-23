@@ -2311,6 +2311,56 @@ async function Demo() {
 }
 ```
 
+### toSdr<sup>12+<sup>
+
+toSdr(): Promise\<void>
+
+将HDR的图像内容转换为SDR的图像内容，异步使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980137 | Invalid image operation.              |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import resourceManager from '@ohos.resourceManager'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    await pixelmap.toSdr();
+    let imageInfo = pixelmap.getImageInfoSync();
+    console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
+  } catch (e) {
+    console.info('toSdr failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
@@ -5531,7 +5581,7 @@ PixelMap的初始化选项。
 | MAKE<sup>10+</sup>                        | "Make"                      | 可读写| 生产商。|
 | MODEL<sup>10+</sup>                       | "Model"                     | 可读写| 设备型号。|
 | STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | 可读写| 每个strip的字节偏移量。|
-| ORIENTATION                               | "Orientation"               | 可读写| 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像垂直翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
+| ORIENTATION                               | "Orientation"               | 可读写| 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像水平翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
 | SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | 可读写| 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。|
 | ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | 可读写| 每个strip的图像数据行数。|
 | STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | 可读写| 每个图像数据带的总字节数。|

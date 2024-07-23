@@ -419,6 +419,8 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 <!--RP1--><!--RP1End-->
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -477,6 +479,8 @@ dynamicRangeMode(value: DynamicRangeMode)
 ## DynamicRangeMode<sup>12+</sup>
 
 期望展示的图像动态范围。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                      |
 | ------ | -------------------------- |
@@ -683,7 +687,8 @@ struct ImageExample3 {
 使用PixelMap开启图像分析
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
+
 @Entry
 @Component
 struct ImageExample4 {
@@ -802,8 +807,8 @@ struct Index {
 播放PixelMap数组动画
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@ohos.arkui.drawableDescriptor'
-import image from '@ohos.multimedia.image'
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

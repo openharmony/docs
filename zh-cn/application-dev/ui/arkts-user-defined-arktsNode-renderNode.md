@@ -22,13 +22,15 @@ RenderNode提供了节点的增、删、查、改的能力，能够修改节点�
 
 ## 设置和获取渲染相关属性
 
-RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask。
+RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask，shapeClip，markNodeGroup等。具体属性支持范围参考[RenderNode接口说明](../reference/apis-arkui/js-apis-arkui-renderNode.md#rendernode)。
 
 > **说明：**
 > 
 > - RenderNode中查询获取得到的属性为设置的属性值。
 > 
 > - 若未传入参数或者传入参数为非法值则查询获得的为默认值。
+>
+> - 不建议对BuilderNode中的RenderNode进行修改操作。
 
 ```ts
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
@@ -301,6 +303,48 @@ struct Index {
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+## 设置标签
+
+开发者可以通过[label](../reference/apis-arkui/js-apis-arkui-renderNode.md#label12)接口向FrameNode中设置标签信息，便于在节点Inspector信息中较为方便对节点进行区分。
+
+```ts
+import {  RenderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const renderNode: RenderNode | null = this.rootNode.getRenderNode();
+    if (renderNode !== null) {
+      const renderChildNode: RenderNode = new RenderNode();
+      renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+      renderChildNode.backgroundColor = 0xffff0000;
+      renderChildNode.label = 'customRenderChildNode';
+      console.log('label:', renderChildNode.label);
+      renderNode.appendChild(renderChildNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .width(300)
+        .height(700)
+        .backgroundColor(Color.Gray)
     }
   }
 }

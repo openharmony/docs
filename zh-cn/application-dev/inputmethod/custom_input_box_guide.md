@@ -46,6 +46,7 @@
    @Component
    export struct CustomInput {
      @State inputText: string = ''; // inputText作为Text组件要显示的内容。
+     private isAttach: boolean = false;
      private inputController: inputMethod.InputMethodController = inputMethod.getController();
    
      build() {
@@ -54,10 +55,13 @@
          .width('100%')
          .lineHeight(40)
          .id('customInput')
+         .onBlur(() => {
+           this.off();
+         })
          .height(45)
          .border({ color: '#554455', radius: 30, width: 1 })
          .maxLines(1)
-         .onClick(()=>{
+         .onClick(() => {
            this.attachAndListener(); // 点击控件
          })
      }
@@ -70,12 +74,21 @@
            enterKeyType: inputMethod.EnterKeyType.SEARCH
          }
        });
-       this.inputController.on('insertText', (text) => {
-         this.inputText += text;
-       })
-       this.inputController.on('deleteLeft', (length) => {
-         this.inputText = this.inputText.substring(0, this.inputText.length - length);
-       })
+       if (!this.isAttach) {
+         this.inputController.on('insertText', (text) => {
+           this.inputText += text;
+         })
+         this.inputController.on('deleteLeft', (length) => {
+           this.inputText = this.inputText.substring(0, this.inputText.length - length);
+         })
+         this.isAttach = true;
+       }
+     }
+
+     off() {
+       this.isAttach = false;
+       this.inputController.off('insertText')
+       this.inputController.off('deleteLeft')
      }
    }
    ```
