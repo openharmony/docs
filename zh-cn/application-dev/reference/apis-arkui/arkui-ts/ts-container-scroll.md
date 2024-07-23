@@ -549,7 +549,7 @@ scrollPage(value:   ScrollPageOptions)
 
 | 参数名 | 参数类型                                           | 必填 | 参数描述       |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| value  | [ScrollPageOptions](#scrollpageoptions12对象说明) | 是   | 设置翻页模式。 |
 
 ### scrollPage<sup>(deprecated)</sup>
 
