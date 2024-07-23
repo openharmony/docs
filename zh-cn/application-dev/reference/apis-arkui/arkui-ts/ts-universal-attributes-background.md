@@ -145,6 +145,8 @@ backgroundImageResizable(value: ResizableOptions)
 
 当设置top+bottom大于原图的高或者left+right大于原图的宽时，ResizableOptions属性设置不生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

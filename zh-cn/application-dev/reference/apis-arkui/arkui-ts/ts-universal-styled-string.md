@@ -488,6 +488,20 @@ constructor(value: DecorationStyleInterface)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
 
+## DecorationStyleResult
+
+后端返回的文本装饰线样式信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
+
 ## BaselineOffsetStyle
 
 文本基线偏移量对象说明。
@@ -1300,7 +1314,6 @@ struct styled_string_demo4 {
           .onClick(() => {
             this.mutableStr.replaceString(2, 5, "789")
             this.controller.setStyledString(this.mutableStr)
-            this.mutableStr
           })
 
         Button('Image之Get')

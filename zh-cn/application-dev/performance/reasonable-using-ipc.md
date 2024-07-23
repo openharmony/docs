@@ -114,7 +114,7 @@ if (this.getCacheData(this.taskId)) {
 
 ### 场景示例 2
 
-**问题**应用包含Page： A和Page B两个页面，Page B的主体视图是Tabs组件，Tabs组件内包含首页、WiFi列表页等数个页签，默认展示首页页签。从Page A跳转到Page B时，页面加载时间较长。
+**问题**：应用包含Page A和Page B两个页面，Page B的主体视图是Tabs组件，Tabs组件内包含首页、WiFi列表页等数个页签，默认展示首页页签。从Page A跳转到Page B时，页面加载时间较长。
 
 **分析**：通过耗时分析工具Time Profiler对页面跳转过程进行录制并分析，观察ArkTS Callstack泳道发现该过程频繁调用`getScanInfoList`方法，产生阻塞。
 
@@ -152,10 +152,10 @@ ipcTask() {
 
 # **参考资料**
 
-· [1] [@ohos.rpc (RPC通信) (openharmony.cn)](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-rpc.md/)
+1. [@ohos.rpc (RPC通信)](../reference/apis-ipc-kit/js-apis-rpc.md)
 
-· [2] [IPC与RPC通信概述 (openharmony.cn)](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/connectivity/ipc-rpc-overview.md/)
+2. [IPC与RPC通信概述](../ipc/ipc-rpc-overview.md)
 
-· [3] [性能分析工具CPU Profiler (openharmony.cn)](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/application-performance-analysis.md/)
+3. [性能分析工具CPU Profiler](./application-performance-analysis.md)
 
-· [4] [@ohos.wifiManager (WLAN)(推荐) (openharmony.cn)](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-wifiManager.md/)
+4. [@ohos.wifiManager (WLAN)(推荐)](../reference/apis-connectivity-kit/js-apis-wifiManager.md)

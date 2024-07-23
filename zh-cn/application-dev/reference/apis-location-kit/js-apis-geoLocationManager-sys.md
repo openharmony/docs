@@ -228,6 +228,7 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
@@ -266,7 +267,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示取消订阅定位业务所需数据的变化。 |
-  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -275,6 +276,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
 
@@ -512,6 +514,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -770,6 +773,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
@@ -816,6 +820,7 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                        |
@@ -850,7 +855,7 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationIconStatusChange”，表示取消订阅定位图标状态变化。 |
-  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -858,6 +863,7 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.        |
@@ -900,6 +906,7 @@ getLocationIconStatus(): LocationIconStatus;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
 |3301000  | The location service is unavailable.                  |
 

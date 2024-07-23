@@ -23,22 +23,22 @@ Adds an asset to the specified user space. This API uses a promise to return the
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name    | Type    | Mandatory| Description                                                        |
+| Name    | Type    | Mandatory | Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | userId     | number                                | Yes  | User ID.                                                          |
-| attributes | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
+| attributes | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data. |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
@@ -50,7 +50,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -95,22 +95,22 @@ Removes one or more assets from the specified user space. This API uses a promis
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                 |
-| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
+| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data. |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
@@ -120,11 +120,11 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
-| 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **Example**
 
@@ -161,23 +161,23 @@ Updates an asset in the specified user space. This API uses a promise to return 
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name            | Type    | Mandatory| Description                                                        |
+| Name            | Type    | Mandatory | Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | userId             | number                                | Yes  | User ID.                                                        |
-| query              | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
+| query              | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data. |
 | attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | Yes  | New attributes of the asset, such as the asset plaintext and custom data.             |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
@@ -189,7 +189,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -232,22 +232,22 @@ Performs preprocessing for the asset query in the specified user space. This API
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                  |
+| Name | Type    | Mandatory | Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                           |
-| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.|
+| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data. |
 
 **Return value**
 
 | Type               | Description                                                 |
 | ------------------- | ----------------------------------------------------- |
-| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication.|
+| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | The caller doesn't have the permission.                      |
 | 202      | Non-system applications use system APIs.                     |
@@ -259,7 +259,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                      |
 | 24000008 | The database operation failed.                            |
 | 24000009 | The cryptography operation failed.                        |
-| 24000010 | IPC failed                                  |
+| 24000010 | IPC failed.                                  |
 | 24000011 | Calling the Bundle Manager service failed.   |
 | 24000012 | Calling the OS Account service failed.       |
 | 24000013 | Calling the Access Token service failed.     |
@@ -301,22 +301,22 @@ Queries one or more assets in the specified user space. If user authentication i
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name  | Type                           | Mandatory| Description                                                        |
+| Name  | Type                           | Mandatory | Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | userId   | number                                          | Yes  | User ID.                                                 |
-| query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.      |
+| query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.      |
 
 **Return value**
 
 | Type                    | Description                                 |
 | ------------------------ | ------------------------------------- |
-| Promise\<Array\<AssetMap>> | Promise used to return the result obtained.|
+| Promise\<Array\<AssetMap>> | Promise used to return the result obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
@@ -329,7 +329,7 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | 24000007 | The asset is corrupted.                                    |
 | 24000008 | The database operation failed.                          |
 | 24000009 | The cryptography operation failed.                      |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
@@ -374,7 +374,7 @@ Performs postprocessing for the asset query in the specified user space. This AP
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name| Type    | Mandatory| Description                                                        |
+| Name | Type    | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                                    |
 | handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser). |
@@ -383,20 +383,20 @@ Performs postprocessing for the asset query in the specified user space. This AP
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
 | 401      | The argument is invalid.                                   |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC failed                                |
+| 24000010 | IPC failed.                                |
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |

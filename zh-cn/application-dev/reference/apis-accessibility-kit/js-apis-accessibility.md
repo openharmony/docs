@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 ```
 
 ## AbilityState
@@ -81,7 +81,7 @@ import accessibility from '@ohos.accessibility';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需配置参数setText。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
 | setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
 | common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
@@ -193,7 +193,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let captionsManager = accessibility.getCaptionsManager();
 captionsManager.on('enableChange', (data: boolean) => {
@@ -227,7 +227,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let captionsManager = accessibility.getCaptionsManager();
 
@@ -262,7 +262,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let captionsManager = accessibility.getCaptionsManager();
 
@@ -297,7 +297,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let captionsManager = accessibility.getCaptionsManager();
 
@@ -351,7 +351,7 @@ constructor(jsonObject)
 **示例：**
 
   ```ts
-  import accessibility from '@ohos.accessibility';
+  import { accessibility } from '@kit.AccessibilityKit';
 
   let eventInfo: accessibility.EventInfo = ({
     type: 'click',
@@ -379,7 +379,7 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 **示例：**
 
   ```ts
-  import accessibility from '@ohos.accessibility';
+  import { accessibility } from '@kit.AccessibilityKit';
 
   let eventInfo = new accessibility.EventInfo('click', 'com.example.MyApplication', 'click');
   ```
@@ -464,8 +464,8 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityType: accessibility.AbilityType = 'spoken';
 let abilityState: accessibility.AbilityState = 'enable';
@@ -501,8 +501,8 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityType: accessibility.AbilityType = 'spoken';
 let abilityState: accessibility.AbilityState = 'enable';
@@ -548,8 +548,8 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityType: accessibility.AbilityType = 'spoken';
 let abilityState: accessibility.AbilityState = 'enable';
@@ -588,8 +588,8 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityType: accessibility.AbilityType = 'spoken';
 let abilityState: accessibility.AbilityState = 'enable';
@@ -627,8 +627,8 @@ getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilitySt
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityType: accessibility.AbilityType = 'all';
 let abilityState: accessibility.AbilityState = 'install';
@@ -660,7 +660,7 @@ getCaptionsManager(): CaptionsManager
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let captionsManager = accessibility.getCaptionsManager();
 ```
@@ -691,7 +691,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.on('accessibilityStateChange', (data: boolean) => {
   console.info(`subscribe accessibility state change, result: ${JSON.stringify(data)}`);
@@ -724,7 +724,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.on('touchGuideStateChange', (data: boolean) => {
   console.info(`subscribe touch guide state change, result: ${JSON.stringify(data)}`);
@@ -757,7 +757,7 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('accessibilityStateChange', (data: boolean) => {
   console.info(`Unsubscribe accessibility state change, result: ${JSON.stringify(data)}`);
@@ -790,7 +790,7 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('touchGuideStateChange', (data: boolean) => {
   console.info(`Unsubscribe touch guide state change, result: ${JSON.stringify(data)}`);
@@ -820,8 +820,8 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 accessibility.isOpenAccessibility().then((data: boolean) => {
   console.info(`success data:isOpenAccessibility : ${JSON.stringify(data)}`)
@@ -853,8 +853,8 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 accessibility.isOpenAccessibility((err: BusinessError, data: boolean) => {
   if (err) {
@@ -884,8 +884,8 @@ isOpenAccessibilitySync(): boolean
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let status: boolean = accessibility.isOpenAccessibilitySync();
 ```
@@ -913,8 +913,8 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 accessibility.isOpenTouchGuide().then((data: boolean) => {
   console.info(`success data:isOpenTouchGuide : ${JSON.stringify(data)}`);
@@ -946,8 +946,8 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
   if (err) {
@@ -977,7 +977,7 @@ isOpenTouchGuideSync(): boolean
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
+import { accessibility } from '@kit.AccessibilityKit';
 
 let status: boolean = accessibility.isOpenTouchGuideSync();
 ```
@@ -1010,8 +1010,8 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
@@ -1049,8 +1049,8 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
@@ -1098,8 +1098,8 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
@@ -1140,8 +1140,8 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
@@ -1174,8 +1174,8 @@ struct Index {
 }
 ```
 ```ts
-import accessibility from '@ohos.accessibility';
-import { BusinessError } from '@ohos.base';
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
   type: 'requestFocusForAccessibility',

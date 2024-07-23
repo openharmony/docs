@@ -10,7 +10,7 @@
 ##  导入模块
 
 ```
-import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton'
+import { DownloadFileButton } from '@kit.ArkUI'
 ```
 
 ## 子组件
@@ -129,9 +129,9 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 ##  示例
 
 ```
-import picker from '@ohos.file.picker';
+import { picker } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton';
+import { DownloadFileButton, DownloadLayoutDirection } from '@kit.ArkUI';
 
 @Entry
 @Component

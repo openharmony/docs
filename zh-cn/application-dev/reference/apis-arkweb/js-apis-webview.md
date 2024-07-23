@@ -35,6 +35,14 @@ once(type: string, callback: Callback\<void\>): void
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
 | callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
+
 **示例：**
 
 ```ts
@@ -128,7 +136,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| result | [WebMessage](#webmessage) | 是   | 接收到的消息。 |
+| callback | (result: [WebMessage](#webmessage)) => void | 是   | 接收到的消息。 |
 
 **错误码：**
 
@@ -222,7 +230,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| result | [WebMessageExt](#webmessageext10) | 是   | 接收到的消息。 |
+| callback | (result: [WebMessageExt](#webmessageext10)) => void | 是   | 接收到的消息。 |
 
 **错误码：**
 
@@ -749,6 +757,14 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
 | webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1499,7 +1515,7 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>, permission?: string): void
 
 registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
 <br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
@@ -1520,6 +1536,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
+| permission<sup>12+</sup> | string | 否   | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。|
 
 **错误码：**
 
@@ -4505,7 +4522,7 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100001 | Init error. The WebviewController must be associated with a web component. |
 
 **示例：**
 
@@ -4666,7 +4683,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100001 | Init error. The WebviewController must be associated with a web component. |
 
 **示例：**
 
@@ -4827,7 +4844,7 @@ setAudioMuted(mute: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -5392,7 +5409,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5940,6 +5957,13 @@ terminateRenderProcess(): boolean
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -6061,7 +6085,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6209,7 +6233,7 @@ setScrollable(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6311,7 +6335,7 @@ setPrintBackground(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -7311,6 +7335,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 6. 在页面中使用。
 
+   <!--code_no_check-->
    ```ts
    // Index.ets
    import { webview } from '@kit.ArkWeb';
@@ -7318,16 +7343,16 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-   
+
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
      precompileController: webview.WebviewController = new webview.WebviewController();
-   
+
      @State businessNode: NodeController | undefined = undefined;
      businessController: webview.WebviewController = new webview.WebviewController();
-   
+
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
@@ -7496,6 +7521,14 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
 
   exitFullscreen() {
     // 将本地播放器退出全屏播放。
+  }
+
+  resumePlayer() {
+    // 重新创建本地播放器。
+  }
+
+  suspendPlayer(type: SuspendType) {
+    // 销毁本地播放器。
   }
 }
 
@@ -7765,6 +7798,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    ```
 
 6. 在页面中使用。
+   <!--code_no_check-->
    ```ts
    // Index.ets
    import { webview } from '@kit.ArkWeb';
@@ -7829,7 +7863,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 参数描述                             |
+| 参数名    | 类型 | 必填 | 参数描述                             |
 | --------- | -------- | ---- | ------------------------------------ |
 | hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
 | address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
@@ -7841,7 +7875,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7857,7 +7891,7 @@ static clearHostIP(hostName: string): void
 
 **参数：**
 
-| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 参数描述                  |
 | -------- | -------- | ---- | ------------------------- |
 | hostName | string   | 是   | 要清除DNS记录的主机域名。 |
 
@@ -7867,7 +7901,7 @@ static clearHostIP(hostName: string): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7919,14 +7953,6 @@ getSurfaceId(): string
 | 类型   | 说明                |
 | ------ | ------------------- |
 | string | ArkWeb持有Surface的ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -7994,7 +8020,7 @@ setUrlTrustList(urlTrustList: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed.                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -8082,7 +8108,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 **参数：**
 
-| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 参数描述                  |
 | -------- | -------- | ---- | ------------------------- |
 | pathList | Array\<string\>   | 是   | 路径列表 |
 
@@ -8092,7 +8118,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -8178,6 +8204,7 @@ struct WebComponent {
 ```
 
 html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
+<!--code_no_check-->
 ```javascript
 const body = document.body;
 const element = document.createElement('div');
@@ -8329,7 +8356,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8394,7 +8421,7 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8570,7 +8597,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8633,7 +8660,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8685,6 +8712,14 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
 | callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -8730,6 +8765,14 @@ static saveCookieAsync(): Promise\<void>
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
 | Promise\<void> | Promise实例，用于获取cookie是否成功保存。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -8778,6 +8821,14 @@ static putAcceptCookieEnabled(accept: boolean): void
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
 | accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -8858,6 +8909,14 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
 | accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9055,6 +9114,14 @@ static clearAllCookies(callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
 | callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有cookie是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -9100,6 +9167,14 @@ static clearAllCookies(): Promise\<void>
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
 | Promise\<void> | Promise实例，用于获取清除所有cookie是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -9215,6 +9290,14 @@ static clearSessionCookie(callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
 | callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有会话cookie是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -9260,6 +9343,14 @@ static clearSessionCookie(): Promise\<void>
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
 | Promise\<void> | Promise实例，用于获取清除所有会话cookie是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -9858,6 +9949,14 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 | ----- | -------------------------------------------- |
 | Array\<string> | 包含用户名和密码的组数，检索失败返回空数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -9906,6 +10005,14 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 | realm    | string | 是   | HTTP身份验证凭据应用的域。   |
 | username | string | 是   | 用户名。                     |
 | password | string | 是   | 密码。                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10268,6 +10375,14 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?
 | callback | AsyncCallback\<Array\<string>> | 是   | 返回已存储地理位置权限状态的所有源信息。 |
 | incognito<sup>11+</sup>    | boolean | 否   | true表示获取隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -10322,6 +10437,14 @@ static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 | 类型                   | 说明                                                      |
 | ---------------------- | --------------------------------------------------------- |
 | Promise\<Array\<string>> | Promise实例，用于获取已存储地理位置权限状态的所有源信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10997,6 +11120,14 @@ getItemAtIndex(index: number): HistoryItem
 | 类型                        | 说明         |
 | --------------------------- | ------------ |
 | [HistoryItem](#historyitem) | 历史记录项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -13831,7 +13962,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **示例：**
 
@@ -14069,7 +14200,8 @@ didFail(code: WebNetErrorList): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100021 | Resource handler is invalid. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 17100021 | The resource handler is invalid. |
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14094,6 +14226,14 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -14206,6 +14346,14 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | 是   | 对应请求结束的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 401 | Invalid input parameter. |
 
 **示例：**
 
@@ -14530,6 +14678,17 @@ handleVideoSizeChanged(width: number, height: number): void
 
 完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
 
+## SuspendType<sup>12+<sup>
+
+表示播放器的挂起类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| ENTER_BACK_FORWARD_CACHE | 0 | 页面进BFCache。 |
+| ENTER_BACKGROUND         | 1 | 页面进后台。 |
+| AUTO_CLEANUP             | 2 | 系统自动清理。 |
 
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
@@ -14687,6 +14846,36 @@ exitFullscreen(): void
 播放器退出全屏。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### resumePlayer<sup>12+<sup>
+
+resumePlayer?(): void
+
+通知应用重建应用内播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### suspendPlayer<sup>12+<sup>
+
+suspendPlayer?(type: SuspendType): void
+
+通知应用销毁应用内播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| type | [SuspendType](#suspendtype12) | 是 | 播放器挂起类型。|
 
 **示例：**
 
@@ -14852,7 +15041,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
 
-# RectEvent<sup>12+<sup>
+## RectEvent<sup>12+<sup>
 
 矩形定义。
 
@@ -15456,8 +15645,8 @@ struct WebComponent {
 
 | 名称 | 类型 |  必填 | 说明 |
 |------|------|------|------|
-| id | string | 是 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
+| id | string | 否 | snapshot的id。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -15465,9 +15654,9 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 |  说明 |
-|------|------|---------|
-| id | string | snapshot的id。|
-| status | boolean |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 全量绘制结果image.pixelMap格式。|
+| 名称 | 类型 | 必填 |  说明 |
+|------|------|--|---------|
+| id | string | 否 | snapshot的id。|
+| status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|

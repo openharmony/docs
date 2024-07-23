@@ -247,7 +247,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    ```cpp
    // NativeEntry.cpp
    #include "NativeEntry.h"
-   
+
+   #include <arkui/native_node_napi.h>
    #include <hilog/log.h>
    #include <js_native_api.h>
    

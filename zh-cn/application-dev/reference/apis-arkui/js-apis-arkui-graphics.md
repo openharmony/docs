@@ -59,7 +59,7 @@ type PositionT\<T> = Vector2T\<T>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 可读 | 可写 | 说明                        |
+| 名称   | 类型   | 只读 | 可选 | 说明                        |
 | ------ | ------ | ---- | ---- | --------------------------- |
 | x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp |
 | y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp |
@@ -169,9 +169,11 @@ const transform: Matrix4 = [
 
 用于表示包含x、y、z三个值的向量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                |
+| 名称 | 类型   | 只读 | 可选 | 说明                |
 | ---- | ------ | ---- | ---- | ------------------- |
 | x    | number | 否   | 否   | x轴方向的旋转角度。 |
 | y    | number | 否   | 否   | y轴方向的旋转角度。 |
@@ -185,7 +187,7 @@ const transform: Matrix4 = [
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明              |
+| 名称 | 类型   | 只读 | 可选 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x    | T | 否  | 否  | 向量x轴方向的值。 |
 | y    | T | 否  | 否  | 向量y轴方向的值。 |
@@ -500,6 +502,15 @@ static resource(value: Resource): LengthMetrics
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 180001   | System resources does not exist.           |
+| 180002   | The type of system resources is incorrect. |
+
 ## ColorMetrics<sup>12+</sup>
 
 用于混合颜色。
@@ -679,7 +690,7 @@ get alpha(): number
 **示例：**
 
 ```ts
-import { ColorMetrics } from '@ohos.arkui.node';
+import { ColorMetrics } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getBlendColor(baseColor: ResourceColor):ColorMetrics {
@@ -822,8 +833,7 @@ setRectShape(rect: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
@@ -880,8 +890,7 @@ setRoundRectShape(roundRect: RoundRect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController} from '@kit.ArkUI';
-import { ShapeMask,RoundRect } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
@@ -947,8 +956,7 @@ setCircleShape(circle: Circle): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
@@ -1005,8 +1013,7 @@ setOvalShape(oval: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
@@ -1063,8 +1070,7 @@ setCommandPath(path: CommandPath): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
@@ -1115,8 +1121,7 @@ fillColor: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1167,8 +1172,7 @@ strokeColor: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1220,8 +1224,7 @@ strokeWidth: number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1262,6 +1265,368 @@ struct Index {
 }
 ```
 
+## ShapeClip<sup>12+</sup>
+
+用于设置图形裁剪。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+ShapeClip的构造函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### setRectShape<sup>12+</sup>
+
+setRectShape(rect: Rect): void
+
+用于裁剪矩形。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| rect   | [Rect](#rect12) | 是   | 矩形的形状。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+const shapeClip = renderNode.shapeClip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setRectShape")
+        .onClick(() => {
+          shapeClip.setRectShape({
+            left: 0,
+            right: 150,
+            top: 0,
+            bottom: 150
+          });
+          renderNode.shapeClip = shapeClip;
+        })
+    }
+  }
+}
+```
+
+### setRoundRectShape<sup>12+</sup>
+
+setRoundRectShape(roundRect: RoundRect): void
+
+用于裁剪圆角矩形。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明             |
+| --------- | ----------------------- | ---- | ---------------- |
+| roundRect | [RoundRect](#roundrect12) | 是   | 圆角矩形的形状。 |
+
+**示例：**
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setRoundRectShape")
+        .onClick(() => {
+          renderNode.shapeClip.setRoundRectShape({
+            rect: {
+              left: 0,
+              top: 0,
+              right: vp2px(150),
+              bottom: vp2px(150)
+            },
+            corners: {
+              topLeft: { x: 32, y: 32 },
+              topRight: { x: 32, y: 32 },
+              bottomLeft: { x: 32, y: 32 },
+              bottomRight: { x: 32, y: 32 }
+            }
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+    }
+  }
+}
+```
+
+### setCircleShape<sup>12+</sup>
+
+setCircleShape(circle: Circle): void
+
+用于裁剪圆形。
+
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明         |
+| ------ | ----------------- | ---- | ------------ |
+| circle | [Circle](#circle12) | 是   | 圆形的形状。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setCircleShape")
+        .onClick(() => {
+          renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+          renderNode.shapeClip = renderNode.shapeClip;
+
+        })
+    }
+  }
+}
+```
+
+### setOvalShape<sup>12+</sup>
+
+setOvalShape(oval: Rect): void
+
+用于裁剪椭圆形。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明           |
+| ------ | ------------- | ---- | -------------- |
+| oval   | [Rect](#rect12) | 是   | 椭圆形的形状。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setOvalShape")
+        .onClick(() => {
+          renderNode.shapeClip.setOvalShape({
+            left: 0,
+            right: vp2px(150),
+            top: 0,
+            bottom: vp2px(100)
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+    }
+  }
+}
+```
+
+### setCommandPath<sup>12+</sup>
+
+setCommandPath(path: CommandPath): void
+
+用于裁剪路径绘制指令。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                        | 必填 | 说明           |
+| ------ | --------------------------- | ---- | -------------- |
+| path   | [CommandPath](#commandpath12) | 是   | 路径绘制指令。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setCommandPath")
+        .onClick(()=>{
+          renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+    }
+  }
+}
+```
+
 ## edgeColors<sup>12+</sup>
 
 edgeColors(all: number): Edges\<number>
@@ -1285,8 +1650,7 @@ edgeColors(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeColors } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeColors } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1346,8 +1710,7 @@ edgeWidths(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeWidths } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeWidths } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1407,8 +1770,7 @@ borderStyles(all: BorderStyle): Edges\<BorderStyle>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import {  borderStyles } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderStyles } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1469,7 +1831,7 @@ borderRadiuses(all: number): BorderRadiuses
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, borderRadiuses } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderRadiuses }  from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };

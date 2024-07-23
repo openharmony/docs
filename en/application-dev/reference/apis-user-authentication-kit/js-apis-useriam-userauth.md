@@ -9,7 +9,7 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 ## Modules to Import
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## Constant
@@ -20,7 +20,7 @@ Represents the maximum period for which the device unlocking result can be reuse
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum period for which the device unlocking result can be reused. The value is **300,000** ms.|
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum period for which the device unlocking result can be reused. The value is **300,000** ms. |
 
 ## EnrolledState<sup>12+</sup>
 
@@ -28,10 +28,10 @@ Represents information about the enrolled credentials.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type   | Readable| Writable| Description                |
+| Name        | Type   | Readable | Writable | Description                |
 | ------------ | ---------- | ---- | ---- | -------------------- |
-| credentialDigest       | number | Yes  |  No| Credential digest, which is randomly generated when a credential is added.|
-| credentialCount        | number | Yes  |  No| Number of enrolled credentials.      |
+| credentialDigest       | number | Yes  |  No | Credential digest, which is randomly generated when a credential is added.|
+| credentialCount        | number | Yes  |  No | Number of enrolled credentials.      |
 
 ## ReuseMode<sup>12+</sup>
 
@@ -41,8 +41,8 @@ Represents the mode for reusing the device unlocking result.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | The device unlocking result can be reused only within the specified period when the authentication type matches one of the specified authentication types.|
-| AUTH_TYPE_IRRELEVANT  | 2   | The device unlocking result can be reused within the specified period irrespective of the authentication type.|
+| AUTH_TYPE_RELEVANT    | 1   | The device unlocking result can be reused only within the specified period when the authentication type matches one of the specified authentication types. |
+| AUTH_TYPE_IRRELEVANT  | 2   | The device unlocking result can be reused within the specified period irrespective of the authentication type. |
 
 ## ReuseUnlockResult<sup>12+</sup>
 
@@ -55,10 +55,10 @@ Represents the device unlocking result.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type  | Mandatory| Description                |
+| Name        | Type  | Mandatory | Description                |
 | ------------ | ---------- | ---- | -------------------- |
 | reuseMode        | [ReuseMode](#reusemode12) | Yes  | Mode for reusing the device unlocking result.      |
-| reuseDuration    | number | Yes  | Period for which the device unlocking result can be reused. <br>Value range: 0 to [MAX_ALLOWABLE_REUSE_DURATION](#constant)|
+| reuseDuration    | number | Yes  | Period for which the device unlocking result can be reused. <br>Value range: 0 to [MAX_ALLOWABLE_REUSE_DURATION](#constant) |
 
 ## userAuth.getEnrolledState<sup>12+</sup>
 
@@ -72,7 +72,7 @@ Obtains information about the credentials enrolled. With this API, you can obtai
 
 **Parameters**
 
-| Name        | Type                              | Mandatory| Description                      |
+| Name        | Type                              | Mandatory | Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
 
@@ -80,16 +80,16 @@ Obtains information about the credentials enrolled. With this API, you can obtai
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| [EnrolledState](#enrolledstate12) | Information about the enrolled credentials.|
+| [EnrolledState](#enrolledstate12) | Information about the enrolled credentials. |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -97,7 +97,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
@@ -113,9 +113,9 @@ Defines the user authentication parameters.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name          | Type                              | Mandatory| Description                                                        |
+| Name          | Type                              | Mandatory | Description                                                        |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
+| challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format. |
 | authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.          |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                              |
 | reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | No  |Device unlocking result that can be reused.|
@@ -126,10 +126,10 @@ Represents the information presented on the user authentication page.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name                | Type                               | Mandatory| Description                                                        |
+| Name                | Type                               | Mandatory | Description                                                        |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.                     |
-| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. This parameter is valid only in fingerprint or facial authentication only.|
+| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. This parameter is valid only in fingerprint or facial authentication only. |
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -137,9 +137,9 @@ Defines the user authentication result. If the authentication is successful, the
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name    | Type                          | Mandatory| Description                                                        |
+| Name    | Type                          | Mandatory | Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| result   | number                         | Yes  | User authentication result. If the operation is successful, **SUCCESS** is returned. If the operation fails, an error code is returned. For details, see [UserAuthResultCode](#userauthresultcode9).|
+| result   | number                         | Yes  | User authentication result. If the operation is successful, **SUCCESS** is returned. If the operation fails, an error code is returned. For details, see [UserAuthResultCode](#userauthresultcode9). |
 | token    | Uint8Array                     | No  | Token that has passed the authentication.                |
 | authType | [UserAuthType](#userauthtype8) | No  | Type of the authentication.                          |
 | enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | No  |  Enrolled credential information.        |
@@ -158,14 +158,14 @@ Called to return the authentication result. If the authentication is successful,
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description      |
+| Name | Type                               | Mandatory | Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
-| result | [UserAuthResult](#userauthresult10) | Yes  | Authentication result.|
+| result | [UserAuthResult](#userauthresult10) | Yes  | Authentication result. |
 
 **Example 1**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -193,7 +193,7 @@ try {
 **Example 2**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
@@ -238,24 +238,24 @@ Subscribes to the user authentication result.
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                      |
+| Name  | Type                             | Mandatory | Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
-| callback | [IAuthCallback](#iauthcallback10) | Yes  | Callback invoked to return the user authentication result.    |
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result. |
+| callback | [IAuthCallback](#iauthcallback10) | Yes  | Callback used to return the user authentication result.    |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message                |
+| ID | Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -288,30 +288,30 @@ Unsubscribes from the user authentication result.
 
 > **NOTE**
 > 
-> The [UserAuthInstance](#userauthinstance10) instance used to call this API must be the one used to subscribe to the event.
+> The [UserAuthInstance](#userauthinstance10) instance used to invoke this API must be the one used to subscribe to the event.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                      |
+| Name  | Type                             | Mandatory | Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result. |
 | callback | [IAuthCallback](#iauthcallback10) | No  | Callback for the user authentication result.    |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message                |
+| ID | Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -352,25 +352,26 @@ Starts authentication.
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message                                        |
+| ID | Error Message                                        |
 | -------- | ------------------------------------------------ |
 | 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
-| 12500003 | The operation is canceled.                       |
-| 12500004 | The operation is time-out.                       |
+| 12500003 | Authentication canceled.                         |
+| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | The authentication task is busy.                 |
-| 12500009 | The authenticator is locked.                     |
+| 12500007 | Authentication service is busy.                  |
+| 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | The authentication is canceled from widget's navigation button.      |
+| 12500011 | Switched to the custom authentication process.   |
+| 12500013 | Operation failed because of PIN expired. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -406,16 +407,16 @@ Cancels this authentication.
 
 **Error codes**
 
-| ID| Error Message                       |
+| ID | Error Message                       |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Incorrect parameters.           |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -449,24 +450,24 @@ Obtains a [UserAuthInstance](#userauthinstance10) instance for user authenticati
 
 **Parameters**
 
-| Name     | Type                         | Mandatory| Description                      |
+| Name     | Type                         | Mandatory | Description                      |
 | ----------- | ----------------------------- | ---- | -------------------------- |
 | authParam   | [AuthParam](#authparam10)      | Yes  | User authentication parameters.        |
-| widgetParam | [WidgetParam](#widgetparam10) | Yes  | Parameters on the user authentication page.|
+| widgetParam | [WidgetParam](#widgetparam10) | Yes  | Parameters on the user authentication page. |
 
 **Return value**
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance** instance that supports UI.|
+| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance** instance that supports UI. |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message                                        |
+| ID | Error Message                                        |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -474,7 +475,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -501,12 +502,12 @@ Defines the authentication result.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type  | Mandatory| Description                |
+| Name        | Type  | Mandatory | Description                |
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | Yes  | Authentication result.      |
-| token        | Uint8Array | No  | Token that has passed the user identity authentication.|
-| remainAttempts  | number     | No  | Number of remaining authentication attempts.|
-| lockoutDuration | number     | No  | Lock duration of the authentication operation, in ms.|
+| token        | Uint8Array | No  | Token that has passed the user identity authentication. |
+| remainAttempts  | number     | No  | Number of remaining authentication attempts. |
+| lockoutDuration | number     | No  | Lock duration of the authentication operation, in ms. |
 
 ## TipInfo<sup>(deprecated)</sup>
 
@@ -517,38 +518,46 @@ Defines the authentication tip information.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type  | Mandatory| Description                |
+| Name        | Type  | Mandatory | Description                |
 | ------------ | ---------- | ---- | -------------------- |
 | module        | number | Yes  | ID of the module that sends the tip information.      |
 | tip        | number | Yes  | Tip to be given during the authentication process.      |
 
 ## EventInfo<sup>(deprecated)</sup>
 
-Enumerates the authentication event information types.
+type EventInfo = AuthResultInfo | TipInfo
+
+Defines the authentication event information types.
+
+The event information type consists of the fields in **Type** in the following table.
 
 > **NOTE**<br>
 > This parameter is supported since API version 9 and deprecated since API version 11. Use [UserAuthResult](#userauthresult10) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Value   | Description                      |
+| Type   | Description                      |
 | --------- | ----------------------- |
 | [AuthResultInfo](#authresultinfodeprecated)    | Authentication result. |
 | [TipInfo](#tipinfodeprecated)    | Authentication tip information.     |
 
 ## AuthEventKey<sup>(deprecated)</sup>
 
+type AuthEventKey = 'result' | 'tip'
+
 Defines the keyword of the authentication event type. It is used as a parameter of [on](#ondeprecated).
+
+It consists of the fields in **Type** in the following table.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 11.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Value      | Description                   |
+| Type      | Description                   |
 | ---------- | ----------------------- |
-| "result" | If the first parameter of [on](#ondeprecated) is **result**, the [callback](#callbackdeprecated) returns the authentication result.|
-| "tip"    | If the first parameter of [on](#ondeprecated) is **tip**, the [callback](#callbackdeprecated) returns the authentication tip information.|
+| "result" | If the first parameter of [on](#ondeprecated) is **result**, the [callback](#callbackdeprecated) returns the authentication result. |
+| "tip"    | If the first parameter of [on](#ondeprecated) is **tip**, the [callback](#callbackdeprecated) returns the authentication tip information. |
 
 ## AuthEvent<sup>(deprecated)</sup>
 
@@ -570,14 +579,14 @@ Called to return the authentication result or authentication tip information.
 
 **Parameters**
 
-| Name   | Type                      | Mandatory| Description                          |
+| Name   | Type                      | Mandatory | Description                          |
 | --------- | -------------------------- | ---- | ------------------------------ |
 | result    | [EventInfo](#eventinfodeprecated)     | Yes  | Authentication result or tip information. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -643,16 +652,16 @@ Subscribes to the user authentication events of the specified type.
 
 **Parameters**
 
-| Name   | Type                       | Mandatory| Description                      |
+| Name   | Type                       | Mandatory | Description                      |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name  | [AuthEventKey](#autheventkeydeprecated) | Yes  | Authentication event type. If the value is **result**, the callback returns the authentication result. If the value is **tip**, the callback returns the authentication tip information.|
-| callback  | [AuthEvent](#autheventdeprecated)   | Yes  | Callback invoked to return the authentication result or tip information.|
+| name  | [AuthEventKey](#autheventkeydeprecated) | Yes  | Authentication event type. If the value is **result**, the callback returns the authentication result. If the value is **tip**, the callback returns the authentication tip information. |
+| callback  | [AuthEvent](#autheventdeprecated)   | Yes  | Callback used to return the authentication result or tip information. |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 401 | Incorrect parameters. |
 | 12500002 | General operation error. |
@@ -660,7 +669,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -709,15 +718,15 @@ Unsubscribes from the user authentication events of the specific type.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name   | Type                       | Mandatory| Description                      |
+| Name   | Type                       | Mandatory | Description                      |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name    | [AuthEventKey](#autheventkeydeprecated)      | Yes  | Authentication event type. If the value is **result**, the authentication result is unsubscribed from. If the value is **tip**, the authentication tip information is unsubscribed from.|
+| name    | [AuthEventKey](#autheventkeydeprecated)      | Yes  | Authentication event type. If the value is **result**, the authentication result is unsubscribed from. If the value is **tip**, the authentication tip information is unsubscribed from. |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 401 | Incorrect parameters. |
 | 12500002 | General operation error. |
@@ -725,7 +734,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -768,14 +777,14 @@ Starts authentication.
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 401 | Incorrect parameters. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
-| 12500004 | The operation is time-out. |
+| 12500004 | The operation is time-out.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500007 | The authentication task is busy. |
@@ -785,7 +794,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -809,7 +818,7 @@ Cancels this authentication.
 > **NOTE**<br>
 >
 > - This API is supported since API version 9 and deprecated since API version 10.
-> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
+> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to invoke this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -819,7 +828,7 @@ Cancels this authentication.
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 401 | Incorrect parameters. |
@@ -828,7 +837,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -859,23 +868,23 @@ Obtains an **AuthInstance** instance for user authentication.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory| Description                    |
+| Name        | Type                                    | Mandatory | Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
-| challenge      | Uint8Array                               | Yes  | Challenge value. It cannot exceed 32 bytes and can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
+| challenge      | Uint8Array                               | Yes  | Challenge value. It cannot exceed 32 bytes and can be passed in Uint8Array([]) format. |
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported. |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.              |
 
 **Return value**
 
 | Type                                   | Description        |
 | --------------------------------------- | ------------ |
-| [AuthInstance](#authinstancedeprecated) | **AuthInstance** instance obtained.|
+| [AuthInstance](#authinstancedeprecated) | **AuthInstance** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 401 | Incorrect parameters. |
 | 12500002 | General operation error. |
@@ -885,7 +894,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -911,28 +920,36 @@ Checks whether the specified authentication capability is supported.
 
 **Parameters**
 
-| Name        | Type                              | Mandatory| Description                      |
+| Name        | Type                              | Mandatory | Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. PIN is supported since API version 11.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
+
+> The mechanism for returning the error code is as follows:
+>
+> - The error code 12500005 is returned if the corresponding executor is not registered.
+> - The error code 12500006 is returned if the corresponding executor is registered, the function is not disabled, but the authentication security level is lower than that specified for the service.
+> - The error code 12500010 is returned if the corresponding executor is registered, the function is not disabled, but the user has not enrolled the credential.
+> - The error code 12500013 is returned if the corresponding executor is registered, the function is not disabled, but the PIN has expired.
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
+| 12500013 | Operation failed because of PIN expired. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -959,8 +976,9 @@ Enumerates the authentication result codes.
 | TRUST_LEVEL_NOT_SUPPORT | 12500006      | The authentication trust level is not supported.  |
 | BUSY                    | 12500007      | Indicates the busy state.          |
 | LOCKED                  | 12500009      | The authentication executor is locked.      |
-| NOT_ENROLLED            | 12500010      | The user has not entered the authentication information.|
-| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | The authentication is canceled by the user from the user authentication widget. If this error code is returned, the authentication is customized by the application.|
+| NOT_ENROLLED            | 12500010      | The user has not entered the authentication information. |
+| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | The authentication is canceled by the user from the user authentication widget. If this error code is returned, the authentication is customized by the application. |
+| PIN_EXPIRED<sup>12+</sup> | 12500013 | The authentication failed because the lock screen password has expired. |
 
 ## UserAuth<sup>(deprecated)</sup>
 
@@ -980,7 +998,7 @@ A constructor used to create a **UserAuth** instance.
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 ```
@@ -1002,12 +1020,12 @@ Obtains the version of this authenticator.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Authenticator version obtained.|
+| number | Authenticator version obtained. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
@@ -1029,21 +1047,21 @@ Checks whether the specified authentication capability is supported.
 
 **Parameters**
 
-| Name        | Type                              | Mandatory| Description                      |
+| Name        | Type                              | Mandatory | Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported. |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Query result. If the authentication capability is supported, **SUCCESS** is returned. Otherwise, a [ResultCode](#resultcodedeprecated) is returned.|
+| number | Query result. If the authentication capability is supported, **SUCCESS** is returned. Otherwise, a [ResultCode](#resultcodedeprecated) is returned. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -1069,23 +1087,23 @@ Starts user authentication. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory| Description                    |
+| Name        | Type                                    | Mandatory | Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
-| challenge      | Uint8Array                               | Yes  | Challenge value, which can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
+| challenge      | Uint8Array                               | Yes  | Challenge value, which can be passed in Uint8Array([]) format. |
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported. |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.            |
-| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback invoked to return the result.       |
+| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback used to return the result.       |
 
 **Return value**
 
 | Type      | Description                                                        |
 | ---------- | ------------------------------------------------------------ |
-| Uint8Array | Context ID, which is used as the input parameter of [cancelAuth](#cancelauthdeprecated).|
+| Uint8Array | Context ID, which is used as the input parameter of [cancelAuth](#cancelauthdeprecated). |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1121,20 +1139,20 @@ Cancels an authentication based on the context ID.
 
 **Parameters**
 
-| Name   | Type      | Mandatory| Description                                      |
+| Name   | Type      | Mandatory | Description                                      |
 | --------- | ---------- | ---- | ------------------------------------------ |
-| contextID | Uint8Array | Yes  | Context ID, which is obtained by [auth](#authdeprecated).|
+| contextID | Uint8Array | Yes  | Context ID, which is obtained by [auth](#authdeprecated). |
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Returns **SUCCESS** if the cancellation is successful. Returns a [ResultCode](#resultcodedeprecated) otherwise.|
+| number | Returns **SUCCESS** if the cancellation is successful. Returns a [ResultCode](#resultcodedeprecated) otherwise. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // contextId can be obtained by auth(). In this example, it is defined here.
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
@@ -1167,15 +1185,15 @@ Called to return the authentication result.
 
 **Parameters**
 
-| Name   | Type                      | Mandatory| Description       |
+| Name   | Type                      | Mandatory | Description       |
 | --------- | -------------------------- | ---- | ------------------------------------------------ |
-| result    | number           | Yes  | Authentication result. For details, see [ResultCode](#resultcodedeprecated).|
-| extraInfo | [AuthResult](#authresultdeprecated) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**.|
+| result    | number           | Yes  | Authentication result. For details, see [ResultCode](#resultcodedeprecated). |
+| extraInfo | [AuthResult](#authresultdeprecated) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1209,16 +1227,16 @@ Called to acquire authentication tip information. This API is optional.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                          |
+| Name   | Type  | Mandatory | Description                          |
 | --------- | ------ | ---- | ------------------------------ |
 | module    | number | Yes  | ID of the module that sends the tip information.            |
-| acquire   | number | Yes  | Authentication tip information.|
+| acquire   | number | Yes  | Authentication tip information. |
 | extraInfo | any    | Yes  | Reserved field.                    |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1257,11 +1275,11 @@ Represents the authentication result object.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type  | Mandatory| Description                |
+| Name        | Type  | Mandatory | Description                |
 | ------------ | ---------- | ---- | -------------------|
-| token        | Uint8Array | No  | Authentication token information.|
-| remainTimes  | number     | No  | Number of remaining authentication operations.|
-| freezingTime | number     | No  | Time for which the authentication operation is frozen.|
+| token        | Uint8Array | No  | Authentication token information. |
+| remainTimes  | number     | No  | Number of remaining authentication operations. |
+| freezingTime | number     | No  | Time for which the authentication operation is frozen. |
 
 ## ResultCode<sup>(deprecated)</sup>
 
@@ -1272,7 +1290,7 @@ Enumerates the authentication result codes.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name                   | Value| Description                |
+| Name                   | Value | Description                |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 0      | The operation is successful.          |
 | FAIL                    | 1      | The authentication failed.          |
@@ -1284,7 +1302,7 @@ Enumerates the authentication result codes.
 | BUSY                    | 7      | Indicates the busy state.          |
 | INVALID_PARAMETERS      | 8      | Invalid parameters are detected.          |
 | LOCKED                  | 9      | The authentication executor is locked.      |
-| NOT_ENROLLED            | 10     | The user has not entered the authentication information.|
+| NOT_ENROLLED            | 10     | The user has not entered the authentication information. |
 
 ## FaceTips<sup>(deprecated)</sup>
 
@@ -1305,7 +1323,7 @@ Enumerates the tip codes used during the facial authentication process.
 | FACE_AUTH_TIP_TOO_LOW         | 6      | Only the lower part of the face is captured because the device is angled too low.        |
 | FACE_AUTH_TIP_TOO_RIGHT       | 7      | Only the right part of the face is captured because the device is deviated to the right.      |
 | FACE_AUTH_TIP_TOO_LEFT        | 8      | Only the left part of the face is captured because the device is deviated to the left.      |
-| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9      | The face moves too fast during facial information collection.|
+| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9      | The face moves too fast during facial information collection. |
 | FACE_AUTH_TIP_POOR_GAZE       | 10     | The face is not facing the camera.                    |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11     | No face is detected.                |
 
@@ -1322,7 +1340,7 @@ Enumerates the tip codes used during the fingerprint authentication process.
 | Name                             |   Value  | Description                                              |
 | --------------------------------- | ------ | -------------------------------------------------- |
 | FINGERPRINT_AUTH_TIP_GOOD         | 0      | The obtained fingerprint image is in good condition.                              |
-| FINGERPRINT_AUTH_TIP_DIRTY        | 1      | Large fingerprint image noise is detected due to suspicious or detected dirt on the sensor.|
+| FINGERPRINT_AUTH_TIP_DIRTY        | 1      | Large fingerprint image noise is detected due to suspicious or detected dirt on the sensor. |
 | FINGERPRINT_AUTH_TIP_INSUFFICIENT | 2      | The noise of the fingerprint image is too large to be processed.    |
 | FINGERPRINT_AUTH_TIP_PARTIAL      | 3      | Incomplete fingerprint image is detected.                            |
 | FINGERPRINT_AUTH_TIP_TOO_FAST     | 4      | The fingerprint image is incomplete due to fast movement.                        |
@@ -1337,9 +1355,9 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | PIN authentication.|
-| FACE        | 2    | Facial authentication.|
-| FINGERPRINT | 4    | Fingerprint authentication.|
+| PIN<sup>10+</sup>         | 1    | PIN authentication. |
+| FACE        | 2    | Facial authentication. |
+| FINGERPRINT | 4    | Fingerprint authentication. |
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -1347,12 +1365,12 @@ Enumerates the trust levels of the authentication result.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name| Value   | Description                                                        |
+| Name | Value   | Description                                                        |
 | ---- | ----- | ------------------------------------------------------------ |
-| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.|
-| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.|
-| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.|
-| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
+| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data. |
+| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device. |
+| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device. |
+| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment. |
 
 ## userAuth.getAuthenticator<sup>(deprecated)</sup>
 
@@ -1369,11 +1387,11 @@ Obtains an **Authenticator** instance for user authentication.
 
 | Type                                     | Description        |
 | ----------------------------------------- | ------------ |
-| [Authenticator](#authenticatordeprecated) | **Authenticator** instance obtained.|
+| [Authenticator](#authenticatordeprecated) | **Authenticator** instance obtained. |
 
 **Example**
   ```ts
-  import userAuth from '@ohos.userIAM.userAuth';
+  import { userAuth } from '@kit.UserAuthenticationKit';
   
   let authenticator = userAuth.getAuthenticator();
   ```
@@ -1400,16 +1418,16 @@ Starts user authentication. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                                                                   |
+| Name  | Type                       | Mandatory | Description                                                                                                                   |
 | -------- | --------------------------- | ---- |-----------------------------------------------------------------------------------------------------------------------|
 | type     | AuthType                      | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.                                                                |
-| level    | SecureLevel  | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. **number** indicates the [AuthenticationResult](#authenticationresultdeprecated).|
+| level    | SecureLevel  | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. **number** indicates the [AuthenticationResult](#authenticationresultdeprecated). |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
@@ -1437,21 +1455,21 @@ Starts user authentication. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                                                                                   |
+| Name | Type  | Mandatory | Description                                                                                                                   |
 | ------ | ------ | ---- |-----------------------------------------------------------------------------------------------------------------------|
 | type   | AuthType | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.                                                                |
-| level  | SecureLevel | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
+| level  | SecureLevel | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication. |
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
+| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated). |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let authenticator = userAuth.getAuthenticator();
@@ -1474,7 +1492,7 @@ Enumerates the authentication results.
 
 | Name              |   Value  | Description                      |
 | ------------------ | ------ | -------------------------- |
-| NO_SUPPORT         | -1     | The device does not support the current authentication mode.|
+| NO_SUPPORT         | -1     | The device does not support the current authentication mode. |
 | SUCCESS            | 0      | The authentication is successful.                |
 | COMPARE_FAILURE    | 1      | The feature comparison failed.                |
 | CANCELED           | 2      | The authentication was canceled by the user.            |
@@ -1482,6 +1500,6 @@ Enumerates the authentication results.
 | CAMERA_FAIL        | 4      | The camera failed to start.            |
 | BUSY               | 5      | The authentication service is not available. Try again later.  |
 | INVALID_PARAMETERS | 6      | The authentication parameters are invalid.            |
-| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold.|
+| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold. |
 | NOT_ENROLLED       | 8      | No authentication credential is registered.          |
 | GENERAL_ERROR      | 100    | Other errors.                |

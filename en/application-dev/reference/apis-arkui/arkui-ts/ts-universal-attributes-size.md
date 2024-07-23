@@ -16,6 +16,8 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -23,6 +25,12 @@ Since API version 10, this API supports the calc calculation feature.
 | Name  | Type                          | Mandatory  | Description                 |
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | Yes   | Width of the component to set.<br>Unit: vp|
+
+>  **NOTE**
+>
+>  - For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  
+>  - For the **\<AlphabetIndexer>** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
 
 ## height
 
@@ -34,6 +42,8 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -44,7 +54,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width. For the **\<AlphabetIndexer>** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
+>  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components.
 
 ## size
 
@@ -56,6 +66,8 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -66,7 +78,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## padding
 
-padding(value: Padding | Length)
+padding(value: Padding | Length | LocalizedPadding)
 
 Sets the padding of the component.
 
@@ -74,17 +86,19 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [Padding](ts-types.md#padding) \|  [Length](ts-types.md#length) | Yes   | Padding of the component to set.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.|
+| value | [Padding](ts-types.md#padding) \|  [Length](ts-types.md#length) \|   [LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| Yes   | Padding of the component to set.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.|
 
 ## margin
 
-margin(value: margin | Length)
+margin(value: margin | Length | LocalizedMargin)
 
 Sets the margin of the component.
 
@@ -92,13 +106,15 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                        | Mandatory    | Description                                                        |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
+| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
 
 ## layoutWeight
 
@@ -107,6 +123,8 @@ layoutWeight(value: number | string)
 Sets the weight of the component during layout.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -125,6 +143,8 @@ Sets the constraint size of the component, which is used to limit the size range
 Since API version 10, this API supports the calc calculation feature.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,7 +169,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## SizeOptions
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -158,7 +180,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## ConstraintSizeOptions
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -172,6 +196,7 @@ Since API version 10, this API supports the calc calculation feature.
 >  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
 
 ## Example
+### Example 1
 
 ```ts
 // xxx.ets
@@ -221,6 +246,7 @@ struct SizeExample {
         .backgroundColor(0xFFFAF0)
         .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
+        // If width or height is set to a percentage, the width or height of the parent container are used as the basic value.
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }
@@ -228,3 +254,50 @@ struct SizeExample {
 ```
 
 ![size](figures/size.png)
+
+### Example 2
+```ts
+// xxx.ets
+// In the following, the padding and margin attributes are of the LocalizedPadding and LocalizedMargin types, respectively.
+
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SizeExample {
+  build() {
+    Column({ space: 10 }) {
+      Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        // Set the width to 80, height to 80, top, bottom, start, and end paddings to 40, 20, 30, and 10, respectively (blue area), and top, bottom, start, and end margins to 5, 15, 10, and 20, respectively (white area).
+        Row() {
+          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding({
+          top: LengthMetrics.vp(5),
+          bottom: LengthMetrics.vp(15),
+          start: LengthMetrics.vp(10),
+          end: LengthMetrics.vp(20)
+        })
+        .margin({
+          top: LengthMetrics.vp(40),
+          bottom: LengthMetrics.vp(20),
+          start: LengthMetrics.vp(30),
+          end: LengthMetrics.vp(10)
+        })
+        .backgroundColor(Color.White)
+      }.backgroundColor(Color.Blue)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+The following shows how the example is represented with left-to-right scripts.
+
+![size](figures/size-ltr.png)
+
+The following shows how the example is represented with right-to-left scripts.
+
+![size](figures/size-rtl.png)

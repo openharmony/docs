@@ -18,22 +18,22 @@ To ensure that the encoding and decoding behavior meets your expectations, first
    #include <multimedia/player_framework/native_avcodec_base.h>
    ```
 
-3. Obtain the audio/video codec capability handle.
+3. Obtain the audio/video codec capability instance.
 
-   You can use either of the following methods to obtain the handle:
+   You can use either of the following methods to obtain the instance:
    
-   Method 1: Call **OH_AVCodec_GetCapability** to obtain the codec capability handle recommended by the system. The recommendation policy is the same as that of the **OH_XXX_CreateByMime** series APIs.
+   Method 1: Call **OH_AVCodec_GetCapability** to obtain the codec capability instance recommended by the system. The recommendation policy is the same as that of the **OH_XXX_CreateByMime** series APIs.
    ```c++
-   // Obtain the handle to the AAC decoder capability recommended by the system.
+   // Obtain the AAC decoder capability instance recommended by the system.
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
    ```
    
-   Method 2: Call **OH_AVCodec_GetCapabilityByCategory** to obtain the codec capability handle of the specified software or hardware.
+   Method 2: Call **OH_AVCodec_GetCapabilityByCategory** to obtain the codec capability instance of the specified software or hardware.
    ```c++
-   // Obtain the handle to the AVC encoder capability of the specified hardware.
+   // Obtain the AVC encoder capability instance of the specified hardware.
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-    The system automatically recycles the handle when it is no longer needed.
+    The system automatically recycles the instance when it is no longer needed.
 
 4. Call the query APIs as required. For details, see the [API Reference](../../reference/apis-avcodec-kit/_a_v_capability.md).
 
@@ -46,11 +46,11 @@ If multiple encoders or decoders with the same MIME type exist, using the **OH_X
 
 | API    | Description                        |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | Obtains the name of a codec corresponding to a capability handle.|
+| OH_AVCapability_GetName     | Obtains the name of a codec corresponding to a capability instance.|
 
 The code snippet below creates an H.264 software decoder when there are an H.264 software decoder and H.264 hardware decoder:
 ```c++
-// 1. Obtain the handle to an H.264 software decoder capability.
+// 1. Obtain an H.264 software decoder capability instance.
 OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
 if (capability != nullptr) {
    // 2. Obtain the name of the H.264 software decoder.
@@ -68,7 +68,7 @@ A software codec and hardware codec are defined as follows:
 
 * A hardware codec performs encoding and decoding on dedicated hardware. It has been hardened on the hardware platform and its capabilities are iterated with the hardware platform. Compared with a software codec, a hardware codec has better power consumption, time consumption, and throughput performance, as well as lower CPU load.
 
-A hardware codec is preferred as long as it meets your project requirements. You can adjust the codec configuration based on the software or hardware type.
+A hardware codec is preferred as long as it meets your project requirements. You can configure codec parameters based on the software or hardware type.
 
 | API    | Description                        |
 | -------- | -------------------------------- |
@@ -99,7 +99,7 @@ Multiple codecs are required in certain scenarios. However, the number of codec 
 
 | API    | Description                        |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetMaxSupportedInstances  | Obtains the maximum number of codec instances that can be concurrently run corresponding to a capability handle. The actual number of instances that can be created is restricted by other system resources.|
+| OH_AVCapability_GetMaxSupportedInstances  | Obtains the maximum number of codec instances that can be concurrently run corresponding to a capability instance. The actual number of codec instances that can be created is restricted by other system resources.|
 
 Create hardware decoder instances first. If the hardware decoder instances cannot fully meet the project requirements, create software decoder instances. The following is an example:
 
@@ -132,7 +132,7 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### Controlling the Encoding Quality
 
-For the same input, the encoding quality is determined by the bit rate mode parameters, quality parameters in Constant Quality (CBR) mode, and bit rate parameters in Constant Bit Rate (CBR) or Variable Bit Rate (VBR) modes.
+Three bit rate modes are available: Constant Bit Rate (CBR), Dynamic Bit Rate (VBR), and Constant Quality (CQ). For CBR and VBR, the encoding quality is determined by the bit rate parameters. For CQ, the encoding quality is determined by the quality parameters.
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -232,7 +232,7 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 
 ### Setting the Correct Audio Codec Parameters
 
-When setting audio codec parameters, query the sample rate and the number of channels before the setting. For an audio encoder, also query the bit rate before the setting.
+In audio encoding or decoding scenarios, you need to query and set parameters such as the sampling rate, number of channels, and bit rate (required only for audio encoding).
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -365,7 +365,7 @@ OH_AVFormat_Destroy(format);
 If you already know the required profile and level combination, use the code snippet below to check whether the combination is supported.
 
 ```c++
-// 1. Obtain the handle to an H.264 encoder capability.
+// 1. Obtain an H.264 encoder capability instance.
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // Exception handling.

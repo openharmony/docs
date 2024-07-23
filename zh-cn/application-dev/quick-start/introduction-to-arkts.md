@@ -88,6 +88,11 @@ function factorial(n: number): number {
   }
   return n * factorial(n - 1);
 }
+
+factorial(n1)  //  7.660344000000002 
+factorial(n2)  //  7.680640444893748 
+factorial(n3)  //  1 
+factorial(n4)  //  9.33262154439441e+157 
 ```
 
 #### `Boolean`类型
@@ -232,8 +237,10 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `==`     | 如果两个操作数相等，则返回true。                    |
-| `!=`     | 如果两个操作数不相等，则返回true。                |
+| `===`    | 如果两个操作数严格相等（不同类型的操作数是不相等的），则返回true。     |
+| `!==`    | 如果两个操作数严格不相等（不同类型的操作数是不相等的），则返回true。    |
+| `==`     | 如果两个操作数相等（尝试先转换不同类型的操作数，再进行比较），则返回true。 |
+| `!=`     | 如果两个操作数不相等（尝试先转换不同类型的操作数，再进行比较），则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
@@ -671,7 +678,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // 将函数作为参数传入
 ```
 
-### 箭头函数或Lambda函数
+### 箭头函数（又名Lambda函数）
 
 函数可以定义为箭头函数，例如：
 
@@ -694,7 +701,7 @@ let sum2 = (x: number, y: number) => x + y
 
 闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。
 
-在下例中，`z`是执行`f`时创建的`g`箭头函数实例的引用。`g`的实例维持了对它的环境的引用（变量`count`存在其中）。因此，当`z`被调用时，变量`count`仍可用。
+在下例中，`f`函数返回了一个闭包，它捕获了`count`变量，每次调用`z`，`count`的值会被保留并递增。
 
 ```typescript
 function f(): () => number {
@@ -1004,7 +1011,7 @@ interface DateInterface {
 class MyDate implements DateInterface {
   now(): string {
     // 在此实现
-    return 'now is now';
+    return 'now';
   }
 }
 ```
@@ -1481,17 +1488,17 @@ if (x != null) { /* do something */ }
 
 后缀运算符`!`可用于断言其操作数为非空。
 
-应用于空值时，运算符将抛出错误。否则，值的类型将从`T | null`更改为`T`：
+应用于可空类型的值时，它的编译时类型变为非空类型。例如，类型将从`T | null`更改为`T`：
 
 ```typescript
-class C {
-  value: number | null = 1;
+class A {
+  value: number = 0;
 }
 
-let c = new C();
-let y: number;
-y = c.value + 1;  // 编译时错误：无法对可空值作做加法
-y = c.value! + 1; // ok，值为2
+function foo(a: A | null) {
+  a.value;   // 编译时错误：无法访问可空值的属性
+  a!.value;  // 编译通过，如果运行时a的值非空，可以访问到a的属性；如果运行时a的值为空，则发生运行时异常
+}
 ```
 
 ### 空值合并运算符

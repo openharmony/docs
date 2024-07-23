@@ -3,154 +3,145 @@
 
 ## 概述
 
-`AppStartup`提供了一种简单高效的初始化组件的方式，开发者可以使用`AppStartup`来显示的设置组件的初始化顺序以及之间的依赖关系，支持异步初始化组件加速应用的启动时间。开发者需要分别为待初始化的组件实现`AppStartup`提供的[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，并在[startup_config.json](#添加启动框架配置文件)中配置`AppStartup`之间的依赖关系，每个StartupTask都是一个等待执行的启动任务，启动框架将使用拓扑排序保证各个启动任务的执行顺序。
+应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在onCreate生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
 
-> **说明：**
->
-> 启动框架只支持在`entry`中使用。
+AppStartup提供了一种简单高效的应用启动方式，可以支持任务的异步启动，加快应用启动速度。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，让执行启动任务的代码变得更加简洁清晰、容易维护。
+
+启动框架会在[abilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)完成创建后开始加载开发者配置的启动任务，并执行自动模式下的启动任务，开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)创建完后调用[手动模式](#可选修改启动模式)的启动任务。
+
+  **图1** 启动框架执行时机  
+  ![app-startup-procedure](figures/app-startup-procedure.png)
+
+## 约束限制
+
+ - 启动框架只支持在`entry`中使用。
+
+- 启动任务之间不允许存在循环依赖。
 
 ## 开发流程
 
-1. [开启启动框架AppStartup](#开启启动框架appstartup)：在[module.json5配置文件](../quick-start/module-configuration-file.md)配置文件中appStartup标签中指定启动框架配置文件的路径。
-2. [编写启动框架配置文件](#编写启动框架配置文件)：在启动框架配置文件中，依次添加各个待初始化组件的配置信息，并指定启动框架参数的文件路径。
+1. [定义启动框架配置文件]()：在resources/base/profile路径下面新建启动框架配置文件（本文以“startup_config.json”为例，文件名可以自定义），并在该文件中依次添加各个启动任务的配置信息。在[module.json5配置文件](../quick-start/module-configuration-file.md)的appStartup标签中，添加启动框架配置文件的索引。
+2. [设置启动框架参数](#设置启动框架参数)：在启动框架参数文件中，设置超时时间和启动任务的监听器等参数。
 3. [为每个待初始化组件添加启动任务](#为每个待初始化组件添加启动任务)：通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，启动框架将会按顺序执行初始化流程。
-4. [设置启动框架参数](#设置启动框架参数)：在启动框架参数文件中，设置超时时间和组件初始化的监听器等参数。
 
-## 开发指导
+## 定义启动框架配置文件
 
-### 开启启动框架AppStartup
+1. 在resources/base/profile路径下面新建启动框架配置文件。文件名可以自定义，本文以"startup_config.json"为例。
 
-开启启动框架后，当应用启动时系统将会读取开发者实现的配置文件并检查是否存在循环依赖，采用拓扑排序对其进行排序。开发者只需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置`appStartup`标签, 并指定启动框架的配置文件路径即可开启启动框架。
+2. 在启动框架配置文件startup_config.json中以此添加各个启动任务的配置信息。
 
-```json
-{
-  "module": {
-    "name": "entry",
-    "type": "entry",
-    ...
-    "appStartup": "$profile:startup_config",
-    ...
-  }
-}
-```
+    假设当前应用启动任务包含6个启动任务，其相互之间的依赖关系如图1所示，对应的启动框架配置文件startup_config.json示例如下。
 
-### 编写启动框架配置文件
+    **图2** 启动任务依赖关系图  
+    ![app-startup](figures/app-startup.png) 
+    
+    1. 在ets/startup路径下逐个创建6个启动任务文件（名称必须唯一），以及一个公共的启动参数配置文件。
+    
+        - 启动任务文件：本例中的6个文件名分别为StartupTask_001.ets~StartupTask_006.ets。
+        - 启动任务参数配置文件：文件名为StartupConfig.ets。
+        
+    2. 在启动框架配置文件startup_config.json中添加所有启动任务以及启动参数配置文件的信息。
+    
+        startup_config.json示例如下：
+        
+        ```json
+        {
+          "startupTasks": [
+            {
+              "name": "StartupTask_001",
+              "srcEntry": "./ets/startup/StartupTask_001.ets",
+              "dependencies": [
+                "StartupTask_002",
+                "StartupTask_003"
+              ],
+              "runOnThread": "taskPool",
+              "waitOnMainThread": false
+            },
+            {
+              "name": "StartupTask_002",
+              "srcEntry": "./ets/startup/StartupTask_002.ets",
+              "dependencies": [
+                "StartupTask_004"
+              ],
+              "runOnThread": "taskPool",
+              "waitOnMainThread": false
+            },
+            {
+              "name": "StartupTask_003",
+              "srcEntry": "./ets/startup/StartupTask_003.ets",
+              "dependencies": [
+                "StartupTask_004"
+              ],
+              "runOnThread": "taskPool",
+              "waitOnMainThread": false
+            },
+            {
+              "name": "StartupTask_004",
+              "srcEntry": "./ets/startup/StartupTask_004.ets",
+              "runOnThread": "taskPool",
+              "waitOnMainThread": false
+            },
+            {
+              "name": "StartupTask_005",
+              "srcEntry": "./ets/startup/StartupTask_005.ets",
+              "dependencies": [
+                "StartupTask_006"
+              ],
+              "runOnThread": "mainThread",
+              "waitOnMainThread": true,
+              "excludeFromAutoStart": true
+            },
+            {
+              "name": "StartupTask_006",
+              "srcEntry": "./ets/startup/StartupTask_006.ets",
+              "runOnThread": "mainThread",
+              "waitOnMainThread": false,
+              "excludeFromAutoStart": true
+            }
+          ],
+          "configEntry": "./ets/startup/StartupConfig.ets"
+        }
+        ```
+    
+        **表1** startup_config.json配置文件标签说明
 
-启动框架配置文件将为系统提供[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)的具体实现路径和参数设置，从而进行读取并执行相应的启动任务。该文件为JSON格式，应放在工程的`resource`目录下，配置文件路径需要与[module.json5配置文件](../quick-start/module-configuration-file.md)中`appStartup`标签指定的路径一致。启动任务之间不允许存在循环依赖，且每个启动任务的名称必须唯一。
+        | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+        | -------- | -------- | -------- | -------- |
+        | startupTasks | 启动任务配置信息。 | 对象数组 | 该标签不可缺省。 |
+        | configEntry | [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)文件路径。 | 字符串 | 该标签不可缺省。 |
+        
+        
+        **表2** startupTasks标签说明
 
-示例代码如下。
+        | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+        | -------- | -------- | -------- | -------- |
+        | name | 启动任务实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的类名称。 | 字符串 | 该标签不可缺省。 |
+        | srcEntry | 需要加载的启动任务实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的文件路径。 | 字符串 | 该标签不可缺省。 |
+        | dependencies | 依赖的启动任务实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的类名称数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+        | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+        | waitOnMainThread | 是否在主线程等待。 <br/>-&nbsp;true：主线程等待启动任务执行。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
+        | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
+        
 
-```json
-{
-  "startupTasks": [
-    {
-      "name": "StartupTask_001",
-      "srcEntry": "./ets/startup/StartupTask_001.ets",
-      "dependencies": [
-        "StartupTask_002",
-        "StartupTask_003"
-      ],
-      "runOnThread": "taskPool",
-      "waitOnMainThread": false
-    },
-    {
-      "name": "StartupTask_002",
-      "srcEntry": "./ets/startup/StartupTask_002.ets",
-      "dependencies": [
-        "StartupTask_004"
-      ],
-      "runOnThread": "taskPool",
-      "waitOnMainThread": false
-    },
-    {
-      "name": "StartupTask_003",
-      "srcEntry": "./ets/startup/StartupTask_003.ets",
-      "dependencies": [
-        "StartupTask_004"
-      ],
-      "runOnThread": "taskPool",
-      "waitOnMainThread": false
-    },
-    {
-      "name": "StartupTask_004",
-      "srcEntry": "./ets/startup/StartupTask_004.ets",
-      "runOnThread": "taskPool",
-      "waitOnMainThread": false
-    },
-    {
-      "name": "StartupTask_005",
-      "srcEntry": "./ets/startup/StartupTask_005.ets",
-      "dependencies": [
-        "StartupTask_006"
-      ],
-      "runOnThread": "mainThread",
-      "waitOnMainThread": true,
-      "excludeFromAutoStart": true
-    },
-    {
-      "name": "StartupTask_006",
-      "srcEntry": "./ets/startup/StartupTask_006.ets",
-      "runOnThread": "mainThread",
-      "waitOnMainThread": false,
-      "excludeFromAutoStart": true
-    }
-  ],
-  "configEntry": "./ets/startup/StartupConfig.ets"
-}
-```
+      3. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的appStartup标签中，添加启动框架配置文件的索引。
 
-**图1** 上述startup_config.json文件中启动任务依赖关系图  
-![app-startup](figures/app-startup.png) 
+          module.json5示例代码如下。
 
+          ```json
+          {
+            "module": {
+              "name": "entry",
+              "type": "entry",
+              // ...
+              "appStartup": "$profile:startup_config", // 启动框架的配置文件
+              // ...
+            }
+          }
+          ```
 
-`startup_config.json`配置文件标签说明
+## 设置启动框架参数
 
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| startupTasks | 待初始化组件配置信息。 | 对象数组 | 该标签不可缺省。 |
-| configEntry | [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)文件路径。 | 字符串 | 该标签不可缺省。 |
-
-`startupTasks`标签说明
-
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| name | 待初始化组件实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的类名称。 | 字符串 | 该标签不可缺省。 |
-| srcEntry | 需要加载的组件实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的文件路径。 | 字符串 | 该标签不可缺省。 |
-| dependencies | 当前组件所依赖组件实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的类名称数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[组件启动模式](#组件启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| waitOnMainThread | 是否在主线程等待。 <br/>-&nbsp;true：主线程等待组件初始化。 <br/>-&nbsp;false：主线程不等待组件初始化。 | 布尔值 | 该标签可缺省，缺省值为true。 |
-| runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
-
-
-### 为每个待初始化组件添加启动任务
-
-一个[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)代表一个启动任务，启动框架通过StartupTask来执行组件初始化的逻辑，StartupTask有[init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit)和[onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted)两个方法。每个启动任务的功能应尽量单一，该文件路径应与[startup_config](#编写启动框架配置文件)中配置的路径一致。StartupTask必须添加[Sendable](../arkts-utils/arkts-sendable.md)注解。以`StartupTask_001`为例，示例代码如下。
-
-```ts
-import { StartupTask, common } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-@Sendable
-export default class StartupTask_001 extends StartupTask {
-  constructor() {
-    super();
-  }
-
-  async init(context: common.AbilityStageContext) {
-    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
-    return 'StartupTask_001';
-  }
-
-  onDependencyCompleted(dependence: string, result: Object): void {
-    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
-      dependence, JSON.stringify(result));
-  }
-}
-```
-
-### 设置启动框架参数
-
-[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)为启动框架的整体公用配置，可以设置超时时间和组件初始化的监听器等参数，监听器可以监听启动任务是否执行成功。启动框架需要分别实现[StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)与[StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)，文件路径需与[startup_config](#添加启动框架配置文件)中配置的`StartupConfig`标签路径一致。
+[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)为启动框架的整体公用配置，可以设置超时时间和启动任务的监听器等参数，监听器可以监听启动任务是否执行成功。启动框架需要分别实现[StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)与[StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)，文件路径需与[startup_config](#添加启动框架配置文件)中配置的`StartupConfig`标签路径一致。
 
 ```ts
 import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
@@ -180,31 +171,44 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 }
 ```
 
-## 组件启动模式
+## 为每个待初始化组件添加启动任务
 
-`AppStartup`分别提供了自动和手动两种方式来初始化组件，自动模式会在abilityStage的onCreate前执行组件初始化。当某些组件并不需要应用启动前就初始化，而是使用时才进行初始化，开发者可以根据业务需求在应用启动后进行手动调用执行初始化。
+启动框架通过[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来执行应用的启动任务，开发者需要实现其中的[init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit)和[onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted)两个方法。单个启动任务的功能应尽量单一，StartupTask必须添加[Sendable](../arkts-utils/arkts-sendable.md)注解。
 
-### 自动模式
+下面以[startup_config.json](#定义启动框架配置文件)中的StartupTask_001.ets文件为例，示例代码如下。
 
-采用自动模式开发者可以不设置[startup_config](#编写启动框架配置文件)中`excludeFromAutoStart`标签，或设置为`false`（`excludeFromAutoStart`默认为`false`）。
+```ts
+import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-```json
-{
-  "startupTasks": [
-    {
-      "name": "StartupTask_001",
-      ...
-      "excludeFromAutoStart": false
-    },
-    ...
-  ],
-  ...
+@Sendable
+export default class StartupTask_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+
+  async init(context: common.AbilityStageContext) {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
+    return 'StartupTask_001';
+  }
+
+  onDependencyCompleted(dependence: string, result: Object): void {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+      dependence, JSON.stringify(result));
+  }
 }
 ```
 
-### 手动模式
+## （可选）修改启动模式
 
-手动模式开发者可以调用[StartupManager](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)中的[run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法来启动组件的初始化。以onCreate生命周期为例，示例代码如下。
+`AppStartup`分别提供了自动和手动两种方式来执行启动任务，默认采用自动模式。开发者可以根据需要修改为手动模式启动任务。
+
+- 自动模式：在abilityStage完成创建后执行启动任务。
+- 手动模式：需要开发者手动调用来执行启动任务。
+
+对于某些使用频率不高的模块，不需要应用最开始启动时就进行初始化。开发者可以选择将该部分启动任务修改为手动模式，在应用启动完成后调用[StartupManager](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)中的[run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法来执行启动任务。
+
+手动模式需要在UIAbility完成创建后手动调用，下面以UIAbility的onCreate生命周期为例，示例代码如下。
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -232,6 +236,39 @@ export default class EntryAbility extends UIAbility {
   }
 
   // ...
+}
+```
+
+开发者还可以在页面加载完成后，在页面中调用启动框架手动模式，示例代码如下。
+
+```ts
+import { startupManager } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '手动模式';
+  @State startParams: Array<string> = ['StartupTask_006'];
+
+  build() {
+    RelativeContainer() {
+      Button(this.message)
+        .id('AppStartup')
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          if (!startupManager.isStartupTaskInitialized("StartupTask_006")) { // 判断是否已经完成初始化
+            startupManager.run(this.startParams)
+          }
+        })
+        .alignRules({
+          center: {anchor: '__container__', align: VerticalAlign.Center},
+          middle: {anchor: '__container__', align: HorizontalAlign.Center}
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
 }
 ```
    

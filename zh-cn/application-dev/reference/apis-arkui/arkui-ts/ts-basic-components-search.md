@@ -471,6 +471,22 @@ editMenuOptions(editMenu: EditMenuOptions)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
 
+### enablePreviewText<sup>12+</sup>
+
+enablePreviewText(enable: boolean)
+
+设置是否开启输入预上屏。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+
 ## IconOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -491,6 +507,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -530,7 +548,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -564,7 +582,7 @@ onSubmit(callback: (value: string) => void)
 
 ### onChange
 
-onChange(callback: (value: string) => void)
+onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
 
@@ -576,7 +594,7 @@ onChange(callback: (value: string) => void)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onCopy
 
@@ -1186,7 +1204,7 @@ struct SearchExample {
 
 ### 示例10
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
@@ -1250,3 +1268,4 @@ struct Index {
 ```
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
+

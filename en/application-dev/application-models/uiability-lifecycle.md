@@ -21,9 +21,7 @@ The **Create** state is triggered when the UIAbility instance is created during 
 
 
 ```ts
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -48,9 +46,9 @@ After the UIAbility instance is created but before it enters the **Foreground** 
 In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import hilog from '@ohos.hilog';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -98,21 +96,23 @@ export default class EntryAbility extends UIAbility {
 Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import hilog from '@ohos.hilog';
-import type { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
+
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
+
   onWindowStageDestroy() {
     // Release UI resources.
     // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
@@ -124,18 +124,17 @@ export default class EntryAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    };
+    }
   }
 }
 ```
 
 ### WindowStageWillDestroy
-
 The **onWindowStageWillDestroy()** callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -172,7 +171,7 @@ When the application is switched to the background, you can disable location in 
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -191,9 +190,7 @@ export default class EntryAbility extends UIAbility {
 Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to [singleton](uiability-launch-type.md#singleton). If [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called again to start the UIAbility instance, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not. The application can update the resources and data to be loaded in the callback, which will be used for UI display.
 
 ```ts
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -211,7 +208,7 @@ The **Destroy** state is triggered when the UIAbility instance is destroyed. You
 The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called or the user closes the instance in the system application Recents.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...

@@ -448,7 +448,7 @@ flingSpeedLimit(speedLimit: number)
 
 ### fadingEdge<sup>12+</sup>
 
-fadingEdge(value: boolean)
+fadingEdge(value: Optional&lt;boolean&gt;)
 
 设置当前List是否开启渐隐效果。
 
@@ -462,7 +462,7 @@ value为false时，不启用List渐隐；value为true时，启用List渐隐。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ---------------------------------------------- |
-| value  | boolean | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
+| value  | Optional&lt;boolean&gt; | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -885,6 +885,8 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 | void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
 
 ## ScrollSource<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |

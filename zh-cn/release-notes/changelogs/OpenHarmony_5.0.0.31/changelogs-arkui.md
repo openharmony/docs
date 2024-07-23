@@ -8,7 +8,7 @@
 
 **变更原因**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 1.在@Component修饰的自定义组件中通过@State、@Prop、@Link、@Provide、@Consume、@StorageLink、@StorageProp、LocalStorageLink、@LocalStorageProp修饰并使用@ObservedV2修饰的变量类型时，进行校验并输出错误信息。
 
@@ -143,13 +143,15 @@ SymbolGlyph中已定义SymbolRenderingStrategy和SymbolEffectStrategy，避免�
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
-
-变更后报错：
+变更前，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，运行时报错：
 
 1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+变更后，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，编译期报错：
+
+1.Module '@ohos.arkui.advanced.SubHeader' has no exported member 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
 
 **起始API Level**
 
@@ -204,11 +206,22 @@ struct SubHeaderExample {
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，无法实现联动。具体现象为内容位于顶部时，多档位场景，上下滑动无法切换挡位；单挡位场景，下滑无法关闭半模态。
+单挡位模式下半模态仅可设置一档高度。多挡位模式下半模态可以设置三档高度，内容位于半模态面板顶部时，通过上下滑动可以自由切换挡位。
 
-变更后，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，可以实现联动。具体现象为内容位于顶部时，多档位场景，上下滑动可以切换挡位，在最低一档下滑可以关闭半模态；单挡位场景，下滑可以关闭半模态。
+API version 12之前，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，无法实现联动。内容位于顶部，多档位时上下滑动无法切换挡位，单挡位时下滑无法关闭半模态。
+
+API version 12及以后，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，可以实现联动。内容位于顶部，多档位时上下滑动可以切换挡位；单挡位时下滑可以关闭半模态。
+
+在滚动组件上设置嵌套的情况下：
+| 多挡位变更前 | 多挡位变更后 |
+|---------|---------|
+| 无法通过上下滑动切换挡位，在最低档下滑无法关闭半模态<br>![Alt text](figures/NestedScroll_detents_Before.gif) |可以通过上下滑动切换挡位，在最低档下滑可以关闭半模态<br>![Alt text](figures/NestedScroll_detents_After.gif)|
+
+| 单挡位变更前 | 单挡位变更后 |
+|---------|---------|
+| 无法通过下滑关闭半模态<br>![Alt text](figures/NestedScroll_Before.gif) |可以通过下滑关闭半模态<br>![Alt text](figures/NestedScroll_After.gif) |
 
 **起始API Level**
 
@@ -224,10 +237,10 @@ bindSheet组件
 
 **适配指导**
 
-需要开发者主动适配。例如，在半模态面板中嵌套list组件场景，Builder内容可以参考如下示例。
-适配示例：
+需要开发者主动适配。例如，在半模态面板中嵌套List组件场景，@Builder内容可以参考如下示例。
 
 ```ts
+private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 @Builder
 myBuilder() {
   Column() {
@@ -294,7 +307,7 @@ RichEditor组件
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改事件效果以达到预期。
 
-## cl.arkui.6 textTimer的onTimer回调频率与参数调整
+## cl.arkui.6 TextTimer的onTimer回调频率与参数单位调整
 
 **访问级别**
 
@@ -302,15 +315,17 @@ RichEditor组件
 
 **变更原因**
 
-调整onTimer回调频率与参数调整使其符合文档描述。
+调整onTimer回调频率与参数的单位，使其符合文档描述。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
-变更前，当textTimer的format包含S（毫秒）时，时间的变化就会触发onTimer（几毫秒一次），且回调参数的单位为ms（毫秒）。
+TextTimer的format属性用于自定义时间格式。其中，毫秒可使用S、SS和SSS关键字表示，分别代表100ms、10ms和1ms。
 
-变更后，textTimer的文本发生变化时回调onTimer，且回调参数的单位随format变化。format为mm:ss.S时，100ms回调一次，回调参数的单位为0.1秒；为mm:ss.SS时10ms回调一次，回调参数的单位为0.01秒。
+变更前，当TextTimer的format属性包含毫秒时，TextTimer的文本发生变化，便会几毫秒触发一次onTimer事件，且回调参数utc和elapsedTime的单位为毫秒。
+
+变更后，TextTimer的文本发生变化时，onTimer事件的触发时间与回调参数utc和elapsedTime的单位随format属性的自定义时间格式变化。format为mm:ss.S时，100ms回调一次onTimer事件，回调参数的单位为100ms。format为mm:ss.SS时，10ms回调一次onTimer事件，回调参数的单位为10ms。format为mm:ss.SSS时，与变更前保持一致。
 
 **起始API Level**
 
@@ -322,11 +337,38 @@ RichEditor组件
 
 **变更的接口/组件**
 
-textTimer组件
+textTimer组件的onTimer接口
 
 **适配指导**
 
 需要开发者主动适配，调整回调参数的数量级。
+
+```ts
+@Entry
+@Component
+struct TextTimerExample {
+  textTimerController: TextTimerController = new TextTimerController();
+  build() {
+    Column(){
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.SS')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘10
+          console.info('textTimer countDown utc is:' + utc * 10 + ',elapsedTime is:' + elapsedTime * 10)
+        })
+
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.S')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘100
+          console.info('textTimer countDown utc is:' + utc * 100 + ',elapsedTime is:' + elapsedTime * 100)
+        })
+    }
+  }
+}
+```
 
 ## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
 
@@ -336,13 +378,15 @@ textTimer组件
 
 **变更原因**
 
-该变更为非兼容性变更。
-
-将滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值改为0.75。
+为了优化功耗，将滚动类组件（List、Grid、WaterFlow、Scroll）friction接口默认值改为0.75。
 
 **变更影响**
 
-List、Grid、WaterFlow、Scroll等组件的默认抛滑效果改变。相较变更之前，用同样力度抛滑，抛滑时间更短、抛滑距离更近。
+该变更为不兼容变更。
+
+变更前，滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口默认值为0.7。
+
+变更后，滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口默认值为0.75。相较变更之前，用同样力度抛滑，抛滑时间更短、抛滑距离更近。
 
 **起始API Level**
 
@@ -354,10 +398,12 @@ List、Grid、WaterFlow、Scroll等组件的默认抛滑效果改变。相较变
 
 **变更的接口/组件**
 
-List、Grid、WaterFlow、Scroll等组件的Friction接口
+滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口。
 
 **适配指导**
-如开发者需改回变更之前的抛滑效果，可以用friction设置成变更前的默认参数0.7。
+
+开发者如果需要使用变更之前的抛滑效果，可以将friction接口的参数设置为0.7。
+
 ```ts
 @Entry
 @Component
@@ -394,17 +440,104 @@ struct FrictionExample {
 变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。<br>变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
 
 ```ts
-build() {
-  List() {
-    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
-      LazyForEach(this.arr, (item: number) => {
-        ListItem({ style: ListItemStyle.CARD }) {
-          Text("item" + item.toString())
-        }
-      })
+// Basic implementation of IDataSource to handle data listener
+abstract class BasicDataSource<T> implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+  abstract getData(index: number): T;
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
     }
-  }.backgroundColor("#DCDCDC")
-  .height("100%")
+  }
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+   const pos = this.listeners.indexOf(listener);
+   if (pos >= 0) {
+     this.listeners.splice(pos, 1)
+   }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource<T> extends BasicDataSource<T> {
+  public dataArray: T[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+  public getData(index: number): T {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: T): void {
+    this.dataArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+  public popFirstData(): void {
+    this.dataArray.shift()
+    this.notifyDataDelete(0)
+  }
+  public pushData(data: T): void {
+    this.dataArray.push(data)
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+  public popData(): void {
+    this.dataArray.pop()
+    this.notifyDataDelete(this.dataArray.length)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  arr:MyDataSource<number> = new MyDataSource<number>();
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.arr.pushData(i)
+    }
+  }
+
+  build() {
+    List() {
+      ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem({ style: ListItemStyle.CARD }) {
+            Text("item" + item.toString())
+          }
+        })
+      }
+    }.backgroundColor("#DCDCDC")
+    .height("100%")
+  }
 }
 ```
 | 变更前效果 | 变更后效果 |

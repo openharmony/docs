@@ -521,6 +521,8 @@ writableStream.end();
 
 Readable构造函数的选项信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -569,6 +571,8 @@ constructor(options: ReadableOptions)
 
 Readable的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -576,6 +580,14 @@ Readable的构造函数。
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | -------- | -------- | -------- |
 | options   | [ReadableOptions](#readableoptions)   | 是 | Readable构造函数的选项信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 

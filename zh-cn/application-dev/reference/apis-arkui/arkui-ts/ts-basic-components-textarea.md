@@ -258,7 +258,7 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
+配置textOverflow一起使用时，maxlines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示，内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -496,7 +496,9 @@ textIndent(value: Dimension)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。在非内联模式、内联模式下支持
+设置文本超长时的显示方式。
+
+内联模式，主动配置textoverflow才会生效按maxline截断效果，不配置时，默认不截断。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
@@ -624,13 +626,29 @@ editMenuOptions(editMenu: EditMenuOptions)
 >
 >  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
+### enablePreviewText<sup>12+</sup>
+
+enablePreviewText(enable: boolean)
+
+设置是否开启输入预上屏。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 ### onChange
 
-onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
 
@@ -642,7 +660,7 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| value  | string | 是   | 当前输入的文本内容。 |
+| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onEditChange<sup>10+</sup>
 
@@ -872,6 +890,8 @@ stopEditing(): void
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
@@ -885,7 +905,7 @@ stopEditing(): void
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -1379,7 +1399,7 @@ struct TextAreaExample {
 lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1612,3 +1632,4 @@ struct TextAreaExample {
 ```
 
 ![textAreaEditMenuOptions](figures/textAreaEditMenuOptions.gif)
+

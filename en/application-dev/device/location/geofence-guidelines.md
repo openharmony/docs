@@ -77,6 +77,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
+   let wantAgentObj : object | undefined = undefined;
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {

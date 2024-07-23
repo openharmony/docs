@@ -430,6 +430,8 @@ getTime(isNanoseconds?: boolean): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
@@ -470,6 +472,8 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
@@ -647,6 +651,8 @@ getTimezoneSync(): string
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {

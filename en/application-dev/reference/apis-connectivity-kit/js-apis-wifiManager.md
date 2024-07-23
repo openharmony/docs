@@ -2,13 +2,14 @@
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 
@@ -36,12 +37,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isWifiActive = wifiManager.isWifiActive();
@@ -70,12 +73,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.scan();
@@ -111,6 +116,8 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
@@ -138,11 +145,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getScanResults((err, result) => {
       if (err) {
@@ -210,12 +220,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
@@ -265,12 +277,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
@@ -320,7 +334,7 @@ Represents WLAN hotspot information.
 | centerFrequency1 | number | Yes| No| Center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies, namely **centerFrequency0** and **centerFrequency1**, are returned.|
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | Yes| No| Information elements.|
 | timestamp | number | Yes| No| Timestamp.|
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi type supported by the hotspot.|
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
 | isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
 
 ## DeviceAddressType<sup>10+</sup>
@@ -432,7 +446,7 @@ Represents the WLAN configuration.
 | isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype9)| Yes| No| Security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | Yes| No| EAP configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_EAP**.|
-
+| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | Yes| No| WAPI configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_WAPI_CERT** or** WIFI_SEC_TYPE_WAPI_PSK**.|
 
 ## WifiEapConfig<sup>10+</sup>
 
@@ -459,6 +473,29 @@ Represents EAP configuration information.
 | eapSubId | number | Yes| No| Sub-ID of the SIM card.|
 
 
+## WifiWapiConfig<sup>12+</sup>
+
+Represents WAPI configuration.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| -------- | -------- | -------- | -------- | -------- |
+| wapiPskType | [WapiPskType](#wapipsktype12)| Yes| Yes| PSK type.|
+| wapiAsCert | string | No| Yes| AS certificate.|
+| wapiUserCert | string | No| Yes| User Certificate.|
+
+## WapiPskType<sup>12+</sup>
+
+Enumerates the WAPI authentication types.
+
+**System capability**: SystemCapability.Communication.WiFi.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| WAPI_PSK_ASCII | 0 | ASCII.|
+| WAPI_PSK_HEX | 1 | HEX.|
+
 ## EapMethod<sup>10+</sup>
 
 Enumerates the EAP authentication methods.
@@ -476,7 +513,6 @@ Enumerates the EAP authentication methods.
 | EAP_AKA | 6 | AKA.|
 | EAP_AKA_PRIME | 7 | AKA Prime.|
 | EAP_UNAUTH_TLS | 8 | UNAUTH TLS.|
-
 
 ## Phase2Method<sup>10+</sup>
 
@@ -507,8 +543,6 @@ Represents the highest Wi-Fi type supported by a hotspot.
 | WIFI6 | 2 | Wi-Fi 6|
 | WIFI6_PLUS | 3 | Wi-Fi 6+|
 
-
-
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
 addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -538,12 +572,15 @@ Adds the configuration of a candidate network. This API uses a promise to return
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -576,19 +613,22 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the candidate network configuration fails to be added. If **err** is not **0**, an error has occurred.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -633,13 +673,16 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -675,12 +718,15 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -719,13 +765,15 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
-`````ts
-	import wifiManager from '@ohos.wifiManager';
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let configs = wifiManager.getCandidateConfigs();
@@ -742,7 +790,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 		console.error("failed:" + JSON.stringify(error));
 	}
 	
-`````
+```
 
 ## wifiManager.connectToCandidateConfig<sup>9+</sup>
 
@@ -767,13 +815,16 @@ Connects to a candidate network added by the application. If the device is alrea
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added. The value is obtained from WifiDeviceConfig.netId.
@@ -814,11 +865,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let rssi = 0;
@@ -857,8 +911,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 ## wifiManager.getLinkedInfo<sup>9+</sup>
 
@@ -884,12 +940,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getLinkedInfo((err, data) => {
       if (err) {
@@ -932,7 +991,7 @@ Represents the WLAN connection information.
 | connState | [ConnState](#connstate9) | Yes| No| WLAN connection state.|
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | Yes| No| Channel bandwidth of the connected hotspot.|
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | Yes| No| Wi-Fi standard used by the connected hotspot.|
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi type supported by the hotspot.|
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
 | isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
 
 ## ConnState<sup>9+</sup>
@@ -977,11 +1036,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isConnected();
@@ -1036,11 +1097,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let featureId = 0;
@@ -1075,11 +1139,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpInfo();
@@ -1128,11 +1194,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpv6Info();
@@ -1180,11 +1248,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let code = wifiManager.getCountryCode();
@@ -1225,11 +1295,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let type = 0;
@@ -1263,12 +1336,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isMeteredHotspot = wifiManager.isMeteredHotspot();
@@ -1304,7 +1379,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
@@ -1331,11 +1408,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	wifiManager.getP2pLinkedInfo((err, data) => {
     if (err) {
@@ -1401,7 +1481,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
@@ -1429,11 +1511,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// The current group information can be obtained only after the P2P group is created or the connection is successful.
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
@@ -1474,7 +1559,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.getP2pPeerDevices<sup>9+</sup>
 
@@ -1502,11 +1589,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// The peer device list can be obtained only after the P2P discovery is complete.
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
@@ -1558,7 +1648,11 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 
 Obtains the local device information in the P2P connection. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (available only for system applications)
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+
+API version 11 and later: ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1574,7 +1668,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.getP2pLocalDevice<sup>9+</sup>
 
@@ -1582,7 +1678,11 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 
 Obtains the local device information in the P2P connection. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (available only for system applications)
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+
+API version 11 and later: ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1596,11 +1696,14 @@ Obtains the local device information in the P2P connection. This API uses an asy
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// The local device information can be obtained only after a P2P group is created or the connection is successful.
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
@@ -1637,11 +1740,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiP2PConfig = {
@@ -1703,11 +1809,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeGroup();	
@@ -1742,11 +1850,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -1827,11 +1938,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.p2pCancelConnect();	
@@ -1860,11 +1973,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startDiscoverDevices();	
@@ -1889,11 +2004,13 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.stopDiscoverDevices();	
@@ -1947,7 +2064,10 @@ Subscribes to WLAN state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **WLAN states** 
@@ -1977,19 +2097,22 @@ Unsubscribes from WLAN state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
@@ -2034,7 +2157,10 @@ Subscribes to WLAN connection state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiConnectionChange')<sup>9+</sup>
@@ -2061,12 +2187,15 @@ Unsubscribes from WLAN connection state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
@@ -2110,7 +2239,10 @@ Subscribes to WLAN scan state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiScanStateChange')<sup>9+</sup>
@@ -2130,19 +2262,22 @@ Unsubscribes from WLAN scan state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
@@ -2177,7 +2312,10 @@ Subscribes to RSSI changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiRssiChange')<sup>9+</sup>
@@ -2195,19 +2333,22 @@ Unsubscribes from RSSI changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
@@ -2251,8 +2392,11 @@ Subscribes to hotspot state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Hotspot module error.|
 
 ## wifiManager.off('hotspotStateChange')<sup>9+</sup>
 
@@ -2269,19 +2413,22 @@ Unsubscribes from hotspot state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Hotspot module error.|
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
@@ -2327,8 +2474,11 @@ Subscribes to P2P state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pStateChange')<sup>9+</sup>
 
@@ -2345,19 +2495,22 @@ Unsubscribes from P2P state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
@@ -2392,8 +2545,11 @@ Subscribes to P2P connection state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pConnectionChange')<sup>9+</sup>
 
@@ -2410,19 +2566,22 @@ Unsubscribes from P2P connection state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
-| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
@@ -2461,8 +2620,11 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pDeviceChange')<sup>9+</sup>
 
@@ -2483,19 +2645,22 @@ API version 10 and later: No permission is required.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
@@ -2534,8 +2699,11 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2563,12 +2731,15 @@ API version 10 and later: No permission is required.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
@@ -2603,8 +2774,11 @@ Subscribes to P2P persistent group state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2621,19 +2795,22 @@ Unsubscribes from P2P persistent group state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
-| callback | Callback&lt;void&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;void&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
@@ -2675,8 +2852,11 @@ Subscribes to P2P device discovery state changes.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2693,19 +2873,22 @@ Unsubscribes from P2P device discovery state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | P2P module error. |
 
 **Example**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);

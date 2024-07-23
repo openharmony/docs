@@ -27,13 +27,13 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 - 获取文件系统数据分区剩余空间大小。
     
   ```ts
-  import statvfs from '@ohos.file.statvfs';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { statfs } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
+  statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -45,8 +45,8 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 - 获取当前应用的存储空间大小。
     
   ```ts
-  import storageStatistics from "@ohos.file.storageStatistics";
-  import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {

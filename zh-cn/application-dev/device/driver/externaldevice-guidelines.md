@@ -19,11 +19,13 @@
 | 接口名                                                                                                                                                      | 描述                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                         | 查询扩展外设列表。                                                                       |
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;                       | 绑定设备的Promise形式。                                                                 |
+| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
+| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;                       | 绑定设备的Promise形式。                                                                 |
 | unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                 | 解绑设备。                                                                              |
 | unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                       | 解绑设备的Promise形式。                                                                              |
 
+
+<!--Del-->
 扩展外设管理系统接口如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)。
 
 **表2** 扩展外设管理系统接口
@@ -32,6 +34,7 @@
 |------------------------------------------------------------------------------|-----------------|
 | queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;  | 查询扩展外设详细信息列表。   |
 | queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt; | 查询扩展外设驱动详细信息列表。 |
+<!--DelEnd-->
 
 ## 开发步骤
 
@@ -148,7 +151,7 @@
       console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
     }
     ```
-
+<!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
 1. 查询扩展外设详细信息列表。
@@ -184,3 +187,4 @@
       console.error(`Failed to query driver info. Code is ${err.code}, message is ${err.message}`);
    }
    ```
+<!--DelEnd-->
