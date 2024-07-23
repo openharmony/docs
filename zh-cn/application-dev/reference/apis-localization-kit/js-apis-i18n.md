@@ -467,12 +467,7 @@ static getAppPreferredLanguage(): string
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   ```
 
 
