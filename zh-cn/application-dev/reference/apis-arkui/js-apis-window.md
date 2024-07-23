@@ -1563,13 +1563,17 @@ try {
 }
 ```
 
-### setWindowLayoutFullScreen<sup>9+</sup>
+### setWindowLayoutFullScreen<sup>(deprecated)</sup>
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
 沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
+
+> **说明：**
+>
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1771,13 +1775,17 @@ try {
 }
 ```
 
-### setWindowSystemBarEnable<sup>9+</sup>
+### setWindowSystemBarEnable<sup>(deprecated)</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
 设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
+
+> **说明：**
+>
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1979,13 +1987,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowSystemBarProperties<sup>9+</sup>
+### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
 设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 子窗口调用后不生效。
+
+> **说明：**
+>
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5069,7 +5081,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### minimize<sup>11+</sup>
+### minimize<sup>(deprecated)</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
@@ -5080,6 +5092,10 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
 
 使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 11 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
