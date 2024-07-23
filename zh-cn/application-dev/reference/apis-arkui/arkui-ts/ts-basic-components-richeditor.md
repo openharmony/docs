@@ -122,7 +122,7 @@ enableDataDetector(enable: boolean)
 
 当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
 
-当copyOptions设置为CopyOptions.None时，该功能不会生效。
+当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本功能。
 
 对addBuilderSpan的节点文本，该功能不会生效。
 
