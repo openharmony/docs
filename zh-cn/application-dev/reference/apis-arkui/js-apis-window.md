@@ -1541,7 +1541,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取当前应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1718,7 +1718,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置当前应用窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。
+设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1756,7 +1756,7 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前应用窗口是否已经开启沉浸式布局。
+查询当前窗口是否已经开启沉浸式布局。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1928,7 +1928,7 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，分屏和悬浮窗状态不会立刻生效，只有进入全屏后才会生效，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
 
@@ -3015,7 +3015,7 @@ try {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭当前应用窗口系统规避区变化的监听。
+关闭当前窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
