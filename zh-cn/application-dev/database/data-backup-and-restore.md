@@ -239,10 +239,10 @@
    if(store != undefined) {
      (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
        if (err) {
-         console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
+         console.error(`Failed to back up data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info('Succeeded in backuping data.');
+       console.info('Succeeded in backing up data.');
      })
    }
    ```
