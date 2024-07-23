@@ -992,9 +992,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 2. 导入UIAbility模块。
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   ```
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    ```
 
 3. 定义约定的序列化数据。
    调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。
@@ -1038,8 +1038,8 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
     ```ts
     import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
-    import hilog from '@ohos.hilog';
-    import type rpc from '@ohos.rpc';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { rpc } from '@kit.IPCKit';
 
     const MSG_SEND_METHOD: string = 'CallSendMsg';
     const DOMAIN_NUMBER: number = 0xFF00;

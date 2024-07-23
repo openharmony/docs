@@ -69,10 +69,9 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 示例代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -115,10 +114,9 @@ startAbility接口是将应用链接放入want中，通过调用[隐式want匹�
 示例代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;

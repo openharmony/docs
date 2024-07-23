@@ -10,16 +10,16 @@ FA模型下使用Context，需要通过featureAbility下的接口getContext来�
 
 
 ```ts
-import featureAbility from "@ohos.ability.featureAbility";
+import featureAbility from '@ohos.ability.featureAbility';
 ```
 
 然后使用如下方式获取对应的Context对象：
 
 
 ```ts
-import featureAbility from "@ohos.ability.featureAbility";
+import featureAbility from '@ohos.ability.featureAbility';
 
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 ```
 
 最终返回的对象为Context，其对应的接口说明请参见[接口文档](../reference/apis-ability-kit/js-apis-inner-app-context.md)。
@@ -32,10 +32,10 @@ let context = featureAbility.getContext()
     ```ts
     import featureAbility from '@ohos.ability.featureAbility';
     import hilog from '@ohos.hilog';
-    
+
     const TAG: string = 'MainAbility';
     const domain: number = 0xFF00;
-    
+
     class MainAbility {
       onCreate() {
         // 获取context并调用相关方法
@@ -47,7 +47,7 @@ let context = featureAbility.getContext()
       }
       //...
     }
-    
+
     export default new MainAbility();
     ```
    
@@ -57,10 +57,10 @@ let context = featureAbility.getContext()
     import featureAbility from '@ohos.ability.featureAbility';
     import bundle from '@ohos.bundle';
     import hilog from '@ohos.hilog';
-    
+
     const TAG: string = 'PageAbilitySingleton';
     const domain: number = 0xFF00;
-    
+
     class PageAbilitySingleton {
       onCreate() {
         // 获取context并调用相关方法
@@ -70,12 +70,12 @@ let context = featureAbility.getContext()
         })
         hilog.info(domain, TAG, 'Application onCreate');
       }
-    
+
       onDestroy() {
         hilog.info(domain, TAG, 'Application onDestroy');
       }
-      //...  
+      //...
     }
-    
+
     export default new PageAbilitySingleton();
     ```

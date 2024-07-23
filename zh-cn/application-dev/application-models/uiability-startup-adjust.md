@@ -53,10 +53,9 @@
     具体请参考AppLinking开发指南。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -157,10 +156,9 @@
     <br>具体请参考AppLinking开发指南。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;

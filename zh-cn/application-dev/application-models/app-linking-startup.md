@@ -155,8 +155,8 @@ openLink接口提供了两种拉起目标应用的方式，开发者可根据业
 本文为了方便验证App Linking的配置是否正确，选择方式一，示例如下。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
