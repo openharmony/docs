@@ -1629,6 +1629,56 @@ struct styled_string_demo6 {
 
 ![](figures/styledstring_6.PNG)
 
+### 示例7
+
+属性字符串UserDataSpan使用示例
+
+```ts
+// xxx.ets
+class MyUserDateSpan extends UserDataSpan {
+  constructor(name: string, age: number) {
+    super()
+    this.name = name
+    this.age = age
+  }
+
+  name: string
+  age: number
+}
+
+@Entry
+@Component
+struct styled_string_demo7 {
+  @State name: string = "world"
+  @State age: number = 10
+  controller: TextController = new TextController()
+  styleString: MutableStyledString = new MutableStyledString("hello world", [{
+    start: 0,
+    length: 11,
+    styledKey: StyledStringKey.USER_DATA,
+    styledValue: new MyUserDateSpan("hello", 21)
+  }])
+
+  onPageShow(): void {
+    this.controller.setStyledString(this.styleString)
+  }
+
+  build() {
+    Column() {
+      Text(undefined, { controller: this.controller })
+      Button("get user data").onClick(() => {
+        let arr = this.styleString.getStyles(0, this.styleString.length)
+        let userDataSpan = arr[0].styledValue as MyUserDateSpan
+        this.name = userDataSpan.name
+        this.age = userDataSpan.age
+      })
+      Text("name:" + this.name + "  age: " + this.age)
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledstring_7.gif)
 
 
 
