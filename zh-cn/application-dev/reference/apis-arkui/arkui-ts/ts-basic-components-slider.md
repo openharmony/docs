@@ -510,7 +510,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | -------- | -------- | -------- |
 | Begin | 0 | 手势/鼠标接触或者按下滑块。 |
 | Moving | 1 | 正在拖动滑块过程中。 |
-| End | 2 | 手势/鼠标离开滑块。 |
+| End | 2 | 手势/鼠标离开滑块。<br/>**说明：** <br/>异常值恢复成默认值时触发，即value设置小于min或大于max。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
 ## SliderConfiguration<sup>12+</sup>对象说明
