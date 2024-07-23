@@ -41,7 +41,7 @@ ArcList(options?: ArkListOptions)
 
 | 参数名  | 参数类型                                  | 必填 | 参数描述                                                     |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ArkListOptions](#ArkListOptions对象说明) | 否   | 为ArcList提供可选参数, 该对象内含有initialIndex、scroller、header等参数 |
+| options | [ArkListOptions](#arklistoptions对象说明) | 否   | 为ArcList提供可选参数, 该对象内含有initialIndex、scroller、header等参数 |
 
 ## 属性
 
@@ -59,13 +59,13 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **参数：** 
 
-| 参数名      | 类型                             | 必填 | 说明                                                         |
-| ----------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| sensitivity | Optional&lt;CrownSensitivity&gt; | 否   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中<br/>其他支持值：<br/>CrownSensitivity.LOW，响应速度较慢<br/>CrownSensitivity.HIGH，响应速度较快 |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity) | 否   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中<br/>其他支持值：<br/>CrownSensitivity.LOW，响应速度较慢<br/>CrownSensitivity.HIGH，响应速度较快 |
 
 ### space
 
-space(space: Optional\<LengthMetrics>))
+space(space: Optional\<LengthMetrics>)
 
 设置列表子项之间的距离。
 
@@ -75,9 +75,9 @@ space(space: Optional\<LengthMetrics>))
 
 **参数：** 
 
-| 参数名 | 类型                                                       | 必填 | 说明                           |
-| ------ | ---------------------------------------------------------- | ---- | ------------------------------ |
-| space  | [Optional&lt;LengthMetrics&gt;](ts-types.md#LengthMetrics) | 否   | 子项之间的间距。<br/>默认值：0 |
+| 参数名 | 类型                                                         | 必填 | 说明                           |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
+| space  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 否   | 子项之间的间距。<br/>默认值：0 |
 
 ### scrollBar
 
@@ -179,9 +179,9 @@ scrollBarWidth(width: Optional\<LengthMetrics>)
 
 **参数：** 
 
-| 参数名 | 类型                                                       | 必填 | 说明                                      |
-| ------ | ---------------------------------------------------------- | ---- | ----------------------------------------- |
-| width  | [Optional&lt;LengthMetrics&gt;](ts-types.md#LengthMetrics) | 否   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+| 参数名 | 类型                                                         | 必填 | 说明                                      |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| width  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 否   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
 
 ### scrollBarColor
 
@@ -197,7 +197,7 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 | 参数名 | 类型                    | 必填 | 说明           |
 | ------ | ----------------------- | ---- | -------------- |
-| color  | Optional\<ColorMetrics> | 否   | 滚动条的颜色。 |
+| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 否   | 滚动条的颜色。 |
 
 ### flingSpeedLimit
 
@@ -229,7 +229,7 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| size   | [Optional\<ChildrenMainSize>](#ChildrenMainSize对象说明) | 否   | 1. 作用：<br/>通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
+| size   | [Optional\<ChildrenMainSize>](#childrenmainsize对象说明) | 否   | 1. 作用：<br/>通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
 
 ## 事件
 
@@ -253,7 +253,7 @@ ArcList显示区域中间位置子组件变化时也会触发该事件。
 
 | 参数名  | 类型                                                         | 必填 | 说明                                          |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| handler | [Optional\<ArcScrollIndexHandler>](#ArcScrollIndexHandler对象说明) | 否   | 有子组件划入或划出ArcList显示区域时触发该回调 |
+| handler | [Optional\<ArcScrollIndexHandler>](#arcscrollindexhandler对象说明) | 否   | 有子组件划入或划出ArcList显示区域时触发该回调 |
 
 ### onReachStart
 
@@ -269,7 +269,7 @@ ArcList初始化时如果initialIndex为0会触发一次，ArcList滚动到起�
 
 | 参数名  | 类型                                             | 必填 | 说明                   |
 | ------- | ------------------------------------------------ | ---- | ---------------------- |
-| handler | [Optional\<VoidCallback>](#VoidCallback对象说明) | 否   | 列表到达起始位置时触发 |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表到达起始位置时触发 |
 
 ### onReachEnd
 
@@ -285,7 +285,7 @@ ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 | 参数名  | 类型                                             | 必填 | 说明                   |
 | ------- | ------------------------------------------------ | ---- | ---------------------- |
-| handler | [Optional\<VoidCallback>](#VoidCallback对象说明) | 否   | 列表到底末尾位置时触发 |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表到底末尾位置时触发 |
 
 ### onScrollStart
 
@@ -299,7 +299,7 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 | 参数名  | 类型                                             | 必填 | 说明               |
 | ------- | ------------------------------------------------ | ---- | ------------------ |
-| handler | [Optional\<VoidCallback>](#VoidCallback对象说明) | 否   | 列表滑动开始时触发 |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表滑动开始时触发 |
 
 ### onScrollStop
 
@@ -313,7 +313,7 @@ onScrollStop(handler: Optional\<VoidCallback>)
 
 | 参数名  | 类型                                             | 必填 | 说明               |
 | ------- | ------------------------------------------------ | ---- | ------------------ |
-| handler | [Optional\<VoidCallback>](#VoidCallback对象说明) | 否   | 列表滑动停止时触发 |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表滑动停止时触发 |
 
 ### onWillScroll
 
@@ -329,7 +329,7 @@ onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnWillScrollCallback>](#OnWillScrollCallback对象说明) | 否 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnWillScrollCallback>](#onwillscrollcallback对象说明) | 否 | 列表滑动时触发的回调。 |
 
 > **说明：** 
 > 
@@ -358,7 +358,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | initialIndex | number                                      | 否   | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
-| header       | ComponentContent                            | 否   | 支持标题设置。                                               |
+| header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 支持标题设置。                                               |
 
 ## VoidCallback对象说明
 
@@ -374,9 +374,19 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | end    | number | 是   | ArcList显示区域内最后一个子组件的索引值。 |
 | center | number | 是   | ArcList显示区域内中间位置子组件的索引值。 |
 
+## OnWillScrollCallback对象说明
+
+列表滑动前触发
+
+| 参数名       | 类型                                                       | 必填 | 说明                                                         |
+| ------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollOffset | number                                                     | 是   | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState  | [ScrollState](ts-container-arclist.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
+| scrollSource | ScrollSource                                               | 是   | 当前滑动来源。                                               |
+
 ## OnScrollCallback对象说明
 
-列表滑动时触发的回调  
+列表滑动时触发的回调
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -518,171 +528,93 @@ update(index: number, childSize: number): void
 
 ## 示例
 
-### 示例1
-该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
-```ts
-// xxx.ets
-import { LengthMetrics } from "@ohos.arkui.node";
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
-@Entry
-@Component
-struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-  build() {
-    Column() {
-      ArcList({ initialIndex: 0 }) {
-        ForEach(this.arr, (item: number) => {
-          ArcListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .space(LengthMetrics.px(20))
-      .scrollBar(BarState.Off)
-      .friction(0.6)
-      .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-        console.info('first' + firstIndex)
-        console.info('last' + lastIndex)
-        console.info('center' + centerIndex)
-      })
-      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
-      })
-      .width('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
-  }
-}
-```
-
-### 示例2
-
-该示例增加了ArcList支持标题栏设置的效果。
+该示例增加了ArcList支持标题栏设置的效果，子项自动缩放显示。
 
 ```ts
 // xxx.ets
 import { ComponentContent, LengthMetrics } from "@ohos.arkui.node";
+import { UIContext } from '@ohos.arkui.UIContext';
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
+
+interface ScreenSize {
+  widthPx: number,
+  heightPx: number,
+}
+
 @Builder
 function buildText() {
-  Stack() {
+  Column() {
     Text("header")
-      .fontSize(80)
-      .padding(0)
-      .backgroundColor(0xF9CF93)
-      .border({ width: '1px', color: Color.Black })
-  }
-  .alignContent(Alignment.Bottom)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+      .border({ width: '2px', color: Color.Black })
+  }.margin(0)
 }
+
 @Entry
 @Component
-struct ListExample {
-  private arr: number[] = []
-  private scrollerForList: Scroller = new Scroller()
+struct Index {
+  @State  private numItems: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State screenSize: ScreenSize = { widthPx: 0, heightPx: 0 };
 
-  private context: UIContext = this.getUIContext()
-  private header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
-
-  aboutToAppear() {
-    for (let i = 0; i < 20; i++) {
-      this.arr.push(i)
+  onMeasure(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
+    if (typeof constraint.maxWidth === 'number' && typeof constraint.maxHeight === 'number') {
+      let widthPx = constraint.maxWidth as number;
+      let heightPx = constraint.maxHeight as number;
+      if (this.screenSize.widthPx == 0 || this.screenSize.heightPx == 0) {
+        setTimeout((width: number, height: number) => {
+          console.log(`width=${width}px, height=${height}px`);
+          this.screenSize = { widthPx: 466, heightPx: 466 };
+        }, 500, widthPx, heightPx);
+      }
     }
   }
-  build() {
-    Column() {
-      Row() {
-        ArcList({ initialIndex: 3, scroller: this.scrollerForList, header: this.header }) {
-          ForEach(this.arr, (item: number) => {
-            ArcListItem() {
-              Text('' + item)
-                .width('100%').height(100).fontSize(16)
-                .textAlign(TextAlign.Center)
-            }
-            .borderRadius(10).backgroundColor(0xFFFFFF)
-            .width('60%')
-            .height('80%')
-          }, (item: number) => JSON.stringify(item))
-        }
-        .space(LengthMetrics.px(20))
-        .chainAnimation(true)
-        .height('100%')
-        .width('100%')
-        .borderRadius(10)
-        .backgroundColor(0xDCDCDC)
+
+  context: UIContext = this.getUIContext()
+  tabBar1: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
+
+  @Builder
+  buildList2() {
+    Stack() {
+      Column() {
       }
+      .justifyContent(FlexAlign.Center)
+      .width(`${this.screenSize.widthPx}px`)
+      .height(`${this.screenSize.widthPx}px`)
+      .clip(new Circle({ width: '100%', height: '100%' }))
+      .backgroundColor(Color.Green)
+
+      ArcList({ initialIndex: 0, header: this.tabBar1 }) {
+        ForEach(this.numItems, (item: number, index: number) => {
+          ArcListItem() {
+            Button('' + item, { type: ButtonType.Capsule })
+              .width('100%')
+              .height(30)
+              .fontSize(14)
+          }.align(Alignment.Center)
+          .width('100%')
+        }, (item: string, index: number) => item + index)
+      }
+      .space(LengthMetrics.px(10))
       .width('100%')
       .height('100%')
-      .backgroundColor(0xDCDCDC)
-      .padding({ top: 10 })
+      .border({ width: '1px', color: Color.Red })
     }
+    .align(Alignment.Center)
+    .width('466px')
+    .height('466px')
+  }
+
+  build() {
+    Column() {
+      this.buildList2()
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
 
-### 示例3
-该示例通过设置childrenMainSize属性，实现了ArcList在子组件高度不一致时调用scrollTo接口也可以跳转准确。
-```ts
-// xxx.ets
-import { LengthMetrics } from "@ohos.arkui.node";
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
-@Entry
-@Component
-struct ListExample {
-  private arr: number[] = []
-  private scroller: ListScroller = new ListScroller()
-  @State listSpace: number = 10
-  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
-  aboutToAppear(){
-    // 初始化数据源。
-    for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
-    }
-    // 前5个item的主轴大小不是默认大小100，因此需要通过ChildrenMainSize通知ArcList。
-    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300])
-  }
-  build() {
-    Column() {
-      ArcList({ initialIndex: 4, scroller: this.scroller }) {
-        ForEach(this.arr, (item: number) => {
-          ArcListItem() {
-            Text('item-' + item)
-              .height( item < 5 ? 300 : this.listChildrenSize.childDefaultSize)
-              .width('90%')
-              .fontSize(16)
-              .textAlign(TextAlign.Center)
-              .borderRadius(10)
-              .backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .space(LengthMetrics.px(this.listSpace))
-      .backgroundColor(Color.Gray)
-      .layoutWeight(1)
-      .scrollBar(BarState.On)
-      .childrenMainSize(this.listChildrenSize)
-      Row(){
-        Button() { Text('item size + 50') }.onClick(()=>{
-          this.listChildrenSize.childDefaultSize += 50
-        }).height('50%').width('30%')
-        Button() { Text('item size - 50') }.onClick(()=>{
-          if (this.listChildrenSize.childDefaultSize === 0) {
-            return
-          }
-          this.listChildrenSize.childDefaultSize -= 50
-        }).height('50%').width('30%')
-        Button() { Text('scrollTo (0, 310)') }.onClick(()=>{
-          // 310: 跳转到item 1顶部与ArcList顶部平齐的位置。
-          // 如果不设置childrenMainSize，item高度不一致时scrollTo会不准确。
-          this.scroller.scrollTo({xOffset: 0, yOffset: 310})
-        }).height('50%').width('30%')
-      }.height('20%')
-    }
-  }
-}
-```
+![arkts-arclist](figures/arkts-arclist.png)
