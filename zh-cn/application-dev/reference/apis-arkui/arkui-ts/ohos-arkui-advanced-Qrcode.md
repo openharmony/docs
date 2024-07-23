@@ -42,7 +42,7 @@ QrcodeOptions定义Qrcode的样式及具体式样参数。
 | color              | ColorMetrics                   | 否   | 二维码颜色。<br>默认值：Color.Black。                        |
 | backgroundColor    | ColorMetrics                   | 否   | 二维码衬底颜色。<br>默认值：Color.White                      |
 | textColor          | ColorMetrics                   | 否   | 二维码过期提示文本颜色。<br>默认值：Color.White              |
-| textContent        | string                         | 是   | 二维码过期提示文本。<br/>默认值：系统资源$r('sys.string.qrcode_expiration_prompt') ，<br/>默认提示内容：二维码已失效，点击刷新 |
+| textContent        | string                         | 是   | 二维码过期提示文本。<br/>默认提示内容：二维码已失效，点击刷新 |
 | borderRadius       | LengthMetrics                  | 否   | 衬底矩形圆角。<br/>默认值：12vp。                            |
 | opacity            | number \| Resource             | 否   | 刷新和加载状态下二维码透明度。<br/>默认值：0.4。             |
 | animationCurve     | Curve \| string \| ICurve      | 否   | 页面切换淡入曲线。<br/>默认值：‘0.33,0,0.67,1’。             |
@@ -84,7 +84,7 @@ import { LengthMetrics,ColorMetrics } from '@ohos.arkui.node';
 struct Index {
   @Local qrOptions: QrcodeOptions = new QrcodeOptions({})
   @Local state: QrcodeState = QrcodeState.NORMAL
-  @Local value: string = 'Test Qrcode'
+  @Local value: string = 'Test Qrcode content'
   build() {
     Column({space:6}) {
       Qrcode({
@@ -93,7 +93,7 @@ struct Index {
         state:this.state,
       })
         .onClick(()=>{
-          console.info('1111111111111111')
+          console.info('testClickEvent')
           this.state = QrcodeState.LOADING
         })
 
@@ -109,10 +109,10 @@ struct Index {
           Button('正常')
             .onClick(() => {
               this.state = QrcodeState.NORMAL
-              this.value = '1111111111111111111'
+              this.value = '二维码内容信息'
               this.qrOptions.edgeLength = LengthMetrics.vp(125)
               this.qrOptions.color = ColorMetrics.resourceColor(Color.Black)
-              this.qrOptions. textContent = '失效'
+              this.qrOptions. textContent = '二维码已失效'
               this.qrOptions.textColor = ColorMetrics.resourceColor(Color.White)
               console.info('正常' + this.state)
             })
@@ -126,49 +126,9 @@ struct Index {
             .margin({ top: 10 })
         }
 
-        Row({space:4}) {
-          Button('绿色').onClick(()=>{
-            this.qrOptions.color = ColorMetrics.resourceColor(Color.Green)
-          })
-
-          Button('黄色').onClick(()=>{
-            this.qrOptions.color = ColorMetrics.resourceColor(Color.Yellow)
-          })
-
-          Button('蓝色').onClick(()=>{
-            this.qrOptions.color = ColorMetrics.resourceColor(Color.Blue)
-          })
-
-          Button('红色').onClick(()=>{
-            this.qrOptions.color = ColorMetrics.resourceColor(Color.Red)
-          })
-        }
-
-        Row({space:4}) {
-          Button('100vp').onClick(()=>{
-            this.qrOptions.edgeLength = LengthMetrics.vp(100);
-          })
-
-          Button('60vp').onClick(()=>{
-            this.qrOptions.edgeLength = LengthMetrics.vp(60);
-          })
-
-          Button('80vp').onClick(()=>{
-            this.qrOptions.edgeLength = LengthMetrics.vp(80);
-          })
-
-          Button('20vp').onClick(()=>{
-            this.qrOptions.edgeLength =  LengthMetrics.vp(20);
-          })
-        }
-
         Row({space:4}){
           Button('失效提示').onClick(()=>{
             this.qrOptions.textContent ='The QR code has expired, please refresh'
-          })
-
-          Button('红色字体').onClick(()=>{
-            this.qrOptions.textColor = ColorMetrics.resourceColor(Color.Red)
           })
         }
       }
@@ -183,5 +143,5 @@ struct Index {
 
 ```
 
-![](C:\Users\jiaguoj\Desktop\qrcode.PNG)
+![](figures/advanced_qrcode.png)
 

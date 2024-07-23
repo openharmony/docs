@@ -144,7 +144,7 @@ struct Index {
       bottom: new LengthMetrics(10, LengthUnit.VP)
     }
     this.options = new ArcButtonOptions({
-      resourceText: '白色风车',
+      resourceText: 'testButtonTop',
       type: ArcButtonTypeMode.TOP_EDGE,
       touchEffect: ArkButtonClickEffectStyle.LIGHT,
       styleMode: ArcButtonStyleMode.NORMAL_LIGHT,
@@ -159,7 +159,7 @@ struct Index {
       textMargin: mar
     })
     this.options1 = new ArcButtonOptions({
-      resourceText: 'test',
+      resourceText: 'testButtonBottom',
       touchEffect: ArkButtonClickEffectStyle.HEAVY,
       styleMode: ArcButtonStyleMode.NORMAL_DEEP,
       status: ArcButtonStatus.NORMAL
@@ -187,10 +187,11 @@ struct Index {
       .height(233)
     }.width('100%')
     .height('100%')
-    .alignContent(Alignment.TopStart)
+    .alignContent(Alignment.Center)
     .backgroundColor(Color.Green)
   }
 }
 
 ```
 
+![](/figures/advanced_arcButton.png)
