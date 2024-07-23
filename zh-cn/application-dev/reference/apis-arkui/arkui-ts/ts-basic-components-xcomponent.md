@@ -489,7 +489,7 @@ struct Index{
   myXComponentController: XComponentController = new XComponentController();
 
   build() {
-    Flex({ direvtion: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
         id: 'xComponentId',
         type: XComponentType.SURFACE,
