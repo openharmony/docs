@@ -557,6 +557,8 @@ struct Index {
   @State  private numItems: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   @State screenSize: ScreenSize = { widthPx: 0, heightPx: 0 };
 
+  private watchSize: string = '466px' // 手表默认宽高：466*466
+
   onMeasure(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
     if (typeof constraint.maxWidth === 'number' && typeof constraint.maxHeight === 'number') {
       let widthPx = constraint.maxWidth as number;
@@ -592,17 +594,15 @@ struct Index {
               .height(30)
               .fontSize(14)
           }.align(Alignment.Center)
-          .width('100%')
         }, (item: string, index: number) => item + index)
       }
       .space(LengthMetrics.px(10))
-      .width('100%')
-      .height('100%')
+      .borderRadius(this.watchSize)
       .border({ width: '1px', color: Color.Red })
     }
     .align(Alignment.Center)
-    .width('466px')
-    .height('466px')
+    .width(this.watchSize)
+    .height(this.watchSize)
   }
 
   build() {
