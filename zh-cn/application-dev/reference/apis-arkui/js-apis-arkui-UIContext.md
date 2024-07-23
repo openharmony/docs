@@ -2542,7 +2542,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2569,7 +2569,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2596,7 +2596,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2623,7 +2623,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2650,7 +2650,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2677,7 +2677,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2704,7 +2704,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2731,7 +2731,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
