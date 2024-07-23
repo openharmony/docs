@@ -449,7 +449,8 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
 
 ## 集成态HSP
 集成态HSP是应用内HSP的一种中间编译产物，目的就是解决使用方的bundleName和签名强耦合性。
-> **说明：** HSP使用只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
+> **说明：** 
+> HSP使用只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
 
 
 #### 开发使用说明
