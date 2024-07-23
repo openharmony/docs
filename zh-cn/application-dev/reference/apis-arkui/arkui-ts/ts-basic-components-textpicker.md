@@ -193,6 +193,22 @@ gradientHeight(value: Dimension)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
 
+### digitalCrownSensitivity
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠响应事件灵敏度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：** 
+
+| 参数名      | 类型                             | 必填 | 说明                                                         |
+| ----------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| sensitivity | Optional&lt;CrownSensitivity&gt; | 否   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中<br/>其他支持值：<br/>CrownSensitivity.LOW，响应速度较慢<br/>CrownSensitivity.HIGH，响应速度较快 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -395,3 +411,26 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
+
+```
+@Entry
+@Component
+
+struct TextPickerExample {
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4', 'apple5', 'apple6', 'apple7', 'apple8', 'apple9', 'apple10', 'apple11']
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  build() {
+    Column() {
+      TextPicker({ range: this.multi })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .digitalCrownSensitivity(CrownSensitivity.LOW)
+    }
+  }
+}
+```
+
+![text_picker](D:\ApowerREC\text_picker.gif)
