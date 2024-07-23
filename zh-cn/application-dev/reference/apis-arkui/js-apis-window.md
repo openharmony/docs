@@ -1274,7 +1274,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动窗口位置，使用callback异步回调。
 
-全屏模式窗口不支持该操作。
+全屏模式下，本接口仅在2in1设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1323,7 +1323,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。
 
-全屏模式窗口不支持该操作。
+全屏模式下，本接口仅在2in1设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
