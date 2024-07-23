@@ -63,7 +63,9 @@ Sendable class需同时满足以下两个规则：
 
 > **说明：**
 >
-> 从API version 12 Beta3开始，支持在ArkTS卡片中使用Sendable function。
+> 从API version 12开始，支持在ArkTS卡片中使用Sendable function。
+>
+> 开发者如需在API12上使用Sendable function，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则其Sendable特性将不生效。参考[Deveco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919)
 
 Sendable function需同时满足以下两个规则：
 1. 当且仅当被标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-function)。

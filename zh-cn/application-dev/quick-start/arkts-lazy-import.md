@@ -4,9 +4,10 @@
 
 > 说明：
 > 
-> 延迟加载特性在api12 beta3版本开始支持。
+> 延迟加载特性在API12版本开始支持。
 >
-> 在api12发布版本中，开发者需要在IDE中配置`compatibleSdkReleaseType: "beta3"`选项来使用该特性。
+> 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[Deveco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919)
+
 
 ## 功能特性
 
