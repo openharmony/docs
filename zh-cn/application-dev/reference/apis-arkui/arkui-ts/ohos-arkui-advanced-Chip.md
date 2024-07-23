@@ -48,7 +48,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
