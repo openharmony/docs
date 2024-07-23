@@ -703,7 +703,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1249,7 +1249,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| encodingType<sup>12+</sup> | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
+| encodingType | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
 
 **返回值**：
 
@@ -3711,7 +3711,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -3786,7 +3786,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4629,7 +4629,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -4704,7 +4704,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -5302,7 +5302,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -5374,7 +5374,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6109,7 +6109,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -6182,7 +6182,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -7295,7 +7295,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7378,7 +7378,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7679,7 +7679,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7760,7 +7760,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
