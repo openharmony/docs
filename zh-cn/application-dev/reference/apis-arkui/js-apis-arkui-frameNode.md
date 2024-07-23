@@ -3078,8 +3078,10 @@ struct Index {
 }
 ```
 
-
 ## LazyForEach场景基础事件使用示例
+
+<!--code_no_check-->
+
 ```ts
 // index.ets
 import {Track, TrackManager, TrackNode} from "./track"
