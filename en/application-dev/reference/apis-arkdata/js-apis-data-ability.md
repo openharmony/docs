@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
-Creates an **RdbPredicates** object with the specified table name and **DataAbilityPredicates** object.
+Creates an **RdbPredicates** object with the specified table name and **DataAbilityPredicates** object. 
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -747,7 +747,7 @@ Sets a **DataAbilityPredicates** object to specify the index column. Before call
 **Example**
 
   ```js
-  import rdb from '@ohos.data.rdb'; // µ¼ÈëÄ£¿é
+  import rdb from '@ohos.data.rdb'; // Import the module.
   import featureAbility from '@ohos.ability.featureAbility';
   import dataAbility from '@ohos.data.dataAbility';
 
