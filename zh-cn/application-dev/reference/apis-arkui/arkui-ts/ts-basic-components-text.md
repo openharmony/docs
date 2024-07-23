@@ -1164,7 +1164,8 @@ function MenuStyles() {
 fontFeature、lineSpacing和lineBreakStrategy使用示例。
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
   .lineSpacing(LineSpacing)
   .fontSize(12)

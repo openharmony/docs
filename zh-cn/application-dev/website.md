@@ -45,7 +45,6 @@
         - [创建自定义组件](quick-start/arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
         - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
@@ -75,25 +74,28 @@
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
           - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 状态管理（V2试用版）<!--arkts-state-management-v2-->
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
-        - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
-        - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
-        - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-        - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
-        - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
-        - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+        - V2所属装饰器<!--arkts-v2-decorators-->
+          - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
+          - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
+          - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
+          - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
+          - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
+          - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
+          - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
+          - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
+          - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
+          - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
+        - 其他状态管理<!--arkts-new-other-state-mgmt-->
+          - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
+          - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
+          - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
+          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -776,9 +778,10 @@
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
           - [使用PBKDF2进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
           - [使用HKDF进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--dlp-kit-->
-        - [Data Loss Prevention Kit简介](security/DataLossPreventionKit/dlp-overview.md)
-        - [Data Loss Prevention Kit开发指导](security/DataLossPreventionKit/dlp-guidelines.md)
+      - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
+        - 数据防泄漏服务<!--dlp-->
+          - [数据防泄漏服务简介](security/DataProtectionKit/dlp-overview.md)
+          - [数据防泄漏服务开发指导](security/DataProtectionKit/dlp-guidelines.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-kit-->
         - [Device Certificate Kit简介](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - 证书算法库框架<!--certificate-framework-->
@@ -864,9 +867,6 @@
           - 查询密钥别名集<!--huks-list-aliases-->
             - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
             - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
-          - HMAC<!--huks-hmac-->
-            - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
-            - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
           <!--Del-->
           - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
           <!--DelEnd-->
@@ -2580,14 +2580,14 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-loss-prevention-api-->
-        - ArkTS API<!--data-loss-prevention-arkts-->
-          - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)
+      - Data Protection Kit（数据保护服务）<!--data-protection-api-->
+        - ArkTS API<!--data-protection-arkts-->
+          - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
           <!--Del-->
-          - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-loss-prevention-kit/js-apis-dlppermission-sys.md)
+          - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
-        - 错误码<!--data-loss-prevention-arkts-errcode-->
-          - [DLP服务错误码](reference/apis-data-loss-prevention-kit/errorcode-dlp.md)
+        - 错误码<!--data-protection-arkts-errcode-->
+          - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
         - ArkTS API<!--device-certificate-arkts-->
           - [@ohos.security.cert (证书模块)](reference/apis-device-certificate-kit/js-apis-cert.md)
@@ -2865,6 +2865,7 @@
               - [账号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
               - [语言子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
               - [Account Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-accountkit.md)
+              - [Store Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-storekit.md)
             <!--Del-->
               - [系统公共事件定义 (系统接口)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
             <!--DelEnd-->
@@ -2897,9 +2898,8 @@
             - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
             - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-            - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
             <!--DelEnd-->
-            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)

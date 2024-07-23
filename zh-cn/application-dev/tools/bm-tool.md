@@ -544,3 +544,14 @@ hdc shell bm get -u
 该问题是由于设备上已安装的应用与新安装的应用中签名不一致。如果在**Edit Configurations**中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
 
 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
+
+### 安装HAP时提示“code:9568266 error: install permission denied”错误
+**问题现象**
+
+使用hdc install安装HAP时出现错误，提示“code:9568266 error: install permission denied”错误信息。
+
+![示例图](figures/zh-cn_image_9568266.png)
+
+**解决措施**
+
+hdc install不能安装release签名的企业应用。请使用debug签名的应用进行安装调试。

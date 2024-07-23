@@ -1,20 +1,30 @@
 # 使用ArkUI的FrameNode扩展实现动态布局类框架
 ## 简介
-动态布局类框架是一种动态生成原生组件树的轻量级框架，可以根据运营需求，在无需重新上架应用的情况下也可以动态地向用户推送新内容。该框架使用了类似于CSS的语法，通过设置不同的样式属性来控制视图的位置、大小、对齐方式等。本文将介绍如何使用使用ArkUI的FrameNode扩展来实现动态布局类框架，且其带来的性能收益。
+在特定的节假日或活动节点，应用通常需要推送相应主题或内容到首页，但又不希望通过程序更新方式来实现。因此，一般会采用动态布局类框架。动态布局类框架是一种动态生成原生组件树的轻量级框架，可以根据运营需求，在无需重新上架应用的情况下也可以动态地向用户推送新内容。该框架使用了类似于CSS的语法，通过设置不同的样式属性来控制视图的位置、大小、对齐方式等。本文将介绍如何使用ArkUI的FrameNode扩展来实现动态布局类框架，并探讨其带来的性能收益。
 ## ArkUI的声明式扩展在动态框架对接场景下的优势
 ### 组件创建更快
 在采用声明式前端开发模式时，若使用ArkUI的自定义组件对节点树中的每个节点进行定义，往往会遇到节点创建效率低下的问题。这主要是因为每个节点在JS引擎中都需要分配内存空间来存储应用程序的自定义组件和状态变量。此外，在节点创建过程中，还必须执行组件ID、组件闭包以及状态变量之间的依赖关系收集等操作。相比之下，使用ArkUI的FrameNode扩展，则可以避免创建自定义组件对象和状态变量对象，也无需进行依赖收集，从而显著提升组件创建的速度。
 ### 组件更新更快
-在动态布局类框架的更新场景中，通常存在一个由树形数据结构ViewModelA创建的UI组件树TreeA。当需要使用新的数据结构ViewModelB来更新TreeA时，尽管声明式前端可以实现数据驱动的自动更新，但这一过程中却伴随着大量的diff操作。对于JS引擎而言，在对一个复杂组件树（深度超过30层，包含100至200个组件）执行diff算法时，几乎无法在120Hz的刷新率下保持满帧运行。然而，使用ArkUI的FrameNode扩展，框架能够自主掌控更新流程，实现高效的按需剪枝。特别是针对那些仅服务于少数特定业务的动态布局框架，利用这一扩展，可以实现极其迅速的更新操作。
+在动态布局类框架的更新场景中，通常存在一个由树形数据结构ViewModelA创建的UI组件树TreeA。当需要使用新的数据结构ViewModelB来更新TreeA时，尽管声明式前端可以实现数据驱动的自动更新，但这一过程中却伴随着大量的diff操作，如图一所示。对于JS引擎而言，在对一个复杂组件树（深度超过30层，包含100至200个组件）执行diff算法时，几乎无法在120Hz的刷新率下保持满帧运行。然而，使用ArkUI的FrameNode扩展，框架能够自主掌控更新流程，实现高效的按需剪枝。特别是针对那些仅服务于少数特定业务的动态布局框架，利用这一扩展，可以实现极其迅速的更新操作。
+
+图一
+![图一](./figures/imperative_dynamic_layouts_diff.jpg)
+
 ### 直接操作组件树
-使用声明式前端还存在组件树结构更新操作困难的痛点，比如将组件树中的一个子树从当前子节点完整移到另一个子节点，如下图所示：
-![](./figures/imperative_dynamic_layouts_component_tree.jpg)
-使用声明式前端无法直接调整组件实例的结构关系，只能通过重新渲染整棵组件树的方式实现上述操作。而使用ArkUI的FrameNode扩展，则可以通过操作FrameNode来很方便的操控该子树，将其移植到另一个节点，这样只会进行局部渲染刷新，性能更优。
+使用声明式前端还存在组件树结构更新操作困难的痛点，比如将组件树中的一个子树从当前子节点完整移到另一个子节点，如图二所示。使用声明式前端无法直接调整组件实例的结构关系，只能通过重新渲染整棵组件树的方式实现上述操作。而使用ArkUI的FrameNode扩展，则可以通过操作FrameNode来很方便的操控该子树，将其移植到另一个节点，这样只会进行局部渲染刷新，性能更优。
+
+图二
+![图二](./figures/imperative_dynamic_layouts_component_tree.jpg)
+
 ## 场景示例
-使用视频首页作为场景，来介绍如何使用ArkUI的FrameNode扩展来实现。
+下面使用视频首页刷新图片资源作为场景，如图三所示，来介绍如何使用ArkUI的FrameNode扩展来实现。
+
+图三
+
+![图三](./figures/imperative_dynamic_layouts.gif)
 ### ArkUI的声明式扩展使用
 一个简化的动态布局类框架的DSL一般会使用JSON、XML等数据交换格式来描述UI，下面使用JSON为例进行说明。
-本案例核心相应字段含义如下表所示：
+本案例相关核心字段含义如下表所示：
 | 标签     | 含义                                                                      |
 |---------|---------------------------------------------------------------------------|
 | type    |描述UI组件的类型，通常与原生组件存在一一对应的关系，也可能是框架基于原生能力封装的某种组件|
@@ -288,16 +298,22 @@ let carouselNodes: typeNode.Image[] = [];
 
 function FrameNodeFactory(vm: VM, context: UIContext): FrameNode | null {
   if (vm.type === "Column") {
+    // 构建Column组件
     let node = typeNode.createNode(context, "Column");
+    // 填充组件属性
     setColumnNodeAttr(node, vm.css);
+    // 遍历构建Column下的所有子组件
     vm.children?.forEach(kid => {
       let child = FrameNodeFactory(kid, context);
       node.appendChild(child);
     });
     return node;
   } else if (vm.type === "Row") {
+    // 构建Row组件
     let node = typeNode.createNode(context, "Row");
+    // 填充组件属性
     setRowNodeAttr(node, vm.css);
+    // 遍历构建Row下的所有子组件
     vm.children?.forEach(kid => {
       let child = FrameNodeFactory(kid, context);
       node.appendChild(child);
@@ -379,7 +395,7 @@ class ImperativeController extends NodeController {
 
 @Entry
 @Component
-struct Page2 {
+struct ImperativePage {
   controller: ImperativeController = new ImperativeController();
   build() {
     Column() {
@@ -392,11 +408,16 @@ struct Page2 {
 }
 ```
 ## 性能对比
-以场景示例中的两种方案实现，通过抓取Trace进行性能分析比对。
-1. 声明式前端开发模式的完成时延为9.8ms（根据设备和场景不同，数据会有差异，本数据仅供参考），如下图所示：
-![](./figures/imperative_dynamic_layouts_trace_1.png)
-2. FrameNode扩展模式下的完成时延为7.6ms（根据设备和场景不同，数据会有差异，本数据仅供参考），如下图所示：
-![](./figures/imperative_dynamic_layouts_trace_2.png)
+下面以场景示例中的两种方案实现，通过DevEcho Studio的profile工具抓取Trace进行性能分析比对。
+1. 声明式前端开发模式下刷新图片资源场景的完成时延为9.8ms（根据设备和场景不同，数据会有差异，本数据仅供参考），如图四所示。
+
+图四
+![图四](./figures/imperative_dynamic_layouts_trace_1.png)
+
+2. FrameNode扩展模式下刷新图片资源场景的完成时延为7.6ms（根据设备和场景不同，数据会有差异，本数据仅供参考），如图五所示。
+
+图五
+![图五](./figures/imperative_dynamic_layouts_trace_2.png)
 ## 总结
-综上所述，在动态布局类场景下，相对于声明式写法，使用ArkUI的FrameNode扩展更具有优势，带来的性能收益更高。因此针对于动态布局类框架场景，建议优先使用ArkUI的FrameNode扩展。
+综上所述，在动态布局类场景下，相对于声明式写法，使用ArkUI的FrameNode扩展更具有优势，能缩短响应时延,带来的性能收益更高。因此对于需要使用动态布局类框架的场景，建议优先使用ArkUI的FrameNode扩展来实现。
 

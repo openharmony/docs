@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import fileShare from '@ohos.fileshare';
+import  { fileShare } from '@kit.CoreFileKit';
 ```
 
 ## fileShare.grantUriPermission
@@ -48,8 +48,8 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 **示例：**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -107,8 +107,8 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 **示例：**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -161,8 +161,8 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+import { BusinessError } from '@kit.BasicServicesKit';
+import  { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {

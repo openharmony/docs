@@ -683,7 +683,8 @@ struct ImageExample3 {
 使用PixelMap开启图像分析
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
+
 @Entry
 @Component
 struct ImageExample4 {
@@ -801,8 +802,8 @@ struct Index {
 播放PixelMap数组动画
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@ohos.arkui.drawableDescriptor'
-import image from '@ohos.multimedia.image'
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

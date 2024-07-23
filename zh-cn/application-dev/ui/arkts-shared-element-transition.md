@@ -237,8 +237,7 @@ export default struct  Post {
 ```ts
 // Index.ets
 import { createPostNode, getPostNode, PostNode } from "../PostNode"
-import { componentUtils } from '@kit.ArkUI';
-import curves from '@ohos.curves';
+import { componentUtils, curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -448,7 +447,7 @@ class AnimationProperties {
 // 跨容器迁移能力
 import { UIContext } from '@ohos.arkui.UIContext';
 import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 class Data {
   item: string | null = null
@@ -1877,7 +1876,7 @@ geometryTransition绑定两个对象的实现方式使得geometryTransition区�
 对于同一个页面中的两个元素的一镜到底效果，geometryTransition接口的简单使用示例如下：
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

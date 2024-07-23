@@ -2478,6 +2478,8 @@ type ScopeType = ScopeComparable | number
 
 用于表示范围中的值的类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 类型 | 说明 |

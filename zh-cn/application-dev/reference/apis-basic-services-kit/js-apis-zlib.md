@@ -4047,7 +4047,7 @@ struct Index {
 
 gzopen(path: string, mode: string): Promise&lt;void&gt;
 
-打开位于指定路径的gzip（.gz）文件，用于进行读取并解压缩，或者压缩并写入。
+打开位于指定路径的gzip(.gz)文件，用于进行读取并解压缩，或者压缩并写入。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4726,7 +4726,7 @@ struct Index {
 
 gzclosew(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于写入或追加时。
+与gzclose()功能相同，仅适用于写入或追加时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

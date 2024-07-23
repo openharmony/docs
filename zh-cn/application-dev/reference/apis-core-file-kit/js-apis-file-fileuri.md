@@ -9,14 +9,14 @@
 ## 导入模块
 
 ```ts
-import fileUri from "@ohos.file.fileuri";
+import { fileUri } from '@kit.CoreFileKit';
 ```
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -123,7 +123,7 @@ getFullDirectoryUri(): string
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     let path = pathDir + '/test.txt';
     let fileUriObject = new fileUri.FileUri(path);
@@ -159,7 +159,7 @@ isRemoteUri(): boolean
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   function isRemoteUriExample() {
     let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";//?networkid设备id，远端URI的标识
     let fileUriObject = new fileUri.FileUri(uri);

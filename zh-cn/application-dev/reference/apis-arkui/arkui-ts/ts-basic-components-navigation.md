@@ -1343,6 +1343,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 ### 示例1
 
+该示例主要演示Navigation页面的布局。
+
 ```ts
 // xxx.ets
 class A {
@@ -1447,6 +1449,9 @@ struct NavigationExample {
 
 
 ### 示例2
+
+该示例主要演示NavPathStack中方法的使用及路由拦截。
+
 ```ts
 // Index.ets
 
@@ -2162,6 +2167,9 @@ export class CustomTransition {
 ![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
 ### 示例4
+
+该示例主要演示Navigation带参返回。
+
 ```ts
 // Index.ets
 
@@ -2187,7 +2195,7 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass{
   count:number = 10

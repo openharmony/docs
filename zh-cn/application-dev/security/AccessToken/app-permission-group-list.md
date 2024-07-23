@@ -129,11 +129,11 @@
 <!--Del-->
 ## 文件夹
 
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_documents_directory)
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
 <!--DelEnd-->
 
 ## 星闪
@@ -163,7 +163,7 @@
 
 - 读取媒体库音频文件：
 
-  申请受限权限<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End-->读写媒体库的图片与视频。
+  申请受限权限<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End-->读写媒体库的音频文件。
 
 - 读取文件管理器中的文件：
 

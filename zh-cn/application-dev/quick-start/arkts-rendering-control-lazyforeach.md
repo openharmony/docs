@@ -841,7 +841,7 @@ struct MyComponent {
 }
 ```
 
-当我们首次点击`LazyForEach`的子组件时，在moved成员变量内存入要移动的数据索引，再次点击`LazyForEach`另一个子组件时，我们将首次点击的子组件移到此处。调用数据源`data`的`moveData`方法，该方法会将数据源对应数据移动到预期的位置并调用`notifyDatMove`方法。在`notifyDataMove`方法内会又调用`listener.onDataMove`方法，该方法通知`LazyForEach`在该处有数据需要移动，`LazyForEach`便会将`from`和`to`索引处的子组件进行位置调换。
+当我们首次点击`LazyForEach`的子组件时，在moved成员变量内存入要移动的数据索引，再次点击`LazyForEach`另一个子组件时，我们将首次点击的子组件移到此处。调用数据源`data`的`moveData`方法，该方法会将数据源对应数据移动到预期的位置并调用`notifyDataMove`方法。在`notifyDataMove`方法内会又调用`listener.onDataMove`方法，该方法通知`LazyForEach`在该处有数据需要移动，`LazyForEach`便会将`from`和`to`索引处的子组件进行位置调换。
 
 运行效果如下图所示。
 

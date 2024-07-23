@@ -75,4 +75,5 @@
    function getMediaKeySystemUuid(name: string): string{
     let uuid: string = drm.getMediaKeySystemUuid(name);
       return uuid;
+   }
    ```
