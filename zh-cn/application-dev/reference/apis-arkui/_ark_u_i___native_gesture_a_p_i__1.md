@@ -33,6 +33,7 @@
 | int32_t(\* [removeGestureFromNode](#removegesturefromnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer) | 在节点中移除手势。  | 
 | int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | 设置节点手势打断回调。  | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype)(\* [getGestureType](#getgesturetype) )(ArkUI_GestureRecognizer \*recognizer) | 获取手势类别。  | 
+| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)(ArkUI_ParallelInnerGestureEvent \*event)) | 设置并行内部手势事件回调。  | 
 
 
 ## 结构体成员变量说明
@@ -347,6 +348,28 @@ int32_t(* ArkUI_NativeGestureAPI_1::setGestureInterrupterToNode) (ArkUI_NodeHand
 | -------- | -------- |
 | node | 需要被设置手势打断回调的ARKUI节点。  | 
 | interrupter | 打断回调, info 返回手势打断数据。 interrupter 返回 GESTURE_INTERRUPT_RESULT_CONTINUE, 手势正常进行； 返回 GESTURE_INTERRUPT_RESULT_REJECT 手势打断。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数错误。
+
+
+### setInnerGestureParallelTo
+
+```
+int32_t(* ArkUI_NativeGestureAPI_1::setInnerGestureParallelTo) (ArkUI_NodeHandle node, void *userData, ArkUI_GestureRecognizer *(*parallelInnerGesture)(ArkUI_ParallelInnerGestureEvent *event))
+```
+**描述：**
+
+设置并行内部手势事件回调。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 需要被设置并行内部手势事件回调的ARKUI节点。  | 
+| userData | 用户自定义数据。  | 
+| parallelInnerGesture | 并行内部手势事件，event 返回并行内部手势事件数据。 parallelInnerGesture 返回 需要并行的手势识别器指针。  | 
 
 **返回：**
 

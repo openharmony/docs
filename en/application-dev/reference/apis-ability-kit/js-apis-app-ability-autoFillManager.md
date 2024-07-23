@@ -24,6 +24,8 @@ onSuccess(): void
 
 Called when saving is successful.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -35,6 +37,8 @@ See [AutoSaveCallback.onFailure](#autosavecallbackonfailure).
 onFailure(): void
 
 Called when saving fails.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -85,18 +89,20 @@ Requests to automatically save the widget data. This API uses an asynchronous ca
 
 If the current widget does not support widget switching, you can call this API to save historical widget input data. The callback is triggered when the saving request is complete.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | Yes| UI context in which the saving operation will be performed.|
-| callback | [AutoSaveCallback](#autosavecallback)  | No| Callback used for the saving request.|
+| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | Yes | UI context in which the saving operation will be performed. |
+| callback | [AutoSaveCallback](#autosavecallback)  | No | Callback used for the saving request. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 

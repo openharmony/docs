@@ -2,16 +2,18 @@
 
 ## Overview
 
-The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) is an ExtensionAbility component of the UI type. It must be used together with the [\<UIExtensionComponent>](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md). Specifically, with the \<UIExtensionComponent>, you can embed the UI provided by the UIExtensionAbility of another application into a UIAbility of your application. The UIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. It is usually used in modular development scenarios where process isolation is required, for example, system pop-up windows, status bars, and capsules.
+[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) is an ExtensionAbility component of the UI type. It is usually used in modular development scenarios where process isolation is required, for example, system dialog boxes, status bars, and capsules. There are two forms: embedded and system pop-ups.
+- The UIExtensionAbility in embedded mode must be used together with the [\<UIExtensionComponent>](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md). Specifically, with the \<UIExtensionComponent>, you can embed the UI provided by the UIExtensionAbility of another application into a UIAbility of your application. The UIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. 
+- To start the UIExtensionAbility in system pop-up mode, call [requestModalUIExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextrequestmodaluiextension11) or the specified interface encapsulated in the application.
 
 > **NOTE**
 >
-> Currently, the UIExtensionAbility and \<UIExtensionComponent> can be used only by system applications.
+> Currently, the UIExtensionAbility of the **sys/commonUI**, **sysDialog**, and **sysPicker** types can be used only by system applications. For details about the UIExtensionAbility types and corresponding permission control, see the [module.json5 file](../quick-start/module-configuration-file.md).
 
 ## Lifecycle
 The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) class provides the **onCreate**, **onSessionCreate**, **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy** lifecycle callbacks. You must override them as required.
 
-- [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate12): called to initialize the service logic when a UIExtensionAbility is created.
+- [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate): called to initialize the service logic when a UIExtensionAbility is created.
 - [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate): called when a **UIExtensionContentSession** instance is created for the UIExtensionAbility.
 - [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiondestroy): called when a **UIExtensionContentSession** instance is destroyed for the UIExtensionAbility.
 - [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonforeground): called when the UIExtensionAbility is switched from the background to the foreground.
@@ -314,6 +316,8 @@ The UIExtensionAbility provides related capabilities through the [UIExtensionCon
 
 ## How to Develop
 
+ For details about how to develop a system dialog box, see [requestModalUIExtension](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextrequestmodaluiextension11).
+
 ### Developing the UIExtensionAbility Provider
 
 To implement a provider, create a UIExtensionAbility in DevEco Studio as follows:
@@ -513,5 +517,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

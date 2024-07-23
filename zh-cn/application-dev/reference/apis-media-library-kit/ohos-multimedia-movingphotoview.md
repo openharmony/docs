@@ -1,4 +1,4 @@
-# @ohos.multimedia.movingphotoview（动态照片）
+# @ohos.multimedia.movingphotoview (动态照片)
 
 用于播放动态照片文件并控制其播放状态的组件。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 ```
 
 ## MovingPhotoView
@@ -49,14 +49,14 @@ muted(isMuted: boolean)
 
 设置是否静音。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | 是   | 是否静音。<br/>默认值：false |
+| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：静音<br/>true：非静音|
 
 ### objectFit
 
@@ -64,7 +64,7 @@ objectFit(value: ImageFit)
 
 设置动态照片显示模式。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -83,7 +83,7 @@ onStart(callback: MovingPhotoViewEventCallback)
 
 播放时触发该事件。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -98,7 +98,7 @@ onPause(callback: MovingPhotoViewEventCallback)
 
 播放暂停时触发该事件。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -113,7 +113,7 @@ onFinish(callback: MovingPhotoViewEventCallback)
 
 播放结束时触发该事件。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -128,7 +128,7 @@ onError(callback: MovingPhotoViewEventCallback)
 
 播放失败时触发该事件。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -143,7 +143,7 @@ onStop(callback: MovingPhotoViewEventCallback)
 
 播放停止时触发该事件(当stop()方法被调用后触发)。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
@@ -168,20 +168,24 @@ startPlayback(): void
 
 开始播放。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ### stopPlayback
 
 stopPlayback(): void
 
 停止播放，再次播放时从头开始播放。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## 示例
 
 ```ts
 // xxx.ets
-import { photoAccessHelper } from '@kit.MediaLibraryKit'
-import { emitter } from '@kit.BasicServicesKit'
-import { dataSharePredicates } from '@kit.ArkData'
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { emitter } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
 const PHOTO_SELECT_EVENT_ID: number = 80001
 

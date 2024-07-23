@@ -64,7 +64,7 @@
 | [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
-| [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RERNDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
+| [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RENDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3<br/>} | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br/>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br/>} | 定义音频流编码类型。  | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
@@ -793,7 +793,7 @@ enum OH_AudioStream_Type
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_TYPE_RERNDERER  | 该类型代表音频流是输出流。   | 
+| AUDIOSTREAM_TYPE_RENDERER  | 该类型代表音频流是输出流。   | 
 | AUDIOSTREAM_TYPE_CAPTURER  | 该类型代表音频流是输入流。   | 
 
 
@@ -813,9 +813,9 @@ enum OH_AudioStream_Usage
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_USAGE_UNKNOWN  | 未定义。   | 
+| AUDIOSTREAM_USAGE_UNKNOWN  | 未知类型。   | 
 | AUDIOSTREAM_USAGE_MUSIC  | 音乐。   | 
-| AUDIOSTREAM_USAGE_COMMUNICATION  | VOIP通话。   | 
+| AUDIOSTREAM_USAGE_COMMUNICATION  | VoIP语音通话。   | 
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音播报。   | 
 | AUDIOSTREAM_USAGE_ALARM  | 闹钟。   | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE  | 语音消息。   | 
@@ -823,10 +823,10 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_NOTIFICATION  | 通知。   | 
 | AUDIOSTREAM_USAGE_ACCESSIBILITY  | 无障碍。   | 
 | AUDIOSTREAM_USAGE_MOVIE  | 电影或视频。   | 
-| AUDIOSTREAM_USAGE_GAME  | 游戏音效。   | 
+| AUDIOSTREAM_USAGE_GAME  | 游戏。   | 
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物（包括听书、相声、评书）、听新闻、播客等。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
-| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | 视频通话。<br>**起始版本：** 12 | 
+| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | VoIP视频通话。<br>**起始版本：** 12 | 
 
 
 ## 函数说明
@@ -2580,7 +2580,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder **build
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 该引用指向创建的构造器的结果。  | 
-| type | 构造器的流类型。AUDIOSTREAM_TYPE_RERNDERER or AUDIOSTREAM_TYPE_CAPTURER | 
+| type | 构造器的流类型。AUDIOSTREAM_TYPE_RENDERER or AUDIOSTREAM_TYPE_CAPTURER | 
 
 **返回：**
 

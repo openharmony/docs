@@ -12,7 +12,7 @@ This module also provides the capability of setting the device-cloud sync strate
 ## Modules to Import
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## StrategyType
@@ -21,9 +21,9 @@ Enumerates the types of the cloud-device sync strategy.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
-| Name     | Value| Description       |
+| Name     | Value | Description       |
 | --------- |---|-----------|
-| NETWORK | 0 | Sync over the network.|
+| NETWORK | 0 | Sync over the network. |
 
 ## NetWorkStrategy
 
@@ -31,9 +31,9 @@ Enumerates the network sync options.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
-| Name     | Value| Description       |
+| Name     | Value | Description       |
 | --------- |---|-----------|
-| WIFI | 1 | Sync over Wi-Fi.|
+| WIFI | 1 | Sync over Wi-Fi. |
 | CELLULAR | 2 | Sync over the cellular network.  |
 
 ## cloudData.setCloudStrategy
@@ -44,22 +44,22 @@ Sets the device-cloud sync strategy for the application. If no strategy is set, 
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
-| Name    | Type                                                                         | Mandatory| Description                            |
+| Name    | Type                                                                         | Mandatory | Description                            |
 | ---------- |-----------------------------------------------------------------------------| ---- | -------------------------------- |
 | strategy  | [StrategyType](#strategytype)                                               | Yes  | Type of the strategy to set.            |
-| param | Array&lt;[commonType.ValueType](js-apis-data-commonType.md#valuetype)&gt; | No  | Strategy parameters to set. If this parameter is not specified, all the configuration is canceled.|
+| param | Array&lt;[commonType.ValueType](js-apis-data-commonType.md#valuetype)&gt; | No  | Strategy parameters to set. If this parameter is not specified, all the configuration is canceled. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.|
@@ -67,7 +67,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Sync data over Wi-Fi only.
 cloudData.setCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {

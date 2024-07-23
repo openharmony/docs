@@ -1,4 +1,4 @@
-# DRM Kit API Reference
+# DRM Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.drm (Digital Rights Management)](js-apis-drm.md)
@@ -21,5 +21,6 @@
     - [DRM_PsshInfo](_d_r_m___pssh_info.md)
     - [DRM_Statistics](_d_r_m___statistics.md)
     - [MediaKeySession_Callback](_media_key_session___callback.md)
+    - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
 - Error Codes
   - [DRM Error Codes](errorcode-drm.md)

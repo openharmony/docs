@@ -154,6 +154,7 @@ suspend(isImmediate?: boolean): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -314,6 +315,7 @@ hibernate(clearMemory: boolean): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 

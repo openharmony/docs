@@ -14,7 +14,7 @@ In the FA model, you can use [startAbilityForResult](js-apis-ability-featureAbil
 
 Stage model:
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 FA model:
@@ -28,7 +28,7 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name       |  Type                | Read-only| Mandatory| Description                                                        |
+| Name       |  Type                | Read-only | Mandatory | Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
 | resultCode  | number               | No  | Yes  | Result code returned after the started ability is terminated.                               |
-| want  | [Want](js-apis-app-ability-want.md)               | No  | No  | Data returned after the started ability is terminated.|
+| want  | [Want](js-apis-app-ability-want.md)               | No  | No  | Data returned after the started ability is terminated. |

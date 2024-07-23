@@ -1371,9 +1371,9 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 ### 属性
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1388,6 +1388,8 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 onerror?: (ev: ErrorEvent) =&gt; void
 
 回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2157,6 +2159,8 @@ parentPort.onmessageerror = (e) => {
 ## Event
 
 事件类。
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -1,5 +1,5 @@
 <!--Del-->
-# Ads Kit API Reference
+# Ads Kit
 
 - ArkTS APIs
   - [@ohos.advertising (Ads Service Framework)](js-apis-advertising.md)

@@ -92,9 +92,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
     }
     ```
 
-   > **说明：**
-   >
-   > 在被拉起的FuncAbility中，可以通过获取传递过来的`want`参数的`parameters`来获取拉起方UIAbility的PID、Bundle Name等信息。
+    > **说明：**
+    >
+    > 在被拉起的FuncAbility中，可以通过获取传递过来的`want`参数的`parameters`来获取拉起方UIAbility的PID、Bundle Name等信息。
 
 3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用[`terminateSelf()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
 
@@ -128,9 +128,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
     }
     ```
 
-   > **说明：**
-   >
-   > 调用[`terminateSelf()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
+    > **说明：**
+    >
+    > 调用[`terminateSelf()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
 
 4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)的[`killAllProcesses()`](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
 
@@ -320,7 +320,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 > **说明：**
 > 
 > 仅API 11及以前的接口支持使用显式Want启动启动其他应用的UIAbility。
-> 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。详见[显式跳转切换link跳转适配指导](uiability-startup-adjust.md)。
+> 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。详见[显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)。
 
 启动其他应用的UIAbility，通常用户只需要完成一个通用的操作（例如需要选择一个文档应用来查看某个文档的内容信息），推荐使用[隐式Want启动](want-overview.md#want的类型)。系统会根据调用方的want参数来识别和启动匹配到的应用UIAbility。
 
@@ -406,8 +406,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
     }
     ```
 
-   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
-   ![](figures/uiability-intra-device-interaction.png)
+    效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
+    ![](figures/uiability-intra-device-interaction.png)
 
 3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[`terminateSelf()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
 
@@ -448,35 +448,35 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 > **说明：**
 > 
 > 仅API 11及以前的接口支持使用显式Want启动启动其他应用的UIAbility。
-> 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。详见[显式跳转切换link跳转适配指导](uiability-startup-adjust.md)。
+> 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。详见[显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)。
 
 当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用[`startAbilityForResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
 
 1. 在支付应用对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的entities字段和actions字段。
 
-   ```json
-   {
-     "module": {
-       "abilities": [
-         {
-           ...
-           "skills": [
-             {
-               "entities": [
-                 ...
-                 "entity.system.default"
-               ],
-               "actions": [
-                 ...
-                 "ohos.want.action.editData"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "abilities": [
+          {
+            ...
+            "skills": [
+              {
+                "entities": [
+                  ...
+                  "entity.system.default"
+                ],
+                "actions": [
+                  ...
+                  "ohos.want.action.editData"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
 
 2. 调用方使用[`startAbilityForResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills标签配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
 
@@ -932,6 +932,7 @@ struct Page_UIAbilityComponentsInteractive {
 ```
 
 效果示意如下图所示。
+
 ![](figures/start-uiability-floating-window.png)
 
 

@@ -445,7 +445,7 @@ WLAN配置信息。
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
-
+| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 否 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
 
 ## WifiEapConfig<sup>10+</sup>
 
@@ -472,6 +472,29 @@ WLAN配置信息。
 | eapSubId | number | 是 | 否 | SIM卡的子ID。 |
 
 
+## WifiWapiConfig<sup>12+</sup>
+
+WAPI身份验证协议配置。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| wapiPskType | [WapiPskType](#wapipsktype12)| 是 | 是 | 加密类型。 |
+| wapiAsCert | string | 否 | 是 | As证书。 |
+| wapiUserCert | string | 否 | 是 | 用户证书。 |
+
+## WapiPskType<sup>12+</sup>
+
+WAPI认证方式的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| WAPI_PSK_ASCII | 0 | ASCII类型。 |
+| WAPI_PSK_HEX | 1 | HEX类型。 |
+
 ## EapMethod<sup>10+</sup>
 
 表示EAP认证方式的枚举。
@@ -489,7 +512,6 @@ WLAN配置信息。
 | EAP_AKA | 6 | AKA类型。 |
 | EAP_AKA_PRIME | 7 | AKA Prime类型。 |
 | EAP_UNAUTH_TLS | 8 | UNAUTH TLS类型。 |
-
 
 ## Phase2Method<sup>10+</sup>
 
@@ -797,7 +819,7 @@ connectToCandidateConfig(networkId: number): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -891,7 +913,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 ## wifiManager.getLinkedInfo<sup>9+</sup>
 
@@ -921,7 +943,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -1358,7 +1380,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
@@ -1388,7 +1410,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1460,7 +1482,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
@@ -1491,7 +1513,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1538,7 +1560,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.getP2pPeerDevices<sup>9+</sup>
 
@@ -1569,7 +1591,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1647,7 +1669,7 @@ API 11起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.getP2pLocalDevice<sup>9+</sup>
 
@@ -1676,7 +1698,7 @@ API 11起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1720,7 +1742,7 @@ createGroup(config: WifiP2PConfig): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1788,7 +1810,7 @@ removeGroup(): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1830,7 +1852,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1917,7 +1939,7 @@ p2pCancelConnect(): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1952,7 +1974,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1983,7 +2005,7 @@ stopDiscoverDevices(): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2373,7 +2395,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 ## wifiManager.off('hotspotStateChange')<sup>9+</sup>
 
@@ -2401,7 +2423,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -2455,7 +2477,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pStateChange')<sup>9+</sup>
 
@@ -2483,7 +2505,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2526,7 +2548,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pConnectionChange')<sup>9+</sup>
 
@@ -2554,7 +2576,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2601,7 +2623,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pDeviceChange')<sup>9+</sup>
 
@@ -2633,7 +2655,7 @@ API 10起：无
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2680,7 +2702,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2712,7 +2734,7 @@ API 10起：无
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2755,7 +2777,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2783,7 +2805,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -2833,7 +2855,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.off('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2861,7 +2883,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts

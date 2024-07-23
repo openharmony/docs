@@ -655,7 +655,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -698,7 +698,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -763,7 +763,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -813,7 +813,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -1800,7 +1800,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800013 | window manager service error. |
 
 **示例：**

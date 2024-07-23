@@ -1,4 +1,4 @@
-# OHIPCErrorCode
+# OH_IPC_ErrorCode
 
 
 ## Overview

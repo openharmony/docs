@@ -18,23 +18,21 @@ import { AdComponent } from '@kit.AdsKit';
 
 ## AdComponent
 
-AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer:() => void): void
+AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer?:() => void): void
 
 Component that displays a non-full-screen ad.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Advertising.Ads
 
 **Parameters**
 
 
-| Name| Type| Mandatory| Description| 
+| Name | Type | Mandatory | Description | 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes| Array of ad objects.| 
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.| 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.| 
-| adRenderer<sup>12+</sup> | () => void | No| Ad self-rendering.| 
+| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes | Array of ad objects.<br>**Atomic service API**: This API can be used in atomic services since API version 12. | 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes | Ad display parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 12. | 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes | Ad status change callback.<br>**Atomic service API**: This API can be used in atomic services since API version 12. | 
+| adRenderer<sup>12+</sup> | () => void | No | Ad self-rendering. | 
 
 **Example**
 
@@ -50,7 +48,7 @@ export struct ShowNonFullScreenAd {
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // Whether to mute the ad. By default, the ad is not muted.
-    mute: false,
+    mute: false
   }
 
   build() {

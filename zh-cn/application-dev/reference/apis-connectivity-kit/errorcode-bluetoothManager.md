@@ -26,7 +26,7 @@ Service stopped.
 
 **错误信息**
 
-Bluetooth switch is off.
+Bluetooth disabled.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ Bluetooth switch is off.
 
 **错误信息**
 
-Profile is not supported.
+Profile not supported.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Profile is not supported.
 
 **错误信息**
 
-This device not connected.
+Device not connected.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ This device not connected.
 
 **错误信息**
 
-Max connection has reached.
+The maximum number of connections has been reached.
 
 **错误描述**
 
@@ -98,7 +98,7 @@ Max connection has reached.
 
 **错误信息**
 
-Proxy is nullptr.
+The value of proxy is a null pointer.
 
 **错误描述**
 
@@ -134,7 +134,7 @@ Operation failed.
 
 **错误信息**
 
-IPC transmit failed.
+IPC failed.
 
 **错误描述**
 

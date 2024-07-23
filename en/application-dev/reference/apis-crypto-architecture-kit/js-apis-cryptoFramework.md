@@ -34,9 +34,9 @@ Defines a buffer array of the Binary Large Object (BLOB) type.
 
  **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type      | Readable| Writable| Description  |
+| Name | Type      | Readable | Writable | Description  |
 | ---- | ---------- | ---- | ---- | ------ |
-| data | Uint8Array | Yes  | Yes  | Binary data array.|
+| data | Uint8Array | Yes  | Yes  | Binary data array. |
 
 > **NOTE**
 >
@@ -52,7 +52,7 @@ It applies to the symmetric cipher modes that require parameters such as the ini
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | algName | string | Yes  | Yes  | Algorithm for symmetric encryption or decryption. Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
 
@@ -70,7 +70,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type                 | Readable| Writable| Description                                                        |
+| Name | Type                 | Readable | Writable | Description                                                        |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption or decryption. Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV<br>- SM4<sup>10+</sup> CBC, CTR, OFB, or CFB mode: 16-byte IV|
 
@@ -88,11 +88,11 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type                 | Readable| Writable| Description                                                        |
+| Name   | Type                 | Readable | Writable | Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>If the GCM mode is used for encryption, **authTag** in the parameter **GcmParamsSpec** of [init()](#init-2) or [initSync()](#initsync12) is the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>If the GCM mode is used for encryption, **authTag** in the parameter **GcmParamsSpec** of [init()](#init-2) or [initSync()](#initsync12) is the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12). |
 
 > **NOTE**
 >
@@ -110,11 +110,11 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type                 | Readable| Writable| Description                                                        |
+| Name   | Type                 | Readable | Writable | Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>If the CCM mode is used for encryption, **authTag** in the parameter [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2) or [initSync()](#initsync12) is the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>If the CCM mode is used for encryption, **authTag** in the parameter [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2) or [initSync()](#initsync12) is the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12). |
 
 > **NOTE**
 >
@@ -130,8 +130,8 @@ Enumerates the cryptographic operations.
 
 | Name        | Value  | Description              |
 | ------------ | ---- | ------------------ |
-| ENCRYPT_MODE | 0    | Encryption.|
-| DECRYPT_MODE | 1    | Decryption.|
+| ENCRYPT_MODE | 0    | Encryption. |
+| DECRYPT_MODE | 1    | Decryption. |
 
 ## AsyKeySpecItem<sup>10+</sup>
 
@@ -143,36 +143,36 @@ Enumerates the asymmetric key parameters.
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| DSA_P_BN | 101 | Prime modulus **p** in the DSA algorithm.|
-| DSA_Q_BN | 102 | Parameter **q**, prime factor of (p – 1) in the DSA algorithm.|
-| DSA_G_BN | 103 | Parameter **g** in the DSA algorithm.|
-| DSA_SK_BN | 104 | Private key **sk** in the DSA algorithm.|
-| DSA_PK_BN | 105 | Public key **pk** in the DSA algorithm.|
-| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** field of the elliptic curve in the ECC algorithm.|
-| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the ECC algorithm.|
-| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the ECC algorithm.|
-| ECC_G_X_BN | 204 | X coordinate of the base point **g** in the ECC algorithm.|
-| ECC_G_Y_BN | 205 | Y coordinate of the base point **g** in the ECC algorithm.|
-| ECC_N_BN | 206 | Order **n** of the base point **g** in the ECC algorithm.|
-| ECC_H_NUM | 207 | Cofactor **h** in the ECC algorithm.|
-| ECC_SK_BN | 208 | Private key **sk** in the ECC algorithm.|
-| ECC_PK_X_BN | 209 | X coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
-| ECC_PK_Y_BN | 210 | Y coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
-| ECC_FIELD_TYPE_STR | 211 | Elliptic curve field type in the ECC algorithm. Currently, only the **Fp** field is supported.|
-| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**: The size of the **Fp** field is the length of the prime **p**, in bits.|
-| ECC_CURVE_NAME_STR | 213 | Standards for Efficient Cryptography Group (SECG) curve name in the ECC algorithm.|
-| RSA_N_BN | 301 | Modulus **n** in the RSA algorithm.|
-| RSA_SK_BN | 302 | Private key **sk** (private key exponent **d**) in the RSA algorithm.|
-| RSA_PK_BN | 303 | Public key **pk** (public key exponent **e**) in the RSA algorithm.|
-| DH_P_BN<sup>11+</sup> | 401 | Prime **p** in the DH algorithm.|
-| DH_G_BN<sup>11+</sup> | 402 | Parameter **g** in the DH algorithm.|
-| DH_L_NUM<sup>11+</sup> | 403 | Length of the private key in the DH algorithm, in bits.|
-| DH_SK_BN<sup>11+</sup> | 404 | Private key **sk** in the DH algorithm.|
-| DH_PK_BN<sup>11+</sup> | 405 | Public key **pk** in the DH algorithm.|
-| ED25519_SK_BN<sup>11+</sup> | 501 | Private key **sk** in the Ed25519 algorithm.|
-| ED25519_PK_BN<sup>11+</sup> | 502 | Public key **pk** in the Ed25519 algorithm.|
-| X25519_SK_BN<sup>11+</sup> | 601 | Private key **sk** in the X25519 algorithm.|
-| X25519_PK_BN<sup>11+</sup> | 602 | Public key **pk** in the X25519 algorithm.|
+| DSA_P_BN | 101 | Prime modulus **p** in the DSA algorithm. |
+| DSA_Q_BN | 102 | Parameter **q**, prime factor of (p – 1) in the DSA algorithm. |
+| DSA_G_BN | 103 | Parameter **g** in the DSA algorithm. |
+| DSA_SK_BN | 104 | Private key **sk** in the DSA algorithm. |
+| DSA_PK_BN | 105 | Public key **pk** in the DSA algorithm. |
+| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** field of the elliptic curve in the ECC algorithm. |
+| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the ECC algorithm. |
+| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the ECC algorithm. |
+| ECC_G_X_BN | 204 | X coordinate of the base point **g** in the ECC algorithm. |
+| ECC_G_Y_BN | 205 | Y coordinate of the base point **g** in the ECC algorithm. |
+| ECC_N_BN | 206 | Order **n** of the base point **g** in the ECC algorithm. |
+| ECC_H_NUM | 207 | Cofactor **h** in the ECC algorithm. |
+| ECC_SK_BN | 208 | Private key **sk** in the ECC algorithm. |
+| ECC_PK_X_BN | 209 | X coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm. |
+| ECC_PK_Y_BN | 210 | Y coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm. |
+| ECC_FIELD_TYPE_STR | 211 | Elliptic curve field type in the ECC algorithm. Currently, only the **Fp** field is supported. |
+| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**: The size of the **Fp** field is the length of the prime **p**, in bits. |
+| ECC_CURVE_NAME_STR | 213 | Standards for Efficient Cryptography Group (SECG) curve name in the ECC algorithm. |
+| RSA_N_BN | 301 | Modulus **n** in the RSA algorithm. |
+| RSA_SK_BN | 302 | Private key **sk** (private key exponent **d**) in the RSA algorithm. |
+| RSA_PK_BN | 303 | Public key **pk** (public key exponent **e**) in the RSA algorithm. |
+| DH_P_BN<sup>11+</sup> | 401 | Prime **p** in the DH algorithm. |
+| DH_G_BN<sup>11+</sup> | 402 | Parameter **g** in the DH algorithm. |
+| DH_L_NUM<sup>11+</sup> | 403 | Length of the private key in the DH algorithm, in bits. |
+| DH_SK_BN<sup>11+</sup> | 404 | Private key **sk** in the DH algorithm. |
+| DH_PK_BN<sup>11+</sup> | 405 | Public key **pk** in the DH algorithm. |
+| ED25519_SK_BN<sup>11+</sup> | 501 | Private key **sk** in the Ed25519 algorithm. |
+| ED25519_PK_BN<sup>11+</sup> | 502 | Public key **pk** in the Ed25519 algorithm. |
+| X25519_SK_BN<sup>11+</sup> | 601 | Private key **sk** in the X25519 algorithm. |
+| X25519_PK_BN<sup>11+</sup> | 602 | Public key **pk** in the X25519 algorithm. |
 
 ## AsyKeySpecType<sup>10+</sup>
 
@@ -184,10 +184,10 @@ Enumerates the key parameter types.
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| COMMON_PARAMS_SPEC | 0 | Common parameter of the public and private keys. You can use [generateKeyPair()](#generatekeypair-2) to randomly generate a key pair based on the parameters of this type.|
-| PRIVATE_KEY_SPEC | 1 | Parameter of the private key. You can use [generatePriKey()](#generateprikey) to generate a private key based on the parameters of this type.|
-| PUBLIC_KEY_SPEC | 2 | Parameter of the public key. You can use [generatePubKey()](#generatepubkey) to generate a public key based on the parameters of this type.|
-| KEY_PAIR_SPEC | 3 | Full parameters of the public and private keys. You can use [generateKeyPair](#generatekeypair-2) to generate a key pair based on the parameters of this type.|
+| COMMON_PARAMS_SPEC | 0 | Common parameter of the public and private keys. You can use [generateKeyPair()](#generatekeypair-2) to randomly generate a key pair based on the parameters of this type. |
+| PRIVATE_KEY_SPEC | 1 | Parameter of the private key. You can use [generatePriKey()](#generateprikey) to generate a private key based on the parameters of this type. |
+| PUBLIC_KEY_SPEC | 2 | Parameter of the public key. You can use [generatePubKey()](#generatepubkey) to generate a public key based on the parameters of this type. |
+| KEY_PAIR_SPEC | 3 | Full parameters of the public and private keys. You can use [generateKeyPair](#generatekeypair-2) to generate a key pair based on the parameters of this type. |
 
 ## CipherSpecItem<sup>10+</sup>
 
@@ -201,11 +201,11 @@ Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NA
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| OAEP_MD_NAME_STR | 100 | Message digest (MD) algorithm used with the PKCS1_OAEP padding mode in RSA.|
-| OAEP_MGF_NAME_STR | 101 | Mask generation algorithm used with the PKCS1_OAEP padding mode in RSA. Currently, only MGF1 is supported.|
-| OAEP_MGF1_MD_STR | 102 | MD algorithm for the MGF1 mask generation used with the PKCS1_OAEP padding mode in RSA.|
-| OAEP_MGF1_PSRC_UINT8ARR | 103 | **pSource** byte stream used with the PKCS1_OAEP padding mode in RSA.|
-| SM2_MD_NAME_STR<sup>11+</sup> | 104 | MD algorithm used in SM2.|
+| OAEP_MD_NAME_STR | 100 | Message digest (MD) algorithm used with the PKCS1_OAEP padding mode in RSA. |
+| OAEP_MGF_NAME_STR | 101 | Mask generation algorithm used with the PKCS1_OAEP padding mode in RSA. Currently, only MGF1 is supported. |
+| OAEP_MGF1_MD_STR | 102 | MD algorithm for the MGF1 mask generation used with the PKCS1_OAEP padding mode in RSA. |
+| OAEP_MGF1_PSRC_UINT8ARR | 103 | **pSource** byte stream used with the PKCS1_OAEP padding mode in RSA. |
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | MD algorithm used in SM2. |
 
 ## SignSpecItem<sup>10+</sup>
 
@@ -219,12 +219,12 @@ Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| PSS_MD_NAME_STR | 100 | MD algorithm used with the PSS padding mode in RSA.|
-| PSS_MGF_NAME_STR | 101 | Mask generation algorithm used with the PSS padding mode in RSA. Currently, only MGF1 is supported.|
-| PSS_MGF1_MD_STR | 102 | MD parameters for the MGF1 mask generation used with the PSS padding mode in RSA.|
-| PSS_SALT_LEN_NUM | 103 | Length of the salt in bytes used with the PSS padding mode in RSA.|
-| PSS_TRAILER_FIELD_NUM | 104 | Trailer field used in the encoding operation when PSS padding mode is used in RSA. The value is **1**.|
-| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | User ID field in SM2.|
+| PSS_MD_NAME_STR | 100 | MD algorithm used with the PSS padding mode in RSA. |
+| PSS_MGF_NAME_STR | 101 | Mask generation algorithm used with the PSS padding mode in RSA. Currently, only MGF1 is supported. |
+| PSS_MGF1_MD_STR | 102 | MD parameters for the MGF1 mask generation used with the PSS padding mode in RSA. |
+| PSS_SALT_LEN_NUM | 103 | Length of the salt in bytes used with the PSS padding mode in RSA. |
+| PSS_TRAILER_FIELD_NUM | 104 | Trailer field used in the encoding operation when PSS padding mode is used in RSA. The value is **1**. |
+| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | User ID field in SM2. |
 
 ## AsyKeySpec<sup>10+</sup>
 
@@ -234,10 +234,10 @@ Defines the asymmetric key parameters for creating a key generator. You need to 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Yes  | Asymmetric key algorithm, for example, **RSA**, **DSA**, **ECC**, **SM2**, **Ed25519**, **X25519**, or **DH**.|
-| specType | [AsyKeySpecType](#asykeyspectype10) | Yes  | Yes| Key parameter type, which is used to distinguish public and private key parameters.|
+| algName | string | Yes  | Yes  | Asymmetric key algorithm, for example, **RSA**, **DSA**, **ECC**, **SM2**, **Ed25519**, **X25519**, or **DH**. |
+| specType | [AsyKeySpecType](#asykeyspectype10) | Yes  | Yes | Key parameter type, which is used to distinguish public and private key parameters. |
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
@@ -249,11 +249,11 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | Yes  | Yes  | Prime modulus **p** in the DSA algorithm.|
-| q | bigint | Yes  | Yes  | Parameter **q**, prime factor of (**p** – 1) in the DSA algorithm.|
-| g | bigint | Yes  | Yes  | Parameter **g** in the DSA algorithm.|
+| p | bigint | Yes  | Yes  | Prime modulus **p** in the DSA algorithm. |
+| q | bigint | Yes  | Yes  | Parameter **q**, prime factor of (**p** – 1) in the DSA algorithm. |
+| g | bigint | Yes  | Yes  | Parameter **g** in the DSA algorithm. |
 
 ## DSAPubKeySpec<sup>10+</sup>
 
@@ -265,10 +265,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm.|
-| pk | bigint | Yes  | Yes  | Public key in the DSA algorithm.|
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm. |
+| pk | bigint | Yes  | Yes  | Public key in the DSA algorithm. |
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
@@ -280,11 +280,11 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm.|
-| sk | bigint | Yes  | Yes  | Private key **sk** in the DSA algorithm.|
-| pk | bigint | Yes  | Yes  | Public key **pk** in the DSA algorithm.|
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm. |
+| sk | bigint | Yes  | Yes  | Private key **sk** in the DSA algorithm. |
+| pk | bigint | Yes  | Yes  | Public key **pk** in the DSA algorithm. |
 
 ## ECField<sup>10+</sup>
 
@@ -294,9 +294,9 @@ Defines an elliptic curve field. Currently, only the **Fp** field is supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| fieldType | string | Yes  | Yes  | Type of the elliptic curve field. Currently, only **Fp** is supported.|
+| fieldType | string | Yes  | Yes  | Type of the elliptic curve field. Currently, only **Fp** is supported. |
 
 ## ECFieldFp<sup>10+</sup>
 
@@ -306,9 +306,9 @@ Defines the prime field of the elliptic curve. It is a child class of [ECField](
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | Yes  | Yes  | Prime **p**.|
+| p | bigint | Yes  | Yes  | Prime **p**. |
 
 ## Point<sup>10+</sup>
 
@@ -318,10 +318,10 @@ Defines a point on the elliptic curve.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x | bigint | Yes  | Yes  | X coordinate of the point on an elliptic curve.|
-| y | bigint | Yes  | Yes  | Y coordinate of the point on an elliptic curve.|
+| x | bigint | Yes  | Yes  | X coordinate of the point on an elliptic curve. |
+| y | bigint | Yes  | Yes  | Y coordinate of the point on an elliptic curve. |
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
@@ -333,14 +333,14 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield10) | Yes  | Yes  | Field of the elliptic curve. Currently, only **Fp** is supported.|
-| a | bigint | Yes  | Yes  | First coefficient **a** of the elliptic curve.|
-| b | bigint | Yes  | Yes  | Second coefficient **b** of the elliptic curve.|
-| g | [Point](#point10) | Yes  | Yes  | Base point g.|
-| n | bigint | Yes  | Yes  | Order **n** of the base point **g**.|
-| h | number | Yes  | Yes  | Cofactor **h**.|
+| field | [ECField](#ecfield10) | Yes  | Yes  | Field of the elliptic curve. Currently, only **Fp** is supported. |
+| a | bigint | Yes  | Yes  | First coefficient **a** of the elliptic curve. |
+| b | bigint | Yes  | Yes  | Second coefficient **b** of the elliptic curve. |
+| g | [Point](#point10) | Yes  | Yes  | Base point g. |
+| n | bigint | Yes  | Yes  | Order **n** of the base point **g**. |
+| h | number | Yes  | Yes  | Cofactor **h**. |
 
 ## ECCPriKeySpec<sup>10+</sup>
 
@@ -352,10 +352,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
-| sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm. |
+| sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm. |
 
 ## ECCPubKeySpec<sup>10+</sup>
 
@@ -367,10 +367,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
-| pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm. |
+| pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm. |
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
@@ -382,11 +382,11 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
-| sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm.|
-| pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm. |
+| sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm. |
+| pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm. |
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
@@ -398,9 +398,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| n | bigint | Yes  | Yes  | Modulus **n**.|
+| n | bigint | Yes  | Yes  | Modulus **n**. |
 
 ## RSAPubKeySpec<sup>10+</sup>
 
@@ -412,10 +412,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm.|
-| pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm.|
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm. |
+| pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm. |
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
@@ -427,11 +427,11 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm.|
-| sk | bigint | Yes  | Yes  | Private key **sk** in the RSA algorithm.|
-| pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm.|
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm. |
+| sk | bigint | Yes  | Yes  | Private key **sk** in the RSA algorithm. |
+| pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm. |
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
@@ -443,9 +443,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                     |
+| Name | Type  | Readable | Writable | Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm.|
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm. |
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
@@ -457,9 +457,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                     |
+| Name | Type  | Readable | Writable | Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm.|
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm. |
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
@@ -471,10 +471,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                     |
+| Name | Type  | Readable | Writable | Description                     |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm.|
-| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm.|
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm. |
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm. |
 
 ## X25519PriKeySpec<sup>11+</sup>
 
@@ -486,9 +486,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                    |
+| Name | Type  | Readable | Writable | Description                    |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm.|
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm. |
 
 ## X25519PubKeySpec<sup>11+</sup>
 
@@ -500,9 +500,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                    |
+| Name | Type  | Readable | Writable | Description                    |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm.|
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm. |
 
 ## X25519KeyPairSpec<sup>11+</sup>
 
@@ -514,10 +514,10 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                    |
+| Name | Type  | Readable | Writable | Description                    |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm.|
-| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm.|
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm. |
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm. |
 
 ## DHCommonParamsSpec<sup>11+</sup>
 
@@ -529,11 +529,11 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type  | Readable| Writable| Description                               |
+| Name | Type  | Readable | Writable | Description                               |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
 | p    | bigint | Yes  | Yes  | Large prime **p** in the DH algorithm.              |
 | g    | bigint | Yes  | Yes  | Parameter **g** in the DH algorithm.                |
-| l    | number | Yes  | Yes  | Length of the private key in the DH algorithm, in bits.|
+| l    | number | Yes  | Yes  | Length of the private key in the DH algorithm, in bits. |
 
 ## DHPriKeySpec<sup>11+</sup>
 
@@ -545,9 +545,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name  | Type              | Readable| Writable| Description                                |
+| Name  | Type              | Readable | Writable | Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm. |
 | sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
 
 ## DHPubKeySpec<sup>11+</sup>
@@ -560,9 +560,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name  | Type              | Readable| Writable| Description                                |
+| Name  | Type              | Readable | Writable | Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm. |
 | pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
 
 ## DHKeyPairSpec<sup>11+</sup>
@@ -575,9 +575,9 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name  | Type              | Readable| Writable| Description                                |
+| Name  | Type              | Readable | Writable | Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm. |
 | sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
 | pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
 
@@ -589,9 +589,9 @@ Defines the parameters of the key derivation function. When the key derivation f
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Yes  | Algorithm of the key derivation function, for example, **PBKDF2**.|
+| algName | string | Yes  | Yes  | Algorithm of the key derivation function, for example, **PBKDF2**. |
 
 ## PBKDF2Spec<sup>11+</sup>
 
@@ -601,12 +601,12 @@ Defines the child class of [KdfSpec](#kdfspec11). It is used as a parameter for 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user.|
-| salt | Uint8Array | Yes  | Yes  | Salt value.|
-| iterations | number | Yes  | Yes  | Number of iterations. The value must be a positive integer.|
-| keySize | number | Yes  | Yes  | Length of the derived key, in bytes.|
+| salt | Uint8Array | Yes  | Yes  | Salt value. |
+| iterations | number | Yes  | Yes  | Number of iterations. The value must be a positive integer. |
+| keySize | number | Yes  | Yes  | Length of the derived key, in bytes. |
 
 > **NOTE**
 >
@@ -620,11 +620,11 @@ Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for HKDF key
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | key | string \| Uint8Array | Yes  | Yes  | Key material.|
-| salt | Uint8Array | Yes  | Yes  | Salt value.|
-| info | Uint8Array | Yes  | Yes  | Information used to expand the key.|
+| salt | Uint8Array | Yes  | Yes  | Salt value. |
+| info | Uint8Array | Yes  | Yes  | Information used to expand the key. |
 | keySize | number | Yes  | Yes  | Length of the key to derive, in bytes.|
 
 > **NOTE**
@@ -643,12 +643,12 @@ Represents the SM2 ciphertext parameters. You can use this object to generate SM
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Readable | Writable | Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | xCoordinate | bigint | Yes  | Yes  | Coordinate X.|
-| yCoordinate | bigint | Yes  | Yes  | Coordinate Y.|
+| yCoordinate | bigint | Yes  | Yes  | Coordinate Y. |
 | cipherTextData | Uint8Array | Yes  | Yes  | Ciphertext.|
-| hashData | Uint8Array | Yes  | Yes  | Hash value.|
+| hashData | Uint8Array | Yes  | Yes  | Hash value. |
 
 > **NOTE**
 >
@@ -666,10 +666,10 @@ Keys can be generated by a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | Yes  | No  | Format of the key.                |
-| algName | string | Yes  | No  | Algorithm name (including the key length).|
+| algName | string | Yes  | No  | Algorithm name (including the key length). |
 
 ### getEncoded
 
@@ -689,12 +689,12 @@ Obtains the byte stream of the key data. This API returns the result synchronous
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | Key obtained.|
+| [DataBlob](#datablob) | Key obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 801 | this operation is not supported. |
 | 17620001 | memory error. |
@@ -759,20 +759,20 @@ Obtains a key parameter. This API returns the result synchronously.
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain. |
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint \| string \| number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -807,20 +807,20 @@ Obtains the public key data that complies with the ASN.1 syntax and DER encoding
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | Yes  | Format of the key. The value can be **X509\|COMPRESSED** or **X509\|UNCOMPRESSED** only.|
+| format  | string | Yes  | Format of the key. The value can be **X509\|COMPRESSED** or **X509\|UNCOMPRESSED** only. |
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | Public key data in the specified format.|
+| [DataBlob](#datablob) | Public key data in the specified format. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -847,7 +847,7 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
 | format  | string | Yes  | Encoding format of the key data to obtain. The format for a public key can be **'PKCS1'** or **'X509'**.|
 
@@ -855,14 +855,14 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| string | Key data obtained.|
+| string | Key data obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -921,20 +921,20 @@ Obtains a key parameter. This API returns the result synchronously.
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain. |
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint \| string \| number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -966,20 +966,20 @@ Obtains the private key data that complies with the ASN.1 syntax and DER encodin
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | Yes  | Format of the key. Currently, only **PKCS8** is supported.|
+| format  | string | Yes  | Format of the key. Currently, only **PKCS8** is supported. |
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | Private key data of the specified format obtained.|
+| [DataBlob](#datablob) | Private key data of the specified format obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -1006,7 +1006,7 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
 | format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **PKCS1** or **'PKCS8'**.|
 
@@ -1014,14 +1014,14 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| string | Key data obtained.|
+| string | Key data obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -1072,7 +1072,7 @@ The asymmetric key pair can be generated by using the asymmetric key generator [
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description          |
+| Name   | Type  | Readable | Writable | Description          |
 | ------- | ------ | ---- | ---- | ------------ |
 | priKey  | [PriKey](#prikey) | Yes  | No  | Private key.     |
 | pubKey | [PubKey](#pubkey) | Yes  | No  | Public key.      |
@@ -1091,19 +1091,19 @@ For details about the supported specifications, see [Symmetric Key Generation an
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md). |
 
 **Return value**
 
 | Type                               | Description                      |
 | ----------------------------------- | -------------------------- |
-| [SymKeyGenerator](#symkeygenerator) | **symKeyGenerator** instance created.|
+| [SymKeyGenerator](#symkeygenerator) | **symKeyGenerator** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -1126,9 +1126,9 @@ Before using any API of the **SymKeyGenerator** class, you must create a **SymKe
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                          |
+| Name   | Type  | Readable | Writable | Description                          |
 | ------- | ------ | ---- | ---- | ------------------------------ |
-| algName | string | Yes  | No  | Algorithm used by the **symKeyGenerator**.|
+| algName | string | Yes  | No  | Algorithm used by the **symKeyGenerator**. |
 
 ### generateSymKey
 
@@ -1150,14 +1150,14 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                                                        |
+| Name    | Type                             | Mandatory | Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 17620001 | memory error. |
 
@@ -1190,12 +1190,12 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| Promise\<[SymKey](#symkey)> | Promise used to return the symmetric key generated.|
+| Promise\<[SymKey](#symkey)> | Promise used to return the symmetric key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 17620001 | memory error. |
 
@@ -1235,7 +1235,7 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 17620001 | memory error. |
 
@@ -1272,15 +1272,15 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 **Parameters**
 
-| Name    | Type         | Mandatory| Description                      |
+| Name    | Type         | Mandatory | Description                      |
 | -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | Yes  | Data to convert.                                        |
-| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                              |
+| ID | Error Message                                              |
 | -------- | --------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                       |
@@ -1322,20 +1322,20 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| key  | [DataBlob](#datablob) | Yes  | Data to convert.|
+| key  | [DataBlob](#datablob) | Yes  | Data to convert. |
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| Promise\<[SymKey](#symkey)> | Promise used to return the symmetric key generated.|
+| Promise\<[SymKey](#symkey)> | Promise used to return the symmetric key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                         |
+| ID | Error Message                                         |
 | -------- | --------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
@@ -1385,14 +1385,14 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 **Parameters**
 
-| Name    | Type         | Mandatory| Description                      |
+| Name    | Type         | Mandatory | Description                      |
 | -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | Yes  | Data to convert.                                        |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                              |
+| ID | Error Message                                              |
 | -------- | --------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                       |
@@ -1430,20 +1430,20 @@ For details about the supported specifications, see [Asymmetric Key Generation a
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                            |
+| Name | Type  | Mandatory | Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| algName | string | Yes  | Algorithm used to create the **symkeyGenerator**.|
+| algName | string | Yes  | Algorithm used to create the **symkeyGenerator**. |
 
 **Return value**
 
 | Type           | Description                        |
 | --------------- | ---------------------------- |
-| [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created.|
+| [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -1465,9 +1465,9 @@ Provides APIs for using the **AsKeyGenerator**. Before using any API of the **As
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                            |
+| Name   | Type  | Readable | Writable | Description                            |
 | ------- | ------ | ---- | ---- | -------------------------------- |
-| algName | string | Yes  | No  | Algorithm used by the **AsKeyGenerator**.|
+| algName | string | Yes  | No  | Algorithm used by the **AsKeyGenerator**. |
 
 ### generateKeyPair
 
@@ -1481,16 +1481,16 @@ Generates a key pair randomly. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                          |
+| Name    | Type                   | Mandatory | Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
@@ -1523,14 +1523,14 @@ Generates a key pair randomly. This API uses a promise to return the result.
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
@@ -1562,14 +1562,14 @@ Generates a key pair randomly. This API returns the result synchronously.
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | Asymmetric key pair generated.|
+| [KeyPair](#keypair) | Asymmetric key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
@@ -1603,16 +1603,16 @@ Converts data into an asymmetric key. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type      | Mandatory| Description                          |
+| Name    | Type      | Mandatory | Description                          |
 | -------- | ----------- | ---- | ------------------------------ |
 | pubKey   | [DataBlob](#datablob) \| null<sup>10+</sup>    | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.       |
 | priKey   | [DataBlob](#datablob) \| null<sup>10+</sup>   | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.       |
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -1649,21 +1649,21 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description            |
+| Name  | Type   | Mandatory | Description            |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
-| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -1699,21 +1699,21 @@ Converts data into an asymmetric key pair. This API returns the result synchrono
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description            |
+| Name  | Type   | Mandatory | Description            |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
-| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | Asymmetric key pair generated.|
+| [KeyPair](#keypair) | Asymmetric key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -1760,7 +1760,7 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description            |
+| Name  | Type   | Mandatory | Description            |
 | ------ | -------- | ---- | ---------------- |
 | pubKey | string \| null | Yes | Public key material to convert. If no public key is required, set this parameter to **null**.|
 | priKey | string \| null | Yes | Private key material to convert. If no private key is required, set this parameter to **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
@@ -1769,14 +1769,14 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
@@ -1829,7 +1829,7 @@ Converts data into an asymmetric key pair. This API returns the result synchrono
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description            |
+| Name  | Type   | Mandatory | Description            |
 | ------ | -------- | ---- | ---------------- |
 | pubKey | string \| null| Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.|
 | priKey | string \| null| Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
@@ -1838,14 +1838,14 @@ Converts data into an asymmetric key pair. This API returns the result synchrono
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | Asymmetric key pair generated.|
+| [KeyPair](#keypair) | Asymmetric key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
@@ -1905,20 +1905,20 @@ For details about the supported specifications, see [Asymmetric Key Generation a
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                            |
+| Name | Type  | Mandatory | Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Key parameters. The **AsyKeyGenerator** generates the public/private key based on the specified parameters.|
+| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Key parameters. The **AsyKeyGenerator** generates the public/private key based on the specified parameters. |
 
 **Return value**
 
 | Type                                           | Description                      |
 | ----------------------------------------------- | -------------------------- |
-| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | Returns the **AsyKeyGenerator** instance created.|
+| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | Returns the **AsyKeyGenerator** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -1966,9 +1966,9 @@ Provides APIs for using the **AsKeyGenerator**. Before using the APIs of this cl
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                      |
+| Name   | Type  | Readable | Writable | Description                      |
 | ------- | ------ | ---- | ---- | -------------------------- |
-| algName | string | Yes  | No  | Algorithm used by the asymmetric key generator.|
+| algName | string | Yes  | No  | Algorithm used by the asymmetric key generator. |
 
 ### generateKeyPair
 
@@ -1984,14 +1984,14 @@ If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used t
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                          |
+| Name    | Type                   | Mandatory | Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message               |
+| ID | Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;         |
 | 17620001 | memory error.           |
@@ -2028,14 +2028,14 @@ If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used t
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters.  <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2071,14 +2071,14 @@ If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used t
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | Asymmetric key pair generated.|
+| [KeyPair](#keypair) | Asymmetric key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2117,16 +2117,16 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                          |
+| Name    | Type                   | Mandatory | Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[PriKey](#prikey)> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[PriKey](#prikey)> | Yes  | Callback invoked to return the key pair obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;         |
+| 401 | invalid parameters. Possible causes: <br>Mandatory parameters are left unspecified;         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2161,14 +2161,14 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[PriKey](#prikey)> | Promise used to return the key pair generated.|
+| Promise\<[PriKey](#prikey)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2204,14 +2204,14 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [PriKey](#prikey) | Private key generated.|
+| [PriKey](#prikey) | Private key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters.  <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2249,16 +2249,16 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                          |
+| Name    | Type                   | Mandatory | Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[PubKey](#pubkey)> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[PubKey](#pubkey)> | Yes  | Callback invoked to return the key pair obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes:<br>Incorrect parameter types;        |
+| 401 | invalid parameters. Possible causes:<br> Incorrect parameter types;        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2293,14 +2293,14 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[PubKey](#pubkey)> | Promise used to return the key pair generated.|
+| Promise\<[PubKey](#pubkey)> | Promise used to return the key pair generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2336,14 +2336,14 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [PubKey](#pubkey) | Private key generated.|
+| [PubKey](#pubkey) | Private key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters.  <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -2383,20 +2383,20 @@ Generates common parameters for an asymmetric key pair based on the specified na
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                          |
+| Name | Type  | Mandatory | Description                                          |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| curveName | string | Yes  | NID of the elliptic curve.|
+| curveName | string | Yes  | NID of the elliptic curve. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [ECCCommonParamsSpec](#ecccommonparamsspec10) | ECC common parameters generated.|
+| [ECCCommonParamsSpec](#ecccommonparamsspec10) | ECC common parameters generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
@@ -2434,21 +2434,21 @@ Converts the specified point data into a **Point** object based on the curve nam
 
 **Parameters**
 
-| Name      | Type       | Mandatory| Description                                          |
+| Name      | Type       | Mandatory | Description                                          |
 | ------------ | ---------- | ---- | ---------------------------------------------- |
-| curveName    | string     | Yes  | Elliptic curve name that is, the NID.|
-| encodedPoint | Uint8Array | Yes  | Data of the point on the ECC elliptic curve to convert.|
+| curveName    | string     | Yes  | Elliptic curve name that is, the NID. |
+| encodedPoint | Uint8Array | Yes  | Data of the point on the ECC elliptic curve to convert. |
 
 **Return value**
 
 | Type             | Description                |
 | ----------------- | ------------------- |
-| [Point](#point10) | **Point** object obtained.|
+| [Point](#point10) | **Point** object obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -2475,22 +2475,22 @@ Obtains the point data in the specified format from a **Point** object. Currentl
 
 **Parameters**
 
-| Name      | Type              | Mandatory| Description                                          |
+| Name      | Type              | Mandatory | Description                                          |
 | ------------ | ----------------- | ---- | ---------------------------------------------- |
-| curveName    | string            | Yes  | Elliptic curve name that is, the NID.|
-| point        | [Point](#point10) | Yes  | **Point** object of the elliptic curve.|
-| format       | string            | Yes  | Format of the point data to obtain. Currently, the value can be **COMPRESSED** or **UNCOMPRESSED** only.|
+| curveName    | string            | Yes  | Elliptic curve name that is, the NID. |
+| point        | [Point](#point10) | Yes  | **Point** object of the elliptic curve. |
+| format       | string            | Yes  | Format of the point data to obtain. Currently, the value can be **COMPRESSED** or **UNCOMPRESSED** only. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Uint8Array | Point data in the specified format.|
+| Uint8Array | Point data in the specified format. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
@@ -2532,21 +2532,21 @@ Generates common parameters for a DH key based on the prime **p** length and the
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                            |
+| Name | Type  | Mandatory | Description                                            |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| pLen   | number | Yes  | Length of the prime **p**, in bits.|
+| pLen   | number | Yes  | Length of the prime **p**, in bits. |
 | skLen  | number | No  | Length of the private key, in bits. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [DHCommonParamsSpec](#dhcommonparamsspec11) | DH common parameters generated.|
+| [DHCommonParamsSpec](#dhcommonparamsspec11) | DH common parameters generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
@@ -2583,21 +2583,21 @@ Generates SM2 ciphertext in ASN.1 format.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                            |
+| Name | Type  | Mandatory | Description                                            |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| spec   | [SM2CipherTextSpec](#sm2ciphertextspec12) | Yes  | SM2 ciphertext parameters.|
+| spec   | [SM2CipherTextSpec](#sm2ciphertextspec12) | Yes  | SM2 ciphertext parameters. |
 | mode  | string | No  | Order of the SM2 parameters in the ciphertext. Currently, only C1C3C2 is supported. |
 
 **Return value**
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [DataBlob](#datablob) | SM2 ciphertext in ASN.1 format.|
+| [DataBlob](#datablob) | SM2 ciphertext in ASN.1 format. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                    |
@@ -2635,7 +2635,7 @@ Obtains SM2 ciphertext parameters from the SM2 ciphertext in ASN.1 format.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                            |
+| Name | Type  | Mandatory | Description                                            |
 | ------ | ------ | ---- | ------------------------------------------------ |
 | cipherText     | [DataBlob](#datablob)                 | Yes  | SM2 ciphertext in ASN.1 format.
 | mode  | string | No  | Order of the SM2 parameters in the ciphertext. Currently, only C1C3C2 is supported. |
@@ -2644,12 +2644,12 @@ Obtains SM2 ciphertext parameters from the SM2 ciphertext in ASN.1 format.
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| [SM2CipherTextSpec](#sm2ciphertextspec12) | SM2 ciphertext parameters obtained.|
+| [SM2CipherTextSpec](#sm2ciphertextspec12) | SM2 ciphertext parameters obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                    |
@@ -2683,9 +2683,9 @@ For details about the supported specifications, see [Symmetric Key Encryption an
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description                                                        |
+| Name        | Type  | Mandatory | Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.|
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create. |
 
 > **NOTE**
 >
@@ -2697,12 +2697,12 @@ For details about the supported specifications, see [Symmetric Key Encryption an
 
 | Type             | Description                    |
 | ----------------- | ------------------------ |
-| [Cipher](#cipher) | [Cipher](#cipher) instance created.|
+| [Cipher](#cipher) | [Cipher](#cipher) instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -2740,9 +2740,9 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | Yes  | No  | Algorithm.|
+| algName | string | Yes  | No  | Algorithm. |
 
 ### init
 
@@ -2758,17 +2758,17 @@ This API can be used only after a [Cipher](#cipher) instance is created by using
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                                                        |
+| Name    | Type                     | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode   | [CryptoMode](#cryptomode) | Yes  | Operation (encryption or decryption) to perform.                                          |
 | key      | [Key](#key)               | Yes  | Key for encryption or decryption.                                      |
-| params   | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in. In versions earlier than API version 10, only **ParamsSpec** is supported. Since API version 10, **null** is also supported.|
+| params   | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in. In versions earlier than API version 10, only **ParamsSpec** is supported. Since API version 10, **null** is also supported. |
 | callback | AsyncCallback\<void>      | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                                |
+| ID | Error Message                                                |
 | -------- | --------------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                            |
@@ -2789,22 +2789,22 @@ This API can be used only after a [Cipher](#cipher) instance is created by using
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                        |
+| Name  | Type                     | Mandatory | Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode) | Yes  | Operation (encryption or decryption) to perform.                                          |
 | key    | [Key](#key)               | Yes  | Key for encryption or decryption.                                      |
-| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in. In versions earlier than API version 10, only **ParamsSpec** is supported. Since API version 10, **null** is also supported.|
+| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in. In versions earlier than API version 10, only **ParamsSpec** is supported. Since API version 10, **null** is also supported. |
 
 **Return value**
 
 | Type          | Description                                  |
 | -------------- | -------------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                         |
+| ID | Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                     |
@@ -2825,16 +2825,16 @@ This API can be used only after a [Cipher](#cipher) instance is created by using
 
 **Parameters**
 
-| Name| Type                                           | Mandatory| Description                                                        |
+| Name | Type                                           | Mandatory | Description                                                        |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode)                       | Yes  | Operation (encryption or decryption) to perform.                                          |
 | key    | [Key](#key)                                     | Yes  | Key for encryption or decryption.                                      |
-| params | [ParamsSpec](#paramsspec)  | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in.|
+| params | [ParamsSpec](#paramsspec)  | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message               |
+| ID | Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -2863,15 +2863,15 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory| Description                                                        |
+| Name    | Type                                 | Mandatory | Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| data     | [DataBlob](#datablob)                 | Yes  | Data to encrypt or decrypt. It cannot be **null** or {data:Uint8Array (empty)}.          |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**, and **data** is **DataBlob** (containing the encrypted or decrypted data). Otherwise, **err** is an error object.|
+| data     | [DataBlob](#datablob)                 | Yes  | Data to encrypt or decrypt. It cannot be null.          |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**, and **data** is **DataBlob** (containing the encrypted or decrypted data). Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                   |
+| ID | Error Message                                   |
 | -------- | ------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                               |
@@ -2901,20 +2901,20 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) | Yes  | Data to encrypt or decrypt. It cannot be **null** or {data:Uint8Array (empty)}.|
+| data | [DataBlob](#datablob) | Yes  | Data to encrypt or decrypt. It cannot be null. |
 
 **Return value**
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data).|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data). |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | -------- | -------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
@@ -2937,14 +2937,14 @@ See **NOTE** in **update()** for other precautions.
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                                                        |
+| Name | Type                 | Mandatory | Description                                                        |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob) | Yes  | Data to encrypt or decrypt. It cannot be **null** or {data:Uint8Array (empty)}.|
+| data   | [DataBlob](#datablob) | Yes  | Data to encrypt or decrypt. It cannot be null. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message               |
+| ID | Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -2975,15 +2975,15 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory| Description                                                        |
+| Name    | Type                                 | Mandatory | Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | data     | [DataBlob](#datablob) \| null<sup>10+</sup>                 | Yes  | Data to encrypt or decrypt. It can be **null** in symmetric encryption or decryption, but cannot be {data:Uint8Array(empty)}. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.      |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result. If the data is successfully encrypted or decrypted, **err** is **undefined**, and **data** is the **DataBlob** (encryption or decryption result of the remaining data). Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result. If the data is successfully encrypted or decrypted, **err** is **undefined**, and **data** is the **DataBlob** (encryption or decryption result of the remaining data). Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message               |
+| ID | Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -3062,20 +3062,20 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                |
+| Name | Type                 | Mandatory | Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Data to encrypt or decrypt. It can be **null**, but cannot be {data:Uint8Array(empty)}. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| data | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Data to encrypt or decrypt. It can be **null**, but cannot be {data:Uint8Array(empty)}. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
 
 **Return value**
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob**, which is the encryption or decryption result of the remaining data.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob**, which is the encryption or decryption result of the remaining data. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | -------- | -------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
@@ -3144,14 +3144,14 @@ See **NOTE** in [doFinal()](#dofinal) for other precautions.
 
 **Parameters**
 
-| Name| Type                                       | Mandatory| Description                                                        |
+| Name | Type                                       | Mandatory | Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob)  | Yes  | Data to encrypt or decrypt. It can be **null** in symmetric encryption or decryption, but cannot be {data:Uint8Array(empty)}.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to encrypt or decrypt. It can be **null** in symmetric encryption or decryption, but cannot be {data:Uint8Array(empty)}. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message               |
+| ID | Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -3214,15 +3214,15 @@ Sets cipher specifications. You can use this API to set cipher specifications th
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
+| Name  | Type                | Mandatory | Description      |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [CipherSpecItem](#cipherspecitem10)           | Yes  | Cipher parameter to set.|
-| itemValue | Uint8Array | Yes  | Value of the parameter to set.|
+| itemType     | [CipherSpecItem](#cipherspecitem10)           | Yes  | Cipher parameter to set. |
+| itemValue | Uint8Array | Yes  | Value of the parameter to set. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3250,20 +3250,20 @@ Obtains cipher specifications. Currently, only RSA and SM2 (available since API 
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| itemType   | [CipherSpecItem](#cipherspecitem10) | Yes  | Cipher parameter to obtain.|
+| itemType   | [CipherSpecItem](#cipherspecitem10) | Yes  | Cipher parameter to obtain. |
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string \| Uint8Array | Returns the value of the cipher parameter obtained.|
+| string \| Uint8Array | Returns the value of the cipher parameter obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3292,20 +3292,20 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.<br>When RSA is used for signing, you can set **OnlySign** to enable the input data digest to be used only for signing.|
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.<br>When RSA is used for signing, you can set **OnlySign** to enable the input data digest to be used only for signing. |
 
 **Return value**
 
-| Type| Description                              |
+| Type | Description                              |
 | ---- | ---------------------------------- |
-| Sign | Returns the **Sign** instance created.|
+| Sign | Returns the **Sign** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3347,9 +3347,9 @@ If the DSA algorithm is used for signing and the digest algorithm is **NoHash**,
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | Yes  | No  | Algorithm to use.|
+| algName | string | Yes  | No  | Algorithm to use. |
 
 ### init
 
@@ -3365,15 +3365,15 @@ The **Sign** class does not support repeated use of **init()**.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description            |
+| Name  | Type                | Mandatory | Description            |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | [PriKey](#prikey)    | Yes  | Private key used for the initialization.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| priKey   | [PriKey](#prikey)    | Yes  | Private key used for the initialization. |
+| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3394,20 +3394,48 @@ The **Sign** class does not support repeated use of **init()**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description            |
+| Name | Type | Mandatory | Description            |
 | ------ | ---- | ---- | ---------------- |
-| priKey | [PriKey](#prikey)  | Yes  | Private key used for the initialization.|
+| priKey | [PriKey](#prikey)  | Yes  | Private key used for the initialization. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### initSync<sup>12+</sup>
+
+initSync(priKey: PriKey): void
+
+Initializes the **Sign** instance with a private key. This API returns the result synchronously. **initSync**, **updateSync**, and **signSync** must be used together. **initSync** and **signSync** are mandatory, and **updateSync** is optional.
+
+The **Sign** class does not support repeated use of **initSync()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type | Mandatory | Description            |
+| ------ | ---- | ---- | ---------------- |
+| priKey | [PriKey](#prikey)  | Yes  | Private key used for the initialization. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3436,15 +3464,15 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description        |
+| Name  | Type                 | Mandatory | Description        |
 | -------- | --------------------- | ---- | ------------ |
-| data     | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob) | Yes  | Data to pass in. |
 | callback | AsyncCallback\<void>  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3473,20 +3501,62 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### updateSync<sup>12+</sup>
+
+updateSync(data: DataBlob): void
+
+Updates the data to be signed. This API returns the result synchronously.
+
+This API can be called only after the [Sign](#sign) instance is initialized by using [initSync()](#initsync12-1).
+
+> **NOTE**
+>
+> You can call **updateSync** multiple times or do not use **updateSync** (call [signSync](#signsync12) after [initSync](#initsync12-1)), depending on the data volume.<br>
+> The amount of the data to be passed in by **updateSync** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **updateSync** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **updateSync** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.<br>
+> **OnlySign** cannot be used with **updateSync**. If **OnlySign** is specified, use **signSync** to pass in data.<br>
+> If the DSA algorithm is used for signing and the digest algorithm is **NoHash**, **updateSync** is not supported. If **updateSync** is called in this case, **ERR_CRYPTO_OPERATION** will be returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type    | Mandatory | Description      |
+| ------ | -------- | ---- | ---------- |
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in. |
+
+**Return value**
+
+| Type          | Description         |
+| -------------- | ------------- |
+| void | No value is returned. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3505,15 +3575,15 @@ Signs the data. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
+| Name  | Type                | Mandatory | Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | [DataBlob](#datablob) \| null<sup>10+</sup>              | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object.|
+| data     | [DataBlob](#datablob) \| null<sup>10+</sup>              | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3532,20 +3602,52 @@ Signs the data. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | [DataBlob](#datablob) \| null<sup>10+</sup>  | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob) \| null<sup>10+</sup>  | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the signature. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### signSync<sup>12+</sup>
+
+signSync(data: DataBlob | null): DataBlob
+
+Signs the data. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type    | Mandatory | Description      |
+| ------ | -------- | ---- | ---------- |
+| data   | [DataBlob](#datablob) \| null  | Yes  | Data to pass in. |
+
+**Return value**
+
+| Type          | Description         |
+| -------------- | ------------- |
+| [DataBlob](#datablob) | Signature. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3612,6 +3714,37 @@ async function signByPromise() {
 }
 ```
 
+**Example (using the sync API)**
+
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
+
+function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertKeySync(pubKeyBlob, priKeyBlob);
+  console.info('convertKeySync success');
+  return keyPair;
+}
+
+function signBySync() {
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair =  genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputSign: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let signer = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
+  signer.initSync(keyPair.priKey);
+  signer.updateSync(inputUpdate);
+  let signData = signer.signSync(inputSign);
+  console.info('signData result: ' + signData.data);
+}
+```
+
 ### setSignSpec<sup>10+</sup>
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
@@ -3628,15 +3761,15 @@ Currently, only RSA and SM2 are supported. Since API version 11, SM2 signing par
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
+| Name  | Type                | Mandatory | Description      |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set.|
-| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
+| itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set. |
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3664,20 +3797,20 @@ Obtains signing specifications. Currently, only RSA is supported.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| itemType | [SignSpecItem](#signspecitem10)  | Yes  | Signing parameter to obtain.|
+| itemType | [SignSpecItem](#signspecitem10)  | Yes  | Signing parameter to obtain. |
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string \| number | Returns the value of the signing parameter obtained.|
+| string \| number | Returns the value of the signing parameter obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3706,7 +3839,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.<br>When the RSA algorithm is used for signature verification, you can use **Recover** to verify and recover the signed data.|
 
@@ -3714,12 +3847,12 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| Verify | Returns the **Verify** instance created.|
+| Verify | Returns the **Verify** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -3755,9 +3888,9 @@ If the DSA algorithm is used for signature verification and the digest algorithm
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | Yes  | No  | Algorithm to be used for signature verification.|
+| algName | string | Yes  | No  | Algorithm to be used for signature verification. |
 
 ### init
 
@@ -3771,15 +3904,15 @@ Initializes the **Verify** instance with a public key. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                          |
+| Name  | Type                | Mandatory | Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| pubKey   | [PubKey](#pubkey)    | Yes  | Public key used to initialize the **Verify** instance.|
+| pubKey   | [PubKey](#pubkey)    | Yes  | Public key used to initialize the **Verify** instance. |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3798,20 +3931,52 @@ Initializes the **Verify** instance with a public key. This API uses a promise t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                        |
+| Name | Type | Mandatory | Description                        |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | [PubKey](#pubkey)  | Yes  | Public key used to initialize the **Verify** instance.|
+| pubKey | [PubKey](#pubkey)  | Yes  | Public key used to initialize the **Verify** instance. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### initSync<sup>12+</sup>
+
+initSync(pubKey: PubKey): void
+
+Initializes the **Verify** instance with a public key. This API returns the result synchronously. **initSync**, **updateSync**, and **verifySync** must be used together. **initSync** and **verifySync** are mandatory, and **updateSync** is optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type | Mandatory | Description                        |
+| ------ | ---- | ---- | ---------------------------- |
+| pubKey | [PubKey](#pubkey)  | Yes  | Public key used to initialize the **Verify** instance. |
+
+**Return value**
+
+| Type          | Description         |
+| -------------- | ------------- |
+| void | No value is returned. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3839,15 +4004,15 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description        |
+| Name  | Type                 | Mandatory | Description        |
 | -------- | --------------------- | ---- | ------------ |
-| data     | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob) | Yes  | Data to pass in. |
 | callback | AsyncCallback\<void>  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3875,20 +4040,61 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### updateSync<sup>12+</sup>
+
+updateSync(data: DataBlob): void
+
+Updates the data for signature verifications. This API returns the result synchronously.
+
+This API can be called only after the [Verify](#verify) instance is initialized by using [initSync()](#initsync12-2).
+
+> **NOTE**
+>
+> You can call **updateSync** multiple times or do not use **updateSync** (call [verifySync](#verifysync12)after [initSync](#initsync12-2)), depending on the data volume.<br>
+> The amount of the data to be passed in by **updateSync** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **updateSync** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **updateSync** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.<br>
+> If the DSA algorithm is used for signature verification and the digest algorithm is **NoHash**, **updateSync** is not supported. If **updateSync** is called in this case, **ERR_CRYPTO_OPERATION** will be returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type    | Mandatory | Description      |
+| ------ | -------- | ---- | ---------- |
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in. |
+
+**Return value**
+
+| Type          | Description         |
+| -------------- | ------------- |
+| void | No value is returned. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3907,16 +4113,16 @@ Verifies the signature. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name       | Type                | Mandatory| Description      |
+| Name       | Type                | Mandatory | Description      |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | [DataBlob](#datablob) \| null<sup>10+</sup>             | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| data          | [DataBlob](#datablob) \| null<sup>10+</sup>             | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
 | signatureData | [DataBlob](#datablob)              | Yes  | Signature data. |
-| callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the signature verification result.|
+| callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the signature verification result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -3935,21 +4141,54 @@ Verifies the signature. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name       | Type    | Mandatory| Description      |
+| Name       | Type    | Mandatory | Description      |
 | ------------- | -------- | ---- | ---------- |
-| data          | [DataBlob](#datablob) \| null<sup>10+</sup>  | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| data          | [DataBlob](#datablob) \| null<sup>10+</sup>  | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported. |
 | signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
 
 **Return value**
 
 | Type             | Description                          |
 | ----------------- | ------------------------------ |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+### verifySync<sup>12+</sup>
+
+verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
+
+Verifies the signature. This API returns the verification result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name       | Type    | Mandatory | Description      |
+| ------------- | -------- | ---- | ---------- |
+| data          | [DataBlob](#datablob) \| null  | Yes  | Data to pass in. |
+| signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
+
+**Return value**
+
+| Type             | Description                          |
+| ----------------- | ------------------------------ |
+| boolean | Signature verification result. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4018,7 +4257,41 @@ async function verifyByPromise() {
   await verifier.init(keyPair.pubKey);
   await verifier.update(inputUpdate);
   let res = await verifier.verify(inputVerify, signMessageBlob);
-  console.info('signData result: ' + res);
+  console.info('verify result: ' + res);
+}
+```
+
+**Example (using the sync API)**
+
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
+
+function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertKeySync(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
+}
+
+function verifyBySync() {
+  // Key generated based on the key data and input data for signature verification. If the data in verify() is the same as that in sign(), the signature verification is successful.
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // The data is signData.data in Sign().
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) };
+  let verifier = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  verifier.initSync(keyPair.pubKey);
+  verifier.updateSync(inputUpdate);
+  let res = verifier.verifySync(inputVerify, signMessageBlob);
+  console.info('verify result: ' + res);
 }
 ```
 
@@ -4038,7 +4311,7 @@ Recovers the original data from a signature. This API uses a promise to return t
 
 **Parameters**
 
-| Name       | Type    | Mandatory| Description      |
+| Name       | Type    | Mandatory | Description      |
 | ------------- | -------- | ---- | ---------- |
 | signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
 
@@ -4046,12 +4319,12 @@ Recovers the original data from a signature. This API uses a promise to return t
 
 | Type             | Description                          |
 | ----------------- | ------------------------------ |
-| Promise\<[DataBlob](#datablob)  \| null> | Promise used to return the data restored.|
+| Promise\<[DataBlob](#datablob)  \| null> | Promise used to return the data restored. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4112,7 +4385,7 @@ Recovers the original data from a signature. This API returns the result synchro
 
 **Parameters**
 
-| Name       | Type    | Mandatory| Description      |
+| Name       | Type    | Mandatory | Description      |
 | ------------- | -------- | ---- | ---------- |
 | signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
 
@@ -4120,12 +4393,12 @@ Recovers the original data from a signature. This API returns the result synchro
 
 | Type             | Description                          |
 | ----------------- | ------------------------------ |
-| [DataBlob](#datablob)  \| null | Data restored.|
+| [DataBlob](#datablob)  \| null | Data restored. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4150,15 +4423,15 @@ The parameters for signature verification must be the same as those for signing.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
+| Name  | Type                | Mandatory | Description      |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set.|
-| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
+| itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set. |
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -4188,20 +4461,20 @@ The parameters for signature verification must be the same as those for signing.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| itemType   | [SignSpecItem](#signspecitem10)  | Yes  | Signature verification parameter to obtain.|
+| itemType   | [SignSpecItem](#signspecitem10)  | Yes  | Signature verification parameter to obtain. |
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string \| number | Returns the value of the parameter obtained.|
+| string \| number | Returns the value of the parameter obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -4230,20 +4503,20 @@ For details about the supported specifications, see [Key Agreement Overview and 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Key agreement algorithm to use. In addition to ECC, X25519 and DH are supported since API version 11.|
+| algName | string | Yes  | Key agreement algorithm to use. In addition to ECC, X25519 and DH are supported since API version 11. |
 
 **Return value**
 
 | Type        | Description                                      |
 | ------------ | ------------------------------------------ |
-| KeyAgreement | Returns the **KeyAgreement** instance created.|
+| KeyAgreement | Returns the **KeyAgreement** instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -4266,9 +4539,9 @@ Provides APIs for key agreement operations. Before using any API of the **KeyAgr
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | Yes  | No  | Algorithm used for key agreement.|
+| algName | string | Yes  | No  | Algorithm used for key agreement. |
 
 ### generateSecret
 
@@ -4282,16 +4555,16 @@ Performs key agreement based on a private key and a public key. This API uses an
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                  |
+| Name  | Type                    | Mandatory | Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| priKey   | [PriKey](#prikey)        | Yes  | Private key used for key agreement.|
-| pubKey   | [PubKey](#pubkey)        | Yes  | Public key used for key agreement.|
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the shared secret.|
+| priKey   | [PriKey](#prikey)        | Yes  | Private key used for key agreement. |
+| pubKey   | [PubKey](#pubkey)        | Yes  | Public key used for key agreement. |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the shared secret. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4310,21 +4583,21 @@ Performs key agreement based on a private key and a public key. This API uses a 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement.|
-| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement.|
+| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement. |
+| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement. |
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the shared secret.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the shared secret. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4343,21 +4616,21 @@ Performs key agreement based on a private key and a public key. This API returns
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement.|
-| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement.|
+| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement. |
+| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement. |
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-|[DataBlob](#datablob) | Promise used to return the shared secret.|
+|[DataBlob](#datablob) | Promise used to return the shared secret. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -4423,20 +4696,20 @@ For details about the supported specifications, see [Supported Algorithms and Sp
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications). |
 
 **Return value**
 
-| Type| Description                                   |
+| Type | Description                                   |
 | ---- | --------------------------------------- |
-| Md   | Returns the [Md](#md) instance created.|
+| Md   | Returns the [Md](#md) instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message          |
+| ID | Error Message          |
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.       |
@@ -4465,9 +4738,9 @@ Provides APIs for MD operations. Before using any API of the **Md** class, you m
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                  |
+| Name   | Type  | Readable | Writable | Description                  |
 | ------- | ------ | ---- | ---- | ---------------------- |
-| algName | string | Yes  | No  | Digest algorithm.|
+| algName | string | Yes  | No  | Digest algorithm. |
 
 ### update
 
@@ -4485,15 +4758,15 @@ Updates the message for MD operations. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description        |
+| Name  | Type                 | Mandatory | Description        |
 | -------- | --------------------- | ---- | ------------ |
-| input    | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob) | Yes  | Data to pass in. |
 | callback | AsyncCallback\<void>  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4512,20 +4785,20 @@ Updates the message for MD operations. This API uses a promise to return the res
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type    | Mandatory| Description        |
+| Name | Type    | Mandatory | Description        |
 | ------ | -------- | ---- | ------------ |
-| input  | DataBlob | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4544,22 +4817,22 @@ Updates the message for MD operations. This API returns the result synchronously
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type    | Mandatory| Description        |
+| Name | Type    | Mandatory | Description        |
 | ------ | -------- | ---- | ------------ |
-| input  | DataBlob | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| void | No value is returned.|
+| void | No value is returned. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.      |
 | 17630001 | crypto operation error. |
 
 ### digest
@@ -4572,14 +4845,14 @@ Generates an MD. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name  | Type                    | Mandatory| Description      |
+| Name  | Type                    | Mandatory | Description      |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
@@ -4615,12 +4888,12 @@ Generates an MD. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
@@ -4654,14 +4927,14 @@ Generates an MD. This API returns the result synchronously.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| [DataBlob](#datablob) | MD generated.|
+| [DataBlob](#datablob) | MD generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.           |
+| 401 | invalid parameters.  <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory error. |
 | 17620002 | runtime error. |
 | 17630001 | crypto operation error. |
@@ -4695,12 +4968,12 @@ Obtains the MD length, in bytes.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | MD length obtained.|
+| number | MD length obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17630001 | crypto operation error. |
 
@@ -4729,20 +5002,20 @@ For details about the supported specifications, see [Supported Algorithms and Sp
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications). |
 
 **Return value**
 
-| Type| Description                                     |
+| Type | Description                                     |
 | ---- | ----------------------------------------- |
-| Mac  | Returns the [Mac](#mac) instance created.|
+| Mac  | Returns the [Mac](#mac) instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message          |
+| ID | Error Message          |
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.       |
@@ -4771,9 +5044,9 @@ Provides APIs for MAC operations. Before using any API of the **Mac** class, you
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                  |
+| Name   | Type  | Readable | Writable | Description                  |
 | ------- | ------ | ---- | ---- | ---------------------- |
-| algName | string | Yes  | No  | Digest algorithm.|
+| algName | string | Yes  | No  | Digest algorithm. |
 
 ### init
 
@@ -4791,15 +5064,15 @@ Initializes the MAC computation with a symmetric key. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description          |
+| Name  | Type                | Mandatory | Description          |
 | -------- | -------------------- | ---- | -------------- |
-| key      | [SymKey](#symkey)    | Yes  | Shared symmetric key.|
+| key      | [SymKey](#symkey)    | Yes  | Shared symmetric key. |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4816,20 +5089,20 @@ Initializes the MAC computation with a symmetric key. This API uses a promise to
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | Yes  | Shared symmetric key.|
+| key    | [SymKey](#symkey) | Yes  | Shared symmetric key. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4846,22 +5119,22 @@ Initializes the MAC computation with a symmetric key. This API returns the resul
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | Yes  | Shared symmetric key.|
+| key    | [SymKey](#symkey) | Yes  | Shared symmetric key. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| void | No value is returned.|
+| void | No value is returned. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters.  <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.     |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4880,15 +5153,15 @@ Updates the message for MAC computation. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description        |
+| Name  | Type                 | Mandatory | Description        |
 | -------- | --------------------- | ---- | ------------ |
-| input    | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob) | Yes  | Data to pass in. |
 | callback | AsyncCallback\<void>  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4909,20 +5182,20 @@ Updates the message for MAC computation. This API uses a promise to return the r
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| input  | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
@@ -4943,22 +5216,22 @@ Updates the message for MAC computation. This API returns the result synchronous
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description      |
+| Name | Type    | Mandatory | Description      |
 | ------ | -------- | ---- | ---------- |
-| input  | [DataBlob](#datablob) | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in. |
 
 **Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
-| void | No value is returned.|
+| void | No value is returned. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.      |
 | 17630001 | crypto operation error. |
 
 ### doFinal
@@ -4973,14 +5246,14 @@ Finishes the MAC computation. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description    |
+| Name  | Type                    | Mandatory | Description    |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
@@ -5024,12 +5297,12 @@ Finishes the MAC computation. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
@@ -5069,14 +5342,14 @@ Finishes the MAC computation. This API returns the result synchronously.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| [DataBlob](#datablob) | MAC computation result.|
+| [DataBlob](#datablob) | MAC computation result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.           |
+| 401 | invalid parameters. <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.          |
 | 17620001 | memory error.           |
 | 17620002 | runtime error. |
 | 17630001 | crypto operation error. |
@@ -5089,7 +5362,7 @@ For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchi
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
-async function hmacBySync() {
+function hmacBySync() {
   let mac = cryptoFramework.createMac('SHA256');
   let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
@@ -5116,12 +5389,12 @@ Obtains the MAC length, in bytes.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| number | MAC length obtained.|
+| number | MAC length obtained. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 17630001 | crypto operation error. |
 
@@ -5172,12 +5445,12 @@ For details about the supported specifications, see [Supported Algorithms and Sp
 
 | Type  | Description                                           |
 | ------ | ----------------------------------------------- |
-| Random | Returns the [Random](#random) instance created.|
+| Random | Returns the [Random](#random) instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message    |
+| ID | Error Message    |
 | -------- | ------------ |
 | 17620001 | memory error. |
 
@@ -5204,9 +5477,9 @@ Provides APIs for computing random numbers and setting seeds. Before using any A
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                |
+| Name   | Type  | Readable | Writable | Description                |
 | ------- | ------ | ---- | ---- | -------------------- |
-| algName<sup>10+</sup> | string | Yes  | No  | Algorithm used to generate the random number. Currently, only **CTR_DRBG** is supported.|
+| algName<sup>10+</sup> | string | Yes  | No  | Algorithm used to generate the random number. Currently, only **CTR_DRBG** is supported. |
 
 ### generateRandom
 
@@ -5220,15 +5493,15 @@ Generates a random number of the specified length. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                |
+| Name  | Type                    | Mandatory | Description                |
 | -------- | ------------------------ | ---- | -------------------- |
-| len      | number                   | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX].|
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object.|
+| len      | number                   | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX]. |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -5261,20 +5534,20 @@ Generates a random number of the specified length. This API uses a promise to re
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                  |
+| Name | Type  | Mandatory | Description                                                  |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| len    | number | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX].|
+| len    | number | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX]. |
 
 **Return value**
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -5306,20 +5579,20 @@ Generates a random number of the specified length. This API returns the result s
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| len    | number | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX].|
+| len    | number | Yes  | Length of the random number to generate, in bytes. The value range is [1, INT_MAX]. |
 
 **Return value**
 
 | Type              | Description       |
 | ------------------ | ----------- |
-|[DataBlob](#datablob) | Returns the generated random number.|
+|[DataBlob](#datablob) | Returns the generated random number. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
@@ -5354,14 +5627,14 @@ Sets a seed.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name| Type    | Mandatory| Description        |
+| Name | Type    | Mandatory | Description        |
 | ------ | -------- | ---- | ------------ |
-| seed   | DataBlob | Yes  | Seed to set.|
+| seed   | [DataBlob](#datablob) | Yes  | Seed to set. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message          |
+| ID | Error Message          |
 | -------- | ----------------- |
 | 17620001 | memory error.      |
 
@@ -5398,7 +5671,7 @@ Creates a key derivation function instance.<br>For details about the supported s
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                             |
+| Name | Type  | Mandatory | Description                             |
 | ------- | ------ | ---- | --------------------------------- |
 | algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only PBKDF2 and HKDF are supported. For example, **PBKDF2\|SHA256** and **HKDF\|SHA256**.  |
 
@@ -5406,12 +5679,12 @@ Creates a key derivation function instance.<br>For details about the supported s
 
 | Type        | Description                                      |
 | ------------ | ------------------------------------------ |
-| [Kdf](#kdf11) | Key derivation function instance created.|
+| [Kdf](#kdf11) | Key derivation function instance created. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
@@ -5433,9 +5706,9 @@ Defines the key derivation function class. Before using APIs of this class, you 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Readable | Writable | Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | Yes  | No  | Algorithm of the key derivation function.|
+| algName | string | Yes  | No  | Algorithm of the key derivation function. |
 
 ### generateSecret
 
@@ -5449,15 +5722,15 @@ Generates a key based on the specified key derivation parameters. This API uses 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                  |
+| Name  | Type                    | Mandatory | Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| params   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function.|
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the derived key generated.|
+| params   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function. |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the derived key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -5517,20 +5790,20 @@ Generates a key based on the specified key derivation parameters. This API uses 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| params   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function.|
+| params   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function. |
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the derived key generated.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the derived key generated. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
@@ -5582,7 +5855,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 ### generateSecretSync<sup>12+</sup>
 
-generateSecretSync(spec: KdfSpec): DataBlob
+generateSecretSync(params: KdfSpec): DataBlob
 
 Generates a key based on the specified key derivation parameters. This API returns the result synchronously.
 
@@ -5592,22 +5865,22 @@ Generates a key based on the specified key derivation parameters. This API retur
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function.|
+| params   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function. |
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-| [DataBlob](#datablob) | Key derived.|
+| [DataBlob](#datablob) | Key derived. |
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.  |
 | 17620001 | memory error.          |
 | 17620002 | runtime error. |
 | 17630001 | crypto operation error. |

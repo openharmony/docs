@@ -59,7 +59,7 @@ CRL example:
 
 ## Constraints
 
-The certificate framework depends on the basic algorithm capabilities of the Crypto Architecture Kit, which does not support multi-thread concurrent operations. For details, see [Constraints](../../security/CryptoArchitectureKit/crypto-architecture-kit-intro.md#constraints).
+The certificate framework depends on the basic algorithm capabilities of the Crypto Architecture Kit, which does not support multi-thread concurrent operations. For details, see [Constraints](../CryptoArchitectureKit/crypto-architecture-kit-intro.md#constraints).
 
 
 ## Development

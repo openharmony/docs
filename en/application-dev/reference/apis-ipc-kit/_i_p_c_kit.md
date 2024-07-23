@@ -1,4 +1,4 @@
-# IPCKit
+# IPC Kit
 
 
 ## Overview

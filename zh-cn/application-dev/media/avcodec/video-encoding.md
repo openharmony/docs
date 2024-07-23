@@ -105,7 +105,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t width = 320; 
     // 配置视频帧高度（必须）
     int32_t height = 240;
-    // 配置视频颜色格式（必须）
+    // 配置视频像素格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -141,7 +141,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged  码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。数据处理请参考 : [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)。
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
     示例如下所示
     ```c++
@@ -227,11 +227,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力文档](obtain-supported-codecs.md)。
 
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
     - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例使用YUV的文件保存的颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
 
     ```c++
     // 配置视频帧速率
@@ -500,8 +500,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     注册回调函数指针集合OH_AVCodecCallback，包括：
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如格式变化等；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。 数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
@@ -650,7 +650,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     if (stride == width) {
         // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的buffer中
-        int32_t frameSize = width * height * 3 / 2; // NV12颜色格式下，每帧数据大小的计算公式
+        int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
         // 如果跨距不等于宽，需要用户按照跨距进行偏移

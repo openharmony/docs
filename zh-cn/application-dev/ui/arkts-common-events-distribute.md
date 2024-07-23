@@ -32,7 +32,7 @@ mouse类的输入源包含：mouse、touchpad、joystick
 
 - responseRegion：触摸热区设置
 
-- enable：禁用控制
+- enabled：禁用控制
 
 - 安全组件
 
@@ -56,19 +56,19 @@ mouse类的输入源包含：mouse、touchpad、joystick
 
 - 子组件对父组件触摸测试的影响，取决于最后一个没有被阻塞触摸测试的子组件。
 
-- hitTestMode.default:默认不配hitTestBehavior属性的效果，自身如果命中会阻塞兄弟，但是不阻塞孩子。
+- HitTestMode.Default：默认不配hitTestBehavior属性的效果，自身如果命中会阻塞兄弟，但是不阻塞孩子。
 
   ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
-- hitTestMode.none:自身不接收事件，但不会阻塞兄弟/孩子继续做触摸测试。
+- HitTestMode.None：自身不接收事件，但不会阻塞兄弟/孩子继续做触摸测试。
 
   ![hitTestModeNone](figures/hitTestModeNone.png)
 
-- hitTestMode.block：阻塞孩子的触摸测试，如果自身触摸测试命中，会阻塞兄弟及父亲的触摸测试。
+- HitTestMode.Block：阻塞孩子的触摸测试，如果自身触摸测试命中，会阻塞兄弟及父亲的触摸测试。
 
   ![hitTestModeBlock](figures/hitTestModeBlock.png)
 
-- hitTestMode.transparent：自身进行触摸测试，同时不阻塞兄弟及父亲。
+- HitTestMode.Transparent：自身进行触摸测试，同时不阻塞兄弟及父亲。
 
   ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 
@@ -90,13 +90,9 @@ ArkUI包含的安全组件有：[使用位置组件](../security/AccessToken/loc
 
 安全组件当前对触摸测试影响：如果有组件z序比安全组件靠前，且遮盖安全组件，则安全组件事件直接返回到父节点继续触摸测试。
 
-### 其他属性影响
-
-设置组件透明度为0，或者其他导致组件下树的行为，会导致触摸测试中断。
-
 ## 事件响应链的收集
 
-ArkUI事件响应链收集，根据右子树（按组件布局的先后层级）优先的后续遍历流程，流程为：
+ArkUI事件响应链收集，根据右子树（按组件布局的先后层级）优先的后序遍历流程，流程为：
 
 ```
 foreach(item=>(node.rbegin(),node.rend(){
@@ -107,10 +103,6 @@ node.collectEvent()
 
 响应链收集举例，按下图的组件树，hitTestBehavior属性均为默认，用户点按的动作如果发生在组件5上，则最终收集到的响应链，以及先后关系是5，3，1。
 
-因为组件3的hitTestBehavior属性为default，收集到事件后会阻塞兄弟节点，所以没有收集组件1的左子树。
+因为组件3的hitTestBehavior属性为Default，收集到事件后会阻塞兄弟节点，所以没有收集组件1的左子树。
 
   ![EventResponseChain](figures/EventResponseChain.png)
-
-
-
-

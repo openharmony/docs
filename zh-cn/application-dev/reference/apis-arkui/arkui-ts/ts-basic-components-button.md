@@ -61,7 +61,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
-| role<sup>12+</sup> | [ButtonRole](#buttonrole12枚举说明)         | 否   | 描述按钮的角色。<br/>默认值：ButtonRole.NORMAL              |
+| role<sup>12+</sup> | [ButtonRole](#buttonrole12枚举说明)         | 否   | 描述按钮的角色。<br/>默认值：ButtonRole.NORMAL              **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -253,6 +253,8 @@ role(value: ButtonRole)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -266,6 +268,8 @@ role(value: ButtonRole)
 contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 定制Button内容区的方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -334,6 +338,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称      | 描述                 |
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
@@ -342,6 +348,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 ## ButtonConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    | 说明              |
 | ------ | ------ | ---------------- |
@@ -352,6 +360,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 ## ButtonTriggerClickCallback<sup>12+</sup>对象说明
 
 定义ButtonConfiguration中使用的回调类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |

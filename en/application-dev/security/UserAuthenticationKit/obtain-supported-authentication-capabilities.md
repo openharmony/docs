@@ -22,8 +22,8 @@ For details about the parameters, return value, and error codes, see [getAvailab
 Example: Check whether the device supports facial authentication of ATL1 or higher.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // Check whether the specified authentication capabilities are supported.
 try {    

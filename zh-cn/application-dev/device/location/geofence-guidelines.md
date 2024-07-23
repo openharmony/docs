@@ -77,6 +77,7 @@
    并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
    ```ts
+   let wantAgentObj : object | undefined = undefined;
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {

@@ -327,45 +327,27 @@ onBackupServiceDied : Callback&lt;undefined&gt;
 
 ### onResultReport
 
-onResultReport : AsyncCallback&lt;string&gt;
+onResultReport (bundleName: string, result: string)
 
-回调函数。当应用恢复结束后，如果成功触发回调，返回恢复数量或应用异常信息
+回调函数。当应用备份/恢复结束后，如果成功触发回调，返回应用包名及应用备份/恢复信息（备份/恢复数量或异常信息等）。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 **返回值：**
 
-| 参数名     | 类型          | 必填 | 说明                                                        |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| result     | string        | 是   | json格式返回的应用名称及应用信息                                          |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500003 | Backup or restore timed out     |
-| 13500004 | Application extension death     |
-| 13600001 | IPC error                       |
-| 13900005 | I/O error                       |
-| 13900011 | Out of memory                   |
-| 13900020 | Invalid argument                |
-| 13900025 | No space left on device         |
-| 13900042 | Unknown error                   |
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| bundleName | string | 是   | 应用包名                        |
+| result     | string | 是   | json格式返回的应用备份/恢复信息 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
 
-  onResultReport: (err: BusinessError, result: string) => {
-    if (err) {
-      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('onResultReport success, result: ' + result);
+  onResultReport: (bundleName: string, result: string) => {
+    console.info('onResultReport bundleName : ' + bundleName);
+    console.info('onResultReport result : ' + result);
   }
   ```
 
@@ -632,7 +614,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
-| timeout | number | 是   | 备份或恢复的限制时长，单位:ms |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围(0,3600000]，单位:ms |
 
 **返回值：**
 
@@ -843,7 +825,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
 
-从API version 12开始, 新增可选参数infos, 可携带备份所需要的信息
+从API version 12开始, 新增可选参数infos, 可携带备份时各应用所需要的扩展信息, infos和bundlesToBackup根据索引一一对应。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -854,7 +836,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份所需信息的数组, 需与bundlesToBackup相同索引的内容对应, 从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -928,31 +910,51 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     try {
       let backupApps: Array<string> = [
         "com.example.hiworld",
+        "com.example.myApp"
       ];
       await sessionBackup.appendBundles(backupApps);
       console.info('appendBundles success');
+      // 携带扩展参数, 其中infos,details和外层的type节点为固定节点
       let infos: Array<string> = [
         `
          {
           "infos":[
             {
-              "details": [
+              "details": [ // 对应com.example.hiworld的info
                 {
                   "detail": [
                     {
-                      "source": "com.example.hiworld", // 应用旧系统包名
-                      "target": "com.example.helloworld" // 应用新系统包名
+                      "encryption_symkey": "",
+                      "encryption_algname": ""
                     }
-                  ]，
-                  "type": "app_mapping_relation"
+                  ],
+                  "type": "encryption_info"
                 }
               ],
-              "type":"unitcast"
+              "type":"unicast"
+            }
+          ]
+         },
+         {
+          "details": [ // 对应com.example.myApp的info
+              {
+                "detail": [
+                    {
+                      "isSameDevice": "",
+                      "deviceType": ""
+                    }
+                  ],
+                  "type": "encryption_info"
+                }
+              ],
+              "type":"unicast"
             }
           ]
          }
-        `
-      ]
+        ]
+      }
+      `
+     ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
@@ -1126,7 +1128,7 @@ constructor(callbacks: GeneralCallbacks);
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次，使用callback异步回调。
 
 > **说明：**
 >
@@ -1234,8 +1236,8 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息。当前整个流程中，
-在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
+添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息，infos和bundlesToBackup根据索引一一对应。
+当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1253,7 +1255,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos<sup>12+</sup>  | string[] | 否   | 备份所需信息的数组，需与bundlesToBackup数组相同索引的内容对应。从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -1332,6 +1334,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       ];
       await sessionRestore.appendBundles(fileData.fd, restoreApps);
       console.info('appendBundles success');
+      // 携带扩展参数的调用
       let infos: Array<string> = [
         `
          {
@@ -1573,7 +1576,7 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成每个包所有文件拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 这个接口仅在调用方完成所有待恢复数据的写入操作后才能调用，且调用方需要确保待写入恢复数据的一致性与完整性。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1605,11 +1608,11 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1619,7 +1622,8 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
@@ -1682,7 +1686,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成每个包的拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 这个接口仅在调用方完成所有待恢复数据的写入操作后才能调用，且调用方需要确保待写入恢复数据的一致性与完整性。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1719,11 +1723,11 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
@@ -1740,7 +1744,8 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           publishFile(file);
         }
@@ -1822,11 +1827,11 @@ release(): Promise&lt;void&gt;
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1836,6 +1841,8 @@ release(): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,

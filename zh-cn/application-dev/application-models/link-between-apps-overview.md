@@ -9,12 +9,12 @@
 
 - 指向性跳转：拉起方应用明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
 
-    - 指定应用链接（推荐）：通过[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
+    - 指定应用链接（推荐）：通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
 
 
     - 指定Ability（不推荐）：通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口指定具体的Ability，显式拉起目标应用页面。
 
-    > 说明：
+    > **说明：**
     >
     > API 11及以前版本，可以使用显式want拉起其他应用。从API 12开始，已不再支持三方应用使用该方式拉起其他应用。
 
@@ -44,7 +44,7 @@ scheme://host[:port]/path/
 > 
 > 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
 > 
-> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
+> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
 
 ### 应用链接跳转的运作机制
 
@@ -64,7 +64,7 @@ scheme://host[:port]/path/
 | 类型 | Deep Linking | App Linking |
 | -------- | -------- |-------- |
 | 实现效果 | - 如果已安装目标应用，将直接拉起目标应用。<br/> - 如果未安装目标应用，将提示16000019错误码。 | - 如果已安装目标应用，将直接拉起目标应用。<br/> - 如果未安装目标应用，会跳转到对应的浏览器来打开网址。 |
-| 约束限制 | - URL的Shceme可以自定义。<br/> - 无需校验域名。 | - URL的Shceme必须为https。<br/> - 需要云侧服务器进行域名校验。|
+| 约束限制 | - URL的Scheme可以自定义。<br/> - 无需校验域名。 | - URL的Scheme必须为https。<br/> - 需要云侧服务器进行域名校验。|
 | 安全性 | 缺乏域名校验机制，容易被其他应用所仿冒。| 通过域名校验机制，可以匹配到受信的目标应用。|
 
 

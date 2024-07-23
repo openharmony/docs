@@ -100,5 +100,5 @@
    ```
    如果不主动结束定位可能导致设备功耗高，耗电快；建议在不需要获取定位信息时及时结束定位。
    ```ts
-   geoLocationManager.off('locationChange', locationChange);
+   geoLocationManager.off('locationChange', locationCallback);
    ```

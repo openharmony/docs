@@ -892,7 +892,7 @@ ws.off('headerReceive');
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 必填 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
@@ -913,16 +913,17 @@ ws.off('headerReceive');
 | keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
+type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 网络代理配置信息
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称    | 类型   | 必填 | 说明                      |
-| ------ | ------ | --- |------------------------- |
-| 'system' | string | 否  |  使用系统默认网络代理。 |
-| 'no-proxy' | string | 否  |  不使用网络代理。 |
-| HttpProxy | Object | 否  | 使用指定的网络代理。 |
+|  类型   | 说明                      |
+| ------  |------------------------- |
+| 'system'   |  使用系统默认网络代理。 |
+| 'no-proxy' |  不使用网络代理。 |
+| HttpProxy  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
@@ -951,16 +952,17 @@ ws.off('headerReceive');
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
 ## ResponseHeaders<sup>12+</sup>
+type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 服务器发送的响应头。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 类型   | 必填 | 说明                                                         |
-| ------ | ---- | ------------------------------------------------------------ |
-| [k:string]:string | 否   | header数据类型为键值对 |
-| string[] | 否   | header数据类型为字符串 |
-| undefined | 否   | header数据类型为undefined |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [k:string]:string | header数据类型为键值对 |
+| string[]  | header数据类型为字符串 |
+| undefined | header数据类型为undefined |
 
 ## close错误码说明
 

@@ -14,19 +14,17 @@ import { appManager } from '@kit.AbilityKit';
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 否 | 是 | 进程ID。 |
-| uid | number | 否 | 是 | 用户ID。 |
-| processName | string | 否 | 是 | 进程名称。 |
-| bundleNames | Array&lt;string&gt; | 否 | 是 | 进程中所有运行的Bundle名称。 |
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 否 | 是 | 当前进程运行状态。|
-| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | 否 | 是 | 当前进程运行的包类型。 |
-| appCloneIndex          | number   | 否   | 否   | 分身应用索引。                  |
+| pid | number | 否 | 是 | 进程ID。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| uid | number | 否 | 是 | 用户ID。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| processName | string | 否 | 是 | 进程名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| bundleNames | Array&lt;string&gt; | 否 | 是 | 进程中所有运行的Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 否 | 是 | 当前进程运行状态。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | 否 | 是 | 当前进程运行的包类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| appCloneIndex<sup>12+</sup> | number   | 否   | 否   | 分身应用索引。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## 使用说明
 
