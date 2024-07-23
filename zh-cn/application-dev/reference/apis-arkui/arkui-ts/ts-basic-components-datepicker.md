@@ -135,6 +135,22 @@ selectedTextStyle(value: PickerTextStyle)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
 
+### digitalCrownSensitivity
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠响应事件灵敏度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名      | 类型                             | 必填 | 说明                                                         |
+| ----------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| sensitivity | Optional&lt;CrownSensitivity&gt; | 否   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中<br/>其他支持值：<br/>CrownSensitivity.LOW，响应速度较慢<br/>CrownSensitivity.HIGH，响应速度较快 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -220,3 +236,21 @@ struct DatePickerExample {
 ```
 
 ![datePicker](figures/DatePickerApi10.gif)
+
+### 示例1
+
+```
+@Entry
+@Component
+
+struct DatePickerExample {
+  build() {
+    Column() {
+      DatePicker()
+        .digitalCrownSensitivity(CrownSensitivity.LOW)
+    }
+  }
+}
+```
+
+![image-20240723190917522](C:\Users\liyangcc\AppData\Roaming\Typora\typora-user-images\image-20240723190917522.png)
