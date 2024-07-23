@@ -898,7 +898,7 @@ static getShared(): LocalStorage
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -1091,7 +1091,7 @@ setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../quick-start/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
-与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+与[setAndLink](#setandlink9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
 > **说明：**<br/>
 > 从API version 12开始，LocalStorage支持[Map](../../../quick-start/arkts-localstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-localstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-localstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-localstorage.md#localstorage支持联合类型)。
@@ -1467,6 +1467,17 @@ set(newValue: T): void
 AppStorage.setOrCreate('PropA', 47);
 let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
 ref1?.set(1); //  ref1.get()=1
+let a: Map<string, number> = new Map([['1', 0]]);
+let ref2 = AppStorage.setAndRef('MapA', a);
+ref2.set(a);
+let b: Set<string> = new Set('1');
+let ref3 = AppStorage.setAndRef('SetB', b);
+ref3.set(b);
+let c: Date = new Date('2024');
+let ref4 = AppStorage.setAndRef('DateC', c);
+ref4.set(c);
+ref2.set(null);
+ref3.set(undefined);
 ```
 
 ### info<sup>12+</sup>
@@ -1550,13 +1561,25 @@ abstract set(newValue: T): void
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
+// 从API12开始支持Map、Set、Date类型，支持null、undefined以及联合类型。
+let a: Map<string, number> = new Map([['1', 0]]);
+let prop2 = AppStorage.setAndProp('MapA', a);
+prop2.set(a);
+let b: Set<string> = new Set('1');
+let prop3 = AppStorage.setAndProp('SetB', b);
+prop3.set(b);
+let c: Date = new Date('2024');
+let prop4 = AppStorage.setAndProp('DateC', c);
+prop4.set(c);
+prop2.set(null);
+prop3.set(undefined);
 ```
 
 ### aboutToBeDeleted<sup>10+</sup>
 
 abstract aboutToBeDeleted(): void
 
-取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
+取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2201,7 +2224,7 @@ const as3: FatherSampleClass = PersistenceV2.connect(FatherSampleClass) as Fathe
 @Entry
 @Component
 struct SampleComp {
-  v: FatherSampleClass = as1;
+  v: FatherSampleClass = as2;
 
   build() {
     Column() {
