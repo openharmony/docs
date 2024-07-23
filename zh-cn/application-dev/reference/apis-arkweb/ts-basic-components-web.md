@@ -1798,7 +1798,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| boolean | 当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1882,7 +1882,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| boolean | 当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1967,7 +1967,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| boolean | 当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2061,7 +2061,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| boolean | 当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -5238,6 +5238,8 @@ grant(config: ScreenCaptureConfig): void
 | Other     | 5 | 其他类型。                       |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
+
+支持以按位或的方式使用此枚举。例如，如果需要同时支持CAN_CUT、CAN_COPY和CAN_SELECT_ALL，可使用CAN_CUT | CAN_COPY | CAN_SELECT_ALL或11。
 
 | 名称            | 值 | 描述     |
 | -------------- | -- | -------- |
