@@ -31,7 +31,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
-
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
 **示例：**
 
 加载在线网页。
@@ -90,6 +90,26 @@ Web组件统一渲染模式。
     }
   }
    ```
+
+Web组件指定共享渲染进程。
+
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+      }
+    }
+  }
+  ```
 
 加载本地网页。
 
@@ -3042,13 +3062,13 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-网页进程无响应时触发该回调函数。
+渲染进程无响应时触发该回调函数。
 
 **参数：**
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 网页进程无响应时触发的回调。 |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 渲染进程无响应时触发的回调。 |
 
 **示例：**
 
@@ -3077,13 +3097,13 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
 onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
-网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
+渲染进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
 
 **参数：**
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 渲染进程由无响应状态变回正常运行状态时触发的回调。 |
 
 **示例：**
 
@@ -7993,38 +8013,38 @@ type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
-触发网页进程无响应回调的原因。
+触发渲染进程无响应回调的原因。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
-| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| INPUT_TIMEOUT                  | 0 | 发送给渲染进程的input事件响应超时。   |
 | NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
-提供网页进程无响应的详细信息。
+提供渲染进程无响应的详细信息。
 
 | 名称                     | 类型   | 必填 | 描述                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
 | pid | number | 是   | 网页的进程id。 |
-| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发渲染进程无响应回调的原因。 |
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
 
-网页进程无响应时触发的回调。
+渲染进程无响应时触发的回调。
 
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 渲染进程无响应的详细信息。 |
 
 ## OnRenderProcessRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessRespondingCallback = () => void
 
-网页进程由无响应状态变回正常运行状态时触发该回调。
+渲染进程由无响应状态变回正常运行状态时触发该回调。
 
 ## ViewportFit<sup>12+</sup>
 
