@@ -1,6 +1,37 @@
-# 全球化子系统接口废弃说明
 
-## cl.golbal.1 raw_file模块接口废弃
+# 全球化子系统变更说明
+
+## cl.global.1 资源匹配逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+插入SIM卡时未能获取到正确的mcc目录资源，影响开发者差异化定制资源
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：应用配置了mcc目录等差异化资源，插sim卡显示的是默认语言目录下资源，未插sim卡显示的是mcc目录下资源
+
+变更后：插sim卡显示的是mcc目录下资源，未插sim卡显示的是默认语言目录下资源
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口/组件**
+
+SystemCapability.Global.ResourceManager获取资源相关接口。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.golbal.2 raw_file模块接口废弃
 
 **访问级别**
 
@@ -37,7 +68,7 @@
 
 2.变更后则需要适配新的接口，调用新接口 OH_ResourceManager_GetRawFileDescriptorData 获取rawfile文件描述符来读取rawfile文件内容，调用新接口 OH_ResourceManager_ReleaseRawFileDescriptorData 来释放已获取到的rawfile文件描述符
 
-## cl.golbal.2 ohresmgr模块接口废弃
+## cl.golbal.3 ohresmgr模块接口废弃
 
 **访问级别**
 
