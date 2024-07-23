@@ -173,7 +173,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
-       if (http.ResponseCode.ResponseCode.OK === code) {
+       if (http.ResponseCode.OK === code) {
          let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
          let imageSource: image.ImageSource = image.createImageSource(imageData);
        
