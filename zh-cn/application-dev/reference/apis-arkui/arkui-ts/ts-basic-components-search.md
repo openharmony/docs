@@ -29,7 +29,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 名称                    | 参数类型                                         | 描述                                           |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton | value: string,<br />option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。<br />默认值：<br />SearchButtonOptions：{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}               |
+| searchButton | value: string,<br />option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。<br />默认值：<br />SearchButtonOptions：{<br />fontSize: '16fp',<br />fontColor: '#ff3f97e9'<br />}               |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。<br />默认值：'#99182431'。   |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
