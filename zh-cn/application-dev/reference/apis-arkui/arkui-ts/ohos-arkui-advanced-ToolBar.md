@@ -57,12 +57,12 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 |------------------------------------|-----------------------------------------------------------| -------- |---------------------------------------------------------------------------------------------------------------------|
 | content                            | [ResourceStr](ts-types.md#resourcestr)                    | 是 | 工具栏子项的文本。                                                                                                           |
 | action                             | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。                                                                                                          |
-| icon                               | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标,toolBarSymbol有传入参数时，icon不生效。                                                                               |
-| state                              | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态，默认为ENABLE。                                                                                                 |
+| icon                               | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>toolBarSymbolOptions有传入参数时，icon不生效。                                                                   |
+| state                              | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ENABLE。                                                                                                 |
 | iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。    |
 | activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。      |
-| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。        |
+| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>fontColor默认值与图标色一致、fontSize默认值为24vp。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ## ToolBarModifier<sup>13+</sup>
