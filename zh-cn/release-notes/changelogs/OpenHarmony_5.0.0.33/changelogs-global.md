@@ -17,7 +17,11 @@
 
 变更前：应用配置了mcc目录等差异化资源，插sim卡显示的是默认语言目录下资源，未插sim卡显示的是mcc目录下资源
 
+如：插卡时会显示WI-FI字串，不插卡时会显示WLAN字串
+
 变更后：插sim卡显示的是mcc目录下资源，未插sim卡显示的是默认语言目录下资源
+
+如：插卡时会显示WLAN字串，不插卡时会显示WI-FI字串
 
 **变更发生版本**
 
@@ -29,7 +33,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **适配指导**
 
-默认行为变更，无需适配。
+变更前如果有在默认语言目录配置WLAN字串，mcc目录配置WI-FI字串，变更后需要适配将WLAN字串配置在mcc目录，WI-FI字串配置在默认语言目录
 
 ## cl.golbal.2 raw_file模块接口废弃
 
@@ -45,7 +49,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 该变更为不兼容变更
 
-  1.若变更后开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题
+  1.若变更前开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题
 
   2.变更前开发者使用了 OH_ResourceManager_GetRawFileDescriptor 和OH_ResourceManager_ReleaseRawFileDescriptor 接口，变更后则需要适配新的接口。
 
@@ -80,9 +84,9 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **废弃影响**
 
-该变更为不兼容变更
+该变更为兼容变更
 
-接口已废弃不推荐使用，推荐使用新接口，若使用废弃接口会导致后续版本调用接口出现异常
+接口已废弃不推荐使用，推荐适配使用新接口
 
 
 **废弃发生的版本**
