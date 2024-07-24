@@ -30,7 +30,7 @@ Shuts down the system.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Shutdown reason. The value must be a string.|
+| reason | string | Yes   | Shutdown reason. The value must be a string. |
 
 **Error codes**
 
@@ -70,7 +70,7 @@ The device is restarted.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Reason for system reboot.|
+| reason | string | Yes   | Reason for system reboot. |
 
 **Example:**
 
@@ -92,9 +92,9 @@ The device is restarted.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
+| Name | Type  | Mandatory | Description      |
 | ------ | ------ | ---- | ---------- |
-| reason | string | Yes  | Restart reason. The value must be a string.|
+| reason | string | Yes  | Restart reason. The value must be a string. |
 
 **Error codes**
 
@@ -127,9 +127,9 @@ Wakes up a device.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
+| Name | Type  | Mandatory | Description      |
 | ------ | ------ | ---- | ---------- |
-| detail | string | Yes  | Wakeup reason. The value must be a string.|
+| detail | string | Yes  | Wakeup reason. The value must be a string. |
 
 **Error codes**
 
@@ -162,7 +162,7 @@ Hibernates a device.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
+| Name | Type  | Mandatory | Description      |
 | ------ | ------ | ---- | ---------- |
 | isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately. If this parameter is not specified, the default value **false** is used. The system automatically determines when to enter the hibernation state.<br>**NOTE**: This parameter is supported since API version 10.|
 
@@ -174,6 +174,8 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -199,10 +201,10 @@ Sets the power mode of this device. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                        |
+| Name  | Type                                | Mandatory | Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode     | DevicePowerMode | Yes  | Power mode. The value must be an enum.                                                  |
-| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.<br> If the power mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.<br> If the power mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -239,15 +241,15 @@ Sets the power mode of this device. This API uses a promise to return the result
 
 **Parameters**
 
-| Name| Type                                | Mandatory| Description      |
+| Name | Type                                | Mandatory | Description      |
 | ------ | ------------------------------------ | ---- | ---------- |
-| mode   | DevicePowerMode | Yes  | Power mode. The value must be an enum.|
+| mode   | DevicePowerMode | Yes  | Power mode. The value must be an enum. |
 
 **Return value**
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
@@ -284,7 +286,7 @@ Set the screen-off timeout duration.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| timeout | number | Yes   | Screen-off timeout duration, in milliseconds. A value greater than **0** indicates the specified timeout duration is used, and the value **-1** indicates that the default timeout duration is used. Other values are invalid.|
+| timeout | number | Yes   | Screen-off timeout duration, in milliseconds. A value greater than **0** indicates the specified timeout duration is used, and the value **-1** indicates that the default timeout duration is used. Other values are invalid. |
 
 **Error codes**
 
@@ -294,8 +296,8 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
-| 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
+
 
 **Example:**
 

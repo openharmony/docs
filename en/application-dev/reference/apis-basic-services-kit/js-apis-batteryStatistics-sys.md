@@ -11,7 +11,7 @@ The **batteryStatistics** module provides APIs for querying software and hardwar
 ## Modules to Import
 
 ```js
-import batteryStats from '@ohos.batteryStatistics';
+import {batteryStats} from '@kit.BasicServicesKit';
 ```
 
 ## batteryStats.getBatteryStats
@@ -28,7 +28,7 @@ Obtains the power consumption information list. This API uses a promise to retur
 
 | Type                                                 | Description                           |
 | ----------------------------------------------------- | ------------------------------- |
-| Promise<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Promise used to return the power consumption information list.|
+| Promise<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Promise used to return the power consumption information list. |
 
 **Error codes**
 
@@ -62,9 +62,9 @@ Obtains the power consumption information list. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                                                       | Mandatory| Description                                                        |
+| Name  | Type                                                       | Mandatory | Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained (that is, **Array<[BatteryStatsInfo](#batterystatsinfo)>>**). If the operation failed, **err** is an error object.|
+| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the obtained Array<[BatteryStatsInfo](#batterystatsinfo)>. Otherwise, **err** is an error object. **AsyncCallback** has encapsulated an API of the **BatteryStatsInfo** class. |
 
 **Error codes**
 
@@ -73,6 +73,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 | Code  | Error Message   |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -98,15 +99,15 @@ Obtains the power consumption of an application.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description       |
+| Name | Type  | Mandatory | Description       |
 | ------ | ------ | ---- | ----------- |
-| uid    | number | Yes  | Application UID.|
+| uid    | number | Yes  | Application UID. |
 
 **Return value**
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| number | Power consumption of the application with this UID, in unit of mAh.|
+| number | Power consumption of the application with this UID, in unit of mAh. |
 
 **Error codes**
 
@@ -115,6 +116,8 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 | Code  | Error Message   |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -139,15 +142,15 @@ Obtains the proportion of the power consumption of an application.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description       |
+| Name | Type  | Mandatory | Description       |
 | ------ | ------ | ---- | ----------- |
-| uid    | number | Yes  | Application UID.|
+| uid    | number | Yes  | Application UID. |
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| number | Proportion of the power consumption of an application with this UID.|
+| number | Proportion of the power consumption of an application with this UID. |
 
 **Error codes**
 
@@ -156,6 +159,8 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 | Code  | Error Message   |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -180,15 +185,15 @@ Obtains the power consumption of a hardware unit according to the consumption ty
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
+| Name | Type                               | Mandatory | Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type.|
+| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type. The value must be an enum. |
 
 **Return value**
 
 | Type  | Description                                      |
 | ------ | ------------------------------------------ |
-| number | Power consumption of the hardware unit corresponding to the power consumption type, in unit of mAh.|
+| number | Power consumption of the hardware unit corresponding to the power consumption type, in unit of mAh. |
 
 **Error codes**
 
@@ -197,6 +202,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 | Code  | Error Message   |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -221,15 +227,15 @@ Obtains the proportion of the power consumption of a hardware unit according to 
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
+| Name | Type                               | Mandatory | Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type.|
+| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type. The value must be an enum. |
 
 **Return value**
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
-| number | Proportion of the power consumption of the hardware unit corresponding to the power consumption type.|
+| number | Proportion of the power consumption of the hardware unit corresponding to the power consumption type. |
 
 **Error codes**
 
@@ -238,6 +244,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 | Code  | Error Message   |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -260,11 +267,11 @@ Describes the device power consumption information.
 
 ### Attributes
 
-| Name | Type                               | Readable| Writable| Description                  |
+| Name | Type                               | Readable | Writable | Description                  |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
 | uid   | number                              | Yes  | No  | UID related to power consumption information.   |
 | type  | [ConsumptionType](#consumptiontype) | Yes  | No  | Power consumption type.  |
-| power | number                              | Yes  | No  | Power consumption, in unit of mAh.|
+| power | number                              | Yes  | No  | Power consumption, in unit of mAh. |
 
 ## ConsumptionType
 
@@ -279,7 +286,7 @@ Enumerates power consumption types.
 | CONSUMPTION_TYPE_INVALID   | -17  | Unknown type.       |
 | CONSUMPTION_TYPE_APP       | -16  | Power consumption of an application.     |
 | CONSUMPTION_TYPE_BLUETOOTH | -15  | Power consumption of Bluetooth.     |
-| CONSUMPTION_TYPE_IDLE      | -14  | Power consumption when the CPU is idle.|
+| CONSUMPTION_TYPE_IDLE      | -14  | Power consumption when the CPU is idle. |
 | CONSUMPTION_TYPE_PHONE     | -13  | Power consumption of a phone call. |
 | CONSUMPTION_TYPE_RADIO     | -12  | Power consumption of wireless communication. |
 | CONSUMPTION_TYPE_SCREEN    | -11  | Power consumption of the screen.     |
