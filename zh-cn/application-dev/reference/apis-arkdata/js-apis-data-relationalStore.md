@@ -742,8 +742,6 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
 | DATA_CHANGE  | 0   | 表示是数据发生变更。   |
@@ -5689,8 +5687,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 手动执行对所有分布式表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5707,7 +5703,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 | **错误码ID** | **错误信息**        |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.     |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. 5. The callback must be a function. |
 | 801       | Capability not supported.       |
 | 14800014  | Already closed.        |
@@ -5734,8 +5729,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 手动执行对所有分布式表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5757,7 +5750,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 | **错误码ID** | **错误信息**    |
 |-----------|------------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. |
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.           |
@@ -5784,8 +5776,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 手动执行对指定表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5803,7 +5793,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 | **错误码ID** | **错误信息**                                                                                                                                                                                                                  |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.   |
@@ -5832,8 +5821,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 手动执行对指定表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5856,7 +5843,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 | **错误码ID** | **错误信息**     |
 |-----------|---------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.   |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type |
 | 801       | Capability not supported.    |
 | 14800014  | Already closed.  |
