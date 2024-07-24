@@ -86,10 +86,10 @@
    
    let avConfig: media.AVTranscoderConfig = {
      audioBitrate: 100000, // 音频比特率
-     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
-     videoBitrate: 200000, // 视频比特率
-     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式，当前只支持avc和hevc
+     audioCodec: media.CodecMimeType.AUDIO_AAC,
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+     videoBitrate: 2000000, // 视频比特率
+     videoCodec: media.CodecMimeType.VIDEO_AVC,
      videoFrameWidth: 640,  // 视频分辨率的宽
      videoFrameHeight: 480, // 视频分辨率的高
    }
