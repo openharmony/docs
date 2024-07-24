@@ -4434,8 +4434,8 @@ avTranscoder.off('complete');
 | fileFormat         | [ContainerFormatType](#containerformattype8) | 否   | 输出音视频文件的封装格式，当前仅支持m4a。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate         | number | 否   | 输出视频的码率，单位为比特率（bps）。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 是   | 输出视频的编码格式，当前仅支持avc和hevc。|
-| videoFrameWidth        | number | 是   | 输出视频帧的宽，单位为比特率（px）。|
-| videoFrameHeight        | number | 是   | 输出视频帧的高，单位为比特率（px）。|
+| videoFrameWidth        | number | 是   | 输出视频帧的宽，单位为像素（px）。|
+| videoFrameHeight        | number | 是   | 输出视频帧的高，单位为像素（px）。|
 
 
 
