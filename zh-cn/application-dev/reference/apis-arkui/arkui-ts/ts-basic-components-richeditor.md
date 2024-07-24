@@ -427,7 +427,7 @@ onDidChange(callback: Callback\<OnDidChangeCallback\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | Callback<[OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12)> | 是 | 图文变化前后的内容范围。 |
+| callback | Callback<[OnDidChangeCallback](#ondidchangecallback12)> | 是 | 图文变化前后的内容范围。 |
 
 ### onCut<sup>12+</sup>
 
@@ -1246,7 +1246,7 @@ onContentChanged(listener: StyledStringChangedListener): void;
 
 | 参数名   | 类型   | 必填   | 说明                |
 | ----- | ------ | ---- | ------------------- |
-| listener | [StyledStringChangedListener](ts-universal-attributes-text-style.md#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
+| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
 
 ## RichEditorSelection
 
@@ -1640,7 +1640,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
-| replacementString | [StyledString](#styledstring) | 是 | 用于替换的属性字符串。 |
+| replacementString | [StyledString](./ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
 ## 示例
 
