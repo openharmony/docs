@@ -2654,3 +2654,87 @@ struct Index {
   }
 }
 ```
+
+### lengthMetricsUnit<sup>12+</sup>
+
+set lengthMetricsUnit(unit: LengthMetricsUnit)
+
+设置RenderNode各个属性使用的单位。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                                 | 必填 | 说明                               |
+| ------ | -------------------------------------------------------------------- | ---- | ---------------------------------- |
+| unit   | [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   | 设置RenderNode各个属性使用的单位。 |
+
+get lengthMetricsUnit(): LengthMetricsUnit
+
+获取RenderNode各个属性使用的单位。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
+| [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | 获取RenderNode各个属性使用的单位，默认值为LengthMetricsUnit.DEFAULT。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+import { LengthMetricsUnit } from '@ohos.arkui.node';
+
+class BaseRenderNode extends RenderNode {
+  constructor() {
+    super();
+    this.lengthMetricsUnit = LengthMetricsUnit.PX;
+  }
+}
+
+class MyRenderNode extends BaseRenderNode {
+  draw(context: DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.rotation = { x: 0, y: 0, z: 45 };
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
