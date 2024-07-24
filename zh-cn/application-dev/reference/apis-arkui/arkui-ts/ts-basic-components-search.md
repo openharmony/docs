@@ -44,7 +44,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 | 参数名 | 类型                                                  | 必填 | 说明                         |
 | ------ | ----------------------------------------------------- | ---- | ---------------------------- |
 | value  | string                                                | 是   | 搜索框末尾搜索按钮文本内容。 |
-| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}         |
+| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />fontColor: '#ff3f97e9'<br />}         |
 
 ### placeholderColor
 
