@@ -2482,7 +2482,7 @@ struct MyComponent {
 当List下拉到底的时候，屏闪效果如下图  
 ![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
 
-这是onDataReloaded的缺陷，在onScrollIndex中被调用有闪屏的问题，在onClick中被调用就没有这个问题。目前只能采取规避的方案：用onDatasetChange代替onDataReloaded。这个方案有个额外的好处，能提升加载性能。
+我们用onDatasetChange代替onDataReloaded来修复闪屏的问题。这个方案有个额外的好处，能提升加载性能。
 ```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
