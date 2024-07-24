@@ -192,11 +192,3 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
-
-## 相关实例
-
-针对HTTP数据请求，有以下相关实例可供参考：
-
-- [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
-
-- [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
