@@ -191,6 +191,8 @@ caretColor(value: ResourceColor)
 
 设置输入框光标、手柄颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -204,6 +206,8 @@ caretColor(value: ResourceColor)
 selectedBackgroundColor(value: ResourceColor)
 
 设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -234,6 +238,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 enterKeyType(value: EnterKeyType)
 
 设置软键盘输入法回车键类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -394,6 +400,8 @@ onEditingChange(callback: Callback\<boolean\>)
 
 文本编辑状态发生改变时触发该回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -407,6 +415,8 @@ onEditingChange(callback: Callback\<boolean\>)
 onSubmit(callback: SubmitCallback)
 
 按下软键盘输入法回车键触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -424,6 +434,8 @@ onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -440,6 +452,8 @@ onDidChange(callback: OnDidChangeCallback)
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -454,6 +468,8 @@ onCut(callback: Callback\<CutEvent\>)
 
 完成剪切前，触发回调。系统的默认剪切行为，只支持纯文本的剪切。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -467,6 +483,8 @@ onCut(callback: Callback\<CutEvent\>)
 onCopy(callback: Callback\<CopyEvent\>)
 
 完成复制前，触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -535,7 +553,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | offsetInSpan                  | [number, number]                         | 是    | 文本Span内容里有效内容的起始和结束位置。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 | SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。 |
+| paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | previewText<sup>12+</sup>      | string                                   | 否    | 文本Span预上屏内容。              <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
@@ -580,9 +598,9 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily | string                                   | 是    | 字体列表。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration | [DecorationStyleResult](ts-universal-styled-string.md#decorationstyleresult) | 是    | 文本装饰线样式信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| lineHeight<sup>12+</sup> | number       | 否    | 文本行高，默认单位为fp。          |
-| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。    |
-| fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。 |
+| lineHeight<sup>12+</sup> | number       | 否    | 文本行高，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 >  **说明：**
 >
@@ -683,6 +701,8 @@ RichEditor初始化参数。
 
 RichEditor初始化参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                       | 必填   | 说明      |
@@ -711,6 +731,8 @@ setSelection的选择项配置。
 | onDetectResultUpdate | (result:&nbsp;string)&nbsp;=&gt;&nbsp;void                            | 否    | 文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
 
 ## RichEditorChangeValue<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                                       | 必填   | 说明                  |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
@@ -840,6 +862,8 @@ isEditing(): boolean
 
 获取当前富文本的编辑状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -853,6 +877,8 @@ isEditing(): boolean
 stopEditing(): void
 
 退出编辑态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1258,6 +1284,8 @@ setStyledString(styledString: StyledString): void
 
 设置富文本组件显示的属性字符串
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1272,6 +1300,8 @@ getStyledString(): MutableStyledString;
 
 获取富文本组件显示的属性字符串
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1285,6 +1315,8 @@ getStyledString(): MutableStyledString;
 onContentChanged(listener: StyledStringChangedListener): void
 
 注册文本内容变化回调，该回调会在后端程序导致文本内容变更时触发
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1386,6 +1418,8 @@ SymbolSpan样式选项。
 
 段落样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                       | 必填   | 说明                 |
@@ -1447,9 +1481,9 @@ SymbolSpan样式选项。
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration               | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface) | 否    | 设置文本装饰线样式及其颜色。<br/>type默认值:TextDecorationType.None。<br/>color默认值：跟随字体颜色。<br/>style默认值:TextDecorationStyle.SOLID。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>仅支持设置阴影模糊半径、阴影的颜色、阴影的偏移量。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| lineHeight<sup>12+</sup>    | number \| string \| [Resource](ts-types.md#resource) | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 |
-| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp, 不支持设置百分比字符串。|
-| fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/|
+| lineHeight<sup>12+</sup>    | number \| string \| [Resource](ts-types.md#resource) | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp, 不支持设置百分比字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## PlaceholderStyle<sup>12+</sup>
 
@@ -1572,6 +1606,8 @@ SymbolSpan样式选项。
 
 定义用户剪切事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型          | 必填   | 说明                            |
@@ -1581,6 +1617,8 @@ SymbolSpan样式选项。
 ## CopyEvent<sup>12+</sup>
 
 定义用户拷贝事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1614,6 +1652,8 @@ SymbolSpan样式选项。
 ## SubmitCallback<sup>12+</sup>
 
 软键盘按下回车键时的回调事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
