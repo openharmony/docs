@@ -176,3 +176,80 @@ Menu组件的BindContextMenu接口
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.6 Repeat设置totalCount属性行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+totoalCount表示UI显示的数据个数。Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度，与totalCount定义不符。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度
+
+变更后：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为totalCount值
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Repeat组件。
+
+**适配指导**
+
+如果开发者想要显示的数据个数为数据长度时，需要将totalCount值设置为数组长度。示例代码如下：
+
+```ts
+@Entry
+@ComponentV2
+struct TestPage {
+  @Local simpleList: Array<string> = [];
+  private totalCount: number = 50;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 50; i++) {
+      this.simpleList.push('Hello ' + i);
+    }
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      List() {
+        Repeat<string>(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Text('[each] ' + obj.item)
+                .fontSize(30)
+                .margin({ top: 10 })
+            }
+          })
+          .key((item: string, index: number) => item)
+          .virtualScroll({ totalCount: this.totalCount })
+          .templateId((item: string, index: number) => "default")
+          .template('default', (ri) => {
+            Text('[template] ' + ri.item)
+              .fontSize(30)
+              .margin({ top: 10 })
+          }, { cachedCount: 3 })
+      }
+      .cachedCount(1)
+      .border({ width: 1 })
+      .height('50%')
+    }
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
