@@ -173,6 +173,8 @@ baselineOffset(value: LengthMetrics)
 
 设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
