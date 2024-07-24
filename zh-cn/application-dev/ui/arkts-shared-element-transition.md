@@ -1358,6 +1358,8 @@ export const getMyNode = (): MyNodeController | undefined => {
 
 - 需注意，半模态页面的弹起高度不同，其页面起始位置也有所不同，而全模态则是全屏显示，两者存在一高度差，做一镜到底动画时，需要计算差值并进行修正，具体可见demo。
 
+- 还可以配合一镜到底动画，给初始界面图片也增加一个从透明到出现的动画，使得动效更为流畅。
+
 ```
 ├──entry/src/main/ets                 // 代码区
 │  ├──entryability
@@ -1394,6 +1396,7 @@ struct Index {
   @State isShowImage: boolean = false;
   @State isShowOverlay: boolean = false;
   @State isAnimating: boolean = false;
+  @State isEnabled: boolean = true;
 
   @State scaleValue: number = 0;
   @State translateX: number = 0;
@@ -1401,6 +1404,8 @@ struct Index {
   @State clipWidth: Dimension = 0;
   @State clipHeight: Dimension = 0;
   @State radius: number = 0;
+  // 原图的透明度
+  @State opacityDegree: number = 1;
 
   // 抓取照片原位置信息
   private originInfo: AnimationInfo = new AnimationInfo;
@@ -1442,6 +1447,13 @@ struct Index {
               - px2vp(WindowUtils.navigationIndicatorHeight_px) - px2vp(WindowUtils.topAvoidAreaHeight_px));
           // 修正因缩放导致的圆角差异
           this.radius = this.sheetRadius / this.scaleValue
+        })
+        // 原图从透明到出现的动画
+        animateTo({
+          duration: 2000,
+          curve: Curve.Friction,
+        }, () => {
+          this.opacityDegree = 1;
         })
       }
     }
@@ -1486,30 +1498,17 @@ struct Index {
 
   // 照片页
   build() {
-    Column({space: 20}) {
+    Column() {
       Text('照片')
-        .fontSize(30)
-      Image($r("app.media.flower"))
+        .textAlign(TextAlign.Start)
         .width('100%')
-        .id('origin')
-          // 挂载半模态页
-        .bindSheet(this.isShowSheet, this.mySheet(), {
-          // Embedded模式使得其他页面可以高于半模态页
-          mode: SheetMode.EMBEDDED,
-          height: this.bindSheetHeight,
-          onDisappear: () => {
-            // 保证半模态消失时状态正确
-            this.isShowImage = false;
-            this.isShowSheet = false;
-            // 设置一镜到底动画状态又进入可触发状态
-            this.isAnimating = false;
-          }
-        })
-          // 挂载模态页作为一镜到底动画的实现页
-        .bindContentCover(this.isShowOverlay, this.overlayNode(), {
-          // 模态页面设置为无转场
-          transition: TransitionEffect.IDENTITY,
-        })
+        .fontSize(30)
+        .padding(20)
+      Image($r("app.media.flower"))
+        .opacity(this.opacityDegree)
+        .width('90%')
+        .id('origin')// 挂载半模态页
+        .enabled(this.isEnabled)
         .onClick(() => {
           // 获取原始图像的位置信息，将模态页上图片移动缩放至该位置
           this.originInfo = this.calculateData('origin');
@@ -1519,14 +1518,36 @@ struct Index {
           this.clipWidth = this.originInfo.clipWidth;
           this.clipHeight = this.originInfo.clipHeight;
           this.radius = 0;
-
+          this.opacityDegree = 0;
           // 启动半模态页和模态页
           this.isShowSheet = true;
           this.isShowOverlay = true;
+          // 设置原图为不可交互抗打断
+          this.isEnabled = false;
         })
     }
-    .alignItems(HorizontalAlign.Start)
-    .padding(20)
+    .width('100%')
+    .height('100%')
+    .padding({ top: 20 })
+    .alignItems(HorizontalAlign.Center)
+    .bindSheet(this.isShowSheet, this.mySheet(), {
+      // Embedded模式使得其他页面可以高于半模态页
+      mode: SheetMode.EMBEDDED,
+      height: this.bindSheetHeight,
+      onDisappear: () => {
+        // 保证半模态消失时状态正确
+        this.isShowImage = false;
+        this.isShowSheet = false;
+        // 设置一镜到底动画又进入可触发状态
+        this.isAnimating = false;
+        // 原图重新变为可交互状态
+        this.isEnabled = true;
+      }
+    }) // 挂载模态页作为一镜到底动画的实现页
+    .bindContentCover(this.isShowOverlay, this.overlayNode(), {
+      // 模态页面设置为无转场
+      transition: TransitionEffect.IDENTITY,
+    })
   }
 
   // 半模态页面
@@ -1535,7 +1556,7 @@ struct Index {
     Column({space: 20}) {
       Text('半模态页面')
         .fontSize(30)
-      Row({space: 20}) {
+      Row({space: 40}) {
         Column({space: 20}) {
           ForEach([1, 2, 3, 4], () => {
             Stack()
@@ -1619,6 +1640,8 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 @Builder
 function CardBuilder() {
   Image($r("app.media.flower"))
+    // 避免第一次加载图片时图片闪烁
+    .syncLoad(true)
 }
 
 export class MyNodeController extends NodeController {
