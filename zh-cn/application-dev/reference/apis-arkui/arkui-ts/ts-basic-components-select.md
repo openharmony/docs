@@ -78,6 +78,8 @@ controlSize(value: ControlSize)
 
 设置Select组件的尺寸。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -100,6 +102,8 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 定制Select下拉菜单项内容区的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -113,6 +117,8 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 divider(options: Optional\<DividerOptions> | null)
 
 设置分割线样式，不设置该属性则按“默认值”展示分割线。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -344,6 +350,8 @@ menuBackgroundColor(value: ResourceColor)
 
 设置下拉菜单的背景色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -357,6 +365,8 @@ menuBackgroundColor(value: ResourceColor)
 menuBackgroundBlurStyle(value: BlurStyle)
 
 设置下拉菜单的背景模糊材质。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -395,6 +405,8 @@ menuBackgroundBlurStyle(value: BlurStyle)
 | END                 | 按照语言方向末端对齐。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
