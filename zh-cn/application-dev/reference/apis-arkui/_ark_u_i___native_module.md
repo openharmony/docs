@@ -348,7 +348,7 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetIterations](#oh_arkui_animatoroption_setiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放次数。设置为0时不播放，设置为-1时无限次播放。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetFill](#oh_arkui_animatoroption_setfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationFill](#arkui_animationfill) value) | 设置animator动画执行后是否恢复到初始状态。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDirection](#oh_arkui_animatoroption_setdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationDirection](#arkui_animationdirection) value) | 设置animator动画播放方向。  | 
-| int32_t [OH_ArkUI_AnimatorOption_SetCurve](#oh_arkui_animatoroption_setcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置animator动画插值曲线。  | 
+| int32_t [OH_ArkUI_AnimatorOption_SetCurve](#oh_arkui_animatoroption_setcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置animator动画插值曲线。默认值：ARKUI_CURVE_LINEAR。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetBegin](#oh_arkui_animatoroption_setbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, float value) | 设置animator动画插值起点。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetEnd](#oh_arkui_animatoroption_setend) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, float value) | 设置animator动画插值终点。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange](#oh_arkui_animatoroption_setexpectedframeraterange) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \*value) | 设置animator动画期望的帧率范围。  | 
