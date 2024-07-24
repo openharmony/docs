@@ -657,6 +657,8 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 
 样式对象类型，用于设置属性字符串的样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
