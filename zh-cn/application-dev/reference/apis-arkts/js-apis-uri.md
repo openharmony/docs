@@ -383,7 +383,7 @@ getQueryValue(key:string): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -423,7 +423,7 @@ addQueryValue(key:string, value:string): URI
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -461,7 +461,7 @@ addSegment(pathSegment:string): URI
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -499,7 +499,7 @@ addEncodedSegment(pathSegment:string): URI
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -563,7 +563,7 @@ getQueryValues(key:string): string[]
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -601,7 +601,7 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -715,7 +715,7 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
