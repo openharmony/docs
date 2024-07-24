@@ -2011,6 +2011,10 @@ type TextInput = TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt;
 
 TextInput类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回TextInput组件的属性设置对象。 |
@@ -2045,6 +2049,10 @@ typeNode.createNode(uiContext, 'TextInput');
 type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
 
 Button类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2081,6 +2089,10 @@ type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttr
 
 ListItemGroup类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
@@ -2115,6 +2127,10 @@ typeNode.createNode(uiContext, 'ListItemGroup');
 type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
 
 WaterFlow类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2151,6 +2167,10 @@ type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
 
 FlowItem类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回FlowItem组件的属性设置对象。 |
@@ -2185,6 +2205,10 @@ typeNode.createNode(uiContext, 'FlowItem');
 type XComponent = TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt;
 
 XComponent类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2263,8 +2287,6 @@ set totalNodeCount(count: number)
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | count | number | 是   | 数据节点总数。 |
-
-### totalNodeCount<sup>12+</sup>
 
 get totalNodeCount(): number
 
