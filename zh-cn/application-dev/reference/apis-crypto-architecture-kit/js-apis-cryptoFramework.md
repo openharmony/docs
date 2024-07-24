@@ -669,7 +669,7 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
-| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
+| algName | string | 是   | 否   | 密钥对应的算法名（如果是对称密钥，则含密钥长度，否则不含密钥长度）。 |
 
 ### getEncoded
 
@@ -2855,6 +2855,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
+> 4. 对于CCM模式的对称加解密算法，加密时只能调用1次update接口加密数据并调用doFinal接口获取tag，或直接调用doFinal接口加密数据并获取tag，解密时只能调用1次update接口或调用1次doFinal接口解密数据并验证tag。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2893,6 +2894,7 @@ update(data: DataBlob): Promise\<DataBlob>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
+> 4. 对于CCM模式的对称加解密算法，加密时只能调用1次update接口加密数据并调用doFinal接口获取tag，或直接调用doFinal接口加密数据并获取tag，解密时只能调用1次update接口或调用1次doFinal接口解密数据并验证tag。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
