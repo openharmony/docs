@@ -39,7 +39,7 @@
       if(!data){
         notificationManager.requestEnableNotification(context).then(() => {
           hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
-        }).catch((err : Base.BusinessError) => {
+        }).catch((err : BusinessError) => {
           if(1600004 == err.code){
             console.info(`[ANS] requestEnableNotification refused`);
           } else {
@@ -47,8 +47,8 @@
           }
         });
       }
-    }).catch((err : Base.BusinessError) => {
-        console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    }).catch((err : BusinessError) => {
+        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail: ${JSON.stringify(err)}`);
     });
     ```
 
