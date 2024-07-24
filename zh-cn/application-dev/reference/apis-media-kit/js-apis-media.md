@@ -11,6 +11,8 @@
 
 - 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>）
 
+- 音视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
+
 - 获取音视频元数据（[AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>）
 
 - 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
@@ -240,6 +242,51 @@ media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetada
   } else {
     console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
+});
+```
+
+## media.createAVTranscoder<sup>12+</sup>
+
+createAVTranscoder(): Promise\<AVTrancoder>
+
+异步方式创建音视频转码实例，通过Promise获取返回值。
+
+> **说明：**
+> 可创建的音视频转码实例不能超过2个。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于音视频转码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avTranscoder: media.AVTranscoder;
+media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
+  if (transcoder != null) {
+    avTranscoder = transcoder;
+    console.info('Succeeded in creating AVTranscoder');
+  } else {
+    console.error('Failed to create AVTranscoder');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create AVTranscoder, error message:${error.message}`);
 });
 ```
 
@@ -3937,6 +3984,458 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | ---- | ------ | ---- | ---- | ------------ |
 | min  | number | 是   | 否   | 范围的最小值 |
 | max  | number | 是   | 否   | 范围的最大值 |
+
+
+
+## AVTranscoder<sup>12+</sup>
+
+音视频转码管理类，用于音视频媒体转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+
+音视频转码demo可参考：[音视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+| 名称    | 类型                                 | 只读 | 可选 | 说明               |
+| ------- | ------------------------------------ | ---- | ---- | ------------------ |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdDst<sup>11+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。|
+
+### prepare<sup>12+</sup>
+
+prepare(config: AVTranscoderConfig): Promise<\void>
+
+异步方式进行音视频录制的参数设置。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型                                   | 可选 | 说明                       |
+| ------ | -------------------------------------- | ---- | -------------------------- |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置音视频转码的相关参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 异步音视频转码prepare方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 配置参数以实际硬件设备支持的范围为准
+let avTranscoderConfig: media.AVTranscoderConfig = {
+  audioBitrate : 200000,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
+  videoBitrate : 3000000,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
+  videoFrameWidth : 1280,
+  videoFrameHeight : 720,
+}
+
+avTranscoder.prepare(avTranscoderConfig).then(() => {
+  console.info('prepare success');
+}).catch((err: BusinessError) => {
+  console.error('prepare failed and catch error is ' + err.message);
+});
+```
+
+### start<sup>12+</sup>
+
+start(): Promise\<void>
+
+异步方式开始视频转码。通过Promise获取返回值。
+
+需要[prepare()](#prepare12)事件成功触发后，才能调用start方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步开始视频转码方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.start().then(() => {
+  console.info('start AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('start AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### pause<sup>12+</sup>
+
+pause(): Promise\<void>
+
+异步方式暂停视频转码。通过Promise获取返回值。
+
+需要[start()](#start12)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume12)接口来恢复转码。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步暂停视频转码方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.pause().then(() => {
+  console.info('pause AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('pause AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### resume<sup>12+</sup>
+
+resume(): Promise\<void>
+
+异步方式恢复视频转码。通过Promise获取返回值。
+
+需要在[pause()](#pause12)事件成功触发后，才能调用resume方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步恢复视频转码方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.resume().then(() => {
+  console.info('resume AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('resume AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### cancel<sup>12+</sup>
+
+cancel(): Promise\<void>
+
+异步方式取消视频转码。通过Promise获取返回值。
+
+需要在[prepare()](#prepare12)、[start()](#start12)、[pause()](#pause12)或[resume()](#resume12)事件成功触发后，才能调用cancel方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步取消视频转码方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.cancel().then(() => {
+  console.info('cancel AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('cancel AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### release<sup>12+</sup>
+
+release(): Promise\<void>
+
+异步方式释放音视频转码资源。通过Promise获取返回值。
+
+释放音视频转码资源之后，该AVTranscoder实例不能再进行任何操作。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<void> | 异步释放音视频转码资源方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.release().then(() => {
+  console.info('release AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('release AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### on('progressUpdate')<sup>12+</sup>
+
+on(type: 'progressUpdate', callback: Callback<number>): void
+
+注册转码进度更新事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型     | 可选 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 否   | 进度更新事件回调类型，支持的事件：'progressUpdate'，在转码过程中系统会自动触发此事件。 |
+| callback | function | 否   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
+
+**示例：**
+
+```ts
+avTranscoder.on('progressUpdate', (progress: number) => {
+  console.info('avTranscoder progressUpdate = ' + progress);
+});
+```
+
+### off('progressUpdate')<sup>12+</sup>
+
+off(type:'progressUpdate', callback?: Callback<number>): void
+
+取消注册转码进度更新事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 否   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
+| callback | function | 是   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
+
+**示例：**
+
+```ts
+avTranscoder.off('progressUpdate');
+```
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+注册AVtranscoder的错误事件，该事件仅用于错误提示。如果AVTranscoder上报error事件，用户需要通过[release()](#release12)退出转码操作。
+
+用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型          | 可选 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 否   | 转码错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 转码错误事件回调方法。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | The Parameter check faild. |
+| 801      | Capability not supported. |
+| 5400101  | No memory. Return by callback.             |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400104  | Time out. Return by callback.              |
+| 5400105  | Service died. Return by callback.          |
+| 5400106  | Unsupport format. Return by callback.      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.on('error', (err: BusinessError) => {
+  console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
+});
+```
+
+### off('error')<sup>12+</sup>
+
+off(type:'error', callback?: ErrorCallback): void
+
+取消注册转码错误事件，取消后不再接收到AVTranscoder的错误事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 否   | 转码错误事件回调类型'error'。 <br>- 'error'：转码过程中发生错误，触发该事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 错误事件回调方法 |
+
+**示例：**
+
+```ts
+avTranscoder.off('error');
+```
+
+### on('complete')<sup>12+</sup>
+
+on(type: 'complete', callback: Callback<void>): void
+
+注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+
+当AVTranscoder上报complete事件时，当前转码操作已完成，用户可通过[release()](#release12)退出转码操作。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型     | 可选 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 否   | 完成事件回调类型，支持的事件：'complete'，在转码过程中系统会自动触发此事件。 |
+| callback | function | 否   | 完成事件回调方法 |
+
+**示例：**
+
+```ts
+avTranscoder.on('complete', () => {
+  console.info('avTranscoder complete');
+});
+```
+
+### off('complete')<sup>12+</sup>
+
+off(type:'complete', callback?: Callback<void>): void
+
+取消注册转码完成事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 否   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
+| callback | function | 是   | 完成事件回调方法 |
+
+**示例：**
+
+```ts
+avTranscoder.off('complete');
+```
+
+## AVTranscoderConfig<sup>12+</sup>
+
+表示音视频转码的参数设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+| 名称            | 类型                                     | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioBitrate | number     | 是   | 输出音频的码率，单位为比特率（bps）。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| audioCodec | [CodecMimeType](#codecmimetype8)     | 是  | 输出音频的编码格式，当前仅支持aac。                   |
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否   | 输出音视频文件的封装格式，当前仅支持m4a。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| videoBitrate         | number | 否   | 输出视频的码率，单位为比特率（bps）。|
+| videoCodec        | [CodecMimeType](#codecmimetype8) | 是   | 输出视频的编码格式，当前仅支持avc和hevc。|
+| videoFrameWidth        | number | 是   | 输出视频帧的宽，单位为比特率（px）。|
+| videoFrameHeight        | number | 是   | 输出视频帧的高，单位为比特率（px）。|
 
 
 
