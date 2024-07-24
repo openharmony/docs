@@ -75,8 +75,8 @@
      "forms": [
        {
          "name": "widget",
-         "displayName": "2*2 Widget",
-         "description": "This is a service widget.",
+         "displayName": "$string:widget_display_name",
+         "description": "$string:widget_desc",
          "src": "./ets/widget/pages/WidgetCard.ets",
          "uiSyntax": "arkts",
          "window": {
