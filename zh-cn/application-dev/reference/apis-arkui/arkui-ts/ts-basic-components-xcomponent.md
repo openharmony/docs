@@ -406,6 +406,10 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+### 示例1
+
+图像分析功能使用示例。
+
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -477,6 +481,9 @@ struct XComponentExample {
 }
 ```
 
+### 示例2
+
+surface旋转过程中锁定功能使用示例。
 
 ```ts
 // xxx.ets
