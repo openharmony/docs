@@ -6609,7 +6609,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
 
 子窗口调用后不生效。
 
