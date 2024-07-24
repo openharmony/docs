@@ -13,10 +13,12 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
+>
+> - @ohos.ai.intelligentVoice归属的Kit已由'MindSpore Lite Kit'变更为'Basic Services Kit'，请开发者使用新模块名'@kit.BasicServicesKit'完成模块导入。如果使用'@kit.MindSporeLiteKit'导入，将无法使用本模块的接口。
 
 ## 导入模块
 ```ts
-import { intelligentVoice } from '@kit.MindSporeLiteKit';
+import { intelligentVoice } from '@kit.BasicServicesKit';
 ```
 
 ## intelligentVoice.getIntelligentVoiceManager
@@ -124,7 +126,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：** 
 
@@ -177,7 +179,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：** 
 
@@ -223,7 +225,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：** 
 
@@ -276,7 +278,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：** 
 
@@ -433,7 +435,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
 
 **示例：**
@@ -480,7 +482,7 @@ getParameter(key: string): Promise\<string\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
 
 **示例：**
@@ -529,7 +531,7 @@ getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
 
 **示例：**
@@ -622,7 +624,7 @@ enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInf
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
-| 22700102 | Input parameter value error.                        |
+| 22700102 | Invalid parameter.                        |
 | 22700107 | System error.                            |
 
 **示例：**
@@ -841,6 +843,7 @@ if (wakeupManager != null) {
 | ------------------------- | ---- | ------------    |
 | INTELLIGENT_VOICE_EVENT_WAKEUP_NONE      | 0    | 无唤醒。   |
 | INTELLIGENT_VOICE_EVENT_RECOGNIZE_COMPLETE      | 1    | 唤醒识别完成。   |
+| INTELLIGENT_VOICE_EVENT_HEADSET_RECOGNIZE_COMPLETE      | 2    | 耳机唤醒识别完成。   |
 
 ## IntelligentVoiceErrorCode
 
@@ -1022,7 +1025,7 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
 
 **示例：**
@@ -1075,7 +1078,7 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
 
 **示例：**
@@ -1287,7 +1290,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
-| 22700104 | Commit enroll failed.                           |
+| 22700104 | Failed to commit the enrollment.                           |
 
 **示例：**
 
@@ -1328,7 +1331,7 @@ commit(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
-| 22700104 | Commit enroll failed.                           |
+| 22700104 | Failed to commit the enrollment.                           |
 
 **示例：**
 
@@ -1369,7 +1372,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1415,7 +1418,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1460,7 +1463,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1508,7 +1511,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1550,7 +1553,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1599,7 +1602,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1640,7 +1643,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1689,7 +1692,7 @@ getParameter(key: string): Promise\<string\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1939,7 +1942,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -1992,7 +1995,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2037,7 +2040,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2085,7 +2088,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2127,7 +2130,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2176,7 +2179,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2217,7 +2220,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2266,7 +2269,7 @@ getParameter(key: string): Promise\<string\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                            |
+| 22700102 | Invalid parameter.                            |
 
 **示例：**
 
@@ -2354,7 +2357,7 @@ startCapturer(channels: number): Promise\<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 22700102 | Input parameter value error.                         |
+| 22700102 | Invalid parameter.                         |
 | 22700105 | Start capturer failed.                          |
 | 22700107 | System error.                          |
 
