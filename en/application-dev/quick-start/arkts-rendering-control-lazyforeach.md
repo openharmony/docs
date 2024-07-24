@@ -2478,8 +2478,8 @@ struct MyComponent {
   }
 }
 ```
-When List is scrolled to the bottom, screen flicks like the following picture.   
-![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
+When List is scrolled to the bottom, screen flicks like the following:   
+![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)  
 This is a flaw of onDataReloaded. When it is called in onScrollIndex, there can be screen flickering. But when it is called in onClick, there is no screen flickering. Currently we can only take an evasive approach: replace onDataReloaded by onDatasetChange. This approach has the added benifit of improving load performance.
 ```ts
 class BasicDataSource implements IDataSource {
