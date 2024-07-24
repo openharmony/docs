@@ -3959,8 +3959,8 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 
 | 名称    | 类型                                 | 只读 | 可选 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
-| fdDst<sup>11+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。|
 
 ### prepare<sup>12+</sup>
 
