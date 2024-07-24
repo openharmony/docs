@@ -20,14 +20,6 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **系统能力：**  SystemCapability.USB.USBManager
 
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. No parameters are required. |
-
 **返回值：**
 
 | 类型                                                   | 说明      |
