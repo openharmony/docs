@@ -297,7 +297,6 @@ let addr : socket.NetAddress = {
 }
 
 // 加入多播组
-// addMembership() 方法不支持静态调用，需要创建动态变量调用
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
