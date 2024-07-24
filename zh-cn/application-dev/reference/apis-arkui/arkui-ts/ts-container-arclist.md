@@ -7,6 +7,11 @@
 > - 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
+## 导入模块
+
+```ts
+import { ArcList, ArcListAttribute } from '@kit.ArkUI';
+```
 
 ## 子组件
 
@@ -33,7 +38,7 @@
 
 ArcList(options?: ArkListOptions)
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -41,7 +46,7 @@ ArcList(options?: ArkListOptions)
 
 | 参数名  | 参数类型                                  | 必填 | 参数描述                                                     |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ArkListOptions](#arklistoptions对象说明) | 否   | 为ArcList提供可选参数, 该对象内含有initialIndex、scroller、header等参数 |
+| options | [ArkListOptions](#arklistoptions对象说明) | 否   | 为ArcList提供可选参数, 该对象内含有initialIndex、scroller、header等参数。 |
 
 ## 属性
 
@@ -53,7 +58,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠响应事件灵敏度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -61,7 +66,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity) | 否   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中<br/>其他支持值：<br/>CrownSensitivity.LOW，响应速度较慢<br/>CrownSensitivity.HIGH，响应速度较快 |
+| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity) | 是   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。 |
 
 ### space
 
@@ -69,7 +74,7 @@ space(space: Optional\<LengthMetrics>)
 
 设置列表子项之间的距离。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -85,15 +90,15 @@ status: Optional\<BarState>
 
 设置滚动条状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：** 
 
-| 参数名 | 类型                                                 | 必填 | 说明                                   |
-| ------ | ---------------------------------------------------- | ---- | -------------------------------------- |
-| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | 否   | 滚动条状态。<br/>默认值：BarState.Auto |
+| 参数名 | 类型                                                 | 必填 | 说明                                     |
+| ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
+| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | 否   | 滚动条状态。<br/>默认值：BarState.Auto。 |
 
 ### cachedCount
 
@@ -103,7 +108,7 @@ count: Optional\<number>
 
 在ArcList显示的ArcArcListItem前后各缓存cachedCount个ArcArcListItem。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -111,7 +116,7 @@ count: Optional\<number>
 
 | 参数名 | 类型              | 必填 | 说明                                       |
 | ------ | ----------------- | ---- | ------------------------------------------ |
-| value  | Optional\<number> | 否   | ArcArcListItem的预加载数量。<br/>默认值：1 |
+| value  | Optional\<number> | 是   | ArcArcListItem的预加载数量。<br/>默认值：1 |
 
 ### chainAnimation
 
@@ -125,7 +130,7 @@ chainAnimation(enable: Optional\<boolean>)
 
  1、ArcList边缘效果为Spring类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -133,7 +138,7 @@ chainAnimation(enable: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                                         |
 | ------ | ------------------ | ---- | ------------------------------------------------------------ |
-| enable | Optional\<boolean> | 否   | 是否启用链式联动动效。<br/>默认值：false，不启用链式联动。true，启用链式联动。 |
+| enable | Optional\<boolean> | 是   | 是否启用链式联动动效。<br/>默认值：false，不启用链式联动。true，启用链式联动。 |
 
 ### enableScrollInteraction
 
@@ -141,7 +146,7 @@ enableScrollInteraction(enable: Optional\<boolean>)
 
 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -149,7 +154,7 @@ enableScrollInteraction(enable: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                |
 | ------ | ------------------ | ---- | ----------------------------------- |
-| enable | Optional\<boolean> | 否   | 是否支持滚动手势。<br/>默认值：true |
+| enable | Optional\<boolean> | 是   | 是否支持滚动手势。<br/>默认值：true |
 
 ### friction
 
@@ -157,7 +162,7 @@ friction(friction: Optional\<number>)
 
 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -173,15 +178,15 @@ scrollBarWidth(width: Optional\<LengthMetrics>)
 
 设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过ArcList组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                      |
-| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| width  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 否   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+| 参数名 | 类型                                                         | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
+| width  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp。 |
 
 ### scrollBarColor
 
@@ -189,15 +194,15 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 设置滚动条的颜色。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：** 
 
-| 参数名 | 类型                    | 必填 | 说明           |
-| ------ | ----------------------- | ---- | -------------- |
-| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 否   | 滚动条的颜色。 |
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 滚动条的颜色。 |
 
 ### flingSpeedLimit
 
@@ -205,7 +210,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -213,7 +218,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                            |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | 否   | Fling动效开始时的最大初始速度。 |
+| speed  | Optional\<number> | 是   | Fling动效开始时的最大初始速度。 |
 
 ### childrenMainSize
 
@@ -221,7 +226,7 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 设置ArcList组件的子组件在主轴方向的大小信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -229,7 +234,7 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| size   | [Optional\<ChildrenMainSize>](#childrenmainsize对象说明) | 否   | 1. 作用：<br/>通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
+| size   | [Optional\<ChildrenMainSize>](#childrenmainsize对象说明) | 是   | 1. 作用：<br/>通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
 
 ## 事件
 
@@ -245,15 +250,15 @@ ArcList的边缘效果为弹簧效果时，在ArcList划动到边缘继续划动
 
 ArcList显示区域中间位置子组件变化时也会触发该事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                          |
-| ------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| handler | [Optional\<ArcScrollIndexHandler>](#arcscrollindexhandler对象说明) | 否   | 有子组件划入或划出ArcList显示区域时触发该回调 |
+| 参数名  | 类型                                                         | 必填 | 说明                                            |
+| ------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| handler | [Optional\<ArcScrollIndexHandler>](#arcscrollindexhandler对象说明) | 是   | 有子组件划入或划出ArcList显示区域时触发该回调。 |
 
 ### onReachStart
 
@@ -263,13 +268,13 @@ onReachStart(handler: Optional\<VoidCallback>)
 
 ArcList初始化时如果initialIndex为0会触发一次，ArcList滚动到起始位置时触发一次。ArcList边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 参数名  | 类型                                             | 必填 | 说明                   |
-| ------- | ------------------------------------------------ | ---- | ---------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表到达起始位置时触发 |
+| 参数名  | 类型                                             | 必填 | 说明                     |
+| ------- | ------------------------------------------------ | ---- | ------------------------ |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表到达起始位置时触发。 |
 
 ### onReachEnd
 
@@ -279,13 +284,13 @@ onReachEnd(handler: Optional\<VoidCallback>)
 
 ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 参数名  | 类型                                             | 必填 | 说明                   |
-| ------- | ------------------------------------------------ | ---- | ---------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表到底末尾位置时触发 |
+| 参数名  | 类型                                             | 必填 | 说明                     |
+| ------- | ------------------------------------------------ | ---- | ------------------------ |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表到底末尾位置时触发。 |
 
 ### onScrollStart
 
@@ -293,13 +298,13 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 参数名  | 类型                                             | 必填 | 说明               |
-| ------- | ------------------------------------------------ | ---- | ------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表滑动开始时触发 |
+| 参数名  | 类型                                             | 必填 | 说明                 |
+| ------- | ------------------------------------------------ | ---- | -------------------- |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表滑动开始时触发。 |
 
 ### onScrollStop
 
@@ -307,13 +312,13 @@ onScrollStop(handler: Optional\<VoidCallback>)
 
 列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 参数名  | 类型                                             | 必填 | 说明               |
-| ------- | ------------------------------------------------ | ---- | ------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 否   | 列表滑动停止时触发 |
+| 参数名  | 类型                                             | 必填 | 说明                 |
+| ------- | ------------------------------------------------ | ---- | -------------------- |
+| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表滑动停止时触发。 |
 
 ### onWillScroll
 
@@ -321,7 +326,7 @@ onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
 列表滑动前触发。返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -329,7 +334,7 @@ onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnWillScrollCallback>](#onwillscrollcallback对象说明) | 否 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnWillScrollCallback>](#onwillscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
 
 > **说明：** 
 > 
@@ -340,7 +345,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 列表滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -348,7 +353,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnScrollCallback>](#onscrollcallback对象说明) | 否 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnScrollCallback>](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
 
 ## ArkListOptions对象说明
 
@@ -362,21 +367,21 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 ## VoidCallback对象说明
 
-该对象参数及返回值均为空
+该对象参数及返回值均为空。
 
 ## ArcScrollIndexHandler对象说明
 
-有子组件划入或划出ArcList显示区域时触发的回调
+有子组件划入或划出ArcList显示区域时触发的回调。
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| start  | number | 是   | ArcList显示区域内第一个子组件的索引值     |
+| start  | number | 是   | ArcList显示区域内第一个子组件的索引值。   |
 | end    | number | 是   | ArcList显示区域内最后一个子组件的索引值。 |
 | center | number | 是   | ArcList显示区域内中间位置子组件的索引值。 |
 
 ## OnWillScrollCallback对象说明
 
-列表滑动前触发
+列表滑动前触发。
 
 | 参数名       | 类型                                                       | 必填 | 说明                                                         |
 | ------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -386,7 +391,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 ## OnScrollCallback对象说明
 
-列表滑动时触发的回调
+列表滑动时触发的回调。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -397,7 +402,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -421,7 +426,7 @@ ScrollState枚举变更如下。
 
 维护ArcList组件的子组件在主轴方向的大小信息，仅支持一对一绑定到ArcList组件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor
 
@@ -429,7 +434,7 @@ constructor(childDefaultSize: number): void
 
 ChildrenMainSize有参构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -444,7 +449,7 @@ set childDefaultSize(value: number): void
 
 修改子组件在主轴方向的默认大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -456,9 +461,9 @@ set childDefaultSize(value: number): void
 
 以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
 
 get childDefaultSize(): number
 
@@ -476,7 +481,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 批量增删改子组件在主轴方向的大小信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -491,9 +496,9 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
 
 
 > **说明：**
@@ -509,7 +514,7 @@ update(index: number, childSize: number): void
 
 修改指定索引值对应的子组件的主轴方向的大小信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -522,9 +527,9 @@ update(index: number, childSize: number): void
 
 以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
 
 ## 示例
 
@@ -534,18 +539,13 @@ update(index: number, childSize: number): void
 // xxx.ets
 import { ComponentContent, LengthMetrics } from "@ohos.arkui.node";
 import { UIContext } from '@ohos.arkui.UIContext';
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
-
-interface ScreenSize {
-  widthPx: number,
-  heightPx: number,
-}
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
   Column() {
     Text("header")
-      .fontSize(20)
+      .fontSize('60px')
       .fontWeight(FontWeight.Bold)
       .border({ width: '2px', color: Color.Black })
   }.margin(0)
@@ -555,22 +555,8 @@ function buildText() {
 @Component
 struct Index {
   @State  private numItems: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  @State screenSize: ScreenSize = { widthPx: 0, heightPx: 0 };
 
   private watchSize: string = '466px' // 手表默认宽高：466*466
-
-  onMeasure(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
-    if (typeof constraint.maxWidth === 'number' && typeof constraint.maxHeight === 'number') {
-      let widthPx = constraint.maxWidth as number;
-      let heightPx = constraint.maxHeight as number;
-      if (this.screenSize.widthPx == 0 || this.screenSize.heightPx == 0) {
-        setTimeout((width: number, height: number) => {
-          console.log(`width=${width}px, height=${height}px`);
-          this.screenSize = { widthPx: 466, heightPx: 466 };
-        }, 500, widthPx, heightPx);
-      }
-    }
-  }
 
   context: UIContext = this.getUIContext()
   tabBar1: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
@@ -581,8 +567,8 @@ struct Index {
       Column() {
       }
       .justifyContent(FlexAlign.Center)
-      .width(`${this.screenSize.widthPx}px`)
-      .height(`${this.screenSize.widthPx}px`)
+      .width(this.watchSize)
+      .height(this.watchSize)
       .clip(new Circle({ width: '100%', height: '100%' }))
       .backgroundColor(Color.Green)
 
@@ -591,8 +577,8 @@ struct Index {
           ArcListItem() {
             Button('' + item, { type: ButtonType.Capsule })
               .width('100%')
-              .height(30)
-              .fontSize(14)
+              .height('100px')
+              .fontSize('40px')
           }.align(Alignment.Center)
         }, (item: string, index: number) => item + index)
       }

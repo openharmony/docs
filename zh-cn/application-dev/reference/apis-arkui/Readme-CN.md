@@ -211,6 +211,8 @@
       - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
       <!--DelEnd-->
     - 容器组件
+      - [ArcList](arkui-ts/ts-container-arclist.md)
+      - [ArcListItem](arkui-ts/ts-container-arclistitem.md)
       - [Badge](arkui-ts/ts-container-badge.md)
       - [Column](arkui-ts/ts-container-column.md)
       - [ColumnSplit](arkui-ts/ts-container-columnsplit.md)

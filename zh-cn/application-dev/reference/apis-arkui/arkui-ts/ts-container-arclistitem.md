@@ -8,6 +8,12 @@
 > - 该组件的父组件只能是[ArcList](ts-container-arclist.md)。
 > - 当ArcListItem配合LazyForEach使用时，ArcListItem子组件在ArcListItem创建时创建。配合if/else、ForEach使用时，或父组件为ArcList时，ArcListItem子组件在ArcListItem布局时创建。
 
+## 导入模块
+
+```ts
+import { ArcListItem, ArcListItemAttribute } from '@kit.ArkUI';
+```
+
 ## 子组件
 
 可以包含单个子组件。
@@ -18,11 +24,11 @@
 
 ArcListItem()
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-**参数：**无
+**参数：** 无
 
 ## 属性
 
@@ -34,7 +40,7 @@ autoScale(enable: Optional\<boolean>)
 
 用于设置ArcListItem是否支持自动缩放显示。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -42,7 +48,7 @@ autoScale(enable: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                        |
 | ------ | ------------------ | ---- | ------------------------------------------- |
-| enable | Optional\<boolean> | 否   | item是否支持自动缩放显示。<br/>默认值：true |
+| enable | Optional\<boolean> | 是   | item是否支持自动缩放显示。<br/>默认值：true |
 
 ### swipeAction
 
@@ -50,7 +56,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 用于设置ArcListItem的划出组件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -94,7 +100,7 @@ ArcListItem向右滑动，item左边的长距离滑动删除选项或向左滑�
 | onStateChange | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。|
 ## SwipeActionState枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称      | 枚举值     | 描述                                                         |
 | --------- | --------- | ------------------------------------------------------------ |
@@ -104,12 +110,12 @@ ArcListItem向右滑动，item左边的长距离滑动删除选项或向左滑�
 
 ## 示例
 
-### 示例1 
+该示例展示了子项关闭自动缩放和开启自动缩放后的对比效果。
 
 ```ts
 // xxx.ets
 import { LengthMetrics } from "@ohos.arkui.node";
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -128,7 +134,7 @@ struct ArcListItemExample {
               .textAlign(TextAlign.Center)
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
-          }.autoScale(false)
+          }.autoScale(item%2==0)
         }, (item: string) => item)
       }.width('90%')
       .space(LengthMetrics.px(20))
@@ -138,71 +144,4 @@ struct ArcListItemExample {
 }
 ```
 
-### 示例2
-
-
-```ts
-// xxx.ets
-import { LengthMetrics } from "@ohos.arkui.node";
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@ohos.arkui.ArcList';
-@Entry
-@Component
-struct ArcListItemExample2 {
-  @State arr: number[] = [0, 1, 2, 3, 4]
-  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
-  @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
-
-  @Builder itemEnd() {
-    Row() {
-      Button("Delete").margin("4vp")
-      Button("Set").margin("4vp")
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
-  }
-
-  build() {
-    Column() {
-      ArcList() {
-        ForEach(this.arr, (item: number) => {
-          ArcListItem() {
-            Text("item" + item)
-              .width('100%')
-              .height(100)
-              .fontSize(16)
-              .textAlign(TextAlign.Center)
-              .borderRadius(10)
-              .backgroundColor(0xFFFFFF)
-          }
-          .transition({ type: TransitionType.Delete, opacity: 0 })
-          .swipeAction({
-            end: {
-              builder: () => { this.itemEnd() },
-              onAction: () => {
-                animateTo({ duration: 1000 }, () => {
-                  let index = this.arr.indexOf(item)
-                  this.arr.splice(index, 1)
-                })
-              },
-              actionAreaDistance: 56,
-              onEnterActionArea: () => {
-                this.enterEndDeleteAreaString = "enterEndDeleteArea"
-                this.exitEndDeleteAreaString = "not exitEndDeleteArea"
-              },
-              onExitActionArea: () => {
-                this.enterEndDeleteAreaString = "not enterEndDeleteArea"
-                this.exitEndDeleteAreaString = "exitEndDeleteArea"
-              }
-            }
-          })
-        }, (item: string) => item)
-      }
-      .space(LengthMetrics.px(10))
-      Text(this.enterEndDeleteAreaString).fontSize(20)
-      Text(this.exitEndDeleteAreaString).fontSize(20)
-    }
-    .padding(10)
-    .backgroundColor(0xDCDCDC)
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+![arkts-arclistitem](figures/arkts-arclistitem.png)
