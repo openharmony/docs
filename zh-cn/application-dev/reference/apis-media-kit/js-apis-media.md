@@ -117,6 +117,91 @@ media.createAVPlayer().then((video: media.AVPlayer) => {
 });
 ```
 
+## media.createAVTranscoder<sup>12+</sup>
+
+createAVTranscoder(): Promise\<AVTrancoder>
+
+异步方式创建音视频转码实例，通过Promise获取返回值。
+
+> **说明：**
+> 可创建的音视频转码实例不能超过2个。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于音视频转码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avTranscoder: media.AVTranscoder;
+media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
+  if (transcoder != null) {
+    avTranscoder = transcoder;
+    console.info('Succeeded in creating AVTranscoder');
+  } else {
+    console.error('Failed to create AVTranscoder');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create AVTranscoder, error message:${error.message}`);
+});
+```
+
+## media.createAVMetadataExtractor<sup>11+</sup>
+
+createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
+
+异步方式创建AVMetadataExtractor对象，通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)> | Promise对象。异步返回AVMetadataExtractor实例，失败时返回null。可用于获取音视频元数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avMetadataExtractor: media.AVMetadataExtractor;
+media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
+  if (extractor != null) {
+    avMetadataExtractor = extractor;
+    console.info('Succeeded in creating AVMetadataExtractor');
+  } else {
+    console.error('Failed to create AVMetadataExtractor');
+  }
+}).catch((error: BusinessError) => { 
+  console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
+});
+```
+
 ## media.createAVRecorder<sup>9+</sup>
 
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
@@ -242,91 +327,6 @@ media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetada
   } else {
     console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
-});
-```
-
-## media.createAVTranscoder<sup>12+</sup>
-
-createAVTranscoder(): Promise\<AVTrancoder>
-
-异步方式创建音视频转码实例，通过Promise获取返回值。
-
-> **说明：**
-> 可创建的音视频转码实例不能超过2个。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
-
-**返回值：**
-
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于音视频转码。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                      |
-| -------- | ----------------------------- |
-| 5400101  | No memory. Return by promise. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let avTranscoder: media.AVTranscoder;
-media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
-  if (transcoder != null) {
-    avTranscoder = transcoder;
-    console.info('Succeeded in creating AVTranscoder');
-  } else {
-    console.error('Failed to create AVTranscoder');
-  }
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create AVTranscoder, error message:${error.message}`);
-});
-```
-
-## media.createAVMetadataExtractor<sup>11+</sup>
-
-createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
-
-异步方式创建AVMetadataExtractor对象，通过Promise获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
-
-**返回值：**
-
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVMetadataExtractor](#avmetadataextractor11)> | Promise对象。异步返回AVMetadataExtractor实例，失败时返回null。可用于获取音视频元数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                      |
-| -------- | ----------------------------- |
-| 5400101  | No memory. Returned by promise. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let avMetadataExtractor: media.AVMetadataExtractor;
-media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
-  if (extractor != null) {
-    avMetadataExtractor = extractor;
-    console.info('Succeeded in creating AVMetadataExtractor');
-  } else {
-    console.error('Failed to create AVMetadataExtractor');
-  }
-}).catch((error: BusinessError) => { 
-  console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
 });
 ```
 
