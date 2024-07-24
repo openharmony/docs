@@ -513,7 +513,7 @@ Codec MIME类型枚举。
 
 表示播放或录制实例状态机切换原因的枚举，伴随state一起上报。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -2477,8 +2477,8 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 | SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。 |
 | SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
 
