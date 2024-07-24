@@ -19,7 +19,7 @@ import { componentSnapshot } from '@kit.ArkUI';
 
 ## componentSnapshot.get
 
-get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
+get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
@@ -85,7 +85,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.get
 
-get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
@@ -155,7 +155,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
@@ -250,7 +250,7 @@ struct OffscreenSnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
@@ -347,6 +347,8 @@ struct OffscreenSnapshotExample {
 ## SnapshotOptions<sup>12+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称           | 类型             | 必填           | 说明                         |
 | ---------------|------------     | -----------------------------| -----------------------------|
