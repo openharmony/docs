@@ -117,8 +117,6 @@ media.createAVPlayer().then((video: media.AVPlayer) => {
 });
 ```
 
-
-
 ## media.createAVRecorder<sup>9+</sup>
 
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
