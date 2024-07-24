@@ -207,7 +207,7 @@ setCodeSync(code: number): void
 try {
     subscriber.setCodeSync(1);
 } catch (error) {
-    let err: BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -384,7 +384,7 @@ setDataSync(data: string): void
 try {
     subscriber.setDataSync("publish_data_changed");
 } catch (error) {
-    let err: BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -485,7 +485,7 @@ setCodeAndDataSync(code: number, data: string): void
 try {
     subscriber.setCodeAndDataSync(1, "publish_data_changed");
 } catch (error) {
-    let err: BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`setCodeAndDataSync failed, code is ${err.code}, message is ${err.message}`);
 }
 
