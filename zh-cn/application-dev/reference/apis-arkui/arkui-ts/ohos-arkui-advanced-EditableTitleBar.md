@@ -135,7 +135,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.PNG)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
 ### 示例2
 
@@ -247,4 +247,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.PNG)
+![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
