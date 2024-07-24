@@ -607,6 +607,8 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | **参数名** | **类型** | **必填** | **说明** |
@@ -704,6 +706,8 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2652,7 +2656,6 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
-| 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | P2P module error. |
@@ -2731,7 +2734,6 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
-| 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | P2P module error. |
