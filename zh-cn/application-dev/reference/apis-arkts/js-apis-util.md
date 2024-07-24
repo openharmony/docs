@@ -839,6 +839,10 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
 
+> **说明：**
+>
+> 当input是一个空数组时，返回值为undefined。
+
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
