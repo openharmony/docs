@@ -98,7 +98,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <fstream>
     ```
-    
+
 2. Configure global variables.
 
     ```c++
@@ -196,7 +196,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > In the callback functions, pay attention to multi-thread synchronization for operations on the data queue.
     >
 
-5. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+5. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -239,11 +239,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 6. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
     For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-    
+
     For details about the parameter verification rules, see [OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure).
 
     The parameter value ranges can be obtained through the capability query interface. For details, see [Obtaining Supported Codecs](obtain-supported-codecs.md).
-    
+
     Currently, the following options must be configured for all supported formats: video frame width and height. In the code snippet below, the following variables are used:
 
     - **DEFAULT_WIDTH**: 320 pixels
@@ -278,9 +278,9 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ```
 
 8. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
-    
-For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-    
+
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Configure the display rotation angle.
@@ -289,9 +289,9 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-```
-    
-9. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
+    ```
+
+9. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
     ```c++
     ret = OH_VideoDecoder_Prepare(videoDec);
@@ -315,21 +315,21 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 11. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-     If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
+    If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
 
-     Add the header files.
+    Add the header files.
 
-     ```c++
-     #include <multimedia/player_framework/native_cencinfo.h>
-     ```
-     Link the dynamic library in the cmake script.
+    ```c++
+    #include <multimedia/player_framework/native_cencinfo.h>
+    ```
+    Link the dynamic library in the cmake script.
 
-     ``` cmake
-     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
-     ```
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
+    ```
 
-     In the code snippet below, the following variable is used:
-     - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    In the code snippet below, the following variable is used:
+    - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
      ```c++
      uint32_t keyIdLen = DRM_KEY_ID_SIZE;
      uint8_t keyId[] = {
@@ -377,7 +377,7 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 12. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
 
-     In the code snippet below, the following variables are used:
+    In the code snippet below, the following variables are used:
 
      - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
      - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputBuffer**.
@@ -405,7 +405,7 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 13. Call **OH_VideoDecoder_RenderOutputBuffer()** to render the data and free the output buffer, or call **OH_VideoDecoder_FreeOutputBuffer()** to directly free the output buffer.
 
-     In the code snippet below, the following variables are used:
+    In the code snippet below, the following variables are used:
 
      - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
      - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
@@ -433,7 +433,7 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 14. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
 
-     After **OH_VideoDecoder_Flush()** is called, the decoder remains in the Running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the Running state, but the current queue is cleared and the buffer storing the decoded data is freed.
 
      To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
@@ -473,7 +473,7 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 15. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
-     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
+    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
 
      ```c++
      // Reset the decoder.
@@ -647,7 +647,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > In the callback functions, pay attention to multi-thread synchronization for operations on the data queue.
     >
 
-4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -712,8 +712,8 @@ int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-    ```
-    
+   ```
+   
 7. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++

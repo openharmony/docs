@@ -71,7 +71,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
      videoFrameWidth: 640, // Video frame width.
@@ -140,7 +140,7 @@ export class VideoRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
     videoFrameWidth: 640, // Video frame width.
