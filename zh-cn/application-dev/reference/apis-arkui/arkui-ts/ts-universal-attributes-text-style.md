@@ -181,7 +181,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
-| previewText | [PreviewText](ts-basic-components-richeditor.md#PreviewText12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
 
 ## 示例
 
