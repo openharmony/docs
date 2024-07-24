@@ -90,7 +90,11 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_CreateByMime()
@@ -161,7 +165,10 @@ OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当解码器实例已经销毁，返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器实例已经销毁，返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
 
 
 ### OH_VideoDecoder_Flush()
@@ -186,7 +193,11 @@ OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_FreeOutputBuffer()
@@ -206,13 +217,17 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针  | 
-| index | 输出Buffer对应的索引值。  | 
+| index | 输出Buffer对应的索引值。 由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 缓冲区索引值应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_GetOutputDescription()
@@ -263,7 +278,10 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid )
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
 
 
 ### OH_VideoDecoder_Prepare()
@@ -288,7 +306,11 @@ OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_PushInputBuffer()
@@ -312,13 +334,17 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer (OH_AVCodec *codec, uint32_t index 
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输入Buffer对应的索引值。  | 
+| index | 输入Buffer对应的索引值。由[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出。|
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index应该由[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_RegisterCallback()
@@ -345,7 +371,11 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_RenderOutputBuffer()
@@ -367,13 +397,17 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer (OH_AVCodec *codec, uint32_t ind
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输出Buffer对应的索引值。  | 
+| index | 输出Buffer对应的索引值。由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。  |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 缓冲区索引值应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_RenderOutputBufferAtTime()
@@ -385,7 +419,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 将处理后的带渲染时间戳的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。
 如果之前没有配置输出surface，则调用此接口仅将指定索引对应的输出缓冲区返回给解码器。
 
-Invoker可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳之后）渲染缓冲区。要使能，时间戳需要合理接近系统时间，有几点需要注意：
+调用者可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳之后）渲染缓冲区。若要在指定的时间戳显示，时间戳需要合理接近系统时间，有几点需要注意：
 1. 缓冲区不会返回给解码器直到时间戳已经过去并且缓冲区不再被surface使用。
 2. 缓冲区是按照顺序处理的，因此可能会阻塞后续缓冲区在surface上的显示，如果想要对用户的一些行为做出反应，例如停止或者快进快退视频，这一点很重要。
 3. 如果多个缓冲区被发送到surface要在同一个VSYNC上渲染，那么最后一个将会被显示，其他的将被丢弃。
@@ -400,14 +434,18 @@ Invoker可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳�
 | 名称 | 描述 |
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
-| index | 输出Buffer对应的索引值。  |
+| index | 输出Buffer对应的索引值。 由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 |
 | renderTimestampNs | 输出buffer被发送到surface的时间戳，单位是纳秒。  |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 缓冲区索引值应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_Reset()
@@ -432,7 +470,11 @@ OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_SetDecryptionConfig()
@@ -490,7 +532,12 @@ OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *forma
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+ 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+ 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_SetSurface()
@@ -519,7 +566,12 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * wi
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 本接口仅支持在surface模式下调用，如果在buffer模式调用，返回AV_ERR_OPERATE_NOT_PERMIT。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+本接口仅支持在surface模式下调用，如果在buffer模式调用，返回AV_ERR_OPERATE_NOT_PERMIT。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_Start()
@@ -544,7 +596,11 @@ OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_Stop()
@@ -571,7 +627,11 @@ OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 ## 废弃函数说明
 
@@ -604,7 +664,11 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_RenderOutputData()
@@ -630,13 +694,17 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec *codec, uint32_t index
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输出Buffer对应的索引值。  | 
+| index | 输出Buffer对应的索引值。由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。  |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index应该由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_PushInputData()
@@ -665,13 +733,17 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | index | 输入Buffer对应的索引值。  | 
-| attr | 描述缓冲区中包含的数据的信息。  | 
+| attr | 描述缓冲区中包含的数据的信息。由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。  |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index值应该由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_FreeOutputData()
@@ -695,10 +767,14 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输出Buffer对应的索引值。  | 
+| index | 输出Buffer对应的索引值。由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。  |
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index应该由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+当输入的codec指针为非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+未知错误会返回AV_ERR_UNKNOWN。
+当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。

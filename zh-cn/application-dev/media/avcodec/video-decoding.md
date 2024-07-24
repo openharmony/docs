@@ -403,6 +403,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 13. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
+    添加头文件
+
+    ```c++
+    #include <chrono>
+    ```
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
 
@@ -415,10 +420,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 值由调用者决定
     bool isRender;
-    bool isNeedTime;
+    bool isNeedRenderAtTime;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
-        if (isNeedTime){
+        if (isNeedRenderAtTime){
             int64_t renderTimestamp =
                 chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
             ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
