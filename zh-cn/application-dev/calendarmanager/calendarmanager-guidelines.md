@@ -21,9 +21,23 @@ module.json5中配置所需申请的权限
 "requestPermissions": [
   {
     "name": "ohos.permission.READ_CALENDAR",
+    "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "XxxAbility"
+          ],
+          "when": "inuse"
+        }
   },
   {
-    "name": "ohos.permission.WRITE_CALENDAR"
+    "name": "ohos.permission.WRITE_CALENDAR",
+    "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "XxxAbility"
+          ],
+          "when": "inuse"
+        }
   }
 ]
 ```
