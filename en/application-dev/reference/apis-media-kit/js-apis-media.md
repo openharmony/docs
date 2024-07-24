@@ -5880,7 +5880,7 @@ Enumerates the audio output formats.
 
 | Name    | Value  | Description                                                        |
 | -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0    | Default encapsulation format.<br>This API is defined but not implemented yet.             |
+| DEFAULT  | 0    | Default container format.<br>This API is defined but not implemented yet.             |
 | MPEG_4   | 2    | MPEG-4.                                          |
 | AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.         |
 | AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
@@ -5991,7 +5991,7 @@ Obtains a video thumbnail. This API uses an asynchronous callback to return the 
 
 | Name  | Type                                        | Mandatory | Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in ¦Ìs. |
+| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in ï¿½ï¿½s. |
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame. |
 | param | [PixelMapParams](#pixelmapparams12)     | Yes  | Format parameters of the thumbnail to be obtained. |
 | callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **PixelMap** instance obtained; otherwise, **err** is an error object. |
@@ -6055,7 +6055,7 @@ Obtains a video thumbnail. This API uses a promise to return the result.
 
 | Name  | Type                                        | Mandatory | Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in ¦Ìs. |
+| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in ï¿½ï¿½s. |
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame. |
 | param | [PixelMapParams](#pixelmapparams12)    | Yes  | Format parameters of the thumbnail to be obtained. |
 
@@ -6347,14 +6347,14 @@ Describes the playback strategy.
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
-Enumerates the encoding and encapsulation formats used during screen capture.
+Enumerates the encoding and container formats used during screen capture.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 | Name                             | Value  | Description                                        |
 | --------------------------------- | ---- | -------------------------------------------- |
-| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | The H.264 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used. |
-| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | The H.265 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used. |
+| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | The H.264 video encoding format, AAC audio encoding format, and MP4 container format are used. |
+| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | The H.265 video encoding format, AAC audio encoding format, and MP4 container format are used. |
 
 ## AVScreenCaptureStateCode<sup>12+</sup>
 
@@ -6390,7 +6390,7 @@ Defines the screen capture parameters.
 | audioSampleRate   | number                                                       | No  | Audio sampling rate. This value is used for both internal capture and external capture (using microphones). Only **48000** (default value) and **16000** are supported. |
 | audioChannelCount | number                                                       | No  | Number of audio channels. This value is used for both internal capture and external capture (using microphones). Only **1** and **2** (default) are supported. |
 | audioBitrate      | number                                                       | No  | Audio bit rate. This value is used for both internal capture and external capture (using microphones). The default value is **96000**. |
-| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and encapsulation format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**. |
+| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and container format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**. |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
