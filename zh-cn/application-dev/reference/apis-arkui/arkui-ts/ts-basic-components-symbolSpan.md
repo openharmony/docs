@@ -88,7 +88,7 @@ sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
 renderingStrategy(value: SymbolRenderingStrategy)
 
-设置SymbolSpan渲染策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_folder_badge_plus支持分层与多色模式。
+设置SymbolSpan渲染策略。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +108,7 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 effectStrategy(value: SymbolEffectStrategy)
 
-设置SymbolSpan动效策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。
+设置SymbolSpan动效策略。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
