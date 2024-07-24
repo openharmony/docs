@@ -162,46 +162,6 @@ media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
 });
 ```
 
-## media.createAVMetadataExtractor<sup>11+</sup>
-
-createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
-
-异步方式创建AVMetadataExtractor对象，通过Promise获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
-
-**返回值：**
-
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVMetadataExtractor](#avmetadataextractor11)> | Promise对象。异步返回AVMetadataExtractor实例，失败时返回null。可用于获取音视频元数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                      |
-| -------- | ----------------------------- |
-| 5400101  | No memory. Returned by promise. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let avMetadataExtractor: media.AVMetadataExtractor;
-media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
-  if (extractor != null) {
-    avMetadataExtractor = extractor;
-    console.info('Succeeded in creating AVMetadataExtractor');
-  } else {
-    console.error('Failed to create AVMetadataExtractor');
-  }
-}).catch((error: BusinessError) => { 
-  console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
-});
-```
-
 ## media.createAVRecorder<sup>9+</sup>
 
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
