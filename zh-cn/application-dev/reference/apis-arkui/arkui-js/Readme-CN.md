@@ -1,4 +1,4 @@
-# 兼容JS的类Web开发范式 (ArkUI.Full)
+# 兼容JS的类Web开发范式（ArkUI.Full）
 
 - 组件通用信息
   - [通用属性](js-components-common-attributes.md)

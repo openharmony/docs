@@ -53,12 +53,12 @@
 - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。 
 
   ```ts
-  import controller from '@ohos.nfc.controller';
+  import { nfcController } from '@kit.ConnectivityKit';
   try {
-      controller.enableNfc();
-      console.log("controller enableNfc success");
+      nfcController.enableNfc();
+      console.log("nfcController enableNfc success");
   } catch (busiError) {
-      console.log("controller enableNfc busiError: " + busiError);
+      console.log("nfcController enableNfc busiError: " + busiError);
   }
   ```
 

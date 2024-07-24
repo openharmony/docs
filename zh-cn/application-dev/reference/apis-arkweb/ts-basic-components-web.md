@@ -31,7 +31,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
-
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
 **示例：**
 
 加载在线网页。
@@ -70,7 +70,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-  ```
+   ```
 
 Web组件统一渲染模式。
 
@@ -86,6 +86,26 @@ Web组件统一渲染模式。
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+      }
+    }
+  }
+   ```
+
+Web组件指定共享渲染进程。
+
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
       }
     }
   }
@@ -251,13 +271,15 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+
+从API version 12开始，fileAccess默认不启用。同时，当fileAccess为false的时候，仅只读资源目录/data/storage/el1/bundle/entry/resources/resfile里面的file协议资源依然可以访问，不受fileAccess管控。
 
 **参数：**
 
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
+| fileAccess | boolean | 是    | false | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
 
 **示例：**
 
@@ -404,17 +426,13 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
-
-> **说明：**
->
-> 从API version 12开始默认改为开启。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -1096,7 +1114,7 @@ defaultFixedFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1129,7 +1147,7 @@ defaultFontSize(size: number)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -1518,7 +1536,7 @@ pinchSmooth(isEnabled: boolean)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1599,7 +1617,7 @@ allowWindowOpenMethod(flag: boolean)
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController });
+              builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
@@ -1791,13 +1809,13 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web基于页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT），默认为Web基于页面大小的自适应网页布局模式。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件大小基于前端页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
-> Web基于页面大小的自适应网页布局有如下限制：
-> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
-> - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> Web组件大小基于前端页面自适应布局有如下限制：
+> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - Web组件创建后不支持动态切换layoutMode模式
+> - Web组件宽高规格：分别不超过50万px。
+> - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 
 **参数：**
 
@@ -1807,6 +1825,7 @@ layoutMode(mode: WebLayoutMode)
 
 **示例：**
 
+  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1819,8 +1838,30 @@ layoutMode(mode: WebLayoutMode)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
           .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，建议指定overScrollMode为OverScrollMode.NEVER。
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+          .layoutMode(this.layoutMode)
+          .overScrollMode(this.overScrollMode)
       }
     }
   }
@@ -1839,7 +1880,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1898,10 +1939,67 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
+### forceDisplayScrollBar<sup>12+</sup>
+
+forceDisplayScrollBar(enabled: boolean)
+
+
+设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述           |
+| ------- | -------- | ---- | ------ | ------------------ |
+| enabled | boolean  | 是   | false  | 滚动条是否常驻。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .forceDisplayScrollBar(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:2560px;
+          height:2560px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型可使用任意非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
 
 **参数：**
 
@@ -1983,7 +2081,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enable: boolean)
 
-设置mete标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。
 
 > **说明：**
 >
@@ -1996,7 +2094,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -2126,7 +2224,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
-    
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -2150,6 +2248,55 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
   </body>
   </html>
   ```
+
+### keyboardAvoidMode<sup>12+</sup>
+
+keyboardAvoidMode(mode: WebKeyboardAvoidMode)
+
+Web组件自定义软件键盘避让模式。
+
+当UIContext设置的键盘避让模式为[KeyboardAvoidMode.RESIZE](../apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)模式时，该接口功能不生效。
+
+**参数：**
+
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State avoidMode: WebKeyboardAvoidMode = WebKeyboardAvoidMode.RESIZE_VISUAL;
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .keyboardAvoidMode(this.avoidMode)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Text">
+  </body>
+  </html>
+  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2164,7 +2311,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2241,7 +2388,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2318,7 +2465,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2404,7 +2551,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2915,13 +3062,13 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-网页进程无响应时触发该回调函数。
+渲染进程无响应时触发该回调函数。
 
 **参数：**
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 网页进程无响应时触发的回调。 |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 渲染进程无响应时触发的回调。 |
 
 **示例：**
 
@@ -2950,13 +3097,13 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
 onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
-网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
+渲染进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
 
 **参数：**
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 渲染进程由无响应状态变回正常运行状态时触发的回调。 |
 
 **示例：**
 
@@ -2984,7 +3131,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+调用此函数以处理具有“文件”输入类型的HTML表单。如果不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。如果返回true，应用可以自定义“选择文件”的响应行为。
 
 **参数：**
 
@@ -4403,7 +4550,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -4966,9 +5113,63 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 **示例：**
 
+```ts
+// EntryAbility.ets
+
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    // API12新增：开启同层渲染BFCache开关
+    let features = new webview.BackForwardCacheSupportedFeatures();
+    features.nativeEmbed = true;
+    features.mediaTakeOver = true;
+    webview.WebviewController.enableBackForwardCache(features);
+    webview.WebviewController.initializeWebEngine();
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
@@ -4978,16 +5179,63 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        // 默认行为：点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使Embed标签进入BFCache。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使Embed标签离开BFCache。
+        Button('backward')
+        .onClick(() => {
+          try {
+            this.controller.backward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使Embed标签进入BFCache。
+        Button('forward')
+        .onClick(() => {
+          try {
+            this.controller.forward();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+
+
+        // API12新增同层标签进入离开BFCache状态：非http与https协议加载的网页，Web内核不支持进入BFCache;
+        // 因此如果要测试ENTER_BFCACHE/LEAVE_BFCACHE状态，需要将index.html放到Web服务器上，使用http或者https协议加载，如：
+        // Web({ src: "http://xxxx/index.html", controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
+            }
+            // 同层标签所在的页面进入BFCache时，会触发Enter BFCache。
+            if (event.status == NativeEmbedStatus.ENTER_BFCACHE) {
+              this.embedStatus = 'Enter BFCache';
+            }
+            // 同层标签所在的页面离开BFCache时，会触发Leave BFCache。
+            if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
+              this.embedStatus = 'Leave BFCache';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
@@ -5004,6 +5252,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
@@ -5099,7 +5366,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       Column() {
         Stack() {
           NodeContainer(this.nodeController)
-          Web({ src: $rawfile("test.html"), controller: this.controller })
+          Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedLifecycleChange((embed) => {
               if (embed.status == NativeEmbedStatus.CREATE) {
@@ -5146,6 +5413,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
   ```
 加载的html文件
   ```
+  <!-- index.html -->
   <!Document>
 <html>
 <head>
@@ -5215,7 +5483,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
@@ -6119,7 +6387,7 @@ confirm(userName: string, password: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的帐号密码认证。
+通知Web组件用户使用服务器缓存的账号密码认证。
 
 **返回值：**
 
@@ -7602,6 +7870,8 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | CREATE                        | 0 | Embed标签创建。   |
 | UPDATE                        | 1 | Embed标签更新。   |
 | DESTROY                       | 2 | Embed标签销毁。 |
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | Embed标签进入BFCache。   |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | Embed标签离开BFCache。 |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
@@ -7743,38 +8013,38 @@ type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
-触发网页进程无响应回调的原因。
+触发渲染进程无响应回调的原因。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
-| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| INPUT_TIMEOUT                  | 0 | 发送给渲染进程的input事件响应超时。   |
 | NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
-提供网页进程无响应的详细信息。
+提供渲染进程无响应的详细信息。
 
 | 名称                     | 类型   | 必填 | 描述                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
 | pid | number | 是   | 网页的进程id。 |
-| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发渲染进程无响应回调的原因。 |
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
 
-网页进程无响应时触发的回调。
+渲染进程无响应时触发的回调。
 
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 渲染进程无响应的详细信息。 |
 
 ## OnRenderProcessRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessRespondingCallback = () => void
 
-网页进程由无响应状态变回正常运行状态时触发该回调。
+渲染进程由无响应状态变回正常运行状态时触发该回调。
 
 ## ViewportFit<sup>12+</sup>
 
@@ -7805,6 +8075,16 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
 | action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
+
+## WebKeyboardAvoidMode<sup>12+</sup>
+
+软键盘避让的模式。
+
+| 名称               | 值 | 描述           |
+| ------------------ | -- | ------------ |
+| RESIZE_VISUAL      | 0 | 软键盘避让时，仅调整可视视口大小，不调整布局视口大小。   |
+| RESIZE_CONTENT     | 1 | 默认值，软键盘避让时，同时调整可视视口和布局视口的大小。 |
+| OVERLAYS_CONTENT   | 2 | 不调整任何视口大小，不会触发软键盘避让。   |
 
 ## OnPageEndEvent<sup>12+</sup>
 
@@ -7845,7 +8125,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | JsGeolocation | 是 | 通知Web组件用户操作行为。                       |
+| geolocation | [JsGeolocation](#jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnAlertEvent<sup>12+</sup>
 
@@ -8140,6 +8420,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+| permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
 ## AdsBlockedDetails<sup>12+</sup>
 

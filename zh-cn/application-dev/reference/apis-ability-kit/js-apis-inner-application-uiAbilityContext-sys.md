@@ -6,7 +6,6 @@ UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbilit
 >
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
->  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 >  - 本模块接口为系统接口。
 
 ## 导入模块
@@ -23,7 +22,7 @@ import { common } from '@kit.AbilityKit';
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -109,7 +108,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -199,7 +198,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
-启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
+启动一个Ability并在该Ability销毁时返回执行结果。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -875,7 +874,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
-将当前Ability连接到一个指定account的ServiceExtensionAbility。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -966,7 +965,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
-根据want和accountId启动Ability（callback形式）。
+根据want和accountId启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1052,7 +1051,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-根据want、accountId及startOptions启动Ability（callback形式）。
+根据want、accountId及startOptions启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1142,7 +1141,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
-根据want、accountId和startOptions启动Ability（Promise形式）。
+根据want、accountId和startOptions启动Ability。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1350,7 +1349,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1427,8 +1426,9 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。当开发者需要携带启动参数时可以选择此API。使用callback异步回调。仅支持在主线程调用。
+
+
 
 > **说明：**
 >
@@ -1510,8 +1510,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。
+启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1592,7 +1591,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
 
 使用规则：
  - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限。
@@ -1684,7 +1683,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1754,12 +1753,11 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -1826,7 +1824,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1906,13 +1904,15 @@ export default class EntryAbility extends UIAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1981,14 +1981,15 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用callback异步回调。仅支持在主线程调用。
+
+其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。

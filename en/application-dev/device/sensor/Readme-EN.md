@@ -7,4 +7,4 @@
 - Vibrator
   - [Vibrator Overview](vibrator-overview.md)
   - [Vibrator Development](vibrator-guidelines.md)
-  - [Capi Vibrator Development](vibrator-guidelines-capi)
+  - [Capi Vibrator Development](vibrator-guidelines-capi.md)

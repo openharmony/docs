@@ -382,6 +382,8 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -501,6 +503,8 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -578,6 +582,8 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -690,6 +696,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1137,9 +1145,13 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### updateTransition<sup>12+</sup>
 
 更新交互转场动画进度(不可交互动画不支持动画进度设置)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1299,13 +1311,13 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
@@ -1318,13 +1330,18 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 描述  |
 | --------- | ------ |
 | STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
 | MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>类型说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1334,6 +1351,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## 示例
 
 ### 示例1
+
+该示例主要演示Navigation页面的布局。
 
 ```ts
 // xxx.ets
@@ -1439,6 +1458,9 @@ struct NavigationExample {
 
 
 ### 示例2
+
+该示例主要演示NavPathStack中方法的使用及路由拦截。
+
 ```ts
 // Index.ets
 
@@ -1686,7 +1708,7 @@ export struct PageTwo {
 
 ### 示例3
 
-该示例主要演示设置每个NavDestination子页面的自定义转场动画。
+该示例主要演示设置每个NavDestination子页面的自定义转场动画及可交互转场动画。
 
 ```ts
 // Index.ets
@@ -1695,62 +1717,90 @@ import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
 @Entry
 @Component
 struct NavigationExample {
-  pageInfos: NavPathStack = new NavPathStack()
+  pageInfos: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     if (this.pageInfos === undefined) {
       this.pageInfos = new NavPathStack();
     }
-    this.pageInfos.pushPath({name: 'pageOne'}, false)
+    this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
   }
 
   build() {
     Navigation(this.pageInfos) {
-    }.title('NavIndex')
+    }
+    .title('NavIndex')
     .hideNavBar(true)
     .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
       if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
         return undefined;
       }
-      console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
-      console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
-      console.log(`operation: ${operation}`)
+
+      // 首页不进行自定义动画
       if (from.index === -1 || to.index === -1) {
         return undefined;
       }
+
+      CustomTransition.getInstance().operation = operation;
+      if (CustomTransition.getInstance().interactive) {
+        let customAnimation: NavigationAnimatedTransition = {
+          onTransitionEnd: (isSuccess: boolean) => {
+            console.log("===== current transition is " + isSuccess);
+            CustomTransition.getInstance().recoverState();
+            CustomTransition.getInstance().proxy = undefined;
+          },
+          transition: (transitionProxy: NavigationTransitionProxy) => {
+            CustomTransition.getInstance().proxy = transitionProxy;
+            let targetIndex: string | undefined = operation == NavigationOperation.PUSH ?
+              (to.navDestinationId) : (from.navDestinationId);
+            if (targetIndex) {
+              CustomTransition.getInstance().fireInteractiveAnimation(targetIndex, operation);
+            }
+          },
+          isInteractive: CustomTransition.getInstance().interactive
+        }
+        return customAnimation;
+      }
       let customAnimation: NavigationAnimatedTransition = {
         onTransitionEnd: (isSuccess: boolean)=>{
-          console.log(`current transition result is ${isSuccess}`);
+          console.log(`current transition result is ${isSuccess}`)
         },
-        timeout: 700,
+        timeout: 7000,
         // 转场开始时系统调用该方法，并传入转场上下文代理对象
-        transition: (transitionProxy: NavigationTransitionProxy)=>{
-          console.log("trigger transition callback");
+        transition: (transitionProxy: NavigationTransitionProxy) => {
+          if (!from.navDestinationId || !to.navDestinationId) {
+            return;
+          }
           // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
-          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
-          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
-          if (fromParam.start != undefined) {
-            fromParam.start(operation == NavigationOperation.PUSH, true);
+          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.navDestinationId);
+          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.navDestinationId);
+          if (operation == NavigationOperation.PUSH) {
+            if (toParam.start) {
+              toParam.start(true, false);
+            }
+            animateTo({
+              duration: 500, onFinish: () => {
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (toParam.finish) {
+                toParam.finish(true, false);
+              }
+            })
+          } else {
+            if (fromParam.start) {
+              fromParam.start(true, true);
+            }
+            animateTo({
+              duration: 500, onFinish: () => {
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish) {
+                fromParam.finish(true, true);
+              }
+            })
           }
-          if (toParam.start != undefined) {
-            toParam.start(operation == NavigationOperation.PUSH, false);
-          }
-          animateTo({duration: 400, onFinish: ()=>{
-            if (fromParam.onFinish != undefined) {
-              fromParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.onFinish != undefined) {
-              toParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            transitionProxy.finishTransition();
-          }}, ()=>{
-            if (fromParam.finish != undefined) {
-              fromParam.finish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.finish != undefined) {
-              toParam.finish(operation === NavigationOperation.PUSH, false);
-            }
-          })
         }
       };
       return customAnimation;
@@ -1761,7 +1811,7 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils'
+import {CustomTransition} from './CustomNavigationUtils';
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
@@ -1770,48 +1820,102 @@ export function PageOneBuilder(name: string, param: Object) {
 
 @Component
 export struct PageOne {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 0
-  @State scaleVal: number = 1
-  pageId: number = 0;
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateX: string = '0';
+  pageId: string = '';
+  rectWidth: number = 0;
+  interactive: boolean = false;
 
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
+  registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
-      this.x = isExit ? 0 : 300;
-    }, (isPush: boolean, isExit: boolean)=> {
-      this.x = isExit ? -300 : 0;
+      if (isPush) {
+        this.translateX = '100%';
+      } else {
+        this.translateX = '0';
+      }
     }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
+      if (isPush) {
+        this.translateX = '0';
+      } else {
+        this.translateX = '100%';
+      }
+    }, (isPush: boolean, isExit: boolean) => {
+      this.translateX = '0';
+    }, (operation: NavigationOperation) => {
+      if (operation == NavigationOperation.PUSH) {
+        this.translateX = '100%';
+        animateTo({
+          duration: 1000,
+          onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
+          this.translateX = '0';
+        })
+      } else {
+        this.translateX = '0';
+        animateTo({
+          duration: 1000,
+          onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
+          this.translateX = '100%';
+        })
+      }
     }, 200);
   }
 
   build() {
     NavDestination() {
       Column() {
+        Button(`setInteractive`)
+          .onClick(() => {
+            CustomTransition.getInstance().interactive = !CustomTransition.getInstance().interactive;
+            this.interactive = CustomTransition.getInstance().interactive;
+          })
+
         Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            //将name指定的NavDestination页面信息入栈，传递的数据为param
+            this.pageInfos.pushDestinationByName('pageTwo', CustomTransition.getInstance().getAnimationId());
           })
-      }.width('100%').height('100%')
-    }.title('pageOne')
-    .mode(NavDestinationMode.STANDARD)
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title('pageOne')
+    .onDisAppear(() => {
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
+      this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        this.registerCallback();
+      }
     })
-    .translate({x: this.x, y: 0, z: 0})
-    .backgroundColor(Color.White)
+    .translate({ x: this.translateX })
+    .backgroundColor('#F1F3F5')
+    .gesture(PanGesture()
+      .onActionStart((event: GestureEvent) => {
+        this.rectWidth = event.target.area.width as number;
+        if (event.offsetX < 0) {
+          this.pageInfos.pushPath({ name: 'pageTwo', param: CustomTransition.getInstance().getAnimationId() });
+        } else {
+          this.pageInfos.pop();
+        }
+      })
+      .onActionUpdate((event: GestureEvent) => {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().updateProgress(rate);
+      })
+      .onActionEnd((event: GestureEvent) => {
+        let rate: number = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().finishInteractiveAnimation(rate);
+      }))
   }
 }
 ```
@@ -1821,24 +1925,48 @@ import {CustomTransition} from './CustomNavigationUtils'
 
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo()
+  PageTwo({param: param as number})
 }
 
 @Component
 export struct PageTwo {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 300
-  pageId: number = 0
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateX: string = '0';
+  pageId: string = '';
+  rectWidth: number = 0;
+  param: number = 0;
 
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
+  registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
-      console.log("current page is pageOne")
-      this.x = isExit ? 0 : isPush ? 300 : -300;
+      if (isPush) {
+        this.translateX =  '100%'
+      } else {
+        this.translateX = '0';
+      }
     }, (isPush: boolean, isExit: boolean)=>{
-      this.x = isExit ? isPush ? -300 : 300 : 0;
+      if (isPush) {
+        this.translateX = '0';
+      } else {
+        this.translateX = '100%'
+      }
     }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
+      this.translateX = '0';
+    }, (operation: NavigationOperation)=>{
+      if (operation == NavigationOperation.PUSH) {
+        this.translateX = '100%';
+        animateTo({duration: 500, onFinish: ()=>{
+          this.translateX = '0';
+        }}, ()=>{
+          this.translateX = '0'
+        })
+      } else {
+        this.translateX = '0';
+        animateTo({duration: 500, onFinish: ()=>{
+          this.translateX = "0"
+        }}, ()=>{
+          this.translateX = '100%';
+        })
+      }
     }, 2000)
   }
 
@@ -1850,24 +1978,45 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageOne', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            //将name指定的NavDestination页面信息入栈，传递的数据为param
+            this.pageInfos.pushPath({name:'pageOne', param: CustomTransition.getInstance().getAnimationId()})
           })
-      }.width('100%').height('100%')
-    }.title('pageTwo')
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title('pageTwo')
+    .gesture(PanGesture()
+      .onActionStart((event: GestureEvent)=> {
+        this.rectWidth = event.target.area.width as number;
+        if (event.offsetX < 0) {
+          this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
+        } else {
+          this.pageInfos.pop();
+        }
+      })
+      .onActionUpdate((event: GestureEvent) => {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().updateProgress(rate);
+      })
+      .onActionEnd((event: GestureEvent)=> {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().finishInteractiveAnimation(rate);
+      }))
+    .onAppear(() => {
+      this.registerCallback();
     })
     .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        this.registerCallback();
+      }
     })
-    .opacity(0.5)
-    .translate({x: this.x})
-    .backgroundColor(Color.White)
+    .translate({x: this.translateX})
+    .backgroundColor(Color.Yellow)
   }
 }
 ```
@@ -1878,29 +2027,35 @@ export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   onFinish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
+  interactive: ((operation: NavigationOperation) => void | undefined) | undefined;
   timeout: (number | undefined) | undefined;
 }
-const customTransitionMap: Map<number, AnimateCallback> = new Map()
+const customTransitionMap: Map<string, AnimateCallback> = new Map();
+
 export class CustomTransition {
-  private constructor() {
-
-  }
-
   static delegate = new CustomTransition();
+  interactive: boolean = false;
+  proxy: NavigationTransitionProxy| undefined = undefined;
+  private animationId: number = 0;
+  operation: NavigationOperation = NavigationOperation.PUSH
 
   static getInstance() {
     return CustomTransition.delegate;
   }
 
-  // 注册某个页面的动画回调
-  // startCallback：用来设置动画开始时页面的状态
-  // endCallback：用来设置动画结束时页面的状态
-  // onFinish：用来执行动画结束后页面的其他操作
-  // timeout：转场结束的超时时间
-  registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
-
+  /* 注册某个页面的动画回调
+   * name: 注册页面的唯一id
+   * startCallback：用来设置动画开始时页面的状态
+   * endCallback：用来设置动画结束时页面的状态
+   * onFinish：用来执行动画结束后页面的其他操作
+   * interactiveCallback: 注册的可交互转场的动效
+   * timeout：转场结束的超时时间
+   */
+  registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
+    endCallback:(operation: boolean, isExit: boolean) => void,
+    onFinish: (operation: boolean, isExit: boolean) => void,
+    interactiveCallback: (operation: NavigationOperation) =>void,
+    timeout: number): void {
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       if (param != undefined) {
@@ -1908,23 +2063,90 @@ export class CustomTransition {
         param.finish = endCallback;
         param.timeout = timeout;
         param.onFinish = onFinish;
+        param.interactive = interactiveCallback;
         return;
       }
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish,
+      interactive: interactiveCallback};
     customTransitionMap.set(name, params);
   }
 
-  unRegisterNavParam(name: number): void {
+  getAnimationId() {
+    return Date.now();
+  }
+
+  unRegisterNavParam(name: string): void {
     customTransitionMap.delete(name);
   }
 
-  getAnimateParam(name: number): AnimateCallback {
+  fireInteractiveAnimation(id: string, operation: NavigationOperation) {
+    let animation = customTransitionMap.get(id)?.interactive;
+    if (!animation) {
+      return;
+    }
+    animation(operation);
+  }
+
+  updateProgress(progress: number) {
+    if (!this.proxy?.updateTransition) {
+      return;
+    }
+    progress = this.operation == NavigationOperation.PUSH ? 1 - progress : progress;
+    this.proxy?.updateTransition(progress);
+  }
+
+  cancelTransition() {
+    if (this.proxy?.cancelTransition) {
+      this.proxy.cancelTransition();
+    }
+  }
+
+  recoverState() {
+    if (!this.proxy?.from.navDestinationId || !this.proxy?.to.navDestinationId) {
+      return;
+    }
+    let fromParam = customTransitionMap.get(this.proxy.from.navDestinationId);
+    if (fromParam?.onFinish) {
+      fromParam.onFinish(false, false);
+    }
+    let toParam = customTransitionMap.get(this.proxy?.to.navDestinationId);
+    if (toParam?.onFinish) {
+      toParam.onFinish(true, true);
+    }
+  }
+
+  finishTransition() {
+    this.proxy?.finishTransition();
+  }
+
+  finishInteractiveAnimation(rate: number) {
+    if (this.operation == NavigationOperation.PUSH) {
+      if (rate > 0.5) {
+        if (this.proxy?.cancelTransition) {
+          this.proxy.cancelTransition();
+        }
+      } else {
+        this.proxy?.finishTransition();
+      }
+    } else {
+      if (rate > 0.5) {
+        this.proxy?.finishTransition();
+      } else {
+        if (this.proxy?.cancelTransition) {
+          this.proxy.cancelTransition();
+        }
+      }
+    }
+  }
+
+  getAnimateParam(name: string): AnimateCallback {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name)?.start,
       finish: customTransitionMap.get(name)?.finish,
       timeout: customTransitionMap.get(name)?.timeout,
-      onFinish: customTransitionMap.get(name)?.onFinish
+      onFinish: customTransitionMap.get(name)?.onFinish,
+      interactive: customTransitionMap.get(name)?.interactive,
     };
     return result;
   }
@@ -1951,10 +2173,12 @@ export class CustomTransition {
   ]
 }
 ```
-
-![customNavigation.gif](figures/customNavigation.gif)
+![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
 ### 示例4
+
+该示例主要演示Navigation带参返回。
+
 ```ts
 // Index.ets
 
@@ -1980,7 +2204,7 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass{
   count:number = 10
@@ -2232,9 +2456,9 @@ export struct PageTwo {
 
 ### 示例5
 
+该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
+
 ```ts
-// 该示例主要演示设置Navigation主页的标题栏、工具栏和
-// NavDestination页面的标题栏的背景颜色和背景模糊效果。
 let COLOR1: string = "#80004AAF";
 let COLOR2: string = "#802787D9";
 let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
@@ -2381,8 +2605,9 @@ struct Index {
 
 ### 示例6
 
+该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
+
 ```ts
-// 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
 @Entry
 @Component
 struct NavigationExample1 {
@@ -2448,10 +2673,13 @@ struct NavigationExample1 {
 
 ### 示例7
 
+该示例主要演示如下两点功能：
+
+1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能。
+
+2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
+
 ```ts
-// 该示例主要演示如下两点功能：
-// 1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能；
-// 2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
 class PageParam {
   constructor(num_: number) {
     this.num = num_;
@@ -2555,8 +2783,9 @@ struct NavigationExample2 {
 
 ### 示例8
 
+该示例演示NavDestination的生命周期时序。
+
 ```ts
-// 该示例演示NavDestination的生命周期时序。
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOneComponent()
@@ -2658,8 +2887,9 @@ struct NavigationExample3 {
 
 ### 示例9
 
+该示例演示Navigation标题栏STACK布局效果。
+
 ```ts
-// 该示例演示Navigation标题栏STACK布局效果。
 @Entry
 @Component
 struct NavigationExample {
@@ -2729,10 +2959,9 @@ struct NavigationExample {
 
 ### 示例10
 
+该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
+
 ```ts
-// 该示例主要演示如下两点功能
-// 1. 如何定义NavPathStack的派生类
-// 2. 派生类在Navigation中的基本用法
 class DerivedNavPathStack extends NavPathStack {
   // usr defined property 'id'
   id: string = "__default__"
@@ -2839,8 +3068,10 @@ struct PageOne {
 ![derive_stack.gif](figures/derive_stack.gif)
 
 ### 示例11
+
+该示例主要演示Navigation和NavDestination如何使用Symbol组件。
+
 ```ts
-// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
@@ -2951,3 +3182,117 @@ export struct NavigationMenu{
 }
 ```
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
+
+### 示例12
+
+该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  // 初始化标题栏起始端内间距
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  // 初始化标题栏结束端内间距
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+
+  @Builder
+  myRouter(name: string, param?: Object) {
+    if (name === 'NavDestinationExample') {
+      NavDestinationExample();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        // 标题栏内间距切换
+        Button('切换标题栏内间距为16vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(16);
+            this.paddingEnd = LengthMetrics.vp(16);
+          })
+          .margin({ top: 5 })
+
+        Button('切换标题栏内间距为24vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(24);
+            this.paddingEnd = LengthMetrics.vp(24);
+          })
+          .margin({ top: 5 })
+
+        Button('跳转')
+          .onClick(() => {
+            this.navPathStack.pushPathByName('NavDestinationExample', null);
+          })
+          .margin({ top: 5 })
+      }
+    }
+    .titleMode(NavigationTitleMode.Mini)
+    .title('一级页面', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavDestinationExample {
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+
+  build() {
+    NavDestination() {
+      Row() {
+        Column() {
+          // 标题栏内间距切换
+          Button('切换标题栏内间距为32vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(32);
+              this.paddingEnd = LengthMetrics.vp(32);
+            })
+            .margin({ top: 5 })
+
+          Button('切换标题栏内间距为20vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(20);
+              this.paddingEnd = LengthMetrics.vp(20);
+            })
+            .margin({ top: 5 })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+  }
+}
+```
+![titlebarPaddingDemo.gif](figures/titlebarPaddingDemo.gif)

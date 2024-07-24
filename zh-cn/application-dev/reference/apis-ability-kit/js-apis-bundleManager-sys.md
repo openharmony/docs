@@ -24,7 +24,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 
@@ -868,7 +868,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -881,7 +881,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -931,7 +931,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700026 | The specified bundle is disabled.      |
@@ -943,7 +943,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -998,7 +998,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1011,7 +1011,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1035,7 +1035,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -1088,7 +1088,7 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1101,7 +1101,7 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1123,7 +1123,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -1173,7 +1173,7 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1186,7 +1186,7 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1240,7 +1240,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | -------- | ------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.             |
@@ -1252,7 +1252,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
@@ -1304,7 +1304,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700026 | The specified bundle is disabled.            |
@@ -1315,7 +1315,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -1372,7 +1372,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified extensionAbility is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1384,7 +1384,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -1410,7 +1410,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -1465,7 +1465,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified extensionAbility is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1477,7 +1477,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -1500,7 +1500,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -2199,7 +2199,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2271,7 +2271,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2343,7 +2343,7 @@ setAbilityEnabled(info: AbilityInfo, appIndex: number, isEnabled: boolean): Prom
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2407,7 +2407,7 @@ setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2674,7 +2674,7 @@ isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2742,7 +2742,7 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2810,7 +2810,7 @@ isAbilityEnabled(info: AbilityInfo, appIndex: number): Promise\<boolean>
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2876,7 +2876,7 @@ isAbilityEnabledSync(info: AbilityInfo): boolean
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -3118,7 +3118,7 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -3135,7 +3135,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -4300,7 +4300,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri, type or linkFeature) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.             |
@@ -4312,7 +4312,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 // 示例接口带userId参数查询
 import { bundleManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let extensionAbilityType = "form";
@@ -4336,7 +4336,7 @@ try {
 // 示例接口不带userId参数查询
 import { bundleManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let extensionAbilityType = "form";
@@ -4435,7 +4435,7 @@ getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplica
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有可恢复的预置应用信息。 |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获取到的所有可恢复的预置应用信息 |
 
 **错误码：**
 
@@ -4594,7 +4594,7 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
-import Base from '@ohos.base';
+import { Base } from '@ohos.base';
 
 bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
     console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));

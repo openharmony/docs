@@ -14,7 +14,7 @@ This module provides the following functions:
 
 > **NOTE**
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are used in [automated test scripts](../../application-test/arkxtest-guidelines.md).
+> - The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 > - The APIs of this module do not support concurrent calls.
 
 

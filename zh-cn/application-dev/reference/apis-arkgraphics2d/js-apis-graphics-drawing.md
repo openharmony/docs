@@ -271,6 +271,36 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 path.reset();
 ```
 
+### getLength<sup>12+</sup>
+
+getLength(forceClosed: boolean): number
+
+用于获取路径长度。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名| 类型  | 必填| 说明     |
+| ----- | ------ | ---- | --------- |
+| forceClosed  | boolean | 是  | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。|
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| number | 路径长度。|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D'
+let path = new drawing.Path();
+path.arcTo(20, 20, 180, 180, 180, 90);
+let len = path.getLength(false);
+console.info("path length = " + len);
+```
+
 ## Canvas
 
 承载绘制内容与绘制状态的载体。
@@ -790,6 +820,52 @@ class DrawingRenderNode extends RenderNode {
     const textBlob = drawing.TextBlob.makeFromString("Hello, drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
+    canvas.detachBrush();
+  }
+}
+```
+
+### drawSingleCharacter<sup>12+</sup>
+
+drawSingleCharacter(text: string, font: Font, x: number, y: number): void
+
+用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text   | string | 是   | 待绘制的单个字符，字符串的长度必须为1。  |
+| font   | [Font](#font) | 是   | 字型对象。  |
+| x      | number | 是   | 所绘制出的字符基线（下图蓝线）的左端点（下图红点）的横坐标，该参数为浮点数。 |
+| y      | number | 是   | 所绘制出的字符基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
+
+![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    const font = new drawing.Font();
+    font.setSize(20);
+    canvas.attachBrush(brush);
+    canvas.drawSingleCharacter("你", font, 100, 100);
+    canvas.drawSingleCharacter("好", font, 120, 100);
     canvas.detachBrush();
   }
 }
@@ -1497,7 +1573,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | 参数名   | 类型                          | 必填 | 说明                                   |
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | 是   | 绘制字形的文本内容。                   |
-| font     | [Font](#font)                 | 是   | 文本大小、字体、文本比例等。           |
+| font     | [Font](#font)                 | 是   | 字型对象。           |
 | encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。 |
 
 **返回值：**
@@ -1547,7 +1623,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 | 参数名 | 类型                                               | 必填 | 说明                           |
 | ------ | -------------------------------------------------- | ---- | ------------------------------ |
 | pos    | Array\<[TextBlobRunBuffer](#textblobrunbuffer)>    | 是   | TextBlobRunBuffer数组。        |
-| font   | [Font](#font)                                      | 是   | 文本大小、字体、文本比例等。   |
+| font   | [Font](#font)                                      | 是   | 字型对象。   |
 | bounds | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 否   | 可选，如果不设置，则无边界框。 |
 
 **返回值：**
@@ -1640,6 +1716,52 @@ import { drawing } from '@kit.ArkGraphics2D';
 const font = new drawing.Font();
 let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
+```
+
+### makeFromFile<sup>12+</sup>
+
+static makeFromFile(filePath: string): Typeface
+
+从指定字体文件，构造字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| filePath | string           | 是   | 表示字体资源存放的路径。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回Typeface对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
+    const mytypeface = drawing.Typeface.makeFromFile(str);
+    font.setTypeface(mytypeface);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
 ```
 
 ## Font
@@ -1871,7 +1993,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 > **说明：**
 >
-> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuremeasuretext)替代。
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext)替代。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1902,6 +2024,48 @@ measureText(text: string, encoding: TextEncoding): number
 import { drawing } from '@kit.ArkGraphics2D';
 let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
+```
+
+### measureSingleCharacter<sup>12+</sup>
+
+measureSingleCharacter(text: string): number
+
+用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text   | string | 是   | 待测量的单个字符，字符串的长度必须为1。  |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 字符的宽度，浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const font = new drawing.Font();
+    font.setSize(20);
+    let width = font.measureSingleCharacter("你");
+  }
+}
 ```
 
 ### setScaleX<sup>12+</sup>
@@ -2269,6 +2433,71 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
+
+## Lattice<sup>12+</sup>
+
+矩形网格对象。该对象用于将图片按照矩形网格进行划分。
+
+### createImageLattice<sup>12+</sup>
+
+static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<common2D.Color> | null): Lattice
+
+创建矩形网格对象。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格是固定的，如果目标网格足够大，则这些固定网格以其原始大小进行绘制。如果目标网格太小，无法容纳这些固定网格，则所有固定网格都会按比例缩小以适应目标网格。其余网格将进行缩放，来适应剩余的空间。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名       | 类型                                                                | 必填 | 说明                                                                               |
+| ------------ | ------------------------------------------------------------------ | ---- | --------------------------------------------------------------------------------- |
+| xDivs        | Array\<number>                                                     | 是   | 用于划分图像的X坐标值数组。该参数为整数。                                             |
+| yDivs        | Array\<number>                                                     | 是   | 用于划分图像的Y坐标值数组。该参数为整数。                                             |
+| fXCount      | number                                                             | 是   | X坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
+| fYCount      | number                                                             | 是   | Y坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
+| fBounds      | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null           | 否   | 可选，要绘制的原始边界矩形，矩形参数须为整数，默认为原始图像矩形大小（若矩形参数为小数，会直接舍弃小数部分，转为整数）。 |
+| fRectTypes   | Array\<[RectType](#recttype12)>\|null                              | 否   | 可选，填充网格类型的数组，默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
+| fColors      | Array\<[common2D.Color](js-apis-graphics-common2D.md#color)>\|null | 否   | 可选，填充网格的颜色数组，默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
+
+**返回值：**
+
+| 类型                       | 说明                                |
+| ------------------------- | ----------------------------------- |
+| [Lattice](#lattice12)     | 返回创建的矩形网格对象。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    let xDivs : Array<number> = [1, 2, 4];
+    let yDivs : Array<number> = [1, 2, 4];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3); // 划分(3+1)*(3+1)的网格，下图蓝色填充矩形为固定网格
+  }
+}
+```
+![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
+
+## RectType<sup>12+</sup>
+
+定义填充网格的矩形类型的枚举。仅在[Lattice](#lattice12)中使用。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称         | 值   | 说明                                                             |
+| ------------ | ---- | --------------------------------------------------------------- |
+| DEFAULT      | 0    | 将图像绘制到矩形网格中。                                          |
+| TRANSPARENT  | 1    | 将矩形网格设置为透明的。                                          |
+| FIXEDCOLOR   | 2    | 将[Lattice](#lattice12)中fColors数组的颜色绘制到矩形网格中。       |
 
 ## MaskFilter<sup>12+</sup>
 
@@ -2790,7 +3019,7 @@ setBlendMode(mode: BlendMode) : void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -2820,7 +3049,7 @@ setJoinStyle(style: JoinStyle): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -2889,7 +3118,7 @@ setCapStyle(style: CapStyle): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -3249,7 +3478,7 @@ setBlendMode(mode: BlendMode) : void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 

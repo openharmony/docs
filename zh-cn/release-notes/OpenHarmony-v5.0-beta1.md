@@ -855,7 +855,7 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 | -------- | -------- | -------- |
 | OpenHarmony | 5.0 Beta1 | NA |
 | Public SDK | Ohos_sdk_public 5.0.0.25 (API Version 12 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 |
-| HUAWEI DevEco Studio（可选） | 5.0 Beta1 | OpenHarmony应用开发推荐使用。获取方式：*待后续提供* |
+| HUAWEI DevEco Studio（可选） | 5.0 Beta1 | OpenHarmony应用开发推荐使用。获取方式：<br />[点击跳转至下载页面](https://developer.huawei.com/consumer/cn/download/) |
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
@@ -948,4 +948,42 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
-<!--no_check-->
+## 修复缺陷列表
+
+**表3** 修复缺陷ISSUE列表
+
+| ISSUE单 | 问题描述 | 
+| -------- | -------- |
+| I8WP8M | 移动桌面一个图标使之与另一图标重叠创建大文件夹，之后选中文件夹内的一个应用移出文件夹，重复此操作，launcher出现内存泄露，操作五分钟，内存泄漏约25M，操作一次泄露约673.68KB。 | 
+| I9A9NO | 不停执行点击短信界面右上角新建短信和返回操作，5分钟短信应用内存上涨约50M，操作一次泄露约341.33KB。 | 
+| I8TM99 | 小概率在进程softbus_server下的softbus_server线程出现cppcrash，崩溃栈：libbtframework.z.so。 | 
+| I90A2N | 一定概率下，进程com.ohos.systemui由于THREAD_BLOCK_6S卡在libeventhandler.z.so出现appfreeze。 | 
+| I9A089 | 中等概率下进程foundation由于SERVICE_BLOCK出现sysfreeze。 | 
+| I9CGOZ | 有较高概率，进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 
+| I8QH9S | 小概率在进程com.ohos.settingsdata下的os.settingsdata线程出现cppcrash，崩溃栈：libnative_appdatafwk.z.so。 | 
+| I963TL | 小概率因进程com.ohos.mms下的com.ohos.mms线程导致libark_jsruntime.so出现cppcrash。 | 
+| I97U6G | 小概率下进程com.ohos.certmanager由于THREAD_BLOCK_6S卡在librender_service_client.z.so出现appfreeze。 | 
+| I98KIG | 小概率下进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 
+| I96CJL | 轻量级设备之间组网失败。 | 
+
+
+## 遗留缺陷列表
+
+**表4** 遗留缺陷列表
+
+| ISSUE | 问题描述 | 影响 | 计划解决日期 | 
+| -------- | -------- | -------- | -------- |
+| IA686U | 进程com.ohos.photos下的OS_FFRT_2_0线程有较高概率导致libace_napi.z.so出现cppcrash。 | 相册应用概率性闪退。<br/>规避措施：重启相册应用。 | 6月30日 | 
+| I9YC9X | 进程com.ohos.camera有较高概率由于LIFECYCLE_TIMEOUT卡在libark_jsruntime.so出现sysfreeze。 | 相机应用概率性闪退。<br/>规避措施：在操作相机应用的时候避免反复切换前后台操作。 | 6月30日 | 
+| I9TE52 | 进程com.ohos.photos有一定概率由于THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 | 图库应用卡住3秒以上。<br/>规避措施：重启图库应用。 | 6月30日 | 
+| I9TDUU | 关键应用: ohos.samples.distributedcalc小概率由于THREAD_BLOCK_6S卡在libace_compatible.z.so出现appfrreze问题。 | 使用计算器可能卡住并闪退 。<br/>规避措施：重启计算器应用。 | 7月15日 | 
+| I9S5ZN | 关键应用: com.ohos.settings极小概率由于THREAD_BLOCK_6S卡在libunwind.z.so出现appfrreze问题。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 6月30日 | 
+| I9TE5K | 进程com.ohos.photos小概率由于THREAD_BLOCK_6S卡在libunwind.z.so出现appfreeze。 | 图库应用卡住3秒以上。<br/>规避措施：重启图库应用。 | 6月30日 | 
+| I9TJGB | 进程com.ohos.camera下的RSRenderThread进程有小概率导致libmali-bifrost-g52-g7p0-ohos.so出现cppcrash。 | 相册应用概率性闪退。<br/>规避措施：重启相册应用。 | 6月30日 | 
+| IA5EC3 | 进程com.ohos.updateapp小概率由于THREAD_BLOCK_6S卡在libskia_canvaskit.z.so出现appfreeze。 | 升级页面可能会卡顿。<br/>规避措施： 重新进入软件更新。 | 7月15日 | 
+| IA5I3D | 进程com.ohos.smartperf小概率由于THREAD_BLOCK_6S卡在librender_service_base.z.so出现appfreeze。 | 对用户无影响，开发者用户使用该app测试应用时，点击悬浮球开始测试后如果测试时间过久可能在保存时出现闪退。<br/>​规避措施​：可终止后台进程后重新进入该app。 | 6月30日 | 
+| IA4G47 | 进程av_codec_service下的av_codec_service线程极小概率出现cppcrash，崩溃栈：libhcodec.z.so。 | Wukong测试工具随机压测出现crash，用户无影响。 | 6月30日 | 
+| I9SXZ8 | 进程com.ohos.contacts小概率由于THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 | 联系人应用进入通话记录查询通话记录时卡顿。<br/>规避措施：重启联系人应用。 | 6月30日 | 
+| I9TDMQ | 关键应用: com.ohos.settings极小概率由于THREAD_BLOCK_6S卡在libskia_canvaskit.z.so出现appfrreze问题。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 6月30日 | 
+| I9S5ZN | 关键应用: com.ohos.settings极小概率由于THREAD_BLOCK_6S卡在libunwind.z.so出现appfrreze问题。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 7月30日 | 
+| I9S600 | 关键应用: com.ohos.settings极小概率由于THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfrreze问题。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 7月30日 | 

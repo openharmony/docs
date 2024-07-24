@@ -69,9 +69,9 @@
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -134,9 +134,9 @@ export default class EntryAbility extends UIAbility {
 直接在onWindowStageCreate里面创建子窗口的整体示例代码如下：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowStage_: window.WindowStage | null = null;
 let sub_windowClass: window.Window | null = null;
@@ -240,9 +240,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 ```ts
 // Index.ets
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-let windowStage_: window.windowStage | undefined = undefined;
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowStage_: window.WindowStage | undefined = undefined;
 let sub_windowClass: window.Window | undefined = undefined;
 @Entry
 @Component
@@ -390,9 +391,9 @@ struct SubWindow {
    通过`loadContent`接口加载沉浸式窗口的具体内容。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -464,7 +465,7 @@ export default class EntryAbility extends UIAbility {
 ### 开发步骤
 
 <!--RP1-->
-**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 <!--RP1End-->
 
 1. 创建悬浮窗。
@@ -484,9 +485,9 @@ export default class EntryAbility extends UIAbility {
    当不再需要悬浮窗时，可根据具体实现逻辑，使用`destroyWindow`接口销毁悬浮窗。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -561,8 +562,8 @@ export default class EntryAbility extends UIAbility {
 在创建WindowStage对象后可通过监听`'windowStageEvent'`事件类型，监听到窗口进入前台、后台、前台可交互、前台不可交互等事件，应用可根据这些上报的事件状态进行相应的业务处理。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

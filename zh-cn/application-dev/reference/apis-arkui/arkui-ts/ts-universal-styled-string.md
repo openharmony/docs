@@ -488,6 +488,20 @@ constructor(value: DecorationStyleInterface)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
 
+## DecorationStyleResult
+
+后端返回的文本装饰线样式信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
+
 ## BaselineOffsetStyle
 
 文本基线偏移量对象说明。
@@ -754,6 +768,16 @@ constructor(value?: ParagraphStyleInterface)
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
+
+## UserDataSpan
+
+支持存储自定义扩展信息，用于存储和获取用户数据，仅提供基类，具体实现由开发者定义。
+
+扩展信息不影响实际显示效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## 示例
 
@@ -1290,7 +1314,6 @@ struct styled_string_demo4 {
           .onClick(() => {
             this.mutableStr.replaceString(2, 5, "789")
             this.controller.setStyledString(this.mutableStr)
-            this.mutableStr
           })
 
         Button('Image之Get')
@@ -1606,6 +1629,56 @@ struct styled_string_demo6 {
 
 ![](figures/styledstring_6.PNG)
 
+### 示例7
+
+属性字符串UserDataSpan使用示例
+
+```ts
+// xxx.ets
+class MyUserDateSpan extends UserDataSpan {
+  constructor(name: string, age: number) {
+    super()
+    this.name = name
+    this.age = age
+  }
+
+  name: string
+  age: number
+}
+
+@Entry
+@Component
+struct styled_string_demo7 {
+  @State name: string = "world"
+  @State age: number = 10
+  controller: TextController = new TextController()
+  styleString: MutableStyledString = new MutableStyledString("hello world", [{
+    start: 0,
+    length: 11,
+    styledKey: StyledStringKey.USER_DATA,
+    styledValue: new MyUserDateSpan("hello", 21)
+  }])
+
+  onPageShow(): void {
+    this.controller.setStyledString(this.styleString)
+  }
+
+  build() {
+    Column() {
+      Text(undefined, { controller: this.controller })
+      Button("get user data").onClick(() => {
+        let arr = this.styleString.getStyles(0, this.styleString.length)
+        let userDataSpan = arr[0].styledValue as MyUserDateSpan
+        this.name = userDataSpan.name
+        this.age = userDataSpan.age
+      })
+      Text("name:" + this.name + "  age: " + this.age)
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledstring_7.gif)
 
 
 

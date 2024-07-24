@@ -4,7 +4,7 @@
 ## 问题场景
 列表无限滑动的场景，在即将触底的时候需要进行数据请求，如果在主线程中直接处理请求数据，可能会导致滑动动画被中断。如果回调函数处理的耗时较长，会直接阻塞主线程，卡顿就会非常明显。使用异步执行的方式进行异步调用，**回调函数的执行还是会在主线程**，一样会阻塞UI绘制和渲染。场景预览如下，列表滑动过程中，图片会显示延迟。
 
-<img src="./figures/avoid_time_consuming_demo.gif" width="300">
+![](./figures/avoid_time_consuming_demo.gif)
 
 ## 优化示例
 ### 优化前代码示例
@@ -12,7 +12,7 @@
 ```ts
   build() {
     Column({ space: 2 }) {
-      WaterFlow({}) {
+      WaterFlow() {
         LazyForEach(this.dataSource, (item: ModelDetailVO) => {
           FlowItem() {
             Column() {
@@ -24,7 +24,7 @@
             if (item.id + 10 === this.dataSource.totalCount()) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
               this.mockRequestData().then((data: ModelDetailVO[]) => {
-                for(let i = 0; i < data.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
                 }
               })
@@ -32,8 +32,9 @@
           })
         }, (item: string) => item)
       }
-    }  
+    }
   }
+
   async mockRequestData(): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
@@ -45,7 +46,7 @@
     })
     return this.transArrayDTO2VO(result);
   }
-  ...
+  // ...
 ```
 编译运行后，通过[SmartPerf Host](./performance-optimization-using-smartperf-host.md)工具抓取Trace。如下图所示，其中红色框选的部分就是getRawFileContent的回调耗时。
 
@@ -60,7 +61,7 @@
 ```ts
   build() {
     Column({ space: 2 }) {
-      WaterFlow({}) {
+      WaterFlow() {
         LazyForEach(this.dataSource, (item: ModelDetailVO) => {
           FlowItem() {
             Column() {
@@ -73,7 +74,7 @@
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
               taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
-                this.dataSource.addLastItem(data[i]);
+                  this.dataSource.addLastItem(data[i]);
                 }
               })
             }
@@ -82,7 +83,8 @@
       }
     }
   }
-  
+
+  // 注意：以下方法和类声明均在组件外声明
   async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
     let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
@@ -101,13 +103,6 @@
     })
     return transArrayDTO2VO(result, index);
   }
-  
-  class ModelDetailVO {
-    id: number = 0;
-    name: string = "";
-    url: string = "";
-  }
-  ...
 ```
 
 在上面的代码里，优化的思路主要是用子线程处理耗时操作，避免在主线程中执行耗时操作影响UI渲染，编译运行后，通过[SmartPerf Host](./performance-optimization-using-smartperf-host.md)工具抓取Trace。如下图所示，原先在主线程中的getRawFileContent的标签转移到了TaskWorker线程。
@@ -132,7 +127,7 @@
           .onAppear(() => {
             // 即将触底时提前增加数据
             if (item.id + 10 === this.dataSource.totalCount()) {
-              // 通过子线程获取数据
+              // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
               taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
@@ -142,9 +137,10 @@
           })
         }, (item: string) => item)
       }
-    }  
+    }
   }
-  
+
+  // 注意：以下方法和类声明均在组件外声明
   async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
     let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
@@ -155,7 +151,7 @@
   @Concurrent
   async function mockRequestData(index: number, context: Context): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
-    // data.json是存在本地的json数据，大小大约20M，模拟从网络端获取数据
+    // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
     await context.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
       let jsonData = buffer.from(data).toString();
       let res: responseData = JSON.parse(jsonData);
@@ -164,15 +160,13 @@
     return transArrayDTO2VO(result, index);
   }
 
-  // 标记共享内存的类
-  @Sendable
   class ModelDetailVO {
     id: number = 0;
     name: string = "";
     url: string = "";
-    ...
   }
-  ...
+  
+  // ...
 ```
 上面的代码在子线程返回的类对象上使用了@Sendable，系统会使用共享内存的方式处理使用了@Sendable的类，从而降低反序列化的开销。
 

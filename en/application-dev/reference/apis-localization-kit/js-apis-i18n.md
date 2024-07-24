@@ -2434,8 +2434,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
-    let language : string = I18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
+    let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -2469,8 +2471,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
-    this.message = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+    let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }

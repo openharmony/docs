@@ -33,8 +33,8 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 | endIcon   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在右侧的图标信息路径。       |
 | labelInfo | [ResourceStr](ts-types.md#resourcestr)      | 否   | 定义结束标签信息，如快捷方式Ctrl+C等。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否   | 用于构建二级菜单。                     |
-| symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在左侧的HMSymbol图标信息路径。配置该项时，原先startIcon图标不显示。                  |
-| symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在右侧的HMSymbol图标信息路径。配置该项时，原先endIcon图标不显示。                     |
+| symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在左侧的HMSymbol图标信息路径。配置该项时，原先startIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在右侧的HMSymbol图标信息路径。配置该项时，原先endIcon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## 属性

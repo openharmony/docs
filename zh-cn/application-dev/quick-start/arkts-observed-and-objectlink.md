@@ -260,7 +260,7 @@ struct ViewA {
 
   build() {
     Column() {
-      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -321,7 +321,7 @@ struct ViewB {
         .width(320)
       ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewC: this.child.bookName.size add 10`)
+      Button(`ViewB: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -1742,3 +1742,118 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
+### ObjectLink更新依赖其所属自定义组件的更新函数
+
+```ts
+@Observed
+class Person {
+  name: string = '';
+  age: number = 0;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+@Observed
+class Persons {
+  person: Person;
+
+  constructor(person: Person) {
+    this.person = person;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State pers01: Persons = new Persons(new Person('1', 1));
+
+  build() {
+    Column() {
+      Child01({ pers: this.pers01 });
+    }
+  }
+}
+
+@Component
+struct Child01 {
+  @ObjectLink @Watch('onChange01') pers: Persons;
+
+  onChange01() {
+    console.log(':::onChange01:' + this.pers.person.name); // 2
+  }
+
+  build() {
+    Column() {
+      Text(this.pers.person.name).height(40)
+      Child02({
+        per: this.pers.person, selectItemBlock: () => {
+          console.log(':::selectItemBlock before', this.pers.person.name); // 1
+          this.pers.person = new Person('2', 2);
+          console.log(':::selectItemBlock after', this.pers.person.name); // 3
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct Child02 {
+  @ObjectLink @Watch('onChange02') per: Person;
+  selectItemBlock?: () => void;
+
+  onChange02() {
+    console.log(':::onChange02:' + this.per.name); // 5
+  }
+
+  build() {
+    Column() {
+      Button(this.per.name)
+        .height(40)
+        .onClick(() => {
+          this.onClickFType();
+        })
+    }
+  }
+
+  private onClickFType() {
+    if (this.selectItemBlock) {
+      this.selectItemBlock();
+    }
+    console.log(':::--------此时Child02中的this.per.name值仍然是：' + this.per.name); // 4
+  }
+}
+```
+
+数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是给子组件Child02标脏，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
+
+当@ObjectLink @Watch('onChange02') per: Person的@Watch函数执行时，当前已执行Child02的更新函数，@ObjectLink已被通知更新，所以日志5打印的值为2。
+
+日志的含义为：
+- 日志1：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值前。
+
+- 日志2：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值，执行其@Watch函数，同步执行。
+
+- 日志3：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值完成。
+
+- 日志4：onClickFType方法内selectItemBlock执行完，此时只做了标脏，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+
+- 日志5：下一次vsync信号触发Child02更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
+
+@Prop父子同步原理同@ObjectLink一致。
+
+当selectItemBlock中更改this.pers.person.name时，修改会立刻生效，此时日志4打印的值是2。
+
+```ts
+Child02({
+  per: this.pers.person, selectItemBlock: () => {
+    console.log(':::selectItemBlock before', this.pers.person.name); // 1
+    this.pers.person.name = 2;
+    console.log(':::selectItemBlock after', this.pers.person.name); // 3
+  }
+})
+```
+
+此时Child01中Text组件不会刷新，因为this.pers.person.name属于两层嵌套。

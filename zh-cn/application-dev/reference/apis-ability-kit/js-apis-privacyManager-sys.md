@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
+import { privacyManager } from '@kit.AbilityKit';
 ```
 
 
@@ -59,8 +59,8 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
@@ -118,8 +118,8 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
@@ -171,8 +171,8 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -227,8 +227,8 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -292,8 +292,8 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
@@ -340,8 +340,8 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
@@ -395,8 +395,8 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
@@ -443,8 +443,8 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 **示例：**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
@@ -496,8 +496,8 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let permissionList: Array<Permissions> = [];
 try {
@@ -546,7 +546,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
 
 let permissionList: Array<Permissions> = [];
 try {
@@ -595,8 +595,8 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 **示例：**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
 let permissionName: Permissions = 'ohos.permission.CAMERA';

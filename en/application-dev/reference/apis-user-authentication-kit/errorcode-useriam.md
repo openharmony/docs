@@ -112,7 +112,7 @@ Initiate authentication again later.
 
 **Error Message**
 
-Authentication is lockout.
+Authentication is locked out.
 
 **Possible Causes**
 
@@ -137,11 +137,11 @@ The **authType** parameter set in **getAvailableStatus** of the **userAuth** mod
 
 Check that the related type of credential has been enrolled in the device.
 
-## 12500011 Authentication Canceled by the User Authentication Widget
+## 12500011 Switched to Custom Authentication
 
 **Error Message**
 
-Indicates that this operation is canceled from widget's navigation button.
+Switched to the custom authentication process.
 
 **Possible Causes**
 
@@ -150,11 +150,26 @@ The authentication is canceled by the user, who tapped the authentication widget
 **Solution**
 
 Initiate the authentication again.
+
+## 12500013 Password Expired
+
+**Error Message**
+
+Operation failed because of PIN expired.
+
+**Possible Causes**
+
+The authentication fails because the system lock screen password has expired. The error code 12500013 is returned if the lock screen password has expired when a PIN, fingerprint, or facial authentication is initiated.
+
+**Solution**
+
+Initiate an authentication again after the user sets a new lock screen password.
+
 ## 12700001 Failed to Enroll Faces
 
 **Error Message**
 
-The operation is failed.
+Operation failed.
 
 **Possible Causes**
 

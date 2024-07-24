@@ -6,16 +6,15 @@
 
 | 容器规格 | 音频解码类型                 |
 | -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis |
+| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
 | m4a      | AAC                          |
 | flac     | Flac                         |
-| ogg      | Vorbis                       |
+| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
 | aac      | AAC                          |
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
 | ape      | APE                          |
-<!--RP1--><!--RP1End-->
 
 **适用场景**
 
@@ -335,9 +334,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     auto buffer = signal_->inBufferQueue_.front();
     int64_t size;
     int64_t pts;
+    // size是待解码数据的每帧帧长度。pts是每帧的时间戳，用于指示音频应该何时被播放。
+    // size和pts的获取来源：音视频资源文件或者待解码的数据流
+    // 若是解码音视频资源文件，则需从解封装OH_AVDemuxer_ReadSampleBuffer的buffer中获取
+    // 若是解码数据流，则需要从数据流的提供者获取。
+    // 此处为了介绍解码功能以测试文件中保存的size和pts为示例
     inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
     inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    inputFile_.read((char *)OH_AVBuffer_GetAddr(buffer), size);
     OH_AVCodecBufferAttr attr = {0};
     if (inputFile_->eof()) {
         attr.size = 0;
@@ -346,6 +350,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         attr.size = size;
         attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
     }
+    attr.pts = pts;
     OH_AVBuffer_SetBufferAttr(buffer, &attr);
     int32_t ret = OH_AudioCodec_PushInputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
@@ -355,7 +360,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 10. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
-    <!--RP2-->
+    <!--RP3-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
@@ -375,7 +380,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
-    <!--RP2End-->
+    <!--RP3End-->
 
 11. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。

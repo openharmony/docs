@@ -36,9 +36,9 @@ setValue(value: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 202     | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -73,9 +73,9 @@ setValue(value: number, continuous: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 202      | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 

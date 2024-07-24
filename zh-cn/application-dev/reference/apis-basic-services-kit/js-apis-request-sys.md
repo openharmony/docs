@@ -75,6 +75,8 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -123,6 +125,8 @@ query(id: string): Promise&lt;TaskInfo&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

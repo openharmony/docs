@@ -44,7 +44,7 @@ You can declare the required permission in your application's configuration file
 ## Modules to Import
 
 ```ts
-import geoLocationManager from '@ohos.geoLocationManager';
+import { geoLocationManager } from '@kit.LocationKit';
 ```
 
 ## GeoAddress
@@ -53,9 +53,9 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | Yes| No| Whether the geographical name is from the mock reverse geocoding function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | No| Yes| **true**: The geographic address is obtained from the mock reverse geocoding function.<br>**false**: The geographic address is not obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
 
 ## Location
@@ -64,9 +64,9 @@ Location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | Yes| No| Whether the location information is from the mock location function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location function.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
 
 
 ## ReverseGeocodingMockInfo
@@ -77,10 +77,10 @@ Defines the configuration of the mock reverse geocoding function.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | Yes| Yes| Latitude and longitude information.|
-| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographical name.|
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | No| No| Latitude and longitude information.|
+| geoAddress |  [GeoAddress](#geoaddress) | No| No|Geographical name.|
 
 
 ## LocationMockConfig
@@ -91,10 +91,10 @@ Defines the configuration of the mock location function.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | Yes| Yes| Time interval at which mock locations are reported, in seconds.|
-| locations | Array&lt;[Location](#location)&gt; | Yes| Yes| Array of mocked locations.|
+| timeInterval | number | No| No| Time interval at which mock locations are reported, in seconds.|
+| locations | Array&lt;[Location](#location)&gt; | No| No| Array of mocked locations.|
 
 ## LocatingRequiredDataConfig<sup>10+</sup>
 
@@ -104,12 +104,12 @@ Defines the configuration for obtaining the required data of the location servic
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | Yes| Yes| Type of the required data.|
-| needStartScan |  boolean | Yes| Yes| Whether to initiate scanning.|
-| scanInterval |  number | Yes| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
-| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | No| No| Type of the required data.|
+| needStartScan |  boolean | No| No| **true**: Scanning needs to be initiated.<br>**false**: Scanning does not need to be initiated.|
+| scanInterval |  number | No| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
+| scanTimeout |  number | No| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -120,10 +120,10 @@ Defines the required data of the location service, including the Wi-Fi or Blueto
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| wifiData | [WifiScanInfo](#wifiscaninfo10) | Yes| No| Wi-Fi scanning result.|
-| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | Yes| No| Bluetooth scanning result.|
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | No| Yes| Wi-Fi scanning result.|
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | No| Yes| Bluetooth scanning result.|
 
 
 ## WifiScanInfo<sup>10+</sup>
@@ -134,13 +134,13 @@ Defines the Wi-Fi scanning information, including the SSID, BSSID, and RSSI of t
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of a Wi-Fi hotspot, in UTF-8 format.|
-| bssid | string | Yes| No| Base station subsystem identifier (BSSID) of a Wi-Fi hotspot.|
-| rssi | number | Yes| No| Received signal strength indicator (RSSI) of a Wi-Fi hotspot, in dBm.|
-| frequency | number | Yes| No| Frequency of a Wi-Fi hotspot.|
-| timestamp | number | Yes| No| Scanning timestamp.|
+| ssid | string | No| No| Service set identifier (SSID) of a Wi-Fi hotspot, in UTF-8 format.|
+| bssid | string | No| No| Base station subsystem identifier (BSSID) of a Wi-Fi hotspot.|
+| rssi | number | No| No| Received signal strength indicator (RSSI) of a Wi-Fi hotspot, in dBm.|
+| frequency | number | No| No| Frequency of a Wi-Fi hotspot.|
+| timestamp | number | No| No| Scanning timestamp.|
 
 
 ## BluetoothScanInfo<sup>10+</sup>
@@ -151,12 +151,12 @@ Defines the Bluetooth scanning information.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| No| Name of a Bluetooth device.|
-| macAddress | string | Yes| No| MAC address of a Bluetooth device.|
-| rssi | number | Yes| No| Signal strength of a Bluetooth device, in dBm.|
-| timestamp | number | Yes| No| Scanning timestamp.|
+| deviceName | string | No| No| Name of a Bluetooth device.|
+| macAddress | string | No| No| MAC address of a Bluetooth device.|
+| rssi | number | No| No| Signal strength of a Bluetooth device, in dBm.|
+| timestamp | number | No| No| Scanning timestamp.|
 
 ## LocationPrivacyType
 
@@ -185,11 +185,27 @@ Defines the type of the required data of the location service.
 | WIFI  | 1 | Wi-Fi scanning information.|
 | BLUETOOTH | 2 | Bluetooth scanning information.|
 
+
+## LocationIconStatus<sup>12+</sup>
+
+Defines the location icon status.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| LOCATING_NOT_STARTED  | 0 | No location services are available and the location icon does not need to be displayed.|
+| LOCATING_STARTED | 1 | Common location is in progress, and the common location icon needs to be displayed.|
+| HD_LOCATING_STARTED | 2 | High-precision location is in progress, and the high-precision location icon needs to be displayed.|
+
+
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
 
 on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
 
-Subscribes to changes in the required data of the location service, including Wi-Fi and Bluetooth scanning information. An application can then determine whether to enable Wi-Fi and Bluetooth scanning based on the return result.
+Subscribes to changes in the required data of the location service, including Wi-Fi and Bluetooth scanning information. An application can then determine whether to enable Wi-Fi and Bluetooth scanning based on the return result. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
@@ -203,7 +219,7 @@ Subscribes to changes in the required data of the location service, including Wi
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locatingRequiredDataChange** indicates a change in the required data of the location service.|
   | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | Yes| Configuration for obtaining the required data of the location service.|
-  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | Yes| Callback used to receive the required data of the location service.|
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | Yes| Callback used to return the data required by the location service.|
 
 **Error codes**
 
@@ -211,13 +227,16 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
       console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
@@ -225,7 +244,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -253,11 +272,17 @@ Unsubscribes from changes in the required data of the location service and stops
 
 For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
 
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
+
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
       console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
@@ -266,7 +291,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
       geoLocationManager.off('locatingRequiredDataChange', callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -286,7 +311,7 @@ Enables the location service. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to receive the error message.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the location service is successfully enabled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -294,13 +319,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                              |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.enableLocation((err) => {
           if (err) {
@@ -308,7 +337,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -329,7 +358,7 @@ Enables the location service. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -337,22 +366,25 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.enableLocation().then(() => {
           console.log('promise, enableLocation succeed');
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -374,17 +406,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocation} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.disableLocation();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -404,18 +438,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationMock} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.enableLocationMock();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -436,18 +471,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationMock} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.disableLocationMock();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -476,14 +512,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   let locations:Array<geoLocationManager.Location> = [
       {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
@@ -496,7 +533,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -517,17 +554,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableReverseGeocodingMock} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.enableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -548,17 +586,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableReverseGeocodingMock} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.disableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -587,13 +626,15 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setReverseGeocodingMockInfo} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   let mockInfos:Array<geoLocationManager.ReverseGeocodingMockInfo> = [
       {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "isFromMock": true}},
       {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "isFromMock": true}},
@@ -605,7 +646,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -630,7 +671,7 @@ Checks whether a user agrees with the privacy statement of the location service.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Whether the user agrees with the privacy statement.|
+  | boolean | **true**: The user agrees to the privacy statement of the location service.<br>**false**: The user does not agree to the privacy statement of the location service.|
 
 **Error codes**
 
@@ -638,17 +679,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationPrivacyConfirmed} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -670,7 +713,7 @@ Sets the user confirmation status for the privacy statement of the location serv
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when the location service is enabled.|
-  | isConfirmed | boolean | Yes| Whether the user agrees with the privacy statement.|
+  | isConfirmed | boolean | Yes| **true**: The user agrees to the privacy statement of the location service.<br>**false**: The user does not agree to the privacy statement of the location service.|
 
 **Error codes**
 
@@ -678,17 +721,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setLocationPrivacyConfirmStatus} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -723,22 +769,147 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
 
 **Example**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
           console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  ```
+
+
+## geoLocationManager.on('locationIconStatusChange')<sup>12+</sup>
+
+on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void;
+
+Subscribes to status changes of the location icon. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. Event type. The value **locationIconStatusChange** indicates status changes of the location icon.|
+  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt; | Yes| Callback used to return the location icon status.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                        |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  let callback = (code: geoLocationManager.LocationIconStatus):void => {
+      console.log('LocationIconStatus: ' + JSON.stringify(code));
+  }
+  try {
+      geoLocationManager.on('locationIconStatusChange', callback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  ```
+
+
+## geoLocationManager.off('locationIconStatusChange')<sup>12+</sup>
+
+off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void;
+
+Unsubscribes from status changes of the location icon.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. Event type. The value **locationIconStatusChange** indicates status changes of the location icon.|
+  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.        |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  let callback = (code: geoLocationManager.LocationIconStatus):void => {
+      console.log('LocationIconStatus: ' + JSON.stringify(code));
+  }
+  try {
+      geoLocationManager.on('locationIconStatusChange', callback);
+	  geoLocationManager.off('locationIconStatusChange', callback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  ```
+
+
+## geoLocationManager.getLocationIconStatus<sup>12+</sup>
+
+getLocationIconStatus(): LocationIconStatus;
+
+Obtains the current location icon status.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | [LocationIconStatus](#locationiconstatus12) | Location icon status.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
+|3301000  | The location service is unavailable.                  |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      let iconStatus = geoLocationManager.getLocationIconStatus();
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```

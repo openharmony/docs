@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+- 系统资源：开发者直接使用系统预置的资源定义<!--Del-->（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）<!--DelEnd-->。
 
 ## 资源分类
 
@@ -314,19 +314,19 @@ string资源配置attr属性示例如下：
     .width(300)
   ```
 
-- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
+- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext().resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
 ### 跨HAP/HSP包应用资源
 
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
 - 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 
@@ -369,7 +369,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
+除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。<!--Del-->可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。<!--DelEnd-->
 
 在开发过程中，分层参数的用法与资源限定词基本一致。对于系统资源，可以通过```“$r('sys.type.resource_id')”```的形式引用。其中，sys为系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”；resource_id为资源id。
 
@@ -377,7 +377,7 @@ string资源配置attr属性示例如下：
 >
 > - 仅声明式开发范式支持使用系统资源。
 >
-> - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+> - 对于系统预置应用，建议使用系统资源<!--Del-->；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源<!--DelEnd-->。
 >
 > - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
@@ -410,6 +410,8 @@ Image($r('sys.media.ohos_app_icon'))
 - 在为设备匹配对应的资源文件时，限定词目录匹配的优先级从高到低依次为：移动国家码和移动网络码 > 区域（可选组合：语言、语言_文字、语言_国家或地区、语言_文字_国家或地区）> 横竖屏 > 设备类型 > 颜色模式 > 屏幕密度。
 
 - 如果限定词目录中包含移动国家码和移动网络码、语言、文字、横竖屏、设备类型、颜色模式限定词，则对应限定词的取值必须与当前的设备状态完全一致，该目录才能够参与设备的资源匹配。例如，限定词目录“zh_CN-car-ldpi”不能参与“en_US”设备的资源匹配。
+
+- 如果存在多个屏幕密度限定词目录，则优先向上匹配最接近的屏幕密度限定词目录，否则向下匹配最为接近的屏幕密度限定词目录。例如，假设存在限定词目录“xldpi”和“xxldpi”，设备屏幕密度为“xxldpi”，则会匹配“xxldpi”限定词目录。
 
 应用界面加载资源规则，更多请参考国际化和本地化文档。
 
@@ -590,13 +592,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 <!--DelEnd-->
 
 > **说明：**
-> - targetBundleName: 字符串类型，指定要overlay的bundleName
+> - targetBundleName: 字符串类型，指定要overlay的bundleName。
 >
-> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module
+> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
-> - targetPriority： 整数类型，指定overlay优先级
+> - targetPriority： 整数类型，指定overlay优先级。
 >
-> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置。
 >
 > - overlay不支持json类型的图片配置。
 

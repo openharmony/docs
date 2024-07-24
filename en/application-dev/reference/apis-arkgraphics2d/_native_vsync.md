@@ -26,8 +26,16 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct.|
-| (\*[OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | Defines the pointer to a VSync callback function.|
+| typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
+| typedef struct [OH_NativeVSync](#oh_nativevsync)  [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct. | 
+| typedef void(\* [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | Defines the pointer to a VSync callback function. | 
+
+
+### Enums
+
+| Name| Description| 
+| -------- | -------- |
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 
 ### Functions
@@ -75,6 +83,52 @@ Defines the pointer to a VSync callback function.
 | data | User-defined data.|
 
 
+### OHNativeErrorCode
+
+```
+typedef enum OHNativeErrorCode OHNativeErrorCode
+```
+
+**Description**
+
+Defines an enum for the error codes.
+
+**Since**: 12
+
+
+## Enum Description
+
+
+### OHNativeErrorCode
+
+```
+enum OHNativeErrorCode
+```
+
+**Description**
+
+Enumerates the error codes.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| NATIVE_ERROR_OK  | The operation is successful.  | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
+| NATIVE_ERROR_NO_PERMISSION  | You do not have the permission to perform the operation.  | 
+| NATIVE_ERROR_NO_BUFFER  | No buffer is available.  | 
+| NATIVE_ERROR_NO_CONSUMER  | The consumer does not exist.  | 
+| NATIVE_ERROR_NOT_INIT  | Not initialized.  | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | The consumer is connected.  | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | The buffer status does not meet the expectation.  | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | The buffer is already in the buffer queue.  | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | The queue is full.  | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | The buffer is not in the buffer queue.  | 
+| NATIVE_ERROR_UNSUPPORT  | The device or platform does not support the operation.  | 
+| NATIVE_ERROR_UNKNOWN  | Unknown error. Check the log.  | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
+| NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
+
 ## Function Description
 
 ### OH_NativeVSync_GetPeriod()
@@ -99,7 +153,7 @@ Obtains the VSync period.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 **Since**
 
@@ -174,4 +228,4 @@ Requests the next VSync signal. When the signal arrives, a callback function is 
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.

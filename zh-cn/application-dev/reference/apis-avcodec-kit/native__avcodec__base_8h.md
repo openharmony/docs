@@ -62,7 +62,7 @@
 | [OH_AACProfile](_codec_base.md#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | AAC档次。 | 
 | [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。 | 
-| [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9<br/>} | 枚举封装器的输出文件格式。 | 
+| [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 枚举封装器的输出文件格式。 | 
 | [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。 | 
 | [OH_BitsPerSample](_codec_base.md#oh_bitspersample-1) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 枚举每个编码样本的音频位数。 | 
@@ -93,7 +93,6 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 | 
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](_codec_base.md#oh_avcodec_mimetype_video_vvc) | 音频和视频编解码器的MIME类型。     |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](_codec_base.md#oh_avcodec_mimetype_audio_lbvc) |音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
@@ -124,11 +123,11 @@
 | const char \* [OH_MD_KEY_CODEC_CONFIG](_codec_base.md#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](_codec_base.md#oh_md_key_title) | 源格式标题的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ARTIST](_codec_base.md#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 | 
-| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 相册的源格式键，值类型为string。 | 
-| const char \* [OH_MD_KEY_ALBUM_ARTIST](_codec_base.md#oh_md_key_album_artist) | 相册艺术家的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 专辑的源格式键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](_codec_base.md#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DATE](_codec_base.md#oh_md_key_date) | 源格式日期的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_COMMENT](_codec_base.md#oh_md_key_comment) | 源格式注释的键，值类型为string。 | 
-| const char \* [OH_MD_KEY_GENRE](_codec_base.md#oh_md_key_genre) | 源格式类型的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_GENRE](_codec_base.md#oh_md_key_genre) | 源格式流派的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_COPYRIGHT](_codec_base.md#oh_md_key_copyright) | 源格式版权的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_LANGUAGE](_codec_base.md#oh_md_key_language) | 源格式语言的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DESCRIPTION](_codec_base.md#oh_md_key_description) | 源格式描述的键，值类型为string。 | 
@@ -141,7 +140,7 @@
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](_codec_base.md#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](_codec_base.md#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
 | const char \* [OH_MD_KEY_SETUP_HEADER](_codec_base.md#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
-| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置 |
+| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置 |
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 | 
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 | 
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](_codec_base.md#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为int32_t。 | 

@@ -68,6 +68,8 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 定制LoadingProgress内容区的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -83,6 +85,8 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
@@ -115,9 +119,8 @@ struct LoadingProgressExample {
 ```ts
 //该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。
 // xxx.ets
-import hilog from '@ohos.hilog'
-
-import promptAction from '@ohos.promptAction'
+import { hilog } from '@kit.PerformanceAnalysisKit'
+import { promptAction } from '@kit.ArkUI'
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
   enableLoading: boolean = false

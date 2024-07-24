@@ -87,7 +87,7 @@ onDisAppear(event: () => void): T
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -107,13 +107,15 @@ struct AppearExample {
           .onAttach(() => {
             promptAction.showToast({
               message: 'The text is shown',
-              duration: 2000
+              duration: 2000,
+              bottom: 500
             })
           })
           .onDetach(() => {
             promptAction.showToast({
               message: 'The text is hidden',
-              duration: 2000
+              duration: 2000,
+              bottom: 500
             })
           })
       }

@@ -882,7 +882,7 @@ try {
 | type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
+| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -922,7 +922,7 @@ try {
 
 ## Usage<sup>9+</sup>
 
-type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | 'touch' | 'media' | 'physicalFeedback' | 'simulateReality'
 
 振动使用场景。
 
@@ -930,7 +930,7 @@ type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'me
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
-| 名称             | 类型   | 必填 | 说明                           |
+| 参数名            | 类型   | 必填 | 说明                           |
 | ---------------- | ------ | ------------------------------ | ------------------------------ |
 | unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
 | alarm            | string | 是 | 用于警报场景。           |

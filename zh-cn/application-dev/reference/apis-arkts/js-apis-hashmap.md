@@ -517,7 +517,17 @@ hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -557,8 +567,17 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
-
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
@@ -608,4 +627,16 @@ for (let key of keys) {
    console.log("value:" + temp.value[1]);
    temp = iter.next();
  }
+```
+
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
 ```

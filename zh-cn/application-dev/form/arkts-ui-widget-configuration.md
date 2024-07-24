@@ -53,7 +53,7 @@
    | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
    | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。| 字符串 | 可缺省，缺省值为空。 |
    | metadata | 表示卡片的自定义信息，参考[Metadata](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md)数组标签。 | 对象 | 可缺省，缺省值为空。 |
-   | dataProxyEnabled | 表示卡片是否支持[卡片代理刷新](./arkts-ui-widget-update-by-proxy.md)，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](./arkts-ui-widget-update-by-time.md)。 | 布尔类型 | 可缺省，缺省值为false。 |
+   | dataProxyEnabled | 表示卡片是否支持卡片代理刷新，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](./arkts-ui-widget-update-by-time.md)。 | 布尔类型 | 可缺省，缺省值为false。 |
    | isDynamic | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。 <br/>-&nbsp;true：为动态卡片 。<br/>-&nbsp;false：为静态卡片。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
    | formVisibleNotify | 表示是否允许卡片使用卡片可见性通知（仅对系统应用的卡片生效）。 | 布尔类型 | 可缺省，缺省值为false。 |
    | transparencyEnabled | 表示是否支持卡片使用方设置此卡片的背景透明度（仅对系统应用的ArkTS卡片生效。）。 <br/>-&nbsp;true：支持设置背景透明度 。<br/>-&nbsp;false：不支持设置背景透明度。<br/>| 布尔类型 | 可缺省，缺省值为false。 |
@@ -75,8 +75,8 @@
      "forms": [
        {
          "name": "widget",
-         "displayName": "2*2 Widget",
-         "description": "This is a service widget.",
+         "displayName": "$string:widget_display_name",
+         "description": "$string:widget_desc",
          "src": "./ets/widget/pages/WidgetCard.ets",
          "uiSyntax": "arkts",
          "window": {

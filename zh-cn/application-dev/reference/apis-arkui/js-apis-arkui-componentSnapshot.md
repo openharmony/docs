@@ -14,12 +14,12 @@
 ## 导入模块
 
 ```ts
-import componentSnapshot from "@ohos.arkui.componentSnapshot";
+import { componentSnapshot } from '@kit.ArkUI';
 ```
 
 ## componentSnapshot.get
 
-get(id: string, callback: AsyncCallback<image.PixelMap>): void
+get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
@@ -35,6 +35,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
+| options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
@@ -48,8 +49,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -70,7 +71,7 @@ struct SnapshotExample {
               return;
             }
             this.pixmap = pixmap
-          })
+          }, {scale : 2, waitUntilRenderFinished : true})
         }).margin(10)
     }
     .width('100%')
@@ -84,7 +85,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.get
 
-get(id: string): Promise<image.PixelMap>
+get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
@@ -99,6 +100,7 @@ get(id: string): Promise<image.PixelMap>
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
 | id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -118,8 +120,8 @@ get(id: string): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -134,7 +136,7 @@ struct SnapshotExample {
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
-          componentSnapshot.get("root")
+          componentSnapshot.get("root", {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
             }).catch((err:Error) => {
@@ -153,7 +155,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
@@ -172,6 +174,9 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
@@ -181,13 +186,13 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | The builder is not a valid build function. |
+| 160001 | The image component in builder failed to load. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentSnapshot, componentUtils } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -229,7 +234,7 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            })
+            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
         })
       Image(this.pixmap)
         .margin(10)
@@ -245,7 +250,7 @@ struct OffscreenSnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
@@ -262,6 +267,9 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -276,13 +284,13 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | ------ | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | The builder is not a valid build function. |
+| 160001 | The image component in builder failed to load. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentSnapshot, componentUtils } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
@@ -312,7 +320,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()})
+          componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()}, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
@@ -335,3 +343,12 @@ struct OffscreenSnapshotExample {
 ```
 
 ![componentcreate](figures/componentcreate.gif) 
+
+## SnapshotOptions<sup>12+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型             | 必填           | 说明                         |
+| ---------------|------------     | -----------------------------| -----------------------------|
+| scale           | number | 否 | 指定截图时图形侧绘制pixelmap的缩放比例，比例过大时截图时间会变长，或者截图可能会失败。 <br/> 默认值：1    |
+| waitUntilRenderFinished    | boolean | 否 | 指定是否强制等待系统执行截图指令前所有绘制指令都执行完成之后再截图。该选项可尽可能确保截图内容是最新的状态，应尽量开启，要注意的是，开启后接口可能需要更长的时间返回，具体的时间依赖页面当时时刻需要重绘区域的多少。<br/> 默认值：false         |

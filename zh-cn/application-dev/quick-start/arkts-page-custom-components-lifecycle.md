@@ -80,7 +80,7 @@
 
 ```ts
 // Index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -233,19 +233,17 @@ struct page {
 
 ```ts
 // Index.ets
-import observer from '@ohos.arkui.observer';
-import router from '@ohos.router';
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { uiObserver, router, UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
-    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
-      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
         console.log(`Index onPageShow`);
-      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
         console.log(`Index onPageHide`);
       }
     }
@@ -276,12 +274,12 @@ struct Index {
 }
 @Component
 struct SubComponent {
-  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
-    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
-      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
         console.log(`SubComponent onPageShow`);
-      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
         console.log(`SubComponent onPageHide`);
       }
     }

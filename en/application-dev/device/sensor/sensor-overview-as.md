@@ -3,7 +3,7 @@
 ## Sensor Types
 
 
-Sensors are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via **Sensor** APIs. Using these APIs, you can query sensors on your device and subscribe to sensor data. Based on the sensor data obtained, you can customize algorithms and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
+Sensors are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via [Sensor](../../reference/apis-sensor-service-kit/js-apis-sensor-sys.md) APIs. Using these APIs, you can query sensors on your device and subscribe to sensor data. Based on the sensor data obtained, you can customize algorithms and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
 | Sensor Types                 | Name              | Description                                                        | Usage                                |
 | --------------------------- | ------------------ | ------------------------------------------------------------ | ---------------------------------------- |

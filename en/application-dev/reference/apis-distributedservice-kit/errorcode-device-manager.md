@@ -36,7 +36,7 @@ Make sure the service is started and obtain the service again.
 
 **Error Message**
 
-Authentication invalid.
+Authentication unavailable.
 
 **Possible Causes**
 
@@ -50,7 +50,7 @@ Wait until the last authentication service is complete and call the authenticati
 
 **Error Message**
 
-Discovery invalid.
+Discovery unavailable.
 
 **Possible Causes**
 
@@ -64,7 +64,7 @@ Wait until the last discovery service is complete and call the discovery API aga
 
 **Error Message**
 
-Publish invalid.
+Publish unavailable.
 
 **Possible Causes**
 

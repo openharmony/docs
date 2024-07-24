@@ -18,7 +18,8 @@ ChipGroup({
   itemStyle?: ChipItemStyle,
   selectedIndexes?: Array<number>,
   multiple?: boolean,
-  chipGroupSpaceSize?: ChipGroupSpaceOptions,
+  chipGroupSpace?: ChipGroupSpaceOptions,
+  chipGroupPadding?: ChipGroupPaddingOptions,
   onChange?: (selectedIndexes: Array<number>) => void,
   suffix?: Callback<void>
 })
@@ -46,6 +47,8 @@ ChipGroup({
 > 1. 针对selectedIndexes和multiple接口，multiple等于false的时候，当没有传入selectedIndexes时候，默认是第一个chip被选中，当传入的selectedIndexes有一个以上的元素时候，默认第一个索引的chip被选中。
 >
 > 2. 针对suffix接口，使用时候需要引入IconGroupSuffix接口，不传入的情况，没有suffix。
+>
+> 3. 关于图标填充色（fillColor以及activedFillColor）的设置，跟随字体颜色（fontColor）保持一致。若想两者颜色不同，则需要在传入[ChipGroupSpaceOptions](#chipgroupspaceoptions)时，使用prefixSymbol。
 
 ## ChipGroupItemOptions
 
@@ -88,9 +91,9 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
-| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
-| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
+| itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| startSpace | [Length](ts-types.md#length)         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
+| endSpace   | [Length](ts-types.md#length)         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 
 ## ChipGroupPaddingOptions
 
@@ -98,8 +101,8 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 | 名称   | 类型            | 必填 | 描述                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------            |
-| top    | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
-| bottom | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
+| top    | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
+| bottom | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
 
 ## IconGroupSuffix
 
@@ -149,8 +152,7 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -218,8 +220,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -309,9 +310,7 @@ struct Index {
 ### 示例3
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup, IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Preview

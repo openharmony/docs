@@ -38,7 +38,6 @@
      
       ```ts
       import { geoLocationManager } from '@kit.LocationKit';
-      import { BusinessError } from '@kit.BasicServicesKit'
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
@@ -83,4 +82,4 @@
 
       应用可以获得与位置描述相匹配的[GeoAddress](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geoaddress)（地理编码地址信息）列表，其中包含对应的坐标数据。
 
-      如果需要查询的位置描述可能出现多地重名的请求，可以设置GeoCodeRequest，通过设置一个经纬度范围，以高效地获取期望的准确结果。
+      如果需要查询的位置描述可能出现多地重名的请求，可以设置[GeoCodeRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geocoderequest)，通过设置一个经纬度范围，以高效地获取期望的准确结果。

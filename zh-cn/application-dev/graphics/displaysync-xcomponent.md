@@ -27,24 +27,31 @@
 2. 定义演示页面，包含两个XComponent组件。
 
    ```ts
+   import XComponentContext from "../interface/XComponentContext";
+
    @Entry
    @Component
    struct Index {
      private xComponentContext1: XComponentContext | undefined = undefined;
      private xComponentContext2: XComponentContext | undefined = undefined;
-      Row() {
-        XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext1 = xComponentContext as XComponentContext;
-          }).width('832px')
-      }.height('40%')
+     
+    build() {
+      Column() {
+        Row() {
+          XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext1 = xComponentContext as XComponentContext;
+            }).width('832px')
+        }.height('40%')
 
-      Row() {
-        XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext2 = xComponentContext as XComponentContext;
-          }).width('832px')// Multiples of 64
-      }.height('40%')
+        Row() {
+          XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext2 = xComponentContext as XComponentContext;
+            }).width('832px') // Multiples of 64
+        }.height('40%')
+      }
+    }
    }
    ```
 

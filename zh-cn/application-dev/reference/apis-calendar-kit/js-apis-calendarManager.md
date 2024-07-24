@@ -1,6 +1,10 @@
 # @ohos.calendarManager (日程管理能力)
 
-本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。
+
+- 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
+
+- 日历[Calendar](#calendar)主要包含账户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -10,7 +14,7 @@
 ## 导入模块
 
 ```typescript
-import calendarManager from '@ohos.calendarManager';
+import { calendarManager } from '@kit.CalendarKit'
 ```
 
 ## calendarManager.getCalendarManager
@@ -43,14 +47,13 @@ getCalendarManager(context : Context): CalendarManager
 // 获取上下文mContext
 // 获取日历管理器calendarMgr
 // 该文件为系统生成，目录：entry/src/main/ets/entryability/EntryAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import {
+  abilityAccessCtrl,
+  AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { calendarManager } from '@kit.CalendarKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export let calendarMgr: calendarManager.CalendarManager | null = null;
 export let mContext: common.UIAbilityContext | null = null;
@@ -111,7 +114,7 @@ export default class EntryAbility extends UIAbility {
 
 createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
-根据日历帐户信息，创建一个Calendar对象，使用callback异步回调。
+根据日历账户信息，创建一个Calendar对象，使用callback异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR
 
@@ -121,13 +124,23 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 | 参数名          | 类型                                  | 必填 | 说明                               |
 | --------------- | ------------------------------------- | ---- | ---------------------------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历帐户信息。                     |
+| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历账户信息。                     |
 | callback        | AsyncCallback\<[Calendar](#calendar)> | 是   | 回调函数，返回创建的Calendar对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar: calendarManager.Calendar | undefined = undefined;
@@ -153,7 +166,7 @@ try {
 
 createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
-根据日历帐户信息，创建一个Calendar对象，使用Promise异步回调。
+根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR
 
@@ -163,7 +176,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 | 参数名          | 类型                                | 必填 | 说明           |
 | --------------- | ----------------------------------- | ---- | -------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 日历帐户信息。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 日历账户信息。 |
 
 **返回值**：
 
@@ -171,10 +184,20 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 | ------------------------------ | ------------------------------------- |
 | Promise<[Calendar](#calendar)> | Promise对象，返回创建的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -208,10 +231,20 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 | calendar | [Calendar](#calendar) | 是   | 即将删除的Calendar对象。 |
 | callback | AsyncCallback\<void>  | 是   | 无返回结果的AsyncCallback对象。     |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -261,10 +294,20 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -306,10 +349,20 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 | -------- | ------------------------------------ | ---- | ------------------------------------ |
 | callback | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -339,13 +392,23 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 | 参数名          | 类型                                 | 必填 | 说明                                 |
 | --------------- | ------------------------------------ | ---- | ------------------------------------ |
-| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历帐户信息。                       |
+| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历账户信息。                       |
 | callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
 
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -384,7 +447,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 | 参数名          | 类型                                | 必填 | 说明                                                         |
 | --------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 日历帐户信息，用来获取指定Calendar对象，不填时，表示获取默认Calendar对象。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 日历账户信息，用来获取指定Calendar对象，不填时，表示获取默认Calendar对象。 |
 
 **返回值**：
 
@@ -392,10 +455,20 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 | ------------------------------ | --------------------------------------- |
 | Promise<[Calendar](#calendar)> | Promise对象，返回查询到的Calendar对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -423,10 +496,20 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 | -------- | -------------------------------------- | ---- | ----------------------------------------- |
 | callback | AsyncCallback<[Calendar](#calendar)[]> | 是   | 回调函数， 返回查询到的Calendar对象数组。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 calendarMgr?.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
@@ -458,10 +541,20 @@ getAllCalendars(): Promise\<Calendar[]>
 | -------------------------------- | ------------------------------------------- |
 | Promise<[Calendar](#calendar)[]> | Promise对象，返回查询到的Calendar对象数组。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 201      | Permission denied.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types.  |
+| 801      | Capability not supported.  |
+
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
@@ -500,7 +593,7 @@ editEvent(event: Event): Promise\<number>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 const date = new Date();
@@ -529,7 +622,7 @@ calendarMgr?.editEvent(event).then((eventId: number): void => {
 
 | 名称 | 类型   | 只读 | 必填 | 说明     |
 | ---- | ------ | ---- | ---- | -------- |
-| id   | number | 是   | 是   | 日历帐户id。 |
+| id   | number | 是   | 是   | 日历账户id。 |
 
 ### addEvent
 
@@ -551,7 +644,7 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -601,7 +694,7 @@ addEvent(event: Event): Promise\<number>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -644,7 +737,7 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -701,7 +794,7 @@ addEvents(events: Event[]): Promise\<void>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -751,7 +844,7 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -808,7 +901,7 @@ deleteEvent(id: number): Promise\<void>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -858,7 +951,7 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -927,7 +1020,7 @@ deleteEvents(ids: number[]): Promise\<void>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -989,7 +1082,7 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1048,7 +1141,7 @@ updateEvent(event: Event): Promise\<void>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1099,7 +1192,7 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1139,7 +1232,7 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1208,7 +1301,7 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1258,7 +1351,7 @@ getConfig(): CalendarConfig
 
 ```typescript
 import { calendarMgr } from '../entryability/EntryAbility';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1291,7 +1384,7 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1339,7 +1432,7 @@ setConfig(config: CalendarConfig): Promise\<void>
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1374,13 +1467,13 @@ getAccount(): CalendarAccount
 
 | 类型                                | 说明           |
 | ----------------------------------- | -------------- |
-| [CalendarAccount](#calendaraccount) | 日历帐户信息。 |
+| [CalendarAccount](#calendaraccount) | 日历账户信息。 |
 
 **示例**：
 
 ```typescript
 import { calendarMgr } from '../entryability/EntryAbility';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1397,7 +1490,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ## CalendarAccount
 
-日历帐户信息。
+日历账户信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1405,9 +1498,9 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 | 名称        | 类型                          | 只读 | 必填 | 说明                                   |
 | ----------- | ----------------------------- | ---- | ---- | -------------------------------------- |
-| name        | string                        | 是   | 是   | 帐户名称。                             |
-| type        | [CalendarType](#calendartype) | 否   | 是   | 帐户类型。                             |
-| displayName | string                        | 否   | 否   | 帐户的显示名称。不填时，默认为空字符串。 |
+| name        | string                        | 是   | 是   | 账户名称。                             |
+| type        | [CalendarType](#calendartype) | 否   | 是   | 账户类型。                             |
+| displayName | string                        | 否   | 否   | 账户的显示名称。不填时，默认为空字符串。 |
 
 ## CalendarConfig
 
@@ -1418,7 +1511,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | 名称           | 类型     | 只读    | 必填    | 说明                                                         |
 | -------------- |--------|-------|-------| ------------------------------------------------------------ |
 | enableReminder | boolean | 否     | 否     | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | string&#124;number | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| color          | number \| string | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
@@ -1437,7 +1530,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                          |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。                                                                                                  |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                 |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                              |
 | description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
 | service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
@@ -1445,7 +1538,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ## CalendarType
 
-帐户类型枚举。
+账户类型枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1453,11 +1546,11 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 | 名称       | 值           | 说明                 |
 | ---------- | ------------ | -------------------- |
-| LOCAL      | 'local'      | 本地帐户。           |
-| EMAIL      | 'email'      | 邮箱帐户。           |
-| BIRTHDAY   | 'birthday'   | 生日帐户。           |
-| CALDAV     | 'caldav'     | 支持CalDAV协议帐户。 |
-| SUBSCRIBED | 'subscribed' | 订阅帐户。           |
+| LOCAL      | 'local'      | 本地账户。           |
+| EMAIL      | 'email'      | 邮箱账户。           |
+| BIRTHDAY   | 'birthday'   | 生日账户。           |
+| CALDAV     | 'caldav'     | 支持CalDAV协议账户。 |
+| SUBSCRIBED | 'subscribed' | 订阅账户。           |
 
 ## Location
 
@@ -1502,7 +1595,7 @@ static filterById(ids: number[]): EventFilter
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1571,7 +1664,7 @@ static filterByTime(start: number, end: number): EventFilter
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1634,7 +1727,7 @@ static filterByTitle(title: string): EventFilter
 **示例**：
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;

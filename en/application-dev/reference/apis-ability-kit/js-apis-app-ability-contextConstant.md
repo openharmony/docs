@@ -22,11 +22,11 @@ Enumerates the data encryption levels.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Value| Description                                                                                                                  |
+| Name | Value | Description                                                                                                                  |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
 | EL1 | 0 | Device-level encryption. Directories with this encryption level are accessible after the device is powered on.                                                                                                |
 | EL2 | 1 | User-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).                                                                                       |
-| EL3<sup>11+<sup> | 2 | User-level encryption. The file permissions vary according to their scenarios.<br>- An open file is always readable and writable regardless of whether the screen is locked.<br>- When the screen is locked, a closed file cannot be opened, read, or written. When the screen is unlocked, such a file can be opened, read, and written.<br>- When the screen is locked, a file can be created and then opened and written but not read. When the screen is unlocked, a file can be created and then opened, read, and written.|
+| EL3<sup>11+<sup> | 2 | User-level encryption. The file permissions vary according to their scenarios.<br>- An open file is always readable and writable regardless of whether the screen is locked.<br>- When the screen is locked, a closed file cannot be opened, read, or written. When the screen is unlocked, such a file can be opened, read, and written.<br>- When the screen is locked, a file can be created and then opened and written but not read. When the screen is unlocked, a file can be created and then opened, read, and written. |
 | EL4<sup>11+<sup> | 3 | User-level encryption. The file permissions vary according to their scenarios.<br>- When the screen is locked, an open file is readable and writable in FEB2.0, but not in FEB3.0. When the screen is unlocked, such a file is always readable and writable.<br>- When the screen is locked, a closed file cannot be opened, read, or written. When the screen is unlocked, such a file can be opened, read, and written.<br>- When the screen is locked, a file cannot be created. When the screen is unlocked, a file can be created and then opened, read, and written.       |
 
 
@@ -38,7 +38,7 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Value| Description                                                                                                                  |
+| Name | Value | Description                                                                                                                  |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
 | NEW_PROCESS_ATTACH_TO_PARENT | 1 | A new process is created, the ability is started on the process, and the process exits along with the parent process.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application.                    |
 | NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | A new process is created, the ability is started on the process, and the process is bound to the status bar icon.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application, and the application must have an icon in the status bar.                 |
@@ -84,13 +84,13 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 
 ## ContextConstant.StartupVisibility<sup>12+</sup>
 
-Enumerates the visibility statuses of the ability after it is started in a new process. It takes effect only on tablets.
+Enumerates the visibility statuses of an ability after it is started. It takes effect only on tablets.
 
-As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started in a new process.
+As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Value| Description                                                                                                                  |
+| Name | Value | Description                                                                                                                  |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
 | STARTUP_HIDE | 0 | The target ability is hidden after it is started in the new process. The **onForeground** lifecycle of the ability is not invoked.       |
 | STARTUP_SHOW | 1 | The target ability is displayed normally after it is started in the new process.    |

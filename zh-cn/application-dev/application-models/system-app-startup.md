@@ -38,9 +38,15 @@
  
 ## 使用系统应用提供的接口
 
+系统应用提供了一些特定的接口，供其他应用访问。
+
+> **说明：**
+> 
+> 这些接口当前只能在应用中使用，不支持在网页中使用。
+
 | 系统应用 | 主要功能 | 使用指导 |
 | -------- | -------- |-------- |
-| 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
+| 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [makeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
 <!--RP2--><!--RP2End-->
 

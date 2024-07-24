@@ -41,9 +41,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
                 // scheme可以自定义
                 "scheme": "http",
                 // host须配置关联的域名
-                "host": "www.test.com",
-                // port可选
-                "port": "80",
+                "host": "www.example.com",
                 // path可选，为了避免匹配到多个应用，建议配置该字段
                 "path": "path1"
               }
@@ -63,7 +61,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ### 使用openLink打开浏览器页面
 
-在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置置为`false`。
+在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
 
 
 示例代码如下：
@@ -87,7 +85,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-        let link: string = "http://www.test.com";
+        let link: string = "http://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };
@@ -134,7 +132,7 @@ struct Index {
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
         let want: Want = {
-            url: "https://www.example.com"
+            uri: "https://www.example.com"
         };
 
         try {

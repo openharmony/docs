@@ -1,58 +1,59 @@
-# SmartPerf性能工具使用指导
+# SmartPerf Device性能工具使用指导
 
-## 功能介绍
+## 工具简介
 
-SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单易用。工具可以检测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用性能状况。<!--Del-->在开发过程中，使用的可能是有屏或无屏设备，对此SmartPerf提供了两种方式：分别是SmartPerf-Device和SmartPerf-Daemon。SmartPerf-Device适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->SmartPerf-Daemon支持shell命令行方式，同时适用于有屏和无屏设备。
+SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作简单易用。该工具可以监测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用、整机性能状况。<!--Del-->在开发过程中，会使用到有屏或无屏设备，对此SmartPerf Device提供了两种方式：分别是Device-hap端和Device-daemon端。Device-hap端适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->Device-daemon端支持shell命令行方式，同时适用于有屏和无屏设备。
 
+### 指标说明
 - CPU：每秒读取一次设备节点下CPU大中小核的频点和各核使用率，衡量应用占用CPU资源的情况，占用过多的CPU资源会导致芯片发烫。
 - GPU：每秒读取一次设备节点下GPU的频点和负载信息，衡量应用占用GPU资源的情况，当GPU占用过多时，会导致性能下降，应用程序的运行速度变慢。
-- FPS：应用界面每秒刷新次数，衡量应用画面的流畅度，FPS越高表示图像流畅度越好，用户体验也越好。
+- FPS：应用界面每秒刷新次数，衡量应用画面的流畅度，FPS越高通常表示图像流畅度越好，用户体验也越好。
 - POWER：每秒读取一次设备节点下的电流及电压信息。
 - TEMP：每秒读取一次设备节点下电池温度、系统芯片温度等信息。
 - RAM：每秒读取一次应用进程的实际物理内存，衡量应用的内存占比情况。
-- snapshot：每秒截取一张应用界面截图。
+- snapshot：每2秒截取一张应用界面截图。
 
 ## 实现原理
 
-下图展示了SmartPerf工具的主要功能组成。Device设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Daemon端，Daemon端进行数据采集、持久化和数据分析<!--Del-->，将生成的报告回传给Device，Device进行可视化显示<!--DelEnd-->。
+下图展示了SmartPerf Device工具的主要功能组成。Device-hap端设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Device-daemon端，Device-daemon端进行数据采集、持久化和数据分析<!--Del-->，将生成的报告回传给Device-hap端，Device-hap端进行可视化显示<!--DelEnd-->。
 
 ![图片说明](figures/SmartPerfStru.png)
 
 ## 约束与限制
 
-1.<!--Del-->SmartPerf-Device、<!--DelEnd-->SmartPerf-Daemon在API 9版本开始预置使用。
+1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。
 
-2.<!--Del-->SmartPerf-Device需在有屏幕设备使用，<!--DelEnd-->SmartPerf-Daemon执行需连接硬件设备。
+2. Device-daemon端执行需连接硬件设备<!--Del-->，Device-hap端需在有屏幕设备使用<!--DelEnd-->。
 
-3.SmartPerf-Daemon执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
+3. Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
 ## 执行性能测试
 
 <!--Del-->
-### SmartPerf-Device
+## SmartPerf Device-hap端
 
 下面的操作步骤和界面内容以RK3568设备为例。
 
-1.获取应用列表和设置采集项。
+### 获取应用列表
 
-点击设备上"SmartPerf-Device"应用图标，进入"首页"，点击"请选择一个应用"，在应用列表页选择需要测试的应用。
+点击设备上"SmartPerf Device-hap端"应用图标，进入"首页"，点击"请选择一个应用"，在应用列表页选择需要测试的应用。
 
 ![图片说明](figures/SmartPerfConfig1.png)
 ![图片说明](figures/SmartPerfConfig2.png)
 ![图片说明](figures/SmartPerfConfig3.png)
 
-2.设置采集参数
+### 设置采集参数
 
 应用选择完成后回到开始测试页面，根据实际业务需要，配置"测试指标"。同时，可修改测试名称（测试名称包含测试的应用名称和测试时间，会呈现在报告列表中），是否抓取trace，选择是否开启截图。配置完成后，点击底部"开始测试"按钮。
 
-3.悬浮窗控制采集
+### 悬浮窗控制采集
 
 点击悬浮窗"start"开始采集，点击悬浮窗"计时器"（如下图中00:07）暂停采集。再次点击"计时器"，继续开始采集。双击"计时器"，实时展示采集数据。长按"计时器"，结束采集。<br>整个过程中，可拖动悬浮框调整悬浮框位置。
 
 ![图片说明](figures/SmartPerfControl1.png)
 ![图片说明](figures/SmartPerfControl2.png)
 
-4.查看报告
+### 查看报告
 
 点击"报告"，查看测试报告列表。点击项目，进入报告详情页，查看测试指标项详情。
 
@@ -60,73 +61,69 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 ![图片说明](figures/SmartPerfReport2.png)
 <!--DelEnd-->
 
-### SmartPerf-Daemon
+## SmartPerf Device-daemon端
 
-**基础采集命令参数**
+### 基础采集命令参数
 
-| 命令   | 功能                   |必选|
-| :-----| :--------------------- |:-----|
-| -N    | 设置采集次数(一秒采集一次)|是|
-| -PKG  | 设置包名                | 否|
-| -c    | 采集cpu的频点和使用率，设置应用包名：采集整机和应用CPU信息，不设置应用包名：采集整机CPU信息     | 否|
-| -g    | 采集gpu的频点和负载信息   |否|
-| -f    | 采集指定应用的fps以及屏幕刷新率，必须设置应用包名        |否|
-| -profilerfps | 采集当前界面fps          |否|
-| -t    | 采集电池等温度           |否|
-| -p    | 采集电流                 |否|
-| -r    | 采集内存，设置应用包名：采集整机和应用内存信息，不设置应用包名：采集整机内存信息             |否|
-| -snapshot | 屏幕截图             |否|
-| -net | 采集网络速率              |否|
-| -VIEW | 设置图层，需要先获取应用图层名                |否|
-| -screen | 采集屏幕分辨率和刷新率               |否|
-| -d    | 采集DDR                 |否|
-| -m  | 采集进程内存信息         |否|
-| -sections| 设置分段采集          |否|
+| 命令参数   |必选| 说明                   |
+| :-----| :-----| :--------------------- |
+| -N    |是| 设置采集次数(一秒采集一次)    |
+| -PKG  |否| 设置包名                |
+| -c    |否| 采集cpu的频点和使用率，设置应用包名：采集整机和应用CPU信息，不设置应用包名：采集整机CPU信息     |
+| -g    |否| 采集gpu的频点和负载信息   |
+| -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名        |
+| -profilerfps |否| 采集当前界面fps          |
+| -t    |否| 采集电池等温度           |
+| -p    |否| 采集电流、电压                |
+| -r    |否| 采集内存，设置应用包名：采集整机和应用内存信息，不设置应用包名：采集整机内存信息             |
+| -snapshot |否| 屏幕截图             |
+| -net |否| 采集网络速率              |
+| -VIEW |否| 设置图层，需要先获取应用图层名                |
+| -screen |否| 采集屏幕分辨率和刷新率               |
+| -d    |否| 采集DDR                 |
+| -sections|否| 设置分段采集          |
+<!--RP1--><!--RP1End-->
 
+### 启停采集命令参数
 
-**启停采集命令参数**
+| 命令参数   |必选| 说明                   |
+| :-----|:-----| :--------------------- |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令             |
+| -stop |是| 结束采集，执行后会生成采集报告              |
 
-| 命令   | 功能                   |必选|
-| :-----| :--------------------- |:-----|
-| -start | 开始采集，该命令后可添加基础采集命令             |是|
-| -stop | 结束采集，执行后会生成采集报告              |是|
+### 命令行使用示例
+所有命令参数执行需进入shell环境。进入shell环境后，可查看daemon进程是否存在，可执行查看帮助命令，也可执行采集命令并输出采集和查看采集结果等等。
 
-**命令行使用示例**
-
-1.Win + R 打开命令行窗口，进入shell下
-
-  ```
-  C:\Users\issusser>hdc shell  // 使用示例
-  #
-  ```
-
-2.拉起daemon进程
+#### 进入shell
 
   ```
   C:\Users\issusser>hdc shell
-  # SP_daemon
   #
   ```
 
-3.查看daemon进程是否存在
+
+#### 拉起和查看daemon进程
 
   ```
   C:\Users\issusser>hdc shell
-  # SP_daemon
+  // 拉起daemon进程
+  # SP_daemon 
+  // 查看daemon进程是否存在
   # ps -ef | grep SP_daemon
   root          1584     1 0 21:50:05 ?     00:00:00 SP_daemon
   root          1595  1574 3 21:51:02 pts/0 00:00:00 grep SP_daemon
   #
   ```
 
-4.执行查看帮助命令
+#### 执行查看帮助命令
+
+<!--RP2-->
 
   ```
   # SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
   Usage: SP_daemon <options> <arguments>
   options:
-  These are common commands list:
   -N             set the collection times(default value is 0) range[1,2147483647], for example: -N 10
   -PKG           set package name, must add, for example: -PKG ohos.samples.ecg
   -c             get device CPU frequency and CPU usage, process CPU usage and CPU load ..
@@ -145,10 +142,9 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   -screen        get screen resolution
   -OUT           set csv output path
   -d             get device DDR information
-  -m             get other memory
   example:
-  SP_daemon -N 20 -c -g -t -p -r -m -d -net -snapshot
-  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
+  SP_daemon -N 20 -c -g -t -p -r -net -snapshot -d
+  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d
   SP_daemon -start -c
   SP_daemon -stop
   SP_daemon -screen
@@ -156,10 +152,11 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   command exec finished!
   #
   ```
+<!--RP2End-->
 
-5.执行采集命令
+#### 执行采集命令
 
-  5.1 采集2次整机CPU大中小核频率、各核使用率
+  - 采集2次整机CPU大中小核频率、各核使用率
 
   ```
   # SP_daemon -N 2 -c
@@ -180,7 +177,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.2 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
+  - 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
   # SP_daemon -N 2 -PKG ohos.samples.ecg -c
@@ -208,10 +205,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内
+  >- 使用该命令采集时需进入被测应用内
 
-  5.3 采集1次整机GPU频率和负载
-
+  - 采集1次整机GPU频率和负载
+ 
   ```
   # SP_daemon -N 1 -g
 
@@ -223,7 +220,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.4 采集2次整机温度
+  - 采集2次整机温度
 
   ```
   # SP_daemon -N 2 -t
@@ -248,7 +245,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.5 采集1次整机电流和电压
+  - 采集1次整机电流和电压
 
   ```
   # SP_daemon -N 1 -p
@@ -261,7 +258,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.6 采集2次整机内存
+  - 采集2次整机内存
 
   ```
   # SP_daemon -N 2 -r
@@ -279,53 +276,41 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.7 采集1次整机和指定应用进程内存
+  - 采集1次整机和指定应用进程内存
 
   ```
   # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1711679596851
-  order:1 memAvailable=8267076
-  order:2 memFree=7870760
-  order:3 memTotal=11769320
-  order:4 pss=78045
+  order:0 timestamp=1720427095197
+  order:1 arktsHeapPss=17555
+  order:2 gpuPss=7021
+  order:3 graphicPss=163320
+  order:4 heapAlloc=120344
+  order:5 heapFree=14362
+  order:6 heapSize=133436
+  order:7 memAvailable=2757504
+  order:8 memFree=190852
+  order:9 memTotal=11742716
+  order:10 nativeHeapPss=49102
+  order:11 privateClean=1100020
+  order:12 privateDirty=175169
+  order:13 pss=422172
+  order:14 sharedClean=89348
+  order:15 sharedDirty=19084
+  order:16 stackPss=1588
+  order:17 swap=122076
+  order:18 swapPss=122076
+
 
   command exec finished!
   #
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内
+  >- 使用该命令采集时需进入被测应用内
+  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
 
-  5.8 采集1次指定应用其他内存
-
-  ```
-  # SP_daemon -N 1 -PKG ohos.samples.ecg -m
-
-  order:0 timestamp=1711681812033
-  order:1 arktsHeapPss=12311
-  order:2 gpuPss=270
-  order:3 graphicPss=0
-  order:4 heapAlloc=46120
-  order:5 heapFree=1582
-  order:6 heapSize=49060
-  order:7 nativeHeapPss=40302
-  order:8 privateClean=64352
-  order:9 privateDirty=2906
-  order:10 sharedClean=74200
-  order:11 sharedDirty=13220
-  order:12 stackPss=624
-  order:13 swap=0
-  order:14 swapPss=0
-
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入应用内
-
-  5.9 采集2次截图
+  - 采集2次截图
 
   ```
   # SP_daemon -N 2 -snapshot
@@ -349,9 +334,9 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图
   >
-  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/screenCap_1700725192774.png D:\
+  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\
 
-  5.10 采集2次网络速率
+  - 采集2次网络速率
 
   ```
   # SP_daemon -N 2 -net
@@ -368,7 +353,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.11 采集5次指定应用帧率
+  - 采集5次指定应用帧率
 
   ```
   # SP_daemon -N 5 -PKG ohos.samples.ecg -f
@@ -389,10 +374,11 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内，滑动或切换页面
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
   >
-
-  5.12 采集10次指定图层帧率
+ 
+  - 采集10次指定图层帧率
 
   ```
   # SP_daemon -N 10 -VIEW DisplayNode -f
@@ -418,10 +404,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）
 
-  5.13 采集2次DDR信息
+  - 采集1次DDR信息
 
   ```
-  # SP_daemon -N 2 -d
+  # SP_daemon -N 1 -d
   
   order:0 timestamp=1710916175201
   order:1 ddrFrequency=1531000000
@@ -429,11 +415,12 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   command exec finished!
   #
   ```
+  <!--RP3--><!--RP3End-->
 
-  5.14 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、内存信息、DDR信息、网络速率、屏幕截图
-
+  - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
+ 
   ```
-  # SP_daemon -N 10 -c -g -t -p -r -d -net -snapshot
+  # SP_daemon -N 10 ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
   order:0 timestamp=1705042018276
   order:1 cpu0Frequency=490000
@@ -470,12 +457,13 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.15 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、fps、内存信息、其他内存信息、DDR信息、网络速率、屏幕截图
-
+  - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
+ 
+   <!--RP4-->
   ```
-  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
+  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
-  order:0 timestamp=1705307489445
+  order:0 timestamp=1705042018276
   order:1 ProcAppName=ohos.samples.ecg
   order:2 ProcCpuLoad=0.000001
   order:3 ProcCpuUsage=0.000000
@@ -483,7 +471,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   order:5 ProcSCpuUsage=0.000000
   order:6 ProcUCpuUsage=0.000000
   order:7 cpu0Frequency=418000
-  order:8 cpu0Usage=27.884615
+  order:8 cpu0Usage=27.884616
   order:9 cpu0idleUsage=72.115385
   order:10 cpu0ioWaitUsage=0.000000
   order:11 cpu0irqUsage=0.961538
@@ -505,27 +493,27 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   order:125 fps=3
   order:126 fpsJitters=881659966;;108846354;;8289583
   order:127 refreshrate=120
-  order:128 memAvailable=6354252
-  order:129 memFree=5971776
-  order:130 memTotal=11530092
-  order:131 pss=78045
-  order:132 arktsHeapPss=13394
-  order:133 gpuPss=280
-  order:134 graphicPss=0
-  order:135 heapAlloc=48080
-  order:136 heapFree=2576
-  order:137 heapSize=50788
-  order:138 nativeHeapPss=41897
-  order:139 privateClean=67232
-  order:140 privateDirty=12848
-  order:141 sharedClean=76224
-  order:142 sharedDirty=12848
-  order:143 stackPss=1096
-  order:144 swap=0
-  order:145 swapPss=0
-  order:146 ddrFrequency=1531000000
-  order:147 networkDown=0
-  order:148 networkUp=0
+  order:128 arktsHeapPss=16464
+  order:129 gpuPss=7021
+  order:130 graphicPss=163320
+  order:131 heapAlloc=118870
+  order:132 heapFree=14076
+  order:133 heapSize=131948
+  order:134 memAcailable=2776508
+  order:135 memFree=258668
+  order:136 memTotal=11742716
+  order:137 nativeHeapPss=45361
+  order:138 privateClean=104828
+  order:139 privateDirty=175189
+  order:140 pss=419476
+  order:141 sharedClean=87744
+  order:142 sharedDirty=19084
+  order:143 stackPss=1592
+  order:144 swap=125408
+  order:145 swapPss=125408
+  order:146 ddrFrequency=749000000
+  order:147 networkDown=7893
+  order:148 networkUp=1546
   order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
 
   ...
@@ -533,8 +521,14 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   command exec finished!
   #
   ```
+   <!--RP4End-->
 
-  5.16 采集当前界面fps
+  >**说明**
+  >
+  >- 使用该命令采集时需进入被测应用内
+  >
+
+  - 采集当前界面fps
 
   ```
   # SP_daemon -profilerfps 10
@@ -557,7 +551,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
   >
 
-  5.17 fps分时间段采集
+  - fps分段采集
 
   ```
   # SP_daemon -profilerfps 100 -sectrions 10
@@ -585,34 +579,39 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   ```
   >**说明**
   >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
+  >- 该段打印里100表示采集的次数，可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集
   >
-  >- 目前只支持分十段采集
+  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
 
-  5.18 启停服务（开始采集）
+  - 启停服务
 
   ```
+  开始采集
   # SP_daemon -start -c
   SP_daemon Collection begins
   command exec finished!
   #
-  ```
-
-  5.19 启停服务（结束采集）
-
-  ```
+  
+  结束采集
   # SP_daemon -stop
   SP_daemon Collection ended
   Output Path: data/local/tmp/smartperf/1/t_index_info_csv
   command exec finished!
   #
+
   ```
   >**说明**
   >
-  >- 启停服务文件路径为：data/local/tmp/smartperf/1/t_index_info.csv
-  >- 查看与导出方式同下
+  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot
+  >
+  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
+  >
+  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
+  >
+  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
+  >
 
-  5.20 获取屏幕分辨率
+  - 获取屏幕分辨率
 
   ```
   # SP_daemon -screen
@@ -626,12 +625,14 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- 该命令需单独采集，采集结果不写入data.csv 
 
-6.输出采集结果和查看采集结果。
+#### 输出和查看采集结果
+输出和查看采集结果前，需先执行上述的采集命令。
 
   - 采集结果默认输出路径：/data/local/tmp/data.csv
 
   - 查看文件位置
     ```
+    C:\Users\issusser>hdc shell
     # cd data/local/tmp
     # ls
     data.csv
@@ -639,9 +640,6 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     ```
 
   - 导出文件
-    ```
-    hdc file recv data/local/tmp/data.csv D:\
-    ```
     ```
     C:\Users\issusser>hdc file recv data/local/tmp/data.csv D:\
     [I][2023-11-08 16:16:41] HdcFile::TransferSummary success
@@ -654,9 +652,9 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
     在自定义导出路径里找到data.csv文件打开查看采集数据表，data.csv数据名描述如下
 
-    | 被测数据项    | 含义             |备注|
+    | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
-    | cpuFrequency      | CPU大中小核频率        |单位Hz|
+    | cpuFrequency      | CPU大中小核频率        |单位：Hz|
     | cpuUasge          | CPU各核使用率          |%|
     | cpuidleUsage      | CPU空闲态使用率        |%| 
     | cpuioWaitUsage    | 等待I/O的使用率        |%|
@@ -666,43 +664,44 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | cpusystemUsage    | 系统/内核态使用率      |%|
     | cpuuserUsage      | 用户态使用率           |%| 
     | ProcId            | 进程id                ||
-    | ProcAppName       | app名                 || 
+    | ProcAppName       | app包名                || 
     | ProcCpuLoad       | 进程CPU负载占比        |%|
     | ProcCpuUsage      | 进程CPU使用率          |%| 
     | ProcUCpuUsage     | 进程用户态CPU使用率     |%|
     | ProcSCpuUsage     | 进程内核态CPU使用率     |%| 
     | gpuFrequ          | 整机GPU的频率          |%|
     | gpuLoad           | 整机GPU的负载占比      |%|
-    | currentNow        | 当前读到的电流值       |单位mA| 
-    | voltageNow        | 当前读到的电压值       |单位μV(微伏)| 
-    | fps               | 屏幕刷新帧率          |单位fps|
-    | fpsJitters        | 每一帧绘制间隔        |单位ns|
-    | refreshrate       | 屏幕刷新率            |单位Hz|
-    | networkDown       | 下行速率              |单位byte/s|
-    | networkUp         | 上行速率              |单位byte/s|
-    | ddrFrequency      | DDR频率               |单位Hz|
-    | shell_front       | 前壳温度              |单位°C|
-    | shell_frame       | 边框温度              |单位°C|
-    | shell_back        | 后壳温度              |单位°C|
-    | soc_thermal       | 系统芯片温度          |单位°C|
-    | system_h          | 系统温度             |单位°C|
-    | Battery           | 电池温度             |单位°C|
-    | memAvailable      | 整机可用内存         |单位kB|
-    | memFree           | 整机空闲内存         |单位kB|
-    | memTotal          | 整机总内存           |单位kB|
-    | pss               | 进程实际使用内存      |单位kB|
-    | sharedClean       | 共享的未改写页面      |单位kB|
-    | sharedDirty       | 共享的已改写页面      |单位kB|
-    | priviateClean     | 私有的未改写页面      |单位kB|
-    | privateDirty      | 私有的已改写页面      |单位kB|
-    | swapTotal         | 总的交换内存          |单位kB|
-    | swapPss           | 交换的pss内存        |单位kB|
-    | HeapSize          | 堆内存大小           |单位kB|
-    | HeapAlloc         | 可分配的堆内存大小    |单位kB|
-    | HeapFree          | 剩余的堆内存大小      |单位kB|
-    | gpuPss            | 使用的gpu内存大小     |单位kB|
-    | graphicPss        | 使用的图形内存大小     |单位kB|
-    | arktsHeapPss      | 使用的arkts内存大小    |单位kB|
-    | nativeHeapPss     | 使用的native内存大小   |单位kB|
-    | stackPss          | 使用的栈内存大小       |单位kB|
+    | currentNow        | 当前读到的电流值       |单位：mA| 
+    | voltageNow        | 当前读到的电压值       |单位：μV| 
+    | fps               | 每秒帧数              |单位：fps|
+    | fpsJitters        | 每一帧绘制间隔        |单位：ns|
+    | refreshrate       | 屏幕刷新率            |单位：Hz|
+    | networkDown       | 下行速率              |单位：byte/s|
+    | networkUp         | 上行速率              |单位：byte/s|
+    | ddrFrequency      | DDR频率               |单位：Hz|
+    | shell_front       | 前壳温度              |单位：°C|
+    | shell_frame       | 边框温度              |单位：°C|
+    | shell_back        | 后壳温度              |单位：°C|
+    | soc_thermal       | 系统芯片温度          |单位：°C|
+    | system_h          | 系统温度             |单位：°C|
+    | Battery           | 电池温度             |单位：°C|
+    | memAvailable      | 整机可用内存         |单位：KB|
+    | memFree           | 整机空闲内存         |单位：KB|
+    | memTotal          | 整机总内存           |单位：KB|
+    | pss               | 进程实际使用内存      |单位：KB|
+    | sharedClean       | 共享的未改写页面      |单位：KB|
+    | sharedDirty       | 共享的已改写页面      |单位：KB|
+    | priviateClean     | 私有的未改写页面      |单位：KB|
+    | privateDirty      | 私有的已改写页面      |单位：KB|
+    | swapTotal         | 总的交换内存          |单位：KB|
+    | swapPss           | 交换的pss内存        |单位：KB|
+    | HeapSize          | 堆内存大小           |单位：KB|
+    | HeapAlloc         | 可分配的堆内存大小    |单位：KB|
+    | HeapFree          | 剩余的堆内存大小      |单位：KB|
+    | gpuPss            | 使用的gpu内存大小     |单位：KB|
+    | graphicPss        | 使用的图形内存大小     |单位：KB|
+    | arktsHeapPss      | 使用的arkts内存大小    |单位：KB|
+    | nativeHeapPss     | 使用的native内存大小   |单位：KB|
+    | stackPss          | 使用的栈内存大小       |单位：KB|
     | timeStamp         | 当前时间戳            |对应采集时间| 
+    <!--RP5--><!--RP5End-->

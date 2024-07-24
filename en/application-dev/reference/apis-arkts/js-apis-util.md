@@ -1266,7 +1266,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
 
@@ -1300,7 +1300,7 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 ### compare<sup>9+</sup>
 
-compare​(another: RationalNumber): number​
+compare(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with another **RationalNumber** object.
 
@@ -1368,7 +1368,7 @@ console.info("result = " + result);
 
 ### equals<sup>8+</sup>
 
-equals​(obj: Object): boolean
+equals(obj: Object): boolean
 
 Checks whether this **RationalNumber** object equals the given object.
 
@@ -1443,7 +1443,7 @@ console.info("result = " + result);
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​(): number
+getNumerator(): number
 
 Obtains the numerator of this **RationalNumber** object.
 
@@ -1473,7 +1473,7 @@ console.info("result = " + result);
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​(): number
+getDenominator(): number
 
 Obtains the denominator of this **RationalNumber** object.
 
@@ -1503,7 +1503,7 @@ console.info("result = " + result);
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero():boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
@@ -1533,7 +1533,7 @@ console.info("result = " + result);
 
 ### isNaN<sup>8+</sup>
 
-isNaN​(): boolean
+isNaN(): boolean
 
 Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
@@ -1563,7 +1563,7 @@ console.info("result = " + result);
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
@@ -1593,7 +1593,7 @@ console.info("result = " + result);
 
 ### toString<sup>8+</sup>
 
-toString​(): string
+toString(): string
 
 Obtains the string representation of this **RationalNumber** object.
 
@@ -1648,7 +1648,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 ### compareTo<sup>(deprecated)</sup>
 
-compareTo​(another: RationalNumber): number​
+compareTo(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with a given object.
 
@@ -1680,7 +1680,7 @@ let result = rationalNumber.compareTo(rational);
 
 ### getCommonDivisor<sup>(deprecated)</sup>
 
-static getCommonDivisor​(number1: number,number2: number): number
+static getCommonDivisor(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
 
@@ -2377,6 +2377,8 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
+type ScopeType = ScopeComparable | number
+
 Defines the type of values in a **Scope** object.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -3049,9 +3051,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64Helper.encodeSync(array);
   ```
 
 
@@ -3089,9 +3091,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  let result = that.encodeToStringSync(array, util.Type.MIME);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
@@ -3129,9 +3131,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  let result = that.decodeSync(buff, util.Type.MIME);
+  let result = base64Helper.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -3169,13 +3171,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{
-    for (let i = 0; i < rarray.length; i++) {
-      console.info(val[i].toString());
-    }
+  base64Helper.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -3212,10 +3211,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  that.encodeToString(array, util.Type.MIME).then(val=>{
-    // Add information as required.
+  base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
+    console.info(val);
   })
   ```
 
@@ -3252,10 +3251,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  that.decode(array, util.Type.MIME).then(val=>{
-    // Add information as required.
+  base64Helper.decode(array, util.Type.MIME).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -5793,9 +5792,9 @@ Encodes the input content into a Uint8Array object. This API returns the result 
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64.encodeSync(array);
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -5825,9 +5824,9 @@ Encodes the input content into a string. This API returns the result synchronous
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeToStringSync(array);
+  let result = base64.encodeToStringSync(array);
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -5857,9 +5856,9 @@ Decodes the input content into a Uint8Array object.
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let buff = 'czEz';
-  let result = that.decodeSync(buff);
+  let result = base64.decodeSync(buff);
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -5889,13 +5888,10 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString())
-      }
+  base64.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -5926,10 +5922,10 @@ Encodes the input content into a string. This API uses a promise to return the r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  that.encodeToString(array).then(val=>{    
-      console.info(val)
+  base64.encodeToString(array).then((val) => {
+      console.info(val);
   })
   ```
 
@@ -5961,12 +5957,9 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
-  let rarray = new Uint8Array([115,49,51]);
-  that.decode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString());
-      }
+  base64.decode(array).then((val) => {
+    console.info(val.toString());
   })
   ```

@@ -7,11 +7,13 @@
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 当前不支持在预览器中使用RenderNode。
+>
+> 不建议对BuilderNode中的RenderNode进行修改操作。
 
 ## 导入模块
 
 ```ts
-import { RenderNode } from "@ohos.arkui.node";
+import { RenderNode } from '@kit.ArkUI';
 ```
 
 ## RenderNode
@@ -29,7 +31,7 @@ RenderNode的构造函数。
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -82,7 +84,7 @@ appendChild(node: RenderNode): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -140,7 +142,7 @@ insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -204,7 +206,7 @@ removeChild(node: RenderNode): void
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -259,7 +261,7 @@ clearChildren(): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 for (let i = 0; i < 10; i++) {
@@ -329,7 +331,7 @@ getChild(index: number): RenderNode | null
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 for (let i = 0; i < 10; i++) {
@@ -401,7 +403,7 @@ getFirstChild(): RenderNode | null
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -470,7 +472,7 @@ getNextSibling(): RenderNode | null
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -541,7 +543,7 @@ getPreviousSibling(): RenderNode | null
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -626,7 +628,7 @@ get backgroundColor(): number
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -688,11 +690,11 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为false。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -765,7 +767,7 @@ get opacity(): number
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -833,7 +835,7 @@ get size(): Size
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -900,7 +902,7 @@ get position(): Position
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -968,7 +970,7 @@ get frame(): Frame
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1035,7 +1037,7 @@ get pivot(): Pivot
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1105,7 +1107,7 @@ get scale(): Scale
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1173,7 +1175,7 @@ get translation(): Translation
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1241,7 +1243,7 @@ get rotation(): Rotation
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1317,7 +1319,7 @@ get transform(): Matrix4
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1390,7 +1392,7 @@ get shadowColor(): number
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1460,7 +1462,7 @@ get shadowOffset(): Offset
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1498,6 +1500,75 @@ struct Index {
 }
 ```
 
+### label<sup>12+</sup>
+
+set label(label: string)
+
+设置当前RenderNode的标签。若当前节点是通过new创建的RenderNode，则设置的标签信息会在节点Inspector信息的属性中。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| label  | string | 是   | 将要设置的RenderNode的标签。 |
+
+get label(): string
+
+获取当前RenderNode的标签。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 说明                                           |
+| ------ | ---------------------------------------------- |
+| string | 当前RenderNode的标签，默认值为""。 |
+
+**示例：**
+
+```ts
+import {  RenderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const renderNode: RenderNode | null = this.rootNode.getRenderNode();
+    if (renderNode !== null) {
+      const renderChildNode: RenderNode = new RenderNode();
+      renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+      renderChildNode.backgroundColor = 0xffff0000;
+      renderChildNode.label = 'customRenderChildNode';
+      console.log('label:', renderChildNode.label);
+      renderNode.appendChild(renderChildNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .width(300)
+        .height(700)
+        .backgroundColor(Color.Gray)
+    }
+  }
+}
+```
 ### shadowAlpha
 
 set shadowAlpha(alpha: number)
@@ -1531,7 +1602,7 @@ get shadowAlpha(): number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1603,7 +1674,7 @@ get shadowElevation(): number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1676,7 +1747,7 @@ get shadowRadius(): number
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xff00ff00;
@@ -1739,7 +1810,7 @@ ArkTS侧代码：
 ```ts
 // Index.ets
 import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
-import { RenderNode, DrawContext, NodeController, FrameNode } from "@ohos.arkui.node"
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
@@ -1880,7 +1951,7 @@ target_link_libraries(entry PUBLIC libnative_drawing.so)
 <!--code_no_check-->
 
 ```ts
-import { DrawContext } from "@ohos.arkui.node"
+import { DrawContext } from '@kit.ArkUI';
 
 export const nativeOnDraw: (id: number, context: DrawContext, width: number, height: number) => number;
 ```
@@ -1899,7 +1970,7 @@ invalidate(): void
 
 ```ts
 import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
-import { RenderNode, DrawContext, FrameNode, NodeController } from "@ohos.arkui.node"
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
@@ -1954,6 +2025,8 @@ set borderStyle(style: Edges\<BorderStyle>)
 
 设置当前RenderNode的边框样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1966,6 +2039,8 @@ get borderStyle(): Edges\<BorderStyle>
 
 获取当前RenderNode的边框样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1976,7 +2051,7 @@ get borderStyle(): Edges\<BorderStyle>
 
 **示例：**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2025,6 +2100,8 @@ set borderWidth(width: Edges\<number>)
 
 设置当前RenderNode的边框宽度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2037,6 +2114,8 @@ get borderWidth(): Edges\<number>
 
 获取当前RenderNode的边框宽度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2048,7 +2127,7 @@ get borderWidth(): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2091,6 +2170,8 @@ set borderColor(color: Edges\<number>)
 
 设置当前RenderNode的边框颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2114,7 +2195,7 @@ get borderColor(): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2158,6 +2239,8 @@ set borderRadius(radius: BorderRadiuses)
 
 设置当前RenderNode的边框圆角。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2182,7 +2265,7 @@ get borderRadius(): BorderRadiuses
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2225,6 +2308,8 @@ set shapeMask(shapeMask: ShapeMask)
 
 设置当前RenderNode的遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2248,7 +2333,7 @@ get shapeMask(): ShapeMask
 **示例：**
 
 ```ts
-import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -2291,18 +2376,147 @@ struct Index {
 }
 ```
 
+### shapeClip<sup>12+</sup>
+
+set shapeClip(shapeClip: ShapeClip)
+
+设置当前RenderNode的裁剪形状。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明               |
+| --------- | -------------------------------------------------- | ---- | ------------------ |
+| shapeClip | [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | 是   | RenderNode的裁剪形状。 |
+
+get shapeClip(): ShapeClip
+
+获取当前RenderNode的裁剪形状。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                               | 说明                   |
+| -------------------------------------------------- | ---------------------- |
+| [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | RenderNode的裁剪形状。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+const shapeClip = renderNode.shapeClip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setRectShape")
+        .onClick(() => {
+          shapeClip.setRectShape({
+            left: 0,
+            right: 150,
+            top: 0,
+            bottom: 150
+          });
+          renderNode.shapeClip = shapeClip;
+        })
+      Button("setRoundRectShape")
+        .onClick(() => {
+          renderNode.shapeClip.setRoundRectShape({
+            rect: {
+              left: 0,
+              top: 0,
+              right: vp2px(150),
+              bottom: vp2px(150)
+            },
+            corners: {
+              topLeft: { x: 32, y: 32 },
+              topRight: { x: 32, y: 32 },
+              bottomLeft: { x: 32, y: 32 },
+              bottomRight: { x: 32, y: 32 }
+            }
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+      Button("setCircleShape")
+        .onClick(() => {
+          renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+          renderNode.shapeClip = renderNode.shapeClip;
+
+        })
+      Button("setOvalShape")
+        .onClick(() => {
+          renderNode.shapeClip.setOvalShape({
+            left: 0,
+            right: vp2px(150),
+            top: 0,
+            bottom: vp2px(100)
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+      Button("setCommandPath")
+        .onClick(() => {
+          renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+    }
+  }
+}
+```
+
 ### dispose<sup>12+</sup>
 
 dispose(): void
 
 立即释放当前RenderNode。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 100, width: 100, height: 100 };
@@ -2357,6 +2571,8 @@ set markNodeGroup(isNodeGroup: boolean)
 
 标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2380,8 +2596,8 @@ get markNodeGroup(): boolean
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, DrawContext } from "@ohos.arkui.node"
-import drawing from '@ohos.graphics.drawing';
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
@@ -2404,6 +2620,8 @@ renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
+
+const isNodeGroup = renderNode.markNodeGroup;
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;

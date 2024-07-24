@@ -14,6 +14,8 @@ ContentSlot(content: Content)
 
 当内容添加到占位符组件时调用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -26,7 +28,7 @@ ContentSlot(content: Content)
 
 ```ts
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@ohos.arkui.node'
+import { NodeContent } from '@kit.ArkUI'
 
 @Entry
 @Component

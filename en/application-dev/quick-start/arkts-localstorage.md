@@ -1,4 +1,4 @@
-# LocalStorage: UI State Storage
+# LocalStorage: Storing UI State
 
 
 LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages with UIAbility instances.
@@ -437,8 +437,8 @@ In the preceding examples, the LocalStorage instance is shared only in an \@Entr
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
 para:Record<string, number> = { 'PropA': 47 };
@@ -459,7 +459,7 @@ windowStage.loadContent('pages/Index', this.storage);
 In the following example, **propA** on the **Index** page uses the **getShared()** API to obtain the shared LocalStorage instance. Click the button to go to the **Page** page. Click **Change propA** and then return to the **Index** page. It can be observed that the value of **propA** on the page is changed.
 ```ts
 // index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 // Use the getShared API to obtain the LocalStorage instance shared by stage.
 let storage = LocalStorage.getShared()
@@ -493,7 +493,7 @@ struct Index {
 
 ```ts
 // Page.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 let storage = LocalStorage.getShared()
 

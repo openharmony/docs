@@ -1,10 +1,10 @@
-# 实现一个自绘编辑框
+# 在自绘编辑框中使用输入法
 
-输入法框架提供了[InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例，通过[getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9)可获取到，使用 [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例可以绑定输入法，监听输入法应用的插入、删除、选择、光标移动等操作，从而实现一个自绘编辑框。
+输入法框架提供了[InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例，通过[getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9)可获取到，使用 [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例可以绑定输入法，监听输入法应用的插入、删除、选择、光标移动等操作，以此可在自绘编辑框中使用输入法。
 
 ## 开发步骤
 
-1. 开发者在实现一个自绘编辑框控件时，需要在在DevEco Studio工程中新建一个ets文件，命名为自定义控件的名称，本示例中命名为CustomInput，在文件中定义一个自定义控件，并从@kit.IMEKit中导入inputMethod。
+1. 开发者在自绘编辑框使用输入法时，首先需要在DevEco Studio工程中新建一个ets文件，命名为自定义控件的名称，本示例中命名为CustomInput，在文件中定义一个自定义控件，并从@kit.IMEKit中导入inputMethod。
 
    ```ets
    import { inputMethod } from '@kit.IMEKit';
@@ -46,6 +46,7 @@
    @Component
    export struct CustomInput {
      @State inputText: string = ''; // inputText作为Text组件要显示的内容。
+     private isAttach: boolean = false;
      private inputController: inputMethod.InputMethodController = inputMethod.getController();
    
      build() {
@@ -54,10 +55,13 @@
          .width('100%')
          .lineHeight(40)
          .id('customInput')
+         .onBlur(() => {
+           this.off();
+         })
          .height(45)
          .border({ color: '#554455', radius: 30, width: 1 })
          .maxLines(1)
-         .onClick(()=>{
+         .onClick(() => {
            this.attachAndListener(); // 点击控件
          })
      }
@@ -70,12 +74,21 @@
            enterKeyType: inputMethod.EnterKeyType.SEARCH
          }
        });
-       this.inputController.on('insertText', (text) => {
-         this.inputText += text;
-       })
-       this.inputController.on('deleteLeft', (length) => {
-         this.inputText = this.inputText.substring(0, this.inputText.length - length);
-       })
+       if (!this.isAttach) {
+         this.inputController.on('insertText', (text) => {
+           this.inputText += text;
+         })
+         this.inputController.on('deleteLeft', (length) => {
+           this.inputText = this.inputText.substring(0, this.inputText.length - length);
+         })
+         this.isAttach = true;
+       }
+     }
+
+     off() {
+       this.isAttach = false;
+       this.inputController.off('insertText')
+       this.inputController.off('deleteLeft')
      }
    }
    ```

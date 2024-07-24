@@ -5,7 +5,7 @@
 
 With the sensor module, a device can obtain sensor data. For example, the device can subscribe to data of the orientation sensor to detect its own orientation.
 
-For details about the APIs, see the *Sensor API Reference*.
+For details about the APIs, see [Sensor](../../reference/apis-sensor-service-kit/js-apis-sensor.md).
 
 
 ## Available APIs
@@ -23,7 +23,7 @@ The acceleration sensor is used as an example.
 1. Import modules.
 
     ```ts
-    import sensor from '@ohos.sensor';
+    import { sensor } from '@kit.SensorServiceKit';
     ```
 
 2. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).

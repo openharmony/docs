@@ -96,7 +96,7 @@ export { func2 } from './src/main/ts/test';
 ### 导出native方法
 在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出libnative.so的加法接口add为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {
@@ -335,9 +335,13 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 > **场景说明**
 >
->在har中使用Sendable class时，开启该配置。
+>在HAR中使用Sendable class时，开启该配置。
 
-har模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在har模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
+> **使用限制**
+>
+>在依赖TS HAR时，禁止引用TS HAR中的ArkUI组件。
+
+HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在HAR模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
 
   ```json
   {

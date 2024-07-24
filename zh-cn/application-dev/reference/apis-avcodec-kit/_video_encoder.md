@@ -129,9 +129,9 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | √        | ×        | ×      |
 | OH_MD_KEY_HEIGHT                                                          | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT 请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat) | √        | ×        | ×      |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | √        | ×        | ×      |
 | OH_MD_KEY_FRAME_RATE                                                       | √        | ×        | √      |
-| OH_MD_KEY_PROFILE [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | √        | ×        | √      |
+| OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | √        | ×        | √      |
 | OH_MD_KEY_I_FRAME_INTERVAL                                                 | √        | \\       | √      |
 
 | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |

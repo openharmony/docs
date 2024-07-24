@@ -31,11 +31,17 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeImage](#oh_nativeimage) | Provides the declaration of an **OH_NativeImage** struct.|
-| [OHNativeWindow](#ohnativewindow) | typedef struct NativeWindow<br>Provides the declaration of a **NativeWindow** struct.|
-| [OH_OnFrameAvailable](#oh_onframeavailable) | Defines the callback function triggered when a frame is available.|
-| [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener). The listener triggers a callback when a frame is available.|
+| typedef struct [OH_NativeImage](#oh_nativeimage)  [OH_NativeImage](#oh_nativeimage) | Provides the declaration of an **OH_NativeImage** struct. | 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **NativeWindow**. | 
+| typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | Defines the callback function triggered when a frame is available. | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available. | 
+| typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
 
+### Enums
+
+| Name| Description| 
+| -------- | -------- |
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 ### Functions
 
@@ -52,7 +58,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | Registers a listener to listen for frame availability events.|
 | [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | Deregisters the listener used to listen for frame availability events.|
 | [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**.|
-
+| int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function. |
 
 ## Type Description
 
@@ -60,7 +66,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 ### OH_NativeImage
 
 ```
-typedef struct OH_NativeImageOH_NativeImage
+typedef struct OH_NativeImage OH_NativeImage
 ```
 
 **Description**
@@ -104,6 +110,18 @@ Defines an **OH_NativeImage** listener, which is registered through [OH_NativeIm
 **Since**: 11
 
 
+### OHNativeErrorCode
+
+```
+typedef enum OHNativeErrorCode OHNativeErrorCode
+```
+**Description**
+
+Defines an enum for the error codes.
+
+**Since**: 12
+
+
 ### OHNativeWindow
 
 ```
@@ -115,6 +133,39 @@ typedef struct NativeWindow OHNativeWindow
 Provides the capability of accessing the **NativeWindow**.
 
 **Since**: 9
+
+
+## Enum Description
+
+
+### OHNativeErrorCode
+
+```
+enum OHNativeErrorCode
+```
+**Description**
+
+Enumerates the error codes.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| NATIVE_ERROR_OK  | The operation is successful.  | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
+| NATIVE_ERROR_NO_PERMISSION  | You do not have the permission to perform the operation.  | 
+| NATIVE_ERROR_NO_BUFFER  | No buffer is available.  | 
+| NATIVE_ERROR_NO_CONSUMER  | The consumer does not exist.  | 
+| NATIVE_ERROR_NOT_INIT  | Not initialized.  | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | The consumer is connected.  | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | The buffer status does not meet the expectation.  | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | The buffer is already in the buffer queue.  | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | The queue is full.  | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | The buffer is not in the buffer queue.  | 
+| NATIVE_ERROR_UNSUPPORT  | The device or platform does not support the operation.  | 
+| NATIVE_ERROR_UNKNOWN  | Unknown error. Check the log.  | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
+| NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
 
 ## Function Description
@@ -172,7 +223,7 @@ The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance a
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeImage_Create()
@@ -246,7 +297,7 @@ Detaches an **OH_NativeImage** instance from the current OpenGL ES context.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeImage_GetSurfaceId()
@@ -272,7 +323,7 @@ Obtains the surface ID of an **OH_NativeImage** instance.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeImage_GetTimestamp()
@@ -323,8 +374,31 @@ Obtains the transformation matrix of the texture image that recently called the 
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
+### OH_NativeImage_GetTransformMatrixV2()
+
+```
+int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix[16] )
+```
+**Description**
+
+Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| image | Pointer to an **OH_NativeImage** instance. | 
+| matrix | Buffer used to store the 4 \* 4 transform matrix obtained. | 
+
+**Returns**
+
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 ### OH_NativeImage_SetOnFrameAvailableListener()
 
@@ -349,7 +423,7 @@ Registers a listener to listen for frame availability events.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeImage_UnsetOnFrameAvailableListener()
@@ -374,7 +448,7 @@ Deregisters the listener used to listen for frame availability events.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeImage_UpdateSurfaceImage()
@@ -399,4 +473,4 @@ Updates the OpenGL ES texture associated with the latest frame through an **OH_N
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.

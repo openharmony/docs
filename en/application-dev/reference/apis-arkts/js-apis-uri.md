@@ -61,57 +61,57 @@ A standard URI consists of the following parts:
 
 ```ts
 const result1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
-console.log(result1.host) // ftp.aaa.bbb.ccc
-console.log(result1.fragment) // null
-console.log(result1.path) // /dddd/eee.txt
-console.log(result1.scheme) // ftp
-console.log(result1.userInfo) // null
-console.log(result1.port) // -1
-console.log(result1.query) // null
+console.info(result1.host) // ftp.aaa.bbb.ccc
+console.info(result1.fragment) // null
+console.info(result1.path) // /dddd/eee.txt
+console.info(result1.scheme) // ftp
+console.info(result1.userInfo) // null
+console.info(result1.port) // -1
+console.info(result1.query) // null
 
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
-console.log(result2.host) // spinaltap.micro.umn.edu
-console.log(result2.fragment) // fragment
-console.log(result2.path) // /00/Weather/California/Los Angeles
-console.log(result2.scheme) // gopher
-console.log(result2.userInfo) // null
-console.log(result2.port) //-1
-console.log(result2.query) // null
+console.info(result2.host) // spinaltap.micro.umn.edu
+console.info(result2.fragment) // fragment
+console.info(result2.path) // /00/Weather/California/Los Angeles
+console.info(result2.scheme) // gopher
+console.info(result2.userInfo) // null
+console.info(result2.port) //-1
+console.info(result2.query) // null
 
 const result3 = new uri.URI("datashare:///com.samples.datasharetest.DataShare/DB00/TBL00");
-console.log(result3.host) // null
-console.log(result3.fragment) // null
-console.log(result3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
-console.log(result3.scheme) // datashare
-console.log(result3.userInfo) // null
-console.log(result3.port) // -1
-console.log(result3.query) // null
+console.info(result3.host) // null
+console.info(result3.fragment) // null
+console.info(result3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
+console.info(result3.scheme) // datashare
+console.info(result3.userInfo) // null
+console.info(result3.port) // -1
+console.info(result3.query) // null
 
 const result4 = new uri.URI("https://username:password@host:8080/directory/file?foo=1&bar=2#fragment");
-console.log(result4.host) // host
-console.log(result4.fragment) // fragment
-console.log(result4.path) // /directory/file
-console.log(result4.scheme) // https
-console.log(result4.userInfo) // username:password
-console.log(result4.port) // 8080
-console.log(result4.query) // foo=1&bar=2
+console.info(result4.host) // host
+console.info(result4.fragment) // fragment
+console.info(result4.path) // /directory/file
+console.info(result4.scheme) // https
+console.info(result4.userInfo) // username:password
+console.info(result4.port) // 8080
+console.info(result4.query) // foo=1&bar=2
 
 const result5 = new uri.URI("dataability:///com.example.DataAbility");
-console.log(result5.host) // null
-console.log(result5.fragment) // null
-console.log(result5.path) // /com.example.DataAbility:
-console.log(result5.scheme) // dataability
-console.log(result5.userInfo) // null
-console.log(result5.port) // -1
-console.log(result5.query) // null
+console.info(result5.host) // null
+console.info(result5.fragment) // null
+console.info(result5.path) // /com.example.DataAbility:
+console.info(result5.scheme) // dataability
+console.info(result5.userInfo) // null
+console.info(result5.port) // -1
+console.info(result5.query) // null
 
 const result6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
-console.log(result6.encodedUserInfo) // username:my+name
-console.log(result6.encodedPath) // /directory/my+file
-console.log(result6.encodedQuery) // foo=1&bar=2
-console.log(result6.encodedFragment) // fragment
-console.log(result6.encodedAuthority) // username:my+name@host:8080
-console.log(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+console.info(result6.encodedUserInfo) // username:my+name
+console.info(result6.encodedPath) // /directory/my+file
+console.info(result6.encodedQuery) // foo=1&bar=2
+console.info(result6.encodedFragment) // fragment
+console.info(result6.encodedAuthority) // username:my+name@host:8080
+console.info(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 ```
 
 ### constructor
@@ -231,9 +231,9 @@ Checks whether this URI is an absolute URI (whether the scheme component is defi
 
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-console.log(`${uriInstance.checkIsAbsolute()}`); // true
+console.info(`${uriInstance.checkIsAbsolute()}`); // true
 const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
-console.log(`${uriInstance1.checkIsAbsolute()}`); // false
+console.info(`${uriInstance1.checkIsAbsolute()}`); // false
 ```
 
 
@@ -257,9 +257,9 @@ Normalizes the path of this URI.
 
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
-console.log(uriInstance.path); // /path/path1/../path2/./path3
+console.info(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
-console.log(uriInstance1.path); // /path/path2/path3
+console.info(uriInstance1.path); // /path/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
@@ -267,6 +267,8 @@ console.log(uriInstance1.path); // /path/path2/path3
 checkRelative(): boolean
 
 Checks whether this URI is a relative URI. A relative URI does not contain the scheme part.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -280,9 +282,9 @@ Checks whether this URI is a relative URI. A relative URI does not contain the s
 
 ```ts
 const uriInstance = new uri.URI("https://username:password@www.qwer.com:8080?query=p");
-console.log(`${uriInstance.checkRelative()}`); // false
+console.info(`${uriInstance.checkRelative()}`); // false
 const uriInstance1 = new uri.URI("/images/pic.jpg");
-console.log(`${uriInstance1.checkRelative()}`); // true
+console.info(`${uriInstance1.checkRelative()}`); // true
 ```
 
 ### checkOpaque<sup>12+</sup>
@@ -290,6 +292,8 @@ console.log(`${uriInstance1.checkRelative()}`); // true
 checkOpaque(): boolean
 
 Checks whether this URI is an opaque URI. In an opaque URI, the scheme-specific part does not start with a slash (/).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -303,9 +307,9 @@ Checks whether this URI is an opaque URI. In an opaque URI, the scheme-specific 
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
-console.log(`${uriInstance.checkOpaque()}`); // false
+console.info(`${uriInstance.checkOpaque()}`); // false
 const uriInstance1 = new uri.URI("mailto:user@example.com");
-console.log(`${uriInstance1.checkOpaque()}`); // true
+console.info(`${uriInstance1.checkOpaque()}`); // true
 ```
 
 ### checkHierarchical<sup>12+</sup>
@@ -313,6 +317,8 @@ console.log(`${uriInstance1.checkOpaque()}`); // true
 checkHierarchical(): boolean
 
 Checks whether this URI is a hierarchical URI. In a hierarchical URI, the scheme-specific part starts with a slash (/). Relative URIs are also hierarchical.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -326,9 +332,9 @@ Checks whether this URI is a hierarchical URI. In a hierarchical URI, the scheme
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
-console.log(`${uriInstance.checkHierarchical()}`); // true
+console.info(`${uriInstance.checkHierarchical()}`); // true
 const uriInstance1 = new uri.URI("mailto:user@example.com");
-console.log(`${uriInstance1.checkHierarchical()}`); // false
+console.info(`${uriInstance1.checkHierarchical()}`); // false
 ```
 
 ### getQueryValue<sup>12+</sup>
@@ -336,6 +342,8 @@ console.log(`${uriInstance1.checkHierarchical()}`); // false
 getQueryValue(key:string): string
 
 Obtains the first value of a query parameter in this URI.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -357,13 +365,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
-console.log(uriInstance.getQueryValue("param1")); // value1
+console.info(uriInstance.getQueryValue("param1")); // value1
 ```
 
 ### addQueryValue<sup>12+</sup>
@@ -371,6 +379,8 @@ console.log(uriInstance.getQueryValue("param1")); // value1
 addQueryValue(key:string, value:string): URI
 
 Adds a query parameter to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -393,14 +403,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com");
 const newRoute = uriInstance.addQueryValue("param1", "hello world");
-console.log(newRoute.toString()); // https://www.test.com?param1=hello%20world
+console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 ```
 
 ### addSegment<sup>12+</sup>
@@ -408,6 +418,8 @@ console.log(newRoute.toString()); // https://www.test.com?param1=hello%20world
 addSegment(pathSegment:string): URI
 
 Encodes a given field and appends it to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -429,14 +441,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com");
 const newRoute = uriInstance.addSegment("my image.jpg");
-console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 ```
 
 ### addEncodedSegment<sup>12+</sup>
@@ -444,6 +456,8 @@ console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
 addEncodedSegment(pathSegment:string): URI
 
 Appends an encoded field to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -465,14 +479,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com");
 const newRoute = uriInstance.addEncodedSegment("my%20image.jpg");
-console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 ```
 
 ### getQueryNames<sup>12+</sup>
@@ -480,6 +494,8 @@ console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
 getQueryNames(): string[]
 
 Obtains all non-repeated keys in the URI query part. The URI query part follows the question mark (?) and consists of key-value pairs, separated by ampersand (&). In each key-value pair, the equal sign (=) is used to connect a key and value.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -494,7 +510,7 @@ Obtains all non-repeated keys in the URI query part. The URI query part follows 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
 const paramNames = uriInstance.getQueryNames();
-console.log(Array.from(paramNames).toString()); // param1,param2
+console.info(Array.from(paramNames).toString()); // param1,param2
 ```
 
 ### getQueryValues<sup>12+</sup>
@@ -503,13 +519,15 @@ getQueryValues(key:string): string[]
 
 Obtains all the values of a query parameter in this URI.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| key    | string | Yes  | Name of the query parameter.|
+| key    | string | Yes  | Key of the URI query parameter.|
 
 **Return value**
 
@@ -523,13 +541,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com/search?query=name&query=my");
-console.log(uriInstance.getQueryValues("query").toString()); // name,my
+console.info(uriInstance.getQueryValues("query").toString()); // name,my
 ```
 
 ### getBooleanQueryValue<sup>12+</sup>
@@ -537,6 +555,8 @@ console.log(uriInstance.getQueryValues("query").toString()); // name,my
 getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
 Obtains the value of the Boolean type of a query parameter in this URI.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -559,19 +579,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com/search?active=true");
-console.log(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
+console.info(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
 const uriInstance1 = new uri.URI("https://www.test.com/search");
-console.log(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
+console.info(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
 const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=false");
-console.log(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
+console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
-console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
 ```
 
 ### clearQuery<sup>12+</sup>
@@ -579,6 +599,8 @@ console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
 clearQuery(): URI
 
 Clears the query part of this URI to create a new URI, while keeping the existing URI object unchanged.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -592,7 +614,7 @@ Clears the query part of this URI to create a new URI, while keeping the existin
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1");
-console.log(uriInstance.clearQuery().toString()); // https://www.test.com
+console.info(uriInstance.clearQuery().toString()); // https://www.test.com
 ```
 
 ### getLastSegment<sup>12+</sup>
@@ -600,6 +622,8 @@ console.log(uriInstance.clearQuery().toString()); // https://www.test.com
 getLastSegment(): string
 
 Obtains the last segment of this URI. A path includes multiple segments, separated by slashes (/). The part that ends with a slash is not a segment.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -613,7 +637,7 @@ Obtains the last segment of this URI. A path includes multiple segments, separat
 
 ```ts
 const uriInstance = new uri.URI("content://com.test.provider/files/image.jpg");
-console.log(uriInstance.getLastSegment()); // image.jpg
+console.info(uriInstance.getLastSegment()); // image.jpg
 ```
 
 ### getSegment<sup>12+</sup>
@@ -621,6 +645,8 @@ console.log(uriInstance.getLastSegment()); // image.jpg
 getSegment(): string[]
 
 Obtains all segments of this URI.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -634,7 +660,7 @@ Obtains all segments of this URI.
 
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/path/to/image.jpg");
-console.log(uriInstance.getSegment().toString()); // path,to,image.jpg
+console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
 ```
 
 ### createFromParts<sup>12+</sup>
@@ -642,6 +668,8 @@ console.log(uriInstance.getSegment().toString()); // path,to,image.jpg
 createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 Creates a URI based on the provided scheme, scheme-specific part, and fragment part.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -665,13 +693,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameters are invalid. |
+| 401 | if the input parameters are invalid. |
 
 **Example**
 
 ```ts
 const uriInstance = uri.URI.createFromParts("mailto", "no body", "top");
-console.log(uriInstance.toString()); // mailto:no%20body#top
+console.info(uriInstance.toString()); // mailto:no%20body#top
 ```
 
 ### equals<sup>(deprecated)</sup>

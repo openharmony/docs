@@ -21,7 +21,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 必填。常量字符串，字符串需要有引号。是(string)&nbsp;=&gt;&nbsp;void自定义成员函数的方法的引用。 |
 | 可装饰的自定义组件变量    | 可监听所有装饰器装饰的状态变量。不允许监听常规变量。               |
-| 装饰器的顺序         | 建议\@State、\@Prop、\@Link等装饰器在\@Watch装饰器之前。 |
+| 装饰器的顺序         | 建议[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)等装饰器在\@Watch装饰器之前。 |
 
 
 ## 语法说明
@@ -33,7 +33,7 @@
 
 ## 观察变化和行为表现
 
-1. 当观察到状态变量的变化（包括双向绑定的AppStorage和LocalStorage中对应的key发生的变化）的时候，对应的\@Watch的回调方法将被触发；
+1. 当观察到状态变量的变化（包括双向绑定的[AppStorage](./arkts-appstorage.md)和[LocalStorage](./arkts-localstorage.md)中对应的key发生的变化）的时候，对应的\@Watch的回调方法将被触发；
 
 2. \@Watch方法在自定义组件的属性变更之后同步执行；
 

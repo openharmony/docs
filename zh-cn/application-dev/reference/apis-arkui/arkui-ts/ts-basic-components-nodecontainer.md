@@ -16,7 +16,7 @@
 
 ### NodeContainer
 
-NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: NodeController)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -37,9 +37,7 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 ## 示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
-
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 declare class Params {
   text: string

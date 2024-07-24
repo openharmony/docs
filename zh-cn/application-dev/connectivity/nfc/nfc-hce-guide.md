@@ -75,12 +75,13 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName: bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -114,8 +115,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -210,12 +211,13 @@ export default class EntryAbility extends UIAbility {
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName : bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -250,8 +252,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

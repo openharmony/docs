@@ -51,6 +51,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 ```ts
 import { SplitLayout } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

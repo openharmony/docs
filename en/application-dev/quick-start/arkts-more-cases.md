@@ -2170,7 +2170,67 @@ function f() {
 }
 ```
 
-## Typical Application Scenarios of State Management
+## Copy
+
+### Shallow Copy
+
+**TypeScript**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj = {};
+  Object.assign(newObj, obj);
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj: Record<string, Object> = {};
+  for (let key of Object.keys(obj)) {
+    newObj[key] = obj[key];
+  }
+  return newObj;
+}
+```
+
+### Deep Copy
+
+**TypeScript**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj: Record<string, Object> | Object[] = Array.isArray(obj) ? [] : {};
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
+## Typical Use Scenarios of State Management
 
 ### Using State Variables Outside of Structs
 

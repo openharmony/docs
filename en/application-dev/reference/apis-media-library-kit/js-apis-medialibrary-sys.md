@@ -1,5 +1,7 @@
 # @ohos.multimedia.medialibrary (Media Library Management) (System API)
 
+The APIs of this module are no longer maintained since API version 12. You are advised to use **PhotoAccessHelper**. For details, see "Scope" in [Introduction to Media Library Kit](../../media/medialibrary/photoAccessHelper-overview.md).
+
 > **NOTE**
 >
 > - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
@@ -43,6 +45,12 @@ Before calling this API, call [FileAsset.trash](js-apis-medialibrary.md#trash8) 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -96,6 +104,12 @@ Before calling this API, call [FileAsset.trash](js-apis-medialibrary.md#trash8) 
 | uri | string | Yes   | URI of the file asset to delete.|
 |callback |AsyncCallback\<void>| Yes |Callback that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -145,6 +159,12 @@ Obtains information about online peer devices. This API uses a promise to return
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -183,7 +203,13 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Callback invoked to return the online peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Callback used to return the online peer devices, in an array of **PeerInfo** objects.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -220,6 +246,12 @@ Obtains information about all peer devices. This API uses a promise to return th
 | Type                 | Description                  |
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -259,7 +291,13 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Callback invoked to return all peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Callback used to return all peer devices, in an array of **PeerInfo** objects.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 

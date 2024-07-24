@@ -30,7 +30,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。                         |
-| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | 音频和视频编解码器的MIME类型。     |
 | [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | 音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
@@ -76,7 +75,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为bool。该键是可选的。            |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 描述图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
@@ -126,11 +125,11 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 持续时间键，值类型为int64_t。该键是可选的。                  |
 | [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 源格式标题的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | 艺术家的源格式键，值类型为string。该键是可选的。             |
-| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 相册的源格式键，值类型为string。该键是可选的。               |
-| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 相册艺术家的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 专辑的源格式键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 专辑艺术家的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DATE](#oh_md_key_date)                            | 源格式日期的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 源格式注释的键，值类型为string。该键是可选的。               |
-| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式类型的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式流派的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | 源格式版权的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | 源格式语言的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | 源格式描述的键，值类型为string。该键是可选的。               |
@@ -206,7 +205,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | AAC档次。 | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9<br/>} | 枚举封装器的输出文件格式。 |
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 枚举封装器的输出文件格式。 |
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。 | 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 枚举每个编码样本的音频位数。 | 
@@ -237,7 +236,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | 音频和视频编解码器的MIME类型。     |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
@@ -268,11 +266,11 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 源格式标题的键，值类型为string。 |
 | const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 |
-| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 相册的源格式键，值类型为string。 |
-| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 相册艺术家的键，值类型为string。 |
+| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 专辑的源格式键，值类型为string。 |
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | 源格式日期的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | 源格式注释的键，值类型为string。 |
-| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式流派的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | 源格式版权的键，值类型为string。 |
 | const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | 源格式语言的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为string。 |
@@ -285,7 +283,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 |
 | const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 |
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 |
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为int32_t。 |
@@ -414,7 +412,10 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
 ```
 **描述**
-当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。
+当OH_AVCodec实例运行出错时，回调将上报具体的错误信息的函数指针。
+
+- AV_ERROR_NO_MEMORY：系统资源不足。
+- AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -977,6 +978,7 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_M4A  | 输出文件格式为M4A格式。   | 
 | AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
 | AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
+| AV_OUTPUT_FORMAT_WAV  | 输出文件格式为WAV格式。<br>**起始版本：** 12   | 
 
 ### OH_AVSeekMode
 
@@ -1260,19 +1262,6 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
 **起始版本：** 12
 
 
-### OH_AVCODEC_MIMETYPE_VIDEO_VVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
-```
-**描述**
-音频和视频编解码器的MIME类型。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 12
-
-
 ### OH_AVCODEC_MIMETYPE_AUDIO_AAC
 
 ```
@@ -1530,7 +1519,7 @@ aac格式的键，值类型为int32_t,aac解码器支持。
 const char* OH_MD_KEY_ALBUM
 ```
 **描述**
-相册的源格式键，值类型为string。
+专辑的源格式键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1543,7 +1532,7 @@ const char* OH_MD_KEY_ALBUM
 const char* OH_MD_KEY_ALBUM_ARTIST
 ```
 **描述**
-相册艺术家的键，值类型为string。
+专辑艺术家的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1621,7 +1610,7 @@ const char* OH_MD_KEY_AUDIO_OBJECT_NUMBER
 const char* OH_MD_KEY_AUDIO_SAMPLE_FORMAT
 ```
 **描述**
-音频原始格式的键，值类型为int32_t。请参见[AudioSampleFormat](../../reference/apis-audio-kit/js-apis-audio.md#audiosampleformat8)。
+音频原始格式的键，值类型为int32_t。请参见[AudioSampleFormat](../apis-audio-kit/js-apis-audio.md#audiosampleformat8)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1817,7 +1806,7 @@ const char* OH_MD_KEY_FRAME_RATE
 const char* OH_MD_KEY_GENRE
 ```
 **描述**
-源格式类型的键，值类型为string。
+源格式流派的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2015,7 +2004,7 @@ aac sbr模式的键，值类型为int32_t,aac编码器支持。
 const char* OH_MD_KEY_SCALING_MODE
 ```
 **描述**
-视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。
+视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

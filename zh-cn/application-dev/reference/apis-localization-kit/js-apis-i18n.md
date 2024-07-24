@@ -50,6 +50,10 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -168,6 +172,10 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -211,6 +219,11 @@ static isSuggested(language: string, region?: string): boolean
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
 
 **示例：**
   ```ts
@@ -870,7 +883,33 @@ get(field: string): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值有&nbsp;era,&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond,&nbsp;zone_offset,&nbsp;dst_offset,&nbsp;year_woy,&nbsp;dow_local,&nbsp;extended_year,&nbsp;julian_day,&nbsp;milliseconds_in_day,&nbsp;is_leap_month。 |
+| field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值请参考下表。 |
+
+
+| field名称   | 说明                                       |
+| ----- | ---------------------------------------- |
+| era | 纪元，例如公历中的公元前或者公元后 |
+| year | 年 |
+| month | 月 |
+| date | 日 |
+| hour | 挂钟小时数 |
+| hour_of_day | 一天中的第几小时 |
+| minute | 分 |
+| second | 秒 |
+| millisecond | 毫秒 |
+| week_of_year | 一年中的第几周，按照星期计算周，注意：第一周的归属算法各地有区别 |
+| year_woy | 一年中的第几周，按照数值计算周，例如一年中前1~7日属于第一周 |
+| week_of_month | 一个月中的第几周，按照星期计算周 |
+| day_of_week_in_month | 一月中的第几周，按照数值计算周，例如1-7日属于第一周 |
+| day_of_year | 一年中的第几天 |
+| day_of_week | 一周中的第几天(星期) |
+| milliseconds_in_day | 一天中的第几毫秒 |
+| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时) |
+| dst_offset | 以毫秒计时的夏令时偏移量 |
+| dow_local | 本地星期 |
+| extended_year | 扩展的年份数值，支持负数 |
+| julian_day | 儒略日,与当前时区相关 |
+| is_leap_month | 是否为闰月 |
 
 **返回值：**
 
@@ -1866,6 +1905,11 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
@@ -2434,6 +2478,8 @@ static getThreeLetterLanguage(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
@@ -2469,6 +2515,8 @@ static getThreeLetterRegion(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {

@@ -37,7 +37,7 @@ URLParams的构造函数。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -526,8 +526,6 @@ console.log("params: foo " + that.params.get("foo")) // params: foo 1
 constructor(url: string, base?: string | URL)
 
 URL的构造函数。
-
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

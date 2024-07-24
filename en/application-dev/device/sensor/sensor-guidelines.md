@@ -25,8 +25,8 @@ The acceleration sensor is used as an example.
 1. Import the module.
 
    ```ts
-   import sensor from '@ohos.sensor';
-   import { BusinessError } from '@ohos.base';
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain information about all sensors on the device.

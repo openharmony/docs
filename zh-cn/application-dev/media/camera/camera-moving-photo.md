@@ -8,21 +8,21 @@
 - 如果支持动态照片，可以调用相机框架提供的使能接口**使能**动态照片能力。
 - 监听照片回调，将照片存入媒体库。
 
-> **说明：**
-> 
-> 使能动态照片前需要使能**分段式拍照能力**。
-
 ## 开发步骤
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
+> **说明：**
+>
+> - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+> - 拍摄动态照片需要麦克风权限ohos.permission.MICROPHONE，权限申请和校验的方式请参考[开发准备](camera-preparation.md)。否则拍摄的照片没有声音。
+
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 确定拍照输出流。
@@ -86,6 +86,20 @@
 注册photoAsset监听回调。
 
    ```ts
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
@@ -93,7 +107,8 @@
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // 保存或使用照片，需开发者实现
+       // 调用媒体库落盘接口保存一阶段图和动态照片视频
+       mediaLibSavePhoto(photoAsset);
      });
    }
    ```

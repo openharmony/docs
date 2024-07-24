@@ -23,24 +23,14 @@ When using the text engine to draw and display the text, you need to use the fon
 The following walks you through on how to draw and display a paragraph.
 ### Adding Dependencies
 
-**Adding Dynamic Link Libraries**
-
-Add the following libraries to **CMakeLists.txt**.
-
-```txt
-librosen_text.z.so
-libtext_napi.z.so
-libtext_napi_impl.z.so
-```
-
 **Importing Dependency Files**
 ```js
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import image from '@ohos.multimedia.image'
-import common2D from '@ohos.graphics.common2D'
+import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
+import { UIContext } from '@kit.ArkUI'
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { common2D } from '@kit.ArkGraphics2D'
 ```
 
 Now you can use the APIs for text drawing.
@@ -76,15 +66,15 @@ The following steps describe how to create a paragraph object and display the pa
     let pen = new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
     pen.setColor(pen_color)
-      
+
     // Attach the pen to the canvas.
     canvas.attachPen(pen)
-    
+
     // Create a brush object and set the color.
     let brush = new drawing.Brush()
     let brush_color : common2D.Color = { alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00 }
     brush.setColor(brush_color)
-    
+
     // Attach the brush to the canvas.
     canvas.attachBrush(brush)
     ```
@@ -112,6 +102,8 @@ The following steps describe how to create a paragraph object and display the pa
     ParagraphGraphBuilder.addText("0123456789");
     // Build a paragraph.
     let paragraph = ParagraphGraphBuilder.build();
+    // Layout
+    paragraph.layoutSync(600);
     // Draw the text.
     paragraph.paint(canvas, 0, 0);
     ```

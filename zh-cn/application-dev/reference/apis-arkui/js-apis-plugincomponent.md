@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 ```
 
 ## PluginComponentTemplate
@@ -120,9 +120,8 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
-import { PluginComponentTemplate } from '@ohos.pluginComponent'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
@@ -151,8 +150,8 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
+import { pluginComponentManager } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
@@ -186,7 +185,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.push(
   {
     want: {
@@ -230,7 +229,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.request(
   {
     want: {
@@ -271,9 +270,8 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
-import {PluginComponentTemplate} from '@ohos.pluginComponent'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))

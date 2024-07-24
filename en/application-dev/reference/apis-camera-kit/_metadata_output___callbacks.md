@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **MetadataOutput_Callbacks** struct defines the callbacks used for metadata output.
+The MetadataOutput_Callbacks struct describes the callbacks related to metadata output.
 
 For details, see [OH_MetadataOutput_RegisterCallback](_o_h___camera.md#oh_metadataoutput_registercallback).
 

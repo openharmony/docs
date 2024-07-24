@@ -26,7 +26,7 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 
 ## ExceptionPrompt
 
-ExceptionPrompt({ options: PromptOptions })
+ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=>void, onActionTextClick?: ()=>void })
 
 **装饰器类型：**\@Component
 
@@ -42,7 +42,6 @@ ExceptionPrompt({ options: PromptOptions })
 | options | [PromptOptions](#promptoptions) | 是 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
 | onActionTextClick | ()=>void | 否 | - | 点击右侧图标按钮的回调函数。 |
-| build() | void | 是 | - | 构建函数。 |
 
 ## PromptOptions
 
@@ -69,10 +68,10 @@ MarginType定义marginType的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------- | -------- |
-| DEFAULT_MARGIN | 默认边距：<br />边距1：引用ohos_id_card_margin_start。<br />边距2：引用ohos_id_card_margin_end。 |
-| FIT_MARGIN | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT_MARGIN | 0 | 默认边距：<br />边距1：引用ohos_id_card_margin_start。<br />边距2：引用ohos_id_card_margin_end。 |
+| FIT_MARGIN | 1 | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -82,6 +81,7 @@ MarginType定义marginType的类型。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -116,6 +116,7 @@ struct Index {
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string

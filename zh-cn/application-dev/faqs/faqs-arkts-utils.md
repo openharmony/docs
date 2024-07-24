@@ -757,6 +757,17 @@ module.json5部分参数示例如下:
 
 [编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)
 
+## 使用TS HAR中的UI组件时编译报错 "'UI组件' does not meet UI component syntax"
+
+**解决方案**
+
+依赖TS HAR时，不允许引用其中的UI组件。
+需要使用HAR中的UI组件，请使用源码HAR或者JS HAR。
+
+**参考链接**
+
+[HAR开发文档](../quick-start/har-package.md)
+
 ## hdc属性开关
 
 1. 默认：hdc shell param set persist.ark.properties 0x105c

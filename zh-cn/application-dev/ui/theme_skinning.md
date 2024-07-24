@@ -118,7 +118,6 @@
                   Toggle({ type: ToggleType.Switch, isOn: true })
                     .margin({ right: '14fp' })
                     .alignSelf(ItemAlign.Center)
-                    .width('25%')
                 }
                 .width('100%')
                 .height('80vp')
@@ -140,12 +139,9 @@
 - 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import hilog from '@ohos.hilog';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import Want from '@ohos.app.ability.Want';
-    import window from '@ohos.window';
-    import { CustomColors, ThemeControl } from '@kit.ArkUI';
+    import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
       fontPrimary = 0xFFD53032
@@ -259,6 +255,10 @@
 通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
+
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![resources_dark](figures/resources_dark.png)
 
   ```ts
     @Entry

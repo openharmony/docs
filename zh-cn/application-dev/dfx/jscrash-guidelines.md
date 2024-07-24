@@ -59,15 +59,12 @@ JS Crash异常根据不同的异常场景，在 Reason 字段进行了分类，�
 
     DevEco Studio会收集设备“/data/log/faultlog/faultlogger/”路径下的进程崩溃故障日志并归档在FaultLog下，获取日志的方法可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
 
-- 方式二：通过faultlogger接口获取
+- 方式二：通过hiAppEvent接口订阅
 
-    faultlogger对外提供了故障查询接口，可以查询各种故障信息，详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。
+    hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
 
-- 方式三：通过hiAppEvent接口订阅故障
-
-    hiAppEvent 对外提供了故障订阅接口，可以订阅各类故障信息，详见[HiAppEvent (应用事件打点)](../dfx/hiappevent-intro.md)
 <!--Del-->
-- 方式四：通过shell获取日志
+- 方式三：通过shell获取日志
 
     进程崩溃后，JS Crash文件会生成在设备“/data/log/faultlog/faultlogger/”路径下，故障日志文件名格式为“jscrash-进程名-进程UID-秒级时间”，包含设备名、系统版本、进程崩溃调用栈等信息。
 

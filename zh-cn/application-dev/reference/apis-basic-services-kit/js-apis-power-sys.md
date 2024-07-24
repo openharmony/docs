@@ -38,10 +38,10 @@ shutdown(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 201     | If the permission is denied.         |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 
 **示例：**
@@ -78,10 +78,10 @@ reboot(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 201     | If the permission is denied.  |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -115,9 +115,9 @@ wakeup(detail: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 202     | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -152,8 +152,9 @@ suspend(isImmediate?: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 202     | If the system permission is denied.  |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -190,10 +191,10 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
-| 201     | If the permission is denied.        |
-| 202     | If the system permission is denied.|
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -237,10 +238,10 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
-| 201     | If the permission is denied.         |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -276,9 +277,9 @@ setScreenOffTime(timeout: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
-| 202 | If the system permission is denied. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -312,8 +313,9 @@ hibernate(clearMemory: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 202 | If the system permission is denied. |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 

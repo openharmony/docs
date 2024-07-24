@@ -703,7 +703,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1249,7 +1249,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| encodingType<sup>12+</sup> | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
+| encodingType | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
 
 **返回值**：
 
@@ -3711,7 +3711,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -3786,7 +3786,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4629,7 +4629,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -4704,7 +4704,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -5302,7 +5302,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -5374,7 +5374,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6109,7 +6109,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -6182,7 +6182,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
@@ -7295,7 +7295,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7378,7 +7378,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7679,7 +7679,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -7760,7 +7760,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -10350,17 +10350,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
-let nameDer = stringToUint8Array(nameStr);
+let nameDer = new Uint8Array([48,41,49,11,48,9,6,3,85,4,3,12,2,67,65,49,13,48,11,6,3,85,4,10,12,4,116,101,115,116,49,11,48,9,6,3,85,4,6,19,2,67,78]);
 async function createX500DistinguishedName() {
   try {
     cert.createX500DistinguishedName(nameDer)
@@ -10412,17 +10402,7 @@ getName(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
-let nameDer = stringToUint8Array(nameStr);
+let nameDer = new Uint8Array([48,41,49,11,48,9,6,3,85,4,3,12,2,67,65,49,13,48,11,6,3,85,4,10,12,4,116,101,115,116,49,11,48,9,6,3,85,4,6,19,2,67,78]);
 async function getName() {
   try {
     cert.createX500DistinguishedName(nameDer)
@@ -10479,20 +10459,10 @@ getName(type: string): Array\<string>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
-let nameDer = stringToUint8Array(nameStr);
+let nameStr = '/CN=Example CA/OU=test cert/O=test/L=XA/ST=SX/C=CN/CN=RSA CA/CN=XTS';
 async function getName() {
   try {
-    cert.createX500DistinguishedName(nameDer)
+    cert.createX500DistinguishedName(nameStr)
       .then((data) => {
         console.log('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
@@ -10539,20 +10509,10 @@ getEncoded(): EncodingBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
-let nameDer = stringToUint8Array(nameStr);
+let nameStr = '/CN=Example CA/OU=test cert/O=test/L=XA/ST=SX/C=CN/CN=RSA CA/CN=XTS';
 async function getEncoded() {
   try {
-    cert.createX500DistinguishedName(nameDer)
+    cert.createX500DistinguishedName(nameStr)
       .then((data) => {
         console.log('createX500DistinguishedName success');
         let encodingBlobData = data.getEncoded();

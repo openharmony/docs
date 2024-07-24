@@ -167,7 +167,7 @@ static query(name: string): AsyncLockState
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -235,7 +235,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -275,7 +275,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -316,7 +316,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 10200030 | No such lock.     |
+| 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
 **示例：**
@@ -454,9 +454,70 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 | ------ | ------ |
 | [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
 
+### Transformer
+
+type Transformer = (this: ISendable, key: string, value: ISendable | undefined | null) => ISendable | undefined | null
+
+用于转换结果函数的类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
+| key  | string | 是 | 属性名。|
+| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ISendable](#isendable) \| undefined \| null | 返回转换结果后的ISendable对象或undefined或null。|
+
+### BigIntMode
+
+定义处理BigInt的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| DEFAULT   | 0 |不支持BigInt。|
+| PARSE_AS_BIGINT   | 1 |当整数小于-(2^53-1)或大于(2^53-1)时，解析为BigInt。|
+| ALWAYS_PARSE_AS_BIGINT   | 2 |所有整数都解析为BigInt。|
+
+### ParseReturnType
+
+定义解析结果的返回类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| OBJECT   | 0 |返回Sendable Object对象。|
+
+### ParseOptions
+
+解析的选项，可定义处理BigInt的模式与解析结果的返回类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型| 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
+| parseReturnType   | [ParseReturnType](#parsereturntype) | 是 |定义解析结果的返回类型。|
+
 ### parse
 
-parse(text: string): ISendable | null
+parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | null
 
 用于解析JSON字符串生成ISendable数据或null。
 
@@ -469,6 +530,8 @@ parse(text: string): ISendable | null
 | 参数名 | 类型   | 必填 | 说明            |
 | ------ | ------ | ---- | --------------- |
 | text   | string | 是 | 有效的JSON字符串。|
+| reviver   | [Transformer](#transformer) | 否 | 转换函数，传入该参数，可以用来修改解析生成的原始值。默认值是undefined。目前只支持传入undefined。|
+| options   | [ParseOptions](#parseoptions) | 否 | 解析的配置，传入该参数，可以用来控制解析生成的结果类型。默认值是undefined。|
 
 **返回值：**
 
@@ -490,6 +553,16 @@ console.info((obj as object)?.["age"]);
 // 期望输出: 30
 console.info((obj as object)?.["city"]);
 // 期望输出: 'ChongQing'
+
+let options: ArkTSUtils.ASON.ParseOptions = {
+  bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+  parseReturnType: ArkTSUtils.ASON.ParseReturnType.OBJECT,
+}
+let numberText = '{"largeNumber":112233445566778899}';
+let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable;
+
+console.info((numberObj as object)?.["largeNumber"]);
+// 期望输出: 112233445566778899
 ```
 
 ### stringify

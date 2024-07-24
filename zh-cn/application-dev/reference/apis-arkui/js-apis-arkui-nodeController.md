@@ -11,7 +11,7 @@ NodeController用于实现自定义节点的创建、显示、更新等操作的
 ## 导入模块
 
 ```ts
-import { NodeController } from "@ohos.arkui.node";
+import {  NodeController  } from '@kit.ArkUI';
 ```
 
 ## NodeController
@@ -110,8 +110,7 @@ rebuild(): void
 ### 示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, Size, FrameNode } from '@ohos.arkui.node';
+import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"

@@ -24,7 +24,7 @@
 拉伸能力是指容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
 
 
-拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
+拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShrink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
 
 
   | 属性 | 类型 | 默认值 | 描述 | 

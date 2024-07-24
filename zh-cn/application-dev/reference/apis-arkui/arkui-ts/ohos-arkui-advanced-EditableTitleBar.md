@@ -69,9 +69,9 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ## EditableTitleBarItem<sup>12+</sup>
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| EditableTitleBarItem | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
 
 ## EditableTitleBarOptions<sup>12+</sup>
 

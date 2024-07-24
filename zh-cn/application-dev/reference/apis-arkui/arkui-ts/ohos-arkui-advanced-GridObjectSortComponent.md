@@ -42,7 +42,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
 | onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | 是 | 保存编辑排序的回调函数，返回编辑后的数据。 |
 | onCancel | () => void | - | 是 | 取消保存数据的回调。 |
-| build() | void | - | 是 | 构建函数。 |
 
 ##  GridObjectSortComponentOptions
 
@@ -61,10 +60,10 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型   | 值           | 说明           |
-| -------- | ------ | ------------ | -------------- |
-| IMAGE_TEXT | string | 'image_text' | 图片文字类型。 |
-| TEXT     | string | 'text'       | 文字类型。     |
+| 名称     | 值    | 说明           |
+| -------- | ----- | -------------- |
+| IMAGE_TEXT | 'image_text' | 图片文字类型。 |
+| TEXT     | 'text'       | 文字类型。     |
 
 ## GridObjectSortComponentItem
 
@@ -86,6 +85,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

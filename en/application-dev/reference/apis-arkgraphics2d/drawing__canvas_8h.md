@@ -5,6 +5,8 @@
 
 The **drawing_canvas.h** file declares the functions related to the canvas in the drawing module.
 
+By default, the canvas has a black brush with anti-aliasing enabled and without any other style. This brush takes effect only when no brush or pen is proactively set in the canvas.
+
 **File to include**: &lt;native_drawing/drawing_canvas.h&gt;
 
 **Library**: libnative_drawing.so
@@ -25,7 +27,7 @@ The **drawing_canvas.h** file declares the functions related to the canvas in th
 | typedef enum [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode)  [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode) | Defines an enum for the modes of drawing multiple points. The modes include discrete points, line segments, and open polygons.| 
 | typedef enum [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode)  [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode) | Defines an enum for the modes of interpreting the geometry of a given vertex.| 
 | typedef enum [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop)  [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) | Defines an enum for the canvas clipping modes.| 
-
+| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | Defines an enum for the canvas shadow flags.| 
 
 ### Enums
 
@@ -35,19 +37,24 @@ The **drawing_canvas.h** file declares the functions related to the canvas in th
 | [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode) { POINT_MODE_POINTS, POINT_MODE_LINES, POINT_MODE_POLYGON } | Enumerates the modes of drawing multiple points. The modes include discrete points, line segments, and open polygons.| 
 | [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode) { VERTEX_MODE_TRIANGLES, VERTEX_MODE_TRIANGLESSTRIP, VERTEX_MODE_TRIANGLEFAN } | Enumerates the modes of interpreting the geometry of a given vertex.| 
 | [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) { DIFFERENCE, INTERSECT } | Enumerates the canvas clipping modes.| 
-
+| [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) { SHADOW_FLAGS_NONE, SHADOW_FLAGS_TRANSPARENT_OCCLUDER, SHADOW_FLAGS_GEOMETRIC_ONLY, SHADOW_FLAGS_ALL } | Enumerates the canvas shadow flags.| 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasClipRegion](_drawing.md#oh_drawing_canvasclipregion) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const [OH_Drawing_Region](_drawing.md#oh_drawing_region) \*region, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp) | Clips a rectangle.| 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasDrawColor](_drawing.md#oh_drawing_canvasdrawcolor) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, uint32_t color, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) blendMode) | Fills the entire canvas with the specified color and blend mode.| 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasGetImageInfo](_drawing.md#oh_drawing_canvasgetimageinfo) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*imageInfo) | Obtains the image information of a canvas.| 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasIsClipEmpty](_drawing.md#oh_drawing_canvasisclipempty) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, bool \*isClipEmpty) | Checks whether the region that can be drawn is empty after cropping.| 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasDrawPoint](_drawing.md#oh_drawing_canvasdrawpoint) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*point) | Draws a point.| 
 | [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \* [OH_Drawing_CanvasCreate](_drawing.md#oh_drawing_canvascreate) (void) | Creates an **OH_Drawing_Canvas** object.| 
 | void [OH_Drawing_CanvasDestroy](_drawing.md#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Destroys an **OH_Drawing_Canvas** object and reclaims the memory occupied by the object.| 
 | void [OH_Drawing_CanvasBind](_drawing.md#oh_drawing_canvasbind) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) \*) | Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.)| 
 | void [OH_Drawing_CanvasAttachPen](_drawing.md#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | Attaches a pen to a canvas so that the canvas can use the style and color of the pen to outline a shape.| 
 | void [OH_Drawing_CanvasDetachPen](_drawing.md#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Detaches the pen from a canvas so that the canvas can no longer use the style and color of the pen to outline a shape.| 
 | void [OH_Drawing_CanvasAttachBrush](_drawing.md#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | Attaches a brush to a canvas so that the canvas can use the style and color of the brush to fill in a shape.| 
-| void [OH_Drawing_CanvasDetachBrush](_drawing.md#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Detaches the brush from a canvas so that the canvas can no longer use the style and color of the brush to fill in a shape.| 
+| void [OH_Drawing_CanvasDetachBrush](_drawing.md#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Detaches the brush from a canvas so that the canvas can no longer use the previously set brush to fill in a shape.| 
 | void [OH_Drawing_CanvasSave](_drawing.md#oh_drawing_canvassave) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Saves the current canvas status (canvas matrix) to the top of the stack.| 
 | void [OH_Drawing_CanvasSaveLayer](_drawing.md#oh_drawing_canvassavelayer) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, const [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | Saves the matrix and cropping region, and allocates a bitmap for subsequent drawing. If you call [OH_Drawing_CanvasRestore](_drawing.md#oh_drawing_canvasrestore), the changes made to the matrix and clipping region are discarded, and the bitmap is drawn.| 
 | void [OH_Drawing_CanvasRestore](_drawing.md#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*) | Restores the canvas status (canvas matrix) saved on the top of the stack.| 
@@ -74,8 +81,6 @@ The **drawing_canvas.h** file declares the functions related to the canvas in th
 | void [OH_Drawing_CanvasDrawArc](_drawing.md#oh_drawing_canvasdrawarc) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, float startAngle, float sweepAngle) | Draws an arc.| 
 | void [OH_Drawing_CanvasDrawRoundRect](_drawing.md#oh_drawing_canvasdrawroundrect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) \*) | Draws a rounded rectangle.| 
 | void [OH_Drawing_CanvasDrawTextBlob](_drawing.md#oh_drawing_canvasdrawtextblob) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) \*, float x, float y) | Draws a TextBlob.| 
-| enum&nbsp;&nbsp;[OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) { [SHADOW_FLAGS_NONE](_drawing.md), [SHADOW_FLAGS_TRANSPARENT_OCCLUDER](_drawing.md), [SHADOW_FLAGS_GEOMETRIC_ONLY](_drawing.md), [SHADOW_FLAGS_ALL](_drawing.md) } | Defines an enum for the canvas shadow flags.| 
-| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags)[OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | Defines an enum for the canvas shadow flags.| 
 | void [OH_Drawing_CanvasClipRect](_drawing.md#oh_drawing_canvascliprect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a rectangle.| 
 | void [OH_Drawing_CanvasClipRoundRect](_drawing.md#oh_drawing_canvascliproundrect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a rounded rectangle.| 
 | void [OH_Drawing_CanvasClipPath](_drawing.md#oh_drawing_canvasclippath) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a path.| 

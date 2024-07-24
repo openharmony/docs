@@ -90,8 +90,10 @@
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
 | 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>|
-| 主题设置       | 介绍了介绍应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md)<br/>|
+| 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md)<br/>|
 | 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[添加交互事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)|
+| 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-mirroring-display.md)<br/>|
+
 ## 通用规则
 
 - **默认单位**

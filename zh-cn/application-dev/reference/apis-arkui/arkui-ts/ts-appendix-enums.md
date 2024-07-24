@@ -39,6 +39,16 @@
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
+| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。 |
+| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。 |
+| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。 |
+| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。 |
+| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。 |
+| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。 |
+| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。 |
+| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。 |
+| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。 |
+
 
 ## BorderStyle
 
@@ -428,7 +438,7 @@
 | Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | Auto    | 保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
-| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。|
+| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
 
@@ -650,7 +660,7 @@
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
+| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。采用非DEFAULT方式较耗时。    |
 | AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
@@ -712,7 +722,7 @@
 | 名称    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
-| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>不支持showError属性。 |
+| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -752,6 +762,9 @@ Nullable\<T> {
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
 ## LineBreakStrategy<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称         | 描述                                                         |
 | ------------ | ------------------------------------------------------------ |
 | GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
@@ -810,6 +823,9 @@ Nullable\<T> {
 
 ## ForegroundEffectOptions<sup>12+</sup>
 前景效果参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
@@ -825,7 +841,7 @@ Nullable\<T> {
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
@@ -921,12 +937,16 @@ Nullable\<T> {
 
 指示如何将指定的混合模式应用于视图的内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称           | 描述                                                             |
 | ---------------| ---------------------------------------------------------------- |
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## DismissReason<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 值   | 描述                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
@@ -986,8 +1006,11 @@ Nullable\<T> {
 | PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
 | CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
+| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
 ## TextDecorationStyle<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -1008,6 +1031,8 @@ Nullable\<T> {
 
 菜单弹出的策略。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |
 | DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
@@ -1017,17 +1042,24 @@ Nullable\<T> {
 ## EmbeddedType<sup>12+</sup>
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称                  | 值 | 说明                                                |
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称       | 值      | 描述                     |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
 | PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
 
 ## FocusPriority<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -1036,6 +1068,8 @@ Nullable\<T> {
 | PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ## AppRotation<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |

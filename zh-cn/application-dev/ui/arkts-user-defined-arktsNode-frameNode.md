@@ -4,7 +4,7 @@
 
 对于具备自己前端定义的三方框架，需要将特定的dsl转换成为ArkUI的声明式描述。这个转换过程需依赖额外的数据驱动绑定至[Builder](../quick-start/arkts-builder.md)中，转换比较复杂且性能较低。这一类框架一般依赖系统ArkUI框架的布局、事件能力，以及最基础的节点操作和自定义能力，大部分组件通过自定义完成，但是需要使用部分原生组件混合显示。[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计就是为了解决上述的问题。
 
-FrameNode表示组件树的实体节点，配合自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)等，在占位容器内挂载一颗自定义的节点树，并对这个节点树中的节点进行动态的增加、修改、删除等操作。基础的FrameNode可以设置通用属性、设置事件回调，并提供完整的自定义能力，包括自定义测量、布局以及绘制。
+FrameNode表示组件树的实体节点，配合自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)等，在占位容器内挂载一棵自定义的节点树，并对这个节点树中的节点进行动态的增加、修改、删除等操作。基础的FrameNode可以设置通用属性、设置事件回调，并提供完整的自定义能力，包括自定义测量、布局以及绘制。
 
 除此之外，ArkUI框架还提供获取和遍历获得原生组件对应的代理FrameNode对象的能力，下文简称代理节点。代理节点可以用于需要遍历整个UI的树形结构，并支持获取原生组件节点的具体信息或者额外注册组件的事件监听回调。
 
@@ -16,7 +16,7 @@ FrameNode提供了节点创建和删除的能力。可以通过FrameNode的构�
 >
 > - 在创建FrameNode对象的时候需要传入必选参数UIContext，若未传入UIContext对象或者传入不合法，则节点创建抛出异常。
 >
-> - 过自定义占位组件将节点进行显示的时候需要保证UI上下文一致，否则会出现显示异常。
+> - 自定义占位组件将节点进行显示的时候需要保证UI上下文一致，否则会出现显示异常。
 >
 > - 若不持有FrameNode对象，则该对象会在GC的时候被回收。
 
@@ -30,7 +30,7 @@ FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNod
 
 > **说明：**
 >
-> - 无法获取原生组件代理FrameNode的RenderNode对象，即通过节点查询获得的原生组件的FrameNode中获取的。
+> - 无法获取原生组件代理FrameNode的RenderNode对象。
 > 
 > - BuilderNode中调用[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取得到的FrameNode节点对象中，可以通过getRenderNode获取对应的根节点的RenderNode对象。
 
@@ -120,12 +120,12 @@ class MyNodeController extends NodeController {
     if (this.uiContext) {
       let frameNode1 = new FrameNode(this.uiContext);
       let frameNode2 = new FrameNode(this.uiContext);
-      frameNode1.commonAttribute.size({ width: 150, height: 150 })
+      frameNode1.commonAttribute.size({ width: 50, height: 50 })
         .backgroundColor(Color.Black)
-        .position({ x: 50, y: 0 })
-      frameNode2.commonAttribute.size({ width: 150, height: 150 })
+        .position({ x: 50, y: 60 })
+      frameNode2.commonAttribute.size({ width: 50, height: 50 })
         .backgroundColor(Color.Orange)
-        .position({ x: 150, y: 25 })
+        .position({ x: 120, y: 60 })
       try {
         frameNode?.appendChild(frameNode1);
         console.log(TEST_TAG + " appendChild success ");
@@ -223,7 +223,7 @@ struct Index {
         ListItem() {
           Column({ space: 5 }) {
             Text("验证FrameNode添加子节点的特殊场景")
-            Button("对自定义FrameNode，新增BuilderNode的代理节点")
+            Button("新增BuilderNode的代理节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -231,13 +231,13 @@ struct Index {
                 buttonNode.build(wrapBuilder<[Params]>(buttonBuilder), { text: "BUTTON" })
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, buttonNode?.getFrameNode());
               })
-            Button("对自定义FrameNode，新增原生组件代理节点")
+            Button("新增原生组件代理节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, this.myNodeController?.rootNode?.getParent());
               })
-            Button("对自定义FrameNode，新增已有父节点的自定义节点")
+            Button("新增已有父节点的自定义节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -282,6 +282,7 @@ struct Index {
         .fontSize(16)
         .width(400)
         .height(200)
+        .padding(30)
         .borderWidth(1)
       Column() {
         Text("This is a NodeContainer.")
@@ -487,8 +488,7 @@ struct Index {
 > - 通过onDraw方法进行的自定义绘制，绘制内容大小无法超出组件大小。
 
 ```ts
-import { DrawContext, FrameNode, NodeController, Position, Size, UIContext } from '@kit.ArkUI';
-import { LayoutConstraint } from '@ohos.arkui.node';
+import { DrawContext, FrameNode, NodeController, Position, Size, UIContext, LayoutConstraint } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {

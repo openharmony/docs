@@ -10,7 +10,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
-- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)、[RichEditor](ts-basic-components-richeditor.md)
 
 开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -81,6 +81,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewOptions<sup>11+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -100,6 +102,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragInteractionOptions<sup>12+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
@@ -111,8 +115,7 @@ allowDrop与draggable属性用法示例
 
 ```ts
 // xxx.ets
-import UDC from '@ohos.data.unifiedDataChannel';
-import UTD from '@ohos.data.uniformTypeDescriptor';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -164,7 +167,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
             this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
@@ -194,14 +197,14 @@ struct ImageExample {
           .border({width: 1})
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.IMAGE])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
             let dragData:UnifiedData = (event as DragEvent).getData() as UnifiedData;
             if(dragData != undefined) {
-              let arr:Array<UDC.UnifiedRecord> = dragData.getRecords();
+              let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
               if(arr.length > 0) {
-                let image = arr[0] as UDC.Image;
+                let image = arr[0] as unifiedDataChannel.Image;
                 this.uri = image.imageUri;
                 this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
@@ -401,7 +404,7 @@ struct Example {
 dragPreviewOptions属性中ImageModifier参数使用方法用例。
 ```ts
 // xxx.ets
-import { ImageModifier } from '@ohos.arkui.modifier'
+import { ImageModifier } from '@kit.ArkUI'
 
 @Entry
 @Component

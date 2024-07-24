@@ -17,6 +17,9 @@
 ## LayoutManager<sup>12+</sup>
 
 布局管理器对象。
+> **说明：**
+>
+> 文本内容变更后，需等待布局完成才可获取到最新的布局信息。
 
 ### 导入对象
 以Text组件为例
@@ -91,14 +94,130 @@ getLineMetrics(lineNumber: number): LineMetrics
 | position  | number                | 是   | 是   | 字形相对于组件内容的索引，整数。  |
 | affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 是   | 是   | 位置亲和度。             |
 
-## ExpandedMenuItemOptions<sup>12+</sup>
+## TextMenuItemId<sup>12+</sup>
+
+菜单的Id值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述 |
-| ------ | ------------------------------------------ | ---- | -------- |
-| content   | [ResourceStr](ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片。     |
-| action    | Callback\<[TextRange](ts-universal-attributes-text-style.md#textrange12)>  | 是     | 选中的文本信息。|    
+### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| CUT  | [TextMenuItemId](#textmenuitemid12) |  是  |  否  | 默认裁剪。 |
+| COPY  | [TextMenuItemId](#textmenuitemid12) |  是  |  否  | 默认复制。 |
+| PASTE | [TextMenuItemId](#textmenuitemid12)   | 是    | 否    | 默认粘贴。 |
+| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | 是    | 否    | 默认全选。 |
+| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 否    | 互通服务。 |
+| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 否    | 拍摄输入。 |
+
+### of
+
+static of(id: ResourceStr): TextMenuItemId
+
+根据id创建TextMenuItemId。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| id | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单的id。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| [TextMenuItemId](#textmenuitemid12) | TextMenuItemId的对象。 |
+
+### equals
+
+equals(id: TextMenuItemId): boolean
+
+判断TextMenuItemId是否相等。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| id | [TextMenuItemId](#textmenuitemid12) | 是   | TextMenuItemId的id。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| boolean | 两个TextMenuItemId是否相等。 |
+
+## TextMenuItem对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
+| id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
+
+## EditMenuOptions对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onCreateMenu
+
+onCreateMenu(menuItems: Array\<TextMenuItem>): Array\<TextMenuItem>
+
+菜单数据模版编辑能力。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| menuItems | Array<[TextMenuItem](#textmenuitem对象说明)> | 是   | 菜单项。<br/>**说明：** <br/>对默认菜单项的名称修改不生效。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| Array\<[TextMenuItem](#textmenuitem对象说明)> | 设置的菜单项。<br/>**说明：** <br/>不返回系统默认菜单项的图标。 |
+
+### onMenuItemClick
+
+onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
+
+菜单项功能函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| menuItem | [TextMenuItem](#textmenuitem对象说明) | 是   | 菜单项。 |
+| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是   | 选中的文本信息。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |

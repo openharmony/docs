@@ -109,6 +109,8 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 当悬停状态改变的时候回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -119,12 +121,14 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 ## HoverEventParam对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名              | 类型                                                          | 必填 | 说明         |
 |------------------|-------------------------------------------------------------| --- |------------|
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowMode       | WindowMode         | 是   | 当前屏幕模式。    |
+| windowStatusType | [WindowStatusType](../js-apis-window.md#windowstatustype11) | 是   | 窗口模式枚举。    |
 
 ## 示例
 
@@ -182,7 +186,7 @@ struct Index {
         console.log('this foldStatus:' +msg.foldStatus);
         console.log('this isHoverMode:' +msg.isHoverMode);
         console.log('this appRotation:' +msg.appRotation);
-        console.log('this windowMode:' +msg.windowMode);
+        console.log('this windowStatusType:' +msg.windowStatusType);
       })
       // folderStack如果不撑满页面全屏，作为普通Stack使用
       .alignContent(Alignment.Bottom)

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 ```
 
 ## KeyCode

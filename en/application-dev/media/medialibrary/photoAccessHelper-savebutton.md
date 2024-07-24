@@ -1,15 +1,15 @@
-# Creating a Media Asset Using a Security Component
+# Creating a Media Asset Using \<SaveButton>
 
-Example: Create an image asset using a security component. When using a security component to create a media asset, you do not need to apply for the ohos.permission.WRITE_IMAGEVIDEO permission for your application. For details, see [\<SaveButton>](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
+This topic walks you through on how to create an image using the <**SaveButton**> security component. When \<**SaveButton**> is used to create a media asset, the caller does not need to have the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [\<SaveButton>](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
 
 **How to Develop**
 
 1. Set the attributes of the security component.
-2. Create a security component.
+2. Create a button with the security component.
 3. Use [MediaAssetChangeRequest.createImageAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createimageassetrequest11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to create an image asset.
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component

@@ -32,9 +32,9 @@ Refresh(value: RefreshOptions)
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | refreshing | boolean                                  | 是    | 当前组件是否正在刷新。<br/>默认值：false<br/>该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offset<sup>(deprecated)</sup>    | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>从API version 11开始废弃，无替代接口<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数 。|
-| friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，无替代接口 |
+| friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，从API version 12开始，可用[pullDownRatio](#pulldownratio12)属性替代。 |
 | builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 下拉时，自定义刷新样式的组件。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置组件底部显示的用户自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件，使用builder自定义刷新样式时，promptText不显示。|
+| promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置组件底部显示的用户自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件，使用builder自定义刷新样式时，promptText不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -73,14 +73,15 @@ pullDownRatio(ratio: number)
 
 设置下拉跟手系数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| ratio  | number |  是 | 下拉跟手系数。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。 |
-
+| ratio  | number |  是 | 下拉跟手系数。数值越大，跟随手势下拉的反应越灵敏。0表示不跟随手势下拉，1表示等比例跟随手势下拉。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。
 
 ## 事件
 
@@ -117,6 +118,8 @@ onRefreshing(callback: () => void)
 onOffsetChange(callback: Callback\<number>)
 
 下拉距离发生变化时触发回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -259,3 +262,109 @@ struct RefreshExample {
 ```
 
 ![zh-cn_image_refresh_example2](figures/zh-cn_image_refresh_example2.gif)
+
+### 示例3
+
+边界刷新回弹效果。
+
+```ts
+// Index.ets
+@Entry
+@Component
+struct ListRefreshLoad {
+  @State arr: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  @State refreshing: boolean = false;
+  @State refreshOffset: number = 0;
+  @State refreshState: RefreshStatus = RefreshStatus.Inactive;
+  @State canLoad: boolean = false;
+  @State isLoading: boolean = false;
+
+  @Builder
+  refreshBuilder() {
+    Stack({ alignContent: Alignment.Bottom }) {
+      // can use the refresh state to decide whether the progress component is exist or not.
+      // in this case, the component is not exist otherwise in the pull down or refresh state
+      if (this.refreshState != RefreshStatus.Inactive && this.refreshState != RefreshStatus.Done) {
+        Progress({ value: this.refreshOffset, total: 64, type: ProgressType.Ring })
+          .width(32).height(32)
+          .style({ status: this.refreshing ? ProgressStatus.LOADING : ProgressStatus.PROGRESSING })
+          .margin(10)
+      }
+    }.height("100%").width("100%")
+  }
+
+  @Builder
+  footer() {
+    Row() {
+      LoadingProgress().height(32).width(48)
+      Text("加载中")
+    }.width("100%")
+    .height(64)
+    .justifyContent(FlexAlign.Center)
+    // hidden this component when don't need to load
+    .visibility(this.isLoading ? Visibility.Visible : Visibility.Hidden)
+  }
+
+  build() {
+    Refresh({ refreshing: $$this.refreshing, builder: this.refreshBuilder() }) {
+      List() {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(80)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xFFFFFF)
+          }.borderWidth(1)
+        }, (item: string) => item)
+
+        ListItem() {
+          this.footer();
+        }
+      }
+      .onScrollIndex((start: number, end: number) => {
+        // when reach the end of list, trigger data load
+        if (this.canLoad && end >= this.arr.length - 1) {
+          this.canLoad = false;
+          this.isLoading = true;
+          // simulate trigger data load
+          setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+              this.arr.push(this.arr.length);
+              this.isLoading = false;
+            }
+          }, 700)
+        }
+      })
+      .onScrollFrameBegin((offset: number, state: ScrollState) => {
+        // loading can be triggered only when swipe up
+        if (offset > 5 && !this.isLoading) {
+          this.canLoad = true;
+        }
+        return { offsetRemain: offset };
+      })
+      .scrollBar(BarState.Off)
+      // open the spring back of edge
+      .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .onOffsetChange((offset: number) => {
+      this.refreshOffset = offset;
+    })
+    .onStateChange((state: RefreshStatus) => {
+      this.refreshState = state;
+    })
+    .onRefreshing(() => {
+      // simulate refresh the data
+      setTimeout(() => {
+        this.refreshing = false;
+      }, 2000)
+    })
+  }
+}
+```
+
+![refresh_boundary_resilience](figures/refresh_boundary_resilience.gif)

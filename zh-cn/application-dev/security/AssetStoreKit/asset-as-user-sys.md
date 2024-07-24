@@ -11,7 +11,7 @@
 
 使用接口需要申请权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
-申请流程请参考：[申请应用权限](../AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+申请流程请参考：[申请应用权限](../AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 ## 接口介绍
 

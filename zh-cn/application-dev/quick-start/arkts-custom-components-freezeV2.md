@@ -7,7 +7,7 @@
 >
 > 从API version 12开始，支持@ComponentV2装饰的自定义组件冻结功能。
 > 
-> 和@Component的组件冻结不同， @ComponentV2装饰的自定义组件不支持LazyforEach场景下的缓存节点组件冻结。
+> 和@Component的组件冻结不同， @ComponentV2装饰的自定义组件不支持LazyForEach场景下的缓存节点组件冻结。
 
 
 ## 当前支持的场景

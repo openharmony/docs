@@ -27,10 +27,10 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
       #include <linux/kd.h>
       #include <string>
 
-      #include "hilog/log.h"
-      #include "multimedia/image_framework/image/image_packer_native.h"
-      #include "multimedia/image_framework/image/pixelmap_native.h"
-      #include "multimedia/image_framework/image/image_source_native.h"
+      #include <hilog/log.h>
+      #include <multimedia/image_framework/image/image_packer_native.h>
+      #include <multimedia/image_framework/image/pixelmap_native.h>
+      #include <multimedia/image_framework/image/image_source_native.h>
 
       #undef LOG_DOMAIN
       #undef LOG_TAG
@@ -61,6 +61,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
           char type[] = "image/jpeg";
           Image_MimeType image_MimeType = {type, strlen(type)};
           OH_PackingOptions_SetMimeType(option, &image_MimeType);
+          // 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)
+          OH_PackingOptions_SetDesiredDynamicRange(option, IMAGE_PACKER_DYNAMIC_RANGE_AUTO);
           errCode = OH_ImagePackerNative_PackToFileFromImageSource(testPacker, option, imageSource, fd);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest OH_ImagePackerNative_PackToFileFromImageSource failed, errCode: %{public}d.", errCode);

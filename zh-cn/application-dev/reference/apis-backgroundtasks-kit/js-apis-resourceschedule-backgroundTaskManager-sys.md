@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';  
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
@@ -49,7 +49,7 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -95,7 +95,7 @@ resetAllEfficiencyResources(): void
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();

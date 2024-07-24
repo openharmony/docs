@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
 
@@ -293,7 +293,7 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.PrinterExtensionInfo[]) => {
@@ -334,7 +334,7 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensionInfo[]) => {
@@ -376,7 +376,7 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let extensionList: string[] = [];
@@ -425,7 +425,7 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let extensionList: string[] = [];
@@ -466,7 +466,7 @@ stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.stopDiscoverPrinter((err: BusinessError, data : void) => {
@@ -507,7 +507,7 @@ stopDiscoverPrinter(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.stopDiscoverPrinter().then((data : void) => {
@@ -548,7 +548,7 @@ connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -596,7 +596,7 @@ connectPrinter(printerId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -638,7 +638,7 @@ disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -686,7 +686,7 @@ disconnectPrinter(printerId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -728,7 +728,7 @@ queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -776,7 +776,7 @@ queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -818,7 +818,7 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -882,7 +882,7 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -940,7 +940,7 @@ cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
@@ -988,7 +988,7 @@ cancelPrintJob(jobId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
@@ -1030,7 +1030,7 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 let jobInfo : print.PrintJob = {
     fdList : [0,1],
@@ -1090,7 +1090,7 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -1148,7 +1148,7 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterInfo) => {
     if (state === null || info === null) {
@@ -1192,7 +1192,7 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('printerStateChange', (data: boolean) => {
     console.log('off printerStateChange data : ' + JSON.stringify(data));
@@ -1230,7 +1230,7 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => {
     console.log('onJobStateChange, state : ' + JSON.stringify(state) + ', job : ' + JSON.stringify(job));
@@ -1268,7 +1268,7 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('jobStateChange', (data: boolean) => {
     console.log('offJobStateChanged data : ' + JSON.stringify(data));
@@ -1306,7 +1306,7 @@ on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void)
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('extInfoChange', (extensionId: string, info: string) => {
     console.log('onExtInfoChange, entensionId : ' + JSON.stringify(extensionId) + ', info : ' + JSON.stringify(info));
@@ -1344,7 +1344,7 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('extInfoChange', (data: boolean) => {
     console.log('offExtInfoChange data : ' + JSON.stringify(data));
@@ -1382,7 +1382,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1438,7 +1438,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1488,7 +1488,7 @@ removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1536,7 +1536,7 @@ removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1578,7 +1578,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1634,7 +1634,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1685,7 +1685,7 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1735,7 +1735,7 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1780,7 +1780,7 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '3434';
@@ -1832,7 +1832,7 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '3434';
@@ -1876,7 +1876,7 @@ updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
@@ -1924,7 +1924,7 @@ updateExtensionInfo(info: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
@@ -1967,7 +1967,7 @@ queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs((err: BusinessError, data : void) => {
@@ -2011,7 +2011,7 @@ queryAllPrintJobs(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs().then((data : void) => {
@@ -2050,7 +2050,7 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
@@ -2091,7 +2091,7 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
@@ -2132,7 +2132,7 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -2180,7 +2180,7 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -2224,7 +2224,7 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string= '1';
@@ -2299,7 +2299,7 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -2348,7 +2348,7 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -2388,7 +2388,7 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.getAddedPrinters().then((printers: string[]) => {
@@ -2434,7 +2434,7 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1';
@@ -2480,7 +2480,7 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;

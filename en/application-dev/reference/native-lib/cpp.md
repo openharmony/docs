@@ -5,11 +5,12 @@ OpenHarmony uses [libc++](https://libcxx.llvm.org/) of the open-source LLVM proj
 
 ## libc++ Version
 
-From OpenHarmony 4.0, libc++ is upgraded to Clang/LLVM 15.0.4.
+- Clang/LLVM 15.0.4 from OpenHarmony 4.0
 
-From OpenHarmony 3.2, libc++ is upgraded to Clang/LLVM 12.0.1.
+- Clang/LLVM 12.0.1 from OpenHarmony 3.2
 
-From OpenHarmony 3.0, libc++ uses Clang/LLVM 10.0.1.
+- Clang/LLVM 10.0.1 from OpenHarmony 3.0
+
 
 ## Support for C++ Capabilities
 

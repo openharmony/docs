@@ -27,6 +27,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 ## 属性
 
+[width](ts-universal-attributes-size.md#width)属性设置"auto"时表示自适应宽度，宽度会随索引项最大宽度变化。
+
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### color
@@ -322,7 +324,7 @@ autoCollapse(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false。<br />API version 12及之后：true。 |
 
 ### popupItemBorderRadius<sup>12+</sup>   
 
@@ -392,20 +394,20 @@ popupTitleBackground(value: ResourceColor)
 
 enableHapticFeedback(enable: boolean)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
 | enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称 | 描述 |
 | -------- | -------- |
-| Left | 弹框显示在索引条右侧。 |
-| Right | 弹框显示在索引条左侧。 |
-| START<sup>12+</sup> | 在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。 |
-| END<sup>12+</sup> | 在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。 |
+| Left | 弹框显示在索引条右侧。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Right | 弹框显示在索引条左侧。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| START<sup>12+</sup> | 在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| END<sup>12+</sup> | 在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 事件
 

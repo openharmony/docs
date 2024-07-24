@@ -48,6 +48,7 @@ showToast(options: ShowToastOptions): void
 ```ts
 import { promptAction } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct toastExample {
@@ -78,7 +79,111 @@ API version 12及之后Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api12.gif)
 
+## promptAction.openToast<sup>12+</sup>
 
+openToast(options: ShowToastOptions): Promise&lt;number&gt;
+
+显示文本提示框并返回文本提示框id。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**
+
+| 参数名  | 类型                                                         | 必填 | 说明           |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [ShowToastOptions](#showtoastoptions) | 是   | 文本弹窗选项。 |
+
+**返回值**
+
+| 类型             | 说明                                 |
+| ---------------- | ------------------------------------ |
+| Promise&lt;number&gt; | 返回供closeToast使用的文本提示框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct toastExample {
+  @State toastId: number = 0;
+  build() {
+    Column() {
+      Button('Open Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            promptAction.openToast({
+              message: 'Toast Massage',
+              duration: 10000,
+            }).then((toastId: number) => {
+              this.toastId = toastId;
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`OpenToast error code is ${code}, message is ${message}`);
+          };
+        })
+      Blank().height(50);
+      Button('Close Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            promptAction.closeToast(this.toastId);
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`CloseToast error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![toast-openclose](figures/toast-openclose.gif)
+
+## promptAction.closeToast<sup>12+</sup>
+
+closeToast(toastId: number): void
+
+关闭文本提示框。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | ----------------------------- |
+| toastId | number | 是   | openToast返回的文本提示框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+示例请看[promptAction.openToaset12](#promptactionopentoast12)的示例。
 ## promptAction.showDialog
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
@@ -115,6 +220,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 ```ts
 import { promptAction } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -176,6 +282,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -211,6 +318,7 @@ try {
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -276,6 +384,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -341,6 +450,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -693,11 +803,13 @@ closeCustomDialog(dialogId: number): void
 
 Dialog关闭的信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
-| 名称    | 类型                                                         | 可读 | 可选 | 描述                                                         |
+| 名称    | 类型                                                         | 可读 | 可写 | 描述                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](arkui-ts/ts-appendix-enums.md#dismissreason12) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
@@ -712,4 +824,4 @@ Dialog关闭的信息。
 | ----- | ---------------------------------------- | ---- | ------- |
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。 |
+| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

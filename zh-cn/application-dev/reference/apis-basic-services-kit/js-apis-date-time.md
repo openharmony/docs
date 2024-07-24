@@ -29,6 +29,10 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自Unix纪元以来经过的时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -71,6 +75,10 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自Unix纪元以来经过的时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -111,6 +119,10 @@ try {
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自Unix纪元以来经过的时间，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -157,6 +169,10 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -199,6 +215,10 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -239,6 +259,10 @@ try {
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -285,6 +309,10 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -327,6 +355,10 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback异步回调。
 
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -367,6 +399,10 @@ try {
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API Version 12开始不再维护，建议使用[systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -430,6 +466,8 @@ getTime(isNanoseconds?: boolean): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
@@ -470,6 +508,8 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
@@ -647,6 +687,8 @@ getTimezoneSync(): string
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {

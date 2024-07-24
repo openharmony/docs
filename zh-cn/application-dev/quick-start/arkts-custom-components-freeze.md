@@ -1,6 +1,6 @@
 # 自定义组件冻结功能
 
-自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyforEach，Navigation。
+自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyForEach，Navigation。
 
 
 > **说明：**
@@ -155,9 +155,9 @@ struct FreezeChild {
 ![TabContent.gif](figures/TabContent.gif)
 
 
-### LazyforEach
+### LazyForEach
 
-- 对LazyforEach中缓存的自定义组件进行冻结，不会触发组件的更新。
+- 对LazyForEach中缓存的自定义组件进行冻结，不会触发组件的更新。
 
 ```ts
 // Basic implementation of IDataSource to handle data listener
@@ -311,7 +311,9 @@ struct FreezeChild {
 
 ### Navigation
 
-- 对当前不可见的页面进行冻结，不会触发组件的更新，当返回该页面时，触发@Watch回调进行刷新。
+- 当NavDestination不可见时，会对其子自定义组件设置成非激活态，不会触发组件的刷新。当返回该页面时，其子自定义组件重新恢复成激活态，触发@Watch回调进行刷新。
+
+- 在下面例子中，NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新。
 
 ```ts
 @Entry

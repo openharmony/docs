@@ -13,9 +13,9 @@
 | 3    | File name                         | Provide one JS API reference document for each d.ts file. Name the file in the format of **js-apis-exampleModule.md**, where **exampleModule** is a variable and must be the same as the actual module name.<br>Examples:<br>For @ohos.multimedia.audio in the Multimedia subsystem, the JS API file name is **js-apis-audio.md**.<br>For @ohos.telephony.sms in the Telephony subsystem, the JS API file name is **js-apis-sms.md**.|
 | 4    | Directory update                         | After uploading an API reference document, update the **Readme-EN.md** file in **docs/en/application-dev/reference/apis**.<br>The directories are automatically arranged in alphabetical order.|
 | 5    | Document structure                         | - Module description<br>- Initial version description<br>- Modules to Import/Usage description<br>- API description (attributes, constants, methods, enums, and custom types)<br>  The order in which APIs are described in the document must be consistent with that in which they appear in the code. If some APIs have a logical sequence, pay attention to their sequence in the API reference document.|
-| 6   | Asynchronous methods (callback and promise)|  Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value **true** indicates *something*, and **false** indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the **AudioCapturer** object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, **err** is **undefined** and **data** is the *x* object obtained; otherwise, **err** is an error object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value **true** indicates *something*, and **false** indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the **AudioCapturer** object.   <br>**Promise\<void>**: Promise that returns no value.|
-| 7   | Sample code programming language                     | Use code blocks to provide sample code and mark the programming language.<br>Use **js** as the mark if both JS and eTS can be used, and use **ts** if only eTS can be used.|
-| 8   | Link                         | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One **../** indicates one upper-level folder.<br>Intra-topic link format: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character (except the hyphen) or tag is included.|
+| 6   | Asynchronous methods (callback and promise)| Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value **true** indicates *something*, and **false** indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the **AudioCapturer** object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, **err** is **undefined** and **data** is the *x* object obtained; otherwise, **err** is an error object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value **true** indicates *something*, and **false** indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the **AudioCapturer** object.<br>**Promise\<void>**: Promise that returns no value. |
+| 7   | Sample code programming language                     | Use code blocks to provide sample code and mark the programming language.<br>Use `js` as the mark if both JS and eTS can be used, and use `ts` if only eTS can be used. |
+| 8   | Link                         | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One `../` indicates one upper-level folder.<br>Intra-topic link format: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character (except the hyphen) or tag is included. |
 
 ## Mappings Between d.ts Tags and Document Fields
 
@@ -25,12 +25,12 @@ For an attribute or interface table, if a tag has the same value for all the ite
 
 | d.ts Tag| Description| Document Field|
 | ---------- | ---- | ------- |
-| @since | Version description| 1. Use the greater-than sign (**>**) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the **<sup>** tag to mark its earliest version. The format is **<sup>versionNumber+</sup>**, for example, **<sup>7+</sup>**.  <br>If an attribute is added to an existing module, suffix the **<sup>** tag to the new attribute name, for example, **newAttribute<sup>7+</sup>**.<br>If a method is added to an existing module, suffix the **<sup>** tag to the method name, for example, **sim.getSimIccId<sup>7+</sup>**. The same rule applies to new interfaces, classes, and enums.|
-| @deprecated | Deprecated description| Do not delete the deprecated content from the document. Instead, suffix **deprecated** as a superscript to the content, and use the greater-than sign (**>**) to introduce the initial version and deprecated version.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is supported since API version 4 and deprecated since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
+| @since | Version description| 1. Use the greater-than sign (>) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the `<sup>` tag to mark its earliest version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.  <br>When introducing an attribute to an existing module, suffix the `<sup>` tag to the new attribute name, for example, `newAttribute<sup>7+</sup>`.<br>When introducing a method to an existing module, suffix the `<sup>` tag to the method name, for example, `sim.getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums. |
+| @deprecated | Deprecated description| Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (>) to introduce the initial version and deprecated version.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is supported since API version 4 and deprecated since API version 7. You are advised to use [newMethod]\(#newmethod) instead. |
 | @FAModelOnly / @StageModelOnly | Model restriction description| **Model restriction**: This API can be used only in the FA model. **Model restriction**: This API can be used only in the stage model.|
 | @form | Widget capability description| **Widget capability**: Since API version *x*, this feature is supported in ArkTS widgets.|
 | @systemapi | System API description| **System API**: This is a system API.|
-| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|  1. If only one permission is required for using the API, use the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
+| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|
 | @permission | Permission description| 1. If only one permission is required for using the API, use the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
 | @extends | Inheritance|  If the tag is carried or the extends relationship exists but the tag is not carried, clearly state the following information: *ExampleA* inherits from *ExampleB* (provide the link of *ExampleB*).|
 
@@ -43,7 +43,7 @@ The following describes the instructions for writing a specific API reference do
 > *Writing Instructions*
 >
 > 1. **Document title**: Use phrases that summarize the module functionalities. Examples: **Ability** and **SIM Card Management**
-> 2. **Heading levels**: Use the document title as the level-1 heading, which is prefixed with **#** followed by a space. Use the attributes, functions, classes, interfaces, enums, and types under the namespace as level-2 headings, which are prefixed with **##** followed by a space. Use the attributes and functions under classes as level-3 headings, which are prefixed with **###** followed by a space.
+> 2. **Heading levels**: Use the document title as the level-1 heading, which is prefixed with `#` followed by a space. Use the attributes, functions, classes, interfaces, enums, and types under the namespace as level-2 headings, which are prefixed with `##` followed by a space. Use the attributes and functions under classes as level-3 headings, which are prefixed with `###` followed by a space.
 > 3. **Initial version description**: Use the greater-than symbol (**>**) to indent the description about the initial version of the module. Use a line break after **NOTE**.<br>Place the version description after the module description. A module has only one initial version.<br>Use the following sentence: "The initial APIs of this module are supported since API version *x*. Newly added APIs will be marked with a superscript to indicate their earliest API version." Change ***x*** to the actual version number.
 
 Describe the module from its functionalities, use cases, and recommendations in this section. 
@@ -80,7 +80,7 @@ You are advised to use **ArrayList** when elements in a container need to be fre
 
 > *Writing Instructions*
 >
-> 1. Write the modules to import based on the actual conditions. Provide the **import** statement in the form of a code block.
+> 1. Write the modules to import based on the actual conditions. Provide the `import` statement in the form of a code block.
 >
 > 2. If no module needs to be imported, change "Modules to Import" to "Usage" and provide a usage description.<br>Example of **Usage**:<br>
 >    Before using the **AbilityContext**, obtain the **Context** object through \[getContext()]\(*API-reference*.md)\.
@@ -102,7 +102,7 @@ import call from '@ohos.telephony.call';
 >
 > 2. If an attribute is of a custom type, create a link to the corresponding interface or enum.
 >
-> 3. A read-only attribute is marked with **readonly** in d.ts files. If it has a limited number of values with special meanings, enumerate the values or provide a link to the corresponding enum.
+> 3. A read-only attribute is marked with `readonly` in d.ts files. If it has a limited number of values with special meanings, enumerate the values or provide a link to the corresponding enum.
 >
 > 4. For an optional attribute, if only fixed fields are supported, describe them. An attribute defined with a question mark (?) is optional.
 
@@ -117,7 +117,7 @@ import call from '@ohos.telephony.call';
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no constant. It corresponds to **const** in the .d.ts file.
+> 1. This section is optional. Delete it if there is no constant. It corresponds to `const` in the .d.ts file.
 >
 > 2. If a constant is of a custom type, create a link to the corresponding interface or enum.
 
@@ -132,14 +132,14 @@ import call from '@ohos.telephony.call';
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no method. If there are multiple methods, describe them in separate level-2 headings, prefixed with **##** followed by a space.
+> 1. This section is optional. Delete it if there is no method. If there are multiple methods, describe them in separate level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual method name, in the format of ClassName.methodName, as the level-2 heading. For a subscription method, add the subscription event to the method name.
 >
 >    Example of a common method: sim.getSimIccId
 >    Example of a subscription method: sim.on('exampleEvent')
 >
-> 3. The method call mode is the same as that in .d.ts. The keywords (for example, **static**, **abstract**, **set**, and **get**), parameter types, parameter names, and return value types must be included.
+> 3. The method call mode is the same as that in .d.ts. The keywords (for example, `static`, `abstract`, `set`, and `get`), parameter types, parameter names, and return value types must be included.
 >
 >    Examples:
 >    
@@ -149,7 +149,7 @@ import call from '@ohos.telephony.call';
 >
 >    Note 1: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
 >
->    Note 2: If the methods declared by the **set** and **get** keywords appear in pairs and have the same names, place them under the same title and describe the method call modes, tags, parameters, and return values in sequence. It is recommended that the **set** method be placed before the **get** method. For details, see [backgroundColor](../../application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md#backgroundcolor).
+>    Note 2: If the methods declared by the `set` and `get` keywords appear in pairs and have the same names, place them under the same title and describe the method call modes, tags, parameters, and return values in sequence. It is recommended that the `set` method be placed before the `get` method. For details, see [backgroundColor](../../application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md#backgroundcolor).
 >
 > 4. **Method description**: Describe the features implemented by the method and include the prerequisites for using the method, the impact of the method, and the permissions and system capabilities required to use the method. (*Example of prerequisites: This method can be called only after the xx method is called; you must ensure that the connection to the Internet is normal. Example of impact: xx does not take effect after this method is called.*)
 >
@@ -222,7 +222,7 @@ For details about the error codes, see [moduleName Error Codes]\(link to the err
 >    Example: **on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void**
 >    Note: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
 
-Provide the method name in the following format: (**static** if it is a static method) methodName (parameterName1: parameterType1, parameterName2: parameterType2, ...): returnValueType
+Provide the method name in the following format: (`static` if it is a static method) methodName (parameterName1: parameterType1, parameterName2: parameterType2, ...): returnValueType
 
 Describe the method. For details, see the fourth and fifth points in "Writing Instructions" under [Methods](#methods).
 
@@ -268,7 +268,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no class or interface. If there are multiple classes or interfaces, describe them in multiple level-2 headings, prefixed with **##** followed by a space.
+> 1. This section is optional. Delete it if there is no class or interface. If there are multiple classes or interfaces, describe them in separate level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual class or interface name as the level-2 heading.
 >
@@ -296,7 +296,7 @@ Describe the class or interface. If there are usage restrictions, describe them 
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no enum. If there are multiple enums, describe them in separate level-2 headings, prefixed with **##** followed by a space.
+> 1. This section is optional. Delete it if there is no enum. If there are multiple enums, describe them in separate level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual enum name as the level-2 heading, for example, **BatteryHealthState**.
 
@@ -312,10 +312,10 @@ Provide a brief description of the enum type. Example: Enumerates the charger ty
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no type. It corresponds to **type** in the .d.ts file.
+> 1. This section is optional. Delete it if there is no type. It corresponds to `type` in the .d.ts file.
 >
 > 2. Currently, there are two templates, corresponding to two different scenarios.
->     
+>    
 >    - When the type is union or intersection, the definition format is type Xxx = number | string | 'xxx' or type AB = InterfaceA & InterfaceB. For details, see [Template 1](#type-template-1).
 >    - If the type is the alias of a function or interface, the definition format is type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => void or type Xxx = (param1: number, param2: string). Explain the parameters based on the function or interface template and provide its definition before the list. For details, see [Template 2](#type-template-2).
 >
@@ -364,7 +364,7 @@ Provide the logic for obtaining the actual value of this type. Example: The valu
 ## Change History
 | Change Description                                                                | Date        |
 | ----------------------------------------------------------------------- | ------------ |
-| 1. Updated the method template by adding the description of methods carrying the declaration of keywords such as **static**.|  2024/05/16  |
+| 1. Updated the method template by adding the description of methods carrying the declaration of keywords such as `static`. |  2024/05/16  |
 | 1. Updated the type template. In addition to the union type, the intersection type and the type used as the alias of a function or interface were added.<br>2. Updated the attribute template to specify the rules for determining optional attributes in the interfaces and interface definitions.|  2024/05/10  |
 | 1. Changed the template for **Attributes** from **Read**, **Write**, and **Mandatory** to **Read Only** and **Mandatory**.<br>2. Changed the template for **Types** by using **Value Range** and **Description**, and provided the related description.<br>3. Deleted the custom type, and incorporated the related description under **Classes/Interfaces**.|  2023/02/01  |
 | 1. Provided the general writing instructions in a table.<br>2. Added the description about how to reference an image in "Upload path".<br>3. Added the "Document structure" item to describe the sequence of nodes in the API reference document.<br>4. Added the description for multiple permissions in "Permission description".<br>5. Added the description of @FAModelOnly and @StageModelOnly in the API reference document.<br>6. Added the description of asynchronous methods (callback and promise).<br>7. Added the standards and specifications for the sample code programming language.<br>8. Added the standard format for links used in the API reference document.<br>9. Added examples for "Module description".<br>10. Added the description of on and off subscription methods.<br>11. Updated the description of @syscap.<br>12. Updated the description of @systemapi. Now only the sentence "This is a system API." is used.  <br>13. Deleted the MR version description.                                                                |  2022/6/24  |

@@ -52,7 +52,7 @@
       - [出现/消失转场](arkts-enter-exit-transition.md)
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
-      - [共享元素转场](arkts-shared-element-transition.md)
+      - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
       - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
     - [粒子动画](arkts-particle-animation.md)
@@ -87,6 +87,10 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - [使用镜像能力](arkts-mirroring-display.md)
+  - [支持适老化](arkui-support-for-aging-adaptation.md)
+  - 主题设置
+    - [设置主题换肤](theme_skinning.md)
   - 使用NDK接口构建UI
     - [NDK接口概述](ndk-build-ui-overview.md)
     - [接入ArkTS页面](ndk-access-the-arkts-page.md)
@@ -98,8 +102,6 @@
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
-  - 主题设置
-    - [设置主题换肤](theme_skinning.md)
   - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
