@@ -48,6 +48,7 @@ VideoDecoder模块提供用于视频解码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填充数据的输入缓冲区提交给视频解码器。   | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | 将处理后的带渲染时间戳的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。  | 
@@ -373,6 +374,40 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer (OH_AVCodec *codec, uint32_t ind
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 缓冲区索引值应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+
+
+### OH_VideoDecoder_RenderOutputBufferAtTime()
+
+```
+OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
+```
+**描述**
+将处理后的带渲染时间戳的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。
+如果之前没有配置输出surface，则调用此接口仅将指定索引对应的输出缓冲区返回给解码器。
+
+Invoker可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳之后）渲染缓冲区。要使能，时间戳需要合理接近系统时间，有几点需要注意：
+1. 缓冲区不会返回给解码器直到时间戳已经过去并且缓冲区不再被surface使用。
+2. 缓冲区是按照顺序处理的，因此可能会阻塞后续缓冲区在surface上的显示，如果想要对用户的一些行为做出反应，例如停止或者快进快退视频，这一点很重要。
+3. 如果多个缓冲区被发送到surface要在同一个VSYNC上渲染，那么最后一个将会被显示，其他的将被丢弃。
+4. 如果时间戳与当前的系统时间不是“合理接近”，surface将会忽略时间戳，并在可行的最早时间里显示buffer。在此模式下不会丢弃帧。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  |
+| index | 输出Buffer对应的索引值。  |
+| renderTimestampNs | 输出buffer被发送到surface的时间戳，单位是纳秒。  |
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 缓冲区索引值应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当解码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoDecoder_Reset()

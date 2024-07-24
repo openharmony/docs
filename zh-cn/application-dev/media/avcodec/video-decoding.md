@@ -415,9 +415,17 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 值由调用者决定
     bool isRender;
+    bool isNeedTime;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
-        ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        if (isNeedTime){
+            int64_t renderTimestamp =
+                chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+            ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+        } else {
+           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        }
+
     } else {
         // 释放已完成处理的信息
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
