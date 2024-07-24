@@ -1071,8 +1071,10 @@ struct WaterFlowDemo {
             this.dataSource.addLastItem()
           }
           // 更新数据源后同步更新sections，修改最后一个section的FlowItem数量
-          this.lastSection.itemsCount += 100
-          this.sections.update(-1, this.lastSection);
+          const sections: Array<SectionOptions> = this.sections.values();
+          let newSection: SectionOptions = sections[this.sections.length() - 1];
+          newSection.itemsCount += 100;
+          this.sections.update(-1, newSection);
         }
       })
     }
