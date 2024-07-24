@@ -121,6 +121,111 @@ typedef enum {
 } JSVM_RegExpFlags;
 ```
 
+### 编译选项相关类型
+#### JSVM_CompileOptions
+
+配合编译接口 OH_JSVM_CompileScriptWithOptions 使用，是其参数中 options 数组的元素类型
+
+其中：
+- id 代表这个编译选项的类型
+- content 代表编译选项的内容
+
+id 的值和 content 的类型需要对应使用，详细对应关系参考下面对各个选项类型的介绍
+```c
+typedef struct {
+    /** compile option id. */
+    JSVM_CompileOptionId id;
+    /** option content. */
+    union {
+      /** ptr type. */
+      void *ptr;
+      /** int type. */
+      int num;
+      /** bool type. */
+      _Bool boolean;
+    } content;
+} JSVM_CompileOptions;
+```
+
+#### JSVM_CompileOptionId
+
+JSVM_CompileOptions 中的 id 对应类型， 每个值都有其对应的 content 类型, 其中 JSVM_COMPILE_ENABLE_SOURCE_MAP 对应的类型为 bool，当同时传入的 JSVM_ScriptOrigin 中 sourceMapUrl 不为空时生效
+```c
+typedef enum {
+    /** compile mode. */
+    JSVM_COMPILE_MODE,
+    /** code cache content. */
+    JSVM_COMPILE_CODE_CACHE,
+    /** script origin. */
+    JSVM_COMPILE_SCRIPT_ORIGIN,
+    /** compile profile content. */
+    JSVM_COMPILE_COMPILE_PROFILE,
+    /** switch for source map support. */
+    JSVM_COMPILE_ENABLE_SOURCE_MAP,
+} JSVM_CompileOptionId;
+```
+
+#### JSVM_CompileMode
+
+当 id 为 JSVM_COMPILE_MODE，content 的类型，每个值代表一种编译模式：
+
+- JSVM_COMPILE_MODE_DEFAULT : 默认的编译选项
+- JSVM_COMPILE_MODE_CONSUME_CODE_CACHE : 消耗 codecache 进行编译
+- JSVM_COMPILE_MODE_EAGER_COMPILE : 进行全量编译，不再进行 lazy compile
+- JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE/JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE : 当前暂无效果，请等待后续更新
+
+```c
+typedef enum {
+    /** default mode. */
+    JSVM_COMPILE_MODE_DEFAULT,
+    /** consume code cache. */
+    JSVM_COMPILE_MODE_CONSUME_CODE_CACHE,
+    /** apply eager compile. */
+    JSVM_COMPILE_MODE_EAGER_COMPILE,
+    /** preset for compile profile. */
+    JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE,
+    /** consume compile profile. */
+    JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE,
+} JSVM_CompileMode;
+```
+
+
+#### JSVM_CodeCache
+
+当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
+
+- cache : 指向 code cache 的指针
+- length : code cache 的大小
+
+```c
+typedef struct {
+    /** cache pointer. */
+    uint8_t *cache;
+    /** length. */
+    size_t length;
+} JSVM_CodeCache;
+```
+
+#### JSVM_ScriptOrigin
+
+当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译的源码信息：
+
+- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径, 可以为空
+- resourceName : 待编译的 js script 的名字，
+```c
+typedef struct {
+    /** Sourcemap url. */
+    const char* sourceMapUrl;
+    /** Resource name. */
+    const char* resourceName;
+    /** Resource line offset. */
+    size_t resourceLineOffset;
+    /** Resource column offset. */
+    size_t resourceColumnOffset;
+} JSVM_ScriptOrigin;
+```
+
+### JSVM
 ### 内存管理类型
 
 JSVM-API包含以下内存管理类型：
@@ -388,8 +493,15 @@ consoleinfo('Result is:' + value);\
 | ------------------------------- | ---------------------------------------------------------------------------------- |
 | OH_JSVM_CompileScript           | 编译JavaScript代码并返回绑定到当前环境的编译脚本                                                      |
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
-| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache]                                                                 |
+| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
 | OH_JSVM_RunScript               | 执行编译脚本                                                                             |
+
+#### 新增接口
+
+| 接口                               | 功能说明                                                  |
+| -------------------------------- | ----------------------------------------------------- |
+| OH_JSVM_CompileScriptWithOptions | 新增的编译接口，通过传入 option 数组完成已有 compile 接口的全部功能，同时支持后续选项扩展 |
+|                                  |                                                       |
 
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
@@ -420,6 +532,67 @@ const concat = (...args) => args.reduce((a, b) => a + b);
 throw new Error("exception triggered")
 )JS";
 
+static void RunScriptWithOption(JSVM_Env env, string& src,
+								const uint8_t** dataPtr = nullptr,
+								size_t* lengthPtr = nullptr) {
+    JSVM_HandleScope handleScope;
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+
+    JSVM_Value jsSrc;
+    OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
+
+    const uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    auto compilMode = data ? JSVM_COMPILE_MODE_CONSUME_CODE_CACHE :  JSVM_COMPILE_MODE_DEFAULT;
+    size_t length = lengthPtr ? *lengthPtr : 0;
+    JSVM_Script script;
+    // 编译js代码
+	JSVM_ScriptOrigin origin {
+	    // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+	    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+	    // 源文件名字
+	    .resourceName = "index.js",
+	    // scirpt 在源文件中的起始行列号
+	    .resourceLineOffset = 0,
+	    .resourceColumnOffset = 0,
+	}
+	JSVM_CompileOptions option[3];
+	option[0] = {
+		.id = JSVM_COMPILE_MODE,
+		.content = { .num = compilMode }
+	};
+	JSVM_CodeCache codeCache = {
+		.cache = data,
+		.length = length
+	};
+	option[1] = {
+		.id = JSVM_COMPILE_CODE_CACHE,
+		.content = { .ptr = &codeCache }
+	};
+	// JSVM_COMPILE_ENABLE_SOURCE_MAP 选项默认值为 false，若为 true 那么对应的 sourceMapUrl 必须不为空
+	option[2] = {
+		.id = JSVM_COMPILE_ENABLE_SOURCE_MAP,
+		.content = { .boolean = true }
+	};
+	OH_JSVM_CompileScriptWithOptions(env, jsSrc, &origin, &script);
+    printf("Code cache is %s\n", cacheRejected ? "rejected" : "used");
+
+    JSVM_Value result;
+    // 执行js代码
+    OH_JSVM_RunScript(env, script, &result);
+
+    char resultStr[128];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
+    printf("%s\n", resultStr);
+    if (dataPtr && lengthPtr && *dataPtr == nullptr) {
+        // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
+        OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
+        printf("Code cache created with length = %ld\n", *lengthPtr);
+    }
+
+    OH_JSVM_CloseHandleScope(env, handleScope);
+}
+
 static void RunScript(JSVM_Env env, string& src,
                        bool withOrigin = false,
                        const uint8_t** dataPtr = nullptr,
@@ -445,7 +618,7 @@ static void RunScript(JSVM_Env env, string& src,
 		    .resourceLineOffset = 0,
 		    .resourceColumnOffset = 0,
 	    }
-		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, origin, &script);
+		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, &origin, &script);
     } else {
 	    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
     }
@@ -526,6 +699,8 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
     RunScript(env, src, true, dataPtr, lengthPtr);
+    // 其中使用新增接口，可以覆盖原有 Compile 系列接口的功能且具有拓展性
+    RunScriptWithOption(env, src, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -704,6 +879,8 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 | OH_JSVM_ReferenceRef| 增加由OH_JSVM_CreateReference 创建的引用的引用计数，以确保对象在有引用时不会被提前释放 |
 | OH_JSVM_ReferenceUnref| 减少由OH_JSVM_CreateReference 创建的引用的引用计数，以确保没有任何引用指向该对象时能正确地释放和回收 |
 | OH_JSVM_GetReferenceValue| 返回由 OH_JSVM_CreateReference 创建的引用的对象 |
+| OH_JSVM_RetainScript | 持久化保存一个 JSVM_Script, 使其能够跨过当前 scope 使用 |
+| OH_JSVM_ReleaseScript | 释放持久化保存过的 JSVM_Script，释放之后 JSVM_Script 不再可用，应当置为空 |
 
 场景示例：
 通过handlescope保护在scope范围内创建的对象在该范围内不被回收。
@@ -714,7 +891,7 @@ OH_JSVM_OpenHandleScope(env, &scope);
 JSVM_Value obj = nullptr;
 OH_JSVM_CreateObject(env, &obj);
 OH_JSVM_CloseHandleScope(env, scope);
-```  
+```
 
 通过escapable handlescope保护在scope范围内创建的对象在父作用域范围内不被回收
 
@@ -746,6 +923,30 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 OH_JSVM_DeleteReference(env, reference);
 ```
 
+通过 RetainScript 持久化保存 JSVM_Script 并使用
+
+```c++
+JSVM_HandleScope scope;
+OH_JSVM_OpenHandleScope(env, &scope);
+JSVM_Script script;
+JSVM_Value jsSrc;
+std::string src(R"JS(
+let a = 37;
+a = a * 9;
+)JS");
+OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc)
+OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script);
+OH_JSVM_RetainScript(env, script);
+OH_JSVM_CloseHandleScope(env, scope);
+
+// 使用
+OH_JSVM_RunScript(env, script);
+
+// 释放
+OH_JSVM_ReleaseScript(env, script);
+script = nullptr;
+```
+
 ### 创建JS对象类型和基本类型
 
 #### 场景介绍
@@ -770,7 +971,7 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateUint32 | 根据 Uint32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateInt64 | 根据 Int64_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateDouble | 根据 Double 类型对象创建 JavaScript number 对象 |
-|OH_JSVM_CreateBigintInt64 | 根据 Int64 类型对象创建 JavaScript Bigint 对象 | 
+|OH_JSVM_CreateBigintInt64 | 根据 Int64 类型对象创建 JavaScript Bigint 对象 |
 |OH_JSVM_CreateBigintUint64 | 根据 Uint64 类型对象创建 JavaScript Bigint 对象 |
 |OH_JSVM_CreateBigintWords | 根据给定的 Uint64_t 数组创建一个 JavaScript BigInt 对象 |
 |OH_JSVM_CreateStringLatin1 | 根据 Latin-1 编码的字符串创建一个 JavaScript string 对象 |
@@ -1806,13 +2007,13 @@ OH_JSVM_AdjustExternalMemory(env, 0, &result); // 假设外部分配内存的变
 OH_LOG_INFO(LOG_APP, "Before AdjustExternalMemory: %{public}lld\n", result); // 得到调整前的数值
 // 调整外部分配的内存大小通知给底层虚拟机（此示例假设内存使用量增加）
 int64_t memoryIncrease = 1024 * 1024; // 增加 1 MB
-OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result); 
+OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result);
 OH_LOG_INFO(LOG_APP, "After AdjustExternalMemory: %{public}lld\n", result); // 得到调整后的数值
 ```
 ```c++
 // 打开一个Handle scope，在scope范围内申请大量内存来测试函数功能；
 // 分别在“完成申请后”、“关闭scope后”和“调用OH_JSVM_MemoryPressureNotification后”三个节点查看内存状态
-JSVM_HandleScope tmpscope;   
+JSVM_HandleScope tmpscope;
 OH_JSVM_OpenHandleScope(env, &tmpscope);
 for (int i = 0; i < 1000000; ++i) {
     JSVM_Value obj;
