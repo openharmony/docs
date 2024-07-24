@@ -11,7 +11,7 @@ The **deviceInfo** module provides terminal device information query, which cann
 ## Modules to Import
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo';
+import deviceinfo from '@ohos.deviceInfo';
 ```
 
 ## Attributes
@@ -22,42 +22,42 @@ import deviceInfo from '@ohos.deviceInfo';
 
 **Required permissions**: The items in the table below require different system capabilities.
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | Yes| No| Device type. It is used only for query purposes, but not for service code development. For details, see [deviceTypes tag](../../quick-start/module-configuration-file.md#devicetypes).|
-| manufacture | string | Yes| No| Device manufacturer.|
-| brand | string | Yes| No| Device brand.|
-| marketName | string | Yes| No| Marketing name.|
-| productSeries | string | Yes| No| Product series.|
-| productModel | string | Yes| No| Product model.|
-| softwareModel | string | Yes| No| Software model.|
-| hardwareModel | string | Yes| No| Hardware model.|
-| hardwareProfile<sup>(deprecated) </sup> | string | Yes| No| Hardware profile.<br>**NOTE**<br>This API is supported since API version 6 and deprecated since API version 9.|
-| serial | string | Yes| No| Device SN, available only for system applications.<br>**NOTE**<br>The device SN can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
-| bootloaderVersion | string | Yes| No| Bootloader version.|
-| abiList | string | Yes| No| Application binary interface (Abi) list.|
-| securityPatchTag | string | Yes| No| Security patch tag.|
-| displayVersion | string | Yes| No| Product version.|
-| incrementalVersion | string | Yes| No| Incremental version.|
-| osReleaseType | string | Yes| No| OS release type. The options are as follows:<br>- **Canary**: Preliminary release open only to specific developers. This release does not promise API stability and may require tolerance of instability.<br>- **Beta**: Release open to all developers. This release does not promise API stability and may require tolerance of instability.<br>- **Release**: Official release open to all developers. This release promises that all APIs are stable.|
-| osFullName | string | Yes| No| OS version.|
-| majorVersion | number | Yes| No| Major version, incrementing along with OS version updates.|
-| seniorVersion | number | Yes| No| Senior version, incrementing along with architecture and feature updates.|
-| featureVersion | number | Yes| No| Feature version.|
-| buildVersion | number | Yes| No| Build version.|
-| sdkApiVersion | number | Yes| No| SDK API version.|
-| firstApiVersion | number | Yes| No| First API version.|
-| versionId | string | Yes| No| Version ID.|
-| buildType | string | Yes| No| Build type.|
-| buildUser | string | Yes| No| Build user.|
-| buildHost | string | Yes| No| Build host.|
-| buildTime | string | Yes| No| Build time.|
-| buildRootHash | string | Yes| No| Build root hash.|
-| udid<sup>7+</sup> | string | Yes| No| Device UDID, available only for system applications.<br>**NOTE**<br>The data length is 65 bytes. The UDID can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
-| distributionOSName<sup>10+</sup> | String | Yes| No| Name of the distribution OS.|
-| distributionOSVersion<sup>10+</sup> | String | Yes| No| Version number of the distribution OS.|
-| distributionOSApiVersion<sup>10+</sup> | number| Yes| No| API version of the distribution OS.|
-| distributionOSReleaseType<sup>10+</sup> | String | Yes| No| Type of the distribution OS.|
+| deviceType | string | Yes | No | Device type. It is used only for query purposes, but not for service code development. For details, see [deviceTypes tag](../../quick-start/module-configuration-file.md#devicetypes). |
+| manufacture | string | Yes | No | Device manufacturer. |
+| brand | string | Yes | No | Device brand. |
+| marketName | string | Yes | No | Marketing name. |
+| productSeries | string | Yes | No | Product series. |
+| productModel | string | Yes | No | Product model. |
+| softwareModel | string | Yes | No | Software model. |
+| hardwareModel | string | Yes | No | Hardware model. |
+| hardwareProfile<sup>(deprecated) </sup> | string | Yes | No | Hardware profile.<br>**NOTE**<br>This API is supported since API version 6 and deprecated since API version 9. |
+| serial | string | Yes | No | Device SN, available only for system applications.<br>**NOTE**<br>The device SN can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID |
+| bootloaderVersion | string | Yes | No | Bootloader version. |
+| abiList | string | Yes | No | Application binary interface (Abi) list. |
+| securityPatchTag | string | Yes | No | Security patch tag. |
+| displayVersion | string | Yes | No | Product version. |
+| incrementalVersion | string | Yes | No | Incremental version. |
+| osReleaseType | string | Yes | No | OS release type. The options are as follows:<br>- **Canary**: Preliminary release open only to specific developers. This release does not promise API stability and may require tolerance of instability.<br>- **Beta**: Release open to all developers. This release does not promise API stability and may require tolerance of instability.<br>- **Release**: Official release open to all developers. This release promises that all APIs are stable. |
+| osFullName | string | Yes | No | OS version. |
+| majorVersion | number | Yes | No | Major version, incrementing along with OS version updates. |
+| seniorVersion | number | Yes | No | Senior version, incrementing along with architecture and feature updates. |
+| featureVersion | number | Yes | No | Feature version. |
+| buildVersion | number | Yes | No | Build version. |
+| sdkApiVersion | number | Yes | No | SDK API version. |
+| firstApiVersion | number | Yes | No | First API version. |
+| versionId | string | Yes | No | Version ID. |
+| buildType | string | Yes | No | Build type. |
+| buildUser | string | Yes | No | Build user. |
+| buildHost | string | Yes | No | Build host. |
+| buildTime | string | Yes | No | Build time. |
+| buildRootHash | string | Yes | No | Build root hash. |
+| udid<sup>7+</sup> | string | Yes | No | Device UDID, available only for system applications.<br>**NOTE**<br>The data length is 65 bytes. The UDID can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID |
+| distributionOSName<sup>10+</sup> | String | Yes | No | Name of the distribution OS. |
+| distributionOSVersion<sup>10+</sup> | String | Yes | No | Version number of the distribution OS. |
+| distributionOSApiVersion<sup>10+</sup> | number| Yes | No | API version of the distribution OS. |
+| distributionOSReleaseType<sup>10+</sup> | String | Yes | No | Type of the distribution OS. |
 
 **Example**
 
@@ -87,9 +87,6 @@ import deviceInfo from '@ohos.deviceInfo';
 
     let hardwareModelInfo: string = deviceinfo.hardwareModel;
     console.info('the value of the deviceinfo hardwareModel is :' + hardwareModelInfo);
-
-    let hardwareProfileInfo: string = deviceinfo.hardwareProfile;
-    console.info('the value of the deviceinfo hardwareProfile is :' + hardwareProfileInfo);
 
     let serialInfo: string = deviceinfo.serial;
     console.info('the value of the deviceinfo serial is :' + serialInfo);

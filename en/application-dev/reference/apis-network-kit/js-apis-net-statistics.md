@@ -21,7 +21,7 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | nic      | string                 | Yes  | NIC name.                                                                                                     |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the NIC in bytes. Otherwise, **error** is an error object.   |
@@ -30,7 +30,7 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -61,20 +61,20 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| nic    | string | Yes  | NIC name.|
+| nic    | string | Yes  | NIC name. |
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the NIC in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the NIC in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -103,7 +103,7 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses an
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | nic      | string                 | Yes  | NIC name.                                                                                                     |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the NIC in bytes. Otherwise, **error** is an error object.   |
@@ -112,7 +112,7 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses an
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -143,20 +143,20 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses a 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| nic    | string | Yes  | NIC name.|
+| nic    | string | Yes  | NIC name. |
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the NIC in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the NIC in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -185,7 +185,7 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.   |
 
@@ -193,7 +193,7 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -222,15 +222,15 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the cellular network in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the cellular network in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -258,7 +258,7 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.   |
 
@@ -266,7 +266,7 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -295,15 +295,15 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the cellular network in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the cellular network in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -331,7 +331,7 @@ Obtains the real-time downlink data traffic of all NICs. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                         |
+| Name  | Type                  | Mandatory | Description                                                                                                                         |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of all NICs in bytes. Otherwise, **error** is an error object.   |
 
@@ -339,7 +339,7 @@ Obtains the real-time downlink data traffic of all NICs. This API uses an asynch
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -367,15 +367,15 @@ Obtains the real-time downlink data traffic of all NICs. This API uses a promise
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of all NICs in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of all NICs in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -387,7 +387,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 ```js
 import statistics from '@ohos.net.statistics';
 
-statistics.getCellularRxBytes().then((stats: number) => {
+statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 ```
@@ -402,7 +402,7 @@ Obtains the real-time uplink data traffic of all NICs. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                         |
+| Name  | Type                  | Mandatory | Description                                                                                                                         |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of all NICs in bytes. Otherwise, **error** is an error object.   |
 
@@ -410,7 +410,7 @@ Obtains the real-time uplink data traffic of all NICs. This API uses an asynchro
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -438,15 +438,15 @@ Obtains the real-time uplink data traffic of all NICs. This API uses a promise t
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of all NICs in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of all NICs in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 2100002   | Operation failed. Cannot connect to service. |
 | 2100003   | System internal error.                       |
@@ -473,7 +473,7 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | uid      | number                 | Yes  | Application UID.                                                                                                   |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the application in bytes. Otherwise, **error** is an error object.   |
@@ -482,7 +482,7 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -512,20 +512,20 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| uid    | number | Yes  | Application UID.|
+| uid    | number | Yes  | Application UID. |
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the application in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time downlink data traffic of the application in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -553,7 +553,7 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| Name  | Type                  | Mandatory | Description                                                                                                                   |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | uid      | number                 | Yes  | Application UID.                                                                                                   |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the application in bytes. Otherwise, **error** is an error object.   |
@@ -562,7 +562,7 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -592,20 +592,20 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| uid    | number | Yes  | Application UID.|
+| uid    | number | Yes  | Application UID. |
 
 **Return value**
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the application in bytes.|
+| Promise\<number> | Promise used to return the result, which is the real-time uplink data traffic of the application in bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Operation failed. Cannot connect to service. |
@@ -634,16 +634,16 @@ Obtains the downlink data traffic (in bytes) of the specified socket. This API u
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                        |
+| Name  | Type                  | Mandatory | Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | sockfd   | number                 | Yes  | FD of the socket.                    |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the downlink data traffic of the socket. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the downlink data traffic of the socket. Otherwise, **error** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -673,21 +673,21 @@ Obtains the downlink data traffic (in bytes) of the specified socket. This API u
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| sockfd | number | Yes  | FD of the socket.|
+| sockfd | number | Yes  | FD of the socket. |
 
 **Return value**
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return the result.|
+| Promise\<number> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -718,16 +718,16 @@ Obtains the uplink data traffic (in bytes) of the specified socket. This API use
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                        |
+| Name  | Type                  | Mandatory | Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | sockfd   | number                 | Yes  | FD of the socket.                    |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the uplink data traffic of the socket. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the uplink data traffic of the socket. Otherwise, **error** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -757,21 +757,21 @@ Obtains the uplink data traffic (in bytes) of the specified socket. This API use
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| sockfd | number | Yes  | FD of the socket.|
+| sockfd | number | Yes  | FD of the socket. |
 
 **Return value**
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return the result.|
+| Promise\<number> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |

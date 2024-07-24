@@ -5,7 +5,7 @@
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
 
 ## Basic Concepts
 
@@ -34,37 +34,37 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [Network Connection Management](../reference/apis-network-kit/js-apis-net-connection.md).
 
-| API| Description|
+| API | Description |
 | ---- | ---- |
-| getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |Creates a **NetHandle** object that contains the **netId** of the default network. This API uses an asynchronous callback to return the result.|
-| getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| Obtains the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
-| setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| Sets the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
-| setAppHttpProxy(httpProxy: HttpProxy): void;| Sets the application-level HTTP proxy configuration of the network.|
-| getAppNet(callback: AsyncCallback\<NetHandle>): void;| Obtains a **NetHandle** object that contains the **netId** of the network bound to the application. This API uses an asynchronous callback to return the result.|
-| setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Binds an application to the specified network. The application can access the external network only through this network. This API uses an asynchronous callback to return the result.|
+| getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |Creates a **NetHandle** object that contains the **netId** of the default network. This API uses an asynchronous callback to return the result. |
+| getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| Obtains the global HTTP proxy for the network. This API uses an asynchronous callback to return the result. |
+| setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| Sets the global HTTP proxy for the network. This API uses an asynchronous callback to return the result. |
+| setAppHttpProxy(httpProxy: HttpProxy): void;| Sets the application-level HTTP proxy configuration of the network. |
+| getAppNet(callback: AsyncCallback\<NetHandle>): void;| Obtains a **NetHandle** object that contains the **netId** of the network bound to the application. This API uses an asynchronous callback to return the result. |
+| setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Binds an application to the specified network. The application can access the external network only through this network. This API uses an asynchronous callback to return the result. |
 | getDefaultNetSync(): NetHandle; |Obtains the default active data network in synchronous mode. You can use **getNetCapabilities** to obtain information such as the network type and capabilities.|
-| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.|
-| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| Obtains the list of **NetHandle** objects of the connected network. This API uses an asynchronous callback to return the result.|
-| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains network connection information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
-| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
-| isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result.|
-| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
-| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| enableAirplaneMode(callback: AsyncCallback\<void>): void; | Enables the airplane mode. This API uses an asynchronous callback to return the result.|
-| disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
-| createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
-| bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result.|
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |Obtains an IP address of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |Subscribes to **netAvailable** events.|
-| on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |Subscribes to **netCapabilitiesChange** events.|
-| on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |Subscribes to **netConnectionPropertiesChange** events.|
-| on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Subscribes to **netBlockStatusChange** events.|
-| on(type: 'netLost', callback: Callback\<NetHandle>): void; |Subscribes to **netLost** events.|
-| on(type: 'netUnavailable', callback: Callback\<void>): void; |Subscribes to **netUnavailable** events.|
-| register(callback: AsyncCallback\<void>): void; |Subscribes to network status changes.|
-| unregister(callback: AsyncCallback\<void>): void; |Unsubscribes from network status changes.|
+| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default data network is activated. This API uses an asynchronous callback to return the result. |
+| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| Obtains the list of **NetHandle** objects of the connected network. This API uses an asynchronous callback to return the result. |
+| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains network connection information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result. |
+| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result. |
+| isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result. |
+| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result. |
+| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result. |
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result. |
+| enableAirplaneMode(callback: AsyncCallback\<void>): void; | Enables the airplane mode. This API uses an asynchronous callback to return the result. |
+| disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result. |
+| createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used. |
+| bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result. |
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result. |
+| getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |Obtains an IP address of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result. |
+| on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |Subscribes to **netAvailable** events. |
+| on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |Subscribes to **netCapabilitiesChange** events. |
+| on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |Subscribes to **netConnectionPropertiesChange** events. |
+| on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Subscribes to **netBlockStatusChange** events. |
+| on(type: 'netLost', callback: Callback\<NetHandle>): void; |Subscribes to **netLost** events. |
+| on(type: 'netUnavailable', callback: Callback\<void>): void; |Subscribes to **netUnavailable** events. |
+| register(callback: AsyncCallback\<void>): void; |Subscribes to network status changes. |
+| unregister(callback: AsyncCallback\<void>): void; |Unsubscribes from network status changes. |
 
 ## Subscribing to Status Changes of the Specified Network
 
@@ -163,13 +163,12 @@ export class GlobalContext {
 }
 
 // Obtain the list of all connected networks.
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
   }
-})
+});
 ```
 
 ## Querying Network Capability Information and Connection Information of Specified Data Network
@@ -216,15 +215,13 @@ export class GlobalContext {
 }
 
 // Call getDefaultNet to obtain the default data network specified by **NetHandle**.
-connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getDefaultNet().then((data:connection.NetHandle) => {
   if (data) {
+    console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
-
     // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-      console.log(JSON.stringify(err));
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
+      console.info("getNetCapabilities get data: " + JSON.stringify(data));
 
       // Obtain the network type via bearerTypes.
       let bearerTypes: Set<number> = new Set(data.bearerTypes);
@@ -268,15 +265,13 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
 })
 
 // Obtain the connection information of the data network specified by NetHandle. Connection information includes link and route information.
-connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
+  console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
 
 // Call getAllNets to obtain the list of all connected networks via Array<NetHandle>.
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("getAllNets get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
 
@@ -284,15 +279,13 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
     let dataNumber = Array.from(itemNumber.values());
     for (let item of dataNumber) {
       // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
-      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+        console.info("getNetCapabilities get data: " + JSON.stringify(data));
       })
 
       // Obtain the connection information of the network specified by each netHandle on the network list cyclically.
-      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
       })
     }
   }
@@ -316,8 +309,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 // Use the default network to resolve the host name to obtain the list of all IP addresses.
-connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
-})
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
+});
 ```
