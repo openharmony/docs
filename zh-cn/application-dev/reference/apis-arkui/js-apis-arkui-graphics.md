@@ -45,6 +45,8 @@ type PositionT\<T> = Vector2T\<T>
 
 用于设置或返回组件的位置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                         | 说明                                |
@@ -289,15 +291,6 @@ struct Index {
 | right  | T    | 是   | 是   | 右侧边框的属性。 |
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
 
-## Vector2T\<T><sup>12+</sup>
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 可读 | 可写 | 说明              |
-| ---- | ---- | ---- | ---- | ----------------- |
-| x    | T    | 是   | 是   | 向量x轴方向的值。 |
-| y    | T    | 是   | 是   | 向量y轴方向的值。 |
-
 ## LengthUnit<sup>12+</sup>
 
 长度属性单位枚举。
@@ -331,6 +324,8 @@ struct Index {
 
 长度属性单位枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 说明 |
@@ -342,11 +337,11 @@ struct Index {
 
 用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
+### 属性
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**属性：**
 
 | 名称   | 类型 | 可读 | 可写 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
@@ -523,6 +518,8 @@ static numeric(value: number): ColorMetrics
 
 使用HEX格式颜色实例化 ColorMetrics 类。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -542,6 +539,8 @@ static numeric(value: number): ColorMetrics
 static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetrics
 
 使用rgb或者rgba格式颜色实例化 ColorMetrics 类。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -565,6 +564,8 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 static resourceColor(color: ResourceColor): ColorMetrics
 
 使用资源格式颜色实例化 ColorMetrics 类。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -595,6 +596,8 @@ blendColor(overlayColor: ColorMetrics): ColorMetrics
 
 颜色混合。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -623,6 +626,8 @@ get color(): string
 
 获取ColorMetrics的颜色，返回的是rgba字符串的格式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -636,6 +641,8 @@ get color(): string
 get red(): number
 
 获取ColorMetrics颜色的R分量（红色）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -651,6 +658,8 @@ get green(): number
 
 获取ColorMetrics颜色的G分量（绿色）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -665,6 +674,8 @@ get blue(): number
 
 获取ColorMetrics颜色的B分量（蓝色）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -678,6 +689,8 @@ get blue(): number
 get alpha(): number
 
 获取ColorMetrics颜色的A分量（透明度）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -726,6 +739,8 @@ struct ColorMetricsSample {
 
 用于设置四个角的圆角度数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型 | 可读 | 可写 | 说明                   |
@@ -741,6 +756,8 @@ type CornerRadius = Corners\<Vector2>
 
 设置四个角的圆角度数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                         | 说明               |
@@ -752,6 +769,8 @@ type CornerRadius = Corners\<Vector2>
 type BorderRadiuses = Corners\<number>
 
 设置四个角的圆角度数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -765,6 +784,8 @@ type Rect = common2D.Rect
 
 用于设置矩形的形状。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                         | 说明       |
@@ -774,6 +795,8 @@ type Rect = common2D.Rect
 ## RoundRect<sup>12+</sup>
 
 用于设置带有圆角的矩形。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -786,6 +809,8 @@ type Rect = common2D.Rect
 
 用于设置圆形的属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型   | 可读 | 可写 | 说明                      |
@@ -797,6 +822,8 @@ type Rect = common2D.Rect
 ## CommandPath<sup>12+</sup>
 
 用于设置路径绘制的指令。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -814,6 +841,8 @@ constructor()
 
 ShapeMask的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### setRectShape<sup>12+</sup>
@@ -821,6 +850,8 @@ ShapeMask的构造函数。
 setRectShape(rect: Rect): void
 
 用于设置矩形遮罩。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -833,8 +864,7 @@ setRectShape(rect: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
@@ -880,6 +910,8 @@ setRoundRectShape(roundRect: RoundRect): void
 
 用于设置圆角矩形遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -891,8 +923,7 @@ setRoundRectShape(roundRect: RoundRect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController} from '@kit.ArkUI';
-import { ShapeMask,RoundRect } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
@@ -947,6 +978,8 @@ setCircleShape(circle: Circle): void
 
 用于设置圆形遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -958,8 +991,7 @@ setCircleShape(circle: Circle): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
@@ -1005,6 +1037,8 @@ setOvalShape(oval: Rect): void
 
 用于设置椭圆形遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1016,8 +1050,7 @@ setOvalShape(oval: Rect): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
@@ -1063,6 +1096,8 @@ setCommandPath(path: CommandPath): void
 
 用于设置路径绘制指令。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1074,8 +1109,7 @@ setCommandPath(path: CommandPath): void
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
@@ -1121,13 +1155,14 @@ fillColor: number
 
 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1173,13 +1208,14 @@ strokeColor: number
 
 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1226,13 +1262,14 @@ strokeWidth: number
 
 遮罩的边框宽度，单位为px。默认值为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
-import { ShapeMask } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -1285,6 +1322,8 @@ ShapeClip的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### setRectShape<sup>12+</sup>
 
 setRectShape(rect: Rect): void
@@ -1292,6 +1331,8 @@ setRectShape(rect: Rect): void
 用于裁剪矩形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1364,6 +1405,8 @@ setRoundRectShape(roundRect: RoundRect): void
 用于裁剪圆角矩形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1441,8 +1484,9 @@ setCircleShape(circle: Circle): void
 
 用于裁剪圆形。
 
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1510,6 +1554,8 @@ setOvalShape(oval: Rect): void
 用于裁剪椭圆形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1582,6 +1628,8 @@ setCommandPath(path: CommandPath): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                        | 必填 | 说明           |
@@ -1641,6 +1689,8 @@ edgeColors(all: number): Edges\<number>
 
 用于生成边框颜色均设置为传入值的边框颜色对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1658,8 +1708,7 @@ edgeColors(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeColors } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeColors } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1702,6 +1751,8 @@ edgeWidths(all: number): Edges\<number>
 
 用于生成边框宽度均设置为传入值的边框宽度对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1719,8 +1770,7 @@ edgeWidths(all: number): Edges\<number>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import { edgeWidths } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, edgeWidths } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1763,6 +1813,8 @@ borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 用于生成边框样式均设置为传入值的边框样式对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1780,8 +1832,7 @@ borderStyles(all: BorderStyle): Edges\<BorderStyle>
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController  } from '@kit.ArkUI';
-import {  borderStyles } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderStyles } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1825,6 +1876,8 @@ borderRadiuses(all: number): BorderRadiuses
 
 用于生成边框圆角均设置为传入值的边框圆角对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1842,7 +1895,7 @@ borderRadiuses(all: number): BorderRadiuses
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, borderRadiuses } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, borderRadiuses }  from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };

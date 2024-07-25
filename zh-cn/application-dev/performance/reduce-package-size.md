@@ -39,7 +39,7 @@
 
 ### 多包场景下使用HSP共享代码和资源
 
-当前系统提供了两种[共享包](../quick-start/shared-guide.md)，[HAR（Harmony Archive）](../quick-start/har-package.md)静态共享包和[HSP（Harmony Shared Package）](../quick-start/in-app-hsp.md)动态共享包。
+当前系统提供了两种共享包，[HAR（Harmony Archive）](../quick-start/har-package.md)静态共享包和[HSP（Harmony Shared Package）](../quick-start/in-app-hsp.md)动态共享包。
 
 HAR与HSP都是为了实现代码和资源的共享，都可以包含代码、C++库、资源和配置文件，最大的不同之处在于：HAR中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝；而HSP中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。
 
@@ -54,6 +54,7 @@ HAR与HSP都是为了实现代码和资源的共享，都可以包含代码、C+
 ### 使用扫描工具分析应用包
 
 [扫描工具](../tools/app-check-tool.md)可用于分析检测应用包，根据不同的参数设定，扫描指定路径的App、HAP、HSP包内容并输出检测结果报告，为开发者优化包结构或排查问题提供数据支撑。目前扫描工具支持以下几种分析统计：
+
 - 扫描重复文件。
 - 扫描超出指定大小的文件。
 - 统计分析各类型文件的总大小和占比。

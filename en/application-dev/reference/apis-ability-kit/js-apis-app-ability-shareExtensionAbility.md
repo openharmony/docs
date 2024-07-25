@@ -22,9 +22,9 @@ import { ShareExtensionAbility } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name | Type | Read-only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No | Yes | Context. |
 
 ## ShareExtensionAbility.onCreate
 
@@ -48,10 +48,10 @@ Called when a **UIExtensionContentSession** instance is created for this ShareEx
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information related to the ShareExtensionAbility, including the ability name and bundle name.|
-| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ShareExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information related to the ShareExtensionAbility, including the ability name and bundle name. |
+| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes | UI content information related to the ShareExtensionAbility. |
 
 **Example**
 
@@ -91,9 +91,9 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Share
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ShareExtensionAbility.|
+| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes | UI content information related to the ShareExtensionAbility. |
 
 **Example**
 
@@ -112,7 +112,7 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 | Type                                 | Description                           |
 | ------------------------------------- | ------------------------------- |
-| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result.|
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result. |
 
 **Example**
 
@@ -175,7 +175,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
   }
   ```
 
-4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **share** and **srcEntry** to the code path of the ShareExtensionAbility component.
+4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **shared** and **srcEntry** to the code path of the ShareExtensionAbility component.
 
    ```json
    {
@@ -186,7 +186,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
            "name": "ShareExtAbility",
            "icon": "$media:icon",
            "description": "share",
-           "type": "share",
+           "type": "shared",
            "exported": true,
            "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }

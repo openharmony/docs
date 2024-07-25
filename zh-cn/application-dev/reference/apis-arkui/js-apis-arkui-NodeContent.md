@@ -20,6 +20,8 @@ constructor()
 
 节点内容的实体封装。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：** 
@@ -54,6 +56,8 @@ addFrameNode(node: FrameNode): void
 
 根据参数将FrameNode添加到NodeContent中。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -67,6 +71,8 @@ addFrameNode(node: FrameNode): void
 removeFrameNode(node: FrameNode): void
 
 根据参数将FrameNode从NodeContent中删除。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

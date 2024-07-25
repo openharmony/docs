@@ -438,7 +438,7 @@
 | Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | Auto    | 保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
-| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。|
+| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
 
@@ -762,6 +762,9 @@ Nullable\<T> {
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
 ## LineBreakStrategy<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称         | 描述                                                         |
 | ------------ | ------------------------------------------------------------ |
 | GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
@@ -991,6 +994,8 @@ Nullable\<T> {
 
 ## StyledStringKey<sup>12+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
@@ -1006,6 +1011,8 @@ Nullable\<T> {
 | USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
 ## TextDecorationStyle<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -1037,17 +1044,24 @@ Nullable\<T> {
 ## EmbeddedType<sup>12+</sup>
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称                  | 值 | 说明                                                |
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称       | 值      | 描述                     |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
 | PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
 
 ## FocusPriority<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -1056,6 +1070,8 @@ Nullable\<T> {
 | PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ## AppRotation<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -1067,6 +1083,8 @@ Nullable\<T> {
 ## TextDeleteDirection<sup>12+</sup>
 
 定义删除文本方向。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |

@@ -52,9 +52,8 @@
 
    ```ts
    // MainAbility.ts
-   import window from '@ohos.window'
-   import display from '@ohos.display'
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import { window, display } from '@kit.ArkUI'
+   import { UIAbility } from '@kit.AbilityKit'
    
    export default class MainAbility extends UIAbility {
      private windowObj?: window.Window
@@ -149,14 +148,14 @@
 1.对通过媒体查询监听[断点](#断点)的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
-import mediaQuery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI'
 
 export type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export interface Breakpoint {
   name: BreakpointType
   size: number
-  mediaQueryListener?: mediaQuery.MediaQueryListener
+  mediaQueryListener?: mediaquery.MediaQueryListener
 }
 
 export class BreakpointSystem {
@@ -196,7 +195,7 @@ export class BreakpointSystem {
       } else {
         condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
       }
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener = mediaquery.matchMediaSync(condition)
       if (breakpoint.mediaQueryListener.matches) {
         this.updateAllState(breakpoint.name)
       }
