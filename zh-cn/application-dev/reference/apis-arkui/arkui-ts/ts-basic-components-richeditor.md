@@ -1024,8 +1024,6 @@ getSelection(): RichEditorSelection
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
-
-
 ### isEditing<sup>12+</sup>
 
 isEditing(): boolean
@@ -1484,19 +1482,6 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
-
-## RichEditorSpan<sup>12+</sup>
-
-RichEditor span信息
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| [RichEditorTextStyleResult](#richeditortextstyleresult) | 后端返回的文本样式信息。 |
-| [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 
 ## RichEditorRange
 
