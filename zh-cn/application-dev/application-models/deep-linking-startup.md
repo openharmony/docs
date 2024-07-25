@@ -115,7 +115,7 @@ startAbility接口是将应用链接放入want中，通过调用[隐式want匹�
 示例代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
