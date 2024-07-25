@@ -8,6 +8,8 @@
     - [多线程能力场景化](multi_thread_capability.md)
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
+    - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [使用AOT进行性能优化](performance-optimization-using-aot.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
@@ -18,7 +20,7 @@
     - [合理进行状态管理](proper_state_management.md)
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [合理使用renderGroup](reasonable-using-renderGroup.md)
-    - [合理使用动画](reasonable-using-animation)
+    - [合理使用动画](reasonable-using-animation.md)
     - [合理使用多线程共享内存](thread_memory_shared.md)
     - [Grid高性能开发指导](grid_optimization.md)
     - [合理使用自定义组件冻结功能](custom_component_freeze.md)
@@ -43,7 +45,7 @@
     - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
     - [减小应用包大小](reduce-package-size.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
-    - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

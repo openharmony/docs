@@ -994,6 +994,8 @@ Nullable\<T> {
 
 ## StyledStringKey<sup>12+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
@@ -1081,6 +1083,8 @@ Nullable\<T> {
 ## TextDeleteDirection<sup>12+</sup>
 
 定义删除文本方向。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |

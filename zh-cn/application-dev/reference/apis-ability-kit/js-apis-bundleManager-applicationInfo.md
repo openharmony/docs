@@ -55,7 +55,7 @@
 | multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
 | maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
 
-
+<!--Del-->
 ## PreinstalledApplicationInfo<sup>12+<sup>
 
 描述预置应用部分信息。
@@ -72,6 +72,7 @@
 | moduleName<sup>12+</sup> | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
 | iconId<sup>12+</sup> | number         | 是   | 否   | 应用图标Id。            |
 | labelId<sup>12+</sup> | number         | 是   | 否   | 应用标签Id。            |
+<!--DelEnd-->
 
 ## ModuleMetadata<sup>10+</sup>
 

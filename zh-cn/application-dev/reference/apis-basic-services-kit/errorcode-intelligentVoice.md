@@ -28,7 +28,7 @@ No memory.
 
 **错误信息**
 
-Input parameter value error.
+Invalid parameter.
 
 **错误描述**
 
@@ -66,7 +66,7 @@ Init failed.
 
 **错误信息**
 
-Commit enroll failed.
+Failed to commit the enrollment.
 
 **错误描述**
 

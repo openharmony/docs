@@ -14,7 +14,7 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
 
 ## 使用规则
 
-- 当前$$支持基础类型变量，以及\@State、\@Link和\@Prop装饰的变量。
+- 当前$$支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
 
 - 当前$$支持的组件：
 

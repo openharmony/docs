@@ -304,6 +304,18 @@ import { window } from '@kit.ArkUI';
 | width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
 | height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
 
+## MaximizePresentation<sup>12+</sup>
+
+窗口最大化时的布局枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局。   |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -696,13 +708,6 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 | type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
@@ -748,13 +753,6 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 | -------------------------------- | --------------------------------------- |
 | Promise&lt;[Window](#window)&gt; | Promise对象。返回当前创建的子窗口对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
@@ -792,13 +790,6 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 | type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
@@ -844,13 +835,6 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 | -------------------------------- | --------------------------------------- |
 | Promise&lt;[Window](#window)&gt; | Promise对象。返回当前创建的子窗口对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
@@ -1289,7 +1273,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动窗口位置，使用callback异步回调。
 
-全屏模式窗口不支持该操作。
+<!--RP4-->
+全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1338,7 +1323,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。
 
-全屏模式窗口不支持该操作。
+<!--RP4-->
+全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1541,7 +1527,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1571,30 +1557,11 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      try {
-        let avoidArea = windowClass.getWindowAvoidArea(type);
-      } catch (exception) {
-        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+try {
+  let avoidArea = windowClass.getWindowAvoidArea(type);
+} catch (exception) {
+  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1737,7 +1704,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置主窗口是否开启沉浸式布局，该调用不会改变窗口模式。
+设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1763,26 +1730,11 @@ setImmersiveModeEnabledState(enabled: boolean): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let enabled = false;
-      windowClass.setImmersiveModeEnabledState(enabled);
-    });
-  }
+try {
+  let enabled = false;
+  windowClass.setImmersiveModeEnabledState(enabled);
+} catch (exception) {
+  console.error(`Failed to set the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1790,7 +1742,7 @@ export default class EntryAbility extends UIAbility {
 
 getImmersiveModeEnabledState(): boolean
 
-查询主窗口是否已经开启沉浸式布局。
+查询当前窗口是否已经开启沉浸式布局。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1814,25 +1766,10 @@ getImmersiveModeEnabledState(): boolean
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isEnabled = windowClass.getImmersiveModeEnabledState();
-    });
-  }
+try {
+  let isEnabled = windowClass.getImmersiveModeEnabledState();
+} catch (exception) {
+  console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1840,7 +1777,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+
+子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1905,7 +1844,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+
+子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1973,7 +1914,9 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2042,7 +1985,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2113,7 +2058,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3016,7 +2963,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3040,32 +2987,13 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('avoidAreaChange', (data) => {
-          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3073,7 +3001,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3097,40 +3025,21 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+interface Param {
+  type: window.AvoidAreaType,
+  area: window.AvoidArea
+}
+const callback = (data: Param) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-	  interface Param {
-		type: window.AvoidAreaType,
-		area: window.AvoidArea
-	  }
-	  const callback = (data: Param) => {
-		// ...
-	  }
-	  try {
-		windowClass.on('avoidAreaChange', callback);
+}
+try {
+  windowClass.on('avoidAreaChange', callback);
 
-		windowClass.off('avoidAreaChange', callback);
-		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-		windowClass.off('avoidAreaChange');
-	  } catch (exception) {
-		console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-	  }
-    });
-  }
+  windowClass.off('avoidAreaChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('avoidAreaChange');
+} catch (exception) {
+  console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3369,7 +3278,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-开启模态窗口所遮盖窗口的点击或触摸事件的监听
+开启模态窗口所遮盖窗口的点击或触摸事件的监听，除模态窗口以外其他窗口调用此接口不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5255,14 +5164,19 @@ promise.then(() => {
 ```
 
 ### maximize<sup>12+</sup>
+maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-maximize(): Promise&lt;void&gt;
-
-主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
+主窗口调用，实现最大化功能，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| presentation  | [MaximizePresentation](#maximizepresentation12) | 否 | 主窗口最大化时候的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
 
 **返回值：**
 
@@ -5302,6 +5216,7 @@ export default class EntryAbility extends UIAbility {
       }
       windowClass = data;
       let promise = windowClass.maximize();
+      // let promise = windowClass.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
       promise.then(() => {
         console.info('Succeeded in maximizing the window.');
       }).catch((err: BusinessError) => {
@@ -6295,7 +6210,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6313,41 +6228,24 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      });
-    });
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-}
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+});
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6370,32 +6268,15 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      let promise = windowClass.getAvoidArea(type);
-      promise.then((data) => {
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    });
-  }
-}
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -6418,14 +6299,6 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
 | isFullScreen | boolean                   | 是   | 是否设为全屏布局（该全屏布局影响状态栏导航栏显示）。true表示全屏；false表示非全屏。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6485,14 +6358,6 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6656,7 +6521,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6671,13 +6538,6 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 | names    | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6717,7 +6577,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6737,13 +6599,6 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6781,7 +6636,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6795,14 +6652,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏、状态栏的属性。 |
 | callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6847,7 +6696,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6866,14 +6717,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7051,7 +6894,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7066,46 +6909,20 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 | type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
 | callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回当前规避区。                             |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      windowClass.on('systemAvoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-      });
-    });
-  }
-}
+windowClass.on('systemAvoidAreaChange', (data) => {
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+});
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7120,43 +6937,16 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 | type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
 | callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 否   | 回调函数。返回当前规避区。若传入参数，则关闭该监听。若未传入参数，则关闭所有系统规避区变化的监听。           |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+const callback = (avoidArea: window.AvoidArea) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (avoidArea: window.AvoidArea) => {
-        // ...
-      }
-      windowClass.on('systemAvoidAreaChange', callback);
-      windowClass.off('systemAvoidAreaChange', callback);
-      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-      windowClass.off('systemAvoidAreaChange');
-    });
-  }
 }
+windowClass.on('systemAvoidAreaChange', callback);
+windowClass.off('systemAvoidAreaChange', callback);
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -7242,13 +7032,6 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 | colorSpace | [ColorSpace](#colorspace8) | 是   | 设置色域模式。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -7289,13 +7072,6 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -7393,13 +7169,6 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 | color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7441,13 +7210,6 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7484,13 +7246,6 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 | brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7534,13 +7289,6 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7646,13 +7394,6 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | isFocusable | boolean                   | 是   | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7694,13 +7435,6 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7735,13 +7469,6 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 | isKeepScreenOn | boolean                   | 是   | 设置屏幕是否为常亮状态。true表示常亮；false表示不常亮。 |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7782,14 +7509,6 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7899,14 +7618,6 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 | isPrivacyMode | boolean                   | 是   | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。 |
 | callback      | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -7947,14 +7658,6 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -7988,13 +7691,6 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | isTouchable | boolean                   | 是   | 窗口是否为可触状态。true表示可触；false表示不可触。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -8036,13 +7732,6 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

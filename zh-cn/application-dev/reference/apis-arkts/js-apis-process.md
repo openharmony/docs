@@ -560,6 +560,10 @@ getEnvironmentVar(name: string): string
 
 获取环境变量对应的值。
 
+> **说明：**
+>
+> 该接口是获取环境变量对应的值。当环境变量不存在时，返回undefined。
+
 **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang

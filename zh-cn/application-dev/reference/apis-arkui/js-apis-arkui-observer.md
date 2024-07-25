@@ -225,8 +225,8 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
+uiObserver.on('navDestinationUpdate', (info) => {
+  console.info('NavDestination state update', JSON.stringify(info));
 });
 ```
 
@@ -250,7 +250,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 **示例：**
 
 ```ts
-observer.off('navDestinationUpdate');
+uiObserver.off('navDestinationUpdate');
 ```
 
 ## observer.on('navDestinationUpdate')
@@ -274,7 +274,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+uiObserver.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
 });
 ```
@@ -300,7 +300,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 **示例：**
 
 ```ts
-observer.off('navDestinationUpdate', { navigationId: "testId" });
+uiObserver.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## observer.on('scrollEvent')<sup>12+</sup>

@@ -191,13 +191,13 @@ onCreateMenu(menuItems: Array\<TextMenuItem>): Array\<TextMenuItem>
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItems | Array<[TextMenuItem](#textmenuitem对象说明)> | 是   | 菜单项。 |
+| menuItems | Array<[TextMenuItem](#textmenuitem对象说明)> | 是   | 菜单项。<br/>**说明：** <br/>对默认菜单项的名称修改不生效。 |
 
 **返回值：**
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| Array\<[TextMenuItem](#textmenuitem对象说明)> | 设置的菜单项。 |
+| Array\<[TextMenuItem](#textmenuitem对象说明)> | 设置的菜单项。<br/>**说明：** <br/>不返回系统默认菜单项的图标。 |
 
 ### onMenuItemClick
 

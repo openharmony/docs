@@ -21,6 +21,8 @@
     - [\@Concurrent装饰器：声明并校验并发函数](arkts-concurrent.md)
     - [Sendable开发指导](arkts-sendable.md)
     - [已接入Sendable的系统对象](arkts-sendable-system-object-list.md)
+    - [ArkTS异步锁](arkts-async-lock-introduction.md)
+    - [ArkTS容器集 (ArkTS Collections)](arkts-collections-introduction.md)
     - [共享模块开发指导](arkts-sendable-module.md)
     - [ArkTS Collections与原生API方法的行为差异对比](arkts-collections-vs-native-api-comparison.md)
 - 容器类库

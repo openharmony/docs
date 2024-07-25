@@ -18,6 +18,8 @@ add(attributes: AssetMap): Promise\<void>
 
 新增一条关键资产，使用Promise方式异步返回结果。
 
+如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
@@ -37,7 +39,7 @@ add(attributes: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000003 | The asset already exists.                                  |
 | 24000005 | The screen lock status does not match.                         |
@@ -87,6 +89,8 @@ addSync(attributes: AssetMap): void
 
 新增一条关键资产，使用同步方式返回结果。
 
+如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
@@ -100,7 +104,7 @@ addSync(attributes: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000003 | The asset already exists.                                  |
 | 24000005 | The screen lock status does not match.                         |
@@ -164,7 +168,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -220,7 +224,7 @@ removeSync(query: AssetMap): void
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -279,7 +283,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000005 | The screen lock status does not match.                         |
@@ -340,7 +344,7 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000005 | The screen lock status does not match.                         |
@@ -402,7 +406,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | The argument is invalid.                                     |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -467,7 +471,7 @@ preQuerySync(query: AssetMap): Uint8Array
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | The argument is invalid.                                     |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -528,10 +532,10 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
-| 24000004 | Access to the asset is denied.                             |
+| 24000004 | Access denied.                             |
 | 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
@@ -597,10 +601,10 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
-| 24000004 | Access to the asset is denied.                             |
+| 24000004 | Access denied.                            |
 | 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
@@ -665,7 +669,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
 | 24000010 | IPC failed.                                |
@@ -712,7 +716,7 @@ postQuerySync(handle: AssetMap): void
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
 | 24000010 | IPC failed.                                |
@@ -770,7 +774,7 @@ try {
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值                                         |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌                                           |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#assetadd)或者[asset.addSync](#assetaddsync12)函数时可传入，且传入该属性时需要校验权限 |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产 |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**             |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
