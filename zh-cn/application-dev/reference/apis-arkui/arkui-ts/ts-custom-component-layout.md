@@ -100,6 +100,8 @@ getMargin() : DirectionalEdgesT\<number>
 
 调用此方法获得子组件的margin信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                          | 说明                                        |
@@ -112,6 +114,8 @@ getPadding() : DirectionalEdgesT\<number>
 
  调用此方法获得子组件的padding信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
  **返回值：**
 
 | 类型                          | 说明                                        |
@@ -123,6 +127,8 @@ getPadding() : DirectionalEdgesT\<number>
 getBorderWidth() : DirectionalEdgesT\<number>
 
 调用此方法获得子组件的boderWidth信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -166,9 +172,9 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  获取子组件的padding信息。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -182,9 +188,9 @@ getPadding() : DirectionalEdgesT\<number\>
 
 获取子组件的padding信息。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -198,9 +204,9 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 
 获取子组件的borderWidth信息。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 

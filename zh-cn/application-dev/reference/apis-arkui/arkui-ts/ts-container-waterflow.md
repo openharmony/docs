@@ -39,7 +39,7 @@ WaterFlow(options?:  WaterFlowOptions)
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
-| layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12枚举说明) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12枚举说明)。
+| layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12枚举说明) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 
 ## WaterFlowSections<sup>12+</sup>
@@ -51,6 +51,8 @@ WaterFlow(options?:  WaterFlowOptions)
 splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>): boolean
 
 移除或者替换已存在的分组和/或添加新分组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -73,6 +75,8 @@ push(section: SectionOptions): boolean
 
 将指定分组添加到瀑布流末尾。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -90,6 +94,8 @@ push(section: SectionOptions): boolean
 update(sectionIndex: number, section: SectionOptions): boolean
 
 修改指定索引分组的配置信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -110,6 +116,8 @@ values(): Array\<SectionOptions\>
 
 获取瀑布流中所有分组配置信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：** 
 
 | 类型                                                         | 说明                                                         |
@@ -122,6 +130,8 @@ length(): number
 
 获取瀑布流中分组数量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：** 
 
 | 类型                                                         | 说明                                                         |
@@ -131,6 +141,8 @@ length(): number
 ## SectionOptions<sup>12+</sup>
 
 FlowItem分组配置信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -150,6 +162,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 根据index获取指定Item的主轴大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -163,6 +177,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 | number | 指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。 |
 
 ## WaterFlowLayoutMode<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | ------ | ------ | -------------------- |
@@ -548,6 +564,8 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
 瀑布流滑动前触发，返回当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定瀑布流将要滑动的偏移。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -565,6 +583,8 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 onDidScroll(handler: OnScrollCallback)
 
 瀑布流滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1071,8 +1091,10 @@ struct WaterFlowDemo {
             this.dataSource.addLastItem()
           }
           // 更新数据源后同步更新sections，修改最后一个section的FlowItem数量
-          this.lastSection.itemsCount += 100
-          this.sections.update(-1, this.lastSection);
+          const sections: Array<SectionOptions> = this.sections.values();
+          let newSection: SectionOptions = sections[this.sections.length() - 1];
+          newSection.itemsCount += 100;
+          this.sections.update(-1, newSection);
         }
       })
     }

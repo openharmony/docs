@@ -168,6 +168,8 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 设置组件背景提亮效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -178,6 +180,7 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 ## BackgroundBrightnessOptions<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            | 参数类型                                     | 必填   | 描述                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |

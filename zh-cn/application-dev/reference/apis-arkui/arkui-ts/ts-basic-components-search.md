@@ -35,6 +35,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 设置搜索框末尾搜索按钮。
 
+点击搜索按钮，同时触发onSubmit与onClick回调。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -579,6 +581,8 @@ enablePreviewText(enable: boolean)
 ## SelectionOptions<sup>12+</sup>
 
 setTextSelection的选中文字时的配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
