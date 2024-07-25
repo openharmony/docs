@@ -1325,7 +1325,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 | 参数名   | 类型   | 必填   | 说明                |
 | ----- | ------ | ---- | ------------------- |
-| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
+| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器。 |
 
 ## RichEditorSelection
 
