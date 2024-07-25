@@ -16,6 +16,8 @@ addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: Gestu
 
 添加手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -30,6 +32,8 @@ addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
 
 绑定可与子组件手势同时触发的手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -43,6 +47,8 @@ removeGestureByTag(tag: string): void
 
 移除该组件上通过modifier绑定的设置为指定标志的手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -54,6 +60,8 @@ removeGestureByTag(tag: string): void
 clearGestures(): void
 
 清除该组件上通过modifier绑定的所有手势。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## GestureHandler\<T>
 

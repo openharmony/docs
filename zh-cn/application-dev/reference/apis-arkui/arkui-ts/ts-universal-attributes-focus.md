@@ -94,6 +94,8 @@ focusBox(style: FocusBoxStyle): T
 
 设置当前组件系统焦点框样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

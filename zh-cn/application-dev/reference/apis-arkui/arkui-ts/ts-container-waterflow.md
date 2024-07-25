@@ -548,6 +548,8 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
 瀑布流滑动前触发，返回当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定瀑布流将要滑动的偏移。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -565,6 +567,8 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 onDidScroll(handler: OnScrollCallback)
 
 瀑布流滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
