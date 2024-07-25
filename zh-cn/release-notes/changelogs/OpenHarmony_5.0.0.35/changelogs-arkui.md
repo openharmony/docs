@@ -406,7 +406,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.11 RichEditor设置预设样式的接口当传入异常值时，文本样式效果变更
+## cl.arkui.11 RichEditor设置预设样式的接口传入异常值时，文本样式效果变更
 
 **访问级别**
 
@@ -414,7 +414,7 @@ Toast组件ShowToast接口
 
 **变更原因**
 
-RichEditor设置用户预设样式的接口setTypingStyle当传入异常值undefined/null后，开发者自定义预置样式依然存在，未恢复成不设置时效果。
+RichEditor设置用户预设样式的接口setTypingStyle，传入异常值undefined/null后，开发者自定义预置样式依然存在，未恢复成不设置时效果。
 
 不设置时，当用户输入文本，输入后的文本样式跟随前一个文本的文本样式。
 
@@ -479,7 +479,7 @@ struct Index {
 
 **变更原因**
 
-1.RichEditor中设置占位文本接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值{}时，组件未将占位文本样式属性设置为默认效果。
+1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值{}时，组件未将占位文本样式属性设置为默认效果。
 
 2.当占位文本样式属性中各个属性为异常值undefined/null时，对应默认效果未生效。
 
@@ -493,7 +493,7 @@ struct Index {
 
 - 文本样式（默认值 FontStyle.Normal）
 
-- 文本颜色（默认值 跟随系统主题（一般为黑色））
+- 文本颜色（默认值：跟随系统主题，一般为黑色）
 
 **变更影响**
 
