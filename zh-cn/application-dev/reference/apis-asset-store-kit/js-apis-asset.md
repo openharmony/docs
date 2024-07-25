@@ -18,6 +18,8 @@ add(attributes: AssetMap): Promise\<void>
 
 新增一条关键资产，使用Promise方式异步返回结果。
 
+如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
@@ -86,6 +88,8 @@ try {
 addSync(attributes: AssetMap): void
 
 新增一条关键资产，使用同步方式返回结果。
+
+如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -770,7 +774,7 @@ try {
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值                                         |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌                                           |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#assetadd)或者[asset.addSync](#assetaddsync12)函数时可传入，且传入该属性时需要校验权限 |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产 |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**             |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
