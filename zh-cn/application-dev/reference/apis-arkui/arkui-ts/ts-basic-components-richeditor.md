@@ -819,7 +819,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
 
-暂不支持手势处理。
+暂不支持手势、复制、拖拽处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1210,7 +1210,7 @@ getLayoutManager(): LayoutManager
 
 setStyledString(styledString: StyledString): void;
 
-设置富文本组件显示的属性字符串
+设置富文本组件显示的属性字符串。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1224,7 +1224,7 @@ setStyledString(styledString: StyledString): void;
 
 getStyledString(): MutableStyledString;
 
-获取富文本组件显示的属性字符串
+获取富文本组件显示的属性字符串。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
