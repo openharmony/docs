@@ -2896,6 +2896,12 @@ startMove(): void
 
 **系统接口：** 此接口为系统接口。
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
@@ -2915,7 +2921,11 @@ startMove(): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    windowClass.startMove();
+    windowClass.startMove().then(() => {
+        console.log('startMove successful.');
+    }).catch((err: BusinessError) => {
+        console.log('startMove catch error:' + err.code + ',message:' + err.message);
+    });
 } catch (exception) {
     console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -2937,6 +2947,12 @@ enableDrag(enable: boolean): void
 | -------- | ---------------------------- | -- | --------- |
 | enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
@@ -2956,8 +2972,13 @@ enableDrag(enable: boolean): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    windowClass.enableDrag();
-} catch (exception) {
+    windowClass.setWindowTouchable(true);
+    windowClass.enableDrag(true).then(() => {
+        console.log('enableDrag successful.');
+    }).catch((err: BusinessError) => {
+        console.error('enableDrag catch error:' + err.code + ',message:' + err.message);
+    );
+} catch(exception) {
     console.error(`Failed to enable window dragging. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
