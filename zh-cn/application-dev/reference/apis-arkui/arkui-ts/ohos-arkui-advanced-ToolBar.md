@@ -59,11 +59,11 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | action                             | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。                                                                                                          |
 | icon                               | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>toolBarSymbolOptions有传入参数时，icon不生效。                                                                   |
 | state                              | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ENABLE。                                                                                                 |
-| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。    |
-| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。      |
-| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.ohos_id_color_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
-| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>fontColor默认值与图标色一致、fontSize默认值为24vp。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.icon_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。    |
+| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.icon_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.font_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。      |
+| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.font_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ## ToolBarModifier<sup>13+</sup>
 ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)、左右内边距（padding，仅在item小于5个时生效）、是否显示按压态（stateEffect）的方法。
@@ -116,7 +116,7 @@ height(height: Length): ToolBarModifier
 
 | 参数名  | 类型                              | 必填 | 说明                                 |
 | ------- |---------------------------------| ---- |------------------------------------|
-| height | [Length](ts-types.md#length) | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包括分割线）。 |
+| height | [Length](ts-types.md#length) | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
 ### stateEffect
 
@@ -152,10 +152,10 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型       | 必填 | 说明               |
-| ------ | ---------- | ---- | ------------------ |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定事件。 |
-| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定事件。 |
+| 名称   | 类型       | 必填 | 说明                                                                                       |
+| ------ | ---------- | ---- |------------------------------------------------------------------------------------------|
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 页签内symbol图标普通态样式。<br/>默认值：fontColor：$r('sys.color.icon_primary')，fontSize：24vp。  |
+| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 页签内symbol图标激活态样式。<br/>默认值：fontColor：$r('sys.color.icon_emphasize')，fontSize：24vp。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
