@@ -74,12 +74,25 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
-
 ### constructor
+
+constructor(content: ResourceStr)
+
+SubTabBarStyle的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
+
+### constructor<sup>12+</sup>
 
 constructor(content: ResourceStr | ComponentContent)
 
-SubTabBarStyle的构造函数。
+SubTabBarStyle的构造函数。支持ComponentContent设置自定义内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -87,9 +100,23 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### of<sup>10+</sup>
+
+static of(content: ResourceStr)
+
+SubTabBarStyle的静态构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 参数类型                                   | 必填 | 参数描述           |
+| ------- | ------------------------------------------ | ---- | ------------------ |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 页签内的文字内容。 |
+
+### of<sup>12+</sup>
 
 static of(content: ResourceStr | ComponentContent)
 
@@ -101,7 +128,7 @@ SubTabBarStyle的静态构造函数。
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的文字内容。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的内容。支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### 属性
 
