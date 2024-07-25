@@ -128,7 +128,7 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 | Promise&lt;void&gt; | Promise object with no return result.|
 | Promise\<void\> | Promise object with no return result.|
 | Promise\<void> | Promise object with no return result.|
-| Promise<void> | Promise object with no return result.|
+|` Promise<void> `| Promise object with no return result.|
 
 ## test Angle brackets
 
