@@ -22,6 +22,7 @@
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
     - [@ohos.router (页面路由)](js-apis-router.md)
+    - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
@@ -342,6 +343,10 @@
     - [文本类型定义](arkui-ts/ts-text-common.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
   - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
+  - 渲染控制
+    - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
+    - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
+    - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [设置事件回调](arkui-ts/ts-uicommonevent.md)
