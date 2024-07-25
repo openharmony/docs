@@ -193,13 +193,13 @@ gradientHeight(value: Dimension)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
 
-### digitalCrownSensitivity
+### digitalCrownSensitivity<sup>12+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠响应事件灵敏度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -412,7 +412,8 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker4.gif)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 
@@ -433,4 +434,4 @@ struct TextPickerExample {
 }
 ```
 
-![text_picker](figures\text_picker.gif)
+![text_picker](figures/text_picker.gif)

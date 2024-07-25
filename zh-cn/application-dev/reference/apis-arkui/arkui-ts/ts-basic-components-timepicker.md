@@ -146,13 +146,13 @@ dateTimeOptions(value: DateTimeOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | 是   | 设置时分秒是否显示前置0，目前只支持设置hour、minute和second参数。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，即有前置0；12小时制默认为"numeric"，即没有前置0。<br/>minute: 默认为"2-digit"，即有前置0。<br/>second: 默认为"2-digit"，即有前置0。<br/> |
 
-### digitalCrownSensitivity
+### digitalCrownSensitivity<sup>12+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠响应事件灵敏度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -232,7 +232,8 @@ struct TimePickerExample {
 
 ![timePicker](figures/timePicker.gif)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerExample {
@@ -246,4 +247,4 @@ struct TimePickerExample {
 }
 ```
 
-![time_picker](figures\time_picker.gif)
+![time_picker](figures/time_picker.gif)

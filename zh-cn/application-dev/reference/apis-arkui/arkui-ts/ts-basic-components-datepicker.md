@@ -135,13 +135,13 @@ selectedTextStyle(value: PickerTextStyle)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
 
-### digitalCrownSensitivity
+### digitalCrownSensitivity<sup>12+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠响应事件灵敏度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -237,9 +237,8 @@ struct DatePickerExample {
 
 ![datePicker](figures/DatePickerApi10.gif)
 
-### 示例1
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 
@@ -253,4 +252,4 @@ struct DatePickerExample {
 }
 ```
 
-![text_picker](figures\text_picker.gif)
+![text_picker](figures/date_picker.gif)
