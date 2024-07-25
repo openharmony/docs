@@ -415,7 +415,7 @@ ArkWeb will follow the W3C standard behavior and will not identify it as a tag a
 
 The same-layer elements are updated as a result of scrolling, scaling, or any other behavior that may cause a re-layout. The positions of same-layer elements are based on the **\<Web>** component coordinate system. For web page scaling that does not change the element size, only the position changes, and the width and height remain at the initial values.
 
-For components that require location information, such as **\<TextInput>** and **\<TextArea>**, you need to synchronize the location information reported by the same-layer elements to the components in real time.
+For components that require location information, such as **\<TextInput>** and **TextArea**, you need to synchronize the location information reported by the same-layer elements to the components in real time.
 
 - Complete sample code on the application side:
 

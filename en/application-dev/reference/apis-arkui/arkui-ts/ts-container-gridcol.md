@@ -1,6 +1,6 @@
 # GridCol
 
-The **\<GridCol>** component must be used as a child component of the **[\<GridRow>](ts-container-gridrow.md)** container.
+The **GridCol** component must be used as a child component of the **[\<GridRow>](ts-container-gridrow.md)** container.
 
 >  **NOTE**
 >
@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## GridColColumnOption
 
-Describes the numbers of grid columns occupied by the **\<GridCol>** component on devices with different width types.
+Describes the numbers of grid columns occupied by the **GridCol** component on devices with different width types.
 
 Since API version 9, this API is supported in ArkTS widgets.
 

@@ -321,7 +321,7 @@ struct AsyncLoadImage {
 
 The view hierarchy can significantly affect application performance. Flatter view hierarchies can bring faster page layout and better layout performance. Therefore, whenever possible, reduce nesting and eliminate misplaced container components.
 
-**Negative example**: A **\<Grid>** container is used to load 1000 grids at a time, and additional three-layer **\<Flex>** containers are used , resulting in an unnecessarily deeply nested structure.
+**Negative example**: A **Grid** container is used to load 1000 grids at a time, and additional three-layer **Flex** containers are used , resulting in an unnecessarily deeply nested structure.
 
 ```ts
 @Entry
@@ -360,7 +360,7 @@ struct Depth1 {
 }
 ```
 
-**Optimization**: A **\<Grid>** container is used to load 1000 grids at a time, but this time no unnecessary containers are used, which leads to faster layout.
+**Optimization**: A **Grid** container is used to load 1000 grids at a time, but this time no unnecessary containers are used, which leads to faster layout.
 
 ```ts
 @Entry

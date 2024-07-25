@@ -177,4 +177,4 @@ Processing steps:
 
 1. The click event **Text.onClick** of the **AddLog** custom component increases the value of **info**.
 
-2. In response to the change of the \@State decorated variable **log**, the \@Track decorated property **logInfo** is updated, and the **\<Text>** component is re-rendered.
+2. In response to the change of the \@State decorated variable **log**, the \@Track decorated property **logInfo** is updated, and the **Text** component is re-rendered.

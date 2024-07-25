@@ -71,7 +71,7 @@ In the preceding APIs, **instance** indicates the component type. You can custom
 
 | Name            | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** for the **\<Text>** component.|
+| instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
 **Value range of the instance parameter**
 

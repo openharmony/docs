@@ -1,6 +1,6 @@
 # ScrollBar
 
-The **\<ScrollBar>** is used together with scrollable components, such as **\<List>**, **\<Grid>**, and **\<Scroll>**.
+The **\<ScrollBar>** is used together with scrollable components, such as **\<List>**, **Grid**, and **Scroll**.
 
 >  **NOTE**
 >

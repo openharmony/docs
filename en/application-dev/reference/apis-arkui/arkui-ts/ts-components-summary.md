@@ -33,7 +33,7 @@
     A container that lays out components vertically and is used only in the grid layout.
 - [GridRow](ts-container-gridrow.md)
 
-    A container that is used in a grid layout, together with its child component **\<GridCol>**.
+    A container that is used in a grid layout, together with its child component **GridCol**.
 - [GridCol](ts-container-gridcol.md)
 
     A container that must be used as a child component of the **\<GridRow>** container.
@@ -74,7 +74,7 @@
     A container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
 - [FlowItem](ts-container-flowitem.md)
 
-    A child component of the **\<WaterFlow>** container that is used to display specific items in the container layout.
+    A child component of the **WaterFlow** container that is used to display specific items in the container layout.
 
 
 ## Navigation
@@ -90,7 +90,7 @@
     A container that provides default logic for click response processing, eliminating the need for manual logic definition.
 - [NavDestination](ts-basic-components-navdestination.md)
 
-    A child component of the **\<NavRouter>** component that represents a destination in the navigation area.
+    A child component of the **NavRouter** component that represents a destination in the navigation area.
 - [Stepper](ts-basic-components-stepper.md)
 
     A component that provides a step navigator.
@@ -102,7 +102,7 @@
     A container that allows users to switch between content views through tabs.
 - [TabContent](ts-container-tabcontent.md)
 
-    A component that corresponds to the content view on a tab page and is used only in the **\<Tabs>** component.
+    A component that corresponds to the content view on a tab page and is used only in the **Tabs** component.
 
 
 ## Button and Selection
@@ -155,7 +155,7 @@
     A component that is used to display a piece of textual information.
 - [Span](ts-basic-components-span.md)
 
-    A component that is used to display inline text in the **\<Text>** component.
+    A component that is used to display inline text in the **Text** component.
 - [Search](ts-basic-components-search.md)
 
     A component that provides an area for users to enter search queries.
@@ -207,7 +207,7 @@
     A component that is used to create a loading animation.
 - [Marquee](ts-basic-components-marquee.md)
 
-    A component that is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
+    A component that is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **Marquee** component.
 - [Progress](ts-basic-components-progress.md)
 
     A component that is used to provide a progress indicator that displays the progress of content loading or an operation.
@@ -226,7 +226,7 @@
 
 - [Blank](ts-basic-components-blank.md)
 
-    A component that is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent component is **\<Row>** or **\<Column>**.
+    A component that is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent component is **Row** or **Column**.
 - [Divider](ts-basic-components-divider.md)
 
     A component that is used to separate content blocks and elements.
@@ -267,7 +267,7 @@
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
-    A component that is used together with scrollable components, such as **\<List>**, **\<Grid>**, and **\<Scroll>**.
+    A component that is used together with scrollable components, such as **\<List>**, **Grid**, and **Scroll**.
 
 - [Badge](ts-container-badge.md)
 

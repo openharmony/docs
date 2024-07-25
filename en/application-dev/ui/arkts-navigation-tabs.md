@@ -1,29 +1,29 @@
 # Tabs
 
 
-When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [\<Tabs>](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
+When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
 
 
 ## Basic Layout
 
-  The **\<Tabs>** component consists of two parts: **\<TabContent>** and **\<TabBar>**. **\<TabContent>** is the content page, and **\<TabBar>** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
+  The **Tabs** component consists of two parts: **\<TabContent>** and **\<TabBar>**. **\<TabContent>** is the content page, and **\<TabBar>** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
 
-**Figure 1** \<Tabs> component layout
+**Figure 1** Tabs component layout
 
 ![tabs-layout](figures/tabs-layout.png)
 
 
 >**NOTE**
 >
-> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
+> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **Tabs** component.
 >
-> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **Tabs** component and the **\<TabBar>** component.
 
 
-**\<Tabs>** use braces to enclose the tab content, as shown in Figure 2.
+**Tabs** use braces to enclose the tab content, as shown in Figure 2.
 
 
-  **Figure 2** Using \<Tabs> and \<TabContent> 
+  **Figure 2** Using Tabs and \<TabContent> 
 
 ![tabs-tabscontent](figures/tabs-tabscontent.png)
 
@@ -38,7 +38,7 @@ Each **\<TabContent>** component should be mapped to a tab page, which can be co
 ```
 
 
-When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
+When setting multiple **\<TabContent>** components, place them in sequence in the **Tabs** component.
 
 ```ts
 Tabs() {
@@ -75,7 +75,7 @@ Bottom navigation is the most common navigation mode in applications. The bottom
 ![bottom-navigation](figures/bottom-navigation.gif)
 
 
-You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
+You set the position of the navigation bar through the **barPosition** parameter of the **Tabs** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
 
 
 ```ts
@@ -113,7 +113,7 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 ![side-navigation](figures/side-navigation.png)
 
 
-To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
+To implement the side navigation bar, set the **vertical** attribute of the **Tabs** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
 
 
@@ -176,7 +176,7 @@ When the content categories are relatively fixed and not scalable, a fixed navig
 ![fixed-navigation](figures/fixed-navigation.gif)
 
 
-To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
+To use a fixed navigation bar, set the **barMode** attribute of the **Tabs** component to **barMode.Fixed** (default).
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
@@ -197,7 +197,7 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 ![scrollable-navigation](figures/scrollable-navigation.gif)
 
 
-To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
+To use a scrollable navigation bar, set the **barMode** attribute of the **Tabs** component to **BarMode.Scrollable**.
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -263,7 +263,7 @@ Non-custom navigation bars follow the default system switching logic. If you are
 ![switching-to-a-specified-tab](figures/switching-to-a-specified-tab.gif)
 
 
-To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
+To switch to a specified tab page, use **TabsController**, which is the controller of the **Tabs** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
 
 ```ts
 class Tmp{
@@ -328,7 +328,7 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 ![TabsChange1](figures/TabsChange1.gif)
 
 
-To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
+To manually switch between the tabs, use the **onChange** API provided by the **Tabs** component to listen for the index change and pass the index of the active tab to **currentIndex**.
 
 
 ```ts
@@ -403,7 +403,7 @@ struct TabsExample {
 
 ![TabsChange3](figures/TabsChange3.gif)
 
-You can use the **onContentWillChange** API of the **\<Tabs>** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
+You can use the **onContentWillChange** API of the **Tabs** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
 
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}

@@ -13,18 +13,22 @@ Cursor control attributes control how the cursor is displayed when the mouse poi
 
 setCursor(value: PointerStyle): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 Sets the cursor style. This API is a global API.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](../apis/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style.|
+| value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style. |
 
 
 ### restoreDefault
 
 restoreDefault(): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 Restores the cursor to its default style. This API is a global API.
 

@@ -17,7 +17,7 @@ Parameters
 
 | Name       | Type                               | Mandatory | Description                                                    |
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array\<T\>                                   | Yes      | Data source, which is an array of the **Array<T>** type. You can determine the data types. |
+| arr           | Array\<T\>                                   | Yes      | Data source, which is an array of the **Array\<T>** type. You can determine the data types. |
 ### Repeat Attributes
 
 ```ts

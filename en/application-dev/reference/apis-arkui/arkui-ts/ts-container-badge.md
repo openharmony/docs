@@ -1,6 +1,6 @@
 # Badge
 
-The **\<Badge>** component is a container that can be attached to another component for tagging.
+The **Badge** component is a container that can be attached to another component for tagging.
 
 >  **NOTE**
 >
@@ -56,7 +56,7 @@ Creates a badge based on the given string.
 
 ## BadgeParam
 
-Provides basic parameters for creating a **\<Badge>** component.
+Provides basic parameters for creating a **Badge** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

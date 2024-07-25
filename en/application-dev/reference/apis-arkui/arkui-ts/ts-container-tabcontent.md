@@ -1,6 +1,6 @@
 # TabContent
 
-The **\<TabContent>** component is used only in the **\<Tabs>** component. It corresponds to the content view of a switched tab page.
+The **\<TabContent>** component is used only in the **Tabs** component. It corresponds to the content view of a switched tab page.
 
 >  **NOTE**
 >
@@ -65,8 +65,8 @@ Sets the content displayed on the tab bar. The bottom tab style does not include
 
 >  **NOTE**
 >
->  - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
->  - The **\<TabContent>** component does not support setting of the universal height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+>  - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **Tabs** component.
+>  - The **\<TabContent>** component does not support setting of the universal height attribute. Its height is determined by the height of the parent **Tabs** component and the **\<TabBar>** component.
 >  - If the **vertical** attribute is **false**, the width and height descriptions are swapped in the preceding two restrictions.
 >  - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
 

@@ -1,6 +1,6 @@
 # Freezing a Custom Component
 
-When a custom component is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Watch decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, **LazyForEach**, and **\<Navigation>**.
+When a custom component is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Watch decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, **LazyForEach**, and **Navigation**.
 
 
 > **NOTE**
@@ -91,7 +91,7 @@ In the preceding example:
 
 ### \<TabContent>
 
-- You can freeze invisible **\<TabContent>** components in the **\<Tabs>** container so that they do not trigger UI re-rendering.
+- You can freeze invisible **\<TabContent>** components in the **Tabs** container so that they do not trigger UI re-rendering.
 
 - During initial rendering, only the **\<TabContent>** component that is being displayed is created. All **\<TabContent>** components are created only after all of them have been switched to.
 

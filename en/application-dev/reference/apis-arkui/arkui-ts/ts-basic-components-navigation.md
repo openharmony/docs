@@ -1,6 +1,6 @@
 # Navigation
 
-The **\<Navigation>** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **\<Navigation>**) and non-home page content (child components of [\<NavDestination>](ts-basic-components-navdestination.md)) through routing.
+The **Navigation** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **Navigation**) and non-home page content (child components of [NavDestination](ts-basic-components-navdestination.md)) through routing.
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ The **\<Navigation>** component is the root view container for navigation. It ty
 
 Supported
 
-Since API version 9, it is recommended that this component be used together with the [\<NavRouter>](ts-basic-components-navrouter.md) component.
+Since API version 9, it is recommended that this component be used together with the [NavRouter](ts-basic-components-navrouter.md) component.
 
 Since API version 10, it is recommended that this component be used together with the [\<NavPathStack>](#navpathstack10) component and **navDestination** attribute for page routing.
 
@@ -27,7 +27,7 @@ Navigation()
 
 Navigation(pathInfos: NavPathStack)
 
-Binds a navigation stack to the **\<Navigation>** component.
+Binds a navigation stack to the **Navigation** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -193,7 +193,7 @@ Specifies whether to hide the back button in the title bar. The back button is a
 
 navBarWidth(value: Length)
 
-Sets the width of the navigation bar. This attribute takes effect only when the **\<Navigation>** component is split.
+Sets the width of the navigation bar. This attribute takes effect only when the **Navigation** component is split.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -209,7 +209,7 @@ Sets the width of the navigation bar. This attribute takes effect only when the 
 
 navBarPosition(value: NavBarPosition)
 
-Sets the position of the navigation bar. This attribute takes effect only when the **\<Navigation>** component is split.
+Sets the position of the navigation bar. This attribute takes effect only when the **Navigation** component is split.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -275,7 +275,7 @@ From API version 9 to API version 10, this attribute takes effect only in dual-c
 
 navDestination(builder: (name: string, param: unknown) => void)
 
-Builder for a **\<NavDestination>** component. The **builder** function is used, with the **name** and **param** parameters passed in. The **builder** can have only one root node. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.
+Builder for a **NavDestination** component. The **builder** function is used, with the **name** and **param** parameters passed in. The **builder** can have only one root node. In the builder, a layer of custom components can be included outside the **NavDestination** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -285,7 +285,7 @@ Builder for a **\<NavDestination>** component. The **builder** function is used,
 
 | Name | Type                                  | Mandatory| Description                    |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | Yes  | Builder for a **\<NavDestination>** component.|
+| builder | (name: string, param: unknown) => void | Yes  | Builder for a **NavDestination** component.|
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -325,11 +325,11 @@ For details about the priority rules, see **NOTE** below.
 
 >  **NOTE**
 >
->  1. If only **navBarWidth** is set, no divider in the **\<Navigation>** component can be dragged.
+>  1. If only **navBarWidth** is set, no divider in the **Navigation** component can be dragged.
 >
 >  2. **navBarWidthRange** specifies the range within which the divider can be dragged. If it is not set, the default value is used. The dragging of the divider is subject to both **navBarWidthRange** and **minContentWidth**.
 >
->  3. If the size of the **\<Navigation>** component decreases, it carries out the following steps in sequence:<br>a. Scale down the content area. If **minContentWidth** is not set, the content area can be scaled down to 0. Otherwise, the content area can be scaled down to as small as the value specified by **minContentWidth**.b. Scale down the navigation bar until its width reaches the value defined by **navBarRange**.c. Clip the displayed content.
+>  3. If the size of the **Navigation** component decreases, it carries out the following steps in sequence:<br>a. Scale down the content area. If **minContentWidth** is not set, the content area can be scaled down to 0. Otherwise, the content area can be scaled down to as small as the value specified by **minContentWidth**.b. Scale down the navigation bar until its width reaches the value defined by **navBarRange**.c. Clip the displayed content.
 
 ## Events
 
@@ -369,7 +369,7 @@ Called when the navigation bar visibility status changes.
 
 onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
 
-Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.
+Called when the **Navigation** component is displayed for the first time or its display mode switches between single-column and dual-column.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -887,7 +887,7 @@ Obtains the stack size.
 
 disableAnimation(value: boolean): void
 
-Disables or enables the transition animation in the **\<Navigation>** component.
+Disables or enables the transition animation in the **Navigation** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -901,7 +901,7 @@ Disables or enables the transition animation in the **\<Navigation>** component.
 
 getParent(): NavPathStack | null
 
-Obtains the parent navigation path stack.<br>When a **\<Navigation>** component is nested (directly or indirectly) insider another **\<Navigation>** component, the internal one can obtain the navigation path stack of the external one.
+Obtains the parent navigation path stack.<br>When a **Navigation** component is nested (directly or indirectly) insider another **Navigation** component, the internal one can obtain the navigation path stack of the external one.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -909,7 +909,7 @@ Obtains the parent navigation path stack.<br>When a **\<Navigation>** component 
 
 | Type    | Description    |
 | ------ | ------ |
-| [NavPathStack](#navpathstack10) \| null | Navigation path stack of the external **\<Navigation>** component inside which the current **\<Navigation>** component is nested. If no nesting is involved, **null** is returned.|
+| [NavPathStack](#navpathstack10) \| null | Navigation path stack of the external **Navigation** component inside which the current **Navigation** component is nested. If no nesting is involved, **null** is returned.|
 
 ### setInterception<sup>12+</sup>
 
@@ -966,7 +966,7 @@ Provides the destination information.
 |-------|-------|------|-------|
 | name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 | index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -1008,7 +1008,7 @@ Describes the object to be intercepted during navigation redirection.
 | ---- | ----- | ----- | ----   |
 | willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11),<br> isAnimated: boolean) =&gt;void | No| Interception before page redirection, allowing for stack operations. The setting takes effect in the current redirection.<br> **from**: information about the top page in the navigation stack before page redirection. The value **navBar** indicates that the top page is the home page.<br> **to**: information about the top page in the navigation stack after page redirection. The value **navBar** indicates that the top page is the home page.<br> **operation**: current page redirection type.<br> **isAnimated**: whether to support transition animation.|
 | didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11),<br> isAnimated: boolean) =&gt;void | No| Callback after page redirection. The setting takes effect in the next redirection.<br> **from**: information about the top page in the navigation stack before page redirection. The value **navBar** indicates that the top page is the home page.<br> **to**: information about the top page in the navigation stack after page redirection. The value **navBar** indicates that the top page is the home page.<br> **operation**: current page redirection type.<br> **isAnimated**: whether to support transition animation.| No| Callback after page redirection.|
-| modeChange | (mode: [NavigationMode](#navigationmode9)) =&gt;void | No| Callback invoked when the display mode of the **\<Navigation>** component switches between single-column and dual-column.|
+| modeChange | (mode: [NavigationMode](#navigationmode9)) =&gt;void | No| Callback invoked when the display mode of the **Navigation** component switches between single-column and dual-column.|
 
 ## NavigationMenuItem
 
@@ -1488,7 +1488,7 @@ export struct PageTwo {
 
 ### Example 3
 
-This example demonstrates how to set a custom transition animation for each subpage in **\<NavDestination>**.
+This example demonstrates how to set a custom transition animation for each subpage in **NavDestination**.
 
 ```ts
 // Index.ets

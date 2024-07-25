@@ -6,7 +6,7 @@ You can customize the page entrance and exit animations in the **pageTransition*
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> To achieve a better transition effect, you are advised to use the [\<Navigation>](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
+> To achieve a better transition effect, you are advised to use the [Navigation](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
 
 ## pageTransition
 

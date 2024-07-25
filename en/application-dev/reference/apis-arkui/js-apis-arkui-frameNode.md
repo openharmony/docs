@@ -1,6 +1,6 @@
 # FrameNode
 
-**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the FrameNode) to a [\<NodeContainer>](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
+**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the FrameNode) to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
 
 > **NOTE**
 >
@@ -566,7 +566,7 @@ Obtains the width and height set by the user.
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | Width and height set by the user. |
+| [SizeT](./js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | Width and height set by the user. |
 
 **Example**
 
@@ -616,7 +616,7 @@ See [Node Operation Example](#node-operation-example).
 
 getNodeType(): string
 
-Obtains the type of the node. Built-in component types are named after the components themselves, for example, the type of a **\<Button>** component is Button. For custom components, if they have rendering content, their type is __Common__.
+Obtains the type of the node. Built-in component types are named after the components themselves, for example, the type of a **Button** component is Button. For custom components, if they have rendering content, their type is __Common__.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1363,7 +1363,7 @@ Represents a FrameNode of the Text type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;TextInterface, TextAttribute&gt; | FrameNode of the Text type.<br>**NOTE**<br> **TextInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Text>** component.<br> **TextAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Text>** component. |
+| TypedFrameNode&lt;TextInterface, TextAttribute&gt; | FrameNode of the Text type.<br>**NOTE**<br> **TextInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Text** component.<br> **TextAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Text** component. |
 
 ### createNode('Text')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Text'): Text
@@ -1398,7 +1398,7 @@ Represents a FrameNode of the Column type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | FrameNode of the Column type.<br>**NOTE**<br> **ColumnInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Column>** component.<br> **ColumnAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Column>** component. |
+| TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | FrameNode of the Column type.<br>**NOTE**<br> **ColumnInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Column** component.<br> **ColumnAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Column** component. |
 
 ### createNode('Column')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Column'): Column
@@ -1432,7 +1432,7 @@ Represents a FrameNode of the Row type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RowInterface, RowAttribute&gt; | FrameNode of the Row type.<br>**NOTE**<br> **RowInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Row>** component.<br> **RowAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Row>** component. |
+| TypedFrameNode&lt;RowInterface, RowAttribute&gt; | FrameNode of the Row type.<br>**NOTE**<br> **RowInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Row** component.<br> **RowAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Row** component. |
 
 ### createNode('Row')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Row'): Row
@@ -1534,7 +1534,7 @@ Represents a FrameNode of the GridCol type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | FrameNode of the GridCol type.<br>**NOTE**<br> **GridColInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<GridCol>** component.<br> **GridColAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<GridCol>** component. |
+| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | FrameNode of the GridCol type.<br>**NOTE**<br> **GridColInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **GridCol** component.<br> **GridColAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **GridCol** component. |
 
 ### createNode('GridCol')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridCol'): GridCol
@@ -1568,7 +1568,7 @@ Represents a FrameNode of the Flex type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | FrameNode of the Flex type.<br>**NOTE**<br> **FlexInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Flex>** component.<br> **FlexInterface** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Flex>** component. |
+| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | FrameNode of the Flex type.<br>**NOTE**<br> **FlexInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Flex** component.<br> **FlexInterface** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Flex** component. |
 
 ### createNode('Flex')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Flex'): Flex
@@ -1604,7 +1604,7 @@ Represents a FrameNode of the Swiper type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | FrameNode of the Swiper type.<br>**NOTE**<br> **SwiperInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Swiper>** component.<br> **SwiperAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Swiper>** component. |
+| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | FrameNode of the Swiper type.<br>**NOTE**<br> **SwiperInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Swiper** component.<br> **SwiperAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Swiper** component. |
 
 ### createNode('Swiper')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Swiper'): Swiper
@@ -1672,7 +1672,7 @@ Represents a FrameNode of the Scroll type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | FrameNode of the Scroll type.<br>**NOTE**<br> **ScrollInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Scroll>** component.<br> **ScrollAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Scroll>** component. |
+| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | FrameNode of the Scroll type.<br>**NOTE**<br> **ScrollInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Scroll** component.<br> **ScrollAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Scroll** component. |
 
 ### createNode('Scroll')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Scroll'): Scroll
@@ -1706,7 +1706,7 @@ Represents a FrameNode of the RelativeContainer type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | FrameNode of the RelativeContainer type.<br>**NOTE**<br> **RelativeContainerInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<RelativeContainer>** component.<br> **RelativeContainerAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<RelativeContainer>** component. |
+| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | FrameNode of the RelativeContainer type.<br>**NOTE**<br> **RelativeContainerInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **RelativeContainer** component.<br> **RelativeContainerAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **RelativeContainer** component. |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
@@ -1740,7 +1740,7 @@ Represents a FrameNode of the Divider type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | FrameNode of the Divider type.<br>**NOTE**<br> **DividerInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Divider>** component.<br> **DividerAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Divider>** component. |
+| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | FrameNode of the Divider type.<br>**NOTE**<br> **DividerInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Divider** component.<br> **DividerAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Divider** component. |
 
 ### createNode('Divider')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Divider'): Divider
@@ -1842,7 +1842,7 @@ Represents a FrameNode of the Blank type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | FrameNode of the Blank type.<br>**NOTE**<br> **BlankInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<Blank>** component.<br> **BlankAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<Blank>** component. |
+| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | FrameNode of the Blank type.<br>**NOTE**<br> **BlankInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **Blank** component.<br> **BlankAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **Blank** component. |
 
 ### createNode('Blank')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Blank'): Blank;

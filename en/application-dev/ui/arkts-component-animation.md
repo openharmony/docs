@@ -1,20 +1,20 @@
 # Component Animation
 
 
-In addition to universal attribute animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [\<List>](../reference/arkui-ts/ts-container-list.md) component and the click effect of the [\<Button>](../reference/arkui-ts/ts-basic-components-button.md#button) component. Based on these default animation effects, you can apply custom animations to the child components through the attribute animation and transition animation APIs.
+In addition to universal attribute animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component and the click effect of the [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#button) component. Based on these default animation effects, you can apply custom animations to the child components through the attribute animation and transition animation APIs.
 
 
 ## Using Default Component Animation
 
 The default animation of a component exhibits the following features:
 
-- Indicate the current state of the component. For example, after the user clicks a **\<Button>** component, the component turns gray, indicating that it is selected.
+- Indicate the current state of the component. For example, after the user clicks a **Button** component, the component turns gray, indicating that it is selected.
 
 - Make UI interactions more intuitive and pleasurable.
 
 - Reduce development workload, as the APIs are readily available.
 
-For more effects, see [Component Overview](../reference/arkui-ts/ts-components-summary.md).
+For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-components-summary.md).
 
 Below is the sample code and effect:
 
@@ -43,7 +43,7 @@ struct ComponentDemo {
 
 ## Customizing Component Animation
 
-Some components allow for animation customization for their child components through the [attribute animation](arkts-attribute-animation-overview.md) and [transition animation](arkts-transition-overview.md) APIs. For example, you can customize the swipe animation for child components of [\<Scroll>](../reference/arkui-ts/ts-container-scroll.md).
+Some components allow for animation customization for their child components through the [attribute animation](arkts-attribute-animation-overview.md) and [transition animation](arkts-transition-overview.md) APIs. For example, you can customize the swipe animation for child components of [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md).
 
 - For a scroll or click gesture, you can implement various effects by changing affine attributes of the child component.
 
@@ -51,7 +51,7 @@ Some components allow for animation customization for their child components thr
 
 - Fine-tune the final scrolled-to position in the **onScrollStop** callback or gesture end callback.
 
-The following is an example of customizing the swipe animation for the **\<Scroll>** component:
+The following is an example of customizing the swipe animation for the **Scroll** component:
 
 
 ```ts
@@ -246,7 +246,7 @@ export struct TaskSwitchMainPage {
         .height('100%')
         .backgroundColor(0xF0F0F0)
 
-      // <Scroll> component
+      // Scroll component
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
           ForEach(taskDataArr, (item:TaskData, index) => {

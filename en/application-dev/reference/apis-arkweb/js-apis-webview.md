@@ -14454,7 +14454,7 @@ Contains information about media on web pages. The application may create, based
 
 | Name          | Type                                                         | Read Only | Mandatory | Description                                                  |
 | ------------- | ------------------------------------------------------------ | --------- | --------- | ------------------------------------------------------------ |
-| embedID       | string                                                       | No        | Yes       | ID of <video> or <audio> on a web page.                      |
+| embedID       | string                                                       | No        | Yes       | ID of **\<video>** or **\<audio>** on a web page.                      |
 | mediaType     | [MediaType](#mediatype12)                                    | No        | Yes       | Media type.                                                  |
 | mediaSrcList  | [MediaSourceInfo](#mediasourceinfo12)[]                      | No        | Yes       | Source of the media. There may be multiple sources. The application needs to select a supported source to play. |
 | surfaceInfo   | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | No        | Yes       | Surface information used for rendering at the same layer.    |
@@ -14462,7 +14462,7 @@ Contains information about media on web pages. The application may create, based
 | controlList   | string[]                                                     | No        | Yes       | Value of the controlslist attribute in <video> or <audio>.   |
 | muted         | boolean                                                      | No        | Yes       | Indicates whether to mute the playback.                      |
 | posterUrl     | string                                                       | No        | Yes       | URL of a poster.                                             |
-| preload       | [Preload](#preload12)                                        | No        | Yes       | Indicates whether preloading is required.                    |
+| preload       | [Preload](#preload12)                                        | No        | Yes       | Whether preloading is required.                    |
 | headers       | Record\<string, string\>                                     | No        | Yes       | HTTP header that needs to be carried when the player requests media resources. |
 | attributes    | Record\<string, string\>                                     | No        | Yes       | Attribute in the <video> or <audio> tag.                     |
 

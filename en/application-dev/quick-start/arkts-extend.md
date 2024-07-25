@@ -120,7 +120,7 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 
 ## Use Scenarios
 
-The following example declares three **\<Text>** components. The **fontStyle**, **fontWeight**, and **backgroundColor** styles are set for each **\<Text>** component.
+The following example declares three **Text** components. The **fontStyle**, **fontWeight**, and **backgroundColor** styles are set for each **Text** component.
 
 
 ```ts

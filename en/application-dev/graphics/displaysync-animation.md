@@ -3,7 +3,7 @@
 During application development, you can use the optional parameter [ExpectedFrameRateRange](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11) to set an expected frame rate range for a [property animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md) or an [explicit animation](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md).
 
 ## Requesting a Frame Rate for a Property Animation
-The code snippet below defines a property animation for the **\<Text>** component and sets the frame rate to 60.
+The code snippet below defines a property animation for the **Text** component and sets the frame rate to 60.
 
    ```ts
     Text()
@@ -19,7 +19,7 @@ The code snippet below defines a property animation for the **\<Text>** componen
    ```
 
 ## Requesting a Frame Rate for an Explicit Animation
-The code snippet below defines an explicit animation for the **\<Button>** component and sets the frame rate to 30.
+The code snippet below defines an explicit animation for the **Button** component and sets the frame rate to 30.
 
    ```ts
    Button()

@@ -1,6 +1,6 @@
 # Tabs
 
-The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
+The **Tabs** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
 >  **NOTE**
 >
@@ -30,13 +30,13 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | [BarPosition](#barposition)| No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
+| barPosition | [BarPosition](#barposition)| No   | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**  |
 | index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). |
 | controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
 
-Enumerates the positions of the **\<Tabs>** component.
+Enumerates the positions of the **Tabs** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -105,7 +105,7 @@ Sets the tab bar layout mode.
 
 barWidth(value: Length)
 
-Sets the width of the tab bar. A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value.
+Sets the width of the tab bar. A value less than 0 or greater than the width of the **Tabs** component evaluates to the default value.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -115,13 +115,13 @@ Sets the width of the tab bar. A value less than 0 or greater than the width of 
 
 | Name | Type                                     | Mandatory | Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component. |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is the width of the **Tabs** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **Tabs** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **Tabs** component. |
 
 ### barHeight
 
 barHeight(value: Length)
 
-Sets the height of the tab bar. A value less than 0 or greater than the height of the **\<Tabs>** component evaluates to the default value.
+Sets the height of the tab bar. A value less than 0 or greater than the height of the **Tabs** component evaluates to the default value.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -131,7 +131,7 @@ Sets the height of the tab bar. A value less than 0 or greater than the height o
 
 | Name | Type                                     | Mandatory | Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is 56 vp in versions earlier than API version 12 and 52 vp since API version 12. |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **Tabs** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **Tabs** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **Tabs** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is 56 vp in versions earlier than API version 12 and 52 vp since API version 12. |
 
 ### animationDuration
 
@@ -424,7 +424,7 @@ Triggered when the tab switching animation starts. The **index** parameter indic
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
 | targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
-| event       | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **\<Tabs>** along the main axis, and the hands-off velocity. |
+| event       | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity. |
 
 ### onAnimationEnd<sup>11+</sup>
 
@@ -441,7 +441,7 @@ Triggered when the tab switching animation ends. This event is triggered when th
 | Name | Type                                                  | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. |
+| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis. |
 
 ### onGestureSwipe<sup>11+</sup>
 
@@ -458,7 +458,7 @@ Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 | Name | Type                                                  | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. |
+| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis. |
 
 ### customContentTransition<sup>11+</sup>
 
@@ -468,11 +468,11 @@ Sets the custom tab switching animation.
 
 Instructions:
 
-1. When the custom tab switching animation is used, the default switching animation of the **\<Tabs>** component is disabled, and tabs cannot be switched through swiping.
+1. When the custom tab switching animation is used, the default switching animation of the **Tabs** component is disabled, and tabs cannot be switched through swiping.
 2. The value **undefined** means not to use the custom tab switching animation, in which case the default switching animation is used.
 3. The custom tab switching animation cannot be interrupted.
 4. Currently, the custom tab switching animation can be triggered only by clicking a tab or by calling the **TabsController.changeIndex()** API.
-5. When the custom tab switching animation is used, the **\<Tabs>** component supports all events except **onGestureSwipe**.
+5. When the custom tab switching animation is used, the **Tabs** component supports all events except **onGestureSwipe**.
 6. Notes about the **onChange** and **onAnimationEnd** events: If the second custom animation is triggered during the execution of the first custom animation, the **onChange** and **onAnimationEnd** events of the first custom animation will be triggered when the second custom animation starts.
 7. When the custom animation is used, the stack layout is used for pages involved in the animation. If the **zIndex** attribute is not set for related pages, the **zIndex** values of all pages are the same. In this case, the pages are rendered in the order in which they are added to the component tree (that is, the sequence of page indexes). In light of this, to control the rendering levels of pages, set the **zIndex** attribute of the pages.
 
@@ -533,7 +533,7 @@ Specifically, this event is triggered in the following cases:
 
 ## TabsController
 
-Defines a tab controller, which is used to control switching of tabs. One **TabsController** cannot control multiple **\<Tabs>** components.
+Defines a tab controller, which is used to control switching of tabs. One **TabsController** cannot control multiple **Tabs** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -2,7 +2,7 @@
 
 The responsive grid layout provides rules for layout design and resolves issues of dynamic layout across devices with different sizes, thereby ensuring layout consistency across layouts on different devices.
 
-The **\<GridRow>** component is used in a grid layout, together with its child component [\<GridCol>](ts-container-gridcol.md).
+The **\<GridRow>** component is used in a grid layout, together with its child component [GridCol](ts-container-gridcol.md).
 
 >  **NOTE**
 >
@@ -11,7 +11,7 @@ The **\<GridRow>** component is used in a grid layout, together with its child c
 
 ## Child Components
 
-This component can contain the **\<GridCol>** child component.
+This component can contain the **GridCol** child component.
 
 
 ## APIs
@@ -60,7 +60,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **NOTE**
 
-In the **\<GridRow>** component, you can define the value range of [breakpoints](../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
+In the **\<GridRow>** component, you can define the value range of [breakpoints](../../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
 |Breakpoint|Value Range|
 |---|-----------|
 |xs |[0, n0)    |
@@ -141,7 +141,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                      | Type                           | Description                                              |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| alignItems<sup>10+</sup>             | ItemAlign | Alignment mode of the **\<GridCol>** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**.<br>The alignment mode of the **\<GridCol>** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| alignItems<sup>10+</sup>             | ItemAlign | Alignment mode of the **GridCol** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**.<br>The alignment mode of the **GridCol** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 
 ## Events

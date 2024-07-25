@@ -7,19 +7,19 @@ Modal transition is a type of transition achieved by a modal – a view that app
 **Table 1** Modal transition APIs
 | API                                      | Description               | Usage                                    |
 | ---------------------------------------- | ----------------- | ---------------------------------------- |
-| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | Binds a modal to the component.       | Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
-| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | Binds a sheet to the component.         | Use this API to display a custom sheet, for example, a sharing confirmation dialog box.                         |
-| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
-| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
-| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
+| [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | Binds a modal to the component.       | Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
+| [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | Binds a sheet to the component.         | Use this API to display a custom sheet, for example, a sharing confirmation dialog box.                         |
+| [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
+| [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
+| [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
 | if                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
 
 
 ## Creating Modal Transition with bindContentCover
 
-You can bind a full-screen modal to a component through the [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component is inserted or deleted.
+You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component is inserted or deleted.
 
-1. Define [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md).
+1. Define [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md).
 
 2. Define the modal view.
 
@@ -142,7 +142,7 @@ struct BindContentCoverDemo {
 
 ## Creating Sheet Transition with bindSheet
 
-You can bind a sheet to a component through the [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) attribute. You can also set the sheet to the preset or custom height for when the component is inserted. The process of creating a sheet transition is basically the same as that of creating a modal transition.
+You can bind a sheet to a component through the [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) attribute. You can also set the sheet to the preset or custom height for when the component is inserted. The process of creating a sheet transition is basically the same as that of creating a modal transition.
 
 Below is the complete sample code and effect.
 
@@ -220,7 +220,7 @@ struct BindSheetDemo {
 
 ## Creating a Menu with bindMenu
 
-You can bind a menu to component through the [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
+You can bind a menu to component through the [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
 
 
 ```ts
@@ -268,7 +268,7 @@ struct BindMenuDemo {
 
 ## Creating a Context Menu with bindContextMenu
 
-You can bind a context menu to component through the [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by long-pressing or right-clicking.  
+You can bind a context menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by long-pressing or right-clicking.  
 
 Below is the complete sample code and effect.
 
@@ -328,7 +328,7 @@ struct BindContextMenuDemo {
 
 ## Creating a Popup with bindPopUp
 
-You can bind a popup to a component through the [bindpopup](../reference/arkui-ts/ts-universal-attributes-popup.md) attribute, specifying its content, interaction logic, and display status.
+You can bind a popup to a component through the [bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md) attribute, specifying its content, interaction logic, and display status.
 
 Below is the complete sample code and effect.
 

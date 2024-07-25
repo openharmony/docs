@@ -1,6 +1,6 @@
 # TextArea
 
-The **\<TextArea>** component provides multi-line text input and automatically wraps text so that each line does not have more than the width of the component.
+The **TextArea** component provides multi-line text input and automatically wraps text so that each line does not have more than the width of the component.
 
 If the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.
 
@@ -24,7 +24,7 @@ TextArea(value?: TextAreaOptions)
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-| value | [TextAreaOptions](#textareaoptions) | No | Parameters of the **\<TextArea>** component.|
+| value | [TextAreaOptions](#textareaoptions) | No | Parameters of the **TextArea** component.|
 
 ## TextAreaOptions
 
@@ -513,7 +513,7 @@ If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **Tex
 | value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode when the text is too long.<br>Default value: **TextOverflow.Clip**          |
 
 >  **NOTE**    
->   The **\<TextArea>** component does not support the **TextOverflow.MARQUEE** mode. If this attribute is set to **TextOverflow.MARQUEE**, **TextOverflow.Clip** is used instead.
+>   The **TextArea** component does not support the **TextOverflow.MARQUEE** mode. If this attribute is set to **TextOverflow.MARQUEE**, **TextOverflow.Clip** is used instead.
 
 ### minFontSize<sup>12+</sup>
 
@@ -606,7 +606,7 @@ Sets the line break rule. This attribute takes effect when **wordBreak** is not 
 >
 >  The default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: '8vp',<br> right: '16vp',<br> bottom: '8vp',<br> left: '16vp'<br> }
 >
->  Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
+>  Since API version 11, **.width('auto')** can be set for the **TextArea** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
 
 ## Events
 
@@ -1058,7 +1058,7 @@ struct TextInputExample {
 
 
 ### Example 6
-This example shows how to set the **wordBreak** attribute for the **\<TextArea>** component.
+This example shows how to set the **wordBreak** attribute for the **TextArea** component.
 
 ```ts
 // xxx.ets

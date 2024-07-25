@@ -8,10 +8,10 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 
 | API                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| [backdropBlur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | Applies a background blur effect to the component. The input parameter is the blur radius.|
-| [blur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#blur) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
-| [backgroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
-| [foregroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
+| [backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | Applies a background blur effect to the component. The input parameter is the blur radius.|
+| [blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
+| [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
+| [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
 
 
 ## Applying Background Blur with backdropBlur

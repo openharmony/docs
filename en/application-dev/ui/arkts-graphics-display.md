@@ -1,10 +1,10 @@
 # Image Display (Image)
 
 
-More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
+More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **Image** component comes in handy. The **Image** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
 
 
-To use the **\<Image>** component, call the following API:
+To use the **Image** component, call the following API:
 
 ```ts
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
@@ -16,7 +16,7 @@ This API obtains a local or online image from the data source specified by **src
 
 ## Loading Image Resources
 
-The **\<Image>** component supports two types of images: archived and pixel map.
+The **Image** component supports two types of images: archived and pixel map.
 
 
 ### Archived Type Data Sources
@@ -27,7 +27,7 @@ Data sources of the archived type can be classified into local resources, online
 
   To load local images, create an **ets** folder and place the local images in any position in the folder.
 
-  Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
+  Then, in the **Image** component, set **src** to the local image path, with the root directory being the **ets** folder.
 
   ```ts
   Image('images/view.jpg')
@@ -36,9 +36,9 @@ Data sources of the archived type can be classified into local resources, online
 
 - Online resources
 
-  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
+  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **Image** component, set **src** to the URL of the online image.
 
-  If an online image has been loaded before, the **\<Image>** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7), [setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7), and [setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7).
+  If an online image has been loaded before, the **Image** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7), [setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7), and [setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7).
 
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
@@ -139,7 +139,7 @@ Data sources of the archived type can be classified into local resources, online
 
 ### Pixel Map
 
-A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
+A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **Image** component.
 
 1. Create a **PixelMap** state variable.
 
@@ -226,7 +226,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
 
 ## Displaying Vector Images
 
-The **\<Image>** component can display vector images in SVG format. The supported SVG labels are **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
+The **Image** component can display vector images in SVG format. The supported SVG labels are **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
 
 You can use the **fillColor** attribute to change the fill color of an SVG image.
 
@@ -248,7 +248,7 @@ Image($r('app.media.cloud'))
 
 ## Setting Attributes
 
-Setting attributes for the **\<Image>** component can spruce up the image with custom effects. The following are usage examples of common attributes. For details about all attributes, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
+Setting attributes for the **Image** component can spruce up the image with custom effects. The following are usage examples of common attributes. For details about all attributes, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
 
 
 ### Setting the Image Scale Mode
@@ -548,7 +548,7 @@ Image($r('app.media.icon'))
 
 ## Adding Events
 
-By binding the **onComplete** event to the **\<Image>** component, you can obtain necessary information about the image after the image is successfully loaded. You can also bind the **onError** event to obtain error information when the image fails to be loaded.
+By binding the **onComplete** event to the **Image** component, you can obtain necessary information about the image after the image is successfully loaded. You can also bind the **onError** event to obtain error information when the image fails to be loaded.
 
 
 ```ts

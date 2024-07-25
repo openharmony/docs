@@ -90,7 +90,7 @@ struct AttrAnimationExample1 {
 }
 ```
 
-For more details, see [Property Animation](../reference/arkui-ts/ts-animatorproperty.md).
+For more details, see [Property Animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md).
 
 ## Using System-Provided Explicit Animation APIs
 
@@ -139,4 +139,4 @@ struct AnimateToExample2 {
 }
 ```
 
-For more details, see [Explicit Animation](../reference/arkui-ts/ts-explicit-animation.md).
+For more details, see [Explicit Animation](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md).

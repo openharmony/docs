@@ -1,13 +1,13 @@
 # Marquee
 
-The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
+The **Marquee** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **Marquee** component.
 
 
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  To ensure that scrolling frame rates are not affected, it is recommended that the number of **\<Marquee>** components in a scroll container does not exceed four, or alternatively, use the [\<Text>](ts-basic-components-text.md) component's [TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow) as a substitute.
+>  To ensure that scrolling frame rates are not affected, it is recommended that the number of **Marquee** components in a scroll container does not exceed four, or alternatively, use the [Text](ts-basic-components-text.md) component's [TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow) as a substitute.
 
 ## Child Components
 

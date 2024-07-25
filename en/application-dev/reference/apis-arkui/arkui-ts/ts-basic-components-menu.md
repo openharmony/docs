@@ -1,12 +1,12 @@
 # Menu
 
-The **\<Menu>** component is a vertical list of items presented to the user.
+The **Menu** component is a vertical list of items presented to the user.
 
 > **NOTE**
 >
 > - This component is supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The **\<Menu>** component must be used together with the [bindMenu](ts-universal-attributes-menu.md#bindmenu) or [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8) method. It does not work when used alone.
+> - The **Menu** component must be used together with the [bindMenu](ts-universal-attributes-menu.md#bindmenu) or [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8) method. It does not work when used alone.
 
 ## Child Components
 
@@ -23,9 +23,9 @@ Creates a fixed container for a menu. This API does not have any parameters.
 >
 > During the layout, the width of each menu item is expected to be the same. If a child component has its width set, the [size calculation rule](ts-universal-attributes-size.md#constraintsize) prevails.
 >
-> If the width is not set, the **\<Menu>** component sets the default width of two columns for the **\<MenuItem>** and **\<MenuItemGroup>** child components. If a menu item's content area is wider than two columns, the **\<Menu>** component automatically expands the menu item content area.
+> If the width is not set, the **Menu** component sets the default width of two columns for the **MenuItem** and **MenuItemGroup** child components. If a menu item's content area is wider than two columns, the **Menu** component automatically expands the menu item content area.
 >
-> When the width is set, the **\<Menu>** component sets the **\<MenuItem>** and **\<MenuItemGroup>** child components to the fixed width (set width minus the padding).
+> When the width is set, the **Menu** component sets the **MenuItem** and **MenuItemGroup** child components to the fixed width (set width minus the padding).
 
 ## Attributes
 

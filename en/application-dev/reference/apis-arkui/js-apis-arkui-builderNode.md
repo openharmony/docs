@@ -91,7 +91,7 @@ Obtains the FrameNode in the BuilderNode. The FrameNode is generated only after 
 
 **Example 1**
 
-In this example, the BuilderNode is returned as the root node of the **\<NodeContainer>**.
+In this example, the BuilderNode is returned as the root node of the **NodeContainer**.
 
 ```ts
 import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"

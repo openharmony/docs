@@ -253,4 +253,4 @@ struct DatePickerDialogExample {
 
 > **NOTE** 
 >
-> To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [\<DatePicker>](ts-basic-components-datepicker.md) component.
+> To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [v](ts-basic-components-datepicker.md) component.
