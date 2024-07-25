@@ -330,6 +330,39 @@ AlertDialog、promptAction.showDialog。
 
 默认行为变更，无需适配。
 
+## cl.arkui.9 SubMenu避让底部导航条距离变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Menu避让能贴近底部导航条，而SubMenu避让位置无法贴近底部导航条，视觉效果不好
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+| 变更前：SubMenu避让底部导航条之后避让了一个固定高度的padding | 变更后：SubMenu仅避让底部导航条，不额外添加固定高度的padding |
+|---------|---------|
+|  ![变更前有间距](figures/submenu-padding-bottom-before.jpg)       |  ![变更后删除间距](figures/submenu-padding-bottom-after.jpg)    
+
+**起始API Level**
+
+不涉及API变更
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
 
 ## @ohos.deviceStatus.dragInteraction.d.ts 文件接口权限变更
 
@@ -357,5 +390,9 @@ AlertDialog、promptAction.showDialog。
 
 | 接口声明 | 变更前 | 变更后 |
 | ------------------------------------------------------------ | --------- | ------ |
-| on(type: 'drag', callback: Callback\<DragState>): void       | 不抛出202错误码 | 抛出202错误码INJECT_INPUT_EVENT权限 |
-| off(type: 'drag', callback?: Callback\<DragState>): void     | 不抛出202错误码 | 抛出202错误码INJECT_INPUT_EVENT权限 |
+| on(type: 'drag', callback: Callback\<DragState>): void       | 不抛出202错误码 | 抛出202错误码 |
+| off(type: 'drag', callback?: Callback\<DragState>): void     | 不抛出202错误码 | 抛出202错误码 |
+
+**适配指导**
+
+默认行为变更，无需适配。
