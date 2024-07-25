@@ -582,6 +582,8 @@ enablePreviewText(enable: boolean)
 
 setTextSelection的选中文字时的配置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
 | menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
