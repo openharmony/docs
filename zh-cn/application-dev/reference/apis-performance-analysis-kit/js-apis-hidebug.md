@@ -911,3 +911,24 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 | ark.gc.gc-bytes-freed        | 当前线程GC成功回收的内存，以B为单位。      |
 | ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。           |
 
+## hidebug.isDebugState<sup>13+</sup>
+
+isDebugState(): boolean
+
+获取应用进程被调试状态，如果应用进程的ark层或者native层处于被调试状态，则返回true，否则返回false。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| boolean | 应用进程被调试状态|
+
+**示例**
+
+```ts
+import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+
+hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+```
