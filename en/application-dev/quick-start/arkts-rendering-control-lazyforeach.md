@@ -2480,7 +2480,7 @@ struct MyComponent {
 ```
 When List is scrolled to the bottom, screen flicks like the following:   
 ![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)  
-We replace onDataReloaded by onDatasetChange to fix this issue. This approach has the added benifit of improving load performance.
+Replacing onDataReloaded by onDatasetChange can not only fix this issue but also improves load performance.
 ```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
