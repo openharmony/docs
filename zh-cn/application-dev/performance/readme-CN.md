@@ -7,8 +7,8 @@
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
     - [多线程能力场景化](multi_thread_capability.md)
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
-    - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
-	  - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [避免开发过程中的冗余操作](avoiding-redundant-operations.md) 
+    - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md) 
     - [使用AOT进行性能优化](performance-optimization-using-aot.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
