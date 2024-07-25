@@ -50,7 +50,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
 
 > **说明：**
 >
