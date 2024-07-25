@@ -16,6 +16,7 @@
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
+        - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -2863,6 +2864,9 @@
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
           - 其他
+            <!--Del-->
+            - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
+            <!--DelEnd-->
             - [@ohos.base (公共回调信息)](reference/apis-basic-services-kit/js-apis-base.md)
             - [@ohos.customization.customConfig (定制配置)](reference/apis-basic-services-kit/js-apis-customization-customConfig.md)
             - [@ohos.settings (设置数据项名称)](reference/apis-basic-services-kit/js-apis-settings.md)
@@ -2920,6 +2924,9 @@
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
+          <!--Del-->
+          - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
+          <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->
@@ -3605,9 +3612,6 @@
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-api-->
       - ArkTS API<!--mindspore-lite-arkts-->
         - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
-        <!--Del-->
-        - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-mindspore-lite-kit/js-apis-intelligentVoice-sys.md)
-        <!--DelEnd-->
       - C API<!--mindspore-lite-c-->
         - 模块<!--mindspore-lite-module-->
           - [MindSpore](reference/apis-mindspore-lite-kit/_mind_spore.md)
@@ -3623,10 +3627,6 @@
           - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/_o_h___a_i___call_back_param.md)
           - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/_o_h___a_i___shape_info.md)
           - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/_o_h___a_i___tensor_handle_array.md)
-      <!--Del-->
-      - 错误码<!--mindspore-lite-errcode-->
-        - [智能语音错误码](reference/apis-mindspore-lite-kit/errorcode-intelligentVoice.md)
-      <!--DelEnd-->
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
       - C API<!--neural-network-runtime-c-->
         - 模块<!--neural-network-runtime-module-->

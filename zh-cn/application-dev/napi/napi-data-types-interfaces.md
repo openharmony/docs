@@ -492,6 +492,15 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|
 | napi_is_sendable|判断给定JS value是否是Sendable的。|
 | napi_define_sendable_class|创建一个sendable类。|
+| napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|
+| napi_create_sendable_array | 创建一个sendable数组。|
+| napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|
+| napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|
+| napi_create_sendable_typedarray | 创建一个sendable TypedArray。|
+| napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
+| napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
+| napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
 
 #### napi_queue_async_work_with_qos
 
@@ -611,6 +620,77 @@ napi_status napi_define_sendable_class(napi_env env,
                                        napi_value parent,
                                        napi_value* result);
 
+```
+
+#### napi_create_sendable_object_with_properties
+
+```c
+napi_status napi_create_sendable_object_with_properties(napi_env env,
+                                                        size_t property_count,
+                                                        const napi_property_descriptor* properties,
+                                                        napi_value* result);
+```
+
+#### napi_create_sendable_array
+
+```c
+napi_status napi_create_sendable_array(napi_env env, napi_value* result);
+```
+
+#### napi_create_sendable_array_with_length
+
+```c
+napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, napi_value* result);
+```
+
+#### napi_create_sendable_arraybuffer
+
+```c
+napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, void** data, napi_value* result);
+```
+
+#### napi_create_sendable_typedarray
+
+```c
+napi_status napi_create_sendable_typedarray(napi_env env,
+                                            napi_typedarray_type type,
+                                            size_t length,
+                                            napi_value arraybuffer,
+                                            size_t byte_offset,
+                                            napi_value* result);
+```
+
+#### napi_wrap_sendable
+
+```c
+napi_status napi_wrap_sendable(napi_env env,
+                               napi_value js_object,
+                               void* native_object,
+                               napi_finalize finalize_cb,
+                               void* finalize_hint);
+```
+
+#### napi_wrap_sendable_with_size
+
+```c
+napi_status napi_wrap_sendable_with_size(napi_env env,
+                                         napi_value js_object,
+                                         void* native_object,
+                                         napi_finalize finalize_cb,
+                                         void* finalize_hint,
+                                         size_t native_binding_size);
+```
+
+#### napi_unwrap_sendable
+
+```c
+napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** result);
+```
+
+#### napi_remove_wrap_sendable
+
+```c
+napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result);
 ```
 
 ### 环境生命周期

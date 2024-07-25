@@ -35,6 +35,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 设置搜索框末尾搜索按钮。
 
+点击搜索按钮，同时触发onSubmit与onClick回调。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -538,12 +540,16 @@ enablePreviewText(enable: boolean)
 
 ## InsertValue<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | insertOffset  | number | 是   | 插入的值的位置信息。 |
 | insertValue  | string | 是   | 插入的值。 |
 
 ## DeleteValue<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
