@@ -9,7 +9,6 @@
 >**注意：**
 >
 >下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
-><br>如果要设置[ASSET_TAG_IS_PERSISTENT](../../reference/apis-asset-store-kit/_asset_type.md#asset_tag)属性，调用方需拥有ohos.permission.STORE_PERSISTENT_DATA权限。
 
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
