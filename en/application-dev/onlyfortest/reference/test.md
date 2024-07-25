@@ -128,6 +128,7 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 | Promise&lt;void&gt; | Promise object with no return result.|
 | Promise\<void\> | Promise object with no return result.|
 | Promise\<void> | Promise object with no return result.|
+| Promise<void> | Promise object with no return result.|
 
 ## test Angle brackets
 
@@ -138,6 +139,15 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 * two
 
     <strong>Blod</strong>
+    <b>bold</b>
+    <p>Pp</p>
+    <text>text</text>
+    
+
+    |name|age|
+    |---|---|
+    |Louis|7<sup>+</sup>|
+    |Albee|2024:35  <br>2025:36  <br/>2025:37  |
 
 * three
 ```ts
