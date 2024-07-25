@@ -151,8 +151,6 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
 
-
-
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
