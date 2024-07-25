@@ -86,9 +86,11 @@ interface DataChangeListener {
 | onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>从API 8开始，建议使用onDataMove。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>将from和to位置的数据进行交换。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
 | onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值。 |
 | onDataChanged(index:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | number                                 | 通知组件index的位置有数据有变化。<br/>从API 8开始，建议使用onDataChange。<br/>index：数据变化监听器。 |
-| onDatasetChange(dataOperations: DataOperation[]): void<sup>12+</sup> | DataOperation[]                        | 进行批量的数据处理。<br/>该接口不可与上述接口混用。<br/>DataOperation：一次处理数据的操作。 |
+| onDatasetChange(dataOperations: DataOperation[]): void<sup>12+</sup> | DataOperation[]                        | 进行批量的数据处理。<br/>该接口不可与上述接口混用。<br/>DataOperation：一次处理数据的操作。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## DataOperation类型说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ```ts
 type DataOperation =
@@ -102,6 +104,8 @@ type DataOperation =
 
 ### DataAddOperation
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ```ts
 interface DataAddOperation {
   type: DataOperationType.ADD,     // 数据添加类型
@@ -113,6 +117,8 @@ interface DataAddOperation {
 
 ### DataDeleteOperation
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ```ts
 interface DataDeleteOperation {
   type: DataOperationType.DELETE,  // 数据删除类型
@@ -123,6 +129,8 @@ interface DataDeleteOperation {
 
 ### DataChangeOperation
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ```ts
 interface DataChangeOperation {
   type: DataOperationType.CHANGE,  // 数据改变类型
@@ -132,6 +140,8 @@ interface DataChangeOperation {
 ```
 
 ### DataMoveOperation
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ```ts
 interface MoveIndex {
@@ -147,6 +157,8 @@ interface DataMoveOperation {
 ```
 
 ### DataExchangeOperation
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ```ts
 interface ExchangeIndex {
@@ -167,6 +179,8 @@ interface DataExchangeOperation {
 
 ### DataReloadOperation
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ```ts
 interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对
   type: DataOperationType.RELOAD    // 数据全部重载类型
@@ -174,6 +188,8 @@ interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType
 ```
 
 ### DataOperationType
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ```ts
 declare enum DataOperationType {
