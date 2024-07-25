@@ -18,5 +18,5 @@
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName<sup>12+</sup> | string         | 是   | 否   | 应用的bundleName。          |
-| appIndex<sup>12+</sup> | number | 是   | 否   | 应用包的分身索引信息。 |
+| bundleName | string         | 是   | 否   | 应用的bundleName。          |
+| appIndex | number | 是   | 否   | 应用包的分身索引信息。 |
