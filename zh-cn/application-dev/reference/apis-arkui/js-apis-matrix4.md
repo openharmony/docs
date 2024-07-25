@@ -384,6 +384,8 @@ skew(x: number, y: number): Matrix4Transit
 
 Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会改变调用该函数的原始矩阵。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -536,6 +538,8 @@ struct Test {
 setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 
 将一个多边形的顶点坐标映射到另外一个多边形的顶点坐标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

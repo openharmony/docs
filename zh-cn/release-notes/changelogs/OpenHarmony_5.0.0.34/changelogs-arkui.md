@@ -50,7 +50,7 @@ MenuIten组件。
 
 **变更影响**
 
-该变更为不兼容性变更。开发者使用局部@Builder方法引用传参时，使用bind(this)后，状态管理的父子关系和组件的父子关系不一致，目前排查出涉及高级组件[@ohos.arkui.advanced.ChipGroup (操作块组组件)](../../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)。
+该变更为不兼容性变更。开发者使用局部@Builder方法引用传参时，使用bind(this)后，状态管理的父子关系和组件的父子关系不一致，涉及高级组件[@ohos.arkui.advanced.ChipGroup (操作块组组件)](../../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)在内的使用局部@Builder且使用@Builder函数处使用bind(this)的一些自定义组件。
 
 **起始API Level**
 
@@ -62,7 +62,7 @@ MenuIten组件。
 
 **变更的接口/组件**
 
-无
+[@ohos.arkui.advanced.ChipGroup (操作块组组件)](../../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
 
 **适配指导**
 

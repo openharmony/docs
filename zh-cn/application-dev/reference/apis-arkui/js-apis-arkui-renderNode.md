@@ -876,6 +876,8 @@ set position(position: Position)
 
 设置当前RenderNode的位置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2023,6 +2025,8 @@ set borderStyle(style: Edges\<BorderStyle>)
 
 设置当前RenderNode的边框样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2034,6 +2038,8 @@ set borderStyle(style: Edges\<BorderStyle>)
 get borderStyle(): Edges\<BorderStyle>
 
 获取当前RenderNode的边框样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2094,6 +2100,8 @@ set borderWidth(width: Edges\<number>)
 
 设置当前RenderNode的边框宽度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2105,6 +2113,8 @@ set borderWidth(width: Edges\<number>)
 get borderWidth(): Edges\<number>
 
 获取当前RenderNode的边框宽度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2159,6 +2169,8 @@ struct Index {
 set borderColor(color: Edges\<number>)
 
 设置当前RenderNode的边框颜色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2227,6 +2239,8 @@ set borderRadius(radius: BorderRadiuses)
 
 设置当前RenderNode的边框圆角。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2293,6 +2307,8 @@ struct Index {
 set shapeMask(shapeMask: ShapeMask)
 
 设置当前RenderNode的遮罩。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2493,6 +2509,8 @@ dispose(): void
 
 立即释放当前RenderNode。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -2552,6 +2570,8 @@ struct Index {
 set markNodeGroup(isNodeGroup: boolean)
 
 标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

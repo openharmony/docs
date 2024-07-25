@@ -19,13 +19,15 @@ import { componentSnapshot } from '@kit.ArkUI';
 
 ## componentSnapshot.get
 
-get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
+get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
 > **说明：** 
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,13 +87,15 @@ struct SnapshotExample {
 
 ## componentSnapshot.get
 
-get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
 > **说明：**
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,7 +159,7 @@ struct SnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
@@ -165,6 +169,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -250,7 +255,7 @@ struct OffscreenSnapshotExample {
 
 ## componentSnapshot.createFromBuilder
 
-createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
@@ -259,6 +264,8 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -347,6 +354,8 @@ struct OffscreenSnapshotExample {
 ## SnapshotOptions<sup>12+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称           | 类型             | 必填           | 说明                         |
 | ---------------|------------     | -----------------------------| -----------------------------|
