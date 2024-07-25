@@ -163,8 +163,9 @@ insert(index: number, element: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 插入位置索引。 |
+| index | number | 是 | 插入的位置索引。 |
 | element | T | 是 | 插入元素。 |
+
 
 **错误码：**
 

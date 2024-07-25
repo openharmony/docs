@@ -209,12 +209,12 @@ async function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
+      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000帧时触发回调
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
+      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数每达到2000时触发回调
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }

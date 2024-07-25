@@ -115,9 +115,8 @@ struct LoadingProgressExample {
 ```ts
 //该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。。
 // xxx.ets
-import hilog from '@ohos.hilog'
-
-import promptAction from '@ohos.promptAction'
+import { hilog } from '@kit.PerformanceAnalysisKit'
+import { promptAction } from '@kit.ArkUI'
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
   enableLoading: boolean = false

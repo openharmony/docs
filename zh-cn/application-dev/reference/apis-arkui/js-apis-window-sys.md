@@ -198,23 +198,19 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    window.minimizeAll(displayClass.id, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in minimizing all windows.');
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
+try {
+  window.minimizeAll(displayClass.id, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in minimizing all windows.');
+  });
 } catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -255,21 +251,17 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(() => {
-      console.info('Succeeded in minimizing all windows.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
+try {
+  let promise = window.minimizeAll(displayClass.id);
+  promise.then(() => {
+    console.info('Succeeded in minimizing all windows.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -508,15 +500,12 @@ const callback = (systemBarTintState: window.SystemBarTintState) => {
 }
 try {
   window.on('systemBarTintChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+
   window.off('systemBarTintChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -961,7 +950,7 @@ try {
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，使用callback异步回调。
+隐藏当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1000,7 +989,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-隐藏当前窗口，使用Promise异步回调。
+隐藏当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1037,7 +1026,7 @@ promise.then(() => {
 
 hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，过程中播放动画，使用callback异步回调。
+隐藏当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1078,7 +1067,7 @@ windowClass.hideWithAnimation((err: BusinessError) => {
 
 hideWithAnimation(): Promise&lt;void&gt;
 
-隐藏当前窗口，过程中播放动画，使用Promise异步回调。
+隐藏当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1117,7 +1106,7 @@ promise.then(() => {
 
 showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口，过程中播放动画，使用callback异步回调。
+显示当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1158,7 +1147,7 @@ windowClass.showWithAnimation((err: BusinessError) => {
 
 showWithAnimation(): Promise&lt;void&gt;
 
-显示当前窗口，过程中播放动画，使用Promise异步回调。
+显示当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 

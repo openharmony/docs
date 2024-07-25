@@ -1,6 +1,6 @@
 # BuilderNode
 
-提供能够挂载原生组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用, 且不建议通过获取根节点的renderNode对根节点的子节点以及属性进行操作。
+提供能够挂载原生组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。
 
 > **说明：**
 >

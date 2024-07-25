@@ -3850,6 +3850,10 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+> **说明**
+>
+> 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager

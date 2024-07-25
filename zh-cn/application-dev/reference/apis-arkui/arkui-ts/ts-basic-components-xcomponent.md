@@ -84,18 +84,11 @@ XComponent(value: {id: string, type: XComponentType, imageAIOptions: ImageAIOpti
 > 内部所写的非UI逻辑需要封装在一个或多个函数内。
 
 ## 属性
-- XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](ts-universal-attributes-background.md)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)按照type类型有限支持。
-
-- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
-
+除支持通用属性外，还支持以下属性：
+  > 
   > **说明：**
   >
-  > 从API version 11开始，type为SURFACE("surface")时支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)。
-
-- type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
-
-- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
-
+  > 不支持foregroundColor、obscured和pixelStretchEffect属性，并且type为SURFACE类型时也不支持动态属性设置、自定义绘制、背景设置、图像效果(shadow除外)、maskShape和foregroundEffect属性。
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
@@ -554,6 +547,43 @@ struct ImageAnalyzerExample {
         .height('480px')
     }
     .width("100%")
+  }
+}
+```
+
+### 示例4
+
+surface旋转过程中锁定功能使用示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index{
+  @State isLock: boolean = true;
+  @State xc_width: number = 500;
+  @State xc_height: number = 700;
+  myXComponentController: XComponentController = new XComponentController();
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      XComponent({
+        id: 'xComponentId',
+        type: XComponentType.SURFACE,
+        libraryname: 'nativerender',
+        controller: this.myXComponentController
+      })
+      .width(this.xc_width)
+      .height(this.xc_height)
+      .onLoad(() => {
+        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+        console.log("Surface getXComponentSurfaceRotation lock = " +
+          this.myXComponentController.getXComponentSurfaceRotation().lock);
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```

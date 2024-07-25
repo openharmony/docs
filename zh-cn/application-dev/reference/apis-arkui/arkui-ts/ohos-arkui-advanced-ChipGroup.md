@@ -152,8 +152,7 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -221,8 +220,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -312,9 +310,7 @@ struct Index {
 ### 示例3
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup, IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Preview

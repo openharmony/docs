@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import picker from '@ohos.file.picker';
+import  { picker } from '@kit.CoreFileKit';
 ```
 
 ## PhotoViewPicker
@@ -29,8 +29,8 @@ constructor(context: Context)
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import picker from '@ohos.file.picker';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 @Entry
 @Component
 struct Index {
@@ -95,9 +95,9 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example01(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
@@ -138,9 +138,9 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example02(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
@@ -182,9 +182,9 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example03(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoPicker = new picker.PhotoViewPicker(context);
@@ -227,9 +227,9 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example04(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
@@ -267,9 +267,9 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example05(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
@@ -308,9 +308,9 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example06(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoPicker = new picker.PhotoViewPicker(context);
@@ -345,8 +345,8 @@ constructor(context: Context)
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import picker from '@ohos.file.picker';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 @Entry
 @Component
 struct Index {
@@ -411,9 +411,9 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example07(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
@@ -452,9 +452,9 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example08(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
@@ -494,9 +494,9 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example09(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentPicker = new picker.DocumentViewPicker(context);
@@ -541,9 +541,9 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example10(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
@@ -583,9 +583,9 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example11(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
@@ -626,9 +626,9 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example12(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentPicker = new picker.DocumentViewPicker(context);
@@ -663,8 +663,8 @@ constructor(context: Context)
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import picker from '@ohos.file.picker';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 @Entry
 @Component
 struct Index {
@@ -726,9 +726,9 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example13(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
@@ -765,9 +765,9 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example14(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
@@ -805,9 +805,9 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example15(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioPicker = new picker.AudioViewPicker(context);
@@ -850,9 +850,9 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example16(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
@@ -890,9 +890,9 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example17(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
@@ -931,9 +931,9 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
 async function example18(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioPicker = new picker.AudioViewPicker(context);

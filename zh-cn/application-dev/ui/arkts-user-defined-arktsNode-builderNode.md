@@ -8,6 +8,10 @@ BuilderNode创建的ArkTS原生控件树支持与自定义节点(例如：FrameN
 
 BuilderNode提供了组件预创建的能力，能够自定义原生组件的创建开始的时间，在后续的业务中动态挂载显示。对于一些在创建初始化耗时较长的声明式组件，比如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，预创建可以有效减少组件初始化的耗时。
 
+![zh-cn_image_builder-node](figures/builder-node.png)
+
+BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通过BuilderNode中的Update方式触发更新，不建议通过BuilderNode中获取的RenderNode对节点进行修改操作。
+
 > **说明：**
 > 
 > - BuilderNode只支持一个由[wrapBuilder](../quick-start/arkts-wrapBuilder.md)包装的[全局\@Builder](../quick-start/arkts-builder.md#全局自定义构建函数).
@@ -356,3 +360,4 @@ struct MyComponent {
   }
 }
 ```
+

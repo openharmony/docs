@@ -24,7 +24,7 @@ geometryTransition(id: string)
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | id      | string                   | 是   | 用于设置绑定关系，id置空字符串清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
 
-## geometryTransition<sup>11+<sup>
+## geometryTransition<sup>11+</sup>
 
 geometryTransition(id: string, options?: GeometryTransitionOptions)
 
@@ -41,7 +41,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 | id      | string                   | 是   | 用于设置绑定关系，id置空字符串清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色，不能多个组件绑定同一个id。 |
 | options | [GeometryTransitionOptions](#geometrytransitionoptions11) | 否   | 组件内共享元素转场动画参数。                                   |
 
-## GeometryTransitionOptions<sup>11+<sup>
+## GeometryTransitionOptions<sup>11+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +51,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述                                                     |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| follow | boolean  | 否   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画，默认值：false。 |
+| follow | boolean  | 否   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画。<br/>默认值：false |
 
 ## 示例
 
@@ -71,7 +71,7 @@ struct Index {
           .width(300)
           .height(400)
           .offset({ y: 100 })
-          .geometryTransition("picture")
+          .geometryTransition("picture", { follow: false })
           .transition(TransitionEffect.OPACITY)
       } else {
         // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，

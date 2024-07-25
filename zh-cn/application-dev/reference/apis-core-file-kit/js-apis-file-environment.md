@@ -16,9 +16,7 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
-
-**需要权限**：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+获取当前用户预授权下载目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -34,7 +32,6 @@ getUserDownloadDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
@@ -56,9 +53,7 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
-
-**需要权限**：ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+获取当前用户预授权桌面目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -74,7 +69,6 @@ getUserDesktopDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
@@ -96,9 +90,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
-
-**需要权限**：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+获取当前用户预授权文档目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -114,7 +106,6 @@ getUserDocumentDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 

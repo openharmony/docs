@@ -22,13 +22,15 @@ RenderNode提供了节点的增、删、查、改的能力，能够修改节点�
 
 ## 设置和获取渲染相关属性
 
-RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask。
+RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask，markNodeGroup等。具体属性支持范围参考[RenderNode接口说明](../reference/apis-arkui/js-apis-arkui-renderNode.md#rendernode)。
 
 > **说明：**
 > 
 > - RenderNode中查询获取得到的属性为设置的属性值。
 > 
 > - 若未传入参数或者传入参数为非法值则查询获得的为默认值。
+>
+> - 不建议对BuilderNode中的RenderNode进行修改操作。
 
 ```ts
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
