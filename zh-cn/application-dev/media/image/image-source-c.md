@@ -102,13 +102,25 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           //通过图片解码参数创建PixelMap对象
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
+          //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
+          OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
+
+          //ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmap failed, errCode: %{public}d.", errCode);
               return errCode;
           }
+
+          //判断pixelmap是否为hdr内容
+          OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
+          OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
+          OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
+          bool pixelmapIsHdr;
+          OH_PixelmapImageInfo_GetDynamicRange(pixelmapImageInfo, &pixelmapIsHdr);
+          OH_PixelmapImageInfo_Release(pixelmapImageInfo);
 
           //获取图像帧数
           uint32_t frameCnt = 0;

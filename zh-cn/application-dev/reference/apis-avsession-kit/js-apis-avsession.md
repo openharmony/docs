@@ -318,13 +318,18 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: image.PixelMap
-};
+let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource= await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
 currentAVSession.setCallMetadata(calldata).then(() => {
   console.info('setCallMetadata successfully');
 }).catch((err: BusinessError) => {
@@ -1268,8 +1273,7 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 | 错误码ID | 错误信息                                  |
 | -------- |---------------------------------------|
 | 6600102  | The session does not exist.           |
-| 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
+| 6600109| The remote connection is not established. |
 
 **示例：**
 
@@ -1308,8 +1312,7 @@ getAVCastController(): Promise\<AVCastController>
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------- |
 | 6600102  | The session does not exist.           |
-| 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
+| 6600109| The remote connection is not established. |
 
 **示例：**
 
@@ -2920,9 +2923,9 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
     if (display.state === avSession.CastDisplayState.STATE_ON) {
         castDisplay = display;
-        console.info(`castDisplayChange display : ${display.id} ON`);
+        console.info(`Succeeded in castDisplayChange display : ${display.id} ON`);
     } else if (display.state === avSession.CastDisplayState.STATE_OFF){
-        console.info(`castDisplayChange display : ${display.id} OFF`);
+        console.info(`Succeeded in castDisplayChange display : ${display.id} OFF`);
     }
 });
 ```
@@ -3096,13 +3099,11 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.getAllCastDisplays()
   .then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
-       castDisplay =  data[0];
-     } else {
-       console.info('There is not a cast display');
+       castDisplay = data[0];
      }
    })
    .catch((err: BusinessError) => {
-     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
 
@@ -3628,6 +3629,76 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ```
 
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): void
+
+获取当前支持的命令。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+  if (err) {
+    console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getValidCommands successfully`);
+  }
+});
+```
+
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(): Promise<Array\<AVCastControlCommandType>>
+
+获取当前支持的命令。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------- | ----------------------------- |
+| Promise<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+  console.info(`getValidCommands successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ### processMediaKeyResponse<sup>12+</sup>
 
 processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
@@ -3663,45 +3734,14 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { http } from '@kit.NetworkKit';
-
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
-   // get media key from DRM server
-   let licenseResponseStr: string = 'defaultStr';
-   let httpRequest = http.createHttp();
-   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
-   try {
-     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
-        method: http.RequestMethod.POST,
-        header: {
-           'Content-Type': 'application/json',
-           'Accept-Encoding': 'gzip, deflate',
-        },
-        extraData: licenseRequestStr,
-        expectDataType: http.HttpDataType.STRING
-      });
-      if (response?.responseCode == http.ResponseCode.OK) {
-        if (typeof response.result == 'string') {
-          licenseResponseStr = response.result;
-        }
-      }
-      httpRequest.destroy();
-   } catch (e) {
-     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
-     return;
-   }
-
-   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
-   try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
-   } catch (err) {
-    let error = err as BusinessError;
-    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
-   }
+  // 根据assetId获取对应的DRM url
+  let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+  // 从服务器获取许可证，需要开发者根据实际情况进行赋值
+  let licenseResponseData: Uint8Array = new Uint8Array();
+  console.info('Succeeded in get license by ' + drmUrl);
+  aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
-
 ```
 
 ### release<sup>11+</sup>
@@ -4409,10 +4449,9 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
-aVCastController.on('keyRequest', keyRequestCallback);
+aVCastController.on('keyRequest', this.keyRequestCallback);
 ```
 ### off('keyRequest')<sup>12+</sup>
 
@@ -4462,11 +4501,10 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 | requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
 ```
 
@@ -4706,8 +4744,8 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | ---------- | -------------- | ---- | ---------------------- |
 | castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
 | deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
-| deviceName | string | 是   | 播放设备的名称。**系统能力：** SystemCapability.Multimedia.AVSession.Core |
-| deviceType | DeviceType | 是   | 播放设备的类型。**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
@@ -5857,7 +5895,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5919,7 +5957,7 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |

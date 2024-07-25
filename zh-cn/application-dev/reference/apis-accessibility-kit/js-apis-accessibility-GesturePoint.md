@@ -11,7 +11,7 @@ GesturePoint表示手势触摸点。
 ## 导入模块
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 ```
 
 ## GesturePoint
@@ -45,7 +45,7 @@ constructor(positionX: number, positionY: number);
 **示例：**
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePoint = new GesturePoint.GesturePoint(1, 2);
+let gesturePoint = new GesturePoint(1, 2);
 ```

@@ -45,7 +45,6 @@
         - [创建自定义组件](quick-start/arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
         - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
@@ -75,25 +74,28 @@
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
           - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 状态管理（V2试用版）<!--arkts-state-management-v2-->
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
-        - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
-        - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
-        - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-        - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
-        - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
-        - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+        - V2所属装饰器<!--arkts-v2-decorators-->
+          - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
+          - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
+          - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
+          - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
+          - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
+          - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)          
+          - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
+          - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
+          - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
+          - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
+        - 其他状态管理<!--arkts-new-other-state-mgmt-->
+          - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
+          - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
+          - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
+          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -237,30 +239,6 @@
           - [window接口切换](application-models/window-switch.md)
           - [Storage接口切换](application-models/storage-switch.md)   
       <!--DelEnd-->
-      - 程序访问控制<!--access-control-->
-        - [访问控制概述](security/AccessToken/access-token-overview.md)
-        - 应用权限管控<!--app-permission-mgmt-->
-          - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
-          - 申请应用权限<!--request-app-permissions-->
-            - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
-            - [声明权限](security/AccessToken/declare-permissions.md)
-            - [向用户申请授权](security/AccessToken/request-user-authorization.md)
-            - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
-            <!--Del-->
-            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
-            <!--DelEnd-->
-          - 应用权限列表<!--app-permissions-->
-            - [对所有应用开放](security/AccessToken/permissions-for-all.md)
-            <!--Del-->
-            - [仅对系统应用开放](security/AccessToken/permissions-for-system-apps.md)
-            <!--DelEnd-->
-            - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
-          - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
-        - 使用安全控件<!--security-components-->
-          - [安全控件概述](security/AccessToken/security-component-overview.md)
-          - [使用粘贴控件](security/AccessToken/pastebutton.md)
-          - [使用保存控件](security/AccessToken/savebutton.md)
-          - [使用位置控件](security/AccessToken/locationbutton.md)
       - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
     - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
@@ -698,6 +676,30 @@
           - [语言测试](internationalization/linguistic-testing.md)
   - 系统<!--system-->
     - 安全<!--system-security-->
+      - 程序访问控制<!--access-control-->
+        - [访问控制概述](security/AccessToken/access-token-overview.md)
+        - 应用权限管控<!--app-permission-mgmt-->
+          - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
+          - 申请应用权限<!--request-app-permissions-->
+            - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
+            - [声明权限](security/AccessToken/declare-permissions.md)
+            - [向用户申请授权](security/AccessToken/request-user-authorization.md)
+            - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
+            <!--Del-->
+            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            <!--DelEnd-->
+          - 应用权限列表<!--app-permissions-->
+            - [对所有应用开放](security/AccessToken/permissions-for-all.md)
+            <!--Del-->
+            - [仅对系统应用开放](security/AccessToken/permissions-for-system-apps.md)
+            <!--DelEnd-->
+            - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
+          - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
+        - 使用安全控件<!--security-components-->
+          - [安全控件概述](security/AccessToken/security-component-overview.md)
+          - [使用粘贴控件](security/AccessToken/pastebutton.md)
+          - [使用保存控件](security/AccessToken/savebutton.md)
+          - [使用位置控件](security/AccessToken/locationbutton.md)
       - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
@@ -776,9 +778,10 @@
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
           - [使用PBKDF2进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
           - [使用HKDF进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--dlp-kit-->
-        - [Data Loss Prevention Kit简介](security/DataLossPreventionKit/dlp-overview.md)
-        - [Data Loss Prevention Kit开发指导](security/DataLossPreventionKit/dlp-guidelines.md)
+      - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
+        - 数据防泄漏服务<!--dlp-->
+          - [数据防泄漏服务简介](security/DataProtectionKit/dlp-overview.md)
+          - [数据防泄漏服务开发指导](security/DataProtectionKit/dlp-guidelines.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-kit-->
         - [Device Certificate Kit简介](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - 证书算法库框架<!--certificate-framework-->
@@ -836,6 +839,9 @@
             - 开发指导<!--huks-identity-authentication-dev-->
               - [用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-user-identity-authentication.md)
               - [细粒度用户身份认证访问控制开发指导](security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
+          - HMAC
+              - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
+              - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
         - 密钥删除<!--huks-delete-key-->
           - [密钥删除(ArkTS)](security/UniversalKeystoreKit/huks-delete-key-arkts.md)
           - [密钥删除(C/C++)](security/UniversalKeystoreKit/huks-delete-key-ndk.md)
@@ -861,9 +867,6 @@
           - 查询密钥别名集<!--huks-list-aliases-->
             - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
             - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
-          - HMAC<!--huks-hmac-->
-            - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
-            - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
           <!--Del-->
           - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
           <!--DelEnd-->
@@ -937,22 +940,22 @@
               <!--DelEnd-->
           - 线程间通信<!--event-itc-->
               - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
-        - 帐号管理<!--account-management-->
+        - 账号管理<!--account-management-->
           <!--Del-->
-          - [帐号管理概述](basic-services/account/account-overview.md)
-          - 系统帐号 <!--os-account-->       
-            - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
-            - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
-            - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
-          - 域帐号（仅对系统应用开放）<!--domain-account-->
-            - [管理域帐号](basic-services/account/manage-domain-account.md)
-            - [认证域帐号](basic-services/account/auth-domain-account.md)
-            - [管理域帐号插件](basic-services/account/manage-domain-plugin.md)
-          - 分布式帐号（仅对系统应用开放）<!--distributed-account-->
-            - [管理分布式帐号](basic-services/account/manage-distributed-account.md)
+          - [账号管理概述](basic-services/account/account-overview.md)
+          - 系统账号 <!--os-account-->       
+            - [管理系统账号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+            - [使用约束管控系统账号](basic-services/account/control-os-account-by-constraints.md)
+            - [管理系统账号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
+          - 域账号（仅对系统应用开放）<!--domain-account-->
+            - [管理域账号](basic-services/account/manage-domain-account.md)
+            - [认证域账号](basic-services/account/auth-domain-account.md)
+            - [管理域账号插件](basic-services/account/manage-domain-plugin.md)
+          - 分布式账号（仅对系统应用开放）<!--distributed-account-->
+            - [管理分布式账号](basic-services/account/manage-distributed-account.md)
           <!--DelEnd-->
-          - 应用帐号<!--application-account-->
-            - [管理应用帐号](basic-services/account/manage-application-account.md)
+          - 应用账号<!--application-account-->
+            - [管理应用账号](basic-services/account/manage-application-account.md)
           - USB服务<!--usb-->
             - [USB服务开发概述](basic-services/usb/usb-overview.md)
             - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
@@ -1004,7 +1007,7 @@
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
-        - HiLog使用指导<!--hilog-->
+        - HiLog使用指导<!--hilog-dev-->
           - [使用HiLog打印日志（ArkTS）](dfx/hilog-guidelines-arkts.md)
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
         - HiAppEvent使用指导<!--hiappevent-->
@@ -1046,6 +1049,9 @@
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
+        - Hidebug使用指导<!--hidebug-->
+          - [使用Hidebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
+          - [使用Hidebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
           - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
@@ -1083,6 +1089,7 @@
         - [param工具](tools/param-tool.md)
         - 命令行工具<!--command-line-utilities-->
           - [toybox工具](tools/toybox.md)
+          - [mediatool工具](tools/mediatool.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1201,6 +1208,7 @@
         - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
         - [编辑图片EXIF信息](media/image/image-tool.md)
       - 图片开发指导(C/C++)<!--image-native-->
+        - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
         - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
         - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
@@ -1297,11 +1305,12 @@
   - AI<!--ai-->
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-kit-->
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
+      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
+      - 模型部署<!--deployment-->
+        - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
-      - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
-      - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -1367,7 +1376,7 @@
         - JSVM-API开发规范
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
-        - JSVM-API典型使用场景<!--jsvm-scenarios-->
+        - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
@@ -1451,6 +1460,7 @@
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
         - 通用能力的接口(推荐)
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
+          - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
           - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
           - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
@@ -1464,6 +1474,7 @@
           - [@ohos.continuation.continuationManager (continuationManager)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
           <!--Del-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md)
+          - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
           - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityManager-sys.md)
           - [@ohos.app.ability.appManager (appManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-appManager-sys.md)
           - [@ohos.app.ability.missionManager (missionManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-missionManager-sys.md)
@@ -1642,6 +1653,7 @@
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
         - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
         - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
+        - [锁屏敏感数据管理错误码](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
     - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
       - ArkTS API<!--accessibility-arkts-->
         - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
@@ -2568,14 +2580,14 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-loss-prevention-api-->
-        - ArkTS API<!--data-loss-prevention-arkts-->
-          - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)
+      - Data Protection Kit（数据保护服务）<!--data-protection-api-->
+        - ArkTS API<!--data-protection-arkts-->
+          - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
           <!--Del-->
-          - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-loss-prevention-kit/js-apis-dlppermission-sys.md)
+          - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
-        - 错误码<!--data-loss-prevention-arkts-errcode-->
-          - [DLP服务错误码](reference/apis-data-loss-prevention-kit/errorcode-dlp.md)
+        - 错误码<!--data-protection-arkts-errcode-->
+          - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
         - ArkTS API<!--device-certificate-arkts-->
           - [@ohos.security.cert (证书模块)](reference/apis-device-certificate-kit/js-apis-cert.md)
@@ -2781,13 +2793,13 @@
     - 基础功能<!--system-basicfun-api-->
       - Basic Services Kit（基础服务）<!--basic-services-api-->
         - ArkTS API<!--basic-services-arkts-->
-          - 帐号管理
-            - [@ohos.account.appAccount (应用帐号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
-            - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
-            - [@ohos.account.osAccount (系统帐号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
+          - 账号管理
+            - [@ohos.account.appAccount (应用账号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
+            - [@ohos.account.osAccount (系统账号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
             <!--Del-->
-            - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
-            - [@ohos.account.osAccount (系统帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
+            - [@ohos.account.osAccount (系统账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
           - 设备管理
             - [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
@@ -2850,9 +2862,10 @@
               - [文件管理子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-filemanagement.md)
               - [主题框架子系统-锁屏管理公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-screenlock.md)
               - [时间时区子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-time.md)
-              - [帐号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
+              - [账号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
               - [语言子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
               - [Account Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-accountkit.md)
+              - [Store Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-storekit.md)
             <!--Del-->
               - [系统公共事件定义 (系统接口)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
             <!--DelEnd-->
@@ -2885,9 +2898,8 @@
             - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
             - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-            - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
             <!--DelEnd-->
-            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+            - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
@@ -2908,7 +2920,7 @@
           - [事件错误码](reference/apis-basic-services-kit/errorcode-CommonEventService.md)
           - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
-          - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
+          - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           <!--Del-->
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           <!--DelEnd-->
@@ -2970,9 +2982,9 @@
                 - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
-      - Mdm Kit（企业设备管理服务）<!--mdm-api-->
+      - MDM Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
-          - [@ohos.enterprise.accountManager（帐户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
+          - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
           - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
           - [@ohos.enterprise.applicationManager（应用管理）](reference/apis-mdm-kit/js-apis-enterprise-applicationManager.md)
           - [@ohos.enterprise.bluetoothManager（蓝牙管理）](reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager.md)
@@ -2990,7 +3002,7 @@
           - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
           - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)
           <!--Del-->
-          - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
+          - [@ohos.enterprise.accountManager（账户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
           - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)
           - [@ohos.enterprise.applicationManager（应用管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-applicationManager-sys.md)
           - [@ohos.enterprise.bluetoothManager（蓝牙管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager-sys.md)

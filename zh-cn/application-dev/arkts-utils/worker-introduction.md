@@ -21,6 +21,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 序列化传输的数据量大小限制为16MB。
 - 使用Worker模块时，需要在主线程中注册onerror接口，否则当worker线程出现异常时会发生jscrash问题。
 - 不支持跨HAP使用Worker线程文件。
+- 创建Worker对象时仅允许加载本模块下存在的worker线程文件，不支持加载其他模块的worker线程文件。若依赖其他模块提供的Worker功能，需要将Worker实现的整套逻辑封装到方法中，将方法导出后供其他模块使用。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5)。
 
 
@@ -111,7 +112,9 @@ const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/worke
 
 - 相对路径加载形式：本地HAR加载该包内的Worker线程文件，加载路径规则：创建Worker对象所在文件与Worker线程文件的相对路径。
 
-需要注意的是：如果HAR包会被打包成三方包使用，则HAR包中使用Worker仅支持通过相对路径加载形式创建。
+>**说明：**
+>
+>当开启useNormalizedOHMUrl（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true）或HAR包会被打包成三方包使用时，则HAR包中使用Worker仅支持通过相对路径的加载形式创建。
 
 ```ts
 import { worker } from '@kit.ArkTS';

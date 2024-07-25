@@ -934,7 +934,7 @@ export class DeriveClass extends BaseClass {
 }
 ```
 
-
+<!--code_no_check-->
 ```ts
 // index.ets
 // 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
@@ -1337,7 +1337,7 @@ function delay(args: number): number {
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(test, 1);
+let task: taskpool.Task = new taskpool.Task(delay, 1);
 task.onStartExecution(()=>{
   console.info("taskpool: onStartExecution")
 });
@@ -1789,7 +1789,7 @@ execute(task: Task): Promise\<Object>
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | The task to be added to SequenceRunner has dependent tasks.  |
+| 10200025 | A dependent task cannot be added to SequenceRunner.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
@@ -1932,6 +1932,7 @@ taskpoolExecute();
 // b.ets
 export let c: string = "hello";
 ```
+<!--code_no_check-->
 ```ts
 // 引用import变量
 // a.ets(与b.ets位于同一目录中)
@@ -2007,7 +2008,7 @@ export async function func2(): Promise<void> {
   });
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // index.ets
 import { func1, func2 } from "./c";

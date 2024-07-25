@@ -359,7 +359,7 @@ onPaste(callback: (event?: PasteEvent) => void)
 
 onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
-文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。光标位置发生变化回调时，选择区域的起始位置等于终止位置。
+组件内所有内容选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。光标位置发生变化回调时，选择区域的起始位置等于终止位置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -367,13 +367,13 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 | 参数名 | 类型                                | 必填 | 说明                         |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| value  | [RichEditorRange](#richeditorrange) | 否   | 文本选择区域起始和终止位置。 |
+| value  | [RichEditorRange](#richeditorrange) | 否   | 所有内容的选择区域起始和终止位置。 |
 
 ### onEditingChange<sup>12+</sup>
 
 onEditingChange(callback: Callback\<boolean\>)
 
-文本编辑状态发生改变时触发该回调函数。
+组件内所有内容的编辑状态发生改变时触发该回调函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -401,7 +401,7 @@ onSubmit(callback: SubmitCallback)
 
 onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
-文本变化前，触发回调。
+组件内图文变化前，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -411,13 +411,13 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
+| callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为图文变化信息；boolean表示当前图文是否允许被更改，true：允许图文被更改。false：不允许图文被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
 onDidChange(callback: Callback\<OnDidChangeCallback\>)
 
-文本变化后，触发回调。
+图文变化后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -427,7 +427,7 @@ onDidChange(callback: Callback\<OnDidChangeCallback\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | Callback<[OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12)> | 是 | 文本变化前后的内容范围。 |
+| callback | Callback<[OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12)> | 是 | 图文变化前后的内容范围。 |
 
 ### onCut<sup>12+</sup>
 
@@ -722,7 +722,7 @@ setCaretOffset(offset: number): boolean
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| offset | number | 是    | 光标偏移位置。超出文本范围时，设置失败。 |
+| offset | number | 是    | 光标偏移位置。超出所有内容范围时，设置失败。 |
 
 **返回值：**
 
@@ -978,7 +978,7 @@ closeSelectionMenu(): void
 
 setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void;
 
-支持设置文本选中，选中部分背板高亮。
+支持组件内的内容选中，选中部分背板高亮。
 
 selectionStart和selectionEnd均为-1时表示全选。
 
@@ -1012,7 +1012,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 getSelection(): RichEditorSelection
 
-获取选中文本内容。如果未选中内容，返回光标所在span信息。
+获取选中内容。如果未选中内容，返回光标所在span信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1272,8 +1272,8 @@ onContentChanged(listener: StyledStringChangedListener): void;
 
 | 名称        | 类型                                       | 必填   | 说明                              |
 | --------- | ---------------------------------------- | ---- | ------------------------------- |
-| start     | number                                   | 否    | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
-| end       | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
+| start     | number                                   | 否    | 需要更新样式的symbol起始位置，省略或者设置负值时表示从0开始。  |
+| end       | number                                   | 否    | 需要更新样式的symbol结束位置，省略或者超出所有内容范围时表示无穷大。 |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本样式。                           |
 
 >  **说明：**
@@ -1328,7 +1328,7 @@ SymbolSpan样式选项。
 | 名称    | 类型                                       | 必填   | 说明                                 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------- |
 | start | number                                   | 否    | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。     |
-| end   | number                                   | 否    | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示无穷大。 |
+| end   | number                                   | 否    | 需要更新样式的段落结束位置，省略、负数或者超出所有内容范围时表示无穷大。 |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 段落样式。                              |
 
 >  **说明：**
@@ -1494,7 +1494,7 @@ SymbolSpan样式选项。
 | 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | start | number | 否    | 起始位置，省略或者设置负值时表示从0开始。  |
-| end   | number | 否    | 结束位置，省略或者超出文本范围时表示无穷大。 |
+| end   | number | 否    | 结束位置，省略或者超出所有内容范围时表示无穷大。 |
 
 ## SelectionMenuOptions<sup>11+</sup>
 
@@ -1843,8 +1843,7 @@ struct RichEditorExample {
 
 ```ts
 // xxx.ets
-import pasteboard from '@ohos.pasteboard'
-import { BusinessError } from '@ohos.base';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 export interface SelectionMenuTheme {
   imageSize: number;
@@ -2766,7 +2765,8 @@ struct Index {
 
 ```ts
 // xxx.ets
-import font from '@ohos.font'
+import { font } from '@kit.ArkUI'
+
 const canvasWidth = 1000
 const canvasHeight = 100
 const Indentation = 40
@@ -4019,8 +4019,8 @@ struct LineBreakStrategyExample {
 属性字符串使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
-import image from '@ohos.multimedia.image'
+import { LengthMetrics } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
@@ -4169,7 +4169,11 @@ struct Index {
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.selection = '[ ' + start + ' , ' + end + ' ]';
-            this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            if (start == end) {
+              this.content = "";
+            } else {
+              this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+            }
           })
           Button("更新选中样式").onClick(() => {
             // 获取选中范围

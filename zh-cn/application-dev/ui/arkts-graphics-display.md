@@ -173,7 +173,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
-       if (http.ResponseCode.ResponseCode.OK === code) {
+       if (http.ResponseCode.OK === code) {
          let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
          let imageSource: image.ImageSource = image.createImageSource(imageData);
        
@@ -296,9 +296,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .objectFit(ImageFit.Fill)
             .margin(15)
-              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)

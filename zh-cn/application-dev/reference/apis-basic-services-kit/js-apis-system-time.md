@@ -13,7 +13,7 @@
 import { systemTime } from '@kit.BasicServicesKit';
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -96,7 +96,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -154,7 +154,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明   |
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
 **错误码：**
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -224,7 +224,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -352,7 +352,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -397,7 +397,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -438,7 +438,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 
@@ -554,6 +554,285 @@ try {
 } catch(e) {
   let error = e as BusinessError;
   console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setTime<sup>(deprecated)</sup>
+
+setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
+
+设置系统时间，使用callback异步回调。
+
+**需要权限：** ohos.permission.SET_TIME
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型            | 必填 | 说明                                       |
+| -------- | ----------- | ---- | ---------------- |
+| time     | number                    | 是   | 目标时间戳（ms）。                         |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// time对应的时间为2021-01-20 02:36:25
+let time = 1611081385000;
+try {
+  systemTime.setTime(time, (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting time`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setTime<sup>(deprecated)</sup>
+
+setTime(time : number) : Promise&lt;void&gt;
+
+设置系统时间，使用Promise异步回调。
+
+**需要权限：** ohos.permission.SET_TIME
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| time   | number | 是   | 目标时间戳（ms）。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// time对应的时间为2021-01-20 02:36:25
+let time = 1611081385000;
+try {
+  systemTime.setTime(time).then(() => {
+    console.info(`Succeeded in setting time.`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setDate<sup>(deprecated)</sup>
+
+setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
+
+设置系统日期，使用callback异步回调。
+
+**需要权限：** ohos.permission.SET_TIME
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明             |
+| -------- | ------------- | ---- | --------------------- |
+| date     | Date                      | 是   | 目标日期。                                 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let date = new Date();
+try {
+  systemTime.setDate(date, (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting date.`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setDate<sup>(deprecated)</sup>
+
+setDate(date: Date): Promise&lt;void&gt;
+
+设置系统日期，使用Promise异步回调。
+
+**需要权限：** ohos.permission.SET_TIME
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明       |
+| ------ | ---- | ---- | ---------- |
+| date   | Date | 是   | 目标日期。 |
+
+**返回值：**
+
+| 类型                | 说明                 |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let date = new Date(); 
+try {
+  systemTime.setDate(date).then(() => {
+    console.info(`Succeeded in setting date.`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setTimezone<sup>(deprecated)</sup>
+
+setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
+
+设置系统时区，使用callback异步回调。
+
+**需要权限：** ohos.permission.SET_TIME_ZONE
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型              | 必填 | 说明                  |
+| -------- | ------------- | ---- | -------------------------- |
+| timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting timezone.`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setTimezone<sup>(deprecated)</sup>
+
+setTimezone(timezone: string): Promise&lt;void&gt;
+
+设置系统时区，使用Promise异步回调。
+
+**需要权限：** ohos.permission.SET_TIME_ZONE
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明       |
+| -------- | ------ | ---- | ---------- |
+| timezone | string | 是   | 系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**返回值：**
+
+| 类型                | 说明                 |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.setTimezone('Asia/Shanghai').then(() => {
+    console.info(`Succeeded in setting timezone.`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 

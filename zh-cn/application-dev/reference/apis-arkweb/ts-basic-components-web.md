@@ -1789,13 +1789,13 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web基于页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT），默认为Web基于页面大小的自适应网页布局模式。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件大小基于前端页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
-> Web基于页面大小的自适应网页布局有如下限制：
-> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
-> - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> Web组件大小基于前端页面自适应布局有如下限制：
+> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - Web组件创建后不支持动态切换layoutMode模式
+> - Web组件宽高规格：分别不超过50万屏幕像素点。
+> - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 
 **参数：**
 
@@ -1805,6 +1805,7 @@ layoutMode(mode: WebLayoutMode)
 
 **示例：**
 
+  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1817,8 +1818,30 @@ layoutMode(mode: WebLayoutMode)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
           .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，建议指定overScrollMode为OverScrollMode.NEVER。
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+          .layoutMode(this.layoutMode)
+          .overScrollMode(this.overScrollMode)
       }
     }
   }
@@ -2162,7 +2185,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2239,7 +2262,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2316,7 +2339,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2402,7 +2425,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2982,7 +3005,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+调用此函数以处理具有“文件”输入类型的HTML表单。如果不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。如果返回true，应用可以自定义“选择文件”的响应行为。
 
 **参数：**
 
@@ -5247,7 +5270,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
@@ -6151,7 +6174,7 @@ confirm(userName: string, password: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的帐号密码认证。
+通知Web组件用户使用服务器缓存的账号密码认证。
 
 **返回值：**
 

@@ -23,7 +23,7 @@ import { common } from '@kit.AbilityKit';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 > **关于示例代码的说明：**
 >
@@ -33,7 +33,7 @@ import { common } from '@kit.AbilityKit';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -113,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -199,7 +199,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability（promise形式）。
+启动Ability。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -291,7 +291,9 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
+启动一个Ability。使用callback异步回调。仅支持在主线程调用。
+
+Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -375,7 +377,9 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
+启动一个Ability。使用callback异步回调。仅支持在主线程调用。
+
+Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -463,7 +467,9 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个Ability。Ability被启动后，有如下情况(promise形式):
+启动一个Ability。使用Promise异步回调。仅支持在主线程调用。
+
+Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -556,7 +562,7 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-停止Ability自身（callback形式）。
+停止Ability自身。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 > 
@@ -616,7 +622,7 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelf(): Promise&lt;void&gt;
 
-停止Ability自身（promise形式）。
+停止Ability自身。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 > 
@@ -676,7 +682,9 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+停止当前的Ability。使用callback异步回调。仅支持在主线程调用。
+
+如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 > **说明：**
 > 
@@ -749,7 +757,9 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
+停止当前的Ability。使用Promise异步回调。仅支持在主线程调用。
+
+如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 > **说明：**
 > 
@@ -826,7 +836,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-将当前Ability连接到一个ServiceExtensionAbility。
+将当前Ability连接到一个ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -910,7 +920,7 @@ export default class EntryAbility extends UIAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空。使用Promise异步回调。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -973,7 +983,7 @@ export default class EntryAbility extends UIAbility {
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空。使用callback异步回调。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1033,7 +1043,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1345,7 +1355,7 @@ export default class EntryAbility extends UIAbility {
 
 restoreWindowStage(localStorage: LocalStorage): void
 
-恢复UIAbility中的WindowStage数据。
+恢复UIAbility中的WindowStage数据。仅支持在主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1421,7 +1431,7 @@ export default class EntryAbility extends UIAbility {
 
 requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1497,7 +1507,7 @@ export default class EntryAbility extends UIAbility {
 
 requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1640,7 +1650,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
-通过type隐式启动UIExtensionAbility。使用callback异步回调。
+通过type隐式启动UIExtensionAbility。使用callback异步回调。仅支持在主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1699,7 +1709,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
-通过type隐式启动UIExtensionAbility。使用Promise异步回调。
+通过type隐式启动UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1761,7 +1771,7 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
 
 调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
 
@@ -1857,7 +1867,7 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
 
 调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
 
@@ -1952,7 +1962,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-将处于前台的Ability移动到后台。使用Promise异步回调。
+将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2011,9 +2021,11 @@ struct Index {
 ```
 
 ## UIAbilityContext.openAtomicService<sup>12+<sup>
+
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
-跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
+跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。仅支持在主线程调用。
+
 分为以下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死EmbeddableUIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
@@ -2095,7 +2107,7 @@ export default class EntryAbility extends UIAbility {
 
 openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
-通过AppLinking启动UIAbility，使用Promise异步回调。
+通过AppLinking启动UIAbility，使用Promise异步回调。仅支持在主线程调用。
 
 通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。

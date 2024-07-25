@@ -6,7 +6,7 @@
 
 | 类型    | 说明                                           |
 | ------- | ---------------------------------------------- |
-| Reader  | 此类的实例表示该设备支持的SE，如果支持eSE和SIM，这返回两个实例。 |
+| Reader  | 此类的实例表示该设备支持的SE，如果支持eSE和SIM，则返回两个实例。 |
 | Session | 此类的实例表示在某个SE Reader实例上创建连接会话。 |
 | Channel | 此类的实例表示在某个Session实例上创建通道，可能为基础通道或逻辑通道。   |
 
@@ -33,11 +33,14 @@ import { omapi } from '@kit.ConnectivityKit';
 
 ## secureElement.newSEService
 
-newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelementservicestate)>): SEService
+newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
-建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。使用callback异步回调。
 
 仅当指定的回调或者当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[createService](#secureelementcreateservice12)替代。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -53,6 +56,15 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 | **类型**  | **说明**   |
 | -------- | --------- |
 | SEService | SE服务实例。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **示例：**
 
@@ -82,7 +94,7 @@ function secureElementDemo() {
 
 createService(): Promise\<SEService>;
 
-建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式。使用Promise异步回调。
 
 仅当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
 
@@ -92,7 +104,7 @@ createService(): Promise\<SEService>;
 
 | **类型**  | **说明**   |
 | :-------- | :--------- |
-| Promise\<SEService> | 以Promise形式异步返回可用的SE服务实例。 |
+| Promise\<[SEService](#seservice)> | 以Promise形式异步返回可用的SE服务实例。 |
 
 **示例：**
 
@@ -117,7 +129,11 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.getReaders
+## SEService
+
+SEService表示可用于连接到系统中所有可用SE的连接（服务），通过[createService](#secureelementcreateservice12)获取SEService实例。
+
+### SEService.getReaders
 
 getReaders(): Reader[]
 
@@ -129,10 +145,19 @@ getReaders(): Reader[]
 
 | **类型** | **说明**               |
 | :------- | :--------------------- |
-| Reader[] | 返回可用Reader对象数组。 |
+| [Reader](#reader)[] | 返回可用Reader对象数组。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -155,7 +180,7 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.isConnected
+### SEService.isConnected
 
 isConnected(): boolean
 
@@ -169,7 +194,16 @@ isConnected(): boolean
 | :------- | :--------------------------------------------- |
 | boolean  | true: SE服务状态已连接，false: SE服务状态已断开。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
+
 
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
@@ -194,7 +228,7 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.shutdown
+### SEService.shutdown
 
 shutdown(): void
 
@@ -202,8 +236,17 @@ shutdown(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -220,7 +263,7 @@ try {
 }
 ```
 
-## SEService.getVersion
+### SEService.getVersion
 
 getVersion(): string
 
@@ -234,8 +277,17 @@ getVersion(): string
 | -------- | -------------------------------------------------- |
 | string   | OMA版本号（例如，“3.3”表示Open Mobile API规范版本3.3） |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -252,8 +304,11 @@ try {
     hilog.error(0x0000, 'testTag', 'getVersion error %{public}s', JSON.stringify(error));
 }
 ```
+## Reader
 
-## Reader.getName
+Reader的实例表示该设备支持的SE，如果支持eSE和SIM，则返回两个实例。通过[SEService.getReaders](#seservicegetreaders)获取Reader实例。
+
+### Reader.getName
 
 getName(): string
 
@@ -265,10 +320,19 @@ getName(): string
 
 | **类型** | **说明**   |
 | -------- | ---------- |
-| string   | Reader名称。 |
+| string   | [Reader](#reader)名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -286,7 +350,7 @@ try {
 }
 ```
 
-## Reader.isSecureElementPresent
+### Reader.isSecureElementPresent
 
 isSecureElementPresent(): boolean
 
@@ -310,6 +374,7 @@ isSecureElementPresent(): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -327,7 +392,7 @@ try {
 }
 ```
 
-## Reader.openSession
+### Reader.openSession
 
  openSession(): Session
 
@@ -339,7 +404,7 @@ try {
 
 | **类型** | **说明**                       |
 | -------- | ------------------------------ |
-| Session  | 连接会话Session实例。|
+| [Session](#session)  | 连接会话Session实例。|
 
 **错误码：**
 
@@ -352,6 +417,7 @@ try {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -374,7 +440,7 @@ function secureElementDemo() {
 }
 ```
 
-## Reader.closeSessions
+### Reader.closeSessions
 
  closeSessions(): void
 
@@ -392,6 +458,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -420,7 +487,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getReader
+## Session
+
+Session的实例表示在某个SE Reader实例上创建连接会话。通过[Reader.openSession](#readeropensession)获取Session实例。
+
+### Session.getReader
 
 getReader(): Reader
 
@@ -432,10 +503,19 @@ getReader(): Reader
 
 | **类型** | **说明**                    |
 | -------- | --------------------------- |
-| Reader   | 返回此Session的Reader实例。 |
+| [Reader](#reader)   | 返回此Session的Reader实例。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -464,7 +544,7 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getATR
+### Session.getATR
 
 getATR(): number[]
 
@@ -488,6 +568,7 @@ getATR(): number[]
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -504,7 +585,7 @@ try {
 }
 ```
 
-## Session.close
+### Session.close
 
 close(): void
 
@@ -522,6 +603,7 @@ close(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -537,7 +619,7 @@ try {
 }
 ```
 
-## Session. isClosed
+### Session. isClosed
 
 isClosed(): boolean
 
@@ -555,8 +637,13 @@ isClosed(): boolean
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```Js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -573,7 +660,7 @@ try {
 }
 ```
 
-## Session.closeChannels
+### Session.closeChannels
 
 closeChannels(): void
 
@@ -591,6 +678,7 @@ closeChannels(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -606,11 +694,11 @@ try {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -624,7 +712,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | **类型** | **说明**              |
 | -------- | --------------------- |
-| Channel  | 以Promise形式异步返回可用的基础Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的基础Channel对象实例。 |
 
 **错误码：**
 
@@ -639,6 +727,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -666,11 +755,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
  openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -679,7 +768,7 @@ function secureElementDemo() {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
 
 **错误码：**
 
@@ -694,6 +783,7 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -723,11 +813,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -742,7 +832,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**              |
 | -------- | --------------------- |
-| Channel  | 以Promise形式异步返回可用的基础Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的基础Channel对象实例。 |
 
 **错误码：**
 
@@ -757,6 +847,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -785,11 +876,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -799,7 +890,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
 | p2         | number                 | 是      | 此Channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
 
 **错误码：**
 
@@ -814,6 +905,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -844,11 +936,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -862,7 +954,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | **类型** | **说明**                                                     |
 | -------- | ------------------------------------------------------------ |
-| Channel  | 以Promise形式异步返回可用的逻辑Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -871,12 +963,13 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -904,11 +997,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
  openLogicalChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -917,7 +1010,7 @@ function secureElementDemo() {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -926,12 +1019,13 @@ function secureElementDemo() {
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -961,11 +1055,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -980,7 +1074,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| Promise\<Channel> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
+| Promise\<[Channel](#channel)> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
 
 **错误码：**
 
@@ -989,12 +1083,13 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1023,11 +1118,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1037,7 +1132,7 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
 | p2         | number                 | 是      | 此Channel上执行SELECT APDU命令的P2参数。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -1046,12 +1141,13 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1081,8 +1177,11 @@ function secureElementDemo() {
     }
 }
 ```
+## Channel
 
-## Channel. getSession
+Channel的实例表示在某个Session实例上创建通道，可能为基础通道或逻辑通道。通过[Session.openBasicChannel](#sessionopenbasicchannel)或[Session.openLogicalChannel](#sessionopenlogicalchannel)获取Channel实例。
+
+### Channel.getSession
 
  getSession(): Session
 
@@ -1094,10 +1193,19 @@ function secureElementDemo() {
 
 | **类型** | **说明**                      |
 | -------- | ----------------------------- |
-| Session  | 该Channel绑定的Session 对象。 |
+| [Session](#session)  | 该Channel绑定的Session 对象。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1114,7 +1222,7 @@ try {
 }
 ```
 
-## Channel. close
+### Channel.close
 
 close(): void
 
@@ -1122,8 +1230,17 @@ close(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1139,7 +1256,7 @@ try {
 }
 ```
 
-## Channel. isBasicChannel
+### Channel.isBasicChannel
 
 isBasicChannel(): boolean
 
@@ -1153,8 +1270,17 @@ isBasicChannel(): boolean
 | -------- | ------------------------------------------------------------ |
 | boolean  | true: 该Channel是基础Channel, false：该Channel逻辑Channel 。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1171,7 +1297,7 @@ try {
 }
 ```
 
-## Channel. isClosed
+### Channel.isClosed
 
 isClosed(): boolean
 
@@ -1185,8 +1311,17 @@ isClosed(): boolean
 | -------- | --------------------------------------------- |
 | boolean  | true: Channel是关闭的，false: 不是关闭的。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1203,7 +1338,7 @@ try {
 }
 ```
 
-## Channel. getSelectResponse
+### Channel.getSelectResponse
 
 getSelectResponse(): number[]
 
@@ -1221,8 +1356,13 @@ getSelectResponse(): number[]
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1239,11 +1379,11 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[]): Promise\<number[]>
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1257,7 +1397,7 @@ transmit(command: number[]): Promise\<number[]>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| number[] | 以Promise形式异步返回接收到的响应APDU数据，number数组。 |
+| Promise\<number[]> | 以Promise形式异步返回接收到的响应APDU数据，number数组。 |
 
 **错误码：**
 
@@ -1271,6 +1411,7 @@ transmit(command: number[]): Promise\<number[]>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1291,11 +1432,11 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1318,6 +1459,7 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 **示例：**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';

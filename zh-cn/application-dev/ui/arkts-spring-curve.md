@@ -51,7 +51,7 @@ ArkUI提供了四种阻尼弹簧曲线接口。
 
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 class Spring {
   public title: string;

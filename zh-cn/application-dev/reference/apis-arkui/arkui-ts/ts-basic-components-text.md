@@ -132,7 +132,7 @@ decoration(value: DecorationStyleInterface)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
 ### baselineOffset
 
@@ -241,6 +241,8 @@ textCase(value: TextCase)
 copyOption(value: CopyOptions)
 
 设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+
+由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1002,7 +1004,7 @@ struct TextExample5 {
   }
 }
 ```
-![](figures/textExample5.jpeg)
+![](figures/textExample5.png)
 
 ### 示例6
 enableDataDetector和dataDetectorConfig使用示例
@@ -1162,7 +1164,8 @@ function MenuStyles() {
 fontFeature、lineSpacing和lineBreakStrategy使用示例。
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
   .lineSpacing(LineSpacing)
   .fontSize(12)

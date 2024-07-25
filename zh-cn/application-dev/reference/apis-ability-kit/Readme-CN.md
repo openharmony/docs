@@ -50,6 +50,7 @@
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
   - 通用能力的接口(推荐)
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
     - [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
@@ -63,6 +64,7 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     <!--Del-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](js-apis-abilityAccessCtrl-sys.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](js-apis-screenLockFileManager-sys.md)
     - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](js-apis-app-ability-abilityManager-sys.md)
     - [@ohos.app.ability.appManager (appManager)(系统接口)](js-apis-app-ability-appManager-sys.md)
     - [@ohos.app.ability.missionManager (missionManager)(系统接口)](js-apis-app-ability-missionManager-sys.md)
@@ -241,3 +243,4 @@
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [访问控制错误码](errorcode-access-token.md)
+  - [锁屏敏感数据管理错误码](errorcode-screenLockFileManager.md)

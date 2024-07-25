@@ -40,18 +40,18 @@
 | typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
 | typedef enum [NativeWindowOperation](#nativewindowoperation)  [NativeWindowOperation](#nativewindowoperation) | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。  | 
 | typedef enum [OHScalingModeV2](#ohscalingmodev2)  [OHScalingModeV2](#ohscalingmodev2) | 渲染缩放模式枚举。  | 
-
+| typedef enum [OHSurfaceSource](#ohsurfacesource)  [OHSurfaceSource](#ohsurfacesource) | 本地窗口内容来源类型枚举。 | 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
+| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS, SET_SOURCE_TYPE,GET_SOURCE_TYPE,SET_APP_FRAMEWORK_TYPE,GET_APP_FRAMEWORK_TYPE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。  | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
-
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
+| [OHSurfaceSource](#ohsurfacesource-1) {<br/>OH_SURFACE_SOURCE_DEFAULT = 0, OH_SURFACE_SOURCE_UI, OH_SURFACE_SOURCE_GAME, OH_SURFACE_SOURCE_CAMERA,OH_SURFACE_SOURCE_VIDEO<br/>} | 本地窗口内容来源类型枚举。 | 
 
 ### 函数
 
@@ -59,7 +59,7 @@
 | -------- | -------- |
 | [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。 | 
 | void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
-| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 说明：此接口不可用，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
+| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 此接口从API version 12开始废弃，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
 | [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) (OH_NativeBuffer \*nativeBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 | 
 | void [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。 | 
 | int32_t [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。 | 
@@ -91,6 +91,17 @@
 
 ## 类型定义说明
 
+### OHSurfaceSource
+
+```
+typedef enum OHSurfaceSource OHSurfaceSource
+```
+
+**描述**
+
+本地窗口内容来源类型枚举。
+
+**起始版本：** 12
 
 ### OHIPCParcel
 
@@ -182,6 +193,26 @@ typedef struct Region Region
 
 ## 枚举类型说明
 
+### OHSurfaceSource
+
+```
+enum OHSurfaceSource
+```
+
+**描述**
+
+本地窗口内容来源类型枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| OH_SURFACE_SOURCE_DEFAULT | 窗口内容默认来源。 | 
+| OH_SURFACE_SOURCE_UI | 窗口内容来自于UI。 |
+| OH_SURFACE_SOURCE_GAME | 窗口内容来自于游戏。 |
+| OH_SURFACE_SOURCE_CAMERA | 窗口内容来自于相机。 |
+| OH_SURFACE_SOURCE_VIDEO | 窗口内容来自于视频。 |
+
 ### OHNativeErrorCode
 
 ```
@@ -206,7 +237,7 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中   | 
 | NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
 | NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中   | 
-| NATIVE_ERROR_UNSUPPORT  | 当前设备或平台不支持   | 
+| NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持   | 
 | NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
@@ -245,6 +276,10 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
+| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。 |
+| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。|
+| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType，最大支持64字节。 |
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 |
 
 ### OHHDRMetadataKey
 
@@ -367,7 +402,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其取值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**
@@ -420,7 +455,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其值范围为1-3000。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)。 | 
 | metaDate | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
@@ -540,6 +575,10 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void* pSurface)
 
 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。
 
+**废弃版本：** 12
+
+**替代接口：** 不再提供替代接口。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **起始版本：** 8
@@ -590,7 +629,9 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
 
-说明：此接口不可用，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。
+**废弃版本：** 12
+
+**替代接口：** [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -709,6 +750,10 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow *window, OHNativeWi
 **描述**
 
 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer。
+
+**废弃版本：** 12
+
+**替代接口：** [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 

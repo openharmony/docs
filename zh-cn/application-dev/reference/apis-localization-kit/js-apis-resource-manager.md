@@ -178,7 +178,7 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown.    |
 
 **示例：**
   ```js
@@ -267,21 +267,20 @@ import { BusinessError } from '@ohos.base';
 
 表示当前设备的状态。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 名称                        | 类型                            | 可读 | 可写 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。         |
-| locale                      | string                          | 是   | 是   | 语言文字国家地区。 |
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。         |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。         |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。         |
-| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。       |
-| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。       |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
+
 
 
 
@@ -348,6 +347,8 @@ import { BusinessError } from '@ohos.base';
 > - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
 >
 > - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
+>
+> - 示例代码中test文件的具体内容请参考[附录](#附录)。
 
 ### getStringSync<sup>9+</sup>
 
@@ -3809,7 +3810,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
+| number | 资源ID值对应的数值。integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
 
 **错误码：**
 
@@ -3849,6 +3850,10 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+> **说明**
+>
+> 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
@@ -3865,7 +3870,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -3917,7 +3922,7 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -6140,3 +6145,106 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+### 附录
+
+- 示例代码中用到的'app.string.test'文件内容如下：
+
+    ```json
+    {
+    "string": [
+        {
+        "name": "test",
+        "value": "10"
+        }
+    ]
+    }
+    ```
+
+    ```json
+    {
+    "string": [
+     {
+        "name": "test",
+        "value": "%s %d %f"
+        }
+    ]
+    }
+    ```
+
+- 示例代码中用到的'app.strarray.test'文件内容如下：
+
+    ```json
+    {
+    "strarray": [
+        {
+        "name": "test",
+        "value": [
+    ```  
+
+- 示例代码中用到的'app.plural.test'文件内容如下：
+    ```json
+    {
+      "plural": [
+        {
+        "name": "test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples"
+            }
+        ]
+        }
+    ]
+    }
+    ``` 
+
+- 示例代码中用到的'app.boolean.boolean_test'文件内容如下：
+    ```json
+    {
+    "boolean": [
+        {
+        "name": "boolean_test",
+        "value": true
+        }
+    
+    }
+    ``` 
+
+- 示例代码中用到的"integer_test"和"float_test"文件内容如下：
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
+        }
+      ]
+    }
+    ``` 
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ``` 
+- 示例代码中用到的'app.color.test'文件内容如下：
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+       }
+      ]
+    }
+    ``` 

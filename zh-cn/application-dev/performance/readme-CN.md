@@ -15,11 +15,12 @@
     - [合理进行状态管理](proper_state_management.md)
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [合理使用renderGroup](reasonable-using-renderGroup.md)
-    - [减少动画丢帧](reduce-animation-frame-loss.md)
+    - [合理使用动画](reasonable-using-animation.md)
     - [合理使用多线程共享内存](thread_memory_shared.md)
     - [Grid高性能开发指导](grid_optimization.md)
     - [合理使用自定义组件冻结功能](custom_component_freeze.md)
     - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
+    - [避免在主线程中执行耗时操作](avoid_time_consuming_operations_in_mainthread.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)

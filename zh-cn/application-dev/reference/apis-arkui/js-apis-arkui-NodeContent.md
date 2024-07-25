@@ -22,7 +22,9 @@ constructor()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so

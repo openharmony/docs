@@ -21,15 +21,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ## 约束与限制
 
-1.<!--Del-->Device-hap端、<!--DelEnd-->Device-daemon端在API 9版本开始预置使用。
+1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。
 
-2.<!--Del-->Device-hap端需在有屏幕设备使用，<!--DelEnd-->Device-daemon端执行需连接硬件设备。
+2. Device-daemon端执行需连接硬件设备<!--Del-->，Device-hap端需在有屏幕设备使用<!--DelEnd-->。
 
-3.Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
+3. Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
 ## 执行性能测试
 
 <!--Del-->
+
 ## SmartPerf Device-hap端
 
 下面的操作步骤和界面内容以RK3568设备为例。
@@ -59,6 +60,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ![图片说明](figures/SmartPerfReport1.png)
 ![图片说明](figures/SmartPerfReport2.png)
+
 <!--DelEnd-->
 
 ## SmartPerf Device-daemon端
@@ -82,6 +84,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -screen |否| 采集屏幕分辨率和刷新率               |
 | -d    |否| 采集DDR                 |
 | -sections|否| 设置分段采集          |
+<!--RP1--><!--RP1End-->
 
 ### 启停采集命令参数
 
@@ -116,6 +119,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 #### 执行查看帮助命令
 
+<!--RP2-->
+
   ```
   # SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
@@ -149,6 +154,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+<!--RP2End-->
 
 #### 执行采集命令
 
@@ -411,6 +417,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+  <!--RP3--><!--RP3End-->
+
   - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
@@ -453,6 +461,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
  
+   <!--RP4-->
   ```
   # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
@@ -514,6 +523,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
+   <!--RP4End-->
+
   >**说明**
   >
   >- 使用该命令采集时需进入被测应用内
@@ -695,3 +706,4 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | nativeHeapPss     | 使用的native内存大小   |单位：KB|
     | stackPss          | 使用的栈内存大小       |单位：KB|
     | timeStamp         | 当前时间戳            |对应采集时间| 
+    <!--RP5--><!--RP5End-->

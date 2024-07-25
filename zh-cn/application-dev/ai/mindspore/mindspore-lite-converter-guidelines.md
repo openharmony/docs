@@ -45,15 +45,14 @@ MindSpore Lite AI模型部署流程是：
 2. 取[MindSpore Lite源码](https://gitee.com/openharmony/third_party_mindspore)。此代码仓采用 “压缩包 + 补丁”的方式管理源码。首先执行以下命令解压源码，打入补丁。
 
    ```bash
-   cd mindspore
-   python3 build_helper.py --in_zip_path=./mindspore-v1.8.1.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
+   python3 build_helper.py --in_zip_path=./mindspore-v2.1.0.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
    ```
 
    执行完毕，MindSpore Lite完整源码位于：`mindspore-src/source/`。
 
 3. 执行编译。
 
-   如要获取支持转换PyTorch模型的转换工具，编译前需要先`export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL = on && export LIB_TORCH_PATH="/home/user/libtorch"`。转换前加入libtorch的环境变量：`export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"`。用户可以下载CPU版本libtorch后解压到`/home/user/libtorch`的目录下。
+   如要获取支持转换PyTorch模型的转换工具，编译前需要先`export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL=on && export LIB_TORCH_PATH="/home/user/libtorch"`。转换前加入libtorch的环境变量：`export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"`。用户可以下载CPU版本libtorch后解压到`/home/user/libtorch`的目录下。
 
    ```bash
    cd mindspore-src/source/

@@ -313,7 +313,7 @@
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
-允许应用读取用户帐号的登录状态。
+允许应用读取用户账号的登录状态。
 
 **权限级别**：normal
 
@@ -330,6 +330,16 @@
 **授权方式**：system_grant
 
 **起始版本**：12
+
+### ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：system_grant
+
+**起始版本**：11
 
 ## user_grant（用户授权）权限列表
 
@@ -492,6 +502,26 @@
 **授权方式**：user_grant
 
 **起始版本**：12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下DownLoad目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
 
 ### ohos.permission.READ_MEDIA
 

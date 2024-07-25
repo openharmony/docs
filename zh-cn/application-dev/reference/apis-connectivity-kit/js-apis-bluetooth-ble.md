@@ -245,7 +245,6 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
-
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2503,7 +2502,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.          |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3056,7 +3055,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.         |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 

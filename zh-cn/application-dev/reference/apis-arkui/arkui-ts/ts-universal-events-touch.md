@@ -43,7 +43,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：ns <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：无。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ### getHistoricalPoints<sup>10+</sup>
@@ -90,7 +90,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
 | touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。                                                   |
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
-| force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，压力越大值越大。<br/>此接口根据硬件设备不同，支持情况不同。当前只支持Tablet。|
+| force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。|
 | timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 ## 示例
 

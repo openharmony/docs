@@ -13,6 +13,18 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+允许应用市场跳过loading弹框并为原子化服务提前打开窗口，并在窗口内部显示加载动效。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -171,7 +183,7 @@
 
 ### ohos.permission.GET_DOMAIN_ACCOUNTS
 
-允许应用查询域帐号信息。
+允许应用查询域账号信息。
 
 **权限级别**：system_basic
 
@@ -243,7 +255,7 @@
 
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理系统本地帐号。
+允许应用管理系统本地账号。
 
 **权限级别**：system_basic
 
@@ -279,7 +291,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_basic
 
@@ -291,7 +303,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_core
 
@@ -1193,7 +1205,7 @@
 
 ### ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
-允许应用查询系统分布式帐号信息。
+允许应用查询系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1205,7 +1217,7 @@
 
 ### ohos.permission.GET_LOCAL_ACCOUNTS
 
-允许应用查询系统本地帐号信息。
+允许应用查询系统本地账号信息。
 
 **权限级别**：system_basic
 
@@ -1313,7 +1325,7 @@
 
 ### ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
-允许应用管理系统分布式帐号信息。
+允许应用管理系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1819,7 +1831,7 @@
 
 ### ohos.permission.ACCESS_MCP_AUTHORIZATION
 
-允许MCP宿主应用代理其子应用进行用户帐号授权登录。
+允许MCP宿主应用代理其子应用进行用户账号授权登录。
 
 **权限级别**：system_basic
 
@@ -1952,18 +1964,6 @@
 ### ohos.permission.USE_TRUSTED_RING
 
 允许应用或服务使用关键资产信任环加环能力。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
-### ohos.permission.FILE_ACCESS_PERSIST
-
-允许应用支持持久化访问文件Uri。
 
 **权限级别**：system_basic
 
@@ -2767,7 +2767,7 @@
 
 ### ohos.permission.QUERY_PASSWORD_VAULT_DATA
 
-允许应用获取密码保险箱帐号数据。
+允许应用获取密码保险箱账号数据。
 
 **权限级别**：system_basic
 
@@ -2779,7 +2779,7 @@
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
-允许用户帐号往数据管理服务写入自己的登录状态。
+允许用户账号往数据管理服务写入自己的登录状态。
 
 **权限级别**：system_basic
 
@@ -3019,7 +3019,7 @@
 
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
-允许系统应用获取用户帐号的未成年使用者信息。
+允许系统应用获取用户账号的未成年使用者信息。
 
 **权限级别**：system_basic
 
@@ -3181,7 +3181,7 @@
 
 ### ohos.permission.GET_ALL_APP_ACCOUNTS
 
-允许应用查询所有的应用帐号信息。
+允许应用查询所有的应用账号信息。
 
 **权限级别**：system_core
 
@@ -3193,7 +3193,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为帐号凭据管理应用接口。
+允许应用调用设备认证华为账号凭据管理应用接口。
 
 **权限级别**：system_basic
 
@@ -3641,33 +3641,9 @@
 
 **起始版本**：11
 
-### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
-
-允许应用访问公共目录下的Download目录。
-
-**权限级别**：system_basic
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
-### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-
-允许应用访问公共目录下的Documents目录。
-
-**权限级别**：system_basic
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
 ### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-允许应用访问公共目录下的Desktop目录。
+允许应用访问公共目录下Desktop目录及子目录。
 
 **权限级别**：system_basic
 

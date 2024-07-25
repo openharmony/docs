@@ -314,19 +314,19 @@ string资源配置attr属性示例如下：
     .width(300)
   ```
 
-- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
+- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext().resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
 ### 跨HAP/HSP包应用资源
 
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
 - 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 
@@ -410,6 +410,8 @@ Image($r('sys.media.ohos_app_icon'))
 - 在为设备匹配对应的资源文件时，限定词目录匹配的优先级从高到低依次为：移动国家码和移动网络码 > 区域（可选组合：语言、语言_文字、语言_国家或地区、语言_文字_国家或地区）> 横竖屏 > 设备类型 > 颜色模式 > 屏幕密度。
 
 - 如果限定词目录中包含移动国家码和移动网络码、语言、文字、横竖屏、设备类型、颜色模式限定词，则对应限定词的取值必须与当前的设备状态完全一致，该目录才能够参与设备的资源匹配。例如，限定词目录“zh_CN-car-ldpi”不能参与“en_US”设备的资源匹配。
+
+- 如果存在多个屏幕密度限定词目录，则优先向上匹配最接近的屏幕密度限定词目录，否则向下匹配最为接近的屏幕密度限定词目录。例如，假设存在限定词目录“xldpi”和“xxldpi”，设备屏幕密度为“xxldpi”，则会匹配“xxldpi”限定词目录。
 
 应用界面加载资源规则，更多请参考国际化和本地化文档。
 

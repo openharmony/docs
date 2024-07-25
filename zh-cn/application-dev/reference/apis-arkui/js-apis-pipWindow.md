@@ -227,7 +227,7 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged'
 
 | 类型                | 说明               |
 | ------------------- | ------------------ |
-| 'hangUp             | 挂断视频通话。     |
+| 'hangUp'             | 挂断视频通话。     |
 | 'micStateChanged'   | 打开或关闭麦克风。 |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
 

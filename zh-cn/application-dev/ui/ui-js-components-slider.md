@@ -100,7 +100,7 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
 
 ## 绑定事件
 
-向Rating组件添加change事件，添加时需要传入ChangeEvent参数。
+向slider组件添加change事件，添加时需要传入ChangeEvent参数。
 
 
 ```html
