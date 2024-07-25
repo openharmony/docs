@@ -75,7 +75,7 @@ export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ### 导出ts类和方法
 通过`export`导出ts类和方法，例如：
 ```ts
-// library/src/main/ets/utils/test.ts
+// library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
     console.info(msg);
