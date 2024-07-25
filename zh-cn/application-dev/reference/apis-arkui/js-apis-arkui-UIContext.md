@@ -5656,6 +5656,8 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** : SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5853,7 +5855,7 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上显示指定节点。
+在OverlayManager上隐藏指定节点。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
