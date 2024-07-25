@@ -409,11 +409,11 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_async_init | 创建一个异步资源上下文环境（暂不支持与async_hook相关能力）。 |
-| napi_make_callback | 在异步资源上下文环境中回调JS函数(暂不支持与async_hook相关能力)。|
-| napi_async_destroy | 销毁先前创建的异步资源上下文环境（暂不支持与async_hook相关能力）。|
-| napi_open_callback_scope | 创建一个回调作用域（暂不支持与async_hook相关能力）。 |
-| napi_close_callback_scope | 关闭先前创建的回调作用域（暂不支持与async_hook相关能力）。|
+| napi_async_init | 创建一个异步资源上下文环境（不支持与async_hook相关能力）。 |
+| napi_make_callback | 在异步资源上下文环境中回调JS函数(不支持与async_hook相关能力)。|
+| napi_async_destroy | 销毁先前创建的异步资源上下文环境（不支持与async_hook相关能力）。|
+| napi_open_callback_scope | 创建一个回调作用域（不支持与async_hook相关能力）。 |
+| napi_close_callback_scope | 关闭先前创建的回调作用域（不支持与async_hook相关能力）。|
 
 ### 判断给定的两个JS value是否严格相等
 
@@ -498,7 +498,7 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  napi_native_binding_detach_callback detach_cb,
                                                  napi_native_binding_attach_callback attach_cb,
                                                  void* native_object,
-                                                 void* hint);  
+                                                 void* hint);
 ```
 
 ### 环境生命周期
