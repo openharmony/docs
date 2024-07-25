@@ -270,11 +270,9 @@ Search/TextInput/TextArea组件的onChange回调事件参数。
 
 **适配指导**
 
-默认开启预上屏功能，需要适配在输入过程中，回调返回的首个参数为空字符串或者多次回调的首个参数为重复内容的场景；需要适配文本框内所有文本长度变更为含预上屏内容的总长度。
+适配前：
 
-在不需要预上屏功能场景时，可使用enablePreviewText属性关闭预上屏功能。
-
-变更前：
+默认开启预上屏功能。回调唯一参数为已正式上屏文本；回调时机为输入过程中，每一次预上屏内容变更时触发。
 
 ```ts
 @Entry
@@ -291,6 +289,7 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
+        // onChange回调唯一参数为已正式上屏文本；回调时机为输入过程中，每一次预上屏内容变更时触发
         .onChange((value: string) => {
           this.text = value
           console.log("===get onchange ===")
@@ -303,7 +302,11 @@ struct SearchExample {
 }
 ```
 
-变更后：
+适配后：
+
+默认开启预上屏功能，需要适配在输入过程中，回调返回的首个参数为空字符串或者多次回调的首个参数为重复内容的场景；需要适配文本框内所有文本长度变更为含预上屏内容的总长度。
+
+示例代码列举了预上屏状态下，用来适配各问题场景所需要的信息。
 
 ```ts
 @Entry
@@ -320,6 +323,8 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
+        // onChange回调首个参数为已经存在的正式上屏文本
+        // 第二个参数为可选参数，返回的是预上屏内容的信息
         .onChange((value: string, previewText: PreviewText) => {
           this.text = value
           console.log("===get onchange and get previewText info===")
@@ -342,6 +347,8 @@ struct SearchExample {
 }
 ```
 
+在不需要预上屏功能场景时，可使用enablePreviewText属性关闭预上屏功能。
+
 ```ts
 @Entry
 @Component
@@ -357,7 +364,7 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
-        .enablePreviewText(false)
+        .enablePreviewText(false) // 使用该属性，可以关闭预上屏功能，使回调内容与回调时机与变更前保持一致
         .onChange((value: string) => {
           this.text = value
           console.log("===get onchange ===")
