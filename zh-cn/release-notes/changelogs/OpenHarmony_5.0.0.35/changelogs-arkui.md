@@ -364,6 +364,48 @@ Menu组件。
 
 默认行为变更，无需适配。
 
+## cl.arkui.7 menu、toast修改阴影参数
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前阴影不明显，区分度不高。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+| 变更前阴影 | 变更后阴影|
+|---------|---------|
+|  ![Menu_before](figures/Menu_before.jpeg)       |  ![Menu_before](figures/Menu_after.jpeg)       |
+|  ![Toast_before](figures/Toast_before.jpeg)       |  ![Toast_before](figures/Toast_after.jpeg)       |
+
+**起始API Level**
+
+Menu组件的BindMenu接口 API 7
+
+Menu组件的BindContextMenu接口 API 8
+
+Toast组件的ShowToast接口 API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Menu组件的BindMenu接口
+
+Menu组件的BindContextMenu接口
+
+Toast组件ShowToast接口
+
+**适配指导**
+
+默认行为变更，无需适配。
+
 ## @ohos.deviceStatus.dragInteraction.d.ts 文件接口权限变更
 
 **访问级别**
