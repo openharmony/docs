@@ -214,9 +214,8 @@ createAVTranscoder(): Promise\<AVTrancoder>
 异步方式创建音视频转码实例，通过Promise获取返回值。
 
 > **说明：**
-> 可创建的音视频转码实例不能超过2个。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+> 可创建的音视频转码实例不能超过2个。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -3970,8 +3969,6 @@ prepare(config: AVTranscoderConfig): Promise<\void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型                                   | 可选 | 说明                       |
@@ -4027,8 +4024,6 @@ start(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **返回值：**
 
 | 类型           | 说明                                  |
@@ -4066,8 +4061,6 @@ pause(): Promise\<void>
 需要[start()](#start12)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume12)接口来恢复转码。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
-
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -4107,8 +4100,6 @@ resume(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **返回值：**
 
 | 类型           | 说明                                  |
@@ -4146,8 +4137,6 @@ cancel(): Promise\<void>
 需要在[prepare()](#prepare12)、[start()](#start12)、[pause()](#pause12)或[resume()](#resume12)事件成功触发后，才能调用cancel方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
-
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -4187,8 +4176,6 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **返回值：**
 
 | 类型           | 说明                                        |
@@ -4224,8 +4211,6 @@ on(type: 'progressUpdate', callback: Callback<number>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名   | 类型     | 可选 | 说明                                                         |
@@ -4249,8 +4234,6 @@ off(type:'progressUpdate', callback?: Callback<number>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型   | 可选 | 说明                                                         |
@@ -4273,8 +4256,6 @@ on(type: 'error', callback: ErrorCallback): void
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4316,8 +4297,6 @@ off(type:'error', callback?: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型   | 可选 | 说明                                                         |
@@ -4340,8 +4319,6 @@ on(type: 'complete', callback: Callback<void>): void
 当AVTranscoder上报complete事件时，当前转码操作已完成，用户可通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4366,8 +4343,6 @@ off(type:'complete', callback?: Callback<void>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型   | 可选 | 说明                                                         |
@@ -4389,9 +4364,9 @@ avTranscoder.off('complete');
 
 | 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持aac。                   |
-| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出音视频文件的封装格式，当前仅支持m4a。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出音视频文件的封装格式，当前仅支持m4a。|
 | videoBitrate         | number | 否 |  否   | 输出视频的码率，单位为比特率（bps）。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持avc和hevc。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。|
