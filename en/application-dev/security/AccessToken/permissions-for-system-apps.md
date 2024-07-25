@@ -3389,6 +3389,18 @@ Allows a system application to set the mouse cursor status (such as position and
 
 **Valid since**: 12
 
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+Allows a system ability or system application to receive fusion service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.FILTER_INPUT_EVENT
 
 Allows a system application to filter input events.
