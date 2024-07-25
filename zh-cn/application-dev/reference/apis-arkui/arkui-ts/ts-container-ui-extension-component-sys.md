@@ -39,7 +39,7 @@ UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[点击](ts-universal-events-click.md)等通用事件。
 
 将事件经过坐标转换后传递给对端Ability处理。
 
