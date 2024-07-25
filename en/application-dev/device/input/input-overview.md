@@ -11,6 +11,7 @@ As a basic service provided by the system for applications, Input Kit fulfills i
 
 ![MMI-operation](figures/MMI-operation.png)
 
+<!--Del-->
 ## Constraints
 
 1. Before using the following functions, declare the corresponding permissions.
@@ -21,3 +22,4 @@ As a basic service provided by the system for applications, Input Kit fulfills i
   | getShieldStatus(shieldMode: ShieldMode): boolean | Checks whether key shielding is enabled.|ohos.permission.INPUT_CONTROL_DISPATCHING|
     
 2. The APIs provided by the [inputConsumer](inputconsumer-guidelines.md), [inputEventClient](inputeventclient-guidelines.md), [inputMonitor](inputmonitor-guidelines.md), and [shortKey](shortkey-guidelines.md) modules are system APIs. Wherein, the APIs provided by the [inputMonitor](inputmonitor-guidelines.md) module require the **ohos.permission.INPUT_MONITORING** permission.
+<!--DelEnd-->

@@ -144,7 +144,7 @@ Starts the test framework based on the carried parameters.
 
   > **NOTE**
   > 
-  > For details about parameters such as **class**, **level**, **size**, and **testType**, see [Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md#in-the-cli).
+  > For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md#in-the-cli)<!--RP2End-->.
 
 | Name| Description|
 | -------- | -------- |
