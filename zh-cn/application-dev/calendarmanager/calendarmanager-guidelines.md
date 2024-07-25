@@ -23,22 +23,22 @@ Calendar kit所需权限有：
     // ...
     "requestPermissions":[
       {
-        "name" : "ohos.permission.PERMISSION1",
+        "name" : "ohos.permission.READ_CALENDAR",
         // reason用于描述申请权限的原因，请使用string类资源引用，格式为$string: ***
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "FormAbility"
+            "XxxAbility"
           ],
           "when":"inuse"
         }
       },
       {
-        "name" : "ohos.permission.PERMISSION2",
+        "name" : "ohos.permission.WRITE_CALENDAR",
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "FormAbility"
+            "XxxAbility"
           ],
           "when":"always"
         }
