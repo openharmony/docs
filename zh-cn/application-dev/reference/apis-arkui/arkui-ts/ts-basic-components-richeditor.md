@@ -1047,7 +1047,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
 
-暂不支持手势处理。
+暂不支持手势、复制、拖拽处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1252,6 +1252,49 @@ getSelection(): RichEditorSelection
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
+### fromStyledString<sup>12+</sup>
+
+fromStyledString(value: StyledString): Array\<RichEditorSpan>
+
+将属性字符串转换成span信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                | 必填   | 说明       |
+| ----- | ----------------------------------- | ---- | ---------- |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Array<[RichEditorSpan](#richeditorspan12)>  | 文本和图片Span信息。 |
+
+### toStyledString<sup>12+</sup>
+
+toStyledString(value: RichEditorRange): StyledString
+
+将给定范围的组件内容转换成属性字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                | 必填   | 说明       |
+| ----- | ----------------------------------- | ---- | ---------- |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+
+**返回值：**
+
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
+| [StyledString](ts-universal-styled-string.md#styledstring) | 转换后的属性字符串 |
 
 ## RichEditorStyledStringController<sup>12+</sup>
 
@@ -1283,7 +1326,7 @@ getSelection(): RichEditorRange
 
 setStyledString(styledString: StyledString): void
 
-设置富文本组件显示的属性字符串
+设置富文本组件显示的属性字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1299,7 +1342,7 @@ setStyledString(styledString: StyledString): void
 
 getStyledString(): MutableStyledString;
 
-获取富文本组件显示的属性字符串
+获取富文本组件显示的属性字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1564,6 +1607,21 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
+
+## RichEditorSpan<sup>12+</sup>
+
+type RichEditorSpan = RichEditorTextStyleResult | RichEditorImageSpanResult
+
+RichEditor span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型   | 说明       |
+| ------ | ---------- |
+| [RichEditorTextStyleResult](#richeditortextstyleresult) | 后端返回的文本样式信息。 |
+| [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 
 ## RichEditorRange
 
