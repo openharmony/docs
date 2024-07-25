@@ -114,11 +114,11 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_delete_async_work|释放先前创建的异步工作对象。|10|
 |FUNC|napi_queue_async_work|将异步工作对象加到队列，由底层去调度执行。|10|
 |FUNC|napi_cancel_async_work|取消入队的异步任务。|10|
-|FUNC|napi_async_init|创建一个异步资源上下文环境（暂不支持与async_hook相关能力）。|11|
-|FUNC|napi_make_callback|在异步资源上下文环境中回调JS函数(暂不支持与async_hook相关能力)。|11|
-|FUNC|napi_async_destroy|销毁先前创建的异步资源上下文环境（暂不支持与async_hook相关能力）。|11|
-|FUNC|napi_open_callback_scope|创建一个回调作用域（暂不支持与async_hook相关能力）。|11|
-|FUNC|napi_close_callback_scope|关闭先前创建的回调作用域（暂不支持与async_hook相关能力）。|11|
+|FUNC|napi_async_init|创建一个异步资源上下文环境（不支持与async_hook相关能力）。|11|
+|FUNC|napi_make_callback|在异步资源上下文环境中回调JS函数(不支持与async_hook相关能力)。|11|
+|FUNC|napi_async_destroy|销毁先前创建的异步资源上下文环境（不支持与async_hook相关能力）。|11|
+|FUNC|napi_open_callback_scope|创建一个回调作用域（不支持与async_hook相关能力）。|11|
+|FUNC|napi_close_callback_scope|关闭先前创建的回调作用域（不支持与async_hook相关能力）。|11|
 |FUNC|napi_get_node_version|获取node的版本信息。|10|
 |FUNC|napi_get_version|获取Node运行时支持的最高 N-API 版本。|10|
 |FUNC|napi_create_promise|创建一个延迟对象和js promise。|10|
