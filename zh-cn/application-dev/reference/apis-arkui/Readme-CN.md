@@ -14,6 +14,7 @@
     - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
+    - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
     - [@ohos.font (注册自定义字体)](js-apis-font.md)
     - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -337,6 +338,10 @@
     - [文本类型定义](arkui-ts/ts-text-common.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
   - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
+  - 渲染控制
+    - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
+    - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
+    - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [设置事件回调](arkui-ts/ts-uicommonevent.md)
