@@ -1226,7 +1226,7 @@ fromStyledString(value: StyledString): Array\<RichEditorSpan>
 
 | 参数名   | 类型                                | 必填   | 说明       |
 | ----- | ----------------------------------- | ---- | ---------- |
-| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取段落的范围。 |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
 
 **返回值：**
 
@@ -1248,7 +1248,7 @@ toStyledString(value: RichEditorRange): StyledString
 
 | 参数名   | 类型                                | 必填   | 说明       |
 | ----- | ----------------------------------- | ---- | ---------- |
-| value | [RichEditorRange](#richeditorrange) | 否    | 需要转换的段落范围。 |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
 
 **返回值：**
 
