@@ -30,8 +30,8 @@ Qrcode({options:QrcodeOptions,state:QrcodeState,value:string})
 
 | 名称    | 类型                            | 必填 | 装饰器类型      | 说明                   |
 | ------- | ------------------------------- | ---- | --------------- | ---------------------- |
-| options | [QrcodeOptions](#QrcodeOptions) | 是   | @ObservedV2     | 定义Qrcode组件的参数。 |
-| state   | [QrcodeState](#QrcodeState)     | 是   | @Require @Param | Qrcode的状态参数       |
+| options | [QrcodeOptions](#qrcodeoptions) | 是   | @ObservedV2     | 定义Qrcode组件的参数。 |
+| state   | [QrcodeState](#qrcodestate)     | 是   | @Require @Param | Qrcode的状态参数       |
 | value   | string                          | 是   | @Require @Param | 二维码内容参数         |
 
 
@@ -44,21 +44,21 @@ QrcodeOptions定义Qrcode的样式及具体式样参数。
 
 | 名称               | 类型                           | 必填 | 说明                                                         |
 | ------------------ | ------------------------------ | ---- | ------------------------------------------------------------ |
-| edgeLength         | LengthMetrics                  | 否   | 二维码衬底边长。<br/>默认值：125vp。                         |
-| color              | ColorMetrics                   | 否   | 二维码颜色。<br>默认值：Color.Black。                        |
-| backgroundColor    | ColorMetrics                   | 否   | 二维码衬底颜色。<br>默认值：Color.White                      |
-| textColor          | ColorMetrics                   | 否   | 二维码过期提示文本颜色。<br>默认值：Color.White              |
+| edgeLength         | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                  | 否   | 二维码衬底边长。<br/>默认值：125vp。                         |
+| color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                   | 否   | 二维码颜色。<br>默认值：Color.Black。                        |
+| backgroundColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                   | 否   | 二维码衬底颜色。<br>默认值：Color.White                      |
+| textColor          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                   | 否   | 二维码过期提示文本颜色。<br>默认值：Color.White              |
 | textContent        | string                         | 是   | 二维码过期提示文本。<br/>默认提示内容：二维码已失效，点击刷新 |
-| borderRadius       | LengthMetrics                  | 否   | 衬底矩形圆角。<br/>默认值：12vp。                            |
-| opacity            | number \| Resource             | 否   | 刷新和加载状态下二维码透明度。<br/>默认值：0.4。             |
-| animationCurve     | Curve \| string \| ICurve      | 否   | 页面切换淡入曲线。<br/>默认值：‘0.33,0,0.67,1’。             |
+| borderRadius       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                  | 否   | 衬底矩形圆角。<br/>默认值：12vp。                            |
+| opacity            | number \| [Resource](ts-types.md#Resource)             | 否   | 刷新和加载状态下二维码透明度。<br/>默认值：0.4。             |
+| animationCurve     | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)      | 否   | 页面切换淡入曲线。<br/>默认值：‘0.33,0,0.67,1’。             |
 | animationDuration  | number                         | 否   | 页面切换淡入时长。<br/>默认值：200。<br/>单位：ms。          |
-| qrcodeSideLength   | LengthMetrics                  | 否   | 二维码边长。<br/>默认值：101vp。                             |
-| expiredImageLength | LengthMetrics                  | 否   | 失效图标边长。<br/>默认值：28vp。                            |
-| textSize           | ResourceStr                    | 否   | 提示文本字体大小。<br/>默认值：11fp                          |
-| textWeight         | number \| FontWeight \| string | 否   | 提示文本字重。<br/>默认值：FontWeight.Medium                 |
-| space              | ResourceStr                    | 否   | 失效提示图标与失效提示文本间隔。<br/>默认值：6vp。           |
-| loadingImageLength | LengthMetrics                  | 否   | 加载图标边长。<br/>默认值：34vp。                            |
+| qrcodeSideLength   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                  | 否   | 二维码边长。<br/>默认值：101vp。                             |
+| expiredImageLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                  | 否   | 失效图标边长。<br/>默认值：28vp。                            |
+| textSize           | [ResourceStr](ts-types.md#resourcestr)                    | 否   | 提示文本字体大小。<br/>默认值：11fp                          |
+| textWeight         | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 提示文本字重。<br/>默认值：FontWeight.Medium                 |
+| space              | [ResourceStr](ts-types.md#resourcestr)                    | 否   | 失效提示图标与失效提示文本间隔。<br/>默认值：6vp。           |
+| loadingImageLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                  | 否   | 加载图标边长。<br/>默认值：34vp。                            |
 
 ## QrcodeState
 
