@@ -161,9 +161,12 @@ struct Child {
   }
 
   build() {
-    Text(this.title).fontSize(50).margin(20).onClick(() => {
-      this.title = 'Hello ArkUI';
-    })
+    Text(this.title)
+      .fontSize(50)
+      .margin(20)
+      .onClick(() => {
+        this.title = 'Hello ArkUI';
+      })
   }
 }
 ```

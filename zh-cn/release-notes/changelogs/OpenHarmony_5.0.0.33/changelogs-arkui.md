@@ -270,11 +270,9 @@ Search/TextInput/TextArea组件的onChange回调事件参数。
 
 **适配指导**
 
-默认开启预上屏功能，需要适配在输入过程中，回调返回的首个参数为空字符串或者多次回调的首个参数为重复内容的场景；需要适配文本框内所有文本长度变更为含预上屏内容的总长度。
+适配前：
 
-在不需要预上屏功能场景时，可使用enablePreviewText属性关闭预上屏功能。
-
-变更前：
+默认开启预上屏功能。回调唯一参数为已正式上屏文本；回调时机为输入过程中，每一次预上屏内容变更时触发。
 
 ```ts
 @Entry
@@ -291,6 +289,7 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
+        // onChange回调唯一参数为已正式上屏文本；回调时机为输入过程中，每一次预上屏内容变更时触发
         .onChange((value: string) => {
           this.text = value
           console.log("===get onchange ===")
@@ -303,7 +302,11 @@ struct SearchExample {
 }
 ```
 
-变更后：
+适配后：
+
+默认开启预上屏功能，需要适配在输入过程中，回调返回的首个参数为空字符串或者多次回调的首个参数为重复内容的场景；需要适配文本框内所有文本长度变更为含预上屏内容的总长度。
+
+示例代码列举了预上屏状态下，用来适配各问题场景所需要的信息。
 
 ```ts
 @Entry
@@ -320,6 +323,8 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
+        // onChange回调首个参数为已经存在的正式上屏文本
+        // 第二个参数为可选参数，返回的是预上屏内容的信息
         .onChange((value: string, previewText: PreviewText) => {
           this.text = value
           console.log("===get onchange and get previewText info===")
@@ -342,6 +347,8 @@ struct SearchExample {
 }
 ```
 
+在不需要预上屏功能场景时，可使用enablePreviewText属性关闭预上屏功能。
+
 ```ts
 @Entry
 @Component
@@ -357,7 +364,7 @@ struct SearchExample {
         .placeholderFont({ size: 16, weight: 400 })
         .width(336)
         .height(56)
-        .enablePreviewText(false)
+        .enablePreviewText(false) // 使用该属性，可以关闭预上屏功能，使回调内容与回调时机与变更前保持一致
         .onChange((value: string) => {
           this.text = value
           console.log("===get onchange ===")
@@ -369,3 +376,37 @@ struct SearchExample {
   }
 }
 ```
+
+## cl.arkui.7 命令式渲染节点RenderNode属性clipToFrame默认值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+命令式渲染节点RenderNode默认会将子节点的布局区域剪裁至节点大小，clipToFrame默认值对应修改为true。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为false。
+
+变更后：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为true，超出该节点大小的子节点内容会被剪裁。
+
+**起始 API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口/组件**
+
+命令式渲染节点RenderNode的clipToFrame接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。如不符合则自定义修改效果控制变量以达到预期，可显式设置RenderNode的clipToFrame。

@@ -134,6 +134,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 绑定此事件的组件，当触发拖拽发起前的不同阶段时，触发回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

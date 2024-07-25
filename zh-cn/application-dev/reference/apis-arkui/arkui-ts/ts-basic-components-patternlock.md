@@ -14,6 +14,8 @@
 
 PatternLock(controller?: PatternLockController)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：** 
 
 | 参数名     | 参数类型                                        | 必填 | 描述                                                         |
@@ -30,6 +32,8 @@ sideLength(value: Length)
 
 设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -43,6 +47,8 @@ sideLength(value: Length)
 circleRadius(value: Length)
 
 设置宫格中圆点的半径。设置为0或负数时取默认值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,6 +64,8 @@ regularColor(value: ResourceColor)
 
 设置宫格圆点在“未选中”状态的填充颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -71,6 +79,8 @@ regularColor(value: ResourceColor)
 selectedColor(value: ResourceColor)
 
 设置宫格圆点在“选中“状态的填充颜色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,6 +96,8 @@ activeColor(value: ResourceColor)
 
 设置宫格圆点在“激活”状态的填充颜色，“激活”状态为手指经过圆点但还未选中的状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -99,6 +111,8 @@ activeColor(value: ResourceColor)
 pathColor(value: ResourceColor)
 
 设置连线的颜色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,6 +128,8 @@ pathStrokeWidth(value: number | string)
 
 设置连线的宽度。设置为0或负数时连线不显示。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -127,6 +143,8 @@ pathStrokeWidth(value: number | string)
 autoReset(value: boolean)
 
 设置在完成密码输入后再次在组件区域按下时是否重置组件状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -142,6 +160,8 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
 设置宫格圆点在“激活”状态的背景圆环样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -151,6 +171,8 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | options  | [CircleStyleOptions](#circlestyleoptions12对象说明) | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
 
 ## CircleStyleOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
@@ -168,6 +190,8 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 密码输入结束时触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -184,6 +208,8 @@ onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#
 
 回调参数为选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## PatternLockController
@@ -196,11 +222,15 @@ PatternLock组件的控制器，可以通过它进行组件状态重置。
 let patternLockController: PatternLockController = new PatternLockController()
 ```
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### reset
 
 reset(): void
 
 重置组件状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### setChallengeResult<sup>11+</sup>
 
@@ -208,11 +238,15 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 用于设置图案密码正确或错误状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数   | 参数类型                                                     | 必填 | 参数描述       |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | result | [PatternLockChallengeResult](#patternlockchallengeresult11枚举说明) | 是   | 图案密码状态。 |
 
 ## PatternLockChallengeResult<sup>11+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述           |
 | ------- | -------------- |

@@ -20,14 +20,6 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **系统能力：**  SystemCapability.USB.USBManager
 
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. No parameters are required. |
-
 **返回值：**
 
 | 类型                                                   | 说明      |
@@ -313,14 +305,6 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 

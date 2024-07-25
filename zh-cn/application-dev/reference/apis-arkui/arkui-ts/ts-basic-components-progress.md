@@ -148,6 +148,8 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 
 定制progress内容区的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -161,6 +163,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 设置隐私敏感。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -170,6 +174,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
 
 ## ProgressConfiguration<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 参数类型  | 描述         |
 | ------ | ------ | ------------|
 | value  | number | 当前进度值。 |

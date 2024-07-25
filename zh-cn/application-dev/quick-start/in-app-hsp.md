@@ -450,11 +450,10 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
 ## 集成态HSP
 集成态HSP是应用内HSP的一种中间编译产物，目的就是解决使用方的bundleName和签名强耦合性。
 > **说明：** 
-> HSP使用只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
-
+> HSP只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
 
 #### 开发使用说明
-1. 创建方—集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
+1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
 
     ```json
     // created_party_project/build-profile.json5
@@ -474,7 +473,7 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
       }
     }
     ```
-2. 创建方—集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
+2. 创建方-集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
 
     ```json
     // created_party_project/library/build-profile.json5
@@ -488,9 +487,9 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
     }
     ```
 
-3. 创建方—集成态HSP-打包配置（tgz包）。
+3. 创建方-集成态HSP-打包配置（tgz包）。
 
-    3.1 配置项目签名信息；
+    3.1 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)；
 
     3.2 配置release模式；
 
