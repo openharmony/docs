@@ -179,7 +179,7 @@ add(1, 2);
 
 Add an asynchronous work object to the queue and schedules it based on the QoS passed in.
 
-See [Specifying the Asynchronous Work Priority](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#specifying-the-asynchronous-work-priority).
+See [Prioritizing Asynchronous Tasks](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#prioritizing-asynchronous-tasks).
 
 ### napi_coerce_to_native_binding_object
 

@@ -325,7 +325,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**

@@ -9,7 +9,7 @@ The **geoLocationManager** module provides basic location services such as Globa
 
 ## Applying for Permissions
 
-For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
+For details, see [Applying for Location Permissions](../../device/location/location-permission-guidelines.md#how-to-develop).
 
 
 ## Modules to Import

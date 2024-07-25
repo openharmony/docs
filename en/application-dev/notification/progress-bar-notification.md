@@ -5,16 +5,12 @@ The progress notification is a commonly used notification type, mainly used to d
 
 In the [NotificationTemplate](../reference/apis-notification-kit/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
-**Figure 1** Progress notification
-
-![en-us_image_0000001416903138](figures/en-us_image_0000001416903138.png)
-
 
 ## Available APIs
 
 | Name| Description|
 | -------- | -------- |
-| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate).<br>Only the progress-type template is supported.|
+| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [`isSupportTemplate()`](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerissupporttemplate).<br>Only the progress-type template is supported.|
 
 
 ## How to Develop

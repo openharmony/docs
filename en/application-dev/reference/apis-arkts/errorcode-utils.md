@@ -465,7 +465,7 @@ The dependency does not exist.
 
 **Description**
 
-[removeDependency()](../apis/js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
+[removeDependency()](js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
 
 **Possible Causes**
 
@@ -483,7 +483,7 @@ The delayTime is less than zero.
 
 **Description**
 
-This error code is reported when the value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+This error code is reported when the value of [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
 
 **Possible Causes**
 
