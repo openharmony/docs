@@ -406,7 +406,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-## @ohos.deviceStatus.dragInteraction.d.ts 文件接口权限变更
+##dragInteraction.on('drag')、dragInteraction.off('drag') 接口权限变更
 
 **访问级别**
 
@@ -418,7 +418,7 @@ Toast组件ShowToast接口
 
 **变更影响**
 
-该变更为不兼容性变更，非系统应用调用接口会抛出202错误码。
+该变更为不兼容性变更，非系统应用调用dragInteraction.on('drag')和dragInteraction.off('drag')接口会抛出202错误码。
 
 **起始API Level**
 
