@@ -1562,13 +1562,15 @@ SymbolSpan样式选项。
 
 ## RichEditorSpan<sup>12+</sup>
 
-RichEditor span信息
+type RichEditorSpan = RichEditorTextStyleResult | RichEditorImageSpanResult
+
+RichEditor span信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述       |
+| 类型   | 说明       |
 | ------ | ---------- |
 | [RichEditorTextStyleResult](#richeditortextstyleresult) | 后端返回的文本样式信息。 |
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
