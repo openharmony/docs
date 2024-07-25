@@ -16,7 +16,7 @@
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName<sup>12+</sup> | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName<sup>12+</sup> | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
-| iconId<sup>12+</sup> | number         | 是   | 否   | 应用图标Id。            |
-| labelId<sup>12+</sup> | number         | 是   | 否   | 应用标签Id。            |
+| bundleName | string         | 是   | 否   | 应用包的名称。                 |
+| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
+| iconId | number         | 是   | 否   | 应用图标Id。            |
+| labelId | number         | 是   | 否   | 应用标签Id。            |
