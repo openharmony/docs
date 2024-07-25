@@ -426,7 +426,7 @@ Toast组件ShowToast接口
 
 **变更发生的版本**
 
-从OpenHarmony SDK 5.0.0.35开始。
+从OpenHarmony SDK 5.0.0.33开始。
 
 **变更的接口**
 
