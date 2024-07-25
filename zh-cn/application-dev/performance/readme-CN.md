@@ -41,6 +41,7 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
+    - [使用同层渲染在Web上渲染原生组件](webview-render-app-components.md)
     - [合理处理高负载组件的渲染](reasonably-dispose-highly-loaded-component-render.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [减小应用包大小](reduce-package-size.md)
