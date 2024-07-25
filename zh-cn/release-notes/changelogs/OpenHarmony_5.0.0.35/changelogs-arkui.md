@@ -253,3 +253,155 @@ struct TestPage {
   }
 }
 ```
+
+## cl.arkui.7 TimePickerDialog标题高度变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：标题高度为46vp。
+
+变更后：标题高度为56vp。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/TimePickerDialog_Before.png) | ![](figures/TimePickerDialog_After.png) |
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+TimePickerDialog组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.8 AlertDialog、promptAction.showDialog中Button间距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：Button间距为8vp。
+
+变更后：Button间距为16vp。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/AlertDialog_Before.png) | ![](figures/AlertDialog_After.png) |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+AlertDialog、promptAction.showDialog。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.9 SubMenu避让底部导航条距离变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Menu避让能贴近底部导航条，而SubMenu避让位置无法贴近底部导航条，视觉效果不好
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+| 变更前：SubMenu避让底部导航条之后避让了一个固定高度的padding | 变更后：SubMenu仅避让底部导航条，不额外添加固定高度的padding |
+|---------|---------|
+|  ![变更前有间距](figures/submenu-padding-bottom-before.jpg)       |  ![变更后删除间距](figures/submenu-padding-bottom-after.jpg)    
+
+**起始API Level**
+
+不涉及API变更
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.7 menu、toast修改阴影参数
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前阴影不明显，区分度不高。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+| 变更前阴影 | 变更后阴影|
+|---------|---------|
+|  ![Menu_before](figures/Menu_before.jpeg)       |  ![Menu_before](figures/Menu_after.jpeg)       |
+|  ![Toast_before](figures/Toast_before.jpeg)       |  ![Toast_before](figures/Toast_after.jpeg)       |
+
+**起始API Level**
+
+Menu组件的BindMenu接口 API 7
+
+Menu组件的BindContextMenu接口 API 8
+
+Toast组件的ShowToast接口 API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Menu组件的BindMenu接口
+
+Menu组件的BindContextMenu接口
+
+Toast组件ShowToast接口
+
+**适配指导**
+
+默认行为变更，无需适配。

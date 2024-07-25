@@ -7,22 +7,6 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 >
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-## 事件
-### onMove
-
-onMove(handler: Optional<(from: index, to: index) => void>)
-
-拖拽排序数据移动回调。只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型      | 必填 | 说明       |
-| ------ | --------- | ---- | ---------- |
-| from  | number | 是   | 数据源移动起始索引号。 |
-| to  | number | 是   | 数据源移动目标索引号。 |
-
 ## 键值生成规则
 
 在`ForEach`循环渲染过程中，系统会为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。当这个键值变化时，ArkUI框架将视为该数组元素已被替换或修改，并会基于新的键值创建一个新的组件。
