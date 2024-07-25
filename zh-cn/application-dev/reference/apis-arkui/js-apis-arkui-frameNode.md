@@ -1338,6 +1338,8 @@ initialize: C
 
 该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### attribute<sup>12+</sup>
@@ -1345,6 +1347,8 @@ initialize: C
 attribute(): T
 
 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1361,6 +1365,8 @@ type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
 Text类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1371,6 +1377,8 @@ Text类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Text'): Text
 
 创建Text类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1398,6 +1406,8 @@ type Column = TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt;
 
 Column类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1408,6 +1418,8 @@ Column类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Column'): Column
 
 创建Column类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1434,6 +1446,8 @@ type Row = TypedFrameNode&lt;RowInterface, RowAttribute&gt;
 
 Row类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1444,6 +1458,8 @@ Row类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Row'): Row
 
 创建Row类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1470,6 +1486,8 @@ type Stack = TypedFrameNode&lt;StackInterface, StackAttribute&gt;
 
 Stack类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1480,6 +1498,8 @@ Stack类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Stack'): Stack
 
 创建Stack类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1506,6 +1526,8 @@ type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
 
 GridRow类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1516,6 +1538,8 @@ GridRow类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
 创建GridRow类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1542,6 +1566,8 @@ type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
 
 GridCol类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1552,6 +1578,8 @@ GridCol类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 
 创建GridCol类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1578,6 +1606,8 @@ type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
 
 Flex类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1588,6 +1618,8 @@ Flex类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Flex'): Flex
 
 创建Flex类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1614,6 +1646,8 @@ type Swiper = TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt;
 
 Swiper类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1624,6 +1658,8 @@ Swiper类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 
 创建Swiper类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1650,6 +1686,8 @@ type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
 Progress类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1660,6 +1698,8 @@ Progress类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 创建Progress类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1686,6 +1726,8 @@ type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
 
 Scroll类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1696,6 +1738,8 @@ Scroll类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 创建Scroll类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1722,6 +1766,8 @@ type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeC
 
 RelativeContainer类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1732,6 +1778,8 @@ RelativeContainer类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 创建RelativeContainer类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1758,6 +1806,8 @@ type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
 
 Divider类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1768,6 +1818,8 @@ Divider类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Divider'): Divider
 
 创建Divider类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1794,6 +1846,8 @@ type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgre
 
 LoadingProgress类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1804,6 +1858,8 @@ LoadingProgress类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 创建LoadingProgress类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1830,6 +1886,8 @@ type Search = TypedFrameNode&lt;SearchInterface, SearchAttribute&gt;
 
 Search类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1840,6 +1898,8 @@ Search类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Search'): Search
 
 创建Search类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1866,6 +1926,8 @@ type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
 
 Blank类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1876,6 +1938,8 @@ Blank类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Blank'): Blank;
 
 创建Blank类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1902,6 +1966,8 @@ type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
 
 Image类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1912,6 +1978,8 @@ Image类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Image'): Image
 
 创建Image类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1938,6 +2006,8 @@ type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
 List类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1948,6 +2018,8 @@ List类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'List'): List
 
 创建List类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1974,6 +2046,8 @@ type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
 
 ListItem类型的FrameNode节点类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
@@ -1984,6 +2058,8 @@ ListItem类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 创建ListItem类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2024,6 +2100,8 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 
 创建TextInput类型的FrameNode节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2062,6 +2140,8 @@ Button类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'Button'): Button
 
 创建Button类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2102,6 +2182,8 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 
 创建ListItemGroup类型的FrameNode节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2140,6 +2222,8 @@ WaterFlow类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 
 创建WaterFlow类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2180,6 +2264,8 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 
 创建FlowItem类型的FrameNode节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2218,6 +2304,8 @@ XComponent类型的FrameNode节点类型。
 createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 
 创建XComponent类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

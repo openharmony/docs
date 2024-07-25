@@ -37,15 +37,15 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | - | 左侧按钮类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | - | 用于左侧头像的单个菜单项目。 |
+| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | - | 用于左侧头像的单个菜单项目。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 副标题。 |
+| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 副标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isSaveIconRequired<sup>12+</sup> | boolean | 否 | - | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。 |
+| isSaveIconRequired<sup>12+</sup> | boolean | 否 | - | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onSave | ()&nbsp;=&gt;&nbsp;void | 否 | - | 保存时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。 |
-| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。 |
+| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## EditableLeftIconType
 
@@ -74,6 +74,8 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
 
 ## EditableTitleBarOptions<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -135,7 +137,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.PNG)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
 ### 示例2
 
@@ -247,4 +249,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.PNG)
+![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)

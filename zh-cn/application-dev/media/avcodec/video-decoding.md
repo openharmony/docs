@@ -18,6 +18,7 @@
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 变分辨率         | 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数时配置， 具体可参考下文中：Buffer模式的步骤-3   |
 | 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface()配置，具体可参考下文中：Surface模式的步骤-7     |
+| 低时延解码  | 通过调用OH_VideoDecoder_Configure()配置，具体可参考下文中：Surface模式的步骤-6     |
 
 
 ## 限制约束
@@ -253,6 +254,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // 可选，配置低时延解码
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {

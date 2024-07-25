@@ -124,6 +124,8 @@ reuse(param?: Object): void
 
 传递reuse事件到ComponentContent中的自定义组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -137,6 +139,8 @@ reuse(param?: Object): void
 recycle(): void
 
 传递recycle事件到ComponentContent中的自定义组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -49,8 +49,8 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。                   |
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。                                 |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -96,7 +96,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。                                 |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -117,8 +117,8 @@ AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, sec
 | 名称                         | 参数类型                                                     | 必填 | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 确认弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框一级标题。                                             |
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框二级标题。                                             |
+| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框一级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                             |
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框二级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                             |
 | content                      | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primaryButton                | [ButtonOptions](#buttonoptions)                              | 否   | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton              | [ButtonOptions](#buttonoptions)                              | 否   | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -152,6 +152,8 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **装饰器类型：**\@CustomDialog
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -165,7 +167,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | 弹出框内容区内边距。                                         |
 | contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
 | buttons             | Array<[ButtonOptions](#buttonoptions)>                       | 否   | 弹出框操作区按钮，最多支持4个按钮。                          |
-| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
 
 
 ## ButtonOptions
@@ -178,8 +180,8 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | action                    | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 按钮的点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | background                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的背景。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的字体颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否   | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
-| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否   | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。                 |
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否   | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否   | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 
 >  **说明：**
 >

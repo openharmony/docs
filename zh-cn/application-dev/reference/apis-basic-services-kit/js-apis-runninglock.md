@@ -82,12 +82,10 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 **示例：**
 
 ```js
-static recordLock = null;
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
-        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }
@@ -129,12 +127,10 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 **示例：**
 
 ```js
-static recordLock = null;
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
-        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }

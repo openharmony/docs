@@ -50,6 +50,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -119,6 +120,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
