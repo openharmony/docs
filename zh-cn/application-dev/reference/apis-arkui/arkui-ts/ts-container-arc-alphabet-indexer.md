@@ -1,6 +1,6 @@
 # ArcAlphabetIndexer
 
-可以与容器组件联动，用于按逻辑结构快速定位容器显示区域的组件。
+弧形索引条是一种弧形的，可按字母顺排序进行快速定位的组件，可以与容器组件联动，按逻辑结构快速定位至容器显示区域。
 
 >  **说明：**
 >
@@ -20,7 +20,6 @@ import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@kit.ArkUI'
 
 
 ## 接口
-### ArcAlphabetIndexer
 
 ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
@@ -271,7 +270,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 
 ## ArcAlphabetIndexerInitInfo对象说明
-定义弧形字母索引条的初始化参数
+定义弧形字母索引条的初始化参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -286,7 +285,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 ## OnSelectCallback类型说明
 
-type OnSelectCallback =  (index: number) => void;
+type OnSelectCallback =  (index: number) => void
 
 定义onSelect中使用的回调类型。
 
@@ -300,11 +299,6 @@ type OnSelectCallback =  (index: number) => void;
 | ------ | ------ | ---- | ---------------- |
 | index  | number | 是 | 选中项序号。 |
 
-**返回值：**（可选，如不涉及可删除）
-
-| 类型   | 说明                                  |
-| ------ | ------------------------------------- |
-| [Interface1](#interface1) | 返回值描述。与[方法](#方法)要求一致。 |
 
 ## 示例
 
@@ -322,6 +316,20 @@ import {
   ArcAlphabetIndexerAttribute
 } from '@kit.ArkUI';
 
+@Builder
+function buildText() {
+  Stack() {
+    Text("head")
+      .fontSize(30)
+      .padding(10)
+      .backgroundColor(0xF9CF93)
+      .border({ width: '1px', color: Color.Black })
+
+    Divider().width('100%').height('1px')
+  }
+  .alignContent(Alignment.Bottom)
+}
+
 @Entry
 @Component
 struct ArcListAndIndexer {
@@ -334,8 +342,10 @@ struct ArcListAndIndexer {
     '21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38',
     '39','40', '41','42',
   ];
-  private scroller: Scroller = new Scroller()
+
+  private scrollerForList: Scroller = new Scroller()
   @State indexerIndex: number = 0;
+
   private watchSize: number = 233 // 手表默认宽高：233*233
   private itemSize: number = 24   // 索引项默认大小：24
 
@@ -343,7 +353,7 @@ struct ArcListAndIndexer {
     Column() {
       Row() {
         Stack() {
-          ArcList({ scroller : this.scroller, initialIndex: 0 }) {
+          ArcList({ scroller : this.scrollerForList, initialIndex: 0 }) {
             ForEach(this.arrName, (itemName: string, index: number) => {
               ArcListItem() {
                 if (index % 2 == 0) {
@@ -352,7 +362,7 @@ struct ArcListAndIndexer {
                     .height(46)
                     .fontSize(16)
                     .textAlign(TextAlign.Center)
-                    .backgroundColor(0xCC99FF)
+                    .backgroundColor(0xAFEEEE)
                     .borderRadius(23)
                 } else {
                   Text(itemName)
@@ -360,7 +370,7 @@ struct ArcListAndIndexer {
                     .height(46)
                     .fontSize(16)
                     .textAlign(TextAlign.Center)
-                    .backgroundColor(0x66FF66)
+                    .backgroundColor(0x00FFFF)
                     .borderRadius(23)
                 }
               }
@@ -384,11 +394,11 @@ struct ArcListAndIndexer {
             .selected(this.indexerIndex)
             .onSelect((index: number) => {
               this.indexerIndex = index
-              this.scroller.scrollToIndex(this.indexerIndex)
+              this.scrollerForList.scrollToIndex(this.indexerIndex)
             })
             .borderWidth(1)
             .hitTestBehavior(HitTestMode.Transparent)
-            .selectedColor(ColorMetrics.resourceColor(Color.Blue))
+            .selectedColor(ColorMetrics.resourceColor(Color.White))
             .selectedBackgroundColor(ColorMetrics.resourceColor(Color.Blue))
             .color(ColorMetrics.resourceColor(Color.White))
             .popupColor(ColorMetrics.resourceColor(Color.White))
