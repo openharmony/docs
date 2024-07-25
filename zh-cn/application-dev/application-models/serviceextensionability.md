@@ -89,24 +89,25 @@ idl_service_ext_impl.ts实现如下：
 
 ```ts
 import IdlServiceExtStub from './idl_service_ext_stub';
-import Logger from '../utils/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { insertDataToMapCallback } from './i_idl_service_ext';
 import { processDataCallback } from './i_idl_service_ext';
 
 const ERR_OK = 0;
 const TAG: string = "[IdlServiceExtImpl]";
+const DOMAIN_NUMBER: number = 0xFF00;
 
 // 开发者需要在这个类型里对接口进行实现
 export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // 开发者自行实现业务逻辑
-    Logger.info(TAG, `processData: ${data}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `processData: ${data}`);
     callback(ERR_OK, data + 1); // 鉴权通过，执行正常业务逻辑
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // 开发者自行实现业务逻辑
-    Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -139,32 +140,32 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-    
+
     const TAG: string = '[ServiceExtAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     export default class ServiceExtAbility extends ServiceExtensionAbility {
       serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
-    
+
       onCreate(want: Want): void {
         let serviceExtensionContext = this.context;
         hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
       };
-    
+
       onRequest(want: Want, startId: number): void {
         hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
       };
-    
+
       onConnect(want: Want): rpc.RemoteObject {
         hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
         // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
         return this.serviceExtImpl as rpc.RemoteObject;
       };
-    
+
       onDisconnect(want: Want): void {
         hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
       };
-    
+
       onDestroy(): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
       };
@@ -208,7 +209,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -254,10 +255,10 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
     import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -305,7 +306,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -395,6 +396,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
   };
+
   @Entry
   @Component
   struct Page_ServiceExtensionAbility {

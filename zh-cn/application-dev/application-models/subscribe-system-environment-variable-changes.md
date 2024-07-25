@@ -93,8 +93,6 @@
           let message = (err as BusinessError).message;
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
         }
-        ;
-
       }
 
       // 页面展示
@@ -176,7 +174,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
   }
-
   // ...
 }
 ```
