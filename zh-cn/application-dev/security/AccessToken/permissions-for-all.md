@@ -517,7 +517,7 @@
 
 ### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
-允许应用访问公共目录下DownLoad目录及子目录。
+允许应用访问公共目录下Download目录及子目录。
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
