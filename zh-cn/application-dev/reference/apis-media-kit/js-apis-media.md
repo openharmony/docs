@@ -1267,134 +1267,6 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
-### selectTrack<sup>12+</sup>
-
-selectTrack(index: number): Promise\<void>
-
-使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 选择曲目完成的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
-
-let avPlayer: media.AVPlayer | undefined = undefined;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
-      }
-    });
-  } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
-  }
-});
-
-// 选择其中一个音频轨道
-avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
-```
-
-### deselectTrack<sup>12+</sup>
-
-deselectTrack(index: number): Promise\<void>
-
-使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 取消选择曲目完成的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
-
-let avPlayer: media.AVPlayer | undefined = undefined;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
-      }
-    });
-  } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
-  }
-});
-
-// 选择其中一个音频轨道
-avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
-// 取消选择上次选中的音频轨道，并恢复到默认音频轨道。
-avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
-```
-
 ### setDecryptionConfig<sup>11+</sup>
 
 setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void
@@ -2436,13 +2308,13 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 否   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
 
 ## SubtitleInfo<sup>12+</sup>
 
 外挂字幕信息，使用场景：订阅外挂字幕事件，回调返回外挂字幕详细信息。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
