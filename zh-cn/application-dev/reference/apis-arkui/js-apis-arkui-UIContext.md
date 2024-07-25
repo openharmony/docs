@@ -5582,7 +5582,7 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上显示指定节点。
+在OverlayManager上隐藏指定节点。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
