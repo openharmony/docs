@@ -83,7 +83,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。|
@@ -2073,7 +2073,7 @@ const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 
 如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
 
-该键是可选的且只用于视频编码，在configure阶段使用。
+该键是可选的，在configure阶段使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

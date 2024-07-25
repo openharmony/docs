@@ -8126,7 +8126,7 @@ Obtains the main window of this window stage.
 
 | Type              | Description             |
 | ----------------- | ----------------------- |
-| [Window](#window) | return the main window. |
+| [Window](#window) | Main window. |
 
 **Error codes**
 

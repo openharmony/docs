@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Drawing module provides the functions for 2D graphics rendering, text drawing, and image display. It uses the physical pixel unit, px.
+The Drawing module provides the functions for 2D graphics rendering, text drawing, and image display. It uses the physical pixel unit, px. 
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8038,7 +8038,7 @@ Returns the number of text boxes.
 size_t OH_Drawing_GetStartFromRange (OH_Drawing_Range* )
 ```
 
-**ÃèÊö**
+**ï¿½ï¿½ï¿½ï¿½**
 
 Obtains the start position of an **OH_Drawing_Range** object.
 
