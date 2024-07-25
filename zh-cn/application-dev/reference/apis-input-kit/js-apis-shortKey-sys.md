@@ -44,7 +44,7 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 ```js
 import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {
+  shortKey.setKeyDownDuration(businessId, 500, (error) => {
     if (error) {
       console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -91,7 +91,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 ```js
 import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500).then(() => {
+  shortKey.setKeyDownDuration(businessId, 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
