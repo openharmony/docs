@@ -16,30 +16,36 @@ Calendar kit所需权限有：
 
 ### 申请权限步骤
 
-module.json5中配置所需申请的权限
+在module.json5中声明所需申请的权限，更多可参考[声明权限](../security/AccessToken/declare-permissions.md)。
 ```
-"requestPermissions": [
-  {
-    "name": "ohos.permission.READ_CALENDAR",
-    "reason": "$string:reason",
+{
+  "module" : {
+    // ...
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        // reason用于描述申请权限的原因，请使用string类资源引用，格式为$string: ***
+        "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "XxxAbility"
+            "FormAbility"
           ],
-          "when": "inuse"
+          "when":"inuse"
         }
-  },
-  {
-    "name": "ohos.permission.WRITE_CALENDAR",
-    "reason": "$string:reason",
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "XxxAbility"
+            "FormAbility"
           ],
-          "when": "inuse"
+          "when":"always"
         }
+      }
+    ]
   }
-]
+}
 ```
 
 代码中手动申请权限
