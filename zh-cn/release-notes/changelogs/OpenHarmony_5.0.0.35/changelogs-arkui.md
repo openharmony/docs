@@ -253,3 +253,79 @@ struct TestPage {
   }
 }
 ```
+
+## cl.arkui.7 TimePickerDialog标题高度变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：标题高度为46vp。
+
+变更后：标题高度为56vp。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/TimePickerDialog_Before.png) | ![](figures/TimePickerDialog_After.png) |
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+TimePickerDialog组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.8 AlertDialog、promptAction.showDialog中Button间距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：Button间距为8vp。
+
+变更后：Button间距为16vp。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/AlertDialog_Before.png) | ![](figures/AlertDialog_After.png) |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+AlertDialog、promptAction.showDialog。
+
+**适配指导**
+
+默认行为变更，无需适配。
