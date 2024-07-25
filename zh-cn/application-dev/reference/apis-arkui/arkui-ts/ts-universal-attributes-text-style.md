@@ -137,6 +137,8 @@ decoration(value: DecorationStyleInterface)
 
 文本范围。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | start | number | 否 | 起始索引。 |
@@ -148,6 +150,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 文本变换后回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -157,6 +161,9 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 ## StyledStringChangedListener<sup>12+</sup>
 属性字符串的文本内容变化监听器
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
@@ -164,6 +171,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 ## StyledStringChangeValue<sup>12+</sup>
 属性字符串的文本变化信息
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
