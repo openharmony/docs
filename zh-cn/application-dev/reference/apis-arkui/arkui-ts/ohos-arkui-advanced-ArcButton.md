@@ -1,10 +1,23 @@
-#  @ohos.arkui.advanced.ArcButton(弧形按钮高级组件)
+#  ArcButton
 
-弧形按钮高级组件。
+弧形按钮组件用于穿戴设备圆形屏幕使用。
 
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 导入模块
+
+```
+import {
+  ArcButton,
+  ArcButtonOptions,
+  ArcButtonStatus,
+  ArcButtonStyleMode,
+  ArkButtonClickEffectStyle,
+  ArcButtonTypeMode,
+}  from '@kit.ArkUI';
+```
 
 ## 子组件
 
@@ -34,26 +47,26 @@ ArcButtonOptions定义ArcButton的样式及具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 名称             | 类型                          | 必填 | 说明                                                         |
-| ---------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| type             | **ArcButtonType**             | 否   | 上下弧形按钮类型属性。<br/>默认:下弧形按钮。                 |
-| width            | LengthMetrics                 | 否   | 大圆弧的半径。<br>默认值：330vp。                            |
-| height           | LengthMetrics                 | 否   | 弯曲按钮的高度。<br>默认值：48vp。                           |
-| styleMode        | **ArcButtonStyleMode**        | 否   | 弧形按钮样式模式。<br>默认值：ArcButtonStyleMode.EMPHASIZED_LIGHT。 |
-| status           | **ArcButtonStatus**           | 否   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL。          |
-| resourceText     | ResourceStr                   | 否   | 弧形按钮显示文本。                                           |
-| touchEffect      | **ArkButtonClickEffectStyle** | 否   | 弧形按钮动态效果开关。<br/>默认值：ArkButtonClickEffectStyle.NONE。 |
-| backgroundColor  | ColorMetrics                  | 否   | 弧形按钮背景颜色。<br/>默认值：Color.Black。                 |
-| shadowColor      | ColorMetrics                  | 否   | 弧形按钮阴影颜色。<br/>默认值：Color.Black。                 |
-| shadowEnabled    | boolean                       | 否   | 弧形按钮阴影开关。<br/>默认值：false。                       |
-| textSize         | LengthMetrics                 | 否   | 弧形按钮文本大小。<br/>默认值：19fp。                        |
-| textColor        | ColorMetrics                  | 否   | 弧形按钮文本颜色。<br/>默认值：Color.White。                 |
-| pressedTextColor | ColorMetrics                  | 否   | 弧形按钮按下文本颜色。<br/>默认值：Color.White。             |
-| textStyle        | FontStyle                     | 否   | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal。            |
-| textFamily       | string \| Resource            | 否   | 弧形按钮文本族。                                             |
-| textMargin       | LocalizedMargin               | 否   | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp }。 |
+| 名称             | 类型                                                    | 必填 | 说明                                                         |
+| ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [ArcButtonType](#ArcButtonType)                         | 否   | 上下弧形按钮类型属性。<br/>默认:下弧形按钮。                 |
+| width            | LengthMetrics                                           | 否   | 大圆弧的半径。<br>默认值：330vp。                            |
+| height           | LengthMetrics                                           | 否   | 弯曲按钮的高度。<br>默认值：48vp。                           |
+| styleMode        | [ArcButtonStyleMode](#ArcButtonStyleMode)               | 否   | 弧形按钮样式模式。<br>默认值：ArcButtonStyleMode.EMPHASIZED_LIGHT。 |
+| status           | [ArcButtonStatus](#ArcButtonStatus)                     | 否   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL。          |
+| resourceText     | ResourceStr                                             | 否   | 弧形按钮显示文本。                                           |
+| touchEffect      | [ArkButtonClickEffectStyle](#ArkButtonClickEffectStyle) | 否   | 弧形按钮动态效果开关。<br/>默认值：ArkButtonClickEffectStyle.NONE。 |
+| backgroundColor  | ColorMetrics                                            | 否   | 弧形按钮背景颜色。<br/>默认值：Color.Black。                 |
+| shadowColor      | ColorMetrics                                            | 否   | 弧形按钮阴影颜色。<br/>默认值：Color.Black。                 |
+| shadowEnabled    | boolean                                                 | 否   | 弧形按钮阴影开关。<br/>默认值：false。                       |
+| textSize         | LengthMetrics                                           | 否   | 弧形按钮文本大小。<br/>默认值：19fp。                        |
+| textColor        | ColorMetrics                                            | 否   | 弧形按钮文本颜色。<br/>默认值：Color.White。                 |
+| pressedTextColor | ColorMetrics                                            | 否   | 弧形按钮按下文本颜色。<br/>默认值：Color.White。             |
+| textStyle        | FontStyle                                               | 否   | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal。            |
+| textFamily       | string \| Resource                                      | 否   | 弧形按钮文本族。                                             |
+| textMargin       | LocalizedMargin                                         | 否   | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp }。 |
 
-## **ArcButtonType**
+## ArcButtonType
 
 ArcButtonType是ArcButton可设置的弧形按钮的类型。
 
@@ -66,7 +79,7 @@ ArcButtonType是ArcButton可设置的弧形按钮的类型。
 | TOP_EDGE    | 0    | 上弧形按钮，位于圆形屏幕上方     |
 | BOTTOM_EDGE | 1    | 底部弧形按钮，位于圆形屏幕底部。 |
 
-## **ArcButtonStyleMode**
+## ArcButtonStyleMode
 
 ArcButtonStyleMode是ArcButton可设置弧形按钮样式模式。
 
@@ -81,7 +94,7 @@ ArcButtonStyleMode是ArcButton可设置弧形按钮样式模式。
 | NORMAL_LIGHT     | 2    | 正常状态，亮色。 |
 | NORMAL_DEEP      | 3    | 正常状态，暗色。 |
 
-## **ArcButtonStatus**
+## ArcButtonStatus
 
 ArcButtonStatus是ArcButton可设置的弧形按钮状态。
 
@@ -95,7 +108,7 @@ ArcButtonStatus是ArcButton可设置的弧形按钮状态。
 | PRESSED  | 1    | 按压状态。 |
 | DISABLED | 2    | 禁用状态。 |
 
-## **ArkButtonClickEffectStyle**
+## ArkButtonClickEffectStyle
 
 ArkButtonClickEffectStyle是ArcButton提供的弧形按钮点击效果状态。
 
@@ -114,8 +127,6 @@ ArkButtonClickEffectStyle是ArcButton提供的弧形按钮点击效果状态。
 
 ## 示例
 
-### 示例1
-
 ArcButton使用示例。
 
 ```ts
@@ -128,7 +139,7 @@ import {
   ArcButtonStyleMode,
   ArkButtonClickEffectStyle,
   ArcButtonTypeMode,
-}  from '@ohos.arkui.advanced.ArcButton';
+}  from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

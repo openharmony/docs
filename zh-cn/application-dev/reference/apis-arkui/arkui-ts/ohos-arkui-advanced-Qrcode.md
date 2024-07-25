@@ -1,10 +1,16 @@
-#  @ohos.arkui.advanced.Qrcode (二维码高级组件)
+#  Qrcode
 
-二维码高级组件。
+用于显示二维码内容、状态的组件。
 
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 导入模块
+
+```
+import { Qrcode, QrcodeOptions, QrcodeState } from '@kit.ArkUI'
+```
 
 ## 子组件
 
@@ -22,11 +28,11 @@ Qrcode({options:QrcodeOptions,state:QrcodeState,value:string})
 
 **参数**：
 
-| 名称    | 类型          | 必填 | 装饰器类型      | 说明                   |
-| ------- | ------------- | ---- | --------------- | ---------------------- |
-| options | QrcodeOptions | 是   | @ObservedV2     | 定义Qrcode组件的参数。 |
-| state   | QrcodeState   | 是   | @Require @Param | Qrcode的状态参数       |
-| value   | string        | 是   | @Require @Param | 二维码内容参数         |
+| 名称    | 类型                            | 必填 | 装饰器类型      | 说明                   |
+| ------- | ------------------------------- | ---- | --------------- | ---------------------- |
+| options | [QrcodeOptions](#QrcodeOptions) | 是   | @ObservedV2     | 定义Qrcode组件的参数。 |
+| state   | [QrcodeState](#QrcodeState)     | 是   | @Require @Param | Qrcode的状态参数       |
+| value   | string                          | 是   | @Require @Param | 二维码内容参数         |
 
 
 
@@ -71,12 +77,10 @@ QrcodeState是Qrcode可设置的状态类型。
 
 ## 示例
 
-### 示例1
-
 Qrcode使用示例。
 
 ```ts
-import { Qrcode, QrcodeOptions, QrcodeState } from '@ohos.arkui.advanced.Qrcode'
+import { Qrcode, QrcodeOptions, QrcodeState } from '@kit.ArkUI'
 import { LengthMetrics,ColorMetrics } from '@ohos.arkui.node';
 
 @Entry
