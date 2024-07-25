@@ -2688,7 +2688,7 @@ createImageData(sw: number, sh: number): ImageData
 
 createImageData(imageData: ImageData): ImageData
 
-根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
+根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象（不会复制图像数据），请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2869,13 +2869,13 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
           .backgroundColor('#ffff00')
           .onReady(() =>{
             let imageDataNum = this.context.createImageData(100, 100)
-            for (let i = 0; i < imageDataNum.data.length; i += 4) {
-              imageDataNum.data[i + 0] = 255
-              imageDataNum.data[i + 1] = 0
-              imageDataNum.data[i + 2] = 255
-              imageDataNum.data[i + 3] = 255
-            }
             let imageData = this.context.createImageData(imageDataNum)
+            for (let i = 0; i < imageData.data.length; i += 4) {
+              imageData.data[i + 0] = 255
+              imageData.data[i + 1] = 0
+              imageData.data[i + 2] = 255
+              imageData.data[i + 3] = 255
+            }
             this.context.putImageData(imageData, 10, 10)
           })
       }
