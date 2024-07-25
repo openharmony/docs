@@ -27,7 +27,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 ### napi_async_init、napi_async_destroy
 
-在需要管理异步资源上下文环境的创建和销毁时，可以使用napi_async_init和napi_async_destroy来管理这些环境。需要注意的是，这些函数暂不支持与async_hook相关的能力，所以在使用时需要注意可能会存在的限制。
+在需要管理异步资源上下文环境的创建和销毁时，可以使用napi_async_init和napi_async_destroy来管理这些环境。需要注意的是，这些函数不支持与async_hook相关的能力，所以在使用时需要注意可能会存在的限制。
 
 ### napi_make_callback
 
