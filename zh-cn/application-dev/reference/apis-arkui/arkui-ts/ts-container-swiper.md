@@ -317,7 +317,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
-| swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值;如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
+| swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 ### effectMode<sup>8+</sup>
 
@@ -351,14 +351,14 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。 |
+| value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
 | isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 
 ### nextMargin<sup>10+</sup>
 
 nextMargin(value: Length, ignoreBlank?:boolean)
 
-设置后边距，用于露出后一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
+设置后边距，用于露出后一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -373,13 +373,13 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 后边距。<br/>默认值：0 |
-| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下尾页不显示nextMargin。<br/>默认值：false <br/>**说明：**<br/>尾页场景下，prevMargin和nextMargin的值相加作为左边边距显示前一个页面。 |
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下尾页不显示nextMargin。在非loop场景下，设置为true时，尾页不显示空白的nextMargin，尾页的右边缘与Swiper视窗右边缘对齐；设置false时，尾页显示空白nextMargin，尾页的右边缘与Swiper视窗右边缘的距离为nextMargin。<br/>默认值：false <br/>**说明：**<br/>尾页场景下，prevMargin和nextMargin的值相加作为左边边距显示前一个页面。 |
 
 ### prevMargin<sup>10+</sup>
 
 prevMargin(value: Length, ignoreBlank?:boolean)
 
-设置前边距，用于露出前一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
+设置前边距，用于露出前一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -394,7 +394,7 @@ prevMargin(value: Length, ignoreBlank?:boolean)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 前边距。<br/>默认值：0 |
-| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下首页不显示prevMargin。<br/>默认值：false <br/>**说明：**<br/>首页场景下，prevMargin和nextMargin的值相加作为右边边距显示后一个页面。|
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下首页不显示prevMargin。在非loop场景下，设置为true时，首页不显示空白的prevMargin，首页的左边缘与Swiper视窗左边缘对齐；设置false时，首页显示空白prevMargin，首页的左边缘与Swiper视窗左边缘的距离为prevMargin。<br/>默认值：false <br/>**说明：**<br/>首页场景下，prevMargin和nextMargin的值相加作为右边边距显示后一个页面。|
 
 ### nestedScroll<sup>11+</sup>
 

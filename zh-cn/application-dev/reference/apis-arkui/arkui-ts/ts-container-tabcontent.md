@@ -100,7 +100,7 @@ SubTabBarStyle的构造函数。支持ComponentContent设置自定义内容。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### of<sup>10+</sup>
 
@@ -128,7 +128,7 @@ SubTabBarStyle的静态构造函数。
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的内容。支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的内容。支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### 属性
 
