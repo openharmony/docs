@@ -329,3 +329,33 @@ AlertDialog、promptAction.showDialog。
 **适配指导**
 
 默认行为变更，无需适配。
+
+
+## @ohos.deviceStatus.dragInteraction.d.ts 文件接口权限变更
+
+**访问级别**
+
+系统接口。
+
+**变更原因**
+
+根据安全要求规范，将该文件的所有系统接口函数添加接口权限校验。
+
+**变更影响**
+
+该变更为非兼容性变更，非系统应用调用接口会抛出202错误码。
+
+**起始API Level**
+
+12
+
+**变更发生的版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口**
+
+| 接口声明 | 变更前 | 变更后 |
+| ------------------------------------------------------------ | --------- | ------ |
+| on(type: 'drag', callback: Callback\<DragState>): void       | 不抛出202错误码 | 抛出202错误码INJECT_INPUT_EVENT权限 |
+| off(type: 'drag', callback?: Callback\<DragState>): void     | 不抛出202错误码 | 抛出202错误码INJECT_INPUT_EVENT权限 |
