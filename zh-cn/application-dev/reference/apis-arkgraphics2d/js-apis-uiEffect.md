@@ -81,4 +81,7 @@ filter.blur(20)
 ```
 
 ## VisualEffect
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 VisualEffect效果类，用于将相应的效果添加到指定的组件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
