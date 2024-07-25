@@ -26,7 +26,7 @@
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
     - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
-    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)
+    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)  
     - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
@@ -353,7 +353,7 @@
       - [Panel](arkui-ts/ts-container-panel.md)
     - 已停止维护的接口
       - [点击控制](arkui-ts/ts-universal-attributes-click.md)
-  - [兼容JS的类Web开发范式 (ArkUI.Full)](arkui-js/Readme-CN.md)
+  - [兼容JS的类Web开发范式 (ArkUI.Full)](arkui-js/Readme-CN.md)    
   - [兼容JS的类Web开发范式 (ArkUI.Lite)](arkui-js-lite/Readme-CN.md)
   - [JS服务卡片UI组件参考](js-service-widget-ui/Readme-CN.md)
 - C API

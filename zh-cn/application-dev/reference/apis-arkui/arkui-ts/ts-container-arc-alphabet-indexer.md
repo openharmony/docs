@@ -32,7 +32,7 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| info     | ArcAlphabetIndexerInitInfo | 是 | 定义弧形字母索引条的初始化参数。 |
+| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo对象说明) | 是 | 定义弧形字母索引条的初始化参数。 |
 
 
 ## 属性
@@ -267,7 +267,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| handler  | Optional&lt;OnSelectCallback&gt; | 是   | 回调函数类型。 |
+| handler  | Optional&lt;[OnSelectCallback](#onselectcallback类型说明)&gt; | 是   | 回调函数类型。 |
 
 
 ## ArcAlphabetIndexerInitInfo对象说明
