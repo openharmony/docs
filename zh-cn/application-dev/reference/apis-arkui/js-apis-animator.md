@@ -218,6 +218,8 @@ onFrame: (progress: number) => void
 
 接收到帧时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -242,6 +244,8 @@ onFinish: () => void
 
 动画完成时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -260,6 +264,8 @@ onCancel: () => void
 
 动画被取消时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -277,6 +283,8 @@ animatorResult.onCancel = ()=> {
 onRepeat: () => void
 
 动画重复时回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
