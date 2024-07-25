@@ -48,6 +48,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | axisHorizontal<sup>12+</sup> | number | 水平轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 垂直轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceId<sup>12+</sup> | number | 触发当前事件的输入设备ID。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 **错误码**：
 
