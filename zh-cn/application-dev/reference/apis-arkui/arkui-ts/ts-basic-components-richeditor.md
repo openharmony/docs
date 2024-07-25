@@ -1699,14 +1699,14 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 | rangeAfter | [TextRange](./ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
 
 ## StyledStringChangedListener<sup>12+</sup>
-属性字符串的文本内容变化监听器
+属性字符串的文本内容变化监听器。
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
 
 ## StyledStringChangeValue<sup>12+</sup>
-属性字符串的文本变化信息
+属性字符串的文本变化信息。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
