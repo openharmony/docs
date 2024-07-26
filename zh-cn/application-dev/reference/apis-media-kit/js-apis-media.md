@@ -3498,12 +3498,12 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
   if (err) {
     console.error('Failed to get AvailableEncoder and error is ' + err.message);
   } else {
     console.info('Succeeded in getting AvailableEncoder');
-    encoderInfo = info;
+    encoderInfo = info[0];
   }
 });
 ```
@@ -3536,9 +3536,9 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
   console.info('Succeeded in getting AvailableEncoder');
-  encoderInfo = info;
+  encoderInfo = info[0];
 }).catch((err: BusinessError) => {
   console.error('Failed to get AvailableEncoder and catch error is ' + err.message);
 });
@@ -3575,9 +3575,9 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
   if (err) {
     console.error('Failed to get avConfig and error is ' + err.message);
   } else {
@@ -3618,9 +3618,9 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
   console.info('Succeeded in getting AVRecorderConfig');
   avConfig = config;
 }).catch((err: BusinessError) => {
@@ -6514,15 +6514,13 @@ import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let mgr: resourceManager.ResourceManager | null = null;
-let moduleContext: common.Context;
-moduleContext = this.context.createModuleContext('entry');
-mgr = moduleContext.resourceManager;
-this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+let context = getContext(this) as common.UIAbilityContext;
+let mgr = context.resourceManager;
+let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
-let fd:string = this.fileDescriptor.fd.toString();
-let offset:string = this.fileDescriptor.offset.toString();
-let length:string = this.fileDescriptor.length.toString();
+let fd:string = fileDescriptor.fd.toString();
+let offset:string = fileDescriptor.offset.toString();
+let length:string = fileDescriptor.length.toString();
 let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
