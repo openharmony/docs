@@ -3,7 +3,6 @@
 HiAppEvent提供接口用于订阅系统踩内存事件。
 
 - [订阅踩内存事件（ArkTS）](hiappevent-watcher-address-sanitizer-events-arkts.md)
-- [订阅踩内存事件（C/C++）](hiappevent-watcher-address-sanitizer-events-ndk.md)
 
 踩内存事件信息中params属性的详细描述如下：
 
