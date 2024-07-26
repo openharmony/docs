@@ -784,9 +784,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in preparing');
-  } else {
     console.error('Failed to prepare,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in preparing');
   }
 })
 ```
