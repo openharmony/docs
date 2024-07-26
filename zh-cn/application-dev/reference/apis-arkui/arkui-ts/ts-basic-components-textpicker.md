@@ -371,7 +371,12 @@ struct TextPickerExample {
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
-        .divider({ strokeWidth: 10, color: Color.Red, startMargin: 10, endMargin: 20 } as DividerOptions)
+        .divider({
+          strokeWidth: 10,
+          color: Color.Red,
+          startMargin: 10,
+          endMargin: 20
+        } as DividerOptions)
     }.width('100%').height('100%')
   }
 }
