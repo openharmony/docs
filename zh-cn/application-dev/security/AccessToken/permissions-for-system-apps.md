@@ -2729,6 +2729,34 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_UWB
+
+允许系统应用管理UWB功能。
+
+例如开关UWB、查询芯片类型、查询UWB支持能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.USE_UWB_RANGING
+
+允许系统应用使用UWB测距功能。
+
+例如打开测距会话、启动测距、停止测距、关闭测距会话等。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_FINDNETWORK
 
 允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
