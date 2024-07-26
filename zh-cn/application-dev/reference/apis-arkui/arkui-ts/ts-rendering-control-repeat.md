@@ -57,7 +57,7 @@ declare class RepeatAttribute<T> {
 ```ts
 interface RepeatItem<T> {
   item: T,
-  index: number
+  index?: number
 }
 ```
 
@@ -68,7 +68,7 @@ interface RepeatItem<T> {
 | 属性名 | 类型   | 是否必填 | 描述                                         |
 | ------ | ------ | -------- | -------------------------------------------- |
 | item   | T      | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 是       | 当前数据项对应的索引。                       |
+| index  | number | 否       | 当前数据项对应的索引。                       |
 
 ### VirtualScrollOptions类型
 
