@@ -10,110 +10,9 @@ Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来�
 
 Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
 
-## 接口描述
-
-### Repeat组件构造
-
-```ts
-declare const Repeat: <T>(arr: Array<T>) => RepeatAttribute<T>
-```
-
-参数说明：
-
-| 参数名 | 参数类型   | 是否必填 | 参数描述                                               |
-| ------ | ---------- | -------- | ------------------------------------------------------ |
-| arr    | Array\<T\> | 是       | 数据源，为`Array<T>`类型的数组，由开发者决定数据类型。 |
-
-### Repeat组件属性
-
-```ts
-declare class RepeatAttribute<T> {
-  each(itemGenerator: (repeatItem: RepeatItem<T>) => void): RepeatAttribute<T>;
-  key(keyGenerator: (item: T, index: number) => string): RepeatAttribute<T>;
-  virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute<T>;
-  template(type: string, itemBuilder: RepeatItemBuilder<T>, templateOptions?: TemplateOptions): RepeatAttribute<T>;
-  templateId(typedFunc: TemplateTypedFunc<T>): RepeatAttribute<T>;
-}
-```
-
-参数说明：
-
-| 属性名        | 参数类型                                                     | 参数描述                                                     |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| each          | itemGenerator: (repeatItem: RepeatItem\<T\>) => void         | 组件生成函数。<br/>**说明：**<br/>- `each`属性必须有，否则运行时会报错。<br/>- `itemGenerator`的参数为`RepeatItem`，该参数将`item`和`index`结合到了一起，请勿将`RepeatItem`参数拆开使用。 |
-| key           | keyGenerator: (item: T, index: number) => string             | 键值生成函数。<br/>- 为数组中的每个元素创建对应的键值。<br/>- `item`：`arr`数组中的数据项。<br/>- `index`：`arr`数组中的数据项索引。 |
-| virtualScroll | virtualScrollOptions?: VirtualScrollOptions                  | `Repeat`开启虚拟滚动。<br/>-`virtualScrollOptions`：虚拟滚动配置项。 |
-| template      | type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions | 复用模板。<br/>未开启virtualScroll时暂不支持，复用有问题。<br/>-`type`：当前模板类型。<br/>-`itemBuilder`：组件生成函数。<br/>-`templateOptions`：当前模板配置项。 |
-| templateId    | typedFunc: TemplateTypedFunc\<T\>                              | 为当前数据项分配模板类型。<br/>-`typedFunc`：生成当前数据项对应的模板类型。<br/>template和templateId匹配不上的数据项走默认生成函数each。 |
-
-### RepeatItem类型
-
-```ts
-interface RepeatItem<T> {
-  item: T,
-  index?: number
-}
-```
-
-属性说明：
-
-| 属性名 | 类型   | 是否必填 | 描述                                         |
-| ------ | ------ | -------- | -------------------------------------------- |
-| item   | T      | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 否       | 当前数据项对应的索引。                       |
-
-### VirtualScrollOptions类型
-
-```
-interface VirtualScrollOptions {
-  totalCount?: number;
-}
-```
-
-属性说明：
-
-| 属性名     | 类型   | 是否必填 | 描述                                                         |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
-
-### RepeatItemBuilder类型
-
-```
-declare type RepeatItemBuilder<T> = (repeatItem: RepeatItem<T>) => void;
-```
-
-参数说明：
-
-| 参数名     | 类型          | 是否必填      | 描述                                    |
-| ---------- | ------------- | --------------------------------------- | --------------------------------------- |
-| repeatItem | RepeatItem\<T\> | 是 | 将item和index结合到一起的一个状态变量。 |
-
-### TemplateOptions类型
-
-```
-interface TemplateOptions {
-  cachedCount?: number
-}
-```
-
-属性说明：
-
-| 属性名      | 类型   | 是否必填 | 描述                                                         |
-| ----------- | ------ | -------- | ------------------------------------------------------------ |
-| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。<br/>each方法的cachedCount默认为1，目前不能修改。 |
-
-### TemplateTypedFunc类型
-
-```
-declare type TemplateTypedFunc<T> = (item : T, index : number) => string;
-```
-
-参数说明：
-
-| 参数名 | 类型   | 是否必填 | 描述                                         |
-| ------ | ------ | -------- | -------------------------------------------- |
-| item   | T      | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 是       | 当前数据项对应的索引。                       |
+> **注意：**
+>
+> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用V1装饰器和virtualScroll场景。
 
 ## 使用限制
 
@@ -299,127 +198,172 @@ struct ChildItem {
 
 ### virtualScroll
 
-#### 数据源变化
+本小节将展示virtualScroll场景下，Repeat的实际使用场景和组件节点的复用情况。根据复用规则可以衍生出大量的测试场景，篇幅原因，只对典型的数据变化进行解释。
+
+#### 应用示例
+
+下面的代码设计了Repeat组件的virtualScroll场景典型数据源操作，包括**插入数据、修改数据、删除数据、交换数据**。点击相应的文字可以触发数据的变化，依次点击数据项可以交换被点击的两个数据项。
 
 ```ts
 @ObservedV2
-class Wrap1 {
-    @Trace message: string = '';
-    
-    constructor(message: string) {
-        this.message = message;
-    }
+class Clazz {
+  @Trace message: string = '';
+
+  constructor(message: string) {
+    this.message = message;
+  }
 }
 
 @Entry
 @ComponentV2
-struct Parent {
-    @Local simpleList: Array<Wrap1> = [];
-    @Local start: number = 0;
-    
-    aboutToAppear(): void {
-        for (let i=0; i<100; i++) {
-            this.simpleList.push(new Wrap1('Hello' + i));
-        }
+struct TestPage {
+  @Local simpleList: Array<Clazz> = [];
+  private exchange: number[] = [];
+  private counter: number = 0;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList.push(new Clazz('Hello ' + i));
     }
-    
-    build() {
-        Column() {
-            Text('点击修改当前屏上第一个数据的值')
-            	.fontSize(40)
-            	.fontColor(Color.Red)
-            	.onClick(()=>{
-                	this.simpleList[this.start] = new Wrap1(this.simpleList[this.start].message + ' new');
-            	})
-            
-            List() {
-                Repeat<Wrap1>(this.simpleList)
-                	.each((obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                            Text(obj.item.message)
-                            	.fontSize(30)
-                        }
-                	})
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('点击插入第5项')
+        .fontSize(24)
+        .fontColor(Color.Red)
+        .onClick(() => {
+          this.simpleList.splice(4, 0, new Clazz(`${this.counter++}_new item`));
+        })
+      Text('点击修改第5项')
+        .fontSize(24)
+        .fontColor(Color.Red)
+        .onClick(() => {
+          this.simpleList[4].message = `${this.counter++}_new item`;
+        })
+      Text('点击删除第5项')
+        .fontSize(24)
+        .fontColor(Color.Red)
+        .onClick(() => {
+          this.simpleList.splice(4, 1);
+        })
+      Text('依次点击两个数据项进行交换')
+        .fontSize(24)
+        .fontColor(Color.Red)
+
+      List({ initialIndex: 10 }) {
+        Repeat<Clazz>(this.simpleList)
+          .each((obj: RepeatItem<Clazz>) => {
+            ListItem() {
+              Text('[each] ' + obj.item.message)
+                .fontSize(30)
+                .margin({ top: 10 })
             }
-            .onScrollIndex((start: number)=>{
-                this.start = start;
-            })
-            .cachedCount(5)
-            .width('100%')
-            .height('100%')
-        }
-        .height(700)
+          })
+          .key((item: Clazz, index: number) => {
+            return item.message;
+          })
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId((item: Clazz, index: number) => "default")
+          .template('default', (ri) => {
+            Text('[template] ' + ri.item.message)
+              .fontSize(30)
+              .margin({ top: 10 })
+              .onClick(() => {
+                this.exchange.push(ri.index);
+                if (this.exchange.length === 2) {
+                  let _a = this.exchange[0];
+                  let _b = this.exchange[1];
+                  // click to exchange
+                  let temp: string = this.simpleList[_a].message;
+                  this.simpleList[_a].message = this.simpleList[_b].message;
+                  this.simpleList[_b].message = temp;
+                  this.exchange = [];
+                }
+              })
+          }, { cachedCount: 3 })
+      }
+      .cachedCount(1)
+      .border({ width: 1 })
+      .width('90%')
+      .height('70%')
     }
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
 }
 ```
+该应用列表内容为100项自定义类`Clazz`的`message`字符串属性，List组件的cachedCount设为1，template “default”缓存池大小设为3。应用界面如下图所示：
 
-![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-DataChange.gif)
+![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.jpg)
 
-#### 索引值变化
+#### 节点操作实例
 
-```ts
-@ObservedV2
-class Wrap1 {
-    @Trace message: string = '';
-    
-    constructor(message: string) {
-        this.message = message;
-    }
-}
+当进行数据源变化操作时，key值改变的节点会被重新创建。如果相对应的template的缓存池中有缓存节点，就会进行节点复用。当key值不变时，组件会直接复用并更新index的值。
 
-@Entry
-@ComponentV2
-struct Parent {
-    @Local simpleList: Array<Wrap1> = [];
-    @Local start: number = 0;
-    @Local center: number = 0;
-    
-    aboutToAppear(): void {
-        for (let i=0; i<100; i++) {
-            this.simpleList.push(new Wrap1('Hello' + i));
-        }
-    }
-    
-    build() {
-        Column() {
-            Text('点击交换屏上第一个数据和中间数据的值')
-            	.fontSize(40)
-            	.fontColor(Color.Red)
-            	.onClick(()=>{
-                	let temp: number = this.simpleList[this.start];
-                	this.simpleList[this.start] = this.simpleList[this.center];
-                	this.simpleList[this.center] = temp;
-            	})
-            
-            List() {
-                Repeat<Wrap1>(this.simpleList)
-                	.each((obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                            Text('index ' + obj.index + ': ')
-                            	.fontSize(30)
-                            Text(obj.item.message)
-                            	.fontSize(30)
-                        }
-                	})
-            }
-            .onScrollIndex((start: number, end: number, center: number)=>{
-                this.start = start;
-                this.center = center;
-            })
-            .cachedCount(5)
-            .width('100%')
-            .height('100%')
-        }
-        .height(700)
-    }
-}
+**插入数据**
+
+数据操作：
+
+![Repeat-VirtualScroll-InsertData](./figures/Repeat-VirtualScroll-InsertData.gif)
+
+本例做了四次插入数据操作，前两次为屏幕上方插入数据，后两次为当前屏幕插入数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
+
+```
+// 屏幕上方两次插入
+onUpdateNode [Hello 22] -> [Hello 8]
+onUpdateNode [Hello 21] -> [Hello 7]
+// 当前屏幕两次插入
+onUpdateNode [Hello 11] -> [2_new item]
+onUpdateNode [Hello 10] -> [3_new item]
 ```
 
-![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-IndexChange.gif)
+在屏幕上方插入数据时，会发生节点移动，引起当前屏幕的预加载节点改变，预加载节点发生了复用，即下方出缓存的节点22复用给了上方进入缓存的节点8。在当前屏幕插入数据时，会产生新数据项，新的节点会复用屏幕下方出缓存的预加载节点。本应用中屏幕下方添加数据时不会发生复用。
 
-当key值不变时，组件会直接复用并更新index的值。
+**修改数据**
 
-#### 使用template
+数据操作：
+
+![Repeat-VirtualScroll-ModifyData](./figures/Repeat-VirtualScroll-ModifyData.gif)
+
+本例做了四次修改数据操作，前两次为屏幕上方修改数据，后两次为当前屏幕修改数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
+
+```
+// 当前屏幕两次修改
+onUpdateNode [Hello 14] -> [2_new item]
+onUpdateNode [1_new item] -> [3_new item]
+```
+
+由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点key值改变，进而重新渲染，将从缓存池中寻找缓存节点进行复用。
+
+**交换数据**
+
+数据操作：
+
+![Repeat-VirtualScroll-ExchangeData](./figures/Repeat-VirtualScroll-ExchangeData.gif)
+
+本例在当前屏幕做了两次交换数据操作。由于key值未发生改变，直接交换两个节点，没有节点复用。
+
+**删除数据**
+
+数据操作：
+
+![Repeat-VirtualScroll-DeleteData](./figures/Repeat-VirtualScroll-DeleteData.gif)
+
+本例做了五次删除数据操作，前两次为屏幕上方删除数据，后三次为当前屏幕删除数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
+
+```
+// 屏幕上方两次删除
+onUpdateNode [Hello 9] -> [Hello 23]
+onUpdateNode [Hello 10] -> [Hello 24]
+// 当前屏幕两次删除没有调用onUpdateNode
+// 当前屏幕第三次删除
+onUpdateNode [Hello 6] -> [Hello 17]
+```
+
+在屏幕上方删除数据时，会发生节点移动，引起当前屏幕的预加载节点改变，预加载节点发生了复用，即上方出缓存的节点9复用给了下方进入缓存的节点23。当前屏幕删除数据时，由于List组件的cachedCount预加载属性，前两次删除操作中，进入屏幕的节点已经渲染，不会发生复用，被删除的节点进入对应template的缓存池中。第三次删除时，下方进入预加载缓存的节点17复用了缓存池中的节点6。
+
+#### 使用多个template
 
 ```
 @ObservedV2
@@ -500,6 +444,58 @@ struct Parent {
 ```
 
 ![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
+
+#### key值相同时界面异常渲染
+
+当开发者在virtualScroll场景中错误使用了重复key值时，会出现界面渲染异常。
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatKey {
+  @Local simpleList: Array<string> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 200; i++) {
+      this.simpleList.push(`item ${i}`);
+    }
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      List() {
+        Repeat<string>(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Text(obj.item)
+                .fontSize(30)
+            }
+          })
+          .key((item: string, index: number) => {
+            return 'same key'; // 定义相同键值
+          })
+          .virtualScroll({ totalCount: 200 })
+          .templateId((item:string, index: number) => 'default')
+          .template('default', (ri) => {
+            Text(ri.item)
+              .fontSize(30)
+          }, { cachedCount: 2 })
+      }
+      .cachedCount(2)
+      .border({ width: 1 })
+      .width('90%')
+      .height('70%')
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+异常效果如下图（第一个数据项`item 0`消失）：
+
+<img src="./figures/Repeat-VirtualScroll-Same-Key.jpg" width="300" />
 
 ## 常见问题
 

@@ -20,12 +20,14 @@
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
   - [使用Web组件的广告过滤功能](web-adsblock.md)
+  - [高级安全模式](web-advanced-security-mode.md)
 - 管理网页加载与浏览记录
   - [使用Web组件加载页面](web-page-loading-with-web-components.md)
   - [管理页面跳转及浏览记录导航](web-redirection-and-browsing-history-mgmt.md)
   - [拦截Web组件发起的网络请求](web-scheme-handler.md)
   - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
   - [加速Web页面的访问](web-predictor.md)
+  - [Web前进后退缓存](web-set-back-forward-cache.md)
 - 管理网页文件上传与下载
   - [上传文件](web-file-upload.md)
   - [使用Web组件的下载能力](web-download.md)

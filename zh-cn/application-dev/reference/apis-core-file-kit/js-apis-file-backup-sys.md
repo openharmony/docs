@@ -176,7 +176,6 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 | bundleName | string        | 是   | 服务返回的应用名称                                          |
 | err        | BusinessError | 否   | 当发生err时，为错误对象，否则为undefined data为bundle名称。 |
 
-
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
@@ -206,6 +205,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
     console.info('onBundleBegin success');
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -262,6 +262,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
     console.info('onBundleEnd success with bundleName: ' + bundleName);
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -350,7 +351,6 @@ onResultReport (bundleName: string, result: string)
     console.info('onResultReport result : ' + result);
   }
   ```
-
 
 ## backup.getLocalCapabilities
 
@@ -544,6 +544,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
     }
   }
   ```
+
 ## backup.getBackupInfo
 
 getBackupInfo(bundleToBackup: string): string;
@@ -649,6 +650,60 @@ updateTimer(bundleName: string, timeout: number): void;
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('updateTimer failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## backup.updateSendRate
+
+updateSendRate(bundleName: string, sendRate: number): boolean;
+
+调用时机为onBundleBegin之后，onBundleEnd之前
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName|string | 是   | 需要控制速率对应的应用名称
+| sendRate | number | 是   | 需要应用设置的fd发送速率大小，以秒为单位，范围0~800，默认60/秒，当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800进行发送。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| boolean | 发送速率是否设置成功 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup form '@ohos.file.backup';
+
+  function updateSendRate() {
+    try {
+      let bundleName = "com.example.myApp";
+      let sendRate = 300;
+      let result = backup.updateSendRate(bundleName, sendRate);
+      if (result) {
+        console.info('updateSendRate success');
+      } else {
+        console.info('updateSendRate fail');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('updateSendRate failed with err: ' + JSON.stringify(err));
     }
   }
   ```
@@ -993,7 +1048,6 @@ release(): Promise&lt;void&gt;
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
 | 13900042 | Unknown error                                                                                  |
-
 
 **示例：**
 

@@ -162,6 +162,8 @@ requestFocus(key: string): void
 
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 参数类型 | 必填 | 描述 |
 | ---- | ---- | ---- | ---- |
 | margin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框相对组件边缘的距离。<br/>正数代表外侧，负数代表内侧。不支持百分比。 |

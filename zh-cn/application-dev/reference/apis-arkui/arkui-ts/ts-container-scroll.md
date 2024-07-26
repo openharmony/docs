@@ -215,6 +215,8 @@ initialOffset(value: OffsetOptions)
 
 设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -317,6 +319,8 @@ onWillScroll(handler: ScrollOnWillScrollCallback)
 
 3、越界回弹。 
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -341,6 +345,8 @@ onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说�
 
 3、越界回弹。 
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -352,6 +358,8 @@ onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说�
 ## ScrollOnScrollCallback对象说明
 
 Scroll滚动时触发的回调  
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -368,6 +376,8 @@ Scroll滚动时触发的回调
 type ScrollOnWillScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | OffsetResult
 
 Scroll滚动前触发的回调  
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -539,7 +549,7 @@ fling(velocity: number)
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value:   ScrollPageOptions)
+scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
@@ -547,9 +557,9 @@ scrollPage(value:   ScrollPageOptions)
 
 **参数：**
 
-| 参数名 | 参数类型                                           | 必填 | 参数描述       |
-| ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -741,16 +751,10 @@ getItemRect(index: number): RectResult
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
-## ScrollPageOptions<sup>12+</sup>对象说明
+## OffsetOptions<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
-
-## OffsetOptions<sup>12+</sup>对象说明
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
@@ -836,7 +840,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

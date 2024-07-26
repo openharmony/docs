@@ -61,7 +61,7 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式。 |
+| value  | [SubTabBarStyle](#subtabbarstyle9对象说明) \| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式。 |
 
 >  **说明：**
 >
@@ -70,16 +70,29 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 >  - vertical属性为false值，交换上述2个限制。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
-## SubTabBarStyle<sup>9+</sup>
+## SubTabBarStyle<sup>9+</sup>对象说明
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
-
 ### constructor
+
+constructor(content: ResourceStr)
+
+SubTabBarStyle的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
+
+### constructor<sup>12+</sup>
 
 constructor(content: ResourceStr | ComponentContent)
 
-SubTabBarStyle的构造函数。
+SubTabBarStyle的构造函数。支持ComponentContent设置自定义内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -87,9 +100,23 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### of<sup>10+</sup>
+
+static of(content: ResourceStr)
+
+SubTabBarStyle的静态构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 参数类型                                   | 必填 | 参数描述           |
+| ------- | ------------------------------------------ | ---- | ------------------ |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 页签内的文字内容。 |
+
+### of<sup>12+</sup>
 
 static of(content: ResourceStr | ComponentContent)
 
@@ -101,7 +128,7 @@ SubTabBarStyle的静态构造函数。
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的文字内容。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的内容。支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### 属性
 
@@ -110,7 +137,7 @@ SubTabBarStyle的静态构造函数。
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。子页签的显示方式仅在水平模式下有效。<br />默认值：SelectedMode.INDICATOR<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -155,10 +182,10 @@ SubTabBarStyle的静态构造函数。
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>从API version 12开始，底部页签页签内容左右排布时默认字体大小为12.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 |
-| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF |
+| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-## BottomTabBarStyle<sup>9+</sup>
+## BottomTabBarStyle<sup>9+</sup>对象说明
 
 底部页签和侧边页签样式。
 
@@ -174,7 +201,7 @@ BottomTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12) | 是 | 页签内的图片内容。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12对象说明) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
@@ -189,7 +216,7 @@ BottomTabBarStyle的静态构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12) | 是 | 页签内的图片内容。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12对象说明) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### 属性
@@ -204,9 +231,12 @@ BottomTabBarStyle的静态构造函数。
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12对象说明) | 设置底部页签的label图标的样式。 |
+| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12对象说明) | 设置底部页签的label图标的样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-## TabBarSymbol<sup>12+</sup>
+## TabBarSymbol<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
@@ -223,6 +253,8 @@ BottomTabBarStyle的静态构造函数。
 | HORIZONTAL | 页签内容左右排布。 |
 
 ## TabBarIconStyle<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

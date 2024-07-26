@@ -130,17 +130,17 @@ scrollBar(value: BarState)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10及以上版本的默认值为BarState.Auto。 |
 
 ### cachedCount
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
+设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
-单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
+List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。
 
-多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。
+List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup时，LazyForEach会在List显示区域外上下各会创建cachedCount个ListItemGroup。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -448,7 +448,7 @@ flingSpeedLimit(speedLimit: number)
 
 ### fadingEdge<sup>12+</sup>
 
-fadingEdge(value: boolean)
+fadingEdge(value: Optional&lt;boolean&gt;)
 
 设置当前List是否开启渐隐效果。
 
@@ -456,13 +456,15 @@ fadingEdge(value: boolean)
 
 value为false时，不启用List渐隐；value为true时，启用List渐隐。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ---------------------------------------------- |
-| value  | boolean | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
+| value  | Optional&lt;boolean&gt; | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -838,6 +840,8 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -893,6 +897,8 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 | void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
 
 ## ScrollSource<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |

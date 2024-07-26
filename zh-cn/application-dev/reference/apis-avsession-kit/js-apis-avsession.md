@@ -4,7 +4,7 @@
 
 该模块提供以下媒体会话相关的常用功能：
 
-- [AVSession](#avsession9) : 会话，可用于设置元数据、播放状态信息等操作。
+- [AVSession](#avsession10) : 会话，可用于设置元数据、播放状态信息等操作。
 - [AVSessionController](#avsessioncontroller10): 会话控制器，可用于查看会话ID，完成对会话发送命令及事件，获取会话元数据、播放状态信息等操作。
 - [AVCastController](#avcastcontroller10): 投播控制器，可用于投播场景下，完成播放控制、远端播放状态监听、远端播放状态信息获取等操作。
 
@@ -40,7 +40,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 类型                              | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSession](#avsession9)\> | Promise对象。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。|
+| Promise<[AVSession](#avsession10)\> | Promise对象。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。|
 
 **错误码：**
 
@@ -85,7 +85,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
-| callback | AsyncCallback<[AVSession](#avsession9)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
+| callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
 
 **错误码：**
 
@@ -121,11 +121,13 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 远端设备支持的协议类型的枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
@@ -148,7 +150,7 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 | 'voice_call'<sup>11+<sup> | 音频通话 |
 | 'video_call'<sup>12+<sup> | 视频通话 |
 
-## AVSession<sup>9+</sup>
+## AVSession<sup>10+</sup>
 
 调用[avSession.createAVSession](#avsessioncreateavsession10)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
@@ -3733,7 +3735,7 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 **示例：**
 
 ```ts
-private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
   // 根据assetId获取对应的DRM url
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
   // 从服务器获取许可证，需要开发者根据实际情况进行赋值
@@ -4447,10 +4449,10 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 **示例：**
 
 ```ts
-private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
   console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
-aVCastController.on('keyRequest', this.keyRequestCallback);
+aVCastController.on('keyRequest', keyRequestCallback);
 ```
 ### off('keyRequest')<sup>12+</sup>
 
@@ -4500,9 +4502,9 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 | requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
-private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
   console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
 ```
