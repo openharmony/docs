@@ -1,4 +1,4 @@
-# Audio Kit API Reference
+# Audio Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
