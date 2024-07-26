@@ -779,9 +779,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in preparing');
-  } else {
     console.error('Failed to prepare,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in preparing');
   }
 })
 ```
@@ -854,9 +854,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in playing');
-  } else {
     console.error('Failed to play,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in playing');
   }
 })
 ```
@@ -1305,6 +1305,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
+let audioTrackIndex: Object = 0;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
   if(player != null) {
     avPlayer = player;
@@ -1314,7 +1315,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         for (let i = 0; i < arrList.length; i++) {
           if (i != 0) {
             // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           }
         }
       } else {
@@ -1368,6 +1369,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
+let audioTrackIndex: Object = 0;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
   if(player != null) {
     avPlayer = player;
@@ -1377,7 +1379,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         for (let i = 0; i < arrList.length; i++) {
           if (i != 0) {
             // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           }
         }
       } else {
@@ -2288,7 +2290,7 @@ let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
 
-### addSubtitleUrl<sup>12+</sup>
+### addSubtitleFromUrl<sup>12+</sup>
 
 addSubtitleFromUrl(url: string): Promise\<void>
 
@@ -2302,7 +2304,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 外挂字幕文件地址（fd://资源句柄?offset=资源偏移量&size=资源长度）。 |
+| url    | string | 是   | 外挂字幕文件地址。 |
 
 **返回值：**
 
@@ -2322,16 +2324,10 @@ addSubtitleFromUrl(url: string): Promise\<void>
 ```ts
 import { media } from '@kit.MediaKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
-
-let fd:string = fileDescriptor.fd.toString()
-let offset:string = fileDescriptor.offset.toString()
-let length:string = fileDescriptor.length.toString()
-let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleUrl(fdUrl)
+avPlayer.addSubtitleFromUrl(fdUrl)
 ```
 
 ### on('subtitleUpdate')<sup>12+</sup>
@@ -2355,7 +2351,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 
 ```ts
 avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
-  if (!!info) {
+  if (info) {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
