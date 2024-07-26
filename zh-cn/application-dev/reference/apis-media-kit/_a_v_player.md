@@ -436,7 +436,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer *player, int32_t trackType
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| trackType | 媒体类型,值0：音频，值1：视频 | 
+| trackType | 媒体类型。0：音频，1：视频 | 
 | index | 索引 | 
 
 **返回：**
@@ -901,7 +901,7 @@ OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer *player, int32_t index)
 **描述**
 选择音频轨道。
 
-默认播放第一个带数据的音频流。 设置生效后，原曲目将失效。将音轨设置为准备状态。
+默认播放第一个带数据的音频流。设置生效后，原曲目将失效。将音轨设置为准备状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
