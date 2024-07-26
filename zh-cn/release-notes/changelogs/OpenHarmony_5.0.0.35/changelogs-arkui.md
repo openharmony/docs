@@ -599,7 +599,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-##dragInteraction.on('drag')、dragInteraction.off('drag') 接口权限变更
+## cl.arkui.14 dragInteraction接口增加系统接口校验
 
 **访问级别**
 
@@ -607,7 +607,7 @@ MenuItem组件。
 
 **变更原因**
 
-根据安全要求规范，将dragInteraction.on('drag')和dragInteraction.off('drag')接口函数添加接口权限校验。
+拖拽的监听等接口没有权限管控，恶意三方应用可以监听用户拖拽行为进行画像，因此将dragInteraction.on('drag')和dragInteraction.off('drag')接口函数添加接口权限校验。
 
 **变更影响**
 
