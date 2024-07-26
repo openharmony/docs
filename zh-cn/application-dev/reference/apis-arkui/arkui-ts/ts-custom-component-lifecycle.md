@@ -26,6 +26,8 @@ onDidBuild?(): void
 
 onDidBuild函数在执行自定义组件的build()函数之后执行。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
