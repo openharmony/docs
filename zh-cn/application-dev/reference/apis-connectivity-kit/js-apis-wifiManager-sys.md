@@ -33,7 +33,7 @@ enableWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
-| 2501003  | Failed for wifi is closing.|
+| 2501003  | Operation failed because the service is being closed. |
 
 **示例：**
 
@@ -69,7 +69,7 @@ disableWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501004  | Failed for wifi is opening.|
+| 2501004  | Operation failed because the service is being opened. |
 
 **示例：**
 
@@ -105,7 +105,7 @@ enableSemiWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
-| 2501004  | Failed for wifi is opening.|
+| 2501004  | Operation failed because the service is being opened. |
 
 **示例：**
 
